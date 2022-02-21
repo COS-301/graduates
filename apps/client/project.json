@@ -6,9 +6,7 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/client",
         "index": "apps/client/src/index.html",
@@ -21,9 +19,7 @@
           "apps/client/src/assets",
           "apps/client/src/manifest.webmanifest"
         ],
-        "styles": [
-          "apps/client/src/styles.scss"
-        ],
+        "styles": ["apps/client/src/styles.scss"],
         "scripts": [],
         "serviceWorker": true,
         "ngswConfigPath": "apps/client/ngsw-config.json"
@@ -71,7 +67,10 @@
           "browserTarget": "client:build:development"
         }
       },
-      "defaultConfiguration": "development"
+      "defaultConfiguration": "development",
+      "options": {
+        "proxyConfig": "apps/client/proxy.conf.json"
+      }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
@@ -90,16 +89,12 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/apps/client"
-      ],
+      "outputs": ["coverage/apps/client"],
       "options": {
         "jestConfig": "apps/client/jest.config.js",
         "passWithNoTests": true
       }
     }
   },
-  "tags": [
-    "type:app"
-  ]
+  "tags": ["type:app"]
 }
