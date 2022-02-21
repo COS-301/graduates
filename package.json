@@ -8,9 +8,18 @@
     "test": "nx test"
   },
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "@angular/animations": "^13.0.0 || ^14.0.0-0",
+    "@angular/cdk": "^13.2.3",
+    "@angular/flex-layout": "^13.0.0-beta.38",
+    "@angular/forms": "^13.0.0 || ^14.0.0-0",
+    "@angular/material": "^13.2.3",
+    "@angular/pwa": "^13.2.4"
+  },
   "devDependencies": {
+    "@nrwl/angular": "^13.8.3",
     "@nrwl/cli": "13.8.3",
+    "@nrwl/nest": "^13.8.3",
     "@nrwl/nx-cloud": "latest",
     "@nrwl/tao": "13.8.3",
     "@nrwl/workspace": "13.8.3",
