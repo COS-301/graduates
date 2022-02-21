@@ -14,7 +14,32 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@graduates/api/example/api/feature": [
+        "libs/api/example/api/feature/src/index.ts"
+      ],
+      "@graduates/api/example/repository/data-access": [
+        "libs/api/example/repository/data-access/src/index.ts"
+      ],
+      "@graduates/api/example/service/feature": [
+        "libs/api/example/service/feature/src/index.ts"
+      ],
+      "@graduates/client/example/feature": [
+        "libs/client/example/feature/src/index.ts"
+      ],
+      "@graduates/client/shared/components/navbar/ui": [
+        "libs/client/shared/components/navbar/ui/src/index.ts"
+      ],
+      "@graduates/client/shared/interfaces/user/data-access": [
+        "libs/client/shared/interfaces/user/data-access/src/index.ts"
+      ],
+      "@graduates/client/shared/services/authentication/data-access": [
+        "libs/client/shared/services/authentication/data-access/src/index.ts"
+      ],
+      "@graduates/client/shared/stores/authentication/data-access": [
+        "libs/client/shared/stores/authentication/data-access/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

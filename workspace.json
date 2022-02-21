@@ -2,7 +2,15 @@
   "version": 2,
   "projects": {
     "api": "apps/api",
+    "api-example-api-feature": "libs/api/example/api/feature",
+    "api-example-repository-data-access": "libs/api/example/repository/data-access",
+    "api-example-service-feature": "libs/api/example/service/feature",
     "client": "apps/client",
-    "client-e2e": "apps/client-e2e"
+    "client-e2e": "apps/client-e2e",
+    "client-example-feature": "libs/client/example/feature",
+    "client-shared-components-navbar-ui": "libs/client/shared/components/navbar/ui",
+    "client-shared-interfaces-user-data-access": "libs/client/shared/interfaces/user/data-access",
+    "client-shared-services-authentication-data-access": "libs/client/shared/services/authentication/data-access",
+    "client-shared-stores-authentication-data-access": "libs/client/shared/stores/authentication/data-access"
   }
 }

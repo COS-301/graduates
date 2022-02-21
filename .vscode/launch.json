@@ -12,6 +12,13 @@
       "runtimeExecutable": "yarn",
       "runtimeArgs": ["start", "api"],
       "outFiles": ["${workspaceFolder}/dist/apps/api/**/*.js"]
+    },
+    {
+      "type": "pwa-chrome",
+      "request": "launch",
+      "name": "client",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceFolder}/dist/apps/client"
     }
   ]
 }

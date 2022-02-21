@@ -2039,7 +2039,7 @@
     strip-json-comments "^3.1.1"
     tar "6.1.11"
 
-"@nrwl/storybook@13.8.3":
+"@nrwl/storybook@13.8.3", "@nrwl/storybook@^13.8.3":
   version "13.8.3"
   resolved "https://registry.yarnpkg.com/@nrwl/storybook/-/storybook-13.8.3.tgz#a4135eb8c822dc8edf0e10b6b1d63557baca8eed"
   integrity sha512-SO4FYNagEI7SZxVepvQ7T5lBQeGsQDWkn9TikovgZQzK6Yxtab+fDQho4I5C5rD9jaWiy1PiiKsN+siqFrhlvA==

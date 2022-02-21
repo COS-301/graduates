@@ -1,0 +1,28 @@
+{
+  "projectType": "library",
+  "root": "libs/client/shared/services/authentication/data-access",
+  "sourceRoot": "libs/client/shared/services/authentication/data-access/src",
+  "prefix": "graduates",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/client/shared/services/authentication/data-access"
+      ],
+      "options": {
+        "jestConfig": "libs/client/shared/services/authentication/data-access/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/shared/services/authentication/data-access/src/**/*.ts",
+          "libs/client/shared/services/authentication/data-access/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["app:client,type:data-access"]
+}

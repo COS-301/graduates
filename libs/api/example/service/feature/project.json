@@ -1,0 +1,23 @@
+{
+  "root": "libs/api/example/service/feature",
+  "sourceRoot": "libs/api/example/service/feature/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api/example/service/feature/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/example/service/feature"],
+      "options": {
+        "jestConfig": "libs/api/example/service/feature/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": ["app:api", "type:feature"]
+}
