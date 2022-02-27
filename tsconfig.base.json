@@ -18,12 +18,22 @@
       "@graduates/api/example/api/feature": [
         "libs/api/example/api/feature/src/index.ts"
       ],
+      "@graduates/api/example/api/shared/interfaces/data-access": [
+        "libs/api/example/api/shared/interfaces/data-access/src/index.ts"
+      ],
       "@graduates/api/example/repository/data-access": [
         "libs/api/example/repository/data-access/src/index.ts"
+      ],
+      "@graduates/api/example/repository/shared/interfaces/data-access": [
+        "libs/api/example/repository/shared/interfaces/data-access/src/index.ts"
       ],
       "@graduates/api/example/service/feature": [
         "libs/api/example/service/feature/src/index.ts"
       ],
+      "@graduates/api/example/service/shared/interfaces/data-access": [
+        "libs/api/example/service/shared/interfaces/data-access/src/index.ts"
+      ],
+      "@graduates/api/shell/feature": ["libs/api/shell/feature/src/index.ts"],
       "@graduates/client/example/feature": [
         "libs/client/example/feature/src/index.ts"
       ],
@@ -38,6 +48,9 @@
       ],
       "@graduates/client/shared/stores/authentication/data-access": [
         "libs/client/shared/stores/authentication/data-access/src/index.ts"
+      ],
+      "@graduates/client/shell/feature": [
+        "libs/client/shell/feature/src/index.ts"
       ]
     }
   },
