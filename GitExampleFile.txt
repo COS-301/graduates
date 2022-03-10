@@ -5,14 +5,17 @@ This will create a ‘graduates’ folder in which tools, libs and various other
     git status
 ...and you should see a message stating something like "On branch develop. Your branch is up to date with 'origin/develop'. nothing to commit, working tree clean"
 
+(still need to add how to create a new branch for minor/secondary features)
+(still need to add how to switch to correct branch using git checkout)
+
 Configure your account in order to track ownership of changes (this identifies you with git):
     git config --global user.name "Username"
     git config --global user.email "uXXXXXXXX@tuks.co.za"
 
-Go to or make a directory in which you will be working on your source code. In order to initialize this to be your working repository, run the following command:
+In the directory in which you will be working on your source code. In order to initialize this to be your working repository, run the following command:
     git init
 
-It should notify you that it initialized an empty Git repository, and there should be a hidden .git folder in this directory.
+It should notify you that it reinitialized an existing Git repository, and there should be a hidden .git folder in this directory.
 The next step is to check the git status (do this religously) as it tells you on which branch you are working on, which files are being tracked or not
 and what can be added/committed. It is a good idea to run git status after every git command.
     git status
