@@ -21,8 +21,9 @@ and what can be added/committed. It is a good idea to run git status after every
     git status
 
 To commit changes is a 2 step process. First files need to be staged (put in a temporary container) and from there onwards can they be committed.
-To add a file to the staging area use the following command:
+To add a file to the staging area use the following commands. The second adds all untracked files:
     git add GitExampleFile.txt
+    git add .
 
 Then to upload the changes we use the following command with the "-m" flag, which allows you to add a message or comment on your commit.
 It is suggested to do this in order to quickly read up on changes. To commit the staging files with a message, do:
@@ -35,4 +36,3 @@ To return to a previous commit or version, the 'checkout' command can be used wi
 will give a warning about detaching from the head (meaning it is no longer on the original branch).
     git checkout 0e3423cad2b75b3bdf3df6b44279667ce40b7ef8
 
-The
