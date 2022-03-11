@@ -16,3 +16,9 @@ model User {
   email String  @unique
   name  String?
 }
+
+model Test {
+  id     Int     @id @default(autoincrement())
+  field1 String  @unique
+  field2 String?
+}
