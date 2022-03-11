@@ -18,7 +18,7 @@ model User {
 }
 
 model Test {
-  id     Int     @id @default(autoincrement())
-  field1 String  @unique
-  field2 String?
+  id    Int     @id @default(autoincrement())
+  test1 String  @unique
+  test2 String?
 }
