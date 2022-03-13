@@ -95,3 +95,9 @@ enum permission_tenant {
   VIEWERS
   ALL
 }
+
+model Test {
+  id    Int     @id @default(autoincrement())
+  test1 String  @unique
+  test2 String?
+}
