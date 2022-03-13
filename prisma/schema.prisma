@@ -10,11 +10,90 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Use CUIDs for IDs please
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+///////////////////////////////////////////////////////////////////////
+// User
+///////////////////////////////////////////////////////////////////////
+
+// All entities within the database is defined as users
+model user {
+  user_id          String             @id @default(cuid()) // Use CUIDs for IDs please
+  email            String             @unique
+  name             String?
+  user_role        user_role[]
+  user_permissions user_permissions[]
+}
+
+///////////////////////////////////////////////////////////////////////
+// Roles and Permissions
+///////////////////////////////////////////////////////////////////////
+
+// The roles that the users are assigned to for default permissions
+model user_role {
+  user_role_id String @id @default(cuid())
+  user_id      String
+  role         role
+  user         user   @relation(fields: [user_id], references: [user_id])
+}
+
+// Additional permissions users are assigned to
+model user_permissions {
+  user_permission_id  String              @id @default(cuid())
+  user_id             String
+  permission_type     permission_type
+  permission_category permission_category
+  permission_tenant   permission_tenant?
+  user                user                @relation(fields: [user_id], references: [user_id])
+}
+
+// The permissions each role has by default
+model role_permissions {
+  role_permission_id  String              @id @default(cuid())
+  role                role
+  permission_type     permission_type
+  permission_category permission_category
+  permission_tenant   permission_tenant?
+}
+
+// Roles to define all the roles that are currently present in the application
+enum role {
+  USER
+  STUDENT
+  COMPANY
+  ADMIN
+  SUSPENDED
+}
+
+// Type of permission that can be given to a user
+enum permission_type {
+  CREATE
+  EDIT
+  REMOVE
+  VIEW
+  ARCHIVE
+  SUSPEND
+  ALL
+}
+
+// What the permission applies to
+enum permission_category {
+  USER
+  STUDENT
+  COMPANY
+  PROFILE
+  STORY
+  PERMISSIONS
+  ROLE
+  ALL
+}
+
+// What the permission is for
+enum permission_tenant {
+  USER
+  STUDENT
+  COMPANY
+  COUNT
+  VIEWERS
+  ALL
 }
 
 model Test {
