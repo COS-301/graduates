@@ -2,6 +2,8 @@
   "version": 2,
   "projects": {
     "api": "apps/api",
+    "api-adminconsole-api-feature": "libs/api/adminconsole/api/feature",
+    "api-adminconsole-repository-data-access": "libs/api/adminconsole/repository/data-access",
     "api-example-api-feature": "libs/api/example/api/feature",
     "api-example-api-shared-interfaces-data-access": "libs/api/example/api/shared/interfaces/data-access",
     "api-example-repository-data-access": "libs/api/example/repository/data-access",
