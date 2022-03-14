@@ -1,0 +1,38 @@
+First go to a directory in which you will want to setup and work on source files for the repository. (e.g D:\Documents\University of Pretoria\COS301). Then type the following command to clone the repository to the current directory:
+    git clone https://github.com/COS-301/graduates.git
+
+This will create a ‘graduates’ folder in which tools, libs and various other repository files will be present. Change directories into the ‘graduates’ folder, type
+    git status
+...and you should see a message stating something like "On branch develop. Your branch is up to date with 'origin/develop'. nothing to commit, working tree clean"
+
+(still need to add how to create a new branch for minor/secondary features)
+(still need to add how to switch to correct branch using git checkout)
+
+Configure your account in order to track ownership of changes (this identifies you with git):
+    git config --global user.name "Username"
+    git config --global user.email "uXXXXXXXX@tuks.co.za"
+
+In the directory in which you will be working on your source code. In order to initialize this to be your working repository, run the following command:
+    git init
+
+It should notify you that it reinitialized an existing Git repository, and there should be a hidden .git folder in this directory.
+The next step is to check the git status (do this religously) as it tells you on which branch you are working on, which files are being tracked or not
+and what can be added/committed. It is a good idea to run git status after every git command.
+    git status
+
+To commit changes is a 2 step process. First files need to be staged (put in a temporary container) and from there onwards can they be committed.
+To add a file to the staging area use the following commands. The second adds all untracked files:
+    git add GitExampleFile.txt
+    git add .
+
+Then to upload the changes we use the following command with the "-m" flag, which allows you to add a message or comment on your commit.
+It is suggested to do this in order to quickly read up on changes. To commit the staging files with a message, do:
+    git commit -m "This is a document to get everyone started on Git"
+
+To get a history of the commits that were made, we can use the command:
+    git log
+
+To return to a previous commit or version, the 'checkout' command can be used with the hash of the commit (found in the logs). This will
+will give a warning about detaching from the head (meaning it is no longer on the original branch).
+    git checkout 0e3423cad2b75b3bdf3df6b44279667ce40b7ef8
+
