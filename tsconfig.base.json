@@ -51,7 +51,8 @@
       ],
       "@graduates/client/shell/feature": [
         "libs/client/shell/feature/src/index.ts"
-      ]
+      ],
+      "libs": ["libs/api/companyrep/api/feature/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
