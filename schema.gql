@@ -1,0 +1,36 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""companeyrep profile"""
+type Companyrep {
+  id: String!
+  name: String!
+  Occupation: String!
+  experience: String!
+  about_me: String!
+  email: String!
+  phone_no: String!
+  website: String!
+  conactions: [String!]!
+}
+
+type Query {
+  companyrep(id: String!): Companyrep!
+}
+
+type Mutation {
+  addRecipe(newRecipeData: NewCompanyrepInput!): Companyrep!
+}
+
+input NewCompanyrepInput {
+  id: String!
+  name: String!
+  Occupation: String!
+  experience: String!
+  about_me: String!
+  email: String!
+  phone_no: String!
+  website: String!
+  conactions: [String!]!
+}

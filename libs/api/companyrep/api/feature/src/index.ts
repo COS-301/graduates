@@ -1,1 +1,1 @@
-export * from './lib/apicompanyrepapi-feature.module';
+export * from './lib/Companyrep.module';
