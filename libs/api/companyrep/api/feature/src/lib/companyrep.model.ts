@@ -27,6 +27,6 @@ export class Companyrep{
     website!: string;
 
     @Field(type => [String])
-    conactions!: string[];
+    connection!: string[];
 
 }

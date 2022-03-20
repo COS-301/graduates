@@ -38,5 +38,5 @@ export class NewCompanyrepInput {
     website!: string;
 
     @Field(type => [String])
-    conactions!: string[];
+    connection!: string[];
 }

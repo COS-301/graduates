@@ -12,7 +12,7 @@ type Companyrep {
   email: String!
   phone_no: String!
   website: String!
-  conactions: [String!]!
+  connection: [String!]!
 }
 
 type Query {
@@ -20,7 +20,7 @@ type Query {
 }
 
 type Mutation {
-  addRecipe(newRecipeData: NewCompanyrepInput!): Companyrep!
+  addCompanyrep(newCompanyrepData: NewCompanyrepInput!): Companyrep!
 }
 
 input NewCompanyrepInput {
@@ -32,5 +32,5 @@ input NewCompanyrepInput {
   email: String!
   phone_no: String!
   website: String!
-  conactions: [String!]!
+  connection: [String!]!
 }

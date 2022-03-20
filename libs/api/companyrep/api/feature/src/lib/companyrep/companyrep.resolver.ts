@@ -17,13 +17,13 @@ export class CompanyrepResolver {
         if(!example){
             throw new NotFoundException(id);
         }
-        return  example
+        return  example;
     } 
 
     @Mutation(returns => Companyrep)
-    async addRecipe(@Args('newRecipeData') newRecipeData: NewCompanyrepInput,): Promise<Companyrep> {
-        const recipe = await this.companyrepService.create(newRecipeData);
-        pubSub.publish('recipeAdded', { recipeAdded: recipe });
-        return recipe;
+    async addCompanyrep(@Args('newCompanyrepData') newCompanyrepData: NewCompanyrepInput,): Promise<Companyrep> {
+        const companyrep = await this.companyrepService.create(newCompanyrepData);
+        pubSub.publish('companyrepAdded', { companyrepAdded: companyrep });
+        return companyrep;
     }
 }

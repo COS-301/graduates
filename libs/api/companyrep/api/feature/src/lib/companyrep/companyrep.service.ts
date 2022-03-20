@@ -12,7 +12,15 @@ export class CompanyrepService {
     async create(data: NewCompanyrepInput): Promise<Companyrep> {
         return {
             'response' : 200,
-            "data" : data
+            'id': data.id,
+            'name': data.name,
+            'Occupation': data.Occupation,
+            'experience': data.experience,
+            'about_me': data.about_me,
+            'email': data.email,
+            'phone_no': data.phone_no,
+            'website': data.website,
+            'connection': data.connection
             } as any;
     }
 
@@ -26,7 +34,7 @@ export class CompanyrepService {
             'email': 'austinsmith@gmail.com',
             'phone_no': '071 654 987',
             'website': 'austin.com',
-            'conactions': ['Amanda CEO', 'Chris Founder']
+            'connection': ['Amanda CEO', 'Chris Founder']
         } as any;
     }
 
