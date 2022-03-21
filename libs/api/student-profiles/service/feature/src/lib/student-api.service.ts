@@ -1,7 +1,5 @@
-import { Injectable } from '@nestjs/common';
 import { Student } from '@graduates/api/student-profiles/api/shared/data-access';
 
-@Injectable()
 export class StudentService {
   public async findAll(): Promise<Student[]> {
     const students = [];
