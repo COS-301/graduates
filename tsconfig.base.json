@@ -49,6 +49,15 @@
       "@graduates/api/storage/service/feature": [
         "libs/api/storage/service/feature/src/index.ts"
       ],
+      "@graduates/api/student-profiles/api/feature": [
+        "libs/api/student-profiles/api/feature/src/index.ts"
+      ],
+      "@graduates/api/student-profiles/api/shared/data-access": [
+        "libs/api/student-profiles/api/shared/data-access/src/index.ts"
+      ],
+      "@graduates/api/student-profiles/service/feature": [
+        "libs/api/student-profiles/service/feature/src/index.ts"
+      ],
       "@graduates/client/example/feature": [
         "libs/client/example/feature/src/index.ts"
       ],
