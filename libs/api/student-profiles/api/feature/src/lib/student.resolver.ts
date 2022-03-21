@@ -7,7 +7,7 @@ export class StudentResolver {
   constructor(private studentService: StudentService) {}
 
   @Query((returns) => Student,{ name: 'student' })
-  async student(@Args('id', { type: () => String }) id: string) {
+  async student(@Args('studentNum', { type: () => String }) id: string) {
     return this.studentService.findOneById(id);
   }
 

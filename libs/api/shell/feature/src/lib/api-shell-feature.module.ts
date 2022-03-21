@@ -10,7 +10,6 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
     GraphQLModule.forRoot({
       autoSchemaFile: true,
       driver: ApolloDriver,
-      playground: true,
     }),
     ApiStorageFeatureModule,
     StudentProfilesApiModule,

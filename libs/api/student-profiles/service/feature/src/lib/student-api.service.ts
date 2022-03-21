@@ -10,11 +10,15 @@ export class StudentService {
     return nums;
   }
 
-  public async findOneById(id: string): Promise<Student> {
+  public async findOneById(studentNum: string): Promise<Student> {
     const student = new Student();
-    if (id == 'u19001836') student.lastName = 'Wick';
-    student.id = 'u19001836';
+    if (studentNum == 'u19001836') student.lastName = 'Cena';
+    else student.lastName = 'Wick';
+    student.studentNum = 'u19001836';
     student.firstName = 'John';
+    student.email = 'John'+student.lastName+'@gmail.com';
+    student.phoneNum = '+27791506145';
+    student.date_of_birth = '1 January 2000';
 
     return student;
   }
