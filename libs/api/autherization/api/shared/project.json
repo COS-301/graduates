@@ -1,0 +1,23 @@
+{
+  "root": "libs/api/autherization/api/shared",
+  "sourceRoot": "libs/api/autherization/api/shared/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api/autherization/api/shared/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/autherization/api/shared"],
+      "options": {
+        "jestConfig": "libs/api/autherization/api/shared/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
