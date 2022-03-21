@@ -1,9 +1,10 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { NotFoundException} from '@nestjs/common';
 import { Args, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
 import { PubSub } from 'graphql-subscriptions';
-import { Companyrep } from '../companyrep.model';
-import { NewCompanyrepInput } from '../new-companyrep.input';
-import {CompanyrepService} from './companyrep.service'
+import { Companyrep } from '../../../shared/data-access/src/lib/companyrep.model';
+import { NewCompanyrepInput } from '../../../shared/data-access/src/lib/new-companyrep.input';
+import {CompanyrepService} from '../../../../service/feature/src/lib/companyrep.service';
 
 const pubSub = new PubSub();
 
@@ -22,8 +23,8 @@ export class CompanyrepResolver {
 
     @Mutation(returns => Companyrep)
     async addCompanyrep(@Args('newCompanyrepData') newCompanyrepData: NewCompanyrepInput,): Promise<Companyrep> {
-        const companyrep = await this.companyrepService.create(newCompanyrepData);
-        pubSub.publish('companyrepAdded', { companyrepAdded: companyrep });
-        return companyrep;
+        const resp = await this.companyrepService.create(newCompanyrepData);
+        pubSub.publish('companyrepAdded', { companyrepAdded: resp });
+        return resp;
     }
 }

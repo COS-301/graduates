@@ -2,7 +2,7 @@ import { ObjectType, Field, ID, Directive, Int } from "@nestjs/graphql";
 
 @ObjectType({description: 'companeyrep profile'})
 export class Companyrep{
-    @Field(type => String)
+    @Field(type => ID)
     id!: string;
 
     @Field()

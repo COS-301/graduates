@@ -10,6 +10,8 @@
     "api-example-service-shared-interfaces-data-access": "libs/api/example/service/shared/interfaces/data-access",
     "api-shell-feature": "libs/api/shell/feature",
     "api\\companyrep\\api-feature": "libs/api/companyrep/api/feature",
+    "api\\companyrep\\api\\shared-data-access": "libs/api/companyrep/api/shared/data-access",
+    "api\\companyrep\\service-feature": "libs/api/companyrep/service/feature",
     "client": "apps/client",
     "client-e2e": "apps/client-e2e",
     "client-example-feature": "libs/client/example/feature",

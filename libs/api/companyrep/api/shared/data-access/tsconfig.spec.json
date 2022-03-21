@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../../../../dist/out-tsc",
+    "outDir": "../../../../../../dist/out-tsc",
     "module": "commonjs",
     "types": ["jest", "node"]
   },
@@ -15,5 +15,5 @@
     "**/*.test.jsx",
     "**/*.spec.jsx",
     "**/*.d.ts"
-, "../../service/feature/src/lib/companyrep.service.spec.ts"  ]
+  ]
 }

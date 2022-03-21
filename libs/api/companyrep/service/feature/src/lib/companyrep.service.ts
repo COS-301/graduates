@@ -1,31 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import { Companyrep } from '../companyrep.model';
-import { NewCompanyrepInput } from '../new-companyrep.input';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { Companyrep } from '../../../../api/shared/data-access/src/lib/companyrep.model';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { NewCompanyrepInput } from '../../../../api/shared/data-access/src/lib/new-companyrep.input';
 
 @Injectable()
 export class CompanyrepService {
-  /**
-   * MOCK
-   * Put some real business logic here
-   */
- 
+  
     async create(data: NewCompanyrepInput): Promise<Companyrep> {
-        return {
-            'response' : 200,
-            'id': data.id,
-            'name': data.name,
-            'Occupation': data.Occupation,
-            'experience': data.experience,
-            'about_me': data.about_me,
-            'email': data.email,
-            'phone_no': data.phone_no,
-            'website': data.website,
-            'connection': data.connection
-            } as any;
+        return data as any;
     }
 
     async findOneById(id: string): Promise<Companyrep> {
-        return {
+        const data = {
             'id': id,
             'name': 'Austin Smith',
             'Occupation': 'Software Engineer',
@@ -35,7 +22,9 @@ export class CompanyrepService {
             'phone_no': '071 654 987',
             'website': 'austin.com',
             'connection': ['Amanda CEO', 'Chris Founder']
-        } as any;
+        };
+
+        return data;
     }
 
     async findAll(): Promise<Companyrep[]> {

@@ -15,5 +15,5 @@
     "**/*.test.jsx",
     "**/*.spec.jsx",
     "**/*.d.ts"
-, "../../service/feature/src/lib/companyrep.service.spec.ts"  ]
+  ]
 }

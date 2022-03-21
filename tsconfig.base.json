@@ -34,6 +34,15 @@
         "libs/api/example/service/shared/interfaces/data-access/src/index.ts"
       ],
       "@graduates/api/shell/feature": ["libs/api/shell/feature/src/index.ts"],
+      "@graduates/api\\companyrep\\api/data-acces": [
+        "libs/api/companyrep/api/data-acces/src/index.ts"
+      ],
+      "@graduates/api\\companyrep\\api\\shared/data-access": [
+        "libs/api/companyrep/api/shared/data-access/src/index.ts"
+      ],
+      "@graduates/api\\companyrep\\service/feature": [
+        "libs/api/companyrep/service/feature/src/index.ts"
+      ],
       "@graduates/client/example/feature": [
         "libs/client/example/feature/src/index.ts"
       ],

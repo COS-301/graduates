@@ -1,15 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { IsOptional, Length, MaxLength } from 'class-validator';
 
-//   id: String!
-//   name: String!
-//   Occupation: String!
-//   experience: String!
-//   about_me: String!
-//   email: String!
-//   phone_no: String!
-//   website: String!
-//   conactions: [String!]!
 
 @InputType()
 export class NewCompanyrepInput {

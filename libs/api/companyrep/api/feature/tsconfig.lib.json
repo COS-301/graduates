@@ -8,5 +8,5 @@
     "target": "es6"
   },
   "exclude": ["**/*.spec.ts", "**/*.test.ts"],
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts", "../shared/data-access/src/lib/api/companyrep/api/new-companyrep.input.ts", "../shared/data-access/src/lib/api/companyrep/api/companyrep.model.ts", "../../service/feature/src/lib/companyrep.service.spec.ts", "../../service/feature/src/lib/companyrep.service.ts"]
 }

@@ -4,7 +4,7 @@
 
 """companeyrep profile"""
 type Companyrep {
-  id: String!
+  id: ID!
   name: String!
   Occupation: String!
   experience: String!
