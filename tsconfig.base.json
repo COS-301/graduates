@@ -43,8 +43,8 @@
       "@graduates/api/storage/api/feature": [
         "libs/api/storage/api/feature/src/index.ts"
       ],
-      "@graduates/api/storage/api/shared/data-access": [
-        "libs/api/storage/api/shared/data-access/src/index.ts"
+      "@graduates/api/storage/api/shared/interfaces/data-access": [
+        "libs/api/storage/api/shared/interfaces/data-access/src/index.ts"
       ],
       "@graduates/api/storage/service/feature": [
         "libs/api/storage/service/feature/src/index.ts"

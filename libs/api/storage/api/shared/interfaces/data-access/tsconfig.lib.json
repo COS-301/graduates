@@ -2,11 +2,11 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "module": "commonjs",
-    "outDir": "../../../../../dist/out-tsc",
+    "outDir": "../../../../../../../dist/out-tsc",
     "declaration": true,
     "types": ["node"],
     "target": "es6"
   },
   "exclude": ["**/*.spec.ts", "**/*.test.ts"],
-  "include": ["**/*.ts", "../shared/interfaces/data-access/src/lib/api-storage.entity.ts"]
+  "include": ["**/*.ts"]
 }
