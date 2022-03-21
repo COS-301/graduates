@@ -10,9 +10,298 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Use CUIDs for IDs please
-model User {
+///////////////////////////////////////////////////////////////////////
+// 1. User
+///////////////////////////////////////////////////////////////////////
+
+// All entities within the database is defined as users
+model user {
+  id            String    @id @default(cuid()) // Use CUIDs for IDs please
+  email         String    @unique
+  password      String?
+  password_salt String?
+  name          String?
+  date_of_birth DateTime?
+  company_id    String?
+  created       DateTime
+  suspended     Boolean
+  validated     Boolean
+
+  company user? @relation(name: "company_id", fields: [company_id], references: [id])
+
+  user                      user[]                      @relation("company_id")
+  user_scout                user_scouted[]              @relation("user_scout")
+  user_scouted              user_scouted[]              @relation("user_scouted")
+  user_role                 user_role[]
+  user_permissions          user_permissions[]
+  user_profile              user_profile[]
+  user_tag                  user_tag[]
+  user_social_media         user_social_media[]
+  user_location             user_location[]
+  user_email                user_email[]
+  user_student_profile_file user_student_profile_file[]
+  story                     story[]
+  story_report              story_report[]
+  blog                      blog[]
+  user_from                 notification[]              @relation("user_from")
+  user_to                   notification[]              @relation("user_to")
+}
+
+///////////////////////////////////////////////////////////////////////
+// 1.1 Scouting
+///////////////////////////////////////////////////////////////////////
+
+model user_scouted {
+  user_id_scout String    @id
+  user_id       String
+  date          DateTime?
+
+  user_scout user @relation(name: "user_scout", fields: [user_id_scout], references: [id])
+  user       user @relation(name: "user_scouted", fields: [user_id], references: [id])
+}
+
+///////////////////////////////////////////////////////////////////////
+// 1.2 Roles and Permissions
+///////////////////////////////////////////////////////////////////////
+
+// The roles that the users are assigned to for default permissions
+model user_role {
+  user_id String
+  role    role
+
+  user user @relation(fields: [user_id], references: [id])
+  @@id([user_id, role])
+}
+
+// Additional permissions users are assigned to
+model user_permissions {
+  user_id             String
+  permission_type     permission_type
+  permission_category permission_category
+  permission_tenant   permission_tenant
+
+  user user @relation(fields: [user_id], references: [id])
+  @@id([user_id, permission_type, permission_category, permission_tenant])
+}
+
+// The permissions each role has by default
+model role_permissions {
+  role                role
+  permission_type     permission_type
+  permission_category permission_category
+  permission_tenant   permission_tenant
+
+  @@id([role, permission_type, permission_category, permission_tenant])
+}
+
+// Roles to define all the roles that are currently present in the application
+enum role {
+  USER
+  STUDENT
+  COMPANY
+  REPRESENTATIVE
+  ADMIN
+  SUSPENDED
+}
+
+// Type of permission that can be given to a user
+enum permission_type {
+  CREATE
+  EDIT
+  REMOVE
+  VIEW
+  ARCHIVE
+  SUSPEND
+  ALL
+}
+
+// What the permission applies to
+enum permission_category {
+  USER
+  STUDENT
+  COMPANY
+  PROFILE
+  STORY
+  PERMISSIONS
+  ROLE
+  ALL
+}
+
+// What the permission is for
+enum permission_tenant {
+  USER
+  STUDENT
+  COMPANY
+  COUNT
+  VIEWERS
+  NONE
+  ALL
+}
+
+///////////////////////////////////////////////////////////////////////
+// 1.3 User Profile
+///////////////////////////////////////////////////////////////////////
+
+// Profile information for a user
+model user_profile {
+  user_id         String  @id
+  profile_picture String?
+  bio             String?
+
+  user user @relation(fields: [user_id], references: [id])
+}
+
+// Tag on which to filter users
+model user_tag {
+  user_id String @id
+  tag     String
+
+  user user @relation(fields: [user_id], references: [id])
+}
+
+// Social Media links for users
+model user_social_media {
+  user_id String       @id
+  type    social_media
+  link    String
+
+  user user @relation(fields: [user_id], references: [id])
+}
+
+enum social_media {
+  TWITTER
+  INSTAGRAM
+  LINKEDIN
+  FACEBOOK
+  SNAPCHAT
+  GITHUB
+}
+
+// Locations of users
+model user_location {
+  user_id  String @id
+  location String
+
+  user user @relation(fields: [user_id], references: [id])
+}
+
+// Emails of users
+model user_email {
+  user_id String @id
+  email   String
+
+  user user @relation(fields: [user_id], references: [id])
+}
+
+// File uploads of users
+model user_student_profile_file {
+  file_id        String         @id @default(cuid())
+  user_id        String
+  file_path      String
+  file_category  file_category?
+  file_extension String?
+
+  user user @relation(fields: [user_id], references: [id])
+}
+
+enum file_category {
+  ACADEMIC_RECORD
+  DEGREE
+  MISC
+}
+
+///////////////////////////////////////////////////////////////////////
+// 2. Story
+///////////////////////////////////////////////////////////////////////
+
+// Stories of users
+model story {
+  story_id    String   @id @default(cuid())
+  user_id     String
+  media       String?
+  data        String?
+  date_posted DateTime
+  archived    Boolean
+
+  user user @relation(fields: [user_id], references: [id])
+
+  story_tag    story_tag[]
+  story_report story_report[]
+}
+
+// Story tags to be filtered by
+model story_tag {
+  story_id String
+  tag      String
+
+  story story @relation(fields: [story_id], references: [story_id])
+
+  @@id([story_id, tag])
+}
+
+// Story reports
+model story_report {
+  story_id String
+  user_id  String
+  reason   String
+
+  user  user  @relation(fields: [user_id], references: [id])
+  story story @relation(fields: [story_id], references: [story_id])
+
+  @@id([story_id, user_id])
+}
+
+///////////////////////////////////////////////////////////////////////
+// 3. Notification
+///////////////////////////////////////////////////////////////////////
+
+// User notifications
+model notification {
+  notification_id String   @id @default(cuid())
+  user_id_from    String?
+  user_id_to      String
+  data            Json?
+  date            DateTime
+  seen            Boolean
+
+  user_from user? @relation(name: "user_from", fields: [user_id_from], references: [id])
+  user_to   user  @relation(name: "user_to", fields: [user_id_to], references: [id])
+}
+
+///////////////////////////////////////////////////////////////////////
+// 4. Blog
+///////////////////////////////////////////////////////////////////////
+
+// Blogs that up admin have posted
+model blog {
+  blog_id  String   @id @default(cuid())
+  user_id  String
+  title    String
+  content  String?
+  media    String?
+  date     DateTime
+  archived Boolean
+
+  user user @relation(fields: [user_id], references: [id])
+
+  blog_comment blog_comment[]
+}
+
+model blog_comment {
+  comment_id String   @id @default(cuid())
+  blog_id    String
+  content    String
+  date       DateTime
+
+  blog blog @relation(fields: [blog_id], references: [blog_id])
+}
+
+///////////////////////////////////////////////////////////////////////
+// Tests
+///////////////////////////////////////////////////////////////////////
+
+model Test {
   id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  test1 String  @unique
+  test2 String?
 }

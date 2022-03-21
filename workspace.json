@@ -2,6 +2,8 @@
   "version": 2,
   "projects": {
     "api": "apps/api",
+    "api-adminconsole-api-feature": "libs/api/adminconsole/api/feature",
+    "api-adminconsole-repository-data-access": "libs/api/adminconsole/repository/data-access",
     "api-example-api-feature": "libs/api/example/api/feature",
     "api-example-api-shared-interfaces-data-access": "libs/api/example/api/shared/interfaces/data-access",
     "api-example-repository-data-access": "libs/api/example/repository/data-access",
@@ -12,6 +14,9 @@
     "api\\companyrep\\api-feature": "libs/api/companyrep/api/feature",
     "api\\companyrep\\api\\shared-data-access": "libs/api/companyrep/api/shared/data-access",
     "api\\companyrep\\service-feature": "libs/api/companyrep/service/feature",
+    "api-storage-api-feature": "libs/api/storage/api/feature",
+    "api-storage-api-shared-data-access": "libs/api/storage/api/shared/data-access",
+    "api-storage-service-feature": "libs/api/storage/service/feature",
     "client": "apps/client",
     "client-e2e": "apps/client-e2e",
     "client-example-feature": "libs/client/example/feature",

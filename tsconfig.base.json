@@ -15,6 +15,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@graduates/api/adminconsole/api/feature": [
+        "libs/api/adminconsole/api/feature/src/index.ts"
+      ],
+      "@graduates/api/adminconsole/repository/data-access": [
+        "libs/api/adminconsole/repository/data-access/src/index.ts"
+      ],
       "@graduates/api/example/api/feature": [
         "libs/api/example/api/feature/src/index.ts"
       ],
@@ -42,6 +48,15 @@
       ],
       "@graduates/api\\companyrep\\service/feature": [
         "libs/api/companyrep/service/feature/src/index.ts"
+      ],
+      "@graduates/api/storage/api/feature": [
+        "libs/api/storage/api/feature/src/index.ts"
+      ],
+      "@graduates/api/storage/api/shared/data-access": [
+        "libs/api/storage/api/shared/data-access/src/index.ts"
+      ],
+      "@graduates/api/storage/service/feature": [
+        "libs/api/storage/service/feature/src/index.ts"
       ],
       "@graduates/client/example/feature": [
         "libs/client/example/feature/src/index.ts"
