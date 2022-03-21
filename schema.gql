@@ -2,6 +2,15 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type ApiStorage {
+  id: String!
+  CV: Boolean!
+  Transcript: Boolean!
+  AcademicRecord: Boolean!
+  Certificate: Boolean!
+  LetterOfRecommendation: Boolean!
+}
+
 """companeyrep profile"""
 type Companyrep {
   id: ID!
@@ -17,6 +26,7 @@ type Companyrep {
 
 type Query {
   companyrep(id: String!): Companyrep!
+  storage: [ApiStorage!]!
 }
 
 type Mutation {
