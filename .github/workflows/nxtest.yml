@@ -1,0 +1,29 @@
+name: 'Default Test'
+
+# Reusable workflow 
+on:
+  workflow_call:
+    inputs:
+      test:
+        description: 'Type of test being run'
+        required: true
+        type: string
+      branch:
+        description: 'Branch to use as base'
+        required: false
+        type: string
+
+jobs:
+  build:
+    name: Generate cache
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout develop
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
+        with:
+          main-branch-name: 'develop'

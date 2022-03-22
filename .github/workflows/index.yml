@@ -9,3 +9,8 @@ jobs:
     uses: ./.github/workflows/nxtest.yml
     with:
       test: 'affected'
+
+test-all:
+    uses: ./.github/workflows/default.yml
+    with:
+      test: 'all'
