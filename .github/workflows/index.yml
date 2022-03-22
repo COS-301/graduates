@@ -1,3 +1,4 @@
+---
 name: CI Tests
 
 on: 
@@ -10,7 +11,7 @@ jobs:
     with:
       test: 'affected'
 
-test-all:
+  test-all:
     uses: ./.github/workflows/nxtest.yml
     with:
       test: 'all'
