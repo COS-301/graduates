@@ -1,13 +1,22 @@
-import { Field, ObjectType, Int } from '@nestjs/graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 export class Short {
-  @Field(() => Int)
-  id: number = 0;
+  @Field()
+  id!: string;
 
   @Field()
-  email: string = '';
+  user_id!: string;
 
-  @Field()
-  name: string = '';
+  @Field({ nullable: true })
+  media?: string;
+
+  @Field({ nullable: true })
+  data?: string;
+
+  @Field((type) => Date)
+  date_posted!: Date;
+
+  @Field((type) => Boolean)
+  archived!: boolean;
 }
