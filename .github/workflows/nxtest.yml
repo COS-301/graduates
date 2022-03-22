@@ -48,3 +48,10 @@ jobs:
 
       - name: Install packages
         run: yarn install --frozen-lockfile
+      
+      - name: Test affected
+        if: ${{ inputs.test == 'affected' }}
+        run: |
+          yarn nx affected:lint --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+          yarn nx affected:test --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+          yarn nx affected:build --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
