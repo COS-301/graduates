@@ -11,6 +11,6 @@ jobs:
       test: 'affected'
 
 test-all:
-    uses: ./.github/workflows/default.yml
+    uses: ./.github/workflows/nxtest.yml
     with:
       test: 'all'
