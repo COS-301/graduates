@@ -1790,6 +1790,13 @@
     tslib "2.3.1"
     uuid "8.3.2"
 
+"@nestjs/cqrs@^8.0.3":
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/@nestjs/cqrs/-/cqrs-8.0.3.tgz#aedc7e98548f8240db84feab65af92edf6dbbf42"
+  integrity sha512-OVZ4yUcJCGnkpPD0gntzCLBd/4Nv6hFVioFMcARs/V7U7CbzraaBinT8+mr9XuoKj9aYX6XCI9qz0+KR8rMSqQ==
+  dependencies:
+    uuid "8.3.2"
+
 "@nestjs/graphql@^10.0.7":
   version "10.0.7"
   resolved "https://registry.yarnpkg.com/@nestjs/graphql/-/graphql-10.0.7.tgz#b99ff566ed63ca0adc4c85683bdda080156b5ac6"
