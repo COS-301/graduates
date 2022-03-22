@@ -1,13 +1,13 @@
 import { Query, Resolver } from "@nestjs/graphql";
-import { ApiUpIntegrationServiceFeatureModule} from '@graduates/api/upintegration/service/feature'
+import { ApiUpIntegrationServiceFeature} from '@graduates/api/upintegration/service/feature'
 import{ ApiUpIntegration} from '@graduates/api/upintegration/api/shared/data-access'
 
 @Resolver(of => ApiUpIntegration)
 export class ApiUpIntegrationResolver {
-   constructor(private upintegrationService:ApiUpIntegrationServiceFeatureModule ){}
+   constructor(private upintegrationService:ApiUpIntegrationServiceFeature ){}
 
    @Query(returns=>[ApiUpIntegration])
-   upIntegration():Promise<ApiUpIntegration[]>{
+   upintegration():Promise<ApiUpIntegration[]>{
 
        return this.upintegrationService.getAcademicRecord();
    }
