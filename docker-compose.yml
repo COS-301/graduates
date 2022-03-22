@@ -17,7 +17,26 @@ services:
       - 5432:5432
     networks:
       - graduates-private
+      
+      
+  api:
+    # Create backend container  
+    build: ./apps/api/
+    ports:
+      - "5433:5433"
+    container_name: api-docker
+    restart: always
+    links:
+      - postgres
 
+  client:
+    build: ./apps/client/ 
+    ports:
+      - "5434:5434"
+    container_name: client-docker
+    restart: always
+    links:
+      - api
 volumes:
   postgres-data:
 
