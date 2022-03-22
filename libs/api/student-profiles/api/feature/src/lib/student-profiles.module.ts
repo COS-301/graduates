@@ -1,8 +1,11 @@
 import { Module } from '@nestjs/common';
 import { StudentResolver } from './student.resolver';
-import { StudentService } from '@graduates/api/student-profiles/service/feature'
+import { StudentProfilesServiceModule } from '@graduates/api/student-profiles/service/feature';
 
 @Module({
-  providers: [StudentResolver,StudentService],
+  controllers:[],
+  providers: [StudentResolver],
+  imports: [StudentProfilesServiceModule],
+  exports: []
 })
 export class StudentProfilesApiModule {}

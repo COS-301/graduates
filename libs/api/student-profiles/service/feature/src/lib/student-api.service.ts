@@ -1,6 +1,9 @@
+//TODO: Remove Student import and create Student model on service layer
 import { Student } from '@graduates/api/student-profiles/api/shared/data-access';
+import { Injectable } from '@nestjs/common';
 
-export class StudentService {
+@Injectable()
+export class StudentProfileService {
   public async findAll(): Promise<Student[]> {
     const students = [];
     students.push(new Student());

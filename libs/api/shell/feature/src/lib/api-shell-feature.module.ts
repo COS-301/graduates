@@ -1,6 +1,7 @@
 import { FeatureModule as ApiExampleFeatureModule } from '@graduates/api/example/api/feature';
 import { ApiStorageApiFeatureModule as ApiStorageFeatureModule } from '@graduates/api/storage/api/feature';
 import { StudentProfilesApiModule as StudentProfilesApiModule } from '@graduates/api/student-profiles/api/feature';
+import { StudentProfilesServiceModule } from '@graduates/api/student-profiles/service/feature';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
@@ -13,6 +14,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
     }),
     ApiStorageFeatureModule,
     StudentProfilesApiModule,
+    StudentProfilesServiceModule,
   ],
 })
 export class ApiShellFeatureModule {}
