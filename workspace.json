@@ -19,6 +19,7 @@
     "api-storage-api-feature": "libs/api/storage/api/feature",
     "api-storage-api-shared-data-access": "libs/api/storage/api/shared/data-access",
     "api-storage-service-feature": "libs/api/storage/service/feature",
+    "api-student-explore-api-feature": "libs/api/student-explore/api/feature",
     "client": "apps/client",
     "client-e2e": "apps/client-e2e",
     "client-example-feature": "libs/client/example/feature",

@@ -64,6 +64,9 @@
       "@graduates/api/storage/service/feature": [
         "libs/api/storage/service/feature/src/index.ts"
       ],
+      "@graduates/api/student-explore/api/feature": [
+        "libs/api/student-explore/api/feature/src/index.ts"
+      ],
       "@graduates/client/example/feature": [
         "libs/client/example/feature/src/index.ts"
       ],
