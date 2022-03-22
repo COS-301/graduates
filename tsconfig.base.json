@@ -39,6 +39,9 @@
       "@graduates/api/example/service/shared/interfaces/data-access": [
         "libs/api/example/service/shared/interfaces/data-access/src/index.ts"
       ],
+      "@graduates/api/shared/services/prisma/data-access": [
+        "libs/api/shared/services/prisma/data-access/src/index.ts"
+      ],
       "@graduates/api/shell/feature": ["libs/api/shell/feature/src/index.ts"],
       "@graduates/api/shorts/api/feature": [
         "libs/api/shorts/api/feature/src/index.ts"
