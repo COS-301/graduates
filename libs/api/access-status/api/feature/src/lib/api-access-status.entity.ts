@@ -3,7 +3,7 @@ import { Field, ObjectType } from "@nestjs/graphql";
 @ObjectType()
 export class ApiAccessStatusEntity {
     @Field()
-    UserID!: string;
+    userID!: string;
 
     @Field()
     item!: string;
