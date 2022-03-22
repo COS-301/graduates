@@ -1,1 +1,1 @@
-export * from './lib/api-upintegration-service-feature.ts';
+export * from './lib/api-upintegration-service-feature';

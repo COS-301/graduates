@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ApiUpIntegrationResolver } from './api-upintegration.resolver';
-import { ApiUpIntegrationServiceFeatureModule} from '../../../../../../api/upintegration/service/feature/src/lib/api-upintegration-service-feature'
+import { ApiUpIntegrationServiceFeatureModule} from '@graduates/api/upintegration/service/feature'
 
 @Module({
   controllers: [],
