@@ -40,14 +40,14 @@
         "libs/api/example/service/shared/interfaces/data-access/src/index.ts"
       ],
       "@graduates/api/shell/feature": ["libs/api/shell/feature/src/index.ts"],
-      "@graduates/api\\companyrep\\api/data-acces": [
-        "libs/api/companyrep/api/data-acces/src/index.ts"
+      "@graduates/api\\CompanyRep\\api/data-acces": [
+        "libs/api/CompanyRep/api/data-acces/src/index.ts"
       ],
-      "@graduates/api\\companyrep\\api\\shared/data-access": [
-        "libs/api/companyrep/api/shared/data-access/src/index.ts"
+      "@graduates/api\\CompanyRep\\api\\shared/data-access": [
+        "libs/api/CompanyRep/api/shared/data-access/src/index.ts"
       ],
-      "@graduates/api\\companyrep\\service/feature": [
-        "libs/api/companyrep/service/feature/src/index.ts"
+      "@graduates/api\\CompanyRep\\service/feature": [
+        "libs/api/CompanyRep/service/feature/src/index.ts"
       ],
       "@graduates/api/storage/api/feature": [
         "libs/api/storage/api/feature/src/index.ts"
@@ -76,7 +76,7 @@
       "@graduates/client/shell/feature": [
         "libs/client/shell/feature/src/index.ts"
       ],
-      "libs": ["libs/api/companyrep/api/feature/src/index.ts"]
+      "libs": ["libs/api/CompanyRep/api/feature/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

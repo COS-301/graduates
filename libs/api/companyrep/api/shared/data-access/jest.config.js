@@ -12,5 +12,5 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory:
-    '../../../../../../coverage/libs/api/companyrep/api/shared/data-access',
+    '../../../../../../coverage/libs/api/CompanyRep/api/shared/data-access',
 };

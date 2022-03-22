@@ -1,20 +1,20 @@
 {
-  "root": "libs/api/companyrep/api/feature",
-  "sourceRoot": "libs/api/companyrep/api/feature/src",
+  "root": "libs/api/CompanyRep/api/feature",
+  "sourceRoot": "libs/api/CompanyRep/api/feature/src",
   "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/api/companyrep/api/feature/**/*.ts"]
+        "lintFilePatterns": ["libs/api/CompanyRep/api/feature/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/api/companyrep/api/feature"],
+      "outputs": ["coverage/libs/api/CompanyRep/api/feature"],
       "options": {
-        "jestConfig": "libs/api/companyrep/api/feature/jest.config.js",
+        "jestConfig": "libs/api/CompanyRep/api/feature/jest.config.js",
         "passWithNoTests": true
       }
     }

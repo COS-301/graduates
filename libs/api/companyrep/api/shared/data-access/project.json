@@ -1,6 +1,6 @@
 {
-  "root": "libs/api/companyrep/api/shared/data-access",
-  "sourceRoot": "libs/api/companyrep/api/shared/data-access/src",
+  "root": "libs/api/CompanyRep/api/shared/data-access",
+  "sourceRoot": "libs/api/CompanyRep/api/shared/data-access/src",
   "projectType": "library",
   "targets": {
     "lint": {
@@ -8,15 +8,15 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "libs/api/companyrep/api/shared/data-access/**/*.ts"
+          "libs/api/CompanyRep/api/shared/data-access/**/*.ts"
         ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/api/companyrep/api/shared/data-access"],
+      "outputs": ["coverage/libs/api/CompanyRep/api/shared/data-access"],
       "options": {
-        "jestConfig": "libs/api/companyrep/api/shared/data-access/jest.config.js",
+        "jestConfig": "libs/api/CompanyRep/api/shared/data-access/jest.config.js",
         "passWithNoTests": true
       }
     }

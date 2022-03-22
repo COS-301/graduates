@@ -12,5 +12,5 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory:
-    '../../../../../coverage/libs/api/companyrep/service/feature',
+    '../../../../../coverage/libs/api/CompanyRep/service/feature',
 };
