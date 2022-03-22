@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "api": "apps/api",
+    "api-access-status-api--feature": "libs/api/access-status/api/feature",
     "api-adminconsole-api-feature": "libs/api/adminconsole/api/feature",
     "api-adminconsole-repository-data-access": "libs/api/adminconsole/repository/data-access",
     "api-example-api-feature": "libs/api/example/api/feature",
