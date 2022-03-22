@@ -6,6 +6,6 @@ export class ShortsRepository {
   constructor(private prisma: PrismaService) {}
 
   async findAll() {
-    return this.prisma.user.findMany();
+    return this.prisma.story.findMany();
   }
 }
