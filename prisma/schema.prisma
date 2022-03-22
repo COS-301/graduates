@@ -216,7 +216,7 @@ enum file_category {
 
 // Stories of users
 model story {
-  story_id    String   @id @default(cuid())
+  id          String   @id @default(cuid())
   user_id     String
   media       String?
   data        String?
@@ -234,7 +234,7 @@ model story_tag {
   story_id String
   tag      String
 
-  story story @relation(fields: [story_id], references: [story_id])
+  story story @relation(fields: [story_id], references: [id])
 
   @@id([story_id, tag])
 }
@@ -246,7 +246,7 @@ model story_report {
   reason   String
 
   user  user  @relation(fields: [user_id], references: [id])
-  story story @relation(fields: [story_id], references: [story_id])
+  story story @relation(fields: [story_id], references: [id])
 
   @@id([story_id, user_id])
 }
@@ -257,12 +257,12 @@ model story_report {
 
 // User notifications
 model notification {
-  notification_id String   @id @default(cuid())
-  user_id_from    String?
-  user_id_to      String
-  data            Json?
-  date            DateTime
-  seen            Boolean
+  id           String   @id @default(cuid())
+  user_id_from String?
+  user_id_to   String
+  data         Json?
+  date         DateTime
+  seen         Boolean
 
   user_from user? @relation(name: "user_from", fields: [user_id_from], references: [id])
   user_to   user  @relation(name: "user_to", fields: [user_id_to], references: [id])
@@ -274,26 +274,37 @@ model notification {
 
 // Blogs that up admin have posted
 model blog {
-  blog_id  String   @id @default(cuid())
+  id       String   @id @default(cuid())
   user_id  String
   title    String
   content  String?
-  media    String?
   date     DateTime
   archived Boolean
 
   user user @relation(fields: [user_id], references: [id])
 
   blog_comment blog_comment[]
+  blog_media   blog_media[]
 }
 
+// Comments on the blog per blog_id
 model blog_comment {
   comment_id String   @id @default(cuid())
   blog_id    String
   content    String
   date       DateTime
 
-  blog blog @relation(fields: [blog_id], references: [blog_id])
+  blog blog @relation(fields: [blog_id], references: [id])
+}
+
+// Media on the blog per blog_id
+model blog_media {
+  blog_id String
+  media   String
+
+  blog blog @relation(fields: [blog_id], references: [id])
+
+  @@id([blog_id, media])
 }
 
 ///////////////////////////////////////////////////////////////////////
