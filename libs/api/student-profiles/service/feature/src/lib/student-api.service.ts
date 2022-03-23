@@ -1,10 +1,8 @@
-//TODO: Remove Student import and create Student model on service layer
-import { Injectable } from '@nestjs/common';
+//TODO: create Student model on service layer
+import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class StudentProfileService {
-  // public async findAll(): Promise<> {
-  // }
 
   public async findOneById(studentNum: string): Promise<any[]> {
     const student = [];

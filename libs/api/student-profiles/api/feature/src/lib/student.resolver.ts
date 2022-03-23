@@ -5,7 +5,7 @@ import { StudentProfileService } from '@graduates/api/student-profiles/service/f
 
 @Resolver((of) => Student)
 export class StudentResolver {
-  constructor(private studentService: StudentProfileService) {}
+   constructor(private studentService: StudentProfileService) {}
 
   @Query((returns) => Student,{ name: 'student' })
   async getStudent(@Args('studentNum', { type: () => String }) id: string) {

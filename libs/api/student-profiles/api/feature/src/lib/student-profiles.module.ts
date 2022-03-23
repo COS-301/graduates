@@ -3,9 +3,9 @@ import { StudentResolver } from './student.resolver';
 import { StudentProfilesServiceModule } from '@graduates/api/student-profiles/service/feature';
 
 @Module({
-  controllers:[],
+  controllers: [],
   providers: [StudentResolver],
   imports: [StudentProfilesServiceModule],
-  exports: []
+  exports: [StudentResolver],
 })
 export class StudentProfilesApiModule {}
