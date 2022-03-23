@@ -13,6 +13,7 @@
     "api-shell-feature": "libs/api/shell/feature",
     "api-storage-api-feature": "libs/api/storage/api/feature",
     "api-storage-api-shared-data-access": "libs/api/storage/api/shared/data-access",
+    "api-storage-repository-data-access": "libs/api/storage/repository/data-access",
     "api-storage-service-feature": "libs/api/storage/service/feature",
     "client": "apps/client",
     "client-e2e": "apps/client-e2e",
