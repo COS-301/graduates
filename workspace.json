@@ -2,8 +2,12 @@
   "version": 2,
   "projects": {
     "api": "apps/api",
+    "api-access-status-api--feature": "libs/api/access-status/api/feature",
     "api-adminconsole-api-feature": "libs/api/adminconsole/api/feature",
     "api-adminconsole-repository-data-access": "libs/api/adminconsole/repository/data-access",
+    "api-companyprofilepage-api-feature": "libs/api/companyprofilepage/api/feature",
+    "api-companyprofilepage-api-shared-data-access": "libs/api/companyprofilepage/api/shared/data-access",
+    "api-companyprofilepage-service-feature": "libs/api/companyprofilepage/service/feature",
     "api-example-api-feature": "libs/api/example/api/feature",
     "api-example-api-shared-interfaces-data-access": "libs/api/example/api/shared/interfaces/data-access",
     "api-example-repository-data-access": "libs/api/example/repository/data-access",

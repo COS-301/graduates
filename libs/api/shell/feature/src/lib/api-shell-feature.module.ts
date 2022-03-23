@@ -5,6 +5,9 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 //import { ApiShortsApiFeatureModule as ApiShortsFeatureModule } from '@graduates/api/shorts/api/feature';
+import { ApiAccessStatusApiFeatureModule as ApiAccessStatusFeatureModule} from '@graduates/api/access-status/api/feature';
+import { ApiShortsApiFeatureModule as ApiShortsFeatureModule } from '@graduates/api/shorts/api/feature';
+import { ApicompanyprofilepageApiFeatureModule as ApiCompanyProfilePageFeatureModule } from '@graduates/api/companyprofilepage/api/feature';
 @Module({
   imports: [
     ApiExampleFeatureModule,
@@ -15,6 +18,9 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
     ApiStorageFeatureModule,
     //ApiShortsFeatureModule,
     ApiHostingFeatureModule,
+    ApiShortsFeatureModule,
+    ApiAccessStatusFeatureModule,
+    ApiCompanyProfilePageFeatureModule,
   ],
 })
 export class ApiShellFeatureModule {}
