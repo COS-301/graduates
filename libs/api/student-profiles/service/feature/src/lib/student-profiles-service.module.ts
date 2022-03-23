@@ -4,7 +4,7 @@ import { StudentProfileService } from './student-api.service';
 @Module({
   imports:[],
   controllers: [],
-  providers: [],
+  providers: [StudentProfileService],
   exports: [StudentProfileService],
 })
 export class StudentProfilesServiceModule {}
