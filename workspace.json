@@ -8,6 +8,7 @@
     "api-access-status-api--feature": "libs/api/access-status/api/feature",
     "api-adminconsole-api-feature": "libs/api/adminconsole/api/feature",
     "api-adminconsole-repository-data-access": "libs/api/adminconsole/repository/data-access",
+    "api-adminconsole-service-feature": "libs/api/adminconsole/service/feature",
     "api-authorization-api-feature": "libs/api/authorization/api/feature",
     "api-authorization-api-shared": "libs/api/authorization/api/shared",
     "api-authorization-repository-data-access": "libs/api/authorization/repository/data-access",

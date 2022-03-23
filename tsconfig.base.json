@@ -35,6 +35,9 @@
       "@graduates/api/adminconsole/repository/data-access": [
         "libs/api/adminconsole/repository/data-access/src/index.ts"
       ],
+      "@graduates/api/adminconsole/service/feature": [
+        "libs/api/adminconsole/service/feature/src/index.ts"
+      ],
       "@graduates/api/authorization/api/feature": [
         "libs/api/authorization/api/feature/src/index.ts"
       ],
