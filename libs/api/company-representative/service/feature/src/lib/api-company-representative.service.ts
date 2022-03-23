@@ -1,11 +1,11 @@
-import { CompanyRepresentative } from '@graduates/api/company-representative/api/shared/data-access';
+import { CompanyRepresentative, CompanyRepresentativeCreate } from '@graduates/api/company-representative/api/shared/data-access';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class ApiCompanyRepresentativeService {
     async create(
         data: CompanyRepresentative
-      ): Promise<CompanyRepresentative> {
+      ): Promise<CompanyRepresentativeCreate> {
         return data as any;
       }
     

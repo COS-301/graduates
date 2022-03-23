@@ -6884,6 +6884,11 @@ graphql-ws@5.5.5:
   resolved "https://registry.yarnpkg.com/graphql-ws/-/graphql-ws-5.5.5.tgz#f375486d3f196e2a2527b503644693ae3a8670a9"
   integrity sha512-hvyIS71vs4Tu/yUYHPvGXsTgo0t3arU820+lT5VjZS2go0ewp2LqyCgxEN56CzOG7Iys52eRhHBiD1gGRdiQtw==
 
+graphql-ws@^5.6.3:
+  version "5.6.3"
+  resolved "https://registry.yarnpkg.com/graphql-ws/-/graphql-ws-5.6.3.tgz#32321594a7b744755df992f24afccc84143b4b7d"
+  integrity sha512-ZolWOi6bzI35ovGROCZROB9nDbwZiJdIsaPdzW/jkICCGNb3qL/33IONY/yQiBa+Je2uA11HfY4Uxse4+/ePYA==
+
 graphql@^16.3.0:
   version "16.3.0"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.3.0.tgz#a91e24d10babf9e60c706919bb182b53ccdffc05"

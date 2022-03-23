@@ -1,4 +1,4 @@
-import { CompanyRepresentative } from '@graduates/api/company-representative/api/shared/data-access';
+import { CompanyRepresentative, CompanyRepresentativeCreate } from '@graduates/api/company-representative/api/shared/data-access';
 import { ApiCompanyRepresentativeService } from '@graduates/api/company-representative/service/feature';
 import { NotFoundException } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
@@ -20,8 +20,8 @@ export class ApiCompanyRepresentativeResolver {
 
   @Mutation((returns) => CompanyRepresentative)
   async addCompanyrep(
-    @Args('newCompanyrepData') newCompanyrepData: CompanyRepresentative
-  ): Promise<CompanyRepresentative> {
+    @Args('newCompanyrepData') newCompanyrepData: CompanyRepresentativeCreate
+  ): Promise<CompanyRepresentativeCreate> {
     const resp = await this.companyrepService.create(newCompanyrepData);
     pubSub.publish('companyrepAdded', { companyrepAdded: resp });
     return resp;
