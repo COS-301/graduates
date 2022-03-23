@@ -1,22 +1,22 @@
-import { Field, ObjectType, Int } from "@nestjs/graphql";
+import { Field, ID, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
-export class ApiStorage{
-    @Field()
-    id!: string;
-    @Field()
-    CV: boolean = false;
-    @Field()
-    Transcript: boolean = false;
-    @Field()
-    AcademicRecord: boolean = false;
-    @Field()
-    Certificate: boolean = false;
-    @Field()
-    LetterOfRecommendation: boolean = false;
+export class ApiStorage {
+  @Field(() => ID)
+  id!: string;
 
-    
+  @Field(() => Boolean)
+  cv!: boolean;
 
+  @Field(() => Boolean)
+  transcript!: boolean;
 
+  @Field(() => Boolean)
+  academicRecord!: boolean;
 
+  @Field(() => Boolean)
+  certificate!: boolean;
+
+  @Field(() => Boolean)
+  letterOfRecommendation!: boolean;
 }
