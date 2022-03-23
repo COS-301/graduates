@@ -2,12 +2,16 @@
 name: CI Tests
 
 on: 
-  workflow_dispatch:
-    branches: [ develop,feature/ci-actions ]
   pull_request:
     branches: [ develop ]
-  push:
-    branches: [ develop, feature/ci-actions ]
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Title'     
+        required: true
+        default: 'warning'  
+    tags:
+        description: 'Test scenario tags'
 
   
 jobs:
