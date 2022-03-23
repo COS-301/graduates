@@ -1,16 +1,13 @@
+import { ApiStorage } from '@graduates/api/storage/api/shared/data-access';
 import { Injectable } from '@nestjs/common';
-import{ApiStorage} from '../../../../api/shared/data-access/src/lib/api-storage.entity'
 
 @Injectable()
 export class ApiStorageServiceFeatureModule {
-  async get_all(): Promise<ApiStorage[]>{
+  async get_all(): Promise<ApiStorage[]> {
     const storage = new ApiStorage();
-    storage.id = "u20469366";
-    storage.Transcript= false;
-    storage.CV = true;
-    return[storage];
-
-
-}
-
+    storage.id = 'u20469366';
+    storage.transcript = false;
+    storage.cv = true;
+    return [storage];
+  }
 }
