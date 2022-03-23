@@ -1,7 +1,7 @@
-import { QueryBus } from '@nestjs/cqrs';
-import { Injectable } from '@nestjs/common';
-import { GetAllShortsQuery } from './queries/impl/ApiShortsFetchAllQuery.query';
 import { Short } from '@graduates/api/shorts/api/shared/entities/data-access';
+import { Injectable } from '@nestjs/common';
+import { QueryBus } from '@nestjs/cqrs';
+import { GetAllShortsQuery } from './queries/impl/ApiShortsFetchAllQuery.query';
 
 @Injectable()
 export class ShortsService {
