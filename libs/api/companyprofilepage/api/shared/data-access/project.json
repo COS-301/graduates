@@ -1,0 +1,27 @@
+{
+  "root": "libs/api/companyprofilepage/api/shared/data-access",
+  "sourceRoot": "libs/api/companyprofilepage/api/shared/data-access/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/api/companyprofilepage/api/shared/data-access/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/api/companyprofilepage/api/shared/data-access"
+      ],
+      "options": {
+        "jestConfig": "libs/api/companyprofilepage/api/shared/data-access/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
