@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@graduates/api/access-status/api/feature": [
+        "libs/api/access-status/api/feature/src/index.ts"
+      ],
       "@graduates/api/adminconsole/api/feature": [
         "libs/api/adminconsole/api/feature/src/index.ts"
       ],
