@@ -1,5 +1,6 @@
 import { FeatureModule as ApiExampleFeatureModule } from '@graduates/api/example/api/feature';
 import { ApiStorageApiFeatureModule as ApiStorageFeatureModule } from '@graduates/api/storage/api/feature';
+import { StudentProfilesApiModule as ApiStudentProfilesModule } from '@graduates/api/student-profiles/api/feature';
 import { ApiHostingApiFeatureModule as ApiHostingFeatureModule } from '@graduates/api/hosting/api/feature';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
@@ -21,6 +22,8 @@ import { ApicompanyprofilepageApiFeatureModule as ApiCompanyProfilePageFeatureMo
     ApiShortsFeatureModule,
     ApiAccessStatusFeatureModule,
     ApiCompanyProfilePageFeatureModule,
+    ApiStudentProfilesModule,
+
   ],
 })
 export class ApiShellFeatureModule {}
