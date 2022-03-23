@@ -10,8 +10,9 @@ on:
         description: 'Title'     
         required: true
         default: 'warning'  
-    tags:
+      tags:
         description: 'Test scenario tags'
+        required: false 
 
   
 jobs:
