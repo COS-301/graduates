@@ -1,3 +1,1 @@
-export class GetAllShortsQuery {
-  constructor() {}
-}
+export class GetAllShortsQuery {}
