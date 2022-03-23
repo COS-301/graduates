@@ -3,7 +3,7 @@ import { ApiStorageApiFeatureModule as ApiStorageFeatureModule } from '@graduate
 import { Module } from '@nestjs/common';
 import {GraphQLModule} from '@nestjs/graphql'
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { ApiAccessStatusApiFeatureModule } from '@graduates/api/access-status/api//feature';
+import { ApiAccessStatusApiFeatureModule as ApiAccessStatusFeatureModule} from '@graduates/api/access-status/api//feature';
 @Module({
   imports: [ApiExampleFeatureModule,
   GraphQLModule.forRoot({
@@ -11,7 +11,7 @@ import { ApiAccessStatusApiFeatureModule } from '@graduates/api/access-status/ap
     driver: ApolloDriver
   }),
   ApiStorageFeatureModule,
-  ApiAccessStatusApiFeatureModule
+  ApiAccessStatusFeatureModule
   ],
 })
 export class ApiShellFeatureModule {}
