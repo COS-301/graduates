@@ -1,1 +1,1 @@
-export * from './lib/api-companyprofilepage-api-shared-data-access.module';
+export * from './lib/api-companyprofilepage.entity';

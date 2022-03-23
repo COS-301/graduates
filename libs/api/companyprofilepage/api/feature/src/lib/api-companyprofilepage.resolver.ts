@@ -1,7 +1,6 @@
 import { ApicompanyprofilepageServiceFeatureModule } from "@graduates/api/companyprofilepage/service/feature";
 import { Query, Resolver } from "@nestjs/graphql";
-import { ApiCompanyProfilePage } from "../../../shared/data-access/src/lib/api-companyprofilepage.entity";
-
+import { ApiCompanyProfilePage } from "@graduates/api/companyprofilepage/api/shared/data-access";
 
 
 @Resolver(of => ApiCompanyProfilePage)
