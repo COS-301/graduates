@@ -11,7 +11,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
     ApiCompanyRepresentativeApiFeatureModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: './schema.gql',
+      autoSchemaFile: true,
       installSubscriptionHandlers: true,
     }),
     ApiStorageFeatureModule,
