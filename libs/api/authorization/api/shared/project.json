@@ -1,0 +1,23 @@
+{
+  "root": "libs/api/authorization/api/shared",
+  "sourceRoot": "libs/api/authorization/api/shared/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api/authorization/api/shared/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/authorization/api/shared"],
+      "options": {
+        "jestConfig": "libs/api/authorization/api/shared/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
