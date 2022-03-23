@@ -1,6 +1,9 @@
 {
   "version": 2,
   "projects": {
+    "api-upintegration-api-feature": "libs/api/upintegration/api/feature",
+    "api-upintegration-api-shared-data-access": "libs/api/upintegration/api/shared/data-access",
+    "api-upintegration-service-feature": "libs/api/upintegration/service/feature",
     "api": "apps/api",
     "api-access-status-api--feature": "libs/api/access-status/api/feature",
     "api-adminconsole-api-feature": "libs/api/adminconsole/api/feature",
@@ -14,6 +17,9 @@
     "api-example-repository-shared-interfaces-data-access": "libs/api/example/repository/shared/interfaces/data-access",
     "api-example-service-feature": "libs/api/example/service/feature",
     "api-example-service-shared-interfaces-data-access": "libs/api/example/service/shared/interfaces/data-access",
+    "api-hosting-api-feature": "libs/api/hosting/api/feature",
+    "api-hosting-api-shared-data-access": "libs/api/hosting/api/shared/data-access",
+    "api-hosting-service-feature": "libs/api/hosting/service/feature",
     "api-shared-services-prisma-data-access": "libs/api/shared/services/prisma/data-access",
     "api-shell-feature": "libs/api/shell/feature",
     "api-shorts-api-feature": "libs/api/shorts/api/feature",
