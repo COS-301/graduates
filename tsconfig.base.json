@@ -39,6 +39,15 @@
       "@graduates/api/example/service/shared/interfaces/data-access": [
         "libs/api/example/service/shared/interfaces/data-access/src/index.ts"
       ],
+      "@graduates/api/hosting/api/feature": [
+        "libs/api/hosting/api/feature/src/index.ts"
+      ],
+      "@graduates/api/hosting/api/shared/data-access": [
+        "libs/api/hosting/api/shared/data-access/src/index.ts"
+      ],
+      "@graduates/api/hosting/service/feature": [
+        "libs/api/hosting/service/feature/src/index.ts"
+      ],
       "@graduates/api/shared/services/prisma/data-access": [
         "libs/api/shared/services/prisma/data-access/src/index.ts"
       ],
