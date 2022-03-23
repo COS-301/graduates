@@ -21,23 +21,23 @@
       "@graduates/api/adminconsole/repository/data-access": [
         "libs/api/adminconsole/repository/data-access/src/index.ts"
       ],
-      "@graduates/api/autherization/api/feature": [
-        "libs/api/autherization/api/feature/src/index.ts"
+      "@graduates/api/authorization/api/feature": [
+        "libs/api/authorization/api/feature/src/index.ts"
       ],
-      "@graduates/api/autherization/api/shared": [
-        "libs/api/autherization/api/shared/src/index.ts"
+      "@graduates/api/authorization/api/shared": [
+        "libs/api/authorization/api/shared/src/index.ts"
       ],
-      "@graduates/api/autherization/repository/data-access": [
-        "libs/api/autherization/repository/data-access/src/index.ts"
+      "@graduates/api/authorization/repository/data-access": [
+        "libs/api/authorization/repository/data-access/src/index.ts"
       ],
-      "@graduates/api/autherization/repository/shared": [
-        "libs/api/autherization/repository/shared/src/index.ts"
+      "@graduates/api/authorization/repository/shared": [
+        "libs/api/authorization/repository/shared/src/index.ts"
       ],
-      "@graduates/api/autherization/service/feature": [
-        "libs/api/autherization/service/feature/src/index.ts"
+      "@graduates/api/authorization/service/feature": [
+        "libs/api/authorization/service/feature/src/index.ts"
       ],
-      "@graduates/api/autherization/service/shared": [
-        "libs/api/autherization/service/shared/src/index.ts"
+      "@graduates/api/authorization/service/shared": [
+        "libs/api/authorization/service/shared/src/index.ts"
       ],
       "@graduates/api/example/api/feature": [
         "libs/api/example/api/feature/src/index.ts"
