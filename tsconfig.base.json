@@ -39,6 +39,7 @@
       "@graduates/api/example/service/shared/interfaces/data-access": [
         "libs/api/example/service/shared/interfaces/data-access/src/index.ts"
       ],
+      "@graduates/api/notifications": ["libs/api/notifications/src/index.ts"],
       "@graduates/api/shell/feature": ["libs/api/shell/feature/src/index.ts"],
       "@graduates/api/storage/api/feature": [
         "libs/api/storage/api/feature/src/index.ts"

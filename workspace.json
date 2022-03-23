@@ -10,6 +10,7 @@
     "api-example-repository-shared-interfaces-data-access": "libs/api/example/repository/shared/interfaces/data-access",
     "api-example-service-feature": "libs/api/example/service/feature",
     "api-example-service-shared-interfaces-data-access": "libs/api/example/service/shared/interfaces/data-access",
+    "api-notifications": "libs/api/notifications",
     "api-shell-feature": "libs/api/shell/feature",
     "api-storage-api-feature": "libs/api/storage/api/feature",
     "api-storage-api-shared-data-access": "libs/api/storage/api/shared/data-access",
