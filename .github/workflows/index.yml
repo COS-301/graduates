@@ -1,0 +1,17 @@
+---
+name: CI Tests
+
+on: 
+  pull_request:
+    branches: [ develop ]
+  
+jobs:
+  test-affected:
+    uses: ./.github/workflows/nxtest.yml
+    with:
+      test: 'affected'
+
+  test-all:
+    uses: ./.github/workflows/nxtest.yml
+    with:
+      test: 'all'
