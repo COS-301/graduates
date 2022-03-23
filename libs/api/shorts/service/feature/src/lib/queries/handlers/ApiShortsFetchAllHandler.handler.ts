@@ -1,5 +1,5 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { GetAllShortsQuery } from '@graduates/api/shorts/service/feature';
+import { GetAllShortsQuery } from '../ApiShortsFetchAllQuery.query';
 import { ShortsRepository } from '@graduates/api/shorts/repository/data-access';
 
 @QueryHandler(GetAllShortsQuery)
