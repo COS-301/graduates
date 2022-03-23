@@ -48,10 +48,10 @@
       "@graduates/api/company-representative/api/feature": [
         "libs/api/company-representative/api/feature/src/index.ts"
       ],
-      "@graduates/api/company-representative/api/shared//data-access": [
+      "@graduates/api/company-representative/api/shared/data-access": [
         "libs/api/company-representative/api/shared/data-access/src/index.ts"
       ],
-      "@graduates/api/company-representative/service//feature": [
+      "@graduates/api/company-representative/service/feature": [
         "libs/api/company-representative/service/feature/src/index.ts"
       ],
       "@graduates/api/companyprofilepage/api/feature": [

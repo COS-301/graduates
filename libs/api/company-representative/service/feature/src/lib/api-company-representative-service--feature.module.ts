@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { ApiCompanyRepresentativeService } from './api-company-representative/api-company-representative.service';
+import { ApiCompanyRepresentativeService } from './api-company-representative.service';
 
 @Module({
   controllers: [],
   providers: [ApiCompanyRepresentativeService],
-  exports: [],
+  exports: [ApiCompanyRepresentativeService],
 })
 export class ApiCompanyRepresentativeServiceFeatureModule {}
