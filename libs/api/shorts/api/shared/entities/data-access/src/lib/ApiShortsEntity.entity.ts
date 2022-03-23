@@ -14,9 +14,9 @@ export class Short {
   @Field({ nullable: true })
   data?: string;
 
-  @Field((type) => Date)
+  @Field(() => Date)
   date_posted!: Date;
 
-  @Field((type) => Boolean)
+  @Field(() => Boolean)
   archived!: boolean;
 }
