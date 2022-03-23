@@ -21,6 +21,15 @@
       "@graduates/api/adminconsole/repository/data-access": [
         "libs/api/adminconsole/repository/data-access/src/index.ts"
       ],
+      "@graduates/api/companyprofilepage/api/feature": [
+        "libs/api/companyprofilepage/api/feature/src/index.ts"
+      ],
+      "@graduates/api/companyprofilepage/api/shared/data-access": [
+        "libs/api/companyprofilepage/api/shared/data-access/src/index.ts"
+      ],
+      "@graduates/api/companyprofilepage/service/feature": [
+        "libs/api/companyprofilepage/service/feature/src/index.ts"
+      ],
       "@graduates/api/example/api/feature": [
         "libs/api/example/api/feature/src/index.ts"
       ],
