@@ -1,5 +1,6 @@
+import { ApiCompanyProfilePage } from '@graduates/api/companyprofilepage/api/shared/data-access';
 import { Injectable } from '@nestjs/common';
-import{ApiCompanyProfilePage} from '../../../../api/shared/data-access/src/lib/api-companyprofilepage.entity'
+
 
 @Injectable()
 export class ApicompanyprofilepageServiceFeatureModule {
