@@ -6,7 +6,7 @@ import { ShortsService } from '@graduates/api/shorts/service/feature';
 export class ShortsResolver {
   constructor(private readonly service: ShortsService) {}
 
-  @Query((returns) => [Short])
+  @Query(() => [Short])
   findAllShorts(): Promise<Short[]> {
     return this.service.findAllShorts();
   }
