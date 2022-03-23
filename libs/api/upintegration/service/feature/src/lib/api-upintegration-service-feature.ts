@@ -2,11 +2,11 @@ import { ApiUpIntegration } from '@graduates/api/upintegration/api/shared/data-a
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class ApiUpIntegrationServiceFeature {
+export class ApiUpIntegrationServiceFeatureModule {
   async getAcademicRecord(): Promise<ApiUpIntegration[]>{
-    const storage = new ApiUpIntegration();
-    storage.stub = "This is unimplemented until permission is obtained from the varsity";
+    const integration = new ApiUpIntegration();
+    integration.stub = "This is unimplemented until permission is obtained from the varsity";
 
-    return[storage];
+    return[integration];
 }
 } 
