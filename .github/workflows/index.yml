@@ -3,6 +3,7 @@ name: CI Tests
 
 on: 
   workflow_dispatch:
+    branches: [ develop,feature/ci-actions ]
   pull_request:
     branches: [ develop ]
   push:
