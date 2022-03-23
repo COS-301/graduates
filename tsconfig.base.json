@@ -15,11 +15,55 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+
+      "@graduates/api/upintegration/api/feature": [
+        "libs/api/upintegration/api/feature/src/index.ts"
+      ],
+      "@graduates/api/upintegration/api/shared/data-access": [
+        "libs/api/upintegration/api/shared/data-access/src/index.ts"
+      ],
+      "@graduates/api/upintegration/service/feature": [
+        "libs/api/upintegration/service/feature/src/index.ts"
+      ],
+      "@graduates/api/access-status/api/feature": [
+        "libs/api/access-status/api/feature/src/index.ts"
+
+      ],
       "@graduates/api/adminconsole/api/feature": [
         "libs/api/adminconsole/api/feature/src/index.ts"
       ],
       "@graduates/api/adminconsole/repository/data-access": [
         "libs/api/adminconsole/repository/data-access/src/index.ts"
+      ],
+      "@graduates/api/adminconsole/service/feature": [
+        "libs/api/adminconsole/service/feature/src/index.ts"
+      ],
+      "@graduates/api/authorization/api/feature": [
+        "libs/api/authorization/api/feature/src/index.ts"
+      ],
+      "@graduates/api/authorization/api/shared": [
+        "libs/api/authorization/api/shared/src/index.ts"
+      ],
+      "@graduates/api/authorization/repository/data-access": [
+        "libs/api/authorization/repository/data-access/src/index.ts"
+      ],
+      "@graduates/api/authorization/repository/shared": [
+        "libs/api/authorization/repository/shared/src/index.ts"
+      ],
+      "@graduates/api/authorization/service/feature": [
+        "libs/api/authorization/service/feature/src/index.ts"
+      ],
+      "@graduates/api/authorization/service/shared": [
+        "libs/api/authorization/service/shared/src/index.ts"
+      ],
+      "@graduates/api/companyprofilepage/api/feature": [
+        "libs/api/companyprofilepage/api/feature/src/index.ts"
+      ],
+      "@graduates/api/companyprofilepage/api/shared/data-access": [
+        "libs/api/companyprofilepage/api/shared/data-access/src/index.ts"
+      ],
+      "@graduates/api/companyprofilepage/service/feature": [
+        "libs/api/companyprofilepage/service/feature/src/index.ts"
       ],
       "@graduates/api/example/api/feature": [
         "libs/api/example/api/feature/src/index.ts"
@@ -39,8 +83,34 @@
       "@graduates/api/example/service/shared/interfaces/data-access": [
         "libs/api/example/service/shared/interfaces/data-access/src/index.ts"
       ],
+
       "@graduates/api/notifications": ["libs/api/notifications/src/index.ts"],
+
+      "@graduates/api/hosting/api/feature": [
+        "libs/api/hosting/api/feature/src/index.ts"
+      ],
+      "@graduates/api/hosting/api/shared/data-access": [
+        "libs/api/hosting/api/shared/data-access/src/index.ts"
+      ],
+      "@graduates/api/hosting/service/feature": [
+        "libs/api/hosting/service/feature/src/index.ts"
+      ],
+      "@graduates/api/shared/services/prisma/data-access": [
+        "libs/api/shared/services/prisma/data-access/src/index.ts"
+      ],
       "@graduates/api/shell/feature": ["libs/api/shell/feature/src/index.ts"],
+      "@graduates/api/shorts/api/feature": [
+        "libs/api/shorts/api/feature/src/index.ts"
+      ],
+      "@graduates/api/shorts/api/shared/entities/data-access": [
+        "libs/api/shorts/api/shared/entities/data-access/src/index.ts"
+      ],
+      "@graduates/api/shorts/repository/data-access": [
+        "libs/api/shorts/repository/data-access/src/index.ts"
+      ],
+      "@graduates/api/shorts/service/feature": [
+        "libs/api/shorts/service/feature/src/index.ts"
+      ],
       "@graduates/api/storage/api/feature": [
         "libs/api/storage/api/feature/src/index.ts"
       ],
@@ -49,6 +119,15 @@
       ],
       "@graduates/api/storage/service/feature": [
         "libs/api/storage/service/feature/src/index.ts"
+      ],
+      "@graduates/api/student-profiles/api/feature": [
+        "libs/api/student-profiles/api/feature/src/index.ts"
+      ],
+      "@graduates/api/student-profiles/api/shared/data-access": [
+        "libs/api/student-profiles/api/shared/data-access/src/index.ts"
+      ],
+      "@graduates/api/student-profiles/service/feature": [
+        "libs/api/student-profiles/service/feature/src/index.ts"
       ],
       "@graduates/client/example/feature": [
         "libs/client/example/feature/src/index.ts"
