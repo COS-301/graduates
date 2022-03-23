@@ -2,12 +2,12 @@
 name: CI Tests
 
 on: 
+  workflow_dispatch:
   pull_request:
     branches: [ develop ]
   push:
     branches: [ develop, feature/ci-actions ]
 
-  workflow_dispatch:
   
 jobs:
   test-affected:
