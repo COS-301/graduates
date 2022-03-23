@@ -3,7 +3,7 @@ import { Module } from '@nestjs/common';
 import { CompanyrepResolver } from './companyrep.resolver';
 
 @Module({
-  providers: [CompanyrepResolver, CompanyrepService],
+  providers: [CompanyrepResolver, ApiCompanyrepServiceFeatureModule],
   imports: [ApiCompanyrepServiceFeatureModule]
 })
 export class CompanyrepModule {}
