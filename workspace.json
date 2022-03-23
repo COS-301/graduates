@@ -31,7 +31,7 @@
     "api-hosting-api-shared-data-access": "libs/api/hosting/api/shared/data-access",
     "api-hosting-service-feature": "libs/api/hosting/service/feature",
     "api-shared-services-prisma-data-access": "libs/api/shared/services/prisma/data-access",
-p
+
     "api-shell-feature": "libs/api/shell/feature",
     "api-shorts-api-feature": "libs/api/shorts/api/feature",
     "api-shorts-api-shared-entities-data-access": "libs/api/shorts/api/shared/entities/data-access",
