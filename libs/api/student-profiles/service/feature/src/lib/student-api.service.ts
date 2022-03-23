@@ -1,27 +1,20 @@
 //TODO: Remove Student import and create Student model on service layer
-import { Student } from '@graduates/api/student-profiles/api/shared/data-access';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class StudentProfileService {
-  public async findAll(): Promise<Student[]> {
-    const students = [];
-    students.push(new Student());
-    students.push(new Student());
-    students[0].studentNum = "u20450000";
-    students[1].studentNum = "u19001836";
-    return students;
-  }
+  // public async findAll(): Promise<> {
+  // }
 
-  public async findOneById(studentNum: string): Promise<Student> {
-    const student = new Student();
-    if (studentNum == 'u19001836') student.lastName = 'Cena';
-    else student.lastName = 'Wick';
-    student.studentNum = 'u19001836';
-    student.firstName = 'John';
-    student.email = 'John'+student.lastName+'@gmail.com';
-    student.phoneNum = '+27791506145';
-    student.date_of_birth = '1 January 2000';
+  public async findOneById(studentNum: string): Promise<any[]> {
+    const student = [];
+    if (studentNum == 'u19001836') student.push('Cena');
+    else student.push('Wick');
+    student.push('u19001836');
+    student.push('John');
+    student.push('John'+student[0]+'@gmail.com');
+    student.push('+27791506145');
+    student.push('1 January 2000');
 
     return student;
   }

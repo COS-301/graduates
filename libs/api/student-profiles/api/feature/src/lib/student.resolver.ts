@@ -9,6 +9,15 @@ export class StudentResolver {
 
   @Query((returns) => Student,{ name: 'student' })
   async getStudent(@Args('studentNum', { type: () => String }) id: string) {
-    return this.studentService.findOneById(id);
+    const studentArr = this.studentService.findOneById(id);
+    const studentObj = new Student();
+    studentObj.dateOfBirth = (await studentArr).pop();
+    studentObj.phoneNum = (await studentArr).pop();
+    studentObj.email = (await studentArr).pop();
+    studentObj.firstName = (await studentArr).pop();
+    studentObj.studentNum = (await studentArr).pop();
+    studentObj.lastName = (await studentArr).pop();
+
+    return studentObj;
   }
 }

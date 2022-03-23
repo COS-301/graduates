@@ -15,11 +15,23 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@graduates/api/access-status/api/feature": [
+        "libs/api/access-status/api/feature/src/index.ts"
+      ],
       "@graduates/api/adminconsole/api/feature": [
         "libs/api/adminconsole/api/feature/src/index.ts"
       ],
       "@graduates/api/adminconsole/repository/data-access": [
         "libs/api/adminconsole/repository/data-access/src/index.ts"
+      ],
+      "@graduates/api/companyprofilepage/api/feature": [
+        "libs/api/companyprofilepage/api/feature/src/index.ts"
+      ],
+      "@graduates/api/companyprofilepage/api/shared/data-access": [
+        "libs/api/companyprofilepage/api/shared/data-access/src/index.ts"
+      ],
+      "@graduates/api/companyprofilepage/service/feature": [
+        "libs/api/companyprofilepage/service/feature/src/index.ts"
       ],
       "@graduates/api/example/api/feature": [
         "libs/api/example/api/feature/src/index.ts"
@@ -39,7 +51,22 @@
       "@graduates/api/example/service/shared/interfaces/data-access": [
         "libs/api/example/service/shared/interfaces/data-access/src/index.ts"
       ],
+      "@graduates/api/shared/services/prisma/data-access": [
+        "libs/api/shared/services/prisma/data-access/src/index.ts"
+      ],
       "@graduates/api/shell/feature": ["libs/api/shell/feature/src/index.ts"],
+      "@graduates/api/shorts/api/feature": [
+        "libs/api/shorts/api/feature/src/index.ts"
+      ],
+      "@graduates/api/shorts/api/shared/entities/data-access": [
+        "libs/api/shorts/api/shared/entities/data-access/src/index.ts"
+      ],
+      "@graduates/api/shorts/repository/data-access": [
+        "libs/api/shorts/repository/data-access/src/index.ts"
+      ],
+      "@graduates/api/shorts/service/feature": [
+        "libs/api/shorts/service/feature/src/index.ts"
+      ],
       "@graduates/api/storage/api/feature": [
         "libs/api/storage/api/feature/src/index.ts"
       ],

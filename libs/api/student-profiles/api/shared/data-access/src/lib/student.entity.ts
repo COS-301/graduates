@@ -18,7 +18,7 @@ export class Student{
   phoneNum: string;
 
   @Field()
-  date_of_birth: string;
+  dateOfBirth: string;
 
   @Field(type => [Int])
   marks: number[];
