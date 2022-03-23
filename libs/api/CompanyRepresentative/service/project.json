@@ -1,0 +1,23 @@
+{
+  "root": "libs/api/CompanyRepresentative/service",
+  "sourceRoot": "libs/api/CompanyRepresentative/service/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api/CompanyRepresentative/service/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/CompanyRepresentative/service"],
+      "options": {
+        "jestConfig": "libs/api/CompanyRepresentative/service/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

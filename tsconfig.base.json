@@ -15,6 +15,15 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@graduates/api-CompanyRepresentative-api-feature": [
+        "libs/api/CompanyRepresentative/api/feature/src/index.ts"
+      ],
+      "@graduates/api-CompanyRepresentative-api-shared-data-access": [
+        "libs/api/CompanyRepresentative/api/shared/data-access/src/index.ts"
+      ],
+      "@graduates/api-CompanyRepresentative-service": [
+        "libs/api/CompanyRepresentative/service/src/index.ts"
+      ],
       "@graduates/api/adminconsole/api/feature": [
         "libs/api/adminconsole/api/feature/src/index.ts"
       ],
@@ -40,15 +49,6 @@
         "libs/api/example/service/shared/interfaces/data-access/src/index.ts"
       ],
       "@graduates/api/shell/feature": ["libs/api/shell/feature/src/index.ts"],
-      "@graduates/api\\CompanyRep\\api/data-acces": [
-        "libs/api/CompanyRep/api/data-acces/src/index.ts"
-      ],
-      "@graduates/api\\CompanyRep\\api\\shared/data-access": [
-        "libs/api/CompanyRep/api/shared/data-access/src/index.ts"
-      ],
-      "@graduates/api\\CompanyRep\\service/feature": [
-        "libs/api/CompanyRep/service/feature/src/index.ts"
-      ],
       "@graduates/api/storage/api/feature": [
         "libs/api/storage/api/feature/src/index.ts"
       ],
@@ -57,6 +57,9 @@
       ],
       "@graduates/api/storage/service/feature": [
         "libs/api/storage/service/feature/src/index.ts"
+      ],
+      "@graduates/api\\CompanyRep\\api/data-acces": [
+        "libs/api/CompanyRep/api/data-acces/src/index.ts"
       ],
       "@graduates/client/example/feature": [
         "libs/client/example/feature/src/index.ts"
@@ -75,8 +78,7 @@
       ],
       "@graduates/client/shell/feature": [
         "libs/client/shell/feature/src/index.ts"
-      ],
-      "libs": ["libs/api/CompanyRep/api/feature/src/index.ts"]
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -11,8 +11,8 @@ type ApiStorage {
   LetterOfRecommendation: Boolean!
 }
 
-"""companeyrep profile"""
-type Companyrep {
+"""companey represantative profile profile"""
+type CompanyRepresentative {
   id: ID!
   name: String!
   Occupation: String!
@@ -25,16 +25,16 @@ type Companyrep {
 }
 
 type Query {
-  companyrep(id: String!): Companyrep!
+  companyrep(id: String!): CompanyRepresentative!
   storage: [ApiStorage!]!
 }
 
 type Mutation {
-  addCompanyrep(newCompanyrepData: NewCompanyrepInput!): Companyrep!
+  addCompanyrep(newCompanyrepData: CreateCompanyRepresentative!): CompanyRepresentative!
 }
 
-input NewCompanyrepInput {
-  id: String!
+input CreateCompanyRepresentative {
+  id: ID!
   name: String!
   Occupation: String!
   experience: String!

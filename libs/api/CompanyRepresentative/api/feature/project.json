@@ -1,0 +1,25 @@
+{
+  "root": "libs/api/CompanyRepresentative/api/feature",
+  "sourceRoot": "libs/api/CompanyRepresentative/api/feature/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/api/CompanyRepresentative/api/feature/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/CompanyRepresentative/api/feature"],
+      "options": {
+        "jestConfig": "libs/api/CompanyRepresentative/api/feature/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
