@@ -15,8 +15,19 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+
+      "@graduates/api/upintegration/api/feature": [
+        "libs/api/upintegration/api/feature/src/index.ts"
+      ],
+      "@graduates/api/upintegration/api/shared/data-access": [
+        "libs/api/upintegration/api/shared/data-access/src/index.ts"
+      ],
+      "@graduates/api/upintegration/service/feature": [
+        "libs/api/upintegration/service/feature/src/index.ts"
+      ],
       "@graduates/api/access-status/api/feature": [
         "libs/api/access-status/api/feature/src/index.ts"
+
       ],
       "@graduates/api/adminconsole/api/feature": [
         "libs/api/adminconsole/api/feature/src/index.ts"
@@ -68,6 +79,15 @@
       ],
       "@graduates/api/example/service/shared/interfaces/data-access": [
         "libs/api/example/service/shared/interfaces/data-access/src/index.ts"
+      ],
+      "@graduates/api/hosting/api/feature": [
+        "libs/api/hosting/api/feature/src/index.ts"
+      ],
+      "@graduates/api/hosting/api/shared/data-access": [
+        "libs/api/hosting/api/shared/data-access/src/index.ts"
+      ],
+      "@graduates/api/hosting/service/feature": [
+        "libs/api/hosting/service/feature/src/index.ts"
       ],
       "@graduates/api/shared/services/prisma/data-access": [
         "libs/api/shared/services/prisma/data-access/src/index.ts"
