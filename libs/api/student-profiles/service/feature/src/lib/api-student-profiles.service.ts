@@ -2,7 +2,7 @@
 import { Injectable } from "@nestjs/common";
 
 @Injectable()
-export class StudentProfileService {
+export class ApiStudentProfileService {
 
   public async findOneById(studentNum: string): Promise<any[]> {
     const student = [];
