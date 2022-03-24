@@ -90,6 +90,9 @@
       "@graduates/api/hosting/service/feature": [
         "libs/api/hosting/service/feature/src/index.ts"
       ],
+      "@graduates/api/request-access/api/feature": [
+        "libs/api/request-access/api/feature/src/index.ts"
+      ],
       "@graduates/api/shared/services/prisma/data-access": [
         "libs/api/shared/services/prisma/data-access/src/index.ts"
       ],
