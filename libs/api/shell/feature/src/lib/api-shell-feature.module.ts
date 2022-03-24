@@ -9,6 +9,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ApiAccessStatusApiFeatureModule as ApiAccessStatusFeatureModule} from '@graduates/api/access-status/api/feature';
 import { ApiShortsApiFeatureModule as ApiShortsFeatureModule } from '@graduates/api/shorts/api/feature';
 import { ApicompanyprofilepageApiFeatureModule as ApiCompanyProfilePageFeatureModule } from '@graduates/api/companyprofilepage/api/feature';
+import { ApiCompanyRepresentativeApiFeatureModule } from '@graduates/api/company-representative/api/feature';
 @Module({
   imports: [
     ApiExampleFeatureModule,
@@ -23,6 +24,7 @@ import { ApicompanyprofilepageApiFeatureModule as ApiCompanyProfilePageFeatureMo
     ApiAccessStatusFeatureModule,
     ApiCompanyProfilePageFeatureModule,
     ApiStudentProfilesModule,
+    ApiCompanyRepresentativeApiFeatureModule,
 
   ],
 })

@@ -15,19 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-
-      "@graduates/api/upintegration/api/feature": [
-        "libs/api/upintegration/api/feature/src/index.ts"
-      ],
-      "@graduates/api/upintegration/api/shared/data-access": [
-        "libs/api/upintegration/api/shared/data-access/src/index.ts"
-      ],
-      "@graduates/api/upintegration/service/feature": [
-        "libs/api/upintegration/service/feature/src/index.ts"
-      ],
       "@graduates/api/access-status/api/feature": [
         "libs/api/access-status/api/feature/src/index.ts"
-
       ],
       "@graduates/api/adminconsole/api/feature": [
         "libs/api/adminconsole/api/feature/src/index.ts"
@@ -55,6 +44,15 @@
       ],
       "@graduates/api/authorization/service/shared": [
         "libs/api/authorization/service/shared/src/index.ts"
+      ],
+      "@graduates/api/company-representative/api/feature": [
+        "libs/api/company-representative/api/feature/src/index.ts"
+      ],
+      "@graduates/api/company-representative/api/shared/data-access": [
+        "libs/api/company-representative/api/shared/data-access/src/index.ts"
+      ],
+      "@graduates/api/company-representative/service/feature": [
+        "libs/api/company-representative/service/feature/src/index.ts"
       ],
       "@graduates/api/companyprofilepage/api/feature": [
         "libs/api/companyprofilepage/api/feature/src/index.ts"
@@ -125,6 +123,15 @@
       ],
       "@graduates/api/student-profiles/service/feature": [
         "libs/api/student-profiles/service/feature/src/index.ts"
+      ],
+      "@graduates/api/upintegration/api/feature": [
+        "libs/api/upintegration/api/feature/src/index.ts"
+      ],
+      "@graduates/api/upintegration/api/shared/data-access": [
+        "libs/api/upintegration/api/shared/data-access/src/index.ts"
+      ],
+      "@graduates/api/upintegration/service/feature": [
+        "libs/api/upintegration/service/feature/src/index.ts"
       ],
       "@graduates/client/example/feature": [
         "libs/client/example/feature/src/index.ts"
