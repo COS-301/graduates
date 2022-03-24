@@ -20,7 +20,7 @@ export class authorizationStudent{
     @Field({ nullable: true })
     targetId?:string;
     @Field()
-    role!:string;
+    role!:roletype;
     @Field()
     u_permission = new user_permissions();
     @Field()
@@ -42,22 +42,63 @@ export class authorizationCompany{
 @ObjectType()
 export class user_permissions{
     @Field()
-    permission_t!:string;
+    permission_t!:PermissionType;
     @Field()
-    permission_category!:string;
+    permission_category!:PermissionCategory;
     @Field()
-    permission_tenant = "NONE";
+    permission_tenant?:PermissionTenant;
 
 }
 
 @ObjectType()
 export class role_permission{
     @Field()
-    permission_t!:string;
+    permission_t!:PermissionType;
     @Field()
-    permission_category!:string;
+    permission_category!:PermissionCategory;
     @Field()
-    permission_tenant = "NONE";
+    permission_tenant?:PermissionTenant;
 
 }
+
+export enum roletype{
+    USER = "USER",
+    STUDENT = "STUDENT",
+    COMPANY = "COMPANY",
+    REPRESENTATIVE = "REPRESENTATIVE",
+    ADMIN = "ADMIN",
+    SUSPENDED = "SUSPENDED"
+}
+export enum PermissionType {
+    CREATE = "CREATE",
+    EDIT = "EDIT",
+    REMOVE = "REMOVE",
+    VIEW = "VIEW",
+    ARCHIVE = "ARCHIVE",
+    SUSPEND = "SUSPEND",
+    ALL = "ALL"
+  }
+  
+  // What the permission applies to
+  export enum PermissionCategory {
+    USER = "USER",
+    STUDENT = "STUDENT",
+    COMPANY = "COMPANY",
+    PROFILE = "PROFILE",
+    STORY = "STORY",
+    PERMISSIONS = "PERMISSIONS",
+    ROLE = "ROLE",
+    ALL = "ALL"
+  }
+  
+  // What the permission is for
+  export enum PermissionTenant {
+    USER = "USER",
+    STUDENT = "STUDENT",
+    COMPANY= "COMPANY",
+    COUNT = "COUNT",
+    VIEWERS = "VIEWERS",
+    NONE = "NONE",
+    ALL = "ALL"
+  }
 
