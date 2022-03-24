@@ -5,7 +5,6 @@ export class ApiAdminConsole {
     @Field(() => ID)
     id!: string;
 
-    
     @Field(() => String)
     email: string;
 
