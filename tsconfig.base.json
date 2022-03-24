@@ -118,6 +118,9 @@
       "@graduates/api/storage/api/shared/data-access": [
         "libs/api/storage/api/shared/data-access/src/index.ts"
       ],
+      "@graduates/api/storage/repository/data-access": [
+        "libs/api/storage/repository/data-access/src/index.ts"
+      ],
       "@graduates/api/storage/service/feature": [
         "libs/api/storage/service/feature/src/index.ts"
       ],

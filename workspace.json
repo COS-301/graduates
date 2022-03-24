@@ -37,6 +37,7 @@
     "api-shorts-service-feature": "libs/api/shorts/service/feature",
     "api-storage-api-feature": "libs/api/storage/api/feature",
     "api-storage-api-shared-data-access": "libs/api/storage/api/shared/data-access",
+    "api-storage-repository-data-access": "libs/api/storage/repository/data-access",
     "api-storage-service-feature": "libs/api/storage/service/feature",
     "api-student-profiles-api-feature": "libs/api/student-profiles/api/feature",
     "api-student-profiles-api-shared-data-access": "libs/api/student-profiles/api/shared/data-access",
