@@ -1,4 +1,4 @@
-import { ApiCompanyRepresentativeServiceFeatureModule,  } from '@graduates/api/company-representative/service/feature';
+import { ApiCompanyRepresentativeService, ApiCompanyRepresentativeServiceFeatureModule,  } from '@graduates/api/company-representative/service/feature';
 import { Module } from '@nestjs/common';
 import { ApiCompanyRepresentativeResolver } from './api-company-representative.resolver';
 

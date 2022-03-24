@@ -7,15 +7,15 @@ import { PubSub } from 'graphql-subscriptions';
 const pubSub = new PubSub();
 @Resolver()
 export class ApiCompanyRepresentativeResolver {
-    constructor(private readonly companyrepService: ApiCompanyRepresentativeService) {}
+    constructor(private companyrepService: ApiCompanyRepresentativeService) {}
 
   @Query((returns) => CompanyRepresentative)
   async companyrep(@Args('id') id: string): Promise<CompanyRepresentative> {
-    const example = await this.companyrepService.findOneById(id);
-    if (!example) {
+    const resp = await this.companyrepService.findOneById(id);
+    if (!resp) {
       throw new NotFoundException(id);
     }
-    return example;
+    return resp;
   }
 
   @Mutation((returns) => CompanyRepresentative)
