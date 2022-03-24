@@ -2196,6 +2196,25 @@
     rxjs "^6.5.4"
     tslib "^2.3.0"
 
+"@nrwl/js@13.8.3":
+  version "13.8.3"
+  resolved "https://registry.yarnpkg.com/@nrwl/js/-/js-13.8.3.tgz#0acdcfc0679809e67e5f6a714cafd79977f06aee"
+  integrity sha512-fHwwZa6ZZFMsH+VHFNgXop0L9UQ8CKjeaQsdXYmG1Dxh/90zQ0f3nzNFDTrsQDhJPWu45VfiAKaD1AIpRb+Jcg==
+  dependencies:
+    "@nrwl/devkit" "13.8.3"
+    "@nrwl/jest" "13.8.3"
+    "@nrwl/linter" "13.8.3"
+    "@nrwl/workspace" "13.8.3"
+    "@parcel/watcher" "2.0.4"
+    chalk "4.1.0"
+    fast-glob "^3.2.7"
+    fs-extra "^9.1.0"
+    ignore "^5.0.4"
+    js-tokens "^4.0.0"
+    minimatch "3.0.4"
+    source-map-support "0.5.19"
+    tree-kill "1.2.2"
+
 "@nrwl/js@13.9.4":
   version "13.9.4"
   resolved "https://registry.yarnpkg.com/@nrwl/js/-/js-13.9.4.tgz#c3f342d1007bd79f90d79696ef9761341175d070"
