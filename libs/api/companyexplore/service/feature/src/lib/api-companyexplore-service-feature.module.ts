@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
+import { ApiCompanyExploreService } from './company-explore-api.service';
 
 @Module({
   controllers: [],
-  providers: [],
-  exports: [],
+  providers: [ApiCompanyExploreService],
+  exports: [ApiCompanyExploreService],
 })
-export class ApiCompanyexploreServiceFeatureModule {}
+export class ApiCompanyExploreServiceModule {}

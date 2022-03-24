@@ -1,15 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CompanyExploreResolver } from './company-explore.resolver';
+import { ApiCompanyExploreResolver } from './company-explore.resolver';
+import { ApiCompanyExploreService } from '@graduates/api/companyexplore/service/feature';
 
-describe('CompanyExploreResolver', () => {
-  let resolver: CompanyExploreResolver;
+describe('ApiCompanyExploreResolver', () => {
+  let resolver: ApiCompanyExploreResolver;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [CompanyExploreResolver],
+      providers: [ApiCompanyExploreResolver, ApiCompanyExploreService],
     }).compile();
 
-    resolver = module.get<CompanyExploreResolver>(CompanyExploreResolver);
+    resolver = module.get<ApiCompanyExploreResolver>(ApiCompanyExploreResolver);
   });
 
   it('should be defined', () => {
