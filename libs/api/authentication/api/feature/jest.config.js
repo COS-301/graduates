@@ -12,5 +12,5 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory:
-    '../../../../../coverage/libs/api/authorization/api/feature',
+    '../../../../../coverage/libs/api/authentication/api/feature',
 };
