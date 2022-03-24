@@ -45,6 +45,15 @@
       "@graduates/api/authorization/service/shared": [
         "libs/api/authorization/service/shared/src/index.ts"
       ],
+      "@graduates/api/company-representative/api/feature": [
+        "libs/api/company-representative/api/feature/src/index.ts"
+      ],
+      "@graduates/api/company-representative/api/shared/data-access": [
+        "libs/api/company-representative/api/shared/data-access/src/index.ts"
+      ],
+      "@graduates/api/company-representative/service/feature": [
+        "libs/api/company-representative/service/feature/src/index.ts"
+      ],
       "@graduates/api/companyprofilepage/api/feature": [
         "libs/api/companyprofilepage/api/feature/src/index.ts"
       ],
