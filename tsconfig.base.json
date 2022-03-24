@@ -93,6 +93,12 @@
       "@graduates/api/request-access/api/feature": [
         "libs/api/request-access/api/feature/src/index.ts"
       ],
+      "@graduates/api/notifications/api/feature": [
+        "libs/api/notifications/api/feature/src/index.ts"
+      ],
+      "@graduates/api/notifications/service/feature": [
+        "libs/api/notifications/service/feature/src/index.ts"
+      ],
       "@graduates/api/shared/services/prisma/data-access": [
         "libs/api/shared/services/prisma/data-access/src/index.ts"
       ],
