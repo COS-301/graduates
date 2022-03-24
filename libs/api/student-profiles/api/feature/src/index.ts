@@ -1,1 +1,1 @@
-export * from './lib/student-profiles.module';
+export * from './lib/api-student-profiles.module';

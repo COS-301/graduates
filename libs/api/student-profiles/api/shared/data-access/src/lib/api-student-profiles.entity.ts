@@ -1,7 +1,7 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql";
 
 @ObjectType()
-export class Student{
+export class ApiStudentProfilesEntity{
   @Field()
   studentNum: string
 
