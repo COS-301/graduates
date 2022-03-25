@@ -15,49 +15,51 @@ datasource db {
 ///////////////////////////////////////////////////////////////////////
 
 // All entities within the database is defined as users
-model user {
-  id            String    @id @default(cuid()) // Use CUIDs for IDs please
-  email         String    @unique
-  password      String?
-  password_salt String?
-  name          String?
-  date_of_birth DateTime?
-  company_id    String?
-  created       DateTime
-  suspended     Boolean
-  validated     Boolean
+model User {
+  id           String    @id @default(cuid()) // Use CUIDs for IDs please
+  email        String    @unique
+  password     String?
+  passwordSalt String?   @map("password_salt")
+  name         String?
+  dateOfBirth  DateTime? @map("date_of_birth")
+  companyId    String?   @map("company_id")
+  created      DateTime
+  suspended    Boolean
+  validated    Boolean
 
-  company user? @relation(name: "company_id", fields: [company_id], references: [id])
+  company User? @relation(name: "company_id", fields: [companyId], references: [id])
 
-  user                      user[]                      @relation("company_id")
-  user_scout                user_scouted[]              @relation("user_scout")
-  user_scouted              user_scouted[]              @relation("user_scouted")
-  user_role                 user_role[]
-  user_permissions          user_permissions[]
-  user_profile              user_profile[]
-  user_tag                  user_tag[]
-  user_social_media         user_social_media[]
-  user_location             user_location[]
-  user_email                user_email[]
-  user_student_profile_file user_student_profile_file[]
-  story                     story[]
-  story_report              story_report[]
-  blog                      blog[]
-  user_from                 notification[]              @relation("user_from")
-  user_to                   notification[]              @relation("user_to")
+  User             User[]            @relation("company_id")
+  userScout        UserScouted[]     @relation("userScout")
+  userScouted      UserScouted[]     @relation("userScouted")
+  UserRole         UserRole[]
+  UserPermissions  UserPermissions[]
+  UserProfile      UserProfile[]
+  UserTag          UserTag[]
+  UserSocialMedia  UserSocialMedia[]
+  UserLocation     UserLocation[]
+  UserEmail        UserEmail[]
+  UserProfileFile  UserProfileFile[]
+  Story            Story[]
+  StoryReport      StoryReport[]
+  notificationFrom Notification[]    @relation("notificationFrom")
+  notificationTo   Notification[]    @relation("notificationTo")
+  Blog             Blog[]
 }
 
 ///////////////////////////////////////////////////////////////////////
 // 1.1 Scouting
 ///////////////////////////////////////////////////////////////////////
 
-model user_scouted {
-  user_id_scout String    @id
-  user_id       String
-  date          DateTime?
+model UserScouted {
+  userIdScout String    @id @map("user_id_scout")
+  userId      String    @map("user_id")
+  date        DateTime?
 
-  user_scout user @relation(name: "user_scout", fields: [user_id_scout], references: [id])
-  user       user @relation(name: "user_scouted", fields: [user_id], references: [id])
+  userScout User @relation(name: "userScout", fields: [userIdScout], references: [id])
+  user      User @relation(name: "userScouted", fields: [userId], references: [id])
+
+  @@map("user_scouted")
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -65,37 +67,40 @@ model user_scouted {
 ///////////////////////////////////////////////////////////////////////
 
 // The roles that the users are assigned to for default permissions
-model user_role {
-  user_id String
-  role    role
+model UserRole {
+  userId String @map("user_id")
+  role   Role
 
-  user user @relation(fields: [user_id], references: [id])
-  @@id([user_id, role])
+  user User @relation(fields: [userId], references: [id])
+  @@id([userId, role])
+  @@map("user_role")
 }
 
 // Additional permissions users are assigned to
-model user_permissions {
-  user_id             String
-  permission_type     permission_type
-  permission_category permission_category
-  permission_tenant   permission_tenant
+model UserPermissions {
+  userId             String             @map("user_id")
+  permissionType     PermissionType     @map("permission_type")
+  permissionCategory PermissionCategory @map("permission_category")
+  permissionTenant   PermissionTenant   @map("permission_tenant")
 
-  user user @relation(fields: [user_id], references: [id])
-  @@id([user_id, permission_type, permission_category, permission_tenant])
+  user User @relation(fields: [userId], references: [id])
+  @@id([userId, permissionType, permissionCategory, permissionTenant])
+  @@map("user_permissions")
 }
 
 // The permissions each role has by default
-model role_permissions {
-  role                role
-  permission_type     permission_type
-  permission_category permission_category
-  permission_tenant   permission_tenant
+model RolePermissions {
+  role               Role
+  permissionType     PermissionType     @map("permission_type")
+  permissionCategory PermissionCategory @map("permission_category")
+  permissionTenant   PermissionTenant   @map("permission_tenant")
 
-  @@id([role, permission_type, permission_category, permission_tenant])
+  @@id([role, permissionType, permissionCategory, permissionTenant])
+  @@map("role_permissions")
 }
 
 // Roles to define all the roles that are currently present in the application
-enum role {
+enum Role {
   USER
   STUDENT
   COMPANY
@@ -105,7 +110,7 @@ enum role {
 }
 
 // Type of permission that can be given to a user
-enum permission_type {
+enum PermissionType {
   CREATE
   EDIT
   REMOVE
@@ -116,7 +121,7 @@ enum permission_type {
 }
 
 // What the permission applies to
-enum permission_category {
+enum PermissionCategory {
   USER
   STUDENT
   COMPANY
@@ -128,7 +133,7 @@ enum permission_category {
 }
 
 // What the permission is for
-enum permission_tenant {
+enum PermissionTenant {
   USER
   STUDENT
   COMPANY
@@ -143,32 +148,35 @@ enum permission_tenant {
 ///////////////////////////////////////////////////////////////////////
 
 // Profile information for a user
-model user_profile {
-  user_id         String  @id
-  profile_picture String?
-  bio             String?
+model UserProfile {
+  userId         String  @id @map("user_id")
+  profilePicture String? @map("profile_picture")
+  bio            String?
 
-  user user @relation(fields: [user_id], references: [id])
+  user User @relation(fields: [userId], references: [id])
+  @@map("user_profile")
 }
 
 // Tag on which to filter users
-model user_tag {
-  user_id String @id
-  tag     String
+model UserTag {
+  userId String @id @map("user_id")
+  tag    String
 
-  user user @relation(fields: [user_id], references: [id])
+  user User @relation(fields: [userId], references: [id])
+  @@map("user_tag")
 }
 
 // Social Media links for users
-model user_social_media {
-  user_id String       @id
-  type    social_media
-  link    String
+model UserSocialMedia {
+  userId String      @id @map("user_id")
+  type   SocialMedia
+  link   String
 
-  user user @relation(fields: [user_id], references: [id])
+  user User @relation(fields: [userId], references: [id])
+  @@map("user_social_media")
 }
 
-enum social_media {
+enum SocialMedia {
   TWITTER
   INSTAGRAM
   LINKEDIN
@@ -178,36 +186,42 @@ enum social_media {
 }
 
 // Locations of users
-model user_location {
-  user_id  String @id
+model UserLocation {
+  userId   String @id @map("user_id")
   location String
 
-  user user @relation(fields: [user_id], references: [id])
+  user User @relation(fields: [userId], references: [id])
+  @@map("user_location")
 }
 
 // Emails of users
-model user_email {
-  user_id String @id
-  email   String
+model UserEmail {
+  userId String @id @map("user_id")
+  email  String
 
-  user user @relation(fields: [user_id], references: [id])
+  user User @relation(fields: [userId], references: [id])
+  @@map("user_email")
 }
 
 // File uploads of users
-model user_student_profile_file {
-  file_id        String         @id @default(cuid())
-  user_id        String
-  file_path      String
-  file_category  file_category?
-  file_extension String?
+model UserProfileFile {
+  fileId        String        @id @default(cuid()) @map("file_id")
+  userId        String        @map("user_id")
+  filePath      String        @map("file_path")
+  fileCategory  FileCategory? @map("file_category")
+  fileExtension String?       @map("file_extension")
 
-  user user @relation(fields: [user_id], references: [id])
+  user User @relation(fields: [userId], references: [id])
+  @@map("user_student_profile_file")
 }
 
-enum file_category {
+enum FileCategory {
   ACADEMIC_RECORD
   DEGREE
   MISC
+  CV
+  PROFILE_PHOTO
+  VIDEO
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -215,40 +229,42 @@ enum file_category {
 ///////////////////////////////////////////////////////////////////////
 
 // Stories of users
-model story {
-  story_id    String   @id @default(cuid())
-  user_id     String
-  media       String?
-  data        String?
-  date_posted DateTime
-  archived    Boolean
+model Story {
+  id         String   @id @default(cuid())
+  userId     String   @map("user_id")
+  media      String?
+  data       String?
+  datePosted DateTime @map("date_posted")
+  archived   Boolean
 
-  user user @relation(fields: [user_id], references: [id])
+  user User @relation(fields: [userId], references: [id])
 
-  story_tag    story_tag[]
-  story_report story_report[]
+  storyTag    StoryTag[]
+  storyReport StoryReport[]
 }
 
 // Story tags to be filtered by
-model story_tag {
-  story_id String
-  tag      String
+model StoryTag {
+  storyId String @map("story_id")
+  tag     String
 
-  story story @relation(fields: [story_id], references: [story_id])
+  story Story @relation(fields: [storyId], references: [id])
 
-  @@id([story_id, tag])
+  @@id([storyId, tag])
+  @@map("story_tag")
 }
 
 // Story reports
-model story_report {
-  story_id String
-  user_id  String
-  reason   String
+model StoryReport {
+  storyId String @map("story_id")
+  userId  String @map("user_id")
+  reason  String
 
-  user  user  @relation(fields: [user_id], references: [id])
-  story story @relation(fields: [story_id], references: [story_id])
+  user  User  @relation(fields: [userId], references: [id])
+  story Story @relation(fields: [storyId], references: [id])
 
-  @@id([story_id, user_id])
+  @@id([storyId, userId])
+  @@map("story_report")
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -256,16 +272,16 @@ model story_report {
 ///////////////////////////////////////////////////////////////////////
 
 // User notifications
-model notification {
-  notification_id String   @id @default(cuid())
-  user_id_from    String?
-  user_id_to      String
-  data            Json?
-  date            DateTime
-  seen            Boolean
+model Notification {
+  id         String   @id @default(cuid())
+  userIdFrom String?  @map("user_id_from")
+  userIdTo   String   @map("user_id_to")
+  data       Json?
+  date       DateTime
+  seen       Boolean
 
-  user_from user? @relation(name: "user_from", fields: [user_id_from], references: [id])
-  user_to   user  @relation(name: "user_to", fields: [user_id_to], references: [id])
+  notificationFrom User? @relation(name: "notificationFrom", fields: [userIdFrom], references: [id])
+  notificationTo   User  @relation(name: "notificationTo", fields: [userIdTo], references: [id])
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -273,27 +289,40 @@ model notification {
 ///////////////////////////////////////////////////////////////////////
 
 // Blogs that up admin have posted
-model blog {
-  blog_id  String   @id @default(cuid())
-  user_id  String
+model Blog {
+  id       String   @id @default(cuid())
+  userId   String   @map("user_id")
   title    String
   content  String?
-  media    String?
   date     DateTime
   archived Boolean
 
-  user user @relation(fields: [user_id], references: [id])
+  user User @relation(fields: [userId], references: [id])
 
-  blog_comment blog_comment[]
+  blogComment BlogComment[]
+  blogMedia   BlogMedia[]
 }
 
-model blog_comment {
-  comment_id String   @id @default(cuid())
-  blog_id    String
-  content    String
-  date       DateTime
+// Comments on the blog per blog_id
+model BlogComment {
+  id      String   @id @default(cuid())
+  blogId  String   @map("blog_id")
+  content String
+  date    DateTime
 
-  blog blog @relation(fields: [blog_id], references: [blog_id])
+  blog Blog @relation(fields: [blogId], references: [id])
+  @@map("blog_comment")
+}
+
+// Media on the blog per blog_id
+model BlogMedia {
+  blogId String @map("blog_id")
+  media  String
+
+  blog Blog @relation(fields: [blogId], references: [id])
+
+  @@id([blogId, media])
+  @@map("blog_media")
 }
 
 ///////////////////////////////////////////////////////////////////////
