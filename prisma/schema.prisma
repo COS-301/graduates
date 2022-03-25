@@ -219,6 +219,9 @@ enum FileCategory {
   ACADEMIC_RECORD
   DEGREE
   MISC
+  CV
+  PROFILE_PHOTO
+  VIDEO
 }
 
 ///////////////////////////////////////////////////////////////////////

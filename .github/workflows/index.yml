@@ -4,7 +4,18 @@ name: CI Tests
 on: 
   pull_request:
     branches: [ develop ]
-  
+  #manual github action trigger
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Title'     
+        required: true
+        default: 'warning'  
+      tags:
+        description: 'Test scenario tags'
+        required: false 
+
+#jobs in the workflow with passed in parameters
 jobs:
   test-affected:
     uses: ./.github/workflows/nxtest.yml

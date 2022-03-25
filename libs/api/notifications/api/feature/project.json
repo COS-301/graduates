@@ -1,0 +1,34 @@
+{
+  "root": "libs/api/notifications/api/feature",
+  "sourceRoot": "libs/api/notifications/api/feature/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/api/notifications/api/feature",
+        "tsConfig": "libs/api/notifications/api/feature/tsconfig.lib.json",
+        "packageJson": "libs/api/notifications/api/feature/package.json",
+        "main": "libs/api/notifications/api/feature/src/index.ts",
+        "assets": ["libs/api/notifications/api/feature/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api/notifications/api/feature/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/notifications/api/feature"],
+      "options": {
+        "jestConfig": "libs/api/notifications/api/feature/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
