@@ -3,7 +3,7 @@ import { ApiStudentExploreResolver } from './api-student-explore.resolver';
 
 @Module({
   controllers: [],
-  providers: [ApiStudentExploreResolver],
+  providers: [],
   exports: [],
 })
 export class ApiStudentExploreApiFeatureModule {}
