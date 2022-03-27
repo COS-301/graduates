@@ -108,6 +108,9 @@
       "@graduates/api/hosting/service/feature": [
         "libs/api/hosting/service/feature/src/index.ts"
       ],
+      "@graduates/api/request-access/api/feature": [
+        "libs/api/request-access/api/feature/src/index.ts"
+      ],
       "@graduates/api/notifications/api/feature": [
         "libs/api/notifications/api/feature/src/index.ts"
       ],

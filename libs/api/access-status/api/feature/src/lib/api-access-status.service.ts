@@ -5,7 +5,7 @@ import { ApiAccessStatusEntity } from "./api-access-status.entity";
 export class ApiAccessStatusService {
     async getAll(): Promise<ApiAccessStatusEntity[]> {
         const accessStatus = new ApiAccessStatusEntity();
-        accessStatus.userID = "u04515146";
+        accessStatus.userID = "u00000000";
         accessStatus.item = "CV";
         accessStatus.accessStatus = "Pending"
 
