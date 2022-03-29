@@ -1,2 +1,2 @@
-export * from './lib/student-profiles.module';
-export * from './lib/student.entity'
+export * from './lib/api-student-profiles.module';
+export * from './lib/api-student-profiles.entity';
