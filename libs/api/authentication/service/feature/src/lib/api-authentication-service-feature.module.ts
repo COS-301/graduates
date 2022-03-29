@@ -1,10 +1,7 @@
-import { Module } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 
-@Module({
-  controllers: [],
-  providers: [],
-  exports: [],
-})
+
+@Injectable()
 export class ApiAuthenticationServiceFeatureModule {
   
 }
