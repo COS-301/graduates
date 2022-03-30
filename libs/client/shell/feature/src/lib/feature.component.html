@@ -47,7 +47,19 @@
     </div>
 
     <div class="mid" *ngSwitchCase="'Users'">
-        <input class = "searchbar" value="SEARCH">
+        <input class = "searchbar" onfocus="this.value=''" value="SEARCH">
+        <div class="users">
+            <div class="user" *ngFor="let u of users;">
+                <img src="" alt="">
+                <p class = "userName">USER {{u.name}}</p>
+                <img src="" alt="">
+                
+            </div>
+        </div>
+        <div class = "archive">
+            <button class="archiveButton">Archive</button>
+            <button class="archiveButton">Unarchive</button>
+        </div>
     </div>
 
     <div class="mid" *ngSwitchCase="'Story'">
@@ -64,12 +76,21 @@
             <button id = "saveButton">Save</button>
         </div>
         <div class = "roles">
+
+           
+
             <div class="userRoles">
                 <div id ="roleHeader">
                     User Roles:
                 </div>
                 <div class = "userRole" *ngFor="let r of currentUser.roles">
                     <p class="roleName">{{r}}</p><p (click)="removeRole(r)" class="removeRole">Remove</p>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">Add Role</button>
+                <div class="dropdown-content">
+                  <a *ngFor="let aR of allRoles" (click)="addRole(aR)">{{aR}}</a>
                 </div>
             </div>
         </div>    
@@ -97,6 +118,23 @@
     </div>
 
     <div class="mid" *ngSwitchCase="'Shorts'">
-        <input class = "searchbar" value="SEARCH">
+        <input class = "searchbar" onfocus="this.value=''" value="SEARCH">
+        <div class="users">
+            <div class="user" *ngFor="let u of users;">
+                <img src="" alt="">
+                <p class = "userName">USER {{u.name}}</p>
+                <img src="" alt="">
+                <div *ngIf="u.archived; else elseBlock">
+                    <p>Archived</p>
+                </div>
+                <ng-template #elseBlock>
+                    <p>Unarchived</p>
+                </ng-template>
+            </div>
+        </div>
+        <div class = "archive">
+            <button class="archiveButton">Archive</button>
+            <button class="archiveButton">Unarchive</button>
+        </div>
     </div>
 </div>

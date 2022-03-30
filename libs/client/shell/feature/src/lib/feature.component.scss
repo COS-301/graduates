@@ -82,12 +82,13 @@
 .user {
     width: 100%;
     display: flex;
+    padding-top: 8vh;
     .userName{
         // background: #e0e0e0;
         width: 50%;
         padding-left: 1vw;
         padding-right: 1vw;
-        margin-top: 8vh;
+        // margin-top: 8vh;
         margin-left: 5%;
         margin-right: 5%;
         border: 1px solid black;
@@ -147,8 +148,8 @@
     font-size: 1.5vh;
     padding: 0;
     width: 20%;
-    background: #e0e0e0;
-    border: 1px solid grey;
+    background: white;
+    // border: 1px solid grey;
     display: inline-flex;
     flex-flow: column;
 }
@@ -208,3 +209,47 @@
     margin-top: 1vh;
     margin-bottom: 1vh;;
 }
+
+.dropbtn {
+    background-color: #184475;
+    color: white;
+    padding: 1vh;
+    width: 100%;
+    font-size: 10px;
+    border: none;
+    margin-top: 8vh;
+  }
+  
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .dropdown-content a {
+    color: black;
+    // padding: 12px 16px;
+    padding: 1vw;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Change color of dropdown links on hover */
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-content {display: block;}
+  
+  /* Change the background color of the dropdown button when the dropdown content is shown */
+  .dropdown:hover .dropbtn {background-color: #184475;}
