@@ -1,5 +1,5 @@
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import {authorizationStudent,role_permission,user_permissions} from '../../../shared/src/lib/authorization-data-access.entity';
+import {authorizationStudent,roletype,role_permission,user_permissions} from '../../../shared/src/lib/authorization-data-access.entity';
 import { Injectable, Param } from '@nestjs/common';
 //import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 @Injectable()
@@ -9,7 +9,7 @@ export class userAuthorization {
   async findUserAuthorization(@Param() id:string,userPermissions:user_permissions,rolePermissions:role_permission):Promise<authorizationStudent> {
     const authUser = new authorizationStudent();
     authUser.askingId = id;
-    authUser.role = "STUDENT";
+    authUser.role = roletype.STUDENT;
     authUser.u_permission.permission_t = userPermissions.permission_t;
     authUser.u_permission.permission_category = userPermissions.permission_category;
     authUser.u_permission.permission_tenant = userPermissions.permission_tenant;
@@ -23,7 +23,7 @@ export class userAuthorization {
     const authUser = new authorizationStudent();
     authUser.askingId = askingId;
     authUser.targetId = targetId;
-    authUser.role = "STUDENT";
+    authUser.role = roletype.STUDENT;
     authUser.u_permission.permission_t = userPermissions.permission_t;
     authUser.u_permission.permission_category = userPermissions.permission_category;
     authUser.u_permission.permission_tenant = userPermissions.permission_tenant;
