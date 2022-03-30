@@ -1,6 +1,8 @@
-@import "libs/client/shared/styling/global";
+@import "apps/client/src/assets/global";
 
-.banner {background-color: $primary-1;}
+.banner {
+    background-color: $primary-1;
+}
 
 .banner-header {
     color: $text-red;
