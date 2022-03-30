@@ -123,6 +123,9 @@
       "@graduates/api/request-access/api/feature": [
         "libs/api/request-access/api/feature/src/index.ts"
       ],
+      "@graduates/api/request-access/service/feature": [
+        "libs/api/request-access/service/feature/src/index.ts"
+      ],
       "@graduates/api/shared/services/prisma/data-access": [
         "libs/api/shared/services/prisma/data-access/src/index.ts"
       ],
