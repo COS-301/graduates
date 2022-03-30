@@ -1,6 +1,6 @@
 export const Environment = {
-    clientId: 'string',
-    clientSecret: 'string',
+    clientId: '${{ secrets.GoogleID }}',
+    clientSecret: '${{ secrets.GoogleAPI }}',
     callbackURL: 'string',
     scope: ['email', 'profile']
 };
