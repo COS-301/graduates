@@ -69,7 +69,60 @@
 .mid {
     width: 100%;
     display : flex;
+}
 
+.users {
+    position: absolute;
+    left: 30%;
+    top: 20%;
+    width: calc(70% - 130px);
+    font-size: 10px;
+}
+
+.user {
+    width: 100%;
+    display: flex;
+    .userName{
+        // background: #e0e0e0;
+        width: 50%;
+        padding-left: 1vw;
+        padding-right: 1vw;
+        margin-top: 8vh;
+        margin-left: 5%;
+        margin-right: 5%;
+        border: 1px solid black;
+    }
+    
+}
+
+#saveButton {
+    background: #184475; 
+    color: white;
+    margin: auto;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    position: absolute;
+    bottom: -10%;
+    left: 50%;
+    // background-color:#184475; 
+}
+
+.formElement {
+    width: 100%;
+    display: flex;
+    font-size: 10px;
+    display: flex;
+    .formInput{
+        padding-left: 1vw;
+        padding-right: 1vw;
+        margin-top: 4vh;
+        background: #e0e0e0;
+        border: 2px solid grey;
+        width: 50%;
+        margin-left: 5%;
+        margin-right: 5%;
+        border: 1px solid black;
+    }
 }
 
 .searchbar  {
@@ -83,6 +136,52 @@
     width: 20%;
     background: #e0e0e0;
     border: 1px solid grey;
+}
+
+.roles {
+    position: absolute;
+    right: 0;
+    top: 25%;
+    margin-top: 3vh;
+    margin-right: 2vh;
+    font-size: 1.5vh;
+    padding: 0;
+    width: 20%;
+    background: #e0e0e0;
+    border: 1px solid grey;
+    display: inline-flex;
+    flex-flow: column;
+}
+
+#roleHeader {
+    text-align: center;
+    border-bottom: 2px solid #005ca9;
+    background-color: white;;
+}
+
+.userRole {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #005ca9;
+    border-left: 2px solid #005ca9;
+    border-right: 2px solid #005ca9;
+    padding-left:1vw;
+    padding-right: 1vw;
+    padding-bottom: 0vh;
+    margin: 0;
+    width: 100%;
+    .roleName {
+        color:#005ca9;
+        margin: 0;
+    }
+    .removeRole{
+        font-weight: bolder;
+        margin: 0;
+    }
+    .removeRole:hover {
+        cursor: pointer;
+    }
+
 }
 
 .archive {
