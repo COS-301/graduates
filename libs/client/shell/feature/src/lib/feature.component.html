@@ -1,1 +1,36 @@
-<p>feature works!</p>
+<div class="header"><div class="info"><img id = "logo" src="">University of Pretoria</div> <div class ="title"><img src="" alt=""><b>Admin</b>Portal</div></div>
+<div class="subheader"> <div class="logout">Logout<img src="" alt=""></div></div>
+<div class="sidenav">
+    <ul>
+        <li *ngFor="let o of sidenavOptions;" (click)="sidenavOption(o)" [ngStyle]="{'border-left' : (option === o) ? '4px solid #184475' : 'none'}">{{o}}</li>
+    </ul>
+</div>
+<div class="container" [ngSwitch]="option">
+    <div class="mid" *ngSwitchCase="'Create User'">
+        <input class = "searchbar" value="SEARCH">
+    </div>
+
+    <div class="mid" *ngSwitchCase="'Users'">
+        <input class = "searchbar" value="SEARCH">
+    </div>
+
+    <div class="mid" *ngSwitchCase="'Story'">
+        <input class = "searchbar" value="SEARCH">
+    </div>
+
+    <div class="mid" *ngSwitchCase="'Roles'">
+        <input class = "searchbar" value="SEARCH">
+    </div>
+
+    <div class="mid" *ngSwitchCase="'Blogs'">
+        <input class = "searchbar" value="SEARCH">
+        <div class = "archive">
+            <button class="archiveButton">Archive</button>
+            <button class="archiveButton">Unarchive</button>
+        </div>
+    </div>
+
+    <div class="mid" *ngSwitchCase="'Shorts'">
+        <input class = "searchbar" value="SEARCH">
+    </div>
+</div>
