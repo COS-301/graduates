@@ -4,7 +4,6 @@
     "api": "apps/api",
     "api-access-status-api--feature": "libs/api/access-status/api/feature",
     "api-access-status-service-feature": "libs/api/access-status/service/feature",
-    "api-access-status-shared-feature": "libs/api/access-status/shared/feature",
     "api-adminconsole-api-feature": "libs/api/adminconsole/api/feature",
     "api-adminconsole-repository-data-access": "libs/api/adminconsole/repository/data-access",
     "api-adminconsole-service-feature": "libs/api/adminconsole/service/feature",
