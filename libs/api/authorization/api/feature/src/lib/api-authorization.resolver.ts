@@ -17,7 +17,5 @@ export class ApiAuthorizationResolver {
         }
         return respond;
     }
-    // authorization(): Promise<ApiAuthorization[]>{
-
-    // }
+   
 }
