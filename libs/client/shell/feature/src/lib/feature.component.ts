@@ -13,10 +13,11 @@ export class FeatureComponent{
   currentUser : any
   allRoles : string[]
   shortsOption = "Permission"
+  usersPORS = "Permission"
 
   constructor() {
     //Populate the sidenav with these options
-    this.sidenavOptions = ["Shorts", "Create User", "Users", "Story", "Roles", "Blogs", "Shorts"]
+    this.sidenavOptions = ["Users", "Create User", "Users", "Story", "Roles", "Blogs", "Shorts"]
 
     //Set default option
     this.option = this.sidenavOptions[0]
@@ -32,7 +33,8 @@ export class FeatureComponent{
         this.users = [{"name" : "Jack", "archived" : true},  {"name" : "Angela", "archived" : false}, {"name" : "Marceline", "archived" : true},{"name" : "Jonathan", "archived" : false}]
         break
       case "Users" :
-        this.users = [{"name" : "Jack", "archived" : true},  {"name" : "Angela", "archived" : false}, {"name" : "Marceline", "archived" : true},{"name" : "Jonathan", "archived" : false}]
+        this.users = [{"name" : "Jack", "roles" : ["A", "B"]}, {"name" : "Angela", "roles" : ["A", "D"]}, {"name" : "Marceline", "roles" : ["A","B", "C"]},{"name" : "Jonathan", "roles" : ["D"]}]
+        this.currentUser = this.users[0]
         break
       case "Roles" :
         this.users = [{"name" : "Jack", "roles" : ["A", "B"]}, {"name" : "Angela", "roles" : ["A", "D"]}, {"name" : "Marceline", "roles" : ["A","B", "C"]},{"name" : "Jonathan", "roles" : ["D"]}]
@@ -50,6 +52,10 @@ export class FeatureComponent{
     this.fetchData()
   }
 
+  selectUser(u : any) {
+    this.currentUser = u
+  }
+
   removeRole(role : string) {
     //Remove user's role
 
@@ -62,5 +68,9 @@ export class FeatureComponent{
   
   changeShortsOption(opt : string) {
     this.shortsOption = opt
+  }
+
+  setPORS(opt : string) {
+    this.usersPORS = opt
   }
 }
