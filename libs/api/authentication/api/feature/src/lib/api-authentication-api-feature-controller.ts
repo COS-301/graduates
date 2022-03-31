@@ -1,9 +1,9 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { ApiAuthenticationServiceFeatureModule } from 'libs/api/authentication/service/feature/src/lib/api-authentication-service-feature.module';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { RegisterCommand } from 'libs/api/authentication/service/feature/src/lib/commands/RgisterCommand';
+import { LoginQuery } from 'libs/api/authentication/service/feature/src/lib/queries/LoginQuery';
 
 @Controller('api-authentication-api-feature')
 export class ApiAuthenticationApiFeatureController {
@@ -28,8 +28,13 @@ export class ApiAuthenticationApiFeatureController {
         return this.service.googleLogin(req);
     }
 
+    @Post('register')
+    register(@Body() body: RegisterCommand){
+        this.service.register(body);
+    }
+
     @Post('authenticate')
-    authenticate(@Body() body: RegisterCommand){
+    authenticate(@Body() body: LoginQuery){
         this.service.authenticate(body);
     }
 }
