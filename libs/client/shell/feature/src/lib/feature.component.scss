@@ -185,16 +185,41 @@
 
 }
 
-.archive {
+.suspensionBar {
     position: absolute;
     right: 0;
-    top: 25%;
+    top: 20%;
     margin-top: 3vh;
     margin-right: 2vh;
     font-size: 1.5vh;
     padding-left: 0.5vw;
     padding-right: 0.5vw;
-    width: 10%;
+    width: 20%;
+    background: #e0e0e0;
+    border: 1px solid grey;
+    display:  flex;
+    justify-content: space-between;
+    div {
+        padding-left: 0.5vw;
+        padding-right: 0.5vw;
+    }
+
+    div:hover {
+        cursor : pointer;
+    }
+}
+
+.archive {
+    position: absolute;
+    right: 0;
+    top: 30%;
+    margin-top: 3vh;
+    margin-right: 2vh;
+    font-size: 1.5vh;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+    width: 15%;
+    max-width: 150px;
     background: #e0e0e0;
     border: 1px solid grey;
     display: inline-flex;

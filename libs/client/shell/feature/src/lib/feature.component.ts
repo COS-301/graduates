@@ -12,14 +12,17 @@ export class FeatureComponent{
   users : any[]
   currentUser : any
   allRoles : string[]
+  shortsOption = "Permission"
+
   constructor() {
     //Populate the sidenav with these options
-    this.sidenavOptions = ["Users", "Create User", "Users", "Story", "Roles", "Blogs", "Shorts"]
+    this.sidenavOptions = ["Shorts", "Create User", "Users", "Story", "Roles", "Blogs", "Shorts"]
 
     //Set default option
     this.option = this.sidenavOptions[0]
     this.users = []
     this.allRoles = []
+    
     this.fetchData()
   }
  
@@ -55,5 +58,9 @@ export class FeatureComponent{
   addRole(role:  string){
     //add role to user
 
+  }
+  
+  changeShortsOption(opt : string) {
+    this.shortsOption = opt
   }
 }

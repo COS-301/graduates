@@ -124,17 +124,21 @@
                 <img src="" alt="">
                 <p class = "userName">USER {{u.name}}</p>
                 <img src="" alt="">
-                <div *ngIf="u.archived; else elseBlock">
-                    <p>Archived</p>
+                <div *ngIf="u.suspended; else elseBlock">
+                    <p>Suspended</p>
                 </div>
                 <ng-template #elseBlock>
-                    <p>Unarchived</p>
+                    <p>Not Suspended</p>
                 </ng-template>
             </div>
         </div>
+        <div class="suspensionBar">
+            <div (click)="changeShortsOption('Permission')" [ngStyle]="{'border-bottom' : (shortsOption === 'Permission') ? '3px solid #184475' : 'none'}">Permission</div>
+            <div (click)="changeShortsOption('Suspension')" [ngStyle]="{'border-bottom' : (shortsOption === 'Suspension') ? '3px solid #184475' : 'none'}">Suspension</div>
+        </div>
         <div class = "archive">
-            <button class="archiveButton">Archive</button>
-            <button class="archiveButton">Unarchive</button>
+            <button class="archiveButton">Suspend</button>
+            <button class="archiveButton">Un-Suspend</button>
         </div>
     </div>
 </div>
