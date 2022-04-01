@@ -3,6 +3,7 @@
   "projects": {
     "api": "apps/api",
     "api-access-status-api--feature": "libs/api/access-status/api/feature",
+    "api-access-status-service-feature": "libs/api/access-status/service/feature",
     "api-adminconsole-api-feature": "libs/api/adminconsole/api/feature",
     "api-adminconsole-repository-data-access": "libs/api/adminconsole/repository/data-access",
     "api-adminconsole-service-feature": "libs/api/adminconsole/service/feature",
@@ -35,6 +36,7 @@
     "api-hosting-service-feature": "libs/api/hosting/service/feature",
     "api-notifications-api-feature": "libs/api/notifications/api/feature",
     "api-notifications-service-feature": "libs/api/notifications/service/feature",
+    "api-request-access-service-feature": "libs/api/request-access/service/feature",
     "api-shared-services-prisma-data-access": "libs/api/shared/services/prisma/data-access",
     "api-shell-feature": "libs/api/shell/feature",
     "api-shorts-api-feature": "libs/api/shorts/api/feature",
