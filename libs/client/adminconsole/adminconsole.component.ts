@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
-  selector: 'graduates-shell-feature',
-  templateUrl: './feature.component.html',
-  styleUrls: ['./feature.component.scss'],
+  selector: 'graduates-adminconsole',
+  templateUrl: './adminconsole.component.html',
+  styleUrls: ['./adminconsole.component.css']
 })
-export class FeatureComponent{
-
+export class AdminconsoleComponent {
+  
   sidenavOptions : string[] 
   option : string
   users : any[]
