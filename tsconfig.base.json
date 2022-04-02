@@ -220,8 +220,8 @@
       "@graduates/client/student-profile/feature": [
         "libs/client/student-profile/feature/src/index.ts"
       ],
-      "@graduates/client/student-explore/student-explore": [
-        "libs/client/student-explore/student-explore/src/index.ts"
+      "@graduates/client/student-explore": [
+        "libs/client/student-explore/src/index.ts"
       ]
     }
   },
