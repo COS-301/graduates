@@ -4,6 +4,18 @@
     --subheader : #2e5580;
 }
 
+
+#burger {
+    display : none;
+    @media screen 
+    and (max-device-width : 600px) 
+    {
+        
+        display : inline;
+    }
+}
+
+
 .header {
     background: #184475;
     height: 10%;
@@ -17,15 +29,36 @@
 .info {
     height: 100%;
     padding-left: 5%;
+    display: flex;
+    p {
+    @media screen 
+    and (max-device-width : 415px) 
+    {
+        display : none;
+    }
+    }
 }
 
 .title {
     height: 100%;
     padding-right: 10%;
     font-size: 4vh;
+    display: flex;
+    img {
+        @media screen 
+        and (max-device-width : 415px) 
+        {
+            display : none;
+        }
+    }
 }
 
 .subheader {
+    @media screen 
+    and (max-device-width : 415px) 
+    {
+        display : none;
+    }
     background: #2e5580;
     color: white;
     width: 100%;
@@ -43,6 +76,14 @@
 
 .sidenav {
     
+    @media screen 
+    and (max-device-width : 415px) 
+    {
+        display : none;
+        position: absolute;
+        right: 0;
+        top: 10%;
+    }
     font-size: 2vh;
     ul{
         height: 100%;
@@ -77,6 +118,20 @@
     top: 20%;
     width: calc(70% - 130px);
     font-size: 10px;
+    @media screen 
+        and (max-device-width : 415px) 
+        {
+            width: 100%;
+            left: 0%;
+        }
+}
+
+.mobileHeader{
+    margin: auto;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    padding-top: 5%;
 }
 
 .user {
