@@ -2451,7 +2451,7 @@
   dependencies:
     "nx" "13.9.4"
 
-"@nrwl/cli@13.9.4", "@nrwl/cli@^13.9.4":
+"@nrwl/cli@13.9.4":
   version "13.9.4"
   resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-13.9.4.tgz#bba8d1592191a2296223f42f61078f7ed197051e"
   integrity sha512-jseYnaaifBpBCnj1ERFnOA9vfXOd3AciGgYTy8OdygMqLf1suUAjUEVIh6hlmtvMQojNezTT4a3eaIHz9lQDKA==
@@ -4463,15 +4463,6 @@ apollo-server-types@^3.5.2:
     apollo-reporting-protobuf "^3.3.1"
     apollo-server-caching "^3.3.0"
     apollo-server-env "^4.2.1"
-
-apollo-server@^3.6.5:
-  version "3.6.5"
-  resolved "https://registry.yarnpkg.com/apollo-server/-/apollo-server-3.6.5.tgz#74b488f32c7039a2b96af0200dd41277f1cbec8e"
-  integrity sha512-IE3tdR7ai57hKw4APoTeVrR7K9cDjgznMlMmWil6VrRPlWMg5lMFumatDJL1ndCfV9zHbykAnaL+N9RycIMMWw==
-  dependencies:
-    apollo-server-core "^3.6.5"
-    apollo-server-express "^3.6.5"
-    express "^4.17.1"
 
 append-field@^1.0.0:
   version "1.0.0"

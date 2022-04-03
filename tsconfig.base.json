@@ -18,6 +18,9 @@
       "@graduates/api/access-status/api/feature": [
         "libs/api/access-status/api/feature/src/index.ts"
       ],
+      "@graduates/api/access-status/service/feature": [
+        "libs/api/access-status/service/feature/src/index.ts"
+      ],
       "@graduates/api/adminconsole/api/feature": [
         "libs/api/adminconsole/api/feature/src/index.ts"
       ],
@@ -108,14 +111,17 @@
       "@graduates/api/hosting/service/feature": [
         "libs/api/hosting/service/feature/src/index.ts"
       ],
-      "@graduates/api/request-access/api/feature": [
-        "libs/api/request-access/api/feature/src/index.ts"
-      ],
       "@graduates/api/notifications/api/feature": [
         "libs/api/notifications/api/feature/src/index.ts"
       ],
       "@graduates/api/notifications/service/feature": [
         "libs/api/notifications/service/feature/src/index.ts"
+      ],
+      "@graduates/api/request-access/api/feature": [
+        "libs/api/request-access/api/feature/src/index.ts"
+      ],
+      "@graduates/api/request-access/service/feature": [
+        "libs/api/request-access/service/feature/src/index.ts"
       ],
       "@graduates/api/shared/services/prisma/data-access": [
         "libs/api/shared/services/prisma/data-access/src/index.ts"
@@ -175,6 +181,16 @@
       "@graduates/api/upintegration/service/feature": [
         "libs/api/upintegration/service/feature/src/index.ts"
       ],
+      "@graduates/api/authentication/api/feature": [
+        "libs/api/authentication/api/feature/src/index.ts"
+      ],
+      "@graduates/api/authentication/api/shared/interfaces/data-access": [
+        "libs/api/authentication/api/shared/interfaces/data-access/src/index.ts"
+      ],
+      "@graduates/api/authentication/service/feature": [
+        "libs/api/authentication/service/feature/src/index.ts"
+      ]
+      ,
       "@graduates/client/example/feature": [
         "libs/client/example/feature/src/index.ts"
       ],
@@ -192,6 +208,9 @@
       ],
       "@graduates/client/shell/feature": [
         "libs/client/shell/feature/src/index.ts"
+      ],
+      "@graduates/client/request-for-access/feature": [
+        "libs/client/request-for-access/feature/src/index.ts"
       ]
     }
   },

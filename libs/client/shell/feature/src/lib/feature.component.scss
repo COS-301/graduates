@@ -374,3 +374,13 @@
   
   /* Change the background color of the dropdown button when the dropdown content is shown */
   .dropdown:hover .dropbtn {background-color: #184475;}
+@import "libs/client/shared/assets/global";
+
+.banner {
+    background-color: $primary-1;
+}
+
+.banner-header {
+    color: $text-red;
+    font-size: 18px;
+}
