@@ -17,3 +17,9 @@ services:
       - 5432:5432
     networks:
       - graduates-private
+
+volumes:
+  postgres-data:
+
+networks:
+  graduates-private:
