@@ -1,0 +1,43 @@
+{
+  "projectType": "library",
+  "root": "libs/client/student-profile/feature",
+  "sourceRoot": "libs/client/student-profile/feature/src",
+  "prefix": "graduates",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/client/student-profile/feature"],
+      "options": {
+        "project": "libs/client/student-profile/feature/ng-package.json",
+        "tailwindConfig": "libs/client/student-profile/feature/tailwind.config.js"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/client/student-profile/feature/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/client/student-profile/feature/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/student-profile/feature"],
+      "options": {
+        "jestConfig": "libs/client/student-profile/feature/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/student-profile/feature/src/**/*.ts",
+          "libs/client/student-profile/feature/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
