@@ -1,0 +1,27 @@
+---
+name: CI Tests
+
+on: 
+  pull_request:
+    branches: [ develop ]
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Title'     
+        required: true
+        default: 'warning'  
+      tags:
+        description: 'Test scenario tags'
+        required: false 
+
+  
+jobs:
+  test-affected:
+    uses: ./.github/workflows/nxtest.yml
+    with:
+      test: 'affected'
+
+  test-all:
+    uses: ./.github/workflows/nxtest.yml
+    with:
+      test: 'all'
