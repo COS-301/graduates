@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { initializeApp } from 'firebase/app';
 import { getDownloadURL, getStorage, ref, uploadBytes} from 'firebase/storage';
+import * as fs from 'fs';
 
-/* Since Firebase is only a temporary solution I tried making the storage as simple as 
+/*Since Firebase is only a temporary solution I tried making the storage as simple as 
 possible each feature's storage will be stored in the same bucket only under a 
 different folder. Please see below. The firebaseConfig is currently connected to one 
 personal firebase projects will be updated accordingly later on. If you require external
@@ -34,6 +35,17 @@ export class FirebaseService {
       console.log('Uploaded a blob or file!');
       console.log(snapshot);
     });
+  }
+
+  async uploadAllUnderUploads(){
+    const dir = '@graduates/api/storage/uploads';
+    const files = fs.readdirSync(dir);
+
+    for(const file of files)
+    {
+      console.log("here");
+      console.log(file);
+    }
   }
 
   async uploadVideo(file: File){
