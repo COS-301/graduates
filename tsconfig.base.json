@@ -18,6 +18,9 @@
       "@graduates/api/access-status/api/feature": [
         "libs/api/access-status/api/feature/src/index.ts"
       ],
+      "@graduates/api/access-status/service/feature": [
+        "libs/api/access-status/service/feature/src/index.ts"
+      ],
       "@graduates/api/adminconsole/api/feature": [
         "libs/api/adminconsole/api/feature/src/index.ts"
       ],
@@ -53,6 +56,24 @@
       ],
       "@graduates/api/company-representative/service/feature": [
         "libs/api/company-representative/service/feature/src/index.ts"
+      ],
+      "@graduates/api/companyexplore/api/feature": [
+        "libs/api/companyexplore/api/feature/src/index.ts"
+      ],
+      "@graduates/api/companyexplore/api/shared/interfaces/data-access": [
+        "libs/api/companyexplore/api/shared/interfaces/data-access/src/index.ts"
+      ],
+      "@graduates/api/companyexplore/repository/data-access": [
+        "libs/api/companyexplore/repository/data-access/src/index.ts"
+      ],
+      "@graduates/api/companyexplore/repository/shared/interfaces/data-access": [
+        "libs/api/companyexplore/repository/shared/interfaces/data-access/src/index.ts"
+      ],
+      "@graduates/api/companyexplore/service/feature": [
+        "libs/api/companyexplore/service/feature/src/index.ts"
+      ],
+      "@graduates/api/companyexplore/service/shared/interfaces/data-access": [
+        "libs/api/companyexplore/service/shared/interfaces/data-access/src/index.ts"
       ],
       "@graduates/api/companyprofilepage/api/feature": [
         "libs/api/companyprofilepage/api/feature/src/index.ts"
@@ -96,6 +117,12 @@
       "@graduates/api/notifications/service/feature": [
         "libs/api/notifications/service/feature/src/index.ts"
       ],
+      "@graduates/api/request-access/api/feature": [
+        "libs/api/request-access/api/feature/src/index.ts"
+      ],
+      "@graduates/api/request-access/service/feature": [
+        "libs/api/request-access/service/feature/src/index.ts"
+      ],
       "@graduates/api/shared/services/prisma/data-access": [
         "libs/api/shared/services/prisma/data-access/src/index.ts"
       ],
@@ -118,8 +145,23 @@
       "@graduates/api/storage/api/shared/data-access": [
         "libs/api/storage/api/shared/data-access/src/index.ts"
       ],
+      "@graduates/api/storage/repository/data-access": [
+        "libs/api/storage/repository/data-access/src/index.ts"
+      ],
       "@graduates/api/storage/service/feature": [
         "libs/api/storage/service/feature/src/index.ts"
+      ],
+      "@graduates/api/student-explore/api/feature": [
+        "libs/api/student-explore/api/feature/src/index.ts"
+      ],
+      "@graduates/api/student-explore/api/shared/data-access": [
+        "libs/api/student-explore/api/shared/data-access/src/index.ts"
+      ],
+      "@graduates/api/student-explore/repository/data-access": [
+        "libs/api/student-explore/repository/data-access/src/index.ts"
+      ],
+      "@graduates/api/student-explore/service/feature": [
+        "libs/api/student-explore/service/feature/src/index.ts"
       ],
       "@graduates/api/student-profiles/api/feature": [
         "libs/api/student-profiles/api/feature/src/index.ts"
@@ -139,6 +181,16 @@
       "@graduates/api/upintegration/service/feature": [
         "libs/api/upintegration/service/feature/src/index.ts"
       ],
+      "@graduates/api/authentication/api/feature": [
+        "libs/api/authentication/api/feature/src/index.ts"
+      ],
+      "@graduates/api/authentication/api/shared/interfaces/data-access": [
+        "libs/api/authentication/api/shared/interfaces/data-access/src/index.ts"
+      ],
+      "@graduates/api/authentication/service/feature": [
+        "libs/api/authentication/service/feature/src/index.ts"
+      ]
+      ,
       "@graduates/client/example/feature": [
         "libs/client/example/feature/src/index.ts"
       ],
@@ -159,7 +211,11 @@
       ],
       "@graduates/client/student-profile/feature": [
         "libs/client/student-profile/feature/src/index.ts"
+      ],
+      "@graduates/client/request-for-access/feature": [
+        "libs/client/request-for-access/feature/src/index.ts"
       ]
+    
     }
   },
   "exclude": ["node_modules", "tmp"]
