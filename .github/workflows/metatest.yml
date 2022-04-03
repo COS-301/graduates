@@ -1,0 +1,15 @@
+---
+name: 'Meta Test'
+
+on: 
+  workflow_call:
+  pull_request:
+    types: [ labeled ]
+
+  milestone:
+    types: [ opened ]
+
+  project:
+    types: [ reopened ]
+      
+jobs:

@@ -26,3 +26,6 @@ jobs:
     uses: ./.github/workflows/nxtest.yml
     with:
       test: 'all'
+
+  test-meta:
+    uses: ./.github/workflows/metatest.yml
