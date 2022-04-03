@@ -40,7 +40,7 @@ jobs:
           count: 1
           labels: 'status:needs-info, status:needs-tests, status:not-ready, status:on-hold, status:ready'
 
-       - name: Has atleast one role label
+      - name: Has atleast one role label
         uses: mheap/github-action-required-labels@v1
         with:
           mode: minimum
@@ -53,4 +53,14 @@ jobs:
           mode: minimum
           count: 1
           labels: 'scope:api,scope:cicd,scope:client,scope:db,scope:design,scope:ui'
-  
+
+  milestone-check:
+    name: Checks if milestone is used
+    runs-on: ubuntu-latest
+    steps:       
+      - name: Has milestone check
+        if: github.event.pull_request.milestone == null
+        run: |
+          echo "you don't have a milestone"
+          exit 1
+          
