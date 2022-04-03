@@ -211,6 +211,9 @@
       ],
       "@graduates/client/request-for-access/feature": [
         "libs/client/request-for-access/feature/src/index.ts"
+      ],
+      "@graduates/client/student-explore": [
+        "libs/client/student-explore/src/index.ts"
       ]
     }
   },
