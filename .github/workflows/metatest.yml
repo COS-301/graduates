@@ -25,3 +25,10 @@ jobs:
           mode: exactly
           count: 1
           labels: 'priority:high, priority:low, priority:medium'
+
+      - name: Has exactly one type label
+        uses: mheap/github-action-required-labels@v1
+        with:
+          mode: exactly
+          count: 1
+          labels: 'type:bug, type:change, type:chore, type:cosmetic, type:documentation, type:enhance, type:feature, type:fix, type:refactor, type:test'
