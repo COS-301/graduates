@@ -6,4 +6,4 @@ import { RequestForAccessComponent } from './request-for-access.component';
   imports: [CommonModule],
   declarations: [RequestForAccessComponent],
 })
-export class FeatureModule {}
+export class RequestForAccessModule {}
