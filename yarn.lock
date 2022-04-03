@@ -1441,6 +1441,11 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@filesystem/nestjs@^0.0.3-alpha.5":
+  version "0.0.3-alpha.5"
+  resolved "https://registry.yarnpkg.com/@filesystem/nestjs/-/nestjs-0.0.3-alpha.5.tgz#d145753337f2ee810971012ac30a9d98ae515239"
+  integrity sha512-CQNwUwAowvnPkh3iBTgUujJyfi8hNDV4OYK4GGq+DVyZLwxQIWgBJpiAjpuUBkXXH3+WA6YTRuUh+hBis3NYDQ==
+
 "@firebase/analytics-compat@0.1.7":
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/@firebase/analytics-compat/-/analytics-compat-0.1.7.tgz#ef31d893fbf251a306da112c010c624bae4e9aa1"
@@ -2476,6 +2481,7 @@
   version "13.9.5"
   resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-13.9.5.tgz#398122e1b70350454f4d4e4230d98cc4e24f1c1f"
   integrity sha512-WO2tcRTnYcz/LMJO9RVDoQtpwREjanosUJhymFD6ozrdZBhDuxKQ2S681mjnCXWlWEhYvccGfLhechluiEdCLA==
+
   dependencies:
     nx "13.9.5"
 
