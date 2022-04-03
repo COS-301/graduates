@@ -9,7 +9,19 @@ on:
   milestone:
     types: [ opened ]
 
-  project:
-    types: [ reopened ]
-      
 jobs:
+  label-check:
+    name: Checks if labels are used
+    runs-on: ubuntu-latest
+    steps: 
+        #Checking out to the develop branch
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Has exactly one priority label
+        uses: mheap/github-action-required-labels@v1
+        with:
+          mode: exactly
+          count: 1
+          labels: 'priority:high, priority:low, priority:medium'
