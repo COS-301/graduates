@@ -181,6 +181,16 @@
       "@graduates/api/upintegration/service/feature": [
         "libs/api/upintegration/service/feature/src/index.ts"
       ],
+      "@graduates/api/authentication/api/feature": [
+        "libs/api/authentication/api/feature/src/index.ts"
+      ],
+      "@graduates/api/authentication/api/shared/interfaces/data-access": [
+        "libs/api/authentication/api/shared/interfaces/data-access/src/index.ts"
+      ],
+      "@graduates/api/authentication/service/feature": [
+        "libs/api/authentication/service/feature/src/index.ts"
+      ]
+      ,
       "@graduates/client/example/feature": [
         "libs/client/example/feature/src/index.ts"
       ],
