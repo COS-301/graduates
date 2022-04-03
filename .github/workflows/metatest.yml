@@ -32,3 +32,11 @@ jobs:
           mode: exactly
           count: 1
           labels: 'type:bug, type:change, type:chore, type:cosmetic, type:documentation, type:enhance, type:feature, type:fix, type:refactor, type:test'
+     
+      - name: Has exactly one status label
+        uses: mheap/github-action-required-labels@v1
+        with:
+          mode: exactly
+          count: 1
+          labels: 'status:needs-info, status:needs-tests, status:not-ready, status:on-hold, status:ready'
+          
