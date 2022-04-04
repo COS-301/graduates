@@ -7,7 +7,7 @@ export class ApiAuthorizationService {
     {
         const data={
             id:id,
-            permissionType:'edit',
+            permissionType:'edit details',
             userName: "KC Chivunga",
             userType: "student",
             isPermittedTo: true,
