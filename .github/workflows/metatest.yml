@@ -19,24 +19,24 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Has exactly one priority label
+      - name: Has atleast one priority label
         uses: mheap/github-action-required-labels@v1
         with:
-          mode: exactly
+          mode: minimum
           count: 1
           labels: 'priority:high, priority:low, priority:medium'
 
-      - name: Has exactly one type label
+      - name: Has atleast one type label
         uses: mheap/github-action-required-labels@v1
         with:
-          mode: exactly
+          mode: minimum
           count: 1
           labels: 'type:bug, type:change, type:chore, type:cosmetic, type:documentation, type:enhance, type:feature, type:fix, type:refactor, type:test'
 
-      - name: Has exactly one status label
+      - name: Has atleast one status label
         uses: mheap/github-action-required-labels@v1
         with:
-          mode: exactly
+          mode: minimum
           count: 1
           labels: 'status:needs-info, status:needs-tests, status:not-ready, status:on-hold, status:ready'
 
