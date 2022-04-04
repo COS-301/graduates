@@ -1,0 +1,15 @@
+@import "libs/client/shared/assets/global";
+.card{
+    margin:1px;
+}
+mat-card{
+    width:200px;
+}
+mat-card img{
+    object-fit: cover;
+    min-width:200px;
+    height: 80%;
+}
+.cardbutton{
+    background-color:$primary-1 ;
+}
