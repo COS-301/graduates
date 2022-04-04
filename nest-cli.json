@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "api": {
+      "type": "library",
+      "root": "graduates/libs/api/adminconsole/api/feature/src/lib/api",
+      "entryFile": "index",
+      "sourceRoot": "graduates/libs/api/adminconsole/api/feature/src/lib/api/src",
+      "compilerOptions": {
+        "tsConfigPath": "graduates/libs/api/adminconsole/api/feature/src/lib/api/tsconfig.lib.json"
+      }
+    }
+  },
+  "compilerOptions": {
+    "webpack": true
+  }
+}

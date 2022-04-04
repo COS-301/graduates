@@ -208,6 +208,9 @@
       ],
       "@graduates/client/shell/feature": [
         "libs/client/shell/feature/src/index.ts"
+      ],
+      "@graduates/client/request-for-access/feature": [
+        "libs/client/request-for-access/feature/src/index.ts"
       ]
     }
   },
