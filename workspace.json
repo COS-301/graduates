@@ -59,6 +59,7 @@
     "api-upintegration-service-feature": "libs/api/upintegration/service/feature",
     "api\\authentication\\api-feature": "libs/api/authentication/api/feature",
     "client": "apps/client",
+    "client-adminconsole-feature": "libs/client/adminconsole/feature",
     "client-e2e": "apps/client-e2e",
     "client-example-feature": "libs/client/example/feature",
     "client-shared-components-navbar-ui": "libs/client/shared/components/navbar/ui",
