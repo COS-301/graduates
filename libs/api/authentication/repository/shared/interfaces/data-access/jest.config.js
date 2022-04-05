@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'api-example-repository-shared-interfaces-data-access',
+  displayName: 'api-authentication-repository-shared-interfaces-data-access',
   preset: '../../../../../../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -8,9 +8,9 @@ module.exports = {
   },
   testEnvironment: 'node',
   transform: {
-    '^.+\\.[tj]sx?$': 'ts-jest',
+    '^.+\\.[tj]s$': 'ts-jest',
   },
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+  moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory:
-    '../../../../../../../coverage/libs/api/example/repository/shared/interfaces/data-access',
+    '../../../../../../../coverage/libs/api/authentication/repository/shared/interfaces/data-access',
 };
