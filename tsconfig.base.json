@@ -222,7 +222,8 @@
       ],
       "@graduates/client/student-explore": [
         "libs/client/student-explore/src/index.ts"
-      ]
+      ],
+      "@graduates/client/shorts": ["libs/client/shorts/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
