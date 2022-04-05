@@ -1,4 +1,4 @@
-# Base Image
+# Nginx Image
 FROM node
 
 # Set working directory
