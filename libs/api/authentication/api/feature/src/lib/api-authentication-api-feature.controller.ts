@@ -1,14 +1,13 @@
-/* eslint-disable @nrwl/nx/enforce-module-boundaries */
+import { ApiAuthenticationServiceFeatureService } from '@graduates/api/authentication/service/feature';
 import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiAuthenticationService } from 'libs/api/authentication/service/feature/src/lib/api-authentication-service.service';
 import { RegisterCommand } from 'libs/api/authentication/service/feature/src/lib/commands/RgisterCommand';
 import { LoginQuery } from 'libs/api/authentication/service/feature/src/lib/queries/LoginQuery';
 
 @Controller('api-authentication-api-feature')
 export class ApiAuthenticationApiFeatureController {
-
-    constructor(private readonly service: ApiAuthenticationService) {}
+    
+    constructor(private readonly service: ApiAuthenticationServiceFeatureService) {}
 
     /*@Get(':id')
     getHello(@Body(): body: customDTO, @Param('id') userId: String):String{

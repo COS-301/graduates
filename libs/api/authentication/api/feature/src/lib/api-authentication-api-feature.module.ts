@@ -1,11 +1,11 @@
+import { ApiAuthenticationServiceFeatureService } from '@graduates/api/authentication/service/feature';
 import { Module } from '@nestjs/common';
-import { ApiAuthenticationServiceModule } from '@graduate/libs/api/authentication/service/feature/src/lib/api-authentication-service.module';
-import { ApiAuthenticationApiFeatureController } from './api-authentication-api-controller.controller';
+import { ApiAuthenticationApiFeatureController } from './api-authentication-api-feature.controller';
 
 @Module({
-  imports:[], //Import all the classes that will be used for this feature
   controllers: [ApiAuthenticationApiFeatureController],
-  providers: [ApiAuthenticationServiceModule],
-  exports: [ApiAuthenticationApiFeatureModule],
+  providers: [ApiAuthenticationServiceFeatureService],
+  exports: [],
+  imports: []
 })
 export class ApiAuthenticationApiFeatureModule {}

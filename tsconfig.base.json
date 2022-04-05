@@ -27,6 +27,12 @@
       "@graduates/api/adminconsole/service/feature": [
         "libs/api/adminconsole/service/feature/src/index.ts"
       ],
+      "@graduates/api/authentication/api/feature": [
+        "libs/api/authentication/api/feature/src/index.ts"
+      ],
+      "@graduates/api/authentication/service/feature": [
+        "libs/api/authentication/service/feature/src/index.ts"
+      ],
       "@graduates/api/authorization/api/feature": [
         "libs/api/authorization/api/feature/src/index.ts"
       ],
@@ -108,14 +114,14 @@
       "@graduates/api/hosting/service/feature": [
         "libs/api/hosting/service/feature/src/index.ts"
       ],
-      "@graduates/api/request-access/api/feature": [
-        "libs/api/request-access/api/feature/src/index.ts"
-      ],
       "@graduates/api/notifications/api/feature": [
         "libs/api/notifications/api/feature/src/index.ts"
       ],
       "@graduates/api/notifications/service/feature": [
         "libs/api/notifications/service/feature/src/index.ts"
+      ],
+      "@graduates/api/request-access/api/feature": [
+        "libs/api/request-access/api/feature/src/index.ts"
       ],
       "@graduates/api/shared/services/prisma/data-access": [
         "libs/api/shared/services/prisma/data-access/src/index.ts"
