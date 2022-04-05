@@ -17,7 +17,7 @@ RUN yarn install
 COPY . .
 
 # Set environment variable PORT which is the PORT the container will run on
-ENV PORT=5433
+ENV PORT=3333
 
 # Expose the PORT
 EXPOSE ${PORT}?
