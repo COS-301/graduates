@@ -36,6 +36,12 @@
       "@graduates/api/authentication/api/shared/interfaces/data-access": [
         "libs/api/authentication/api/shared/interfaces/data-access/src/index.ts"
       ],
+      "@graduates/api/authentication/repository/data-access": [
+        "libs/api/authentication/repository/data-access/src/index.ts"
+      ],
+      "@graduates/api/authentication/repository/shared/interfaces/data-access": [
+        "libs/api/authentication/repository/shared/interfaces/data-access/src/index.ts"
+      ],
       "@graduates/api/authentication/service/feature": [
         "libs/api/authentication/service/feature/src/index.ts"
       ],
