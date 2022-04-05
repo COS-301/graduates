@@ -1,20 +1,13 @@
 //Following handy tutorial from : https://www.sitepoint.com/using-redis-node-js/
 
 //add where you wish to use the code
-//import redis from "redis";
-//import jwt from "jsonwebtoken";
+import jwt from "jsonwebtoken";
+import {PrismaClient} from '@prisma/client';
 
-class TokenAuthenticate {
-    redis;
-    jwt;
-    client;
-    constructor(r, j) {
-
-        this.redis = r;
-        this.jwt = j;
-        const client = this.redis.createClient();
-        client.set('framework', 'reactJS');
-    }
+class TokenAuthenticate 
+{
+    prisma = new PrismaClient();
+    jwt = new jwt();
 
     //const redis = require("redis");
     //For safety we will need to change port and host in redis const client = redis.createClient(port, host); in the form "127.0.0.1" host "6379"
