@@ -150,12 +150,12 @@
 }
 #burger {
     display : none;
-    @media screen 
-    and (max-device-width : 600px) 
-    {
+    // @media screen 
+    // and (max-device-width : 600px) 
+    // {
         
-        display : inline;
-    }
+    //     display : inline;
+    // }
 }
 
 
@@ -176,13 +176,13 @@
     img {
       height: 60px;
     }
-    p {
-    @media screen 
-    and (max-device-width : 415px) 
-    {
-        display : none;
-    }
-    }
+    // p {
+    // @media screen 
+    // and (max-device-width : 415px) 
+    // {
+    //     display : none;
+    // }
+    // }
 }
 
 .title {
@@ -190,21 +190,21 @@
     padding-right: 10%;
     font-size: 4vh;
     display: flex;
-    img {
-        @media screen 
-        and (max-device-width : 415px) 
-        {
-            display : none;
-        }
-    }
+    // img {
+    //     @media screen 
+    //     and (max-device-width : 415px) 
+    //     {
+    //         display : none;
+    //     }
+    // }
 }
 
 .subheader {
-    @media screen 
-    and (max-device-width : 415px) 
-    {
-        display : none;
-    }
+    // @media screen 
+    // and (max-device-width : 415px) 
+    // {
+    //     display : none;
+    // }
     background: #2e5580;
     color: white;
     width: 100%;
@@ -222,14 +222,14 @@
 
 .sidenav {
     
-    @media screen 
-    and (max-device-width : 415px) 
-    {
-        display : none;
-        position: absolute;
-        right: 0;
-        top: 10%;
-    }
+    // @media screen 
+    // and (max-device-width : 415px) 
+    // {
+    //     display : none;
+    //     position: absolute;
+    //     right: 0;
+    //     top: 10%;
+    // }
     font-size: 2vh;
     ul{
         height: 100%;
@@ -264,42 +264,42 @@
     top: 20%;
     width: calc(80% - 130px);
     font-size: 10px;
-    @media screen 
-        and (max-device-width : 415px) 
-        {
-            width: 100%;
-            left: 0%;
-        }
+    // @media screen 
+    //     and (max-device-width : 415px) 
+    //     {
+    //         width: 100%;
+    //         left: 0%;
+    //     }
 }
 
 .mobileHeader{
     display: none;
-    @media screen 
-    and (max-device-width : 415px) 
-    {
-        display : inline;
-        // padding-left: 40%;
-        width: 30%;
-        position: absolute;
-        top: 12%;
-        left: 35%;
-        margin: auto;
-        text-align: center;
-        border-bottom: 2vh solid #e0e0e0;
-        padding-bottom: 0.5vh;
-        font-size: 3vh;
-        color: #184475;
-        font-weight: bolder;
-    }
+    // @media screen 
+    // and (max-device-width : 415px) 
+    // {
+    //     display : inline;
+    //     // padding-left: 40%;
+    //     width: 30%;
+    //     position: absolute;
+    //     top: 12%;
+    //     left: 35%;
+    //     margin: auto;
+    //     text-align: center;
+    //     border-bottom: 2vh solid #e0e0e0;
+    //     padding-bottom: 0.5vh;
+    //     font-size: 3vh;
+    //     color: #184475;
+    //     font-weight: bolder;
+    // }
 }
 
 label {
     display : none;
-    @media screen 
-    and (max-device-width : 415px) 
-    {
-        display : inline;
-    }
+    // @media screen 
+    // and (max-device-width : 415px) 
+    // {
+    //     display : inline;
+    // }
 
 }
 .user {
@@ -319,14 +319,14 @@ label {
         height: 20px;
         margin-top: 2vh;
 
-        @media screen 
-        and (max-device-width : 415px) 
-        {
-            // margin-left: 20%;
-            width: 20px;
-            height: 24px;
-            // margin-top: 5vh;
-        }
+        // @media screen 
+        // and (max-device-width : 415px) 
+        // {
+        //     // margin-left: 20%;
+        //     width: 20px;
+        //     height: 24px;
+        //     // margin-top: 5vh;
+        // }
         
     }
 
@@ -344,21 +344,21 @@ label {
         margin-right: 5%;
         height: 4vh;
         border: 1px solid black;
-        @media screen 
-        and (max-device-width : 415px) 
-        {
-            font-size: 2vh;  
-            width: 50%;
-            padding: 0.5vh;
-        }
+        // @media screen 
+        // and (max-device-width : 415px) 
+        // {
+        //     font-size: 2vh;  
+        //     width: 50%;
+        //     padding: 0.5vh;
+        // }
     }
-    @media screen 
-    and (max-device-width : 415px) 
-    {
-        margin-top: 0;
-        padding-top: 0%;
-        margin-bottom: 5%;        
-    }
+    // @media screen 
+    // and (max-device-width : 415px) 
+    // {
+    //     margin-top: 0;
+    //     padding-top: 0%;
+    //     margin-bottom: 5%;        
+    // }
     
 }
 
@@ -375,16 +375,16 @@ label {
     height: 4vh;
     width: 8vw;
 
-    @media screen 
-    and (max-device-width : 415px) 
-    {
-        right: 5%;
-        height: 5vh;
-        width: 20vw;
-        border-radius: 1vh;
-        padding: 1vh;
-        font-size: 2vh;
-    }
+    // @media screen 
+    // and (max-device-width : 415px) 
+    // {
+    //     right: 5%;
+    //     height: 5vh;
+    //     width: 20vw;
+    //     border-radius: 1vh;
+    //     padding: 1vh;
+    //     font-size: 2vh;
+    // }
 }
 
 #saveButton {
@@ -396,16 +396,16 @@ label {
     position: absolute;
     bottom: -10%;
     left: 50%;
-    @media screen 
-    and (max-device-width : 415px) 
-    {
-        right: 10%;
-        height: 5vh;
-        width: 20vw;
-        border-radius: 1vh;
-        padding: 1vh;
-        font-size: 2vh;
-    }
+    // @media screen 
+    // and (max-device-width : 415px) 
+    // {
+    //     right: 10%;
+    //     height: 5vh;
+    //     width: 20vw;
+    //     border-radius: 1vh;
+    //     padding: 1vh;
+    //     font-size: 2vh;
+    // }
 }
 
 .formElement {
@@ -421,14 +421,14 @@ label {
         height: 20px;
         margin-top: 4.5vh;
 
-        @media screen 
-        and (max-device-width : 415px) 
-        {
-            margin-left: 20%;
-            width: 20px;
-            height: 24px;
-            margin-top: 5vh;
-        }
+        // @media screen 
+        // and (max-device-width : 415px) 
+        // {
+        //     margin-left: 20%;
+        //     width: 20px;
+        //     height: 24px;
+        //     margin-top: 5vh;
+        // }
         
     }
 
@@ -448,12 +448,12 @@ label {
         // margin-right: 5%;
         border: 1px solid black;
 
-        @media screen 
-        and (max-device-width : 415px) 
-        {
-            height : 5vh;
-            font-size: 14px;
-        }
+        // @media screen 
+        // and (max-device-width : 415px) 
+        // {
+        //     height : 5vh;
+        //     font-size: 14px;
+        // }
     }
 }
 
@@ -469,11 +469,11 @@ label {
     background: #e0e0e0;
     border: 1px solid grey;
     z-index: 99;
-    @media screen 
-    and (max-device-width : 415px) 
-    {
-        width: 25%;
-    }
+    // @media screen 
+    // and (max-device-width : 415px) 
+    // {
+    //     width: 25%;
+    // }
 }
 
 .roles {
@@ -491,12 +491,12 @@ label {
     display: inline-flex;
     flex-flow: column;
 
-    @media screen 
-    and (max-device-width : 415px) 
-    {
-        top: 30%;
-        width: 35%;
-    }
+    // @media screen 
+    // and (max-device-width : 415px) 
+    // {
+    //     top: 30%;
+    //     width: 35%;
+    // }
 }
 
 #roleHeader {
@@ -548,11 +548,11 @@ label {
     display:  flex;
     justify-content: space-between;
 
-    @media screen 
-    and (max-device-width : 415px) 
-    {
-        width: 40%;
-    }
+    // @media screen 
+    // and (max-device-width : 415px) 
+    // {
+    //     width: 40%;
+    // }
     div {
         padding-left: 0.5vw;
         padding-right: 0.5vw;
@@ -595,11 +595,11 @@ label {
     border: 1px solid grey;
     display: inline-flex;
     flex-flow: column;
-    @media screen 
-    and (max-device-width : 415px) 
-    {
-        width: 30%;
-    }
+    // @media screen 
+    // and (max-device-width : 415px) 
+    // {
+    //     width: 30%;
+    // }
 }
 .archive {
     position: absolute;
@@ -616,11 +616,11 @@ label {
     border: 1px solid grey;
     display: inline-flex;
     flex-flow: column;
-    @media screen 
-    and (max-device-width : 415px) 
-    {
-        width: 30%;
-    }
+    // @media screen 
+    // and (max-device-width : 415px) 
+    // {
+    //     width: 30%;
+    // }
 }
 
 .archiveButton {
