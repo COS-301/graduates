@@ -216,9 +216,6 @@
       ],
       "@graduates/client/shell/feature": [
         "libs/client/shell/feature/src/index.ts"
-      ],
-      "@graduates/client/student-explore": [
-        "libs/client/student-explore/src/index.ts"
       ]
     }
   },
