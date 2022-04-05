@@ -4,6 +4,7 @@
 }
 mat-card{
     width:200px;
+    height:250px;
 }
 mat-card img{
     object-fit: cover;
@@ -12,4 +13,11 @@ mat-card img{
 }
 .cardbutton{
     background-color:$primary-1 ;
+    &:hover{
+        color: $primary-1;
+        background-color: $background-white;
+        border-style: solid;
+        border-width: 1px;
+        border-color: $primary-1;
+    }   
 }
