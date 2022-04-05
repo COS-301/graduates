@@ -1,8 +1,8 @@
 //Basic Modules
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { BrowserModule } from '@angular/platform-browser';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //Material Modules
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -24,8 +24,6 @@ import { StudentCardComponent } from './student-card/student-card.component';
 @NgModule({
   imports: [
     CommonModule,
-    BrowserModule,
-    BrowserAnimationsModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
