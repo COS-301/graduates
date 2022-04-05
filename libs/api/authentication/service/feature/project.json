@@ -1,20 +1,19 @@
 {
-  "root": "libs/api/adminconsole/service/feature",
-  "sourceRoot": "libs/api/adminconsole/service/feature/src",
-  "projectType": "library",
+  "root": "libs/api/authentication/service/feature",
+  "sourceRoot": "libs/api/authentication/service/feature/src",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["libs/api/adminconsole/service/feature/**/*.ts"]
+        "lintFilePatterns": ["libs/api/authentication/service/feature/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/api/adminconsole/service/feature"],
+      "outputs": ["coverage/libs/api/authentication/service/feature"],
       "options": {
-        "jestConfig": "libs/api/adminconsole/service/feature/jest.config.js",
+        "jestConfig": "libs/api/authentication/service/feature/jest.config.js",
         "passWithNoTests": true
       }
     }
