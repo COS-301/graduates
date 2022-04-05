@@ -216,7 +216,8 @@
       ],
       "@graduates/client/shell/feature": [
         "libs/client/shell/feature/src/index.ts"
-      ]
+      ],
+      "@graduates/client/shorts": ["libs/client/shorts/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
