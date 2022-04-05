@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,10 +16,3 @@ export class FilterComponent{
     //Do something
    }
 }
-
-/*@NgModule({
-  imports: [MatCheckboxModule, MatMenuModule, MatButtonModule, MatIconModule],
-  declarations: [FilterComponent],
-  providers: []
-})
-export class FilterComponentModule{}*/
