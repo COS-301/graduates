@@ -6,6 +6,6 @@
     "types": [],
     "target": "es6"
   },
-  "include": ["**/*.ts", "../shared/src/lib/api-notifications-api-feature.entity.ts"],
+  "include": ["**/*.ts"],
   "exclude": ["**/*.spec.ts", "**/*.test.ts"]
 }

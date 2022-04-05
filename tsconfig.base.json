@@ -30,6 +30,15 @@
       "@graduates/api/adminconsole/service/feature": [
         "libs/api/adminconsole/service/feature/src/index.ts"
       ],
+      "@graduates/api/authentication/api/feature": [
+        "libs/api/authentication/api/feature/src/index.ts"
+      ],
+      "@graduates/api/authentication/api/shared/interfaces/data-access": [
+        "libs/api/authentication/api/shared/interfaces/data-access/src/index.ts"
+      ],
+      "@graduates/api/authentication/service/feature": [
+        "libs/api/authentication/service/feature/src/index.ts"
+      ],
       "@graduates/api/authorization/api/feature": [
         "libs/api/authorization/api/feature/src/index.ts"
       ],
@@ -114,6 +123,12 @@
       "@graduates/api/notifications/api/feature": [
         "libs/api/notifications/api/feature/src/index.ts"
       ],
+      "@graduates/api/notifications/api/shared": [
+        "libs/api/notifications/api/shared/src/index.ts"
+      ],
+      "@graduates/api/notifications/repository/data-access": [
+        "libs/api/notifications/repository/data-access/src/index.ts"
+      ],
       "@graduates/api/notifications/service/feature": [
         "libs/api/notifications/service/feature/src/index.ts"
       ],
@@ -181,18 +196,11 @@
       "@graduates/api/upintegration/service/feature": [
         "libs/api/upintegration/service/feature/src/index.ts"
       ],
-      "@graduates/api/authentication/api/feature": [
-        "libs/api/authentication/api/feature/src/index.ts"
-      ],
-      "@graduates/api/authentication/api/shared/interfaces/data-access": [
-        "libs/api/authentication/api/shared/interfaces/data-access/src/index.ts"
-      ],
-      "@graduates/api/authentication/service/feature": [
-        "libs/api/authentication/service/feature/src/index.ts"
-      ]
-      ,
       "@graduates/client/example/feature": [
         "libs/client/example/feature/src/index.ts"
+      ],
+      "@graduates/client/request-for-access/feature": [
+        "libs/client/request-for-access/feature/src/index.ts"
       ],
       "@graduates/client/shared/components/navbar/ui": [
         "libs/client/shared/components/navbar/ui/src/index.ts"
@@ -208,9 +216,6 @@
       ],
       "@graduates/client/shell/feature": [
         "libs/client/shell/feature/src/index.ts"
-      ],
-      "@graduates/client/request-for-access/feature": [
-        "libs/client/request-for-access/feature/src/index.ts"
       ]
     }
   },
