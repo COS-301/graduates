@@ -63,26 +63,26 @@ depending on what your role is you should use these resources accordingly.
 The use of Gitmojis is encouraged for use in commit messages
 - Use the present tense ("Add feature" not "Added feature")
 - Consider starting the commit message with an applicable emoji:
-    - 🎨 :art: When improving the format/structure of the code
-    - ⚡ ️:zap: When improving performance
-    - 🔥 :fire: When removing code or files
-    - 🚑 :ambulance: Critical hotfix
-    - 🩹 :adhesive_bandage: Simple fix for a non-critical issue
-    - 🚨 :rotating_light: When fixing compiler/ linter warnings
-    - 🐛 :bug: When fixing a bug
-    - 👽️ :alien: Update code due to external API changes
-    - ✨ :sparkles: When introducing new features
-    - 📝 :memo: When writing docs
-    - 💚 :green_heart: When fixing the CI build
-    - ✅ :white_check_mark: When adding tests
-    - 🔒 :lock: When dealing with security
-    - ⬆️  :arrow_up: When upgrading dependencies
-    - ⬇ ️ :arrow_down: When downgrading dependencies
-    - 🔀 :twisted_rightwards_arrows: When merging branches
-    - ⏪ :rewind: When reverting changes
-    - 🤡 :clown_face: Mock things
-    - ✏️ :pencil: When fixing typos
-    - 👷 :construction_worker: When adding or updating CI build system
+    - 🎨 `:art:` When improving the format/structure of the code
+    - ⚡ ️`:zap:` When improving performance
+    - 🔥 `:fire:` When removing code or files
+    - 🚑 `:ambulance:` Critical hotfix
+    - 🩹 `:adhesive_bandage:` Simple fix for a non-critical issue
+    - 🚨 `:rotating_light:` When fixing compiler/ linter warnings
+    - 🐛 `:bug:` When fixing a bug
+    - 👽️ `:alien:` Update code due to external API changes
+    - ✨ `:sparkles:` When introducing new features
+    - 📝 `:memo:` When writing docs
+    - 💚 `:green_heart:` When fixing the CI build
+    - ✅ `:white_check_mark:` When adding tests
+    - 🔒 `:lock:` When dealing with security
+    - ⬆️  `:arrow_up:` When upgrading dependencies
+    - ⬇ ️`:arrow_down:` When downgrading dependencies
+    - 🔀 `:twisted_rightwards_arrows:` When merging branches
+    - ⏪ `:rewind:` When reverting changes
+    - 🤡 `:clown_face:` Mock things
+    - ✏️ `:pencil:` When fixing typos
+    - 👷 `:construction_worker:` When adding or updating CI build system
 
 A full list of applicable emojis can be found **[here](https://gitmoji.dev/)**.
 
