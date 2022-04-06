@@ -4,7 +4,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { FeatureModule as ClientShellFeatureModule } from '@graduates/client/shell/feature';
-import{ClientCompanyExploreFeatureModule}from '@graduates/client/company-explore/feature';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 
@@ -20,7 +19,7 @@ import { AppComponent } from './app.component';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000',
     }),
-    ClientShellFeatureModule,ClientCompanyExploreFeatureModule,
+    ClientShellFeatureModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
