@@ -3,6 +3,7 @@
   "projects": {
     "api": "apps/api",
     "api-access-status-api--feature": "libs/api/access-status/api/feature",
+    "api-access-status-repository-feature": "libs/api/access-status/repository/feature",
     "api-access-status-service-feature": "libs/api/access-status/service/feature",
     "api-adminconsole-api-feature": "libs/api/adminconsole/api/feature",
     "api-adminconsole-repository-data-access": "libs/api/adminconsole/repository/data-access",
@@ -70,8 +71,8 @@
     "client-shared-services-authentication-data-access": "libs/client/shared/services/authentication/data-access",
     "client-shared-stores-authentication-data-access": "libs/client/shared/stores/authentication/data-access",
     "client-shell-feature": "libs/client/shell/feature",
-    "client-student-profile-feature": "libs/client/student-profile/feature",
     "client-shorts": "libs/client/shorts",
-    "client-student-explore": "libs/client/student-explore"
+    "client-student-explore": "libs/client/student-explore",
+    "client-student-profile-feature": "libs/client/student-profile/feature"
   }
 }
