@@ -43,6 +43,7 @@
     "api-notifications-api-feature": "libs/api/notifications/api/feature",
     "api-notifications-service-feature": "libs/api/notifications/service/feature",
     "api-request-access-service-feature": "libs/api/request-access/service/feature",
+    "api-request-accesss-repository-feature": "libs/api/request-accesss/repository/feature",
     "api-shared-services-prisma-data-access": "libs/api/shared/services/prisma/data-access",
     "api-shell-feature": "libs/api/shell/feature",
     "api-shorts-api-feature": "libs/api/shorts/api/feature",

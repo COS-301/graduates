@@ -1,0 +1,24 @@
+{
+  "root": "libs/api/request-accesss/repository/feature",
+  "sourceRoot": "libs/api/request-accesss/repository/feature/src",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/api/request-accesss/repository/feature/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/request-accesss/repository/feature"],
+      "options": {
+        "jestConfig": "libs/api/request-accesss/repository/feature/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
