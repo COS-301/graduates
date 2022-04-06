@@ -15,5 +15,6 @@ yarn run prisma:studio
 yarn run prisma:generate
 yarn run prisma:migrate:dev
 yarn run build
+yarn run lint
 yarn run test
 ```
