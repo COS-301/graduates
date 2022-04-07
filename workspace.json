@@ -3,6 +3,7 @@
   "projects": {
     "api": "apps/api",
     "api-access-status-api--feature": "libs/api/access-status/api/feature",
+    "api-access-status-repository-feature": "libs/api/access-status/repository/feature",
     "api-access-status-service-feature": "libs/api/access-status/service/feature",
     "api-adminconsole-api-feature": "libs/api/adminconsole/api/feature",
     "api-adminconsole-repository-data-access": "libs/api/adminconsole/repository/data-access",
@@ -42,6 +43,7 @@
     "api-notifications-api-feature": "libs/api/notifications/api/feature",
     "api-notifications-service-feature": "libs/api/notifications/service/feature",
     "api-request-access-service-feature": "libs/api/request-access/service/feature",
+    "api-request-accesss-repository-feature": "libs/api/request-accesss/repository/feature",
     "api-shared-services-prisma-data-access": "libs/api/shared/services/prisma/data-access",
     "api-shell-feature": "libs/api/shell/feature",
     "api-shorts-api-feature": "libs/api/shorts/api/feature",
@@ -70,8 +72,8 @@
     "client-shared-services-authentication-data-access": "libs/client/shared/services/authentication/data-access",
     "client-shared-stores-authentication-data-access": "libs/client/shared/stores/authentication/data-access",
     "client-shell-feature": "libs/client/shell/feature",
-    "client-student-profile-feature": "libs/client/student-profile/feature",
     "client-shorts": "libs/client/shorts",
-    "client-student-explore": "libs/client/student-explore"
+    "client-student-explore": "libs/client/student-explore",
+    "client-student-profile-feature": "libs/client/student-profile/feature"
   }
 }
