@@ -141,8 +141,8 @@
       "@graduates/api/request-access/service/feature": [
         "libs/api/request-access/service/feature/src/index.ts"
       ],
-      "@graduates/api/request-accesss/repository/feature": [
-        "libs/api/request-accesss/repository/feature/src/index.ts"
+      "@graduates/api/request-access/repository/feature": [
+        "libs/api/request-access/repository/feature/src/index.ts"
       ],
       "@graduates/api/shared/services/prisma/data-access": [
         "libs/api/shared/services/prisma/data-access/src/index.ts"
