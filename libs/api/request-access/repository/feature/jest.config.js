@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'api-request-accesss-repository-feature',
+  displayName: 'api-request-access-repository-feature',
   preset: '../../../../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -12,5 +12,5 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory:
-    '../../../../../coverage/libs/api/request-accesss/repository/feature',
+    '../../../../../coverage/libs/api/request-access/repository/feature',
 };
