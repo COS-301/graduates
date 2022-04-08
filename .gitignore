@@ -1,6 +1,6 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
-yarn.lock 
+yarn.lock
 
 # compiled output
 /dist
@@ -44,4 +44,3 @@ Thumbs.db
 
 # NPM
 /package-lock.json
-/yarn.lock
