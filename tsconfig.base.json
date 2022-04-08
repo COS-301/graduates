@@ -66,6 +66,9 @@
       "@graduates/api/authorization/service/shared": [
         "libs/api/authorization/service/shared/src/index.ts"
       ],
+      "@graduates/api/blog/repository/data-access": [
+        "libs/api/blog/repository/data-access/src/index.ts"
+      ],
       "@graduates/api/company-representative/api/feature": [
         "libs/api/company-representative/api/feature/src/index.ts"
       ],
