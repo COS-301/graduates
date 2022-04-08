@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FeatureComponent } from './feature.component';
+import { ShortsComponent } from './shorts.component';
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [FeatureComponent],
+  declarations: [ShortsComponent],
 })
-export class FeatureModule {}
+export class ShortsModule {}
