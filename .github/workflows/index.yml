@@ -22,10 +22,10 @@ jobs:
     with:
       test: 'affected'
 
-  test-all:
-    uses: ./.github/workflows/nxtest.yml
-    with:
-      test: 'all'
+  # test-all:
+  #   uses: ./.github/workflows/nxtest.yml
+  #   with:
+  #     test: 'all'
 
   test-meta:
     uses: ./.github/workflows/metatest.yml

@@ -63,10 +63,10 @@ jobs:
           yarn nx affected:test --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
           yarn nx affected:build --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
 
-        #run tests on the entire repository
-      - name: Test all
-        if: ${{ inputs.test == 'all' }}
-        run: |
-          yarn nx run-many --target=lint --all
-          yarn nx run-many --target=test --all
-          yarn nx run-many --target=build --all
+      #   #run tests on the entire repository
+      # - name: Test all
+      #   if: ${{ inputs.test == 'all' }}
+      #   run: |
+      #     yarn nx run-many --target=lint --all
+      #     yarn nx run-many --target=test --all
+      #     yarn nx run-many --target=build --all
