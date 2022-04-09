@@ -8,13 +8,13 @@ export class NotificationData {
 
 @ObjectType()
 export class Notification {
-    @Field(type => ID)
+    @Field(() => ID)
     ID!: string;
 
-    @Field(type => ID)
+    @Field(() => ID)
     userIDFrom?: string;
 
-    @Field(type => ID)
+    @Field(() => ID)
     userIDTo!: string;
 
     @Field()
