@@ -1,7 +1,7 @@
-# api-authentication-service-feature
+# api-adminconsole-service-feature
 
 This library was generated with [Nx](https://nx.dev).
 
 ## Running unit tests
 
-Run `nx test api-authentication-service-feature` to execute the unit tests via [Jest](https://jestjs.io).
+Run `nx test api-adminconsole-service-feature` to execute the unit tests via [Jest](https://jestjs.io).

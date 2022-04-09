@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'api-authentication-repository-data-access',
+  displayName: 'api-adminconsole-repository-data-access',
   preset: '../../../../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -8,9 +8,9 @@ module.exports = {
   },
   testEnvironment: 'node',
   transform: {
-    '^.+\\.[tj]s$': 'ts-jest',
+    '^.+\\.[tj]sx?$': 'ts-jest',
   },
-  moduleFileExtensions: ['ts', 'js', 'html'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory:
-    '../../../../../coverage/libs/api/authentication/repository/data-access',
+    '../../../../../coverage/libs/api/adminconsole/repository/data-access',
 };

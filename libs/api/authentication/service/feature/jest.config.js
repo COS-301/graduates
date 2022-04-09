@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'api-authentication-service-feature',
+  displayName: 'api-adminconsole-service-feature',
   preset: '../../../../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -12,5 +12,5 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   coverageDirectory:
-    '../../../../../coverage/libs/api/authentication/service/feature',
+    '../../../../../coverage/libs/api/adminconsole/service/feature',
 };

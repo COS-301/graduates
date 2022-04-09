@@ -1,7 +1,6 @@
 {
   "root": "libs/api/authentication/api/feature",
   "sourceRoot": "libs/api/authentication/api/feature/src",
-  "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
