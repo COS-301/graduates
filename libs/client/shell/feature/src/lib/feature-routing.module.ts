@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
+
+
 @NgModule({
   imports: [
     RouterModule.forChild([
@@ -14,5 +16,6 @@ import { RouterModule } from '@angular/router';
       },
     ]),
   ],
+  exports: [RouterModule]
 })
 export class FeatureRoutingModule {}

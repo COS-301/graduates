@@ -1,1 +1,2 @@
-export * from './lib/client-student-profile-feature.module';
+export * from './lib/student-profile.module';
+imp

@@ -2,14 +2,12 @@
   "root": "libs/api/upintegration/api/shared/data-access",
   "sourceRoot": "libs/api/upintegration/api/shared/data-access/src",
   "projectType": "library",
-  "prefix": "graduates",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
         "lintFilePatterns": [
-          "libs/api/upintegration/api/shared/data-access/src/**/*.ts",
-          "libs/api/upintegration/api/shared/data-access/src/**/*.html"
+          "libs/api/upintegration/api/shared/data-access/src/**/*.ts"
         ]
       }
     },

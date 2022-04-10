@@ -4,6 +4,7 @@
   "sourceRoot": "libs/client/student-profile/feature/src",
   "prefix": "graduates",
   "targets": {
+<<<<<<< HEAD
     "build": {
       "executor": "@nrwl/angular:ng-packagr-lite",
       "outputs": ["dist/libs/client/student-profile/feature"],
@@ -21,6 +22,8 @@
       },
       "defaultConfiguration": "production"
     },
+=======
+>>>>>>> e1e6e938374a1c07b6591fd84ab678bb1da472d2
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/client/student-profile/feature"],
