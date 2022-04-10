@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/client/shorts/feature",
+  "sourceRoot": "libs/client/shorts/feature/src",
+  "prefix": "graduates",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/shorts/feature"],
+      "options": {
+        "jestConfig": "libs/client/shorts/feature/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/shorts/feature/src/**/*.ts",
+          "libs/client/shorts/feature/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
