@@ -1,1 +1,1 @@
-export * from './lib/client-shorts';
+export * from './lib/client-shorts-feature.module';

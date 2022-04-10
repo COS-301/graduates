@@ -11,4 +11,4 @@ import { RouterModule } from '@angular/router';
     ]),
   ],
 })
-export class ClientStudentProfileFeatureModule {}
+export class ClientShortsFeatureModule {}
