@@ -45,7 +45,7 @@ jobs:
         with:
           mode: minimum
           count: 1
-          labels: 'role:api-engineer, role:business-analyst, role:data-engineer, role:designer, role:developer-operations, role:project-manager, role:service-engineer, role:tester, role:ui-engineer'
+          labels: 'role:api-engineer, role:business-analyst, role:data-engineer, role:designer, role:developer-operations, role:project-manager, role:project-owner, role:service-engineer, role:tester, role:ui-engineer'
       
       - name: Has atleast one scope label
         uses: mheap/github-action-required-labels@v1

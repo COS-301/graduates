@@ -18,6 +18,9 @@
       "@graduates/api/access-status/api/feature": [
         "libs/api/access-status/api/feature/src/index.ts"
       ],
+      "@graduates/api/access-status/repository/feature": [
+        "libs/api/access-status/repository/feature/src/index.ts"
+      ],
       "@graduates/api/access-status/service/feature": [
         "libs/api/access-status/service/feature/src/index.ts"
       ],
@@ -29,6 +32,21 @@
       ],
       "@graduates/api/adminconsole/service/feature": [
         "libs/api/adminconsole/service/feature/src/index.ts"
+      ],
+      "@graduates/api/authentication/api/feature": [
+        "libs/api/authentication/api/feature/src/index.ts"
+      ],
+      "@graduates/api/authentication/api/shared/interfaces/data-access": [
+        "libs/api/authentication/api/shared/interfaces/data-access/src/index.ts"
+      ],
+      "@graduates/api/authentication/repository/data-access": [
+        "libs/api/authentication/repository/data-access/src/index.ts"
+      ],
+      "@graduates/api/authentication/repository/shared/interfaces/data-access": [
+        "libs/api/authentication/repository/shared/interfaces/data-access/src/index.ts"
+      ],
+      "@graduates/api/authentication/service/feature": [
+        "libs/api/authentication/service/feature/src/index.ts"
       ],
       "@graduates/api/authorization/api/feature": [
         "libs/api/authorization/api/feature/src/index.ts"
@@ -123,6 +141,9 @@
       "@graduates/api/request-access/service/feature": [
         "libs/api/request-access/service/feature/src/index.ts"
       ],
+      "@graduates/api/request-accesss/repository/feature": [
+        "libs/api/request-accesss/repository/feature/src/index.ts"
+      ],
       "@graduates/api/shared/services/prisma/data-access": [
         "libs/api/shared/services/prisma/data-access/src/index.ts"
       ],
@@ -181,18 +202,11 @@
       "@graduates/api/upintegration/service/feature": [
         "libs/api/upintegration/service/feature/src/index.ts"
       ],
-      "@graduates/api/authentication/api/feature": [
-        "libs/api/authentication/api/feature/src/index.ts"
-      ],
-      "@graduates/api/authentication/api/shared/interfaces/data-access": [
-        "libs/api/authentication/api/shared/interfaces/data-access/src/index.ts"
-      ],
-      "@graduates/api/authentication/service/feature": [
-        "libs/api/authentication/service/feature/src/index.ts"
-      ]
-      ,
       "@graduates/client/example/feature": [
         "libs/client/example/feature/src/index.ts"
+      ],
+      "@graduates/client/request-for-access/feature": [
+        "libs/client/request-for-access/feature/src/index.ts"
       ],
       "@graduates/client/shared/components/navbar/ui": [
         "libs/client/shared/components/navbar/ui/src/index.ts"
@@ -209,8 +223,9 @@
       "@graduates/client/shell/feature": [
         "libs/client/shell/feature/src/index.ts"
       ],
-      "@graduates/client/request-for-access/feature": [
-        "libs/client/request-for-access/feature/src/index.ts"
+      "@graduates/client/shorts": ["libs/client/shorts/src/index.ts"],
+      "@graduates/client/student-profile/feature": [
+        "libs/client/student-profile/feature/src/index.ts"
       ]
     }
   },
