@@ -5,12 +5,12 @@ export class ApiAuthorizationService {
 
     async findOneById(id:string): Promise<ApiAuthorization>
     {
+        
+
         const data={
-            id:id,
-            permissionType:'edit details',
-            userName: "KC Chivunga",
-            userType: "student",
-            isPermittedTo: true,
+            userRole: "Student",  
+            permissions:[true,true,true],
+
         };
         return data;
     }

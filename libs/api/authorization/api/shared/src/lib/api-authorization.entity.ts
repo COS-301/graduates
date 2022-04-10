@@ -1,21 +1,14 @@
-import {ID, Field, ObjectType } from '@nestjs/graphql';
+import {ID, Field, ObjectType ,Args} from '@nestjs/graphql';
+import { access } from 'fs';
 
 @ObjectType()
 export class ApiAuthorization {
     
-    @Field((type) => ID)
-    id!: string;
 
     @Field()
-    permissionType!: string;
-
-    @Field()
-    userName!: string;
-
-    @Field()
-    userType!: string;
-
-    @Field()
-    isPermittedTo!: boolean;
+    userRole!: string;
+  
+    @Field((type) => [Boolean])
+    permissions!: boolean[];
 
 }
