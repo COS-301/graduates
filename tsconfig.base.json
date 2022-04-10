@@ -214,6 +214,9 @@
       "@graduates/client/example/feature": [
         "libs/client/example/feature/src/index.ts"
       ],
+      "@graduates/client/notifications/feature/notifications-tab": [
+        "libs/client/notifications/feature/notifications-tab/src/index.ts"
+      ],
       "@graduates/client/request-for-access/feature": [
         "libs/client/request-for-access/feature/src/index.ts"
       ],
