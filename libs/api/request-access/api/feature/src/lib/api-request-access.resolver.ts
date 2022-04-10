@@ -1,4 +1,4 @@
-import { Mutation, Resolver } from "@nestjs/graphql";
+import { Args, ID, Mutation, Resolver } from "@nestjs/graphql";
 import { ApiRequestAccessEntity } from "./api-request-access.entity";
 import { ApiRequestAccessService } from "./api-request-access.service";
 
@@ -8,7 +8,7 @@ export class ApiRequestAccessResolver {
 
     @Mutation(returns => ApiRequestAccessEntity)
     // must add paramters to request
-    requestAccess(): Promise<ApiRequestAccessEntity> {
+    async requestAccess(@Args('compID', { type: () => ID }) compId: string, @Args('userID', { type: () => ID }) userId: string, @Args('item') id: string): Promise<ApiRequestAccessEntity> {
         return this.requestAccessService.makeRequest();
     }
 }
