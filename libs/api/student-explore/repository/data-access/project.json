@@ -1,6 +1,7 @@
 {
   "root": "libs/api/student-explore/repository/data-access",
   "sourceRoot": "libs/api/student-explore/repository/data-access/src",
+  "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",

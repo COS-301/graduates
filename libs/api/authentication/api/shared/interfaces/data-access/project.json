@@ -1,6 +1,7 @@
 {
   "root": "libs/api/authentication/api/shared/interfaces/data-access",
   "sourceRoot": "libs/api/authentication/api/shared/interfaces/data-access/src",
+  "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",

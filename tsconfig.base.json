@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@graduates/api-request-access-repository-feature": [
+        "libs/api/request-access/repository/feature/src/index.ts"
+      ],
       "@graduates/api/access-status/api/feature": [
         "libs/api/access-status/api/feature/src/index.ts"
       ],
@@ -141,9 +144,6 @@
       "@graduates/api/request-access/service/feature": [
         "libs/api/request-access/service/feature/src/index.ts"
       ],
-      "@graduates/api/request-accesss/repository/feature": [
-        "libs/api/request-accesss/repository/feature/src/index.ts"
-      ],
       "@graduates/api/shared/services/prisma/data-access": [
         "libs/api/shared/services/prisma/data-access/src/index.ts"
       ],
@@ -202,11 +202,20 @@
       "@graduates/api/upintegration/service/feature": [
         "libs/api/upintegration/service/feature/src/index.ts"
       ],
+      "@graduates/client-shorts-feature": [
+        "libs/client/shorts/feature/src/index.ts"
+      ],
+      "@graduates/client-student-explore-feature": [
+        "libs/client/student-explore/feature/src/index.ts"
+      ],
       "@graduates/client/example/feature": [
         "libs/client/example/feature/src/index.ts"
       ],
       "@graduates/client/request-for-access/feature": [
         "libs/client/request-for-access/feature/src/index.ts"
+      ],
+      "@graduates/client/shared/assets/ui": [
+        "libs/client/shared/assets/ui/src/index.ts"
       ],
       "@graduates/client/shared/components/navbar/ui": [
         "libs/client/shared/components/navbar/ui/src/index.ts"
@@ -223,12 +232,8 @@
       "@graduates/client/shell/feature": [
         "libs/client/shell/feature/src/index.ts"
       ],
-      "@graduates/client/shorts": ["libs/client/shorts/src/index.ts"],
       "@graduates/client/student-profile/feature": [
         "libs/client/student-profile/feature/src/index.ts"
-      ],
-      "@graduates/client/student-explore": [
-        "libs/client/student-explore/src/index.ts"
       ]
     }
   },
