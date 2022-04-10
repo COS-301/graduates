@@ -6,7 +6,7 @@ import { StudentExploreService } from '@graduates/api/student-explore/service/fe
 export class ApiStudentExploreResolver {
   constructor(private readonly StudentExploreService: StudentExploreService) {}
 
-  @Query(() => Student)
+  @Query(() => [Student])
   //Test(@Args('email') email: string) {
   InitStudent(){
     return this.StudentExploreService.InitStudents();

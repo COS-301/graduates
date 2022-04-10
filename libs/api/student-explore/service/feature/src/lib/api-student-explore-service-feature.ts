@@ -16,7 +16,7 @@ export class StudentExploreService {
    ) {}
 
   async InitStudents() {
-    console.log("test");
+    //console.log("test");
     return this.queryBus.execute(
       new InitStudentsQuery()
     );

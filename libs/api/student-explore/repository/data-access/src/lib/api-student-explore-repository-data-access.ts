@@ -1,4 +1,6 @@
 import { Injectable } from '@nestjs/common';
+import { timeout } from 'rxjs';
+import { Student } from './student.model';
 
 @Injectable()
 export class StudentExploreRepository {
@@ -14,7 +16,11 @@ export class StudentExploreRepository {
       tempName = "Name "+ i;
       tempNumber = "Student Number: " + i;
 
-      //studentArr.push(new Student(tempName, tempNumber));
+      let temp = new Student();
+      temp.StudentName = tempName;
+      temp.StudentNumber = tempNumber;
+
+      studentArr.push(temp);
     }
 
     return studentArr;
