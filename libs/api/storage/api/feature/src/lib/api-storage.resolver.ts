@@ -1,17 +1,13 @@
-import { Query, Resolver } from "@nestjs/graphql";
-import { ApiStorageServiceFeatureModule} from '../../../../../../api/storage/service/feature/src/lib/api-storage-service-feature'
-import{ApiStorage} from '../../../../api/shared/data-access/src/lib/api-storage.entity'
-@Resolver(of => ApiStorage)
+import { ApiStorage } from '@graduates/api/storage/api/shared/data-access';
+import { ApiStorageServiceFeatureModule } from '@graduates/api/storage/service/feature';
+import { Query, Resolver } from '@nestjs/graphql';
+//import { FirebaseService } from '@graduates/api/storage/repository/data-access'
+@Resolver(() => ApiStorage)
 export class ApiStorageResolver {
-   constructor(private storageService:ApiStorageServiceFeatureModule ){}
-   
-   @Query(returns=>[ApiStorage])
-   storage():Promise<ApiStorage[]>{
+  constructor(private storageService: ApiStorageServiceFeatureModule) {}
 
-       return this.storageService.get_all();
-   }
-
-    
-
-
+  @Query(() => [ApiStorage])
+  storage(): Promise<ApiStorage[]> {
+    return this.storageService.get_all();
+  }
 }
