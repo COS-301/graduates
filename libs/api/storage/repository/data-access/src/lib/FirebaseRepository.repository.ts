@@ -11,6 +11,7 @@ storage please contact me (Larisa (Storage Data Engineer) - 082 796 0342) I will
 bucket and add a upload function then you can use this repository within your feature's service.t
 to manage and organise your own files*/
 
+//The type of file getting uploaded
 export enum FirebaseFolders{
   Files,
   DatabaseDumps,
@@ -112,6 +113,7 @@ export class FirebaseService {
   }
 
   async getURLByFilePath(file_path:string) : Promise<string|null>{
+    
     //create a reference to a file or a directory
     const fileRef = ref(this.storage, file_path);
 
@@ -134,7 +136,26 @@ export class FirebaseService {
     return null;
   }
 
+  async deleteByFilename(filename:string, folder:FirebaseFolders):Promise<boolean>{
+
+    // Create a reference to the file to delete
+    const desertRef = ref(this.storage, folder+'/'+filename );
+
+    // Delete the file
+    deleteObject(desertRef).then(() => {
+      console.log('Successfully deleted');
+      return true;
+    }).catch((error) => {
+      console.log(error);
+      return false;
+    });
+
+    return false;
+  }
+
+  //file_path = FirebaseFolder/filename
   async deleteByPath(file_path:string):Promise<boolean>{
+
     // Create a reference to the file to delete
     const desertRef = ref(this.storage, file_path );
 
