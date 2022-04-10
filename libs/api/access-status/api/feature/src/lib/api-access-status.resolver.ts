@@ -1,4 +1,4 @@
-import { Resolver, Query } from "@nestjs/graphql";
+import { Resolver, Query, ID, Args } from "@nestjs/graphql";
 import { ApiAccessStatusEntity } from "./api-access-status.entity";
 import { ApiAccessStatusService } from "./api-access-status.service";
 
@@ -7,7 +7,7 @@ export class ApiAccessStatusResolver {
     constructor(private accessStatusService: ApiAccessStatusService) {}
 
     @Query(returns => [ApiAccessStatusEntity])
-    status(): Promise<ApiAccessStatusEntity[]> {
-        return this.accessStatusService.getAll();
+    async status(@Args('compID', { type: () => ID }) compId: string, @Args('gradID', { type: () => ID }) gradId: string): Promise<ApiAccessStatusEntity[]> {
+        return this.accessStatusService.getAll(compId, gradId);
     }
 }

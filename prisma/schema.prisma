@@ -45,6 +45,8 @@ model User {
   notificationFrom Notification[]    @relation("notificationFrom")
   notificationTo   Notification[]    @relation("notificationTo")
   Blog             Blog[]
+
+  @@map("user")
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -219,6 +221,9 @@ enum FileCategory {
   ACADEMIC_RECORD
   DEGREE
   MISC
+  CV
+  PROFILE_PHOTO
+  VIDEO
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -238,6 +243,7 @@ model Story {
 
   storyTag    StoryTag[]
   storyReport StoryReport[]
+  @@map("story")
 }
 
 // Story tags to be filtered by
@@ -279,6 +285,8 @@ model Notification {
 
   notificationFrom User? @relation(name: "notificationFrom", fields: [userIdFrom], references: [id])
   notificationTo   User  @relation(name: "notificationTo", fields: [userIdTo], references: [id])
+
+  @@map("notification")
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -298,6 +306,8 @@ model Blog {
 
   blogComment BlogComment[]
   blogMedia   BlogMedia[]
+
+  @@map("blog")
 }
 
 // Comments on the blog per blog_id
