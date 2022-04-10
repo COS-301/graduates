@@ -1,12 +1,15 @@
-import { ApiStudentExplore } from '@graduates/api/student-explore/api/shared/data-access';
-import { ApiStudentExploreServiceFeatureModule } from '@graduates/api/student-explore/service/feature';
-import { Query, Resolver } from '@nestjs/graphql';
-@Resolver(() => ApiStudentExplore)
-export class ApiStudentExploreResolver {
-  constructor(private storageService: ApiStudentExploreServiceFeatureModule) {}
+import { Resolver, Args, Query } from '@nestjs/graphql';
+import { Student } from '@graduates/api/student-explore/repository/data-access';
+import { StudentExploreService } from '@graduates/api/student-explore/service/feature';
 
-  @Query(() => [ApiStudentExplore])
-  storage(): Promise<ApiStudentExplore[]> {
-    return this.storageService.get_all();
+@Resolver()
+export class ApiStudentExploreResolver {
+  constructor(private readonly StudentExploreService: StudentExploreService) {}
+
+  @Query(() => Student)
+  //Test(@Args('email') email: string) {
+  InitStudent(){
+    return this.StudentExploreService.InitStudents();
   }
+
 }

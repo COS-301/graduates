@@ -13,9 +13,9 @@ export class StudentExploreService {
      private readonly queryBus: QueryBus
    ) {}
 
-  async InitStudents(email: string) {
+  async InitStudents() {
     return this.queryBus.execute(
-      new InitStudentsQuery(email)
+      new InitStudentsQuery()
     );
   }
 

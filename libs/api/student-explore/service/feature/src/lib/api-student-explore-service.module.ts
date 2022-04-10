@@ -4,13 +4,17 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { QueryHandlers } from './queries/handlers';
 import { StudentExploreService } from './api-student-explore-service-feature';
 
+import { StudentExploreRepository } from '@graduates/api/student-explore/repository/data-access';
+
+
 @Module({
   imports: [CqrsModule],
   providers: [
     //...CommandHandlers,
     ...QueryHandlers,
-    StudentExploreService 
+    StudentExploreService
+    //StudentExploreRepository
   ],
-  exports: [StudentExploreService]
+  exports: [StudentExploreService, ...QueryHandlers]
 })
 export class StudentExploreServiceModule {}
