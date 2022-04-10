@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { initializeApp } from 'firebase/app';
-import { getDownloadURL, getStorage, ref, uploadBytes, uploadString} from 'firebase/storage';
+import { deleteObject, getDownloadURL, getStorage, ref, uploadBytes, uploadString} from 'firebase/storage';
 import * as fs from 'fs';
 
 /*Since Firebase is only a temporary solution I tried making the storage as simple as 
@@ -11,6 +11,7 @@ storage please contact me (Larisa (Storage Data Engineer) - 082 796 0342) I will
 bucket and add a upload function then you can use this repository within your feature's service.t
 to manage and organise your own files*/
 
+//The type of file getting uploaded
 export enum FirebaseFolders{
   Files,
   DatabaseDumps,
@@ -72,7 +73,8 @@ export class FirebaseService {
     });
   }
 
-  async uploadFileAsString(binaryFile: string, fileName: string){
+
+  async uploadAsString(binaryFile: string, fileName: string){
 
     const fileRef = ref(this.storage, 'Files/' + fileName);
 
@@ -86,7 +88,7 @@ export class FirebaseService {
 
   /*NOTE THAT IF THE FILE IS NOT UPLOADED AS BASE64 STRING IT DOESN't DOWNLOAD THE FILE DIRECTLY 
   ONLY DISPLAYS IT WHEN THE URL IS FOLLOWED, I DO NOT KNOW HOW CRITICAL THIS IS*/
-  async getFileURLByName(fileName:string, folder:FirebaseFolders): Promise<string| null>{
+  async getURLByName(fileName:string, folder:FirebaseFolders): Promise<string| null>{
 
     //create a reference to a file or a directory
     const fileRef = ref(this.storage, folder + '/ '+ fileName);
@@ -108,6 +110,65 @@ export class FirebaseService {
       });
 
     return null;
+  }
+
+  async getURLByFilePath(file_path:string) : Promise<string|null>{
+    
+    //create a reference to a file or a directory
+    const fileRef = ref(this.storage, file_path);
+
+    //const fileRef = ref(this.storage, 'IMG_0127.JPG');
+    //const fileRef = ref(this.storage, 'file-folder');
+
+    // This is analogous to a file path on disk
+    console.log(fileRef.fullPath);
+
+    //get the url that will download the file
+    getDownloadURL(fileRef)
+      .then((url) => {
+        console.log(url); 
+        return url;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    return null;
+  }
+
+  async deleteByFilename(filename:string, folder:FirebaseFolders):Promise<boolean>{
+
+    // Create a reference to the file to delete
+    const desertRef = ref(this.storage, folder+'/'+filename );
+
+    // Delete the file
+    deleteObject(desertRef).then(() => {
+      console.log('Successfully deleted');
+      return true;
+    }).catch((error) => {
+      console.log(error);
+      return false;
+    });
+
+    return false;
+  }
+
+  //file_path = FirebaseFolder/filename
+  async deleteByPath(file_path:string):Promise<boolean>{
+
+    // Create a reference to the file to delete
+    const desertRef = ref(this.storage, file_path );
+
+    // Delete the file
+    deleteObject(desertRef).then(() => {
+      console.log('Successfully deleted');
+      return true;
+    }).catch((error) => {
+      console.log(error);
+      return false;
+    });
+
+    return false;
   }
   
   //ex. FirebaseRepository.uploadAllUnderDirectory('@graduates/api/storage/uploads',FirebaseRepository.FirebaseFolders.Files)
