@@ -1,10 +1,11 @@
+import { ApiAuthenticationServiceFeatureService } from '@graduates/api/authentication/service/feature';
 import { Module } from '@nestjs/common';
-import { UsersModule } from './users/users.module';
-// import { UsersResolver } from './users/users.resolver';
+import { ApiAuthenticationApiFeatureController } from './api-authentication-api-feature.controller';
 
 @Module({
-  imports: [UsersModule],
-  controllers: [],
-  providers: [],
+  controllers: [ApiAuthenticationApiFeatureController],
+  providers: [ApiAuthenticationServiceFeatureService],
+  exports: [],
+  imports: []
 })
 export class ApiAuthenticationApiFeatureModule {}

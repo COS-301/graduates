@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'apiauthenticationapi-feature',
+  displayName: 'api-authentication-api-feature',
   preset: '../../../../../jest.preset.js',
   globals: {
     'ts-jest': {

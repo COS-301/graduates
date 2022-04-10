@@ -11,7 +11,8 @@ import { ApiShortsApiFeatureModule as ApiShortsFeatureModule } from '@graduates/
 import { ApicompanyprofilepageApiFeatureModule as ApiCompanyProfilePageFeatureModule } from '@graduates/api/companyprofilepage/api/feature';
 import { ApiCompanyRepresentativeApiFeatureModule } from '@graduates/api/company-representative/api/feature';
 import { ApiRequestAccessApiFeatureModule as ApiRequestAccessFeatureModule } from '@graduates/api/request-access/api/feature';
-import { ApiAuthenticationApiFeatureModule } from '@graduates/api/authentication/api/feature'
+import { ApiAuthenticationApiFeatureModule } from '@graduates/api/authentication/api/feature';
+
 @Module({
   imports: [
     ApiExampleFeatureModule,
@@ -27,7 +28,7 @@ import { ApiAuthenticationApiFeatureModule } from '@graduates/api/authentication
     ApiStudentProfilesModule,
     ApiCompanyRepresentativeApiFeatureModule,
     ApiRequestAccessFeatureModule,
-    ApiAuthenticationApiFeatureModule,
+    ApiAuthenticationApiFeatureModule
   ],
 })
 export class ApiShellFeatureModule {}
