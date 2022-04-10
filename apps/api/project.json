@@ -4,7 +4,7 @@
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": ";kl@nrwl/node:webpack",
+      "executor": "@nrwl/node:webpack",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/api",
