@@ -15,8 +15,14 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@graduates/api-request-access-repository-feature": [
+        "libs/api/request-access/repository/feature/src/index.ts"
+      ],
       "@graduates/api/access-status/api/feature": [
         "libs/api/access-status/api/feature/src/index.ts"
+      ],
+      "@graduates/api/access-status/repository/feature": [
+        "libs/api/access-status/repository/feature/src/index.ts"
       ],
       "@graduates/api/access-status/service/feature": [
         "libs/api/access-status/service/feature/src/index.ts"
@@ -35,6 +41,12 @@
       ],
       "@graduates/api/authentication/api/shared/interfaces/data-access": [
         "libs/api/authentication/api/shared/interfaces/data-access/src/index.ts"
+      ],
+      "@graduates/api/authentication/repository/data-access": [
+        "libs/api/authentication/repository/data-access/src/index.ts"
+      ],
+      "@graduates/api/authentication/repository/shared/interfaces/data-access": [
+        "libs/api/authentication/repository/shared/interfaces/data-access/src/index.ts"
       ],
       "@graduates/api/authentication/service/feature": [
         "libs/api/authentication/service/feature/src/index.ts"
@@ -190,14 +202,20 @@
       "@graduates/api/upintegration/service/feature": [
         "libs/api/upintegration/service/feature/src/index.ts"
       ],
-      "@graduates/client/company-explore/feature": [
-        "libs/client/company-explore/feature/src/index.ts"
+      "@graduates/client-shorts-feature": [
+        "libs/client/shorts/feature/src/index.ts"
+      ],
+      "@graduates/client-student-explore-feature": [
+        "libs/client/student-explore/feature/src/index.ts"
       ],
       "@graduates/client/example/feature": [
         "libs/client/example/feature/src/index.ts"
       ],
       "@graduates/client/request-for-access/feature": [
         "libs/client/request-for-access/feature/src/index.ts"
+      ],
+      "@graduates/client/shared/assets/ui": [
+        "libs/client/shared/assets/ui/src/index.ts"
       ],
       "@graduates/client/shared/components/navbar/ui": [
         "libs/client/shared/components/navbar/ui/src/index.ts"
@@ -213,6 +231,15 @@
       ],
       "@graduates/client/shell/feature": [
         "libs/client/shell/feature/src/index.ts"
+      ],
+      "@graduates/client/shorts/feature": [
+        "libs/client/shorts/feature/src/index.ts"
+      ],
+      "@graduates/client/student-profile/feature": [
+        "libs/client/student-profile/feature/src/index.ts"
+      ],
+      "@graduates/client/company-explore/feature": [
+        "libs/client/company-explore/feature/src/index.ts"
       ]
     }
   },
