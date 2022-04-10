@@ -14,8 +14,6 @@ import { ReportMenuComponent } from './report-menu/report-menu.component';
   declarations: [
     ReportMenuComponent
   ],
-  exports: [
-    ReportMenuComponent
-  ],
+
 })
 export class ClientShortsFeatureModule {}
