@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { UserProfileFile, Prisma ,FileCategory } from '@prisma/client';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
-
+import { ApiStorage } from '@graduates/api/storage/api/shared/data-access';
 @Injectable()
 export class StorageRepository {
   constructor(
@@ -22,7 +22,11 @@ export class StorageRepository {
       }
     });
   }
+ 
+  }
 
+ 
+    
   
 
-}
+
