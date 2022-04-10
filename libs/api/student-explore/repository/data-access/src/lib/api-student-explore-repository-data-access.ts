@@ -1,12 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { Student } from '@graduates/api/student-explore/repository/data-access';
-
 
 @Injectable()
 export class StudentExploreRepository {
   constructor() {}
 
-  async initStudents() {
+  initStudents() {
 
     let studentArr = [];
     let tempName;

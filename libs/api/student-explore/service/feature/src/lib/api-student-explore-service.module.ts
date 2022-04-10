@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { CqrsModule } from '@nestjs/cqrs';
+import { CqrsModule, QueryBus } from '@nestjs/cqrs';
 
 import { QueryHandlers } from './queries/handlers';
 import { StudentExploreService } from './api-student-explore-service-feature';
@@ -10,11 +10,12 @@ import { StudentExploreRepository } from '@graduates/api/student-explore/reposit
 @Module({
   imports: [CqrsModule],
   providers: [
+    //QueryBus,
     //...CommandHandlers,
     ...QueryHandlers,
-    StudentExploreService
-    //StudentExploreRepository
+    StudentExploreService,
+    StudentExploreRepository
   ],
-  exports: [StudentExploreService, ...QueryHandlers]
+  exports: [StudentExploreService]
 })
 export class StudentExploreServiceModule {}
