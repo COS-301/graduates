@@ -44,6 +44,7 @@
     "api-notifications-api-shared": "libs/api/notifications/api/shared",
     "api-notifications-repository-data-access": "libs/api/notifications/repository/data-access",
     "api-notifications-service-feature": "libs/api/notifications/service/feature",
+    "api-request-access-repository-feature": "libs/api/request-access/repository/feature",
     "api-request-access-service-feature": "libs/api/request-access/service/feature",
     "api-request-accesss-repository-feature": "libs/api/request-accesss/repository/feature",
     "api-shared-services-prisma-data-access": "libs/api/shared/services/prisma/data-access",
@@ -69,13 +70,14 @@
     "client": "apps/client",
     "client-e2e": "apps/client-e2e",
     "client-example-feature": "libs/client/example/feature",
+    "client-shared-assets-ui": "libs/client/shared/assets/ui",
     "client-shared-components-navbar-ui": "libs/client/shared/components/navbar/ui",
     "client-shared-interfaces-user-data-access": "libs/client/shared/interfaces/user/data-access",
     "client-shared-services-authentication-data-access": "libs/client/shared/services/authentication/data-access",
     "client-shared-stores-authentication-data-access": "libs/client/shared/stores/authentication/data-access",
     "client-shell-feature": "libs/client/shell/feature",
-    "client-shorts": "libs/client/shorts",
-    "client-student-explore": "libs/client/student-explore",
+    "client-shorts-feature": "libs/client/shorts/feature",
+    "client-student-explore-feature": "libs/client/student-explore/feature",
     "client-student-profile-feature": "libs/client/student-profile/feature"
   }
 }
