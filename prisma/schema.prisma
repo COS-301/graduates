@@ -45,6 +45,7 @@ model User {
   notificationFrom Notification[]    @relation("notificationFrom")
   notificationTo   Notification[]    @relation("notificationTo")
   Blog             Blog[]
+  UserToken        UserToken[]
 
   @@map("user")
 }
@@ -330,6 +331,22 @@ model BlogMedia {
 
   @@id([blogId, media])
   @@map("blog_media")
+}
+
+///////////////////////////////////////////////////////////////////////
+// 5. Blog
+///////////////////////////////////////////////////////////////////////
+
+model UserToken { 
+  userId              String @map("user_id") 
+  userToken           String @map("user_token")
+  userTokenType       Int @map("user_token_type")
+  userTokenExpiration Int @map("user_token_expiration")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@id ([userId])
+  @@map("user_token")
 }
 
 ///////////////////////////////////////////////////////////////////////

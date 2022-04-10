@@ -8,103 +8,106 @@ class TokenAuthenticate
 {
     prisma = new PrismaClient();
 
-    /**
-     * 
-     * @param username 
-     * @param password 
-     * @returns 
-     */
-    setNewUser(username : string, password : string)
+    async setToken(email : string, token : string, token_type : number, token_expiration : number)
     {
-         return username;
+        const id = await this.getId(email);
+        await this.prisma.userToken.create({
+            data:
+            {
+                userId : id,
+                userToken: token,
+                userTokenType: token_type,
+                userTokenExpiration: token_expiration
+            }
+        })
     }
 
-    /**
-     * 
-     * @param username 
-     * @returns 
-     */
-    getPassword(username : string)
+    async getToken(email : string)
     {
-        return username;
+        const id = await this.getId(email);        
+        return await this.prisma.userToken.findFirst({
+            where:
+            {
+                userId: id
+            },
+            select:
+            {
+                userToken: true
+            }
+        });
     }
 
-
-    /**
-     * 
-     * @param username 
-     * @param newPassword 
-     * @returns 
-     */
-    setPassword(username  : string, newPassword :string)
+    async setTokenExpiration(email : string, time : number)
     {
-        return username;
+        const id = await this.getId(email);
+        await this.prisma.userToken.update({
+            where:
+            {
+                userId:id
+            },
+            data:
+            {
+                userTokenExpiration: time
+            }
+        })
+        
+        return email;
     }
 
-    /**
-     * 
-     * @param username 
-     * @param token 
-     * @param time 
-     * @param token_type 
-     * @returns 
-     */
-    setToken(username : string, token : string, time : internal, token_type : number)
+    async getTokenExpiration(email : string, token_type : number)
     {
-        return username;
+        const id = await this.getId(email);
+        return await this.prisma.userToken.findFirst({
+            where:{
+                userId:id
+            },
+            select:
+            {
+                userTokenExpiration: true
+            }
+        })
     }
 
-    /**
-     * 
-     * @param username 
-     * @returns 
-     */
-    getToken(username : string)
+    async setTokenType(email : string, token_type : number)
     {
-        return username;
+        const id = await this.getId(email);
+        await this.prisma.userToken.update({
+            where:
+            {
+                userId : id
+            },
+            data:
+            {
+                userTokenExpiration: token_type
+            }
+        })
     }
 
-    /**
-     * 
-     * @param username 
-     * @param time 
-     * @returns 
-     */
-    setTokenExpiration(username : string, time : number)
+    async getTokenType(email : string)
     {
-        return username;
+        const id = await this.getId(email);
+        await this.prisma.userToken.findFirst({
+            where:
+            {
+                userId: id
+            },
+            select:
+            {
+                userTokenType: true
+            }
+        })
     }
 
-    /**
-     * 
-     * @param username 
-     * @param token_type 
-     * @returns 
-     */
-    getTokenExpiration(username : string, token_type : number)
+    async getId(email: string)
     {
-        return username;
-    }
+        const id = await this.prisma.user.findFirst({
+            where:
+            {
+                email: email
+            }
+        });
 
-    /**
-     * 
-     * @param username 
-     * @param token_type 
-     * @returns 
-     */
-    setTokenType(username : string, token_type : number)
-    {
-        return username;
-    }
-
-    /**
-     * 
-     * @param username 
-     * @returns 
-     */
-    getTokenType(username : string)
-    {
-        return username;
+        return id.email;
     }
 }
 
