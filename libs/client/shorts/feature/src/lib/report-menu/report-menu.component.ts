@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'graduates-report-menu',
   templateUrl: './report-menu.component.html',
   styleUrls: ['./report-menu.component.scss']
 })
-export class ReportMenuComponent implements OnInit {
+export class ReportMenuComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() { 
+    // do
   }
+
 
 }
