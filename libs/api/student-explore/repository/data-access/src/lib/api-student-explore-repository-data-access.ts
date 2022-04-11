@@ -1,12 +1,18 @@
 import { Injectable } from '@nestjs/common';
-import { timeout } from 'rxjs';
 import { Student } from './student.model';
+
+import { PrismaService } from './prisma.service';
+import { User, Prisma } from '@prisma/client';
 
 @Injectable()
 export class StudentExploreRepository {
-  constructor() {}
+  constructor(private prisma: PrismaService) {}
 
-  initStudents() {
+  async initStudents() {
+
+    const test = await this.prisma.user.findMany();
+
+    console.log(test);
 
     let studentArr = [];
     let tempName;

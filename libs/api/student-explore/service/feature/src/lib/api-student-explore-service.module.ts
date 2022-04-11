@@ -6,16 +6,18 @@ import { StudentExploreService } from './api-student-explore-service-feature';
 
 import { StudentExploreRepository } from '@graduates/api/student-explore/repository/data-access';
 
+import { PrismaService } from '@graduates/api/student-explore/repository/data-access';
+
 
 @Module({
   imports: [CqrsModule],
   providers: [
-    //QueryBus,
     //...CommandHandlers,
     ...QueryHandlers,
     StudentExploreService,
-    StudentExploreRepository
+    StudentExploreRepository,
+    PrismaService
   ],
-  exports: [StudentExploreService]
+  exports: [StudentExploreService, PrismaService]
 })
 export class StudentExploreServiceModule {}
