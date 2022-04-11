@@ -241,6 +241,9 @@
       "@graduates/client/shorts": ["libs/client/shorts/src/index.ts"],
       "@graduates/client/student-profile/feature": [
         "libs/client/student-profile/feature/src/index.ts"
+      ],
+      "@graduates/client/company-explore/feature": [
+        "libs/client/company-explore/feature/src/index.ts"
       ]
     }
   },
