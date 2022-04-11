@@ -45,6 +45,7 @@ model User {
   notificationFrom Notification[]    @relation("notificationFrom")
   notificationTo   Notification[]    @relation("notificationTo")
   Blog             Blog[]
+  CompanyRepInfo   CompanyRepInfo[]
 
   @@map("user")
 }
@@ -340,4 +341,25 @@ model Test {
   id    Int     @id @default(autoincrement())
   test1 String  @unique
   test2 String?
+}
+
+// Company Representative Additonal Info
+model CompanyRepInfo {
+  repId          String  @id  @default(cuid())
+  name          String
+  surname       String
+  jobTitle      String  @map("job_title")
+  aboutMe       String  @map("about_me")
+  experiences   String[]
+  companyName   String  @map("company_name")
+  lcoation      String
+  email         String
+  password      String
+  websiteLink   String  @map("website_link")
+  linkedIn      String  @map("linked_in")
+  gitHubLink    String  @map("git_hub_link")
+  contactNumber String  @map("contact_number") @db.VarChar(10)
+  user          User    @relation(fields: [repId], references: [id])
+
+  @@map("company_rep_info")
 }
