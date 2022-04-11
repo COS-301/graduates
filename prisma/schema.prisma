@@ -341,3 +341,20 @@ model Test {
   test1 String  @unique
   test2 String?
 }
+
+model CompanRepInfo{
+  id Int @id @default(autoincrement())
+  surname String
+  job String
+  experience String
+  aboutMe String @map("about_me")
+  location String
+  companyName String @map("company_name")
+  email String
+  website String
+  linkedlIn String @map("linked_in")
+  gitHub String @map("git_hub")
+  contactNumber String @map("contact_number")
+
+  @@map("company_rep_info")
+}
