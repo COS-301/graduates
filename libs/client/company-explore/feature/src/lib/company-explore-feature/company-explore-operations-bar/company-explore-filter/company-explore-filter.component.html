@@ -1,0 +1,21 @@
+
+<div fxLayout="row" >
+    
+    <button fxFlexAlign="center" mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon >menu</mat-icon>  
+    </button>
+    <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+        <span>filter1</span>
+    </button>
+    <button mat-menu-item>
+        <span>filter2</span>
+    </button>
+    <button mat-menu-item>
+        <span>filter3</span>
+    </button>  
+    </mat-menu>
+<div fxLayout="column">
+    <p fxFlexOffset="15px" fxFlexAlign="center"  fxShow="true" fxHide.lt-sm="true" fxHide.sm="true"> FILTER</p> 
+</div>
+</div>
