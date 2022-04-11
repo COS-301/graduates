@@ -1,0 +1,30 @@
+  <!-- Mobile Student profile cards -->
+<!-- Will use *ngFor to loop through studentArray and dynamically populate the cards. -->
+
+  <div class="mobile-card">
+    <!-- Making the overlay for when the ellipse is clicked -->
+    <div class="mobile-overlay" id="20441135">
+      <div class="mobile-student-name"><h3>Daniel Azmanov</h3></div>
+      <div class="mobile-info">
+        <ul class="mobile-info-headings">
+          <li>Bio:</li>
+          <li>Contact details:</li>
+          <li>Tags:</li>
+        </ul>
+
+        <ul class="mobile-info-content">
+          <li class="bio-content">Will be retrieved from the students array.</li>
+          <li class="contact-content">Will be retrieved from the students array.</li>
+          <li class="tags-content">Will be retrieved from the students array.</li>
+        </ul>
+        <button>View Student</button>
+      </div>
+    </div>
+
+    <svg class = "ellipse" (click)="toggle_overlay('20441135')" width="40" height="9" viewBox="0 0 40 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="6.35659" cy="4.5" rx="6.35659" ry="4.5" fill="white"/>
+      <ellipse cx="33.6435" cy="4.5" rx="6.35659" ry="4.5" fill="white"/>
+      <ellipse cx="19.9999" cy="4.5" rx="6.35659" ry="4.5" fill="white"/>
+    </svg>
+    <img src="https://previews.123rf.com/images/deagreez/deagreez1911/deagreez191103657/133740519-portrait-of-confident-cool-entrepreneur-guy-cross-hands-look-feel-positive-cheerful-emotions-real-pr.jpg">
+  </div>

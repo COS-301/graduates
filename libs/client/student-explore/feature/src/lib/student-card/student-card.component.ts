@@ -8,7 +8,8 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./student-card.component.scss'],
   providers: [MatCardModule, MatButtonModule],
 })
-export class StudentCardComponent {
+export class StudentCardComponent 
+{
   constructor() {
     //Do something
   }
