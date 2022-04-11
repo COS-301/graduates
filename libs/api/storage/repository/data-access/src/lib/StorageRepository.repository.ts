@@ -18,11 +18,11 @@ export class StorageRepository {
   }
 
   //TODO rest of categories
-  async getUserDegree(u_id: string): Promise<string|null> {
+  async getUserDegree(u_id: string, file_type:FileCategory): Promise<string|null> {
     const arr : Promise<UserProfileFile[] | null> = this.prismaService.userProfileFile.findMany({
       where: {
           userId: u_id,
-          fileCategory: FileCategory.DEGREE
+          fileCategory: file_type
       }
     });
       //only the first element of array since it will be unique
