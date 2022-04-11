@@ -14,6 +14,14 @@ import { RouterModule } from '@angular/router';
             (m) => m.FeatureModule
           ),
       },
+      {
+        path: 'student-profile',
+        pathMatch: 'full',
+        loadChildren: () =>
+          import('@graduates/client/student-profile/feature').then(
+            (m) => m.StudentProfileModule
+          ),
+      }
     ]),
   ],
   exports: [RouterModule]

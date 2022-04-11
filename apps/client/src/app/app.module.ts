@@ -7,6 +7,9 @@ import { FeatureModule as ClientShellFeatureModule } from '@graduates/client/she
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 
+//component imports
+import { StudentProfileModule } from '@graduates/client/student-profile/feature';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -20,6 +23,7 @@ import { AppComponent } from './app.component';
       registrationStrategy: 'registerWhenStable:30000',
     }),
     ClientShellFeatureModule,
+    StudentProfileModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

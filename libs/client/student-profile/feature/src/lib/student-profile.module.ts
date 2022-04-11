@@ -8,7 +8,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 @NgModule({
   imports: [CommonModule, FlexLayoutModule],
   declarations: [
-    StudentProfileComponent
+    StudentProfileComponent,
   ],
+  exports: [StudentProfileComponent]
 })
 export class StudentProfileModule {}
