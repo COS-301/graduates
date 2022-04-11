@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RequestForAccessService {
-    getResourceStatuses(companyID: string): Observable<AjaxResponse<JSON>> {
+    getResourceStatuses(companyID: string, graduateID: string): Observable<AjaxResponse<JSON>> {
       return ajax({
         url: 'http://localhost:3333/graphql',
         method: 'POST',
@@ -15,8 +15,8 @@ export class RequestForAccessService {
           'Content-Type': 'application/json'
         },
         body: {
-          'query': 'query ($id: ID!){status(compID: $id){ accessStatus, item, userID }}',
-          'variables': { 'id': companyID }
+          'query': 'query ($compID: ID!, $gradID: ID!){status(compID: $id, gradID: $gradID){ accessStatus, item, userID }}',
+          'variables': { 'compID': companyID, 'gradID': graduateID }
         }
       });
     }
