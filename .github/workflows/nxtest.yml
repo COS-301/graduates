@@ -1,0 +1,93 @@
+---
+name: 'Default Test'
+
+#Reusable workflow with input parameters to choose a type of test
+on:
+  workflow_call:
+    inputs:
+      test:
+        description: 'Type of test being run'
+        required: true
+        type: string
+      testtype:
+        description: 'Type of test (lint, build, test)'
+        required: false
+        type: string
+
+jobs:
+  build:
+    name: Generate cache
+    runs-on: ubuntu-latest
+    steps: 
+        #Checking out to the develop branch
+      - name: Checkout develop
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+        #Generates the hashes for the comparison between the origin branch and the upstream development branch
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
+        with:
+          main-branch-name: 'develop'
+
+        #Cache of the yarn generated module
+      - name: Cache node modules
+        id: dependency_cache
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-build-cache-node-modules-${{ hashFiles('**/yarn.lock') }}
+
+        #Installs node.js
+      - name: Use Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+        #installs yarn
+      - name: Install yarn
+        run: npm install yarn -g
+
+        #installs the yarn lockfile
+      - name: Install packages
+        run: yarn install --frozen-lockfile
+
+      - name: Cache Cypress Binary
+        id: cache-cypress-binary
+        if: ${{ inputs.testtype == 'e2e'  }}
+        uses: actions/cache@v2
+        with:
+          path: cypress/cache
+          key: cypress-binary-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Cypress Install
+        if: ${{ inputs.testtype == 'e2e'  }}
+        run: npm install cypress
+
+      - name: Lint test affected
+        if: ${{ inputs.testtype == 'lint' && inputs.test == 'affected' }}
+        run: yarn nx affected:lint --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+
+      - name: Build test affected
+        if: ${{ inputs.testtype == 'build' && inputs.test == 'affected' }}
+        run: yarn nx affected:build --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+
+      - name: Unit test affected
+        if: ${{ inputs.testtype == 'unit' && inputs.test == 'affected' }}
+        run: yarn nx affected:test --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+
+      - name: E2E test affected
+        if: ${{ inputs.testtype == 'e2e' && inputs.test == 'affected' }}
+        run: yarn nx affected:e2e --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
+
+        #run tests on the entire repository
+      - name: Test all
+        if: ${{ inputs.test == 'all' }}
+        run: |
+          yarn nx run-many --target=lint --all --skip-nx-cache
+          yarn nx run-many --target=test --all --skip-nx-cache
+          yarn nx run-many --target=build --all --skip-nx-cache
+          yarn nx run-many --target=e2e --all --skip-nx-cache
