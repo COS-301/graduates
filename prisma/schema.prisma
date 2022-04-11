@@ -40,8 +40,8 @@ model User {
   UserLocation     UserLocation[]
   UserEmail        UserEmail[]
   UserProfileFile  UserProfileFile[]
-  Story            Story[]
-  StoryReport      StoryReport[]
+  Short            Short[]
+  ShortReport      ShortReport[]
   notificationFrom Notification[]    @relation("notificationFrom")
   notificationTo   Notification[]    @relation("notificationTo")
   Blog             Blog[]
@@ -227,11 +227,11 @@ enum FileCategory {
 }
 
 ///////////////////////////////////////////////////////////////////////
-// 2. Story
+// 2. Short
 ///////////////////////////////////////////////////////////////////////
 
-// Stories of users
-model Story {
+// Shorts of users
+model Short {
   id         String   @id @default(cuid())
   userId     String   @map("user_id")
   media      String?
@@ -241,33 +241,33 @@ model Story {
 
   user User @relation(fields: [userId], references: [id])
 
-  storyTag    StoryTag[]
-  storyReport StoryReport[]
-  @@map("story")
+  shortTag    ShortTag[]
+  shortReport ShortReport[]
+  @@map("short")
 }
 
-// Story tags to be filtered by
-model StoryTag {
-  storyId String @map("story_id")
+// Short tags to be filtered by
+model ShortTag {
+  shortId String @map("short_id")
   tag     String
 
-  story Story @relation(fields: [storyId], references: [id])
+  short Short @relation(fields: [shortId], references: [id])
 
-  @@id([storyId, tag])
-  @@map("story_tag")
+  @@id([shortId, tag])
+  @@map("short_tag")
 }
 
-// Story reports
-model StoryReport {
-  storyId String @map("story_id")
+// Short reports
+model ShortReport {
+  shortId String @map("short_id")
   userId  String @map("user_id")
   reason  String
 
   user  User  @relation(fields: [userId], references: [id])
-  story Story @relation(fields: [storyId], references: [id])
+  short Short @relation(fields: [shortId], references: [id])
 
-  @@id([storyId, userId])
-  @@map("story_report")
+  @@id([shortId, userId])
+  @@map("short_report")
 }
 
 ///////////////////////////////////////////////////////////////////////
