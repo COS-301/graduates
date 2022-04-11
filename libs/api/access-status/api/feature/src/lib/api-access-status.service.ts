@@ -3,11 +3,18 @@ import { ApiAccessStatusEntity } from "./api-access-status.entity";
 
 @Injectable()
 export class ApiAccessStatusService {
-    async getAll(): Promise<ApiAccessStatusEntity[]> {
+    async getAll(compId: string, gradId): Promise<ApiAccessStatusEntity[]> {
+
         const accessStatus = new ApiAccessStatusEntity();
-        accessStatus.userID = "u04515146";
-        accessStatus.item = "CV";
-        accessStatus.accessStatus = "Pending"
+        if (gradId == "42") {
+            accessStatus.userID = "u00000000";
+            accessStatus.item = "CV";
+            accessStatus.accessStatus = "Pending";
+        } else {
+            accessStatus.userID = "u00000001";
+            accessStatus.item = "Academic Record";
+            accessStatus.accessStatus = "Rejected";
+        }
 
         return [accessStatus];
     }

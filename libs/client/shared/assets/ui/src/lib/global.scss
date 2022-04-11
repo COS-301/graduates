@@ -1,0 +1,48 @@
+//Primary Colors
+$primary-1 : #174372;
+$primary-2 : #182B46;
+$primary-3 : #1A1A37;
+
+//Backgound Colors
+$background-white : #F8F9FA;
+
+//Text Colors
+$text-blue : #174372;
+$text-white : #FFFFFF;
+$text-gold : #C48939;
+$text-red : #DC3545;
+
+//Notfication Colors
+$notification-red : #DC3545;
+$notification-green : #437217;
+
+//Card Colors
+$card-blue : #174372;
+$card-gold : #C48939;
+$card-red : #DC3545;
+
+//Breakpoints
+$desktop-width: 1024px;
+$tablet-width: 768px;
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin phone {
+  @media (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
