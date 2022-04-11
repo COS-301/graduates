@@ -1,0 +1,48 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+
+* {
+  background-color: rgb(233, 233, 233);
+}
+
+.block {
+  display: flex;
+}
+
+.image {
+  flex: 0 1 20%;
+  min-width: 250px;
+  clip-path: circle();
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.boxes {
+  display: flex;
+  flex: 1;
+}
+
+.box1 {
+  flex: 1;
+  text-align: center;
+}
+
+.box2 {
+  flex: 1;
+}
+
+.description {
+  flex: 1;
+  text-align: center;
+}
