@@ -20,6 +20,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 //Component Modules
 import { FilterComponent } from './filter/filter.component';
 import { StudentCardComponent } from './student-card/student-card.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 @NgModule({
   imports: [
@@ -35,6 +36,6 @@ import { StudentCardComponent } from './student-card/student-card.component';
     MatCardModule,
     MatFormFieldModule,
   ],
-  declarations: [FilterComponent, StudentCardComponent],
+  declarations: [FilterComponent, StudentCardComponent, SearchBarComponent]
 })
 export class ClientStudentExploreModule {}
