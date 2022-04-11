@@ -6,7 +6,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { FeatureModule as ClientShellFeatureModule } from '@graduates/client/shell/feature';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
-import { ClientAdminconsoleFeatureModule as AdminConsole } from '@graduates/client/adminconsole/feature';
+// import { ClientAdminconsoleFeatureModule as AdminConsole } from '@graduates/client/adminconsole/feature';
 
 
 @NgModule({
@@ -22,7 +22,6 @@ import { ClientAdminconsoleFeatureModule as AdminConsole } from '@graduates/clie
       registrationStrategy: 'registerWhenStable:30000',
     }),
     ClientShellFeatureModule,
-    AdminConsole,
   ],
   providers: [],
   bootstrap: [AppComponent],
