@@ -223,9 +223,7 @@
       "@graduates/client/shell/feature": [
         "libs/client/shell/feature/src/index.ts"
       ],
-      "@graduates/client/shorts/feature": [
-        "libs/client/shorts/feature/src/index.ts"
-      ],
+      "@graduates/client/shorts": ["libs/client/shorts/src/index.ts"],
       "@graduates/client/student-profile/feature": [
         "libs/client/student-profile/feature/src/index.ts"
       ]
