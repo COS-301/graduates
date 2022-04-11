@@ -7,8 +7,9 @@ export class FilterStudentsHandler implements IQueryHandler<FilterStudentsQuery>
   constructor(private readonly repository: StudentExploreRepository) {}
 
   async execute(query: FilterStudentsQuery) {
-	const {email} = query;
-    //return this.repository.findOne(email);
+	
+    return this.repository.initStudents();
+
   }
   
 }

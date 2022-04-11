@@ -6,9 +6,10 @@ import { SearchStudentsQuery } from '../impl/search-students.query';
 export class SearchStudentsHandler implements IQueryHandler<SearchStudentsQuery> {
   constructor(private readonly repository: StudentExploreRepository) {}
 
-  async execute(query: SearchStudentsQuery) {
-	const {email} = query;
-    //return this.repository.findOne(email);
+  async execute(){
+
+    return this.repository.initStudents();
+    
   }
   
 }

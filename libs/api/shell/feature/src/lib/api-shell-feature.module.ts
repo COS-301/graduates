@@ -1,7 +1,7 @@
-//import { FeatureModule as ApiExampleFeatureModule } from '@graduates/api/example/api/feature';
+import { FeatureModule as ApiExampleFeatureModule } from '@graduates/api/example/api/feature';
 //import { ApiStorageApiFeatureModule as ApiStorageFeatureModule } from '@graduates/api/storage/api/feature';
 //import { ApiStudentProfilesModule as ApiStudentProfilesModule } from '@graduates/api/student-profiles/api/feature';
-//import { ApiHostingApiFeatureModule as ApiHostingFeatureModule } from '@graduates/api/hosting/api/feature';
+import { ApiHostingApiFeatureModule as ApiHostingFeatureModule } from '@graduates/api/hosting/api/feature';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
@@ -16,13 +16,13 @@ import { ApiStudentExploreApiFeatureModule as ApiStudentExploreApiFeatureModule}
 
 @Module({
   imports: [
-    //ApiExampleFeatureModule,
+    ApiExampleFeatureModule,
     GraphQLModule.forRoot({
       autoSchemaFile: true,
       driver: ApolloDriver,
     }),
     //ApiStorageFeatureModule,
-    //ApiHostingFeatureModule,
+    ApiHostingFeatureModule,
     //ApiShortsFeatureModule,
     //ApiAccessStatusFeatureModule,
     //ApiCompanyProfilePageFeatureModule,

@@ -7,8 +7,9 @@ export class SearchStudentsByTagHandler implements IQueryHandler<SearchStudentsB
   constructor(private readonly repository: StudentExploreRepository) {}
 
   async execute(query: SearchStudentsByTagQuery) {
-	const {email} = query;
-    //return this.repository.findOne(email);
+	
+    return this.repository.initStudents();
+    
   }
   
 }

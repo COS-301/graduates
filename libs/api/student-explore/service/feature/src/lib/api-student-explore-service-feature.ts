@@ -16,27 +16,26 @@ export class StudentExploreService {
    ) {}
 
   async InitStudents() {
-    //console.log("test");
     return this.queryBus.execute(
       new InitStudentsQuery()
     );
   }
 
-  async SearchStudentsByTag(email: string) {
+  async SearchStudentsByTag() {
     return this.queryBus.execute(
-      new SearchStudentsByTagQuery(email)
+      new SearchStudentsByTagQuery()
     );
   }
 
-  async SearchStudents(email: string) {
+  async SearchStudents() {
     return this.queryBus.execute(
-      new SearchStudentsQuery(email)
+      new SearchStudentsQuery()
     );
   }
 
-  async FilterStudents(email: string) {
+  async FilterStudents() {
     return this.queryBus.execute(
-      new FilterStudentsQuery(email)
+      new FilterStudentsQuery()
     );
   }
 

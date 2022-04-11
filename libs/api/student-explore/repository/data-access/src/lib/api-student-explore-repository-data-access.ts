@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { Student } from './student.model';
+//import { Student } from './student.model';
+
+import { ApiStudentExplore } from '@graduates/api/student-explore/api/shared/data-access';
 
 import { PrismaService } from './prisma.service';
 import { User, Prisma } from '@prisma/client';
@@ -22,8 +24,8 @@ export class StudentExploreRepository {
       tempName = "Name "+ i;
       tempNumber = "Student Number: " + i;
 
-      let temp = new Student();
-      temp.StudentName = tempName;
+      let temp = new ApiStudentExplore();
+      temp.StudentName = test[i%2].email;
       temp.StudentNumber = tempNumber;
 
       studentArr.push(temp);

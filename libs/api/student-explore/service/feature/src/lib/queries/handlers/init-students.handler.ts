@@ -8,9 +8,9 @@ export class InitStudentsHandler implements IQueryHandler<InitStudentsQuery> {
   constructor(private readonly repository: StudentExploreRepository) {}
 
   async execute(query: InitStudentsQuery) {
-    //console.log("hello");
+
     return this.repository.initStudents();
-    //console.log("test");
+    
   }
   
 }
