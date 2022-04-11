@@ -2,18 +2,23 @@
 name: CI Tests
 
 on: 
+  push:
+    branches: [ main, develop ]
   pull_request:
-    branches: [ develop ]
-  #manual github action trigger
+    branches: [ main, develop ]
+  #manual github action trigger with choices to run individual tests
   workflow_dispatch:
     inputs:
-      logLevel:
-        description: 'Title'     
+      testchoice:
+        type: choice
+        description: 'Test Type'
         required: true
-        default: 'warning'  
-      tags:
-        description: 'Test scenario tags'
-        required: false 
+        options:
+        - full
+        - lint
+        - build
+        - unit
+        - e2e
 
 #jobs in the workflow with passed in parameters
 jobs:
