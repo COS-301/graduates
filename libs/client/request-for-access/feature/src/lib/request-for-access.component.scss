@@ -1,0 +1,43 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+
+#rfa-container {
+  //style rules which apply regardless of screen size
+
+  height: 40vh;
+  min-width: fit-content;
+  border: 1px solid green;
+  transition: width 0.1s ease-out;
+
+  @include desktop {
+    width: 25vw;
+  }
+
+  @include tablet {
+    //style rules which only apply to tablet displays
+    width: 90vw;
+    margin: auto;
+  }
+
+  @include phone {
+    //style rules which only apply to phone displays
+    width: 90vw;
+    margin: auto;
+  }
+}
+
+.button {
+  float: right;
+}
+
+h3 {
+  margin: 0;
+  margin-left: 10px;
+}
+
+.row {
+  height: 7.8vh;
+}
+
+.item {
+  width: 150px;
+}
