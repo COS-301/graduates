@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+
 @Component({
-  selector: 'app-cards',
+  selector: 'cards-cards',
   templateUrl: './cards.component.html',
-  styleUrls: ['./cards.component.scss']
+  styleUrls: ['./cards.component.scss'],
 })
 export class CardsComponent implements OnInit {
-  constructor() { }
+  
   ngOnInit(): void {
     document.getElementById("ig")?.addEventListener("click", display);
     function display()
