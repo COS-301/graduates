@@ -241,6 +241,9 @@
       "@graduates/client/student-profile/feature": [
         "libs/client/student-profile/feature/src/index.ts"
       ],
+      "@graduates/client/companyProfile/feature": [
+        "libs/client/companyProfile/feature/src/index.ts"
+      ],
       "@graduates/client/company-explore/feature": [
         "libs/client/company-explore/feature/src/index.ts"
       ]

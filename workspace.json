@@ -77,6 +77,7 @@
     "client-shell-feature": "libs/client/shell/feature",
     "client-shorts-feature": "libs/client/shorts/feature",
     "client-student-explore-feature": "libs/client/student-explore/feature",
-    "client-student-profile-feature": "libs/client/student-profile/feature"
+    "client-student-profile-feature": "libs/client/student-profile/feature",
+    "client-companyProfile-feature": "libs/client/companyProfile/feature"
   }
 }
