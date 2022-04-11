@@ -1,6 +1,7 @@
 {
   "root": "libs/api/companyexplore/repository/shared/interfaces/data-access",
   "sourceRoot": "libs/api/companyexplore/repository/shared/interfaces/data-access/src",
+  "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",

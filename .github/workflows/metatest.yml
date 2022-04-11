@@ -1,0 +1,66 @@
+---
+name: 'Meta Test'
+
+on: 
+  workflow_call:
+  pull_request:
+    types: [ labeled ]
+
+  milestone:
+    types: [ opened ]
+
+jobs:
+  label-check:
+    name: Checks if labels are used
+    runs-on: ubuntu-latest
+    steps: 
+        #Checking out to the develop branch
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Has atleast one priority label
+        uses: mheap/github-action-required-labels@v1
+        with:
+          mode: minimum
+          count: 1
+          labels: 'priority:high, priority:low, priority:medium'
+
+      - name: Has atleast one type label
+        uses: mheap/github-action-required-labels@v1
+        with:
+          mode: minimum
+          count: 1
+          labels: 'type:bug, type:change, type:chore, type:cosmetic, type:documentation, type:enhance, type:feature, type:fix, type:refactor, type:test'
+
+      - name: Has atleast one status label
+        uses: mheap/github-action-required-labels@v1
+        with:
+          mode: minimum
+          count: 1
+          labels: 'status:needs-info, status:needs-tests, status:not-ready, status:on-hold, status:ready'
+
+      - name: Has atleast one role label
+        uses: mheap/github-action-required-labels@v1
+        with:
+          mode: minimum
+          count: 1
+          labels: 'role:api-engineer, role:business-analyst, role:data-engineer, role:designer, role:developer-operations, role:project-manager, role:project-owner, role:service-engineer, role:tester, role:ui-engineer'
+      
+      - name: Has atleast one scope label
+        uses: mheap/github-action-required-labels@v1
+        with:
+          mode: minimum
+          count: 1
+          labels: 'scope:api,scope:cicd,scope:client,scope:db,scope:design,scope:ui,scope:repository'
+
+  milestone-check:
+    name: Checks if milestone is used
+    runs-on: ubuntu-latest
+    steps:       
+      - name: Has milestone check
+        if: github.event.pull_request.milestone == null
+        run: |
+          echo "you don't have a milestone"
+          exit 1
+          
