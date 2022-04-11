@@ -2477,10 +2477,19 @@
     v8-compile-cache "2.3.0"
     yargs-parser "20.0.0"
 
+<<<<<<< HEAD
 "@nrwl/cli@13.9.5":
   version "13.9.5"
   resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-13.9.5.tgz#398122e1b70350454f4d4e4230d98cc4e24f1c1f"
   integrity sha512-WO2tcRTnYcz/LMJO9RVDoQtpwREjanosUJhymFD6ozrdZBhDuxKQ2S681mjnCXWlWEhYvccGfLhechluiEdCLA==
+=======
+"@nrwl/cli@13.9.4":
+  version "13.9.4"
+  resolved "https://registry.yarnpkg.com/@nrwl/cli/-/cli-13.9.4.tgz#bba8d1592191a2296223f42f61078f7ed197051e"
+  integrity sha512-jseYnaaifBpBCnj1ERFnOA9vfXOd3AciGgYTy8OdygMqLf1suUAjUEVIh6hlmtvMQojNezTT4a3eaIHz9lQDKA==
+  dependencies:
+    nx "13.9.4"
+>>>>>>> ba1980a2a5159f41299e4cf32d0226fc4cd663db
 
   dependencies:
     nx "13.9.5"
