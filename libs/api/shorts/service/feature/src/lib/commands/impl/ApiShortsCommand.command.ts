@@ -1,12 +1,8 @@
-// import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
+import { ShortCreateInput } from '@graduates/api/shorts/api/shared/entities/data-access';
 
-// export class CreateShortCommand {
-//   constructor(
-//     public readonly userId: string,
-//     public readonly datePosted: Date,
-//     public readonly archived: boolean,
-//     public readonly user: User,
-//     public readonly media: string,
-//     public readonly data: string
-//   ) {}
-// }
+export class CreateShortCommand {
+  constructor(
+    public readonly short: ShortCreateInput,
+    public readonly userId: string
+  ) {}
+}
