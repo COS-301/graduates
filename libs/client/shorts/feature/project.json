@@ -4,6 +4,22 @@
   "sourceRoot": "libs/client/shorts/feature/src",
   "prefix": "graduates",
   "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/client/shorts/feature"],
+      "options": {
+        "project": "libs/client/shorts/feature/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/client/shorts/feature/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/client/shorts/feature/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/client/shorts/feature"],

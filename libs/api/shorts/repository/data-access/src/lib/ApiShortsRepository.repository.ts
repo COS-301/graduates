@@ -7,7 +7,7 @@ export class ShortsRepository {
   constructor(private prisma: PrismaService) {}
 
   async findAll() {
-    return this.prisma.story.findMany();
+    return this.prisma.short.findMany();
   }
 
   async findById(id: string) {
