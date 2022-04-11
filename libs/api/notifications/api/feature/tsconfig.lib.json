@@ -1,12 +1,11 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "module": "commonjs",
     "outDir": "../../../../../dist/out-tsc",
     "declaration": true,
-    "types": ["node"],
+    "types": [],
     "target": "es6"
   },
-  "exclude": ["**/*.spec.ts", "**/*.test.ts"],
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts", "../shared/src/lib/api-notifications-api-feature.entity.ts"],
+  "exclude": ["**/*.spec.ts", "**/*.test.ts"]
 }
