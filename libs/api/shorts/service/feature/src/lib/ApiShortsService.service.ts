@@ -1,7 +1,10 @@
 import { Short } from '@graduates/api/shorts/api/shared/entities/data-access';
 import { Injectable } from '@nestjs/common';
 import { QueryBus } from '@nestjs/cqrs';
-import { GetAllShortsQuery } from './queries/impl/ApiShortsFetchAllQuery.query';
+import {
+  GetAllShortsQuery,
+  GetShortByIdQuery,
+} from './queries/impl/ApiShortsQuery.query';
 
 @Injectable()
 export class ShortsService {
@@ -9,5 +12,9 @@ export class ShortsService {
 
   async findAllShorts(): Promise<Short[]> {
     return this.queryBus.execute(new GetAllShortsQuery());
+  }
+
+  async findShortById(id: string): Promise<Short> {
+    return this.queryBus.execute(new GetShortByIdQuery(id));
   }
 }

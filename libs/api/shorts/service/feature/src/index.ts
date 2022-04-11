@@ -1,3 +1,3 @@
 export * from './lib/ApiShortsService.service';
-export * from './lib/queries/impl/ApiShortsFetchAllQuery.query';
-export * from './lib/queries/handlers/ApiShortsFetchAllHandler.handler';
+export * from './lib/queries/impl/ApiShortsQuery.query';
+export * from './lib/queries/handlers/ApiShortsQueryHandler.handler';
