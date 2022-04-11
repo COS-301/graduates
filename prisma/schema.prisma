@@ -23,9 +23,9 @@ model User {
   name         String?
   dateOfBirth  DateTime? @map("date_of_birth")
   companyId    String?   @map("company_id")
-  created      DateTime
-  suspended    Boolean
-  validated    Boolean
+  created      DateTime  @default(now())
+  suspended    Boolean   @default(false)
+  validated    Boolean   @default(false)
 
   company User? @relation(name: "company_id", fields: [companyId], references: [id])
 
