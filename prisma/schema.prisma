@@ -196,7 +196,7 @@ model UserLocation {
   @@map("user_location")
 }
 
-// Emails of users
+// Additional Emails of users
 model UserEmail {
   userId String @id @map("user_id")
   email  String
@@ -236,7 +236,7 @@ model Story {
   userId     String   @map("user_id")
   media      String?
   data       String?
-  datePosted DateTime @map("date_posted")
+  datePosted DateTime @default(now()) @map("date_posted")
   archived   Boolean
 
   user User @relation(fields: [userId], references: [id])
@@ -280,7 +280,7 @@ model Notification {
   userIdFrom String?  @map("user_id_from")
   userIdTo   String   @map("user_id_to")
   data       Json?
-  date       DateTime
+  date       DateTime @default(now())
   seen       Boolean
 
   notificationFrom User? @relation(name: "notificationFrom", fields: [userIdFrom], references: [id])
@@ -299,7 +299,7 @@ model Blog {
   userId   String   @map("user_id")
   title    String
   content  String?
-  date     DateTime
+  date     DateTime @default(now())
   archived Boolean
 
   user User @relation(fields: [userId], references: [id])
@@ -315,7 +315,7 @@ model BlogComment {
   id      String   @id @default(cuid())
   blogId  String   @map("blog_id")
   content String
-  date    DateTime
+  date    DateTime @default(now())
 
   blog Blog @relation(fields: [blogId], references: [id])
   @@map("blog_comment")
