@@ -1,4 +1,6 @@
-import { getGreeting } from '../support/app.po';
+// e2e testing to go here please seee below for example
+
+/*import { getGreeting } from '../support/app.po';
 
 describe('client', () => {
   beforeEach(() => cy.visit('/'));
@@ -10,4 +12,4 @@ describe('client', () => {
     // Function helper example, see `../support/app.po.ts` file
     //TODO setup proper e2e testing for client
   });
-});
+});*/
