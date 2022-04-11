@@ -47,7 +47,7 @@ export class FirebaseService {
   }
 
   async uploadProfilePhoto(file: File | Blob, fileName: string){
-    const fileRef = ref(this.storage, 'Files/' + fileName);
+    const fileRef = ref(this.storage, 'ProfilePhotos/' + fileName);
 
     uploadBytes(fileRef, file).then((snapshot) => {
       console.log('Successful upload');
@@ -73,10 +73,18 @@ export class FirebaseService {
     });
   }
 
+  async uploadAsBase64String(base64: string, fileName: string, folderName: FirebaseFolders){
 
-  async uploadAsString(binaryFile: string, fileName: string){
+    const fileRef = ref(this.storage, folderName + '/' + fileName);
 
-    const fileRef = ref(this.storage, 'Files/' + fileName);
+    uploadString(fileRef, base64, 'base64').then((snapshot) => {
+      console.log('Successful upload');
+    });
+  }
+
+  async uploadAsBinaryString(binaryFile: string, fileName: string, folderName: FirebaseFolders){
+
+    const fileRef = ref(this.storage, folderName + '/' + fileName);
 
     //convert binary string to base64 encoding
     const temp = Buffer.from(binaryFile, 'binary').toString('base64');

@@ -22,7 +22,7 @@ export class StorageRepository {
     return this.prismaService.userProfileFile.findMany({
       where: {
           userId: u_id,
-          fileCategory: FileCategory.MISC
+          fileCategory: FileCategory.DEGREE
       }
     });
   }
