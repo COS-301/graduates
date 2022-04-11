@@ -4,7 +4,7 @@
 import {PrismaClient} from '@prisma/client';
 import internal = require('stream');
 
-class TokenAuthenticate 
+export class AuthenticationRepository
 {
     prisma = new PrismaClient();
 
