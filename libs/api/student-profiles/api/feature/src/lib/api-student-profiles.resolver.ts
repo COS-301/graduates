@@ -1,6 +1,7 @@
 import { Query, Args, Resolver, Mutation } from '@nestjs/graphql';
 import { ApiStudentProfilesEntity } from '@graduates/api/student-profiles/api/shared/data-access';
 import { ApiStudentProfileService } from '@graduates/api/student-profiles/service/feature';
+import { ApiStudentProfilesInputEntity as StudentInput } from '@graduates/api/student-profiles/api/shared/data-access';
 
 @Resolver((of) => ApiStudentProfilesEntity)
 export class ApiStudentProfileResolver {
@@ -21,8 +22,10 @@ export class ApiStudentProfileResolver {
   }
 
   @Mutation((returns) => ApiStudentProfilesEntity)
-  async editStudent(@Args('studentNum', { type: () => String }) id: string) {
-    const studentArr = this.studentService.findOneById(id);
+  async editStudent(
+    @Args('editStudentData') editStudentData: StudentInput
+  ) {
+    const studentArr = this.studentService.editStudentProfiles(editStudentData);
     const studentObj = new ApiStudentProfilesEntity();
     studentObj.dateOfBirth = (await studentArr).pop();
     studentObj.phoneNum = (await studentArr).pop();
@@ -35,8 +38,8 @@ export class ApiStudentProfileResolver {
   }
 
   @Mutation((returns) => String)
-  async deleteStudent() {
-    const res = 'Delete not implemented';
+  async deleteStudent(@Args('studentNum', {type: () => String})id: string ) {
+    const res = this.studentService.deleteStudentProfiles(id);
     return res;
   }
 }

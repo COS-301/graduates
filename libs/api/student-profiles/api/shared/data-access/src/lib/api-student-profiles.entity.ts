@@ -1,4 +1,4 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 export class ApiStudentProfilesEntity {
@@ -45,12 +45,12 @@ export class ApiStudentProfilesEntity {
   links: string[];
 
   //uploaded documents return if they are uploaded or not
-  @Field()
+  @Field(type => Boolean)
   academicRecord: boolean;
 
-  @Field()
+  @Field(type => Boolean)
   cv: boolean;
 
-  @Field()
-  capstoneProject;
+  @Field(type => Boolean)
+  capstoneProject: boolean;
 }
