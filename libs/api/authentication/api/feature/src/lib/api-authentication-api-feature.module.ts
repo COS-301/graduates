@@ -4,7 +4,7 @@ import { ApiAuthenticationApiFeatureController } from './api-authentication-api-
 
 @Module({
   controllers: [ApiAuthenticationApiFeatureController],
-  providers: [ApiAuthenticationServiceFeatureService],
+  providers: [ApiAuthenticationServiceFeatureService ],
   exports: [],
   imports: []
 })

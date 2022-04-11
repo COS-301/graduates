@@ -16,9 +16,8 @@ export class ApiAuthenticationApiFeatureController {
 
     @Get('authenticate/google')
     @UseGuards(AuthGuard('google'))
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
     async googleAuthenticate(@Req() req){
-        return "Authenticate";
+        return "Google auth";
     }
 
     @Get('authenticate/google/callback')
@@ -35,5 +34,10 @@ export class ApiAuthenticationApiFeatureController {
     @Post('authenticate')
     authenticate(@Body() body: LoginQuery){
         this.service.authenticate(body);
+    }
+
+    @Post('validateToken')
+    validateToken(@Body() token: string){
+        return "user";
     }
 }
