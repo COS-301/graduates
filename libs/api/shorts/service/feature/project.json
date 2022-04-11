@@ -1,0 +1,23 @@
+{
+  "root": "libs/api/shorts/service/feature",
+  "sourceRoot": "libs/api/shorts/service/feature/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api/shorts/service/feature/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/shorts/service/feature"],
+      "options": {
+        "jestConfig": "libs/api/shorts/service/feature/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
