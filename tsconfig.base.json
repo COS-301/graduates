@@ -217,8 +217,12 @@
       "@graduates/client/company-representative/feature": [
         "libs/client/company-representative/feature/src/index.ts"
       ],
+
       "@graduates/client/example/feature": [
         "libs/client/example/feature/src/index.ts"
+      ],
+      "@graduates/client/notifications/feature": [
+        "libs/client/notifications/feature/src/index.ts"
       ],
       "@graduates/client/request-for-access/feature": [
         "libs/client/request-for-access/feature/src/index.ts"
