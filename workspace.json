@@ -67,6 +67,7 @@
     "api-upintegration-service-feature": "libs/api/upintegration/service/feature",
     "client": "apps/client",
     "client-company-explore-feature": "libs/client/company-explore/feature",
+    "client-company-representative-feature": "libs/client/company-representative/feature",
     "client-e2e": "apps/client-e2e",
     "client-example-feature": "libs/client/example/feature",
     "client-notifications-feature": "libs/client/notifications/feature",
