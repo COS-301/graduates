@@ -252,6 +252,12 @@
       ],
       "@graduates/client/student-profile/feature": [
         "libs/client/student-profile/feature/src/index.ts"
+      ],
+      "@graduates/client/student-requests/feature": [
+        "libs/client/student-requests/feature/src/index.ts"
+      ],
+      "@graduates/client/student-responses/feature": [
+        "libs/client/student-responses/feature/src/index.ts"
       ]
     }
   },
