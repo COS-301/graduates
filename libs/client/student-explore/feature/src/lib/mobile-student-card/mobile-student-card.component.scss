@@ -1,0 +1,191 @@
+.mobile-card{
+  position: relative;
+  width: 158px;
+  height: 112px;
+  border-radius: 6px;
+  background: black;
+  overflow: hidden;
+  margin: auto;
+  filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.25));
+  }
+  
+  .mobile-card img{
+      display: block;
+      height:100%;
+      width: 100%;
+      object-fit: cover;
+      z-index: 1;
+      border-style: none;
+  }
+  
+  .mobile-card .ellipse{
+      margin: 0;
+      position: absolute;
+      background: transparent;
+      width: 40px;
+      height: 9px;
+      top: 10%;
+      right: 7%;
+      z-index:2;
+  }
+
+  .ellipse:hover{
+      cursor: pointer;
+  }
+
+  button{
+      position: absolute;
+      text-align: center;
+      vertical-align: center;
+      left: 70.89%;
+      right: 1.9%;
+      top: 85%;
+      bottom: 3.75%;
+      background-color: #174372;
+      color: white;
+      border-radius: 4px;
+      border-style: none;
+  
+      position: absolute;
+      font-family: 'Segoe UI';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 5px;
+      line-height: 7px;
+  
+      width: 43;
+      height: 14;
+  }
+  
+  button:hover{
+      cursor:pointer;
+  }
+
+  .mobile-overlay{
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 80px;
+    bottom:0;
+  
+    background-color: #F8F9F4;
+    border-bottom-left-radius: 6px;
+  }
+  
+  .mobile-overlay .mobile-student-name{
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 85%;
+    background: #F0F0F0;
+    text-align: center;
+  }
+  
+  .mobile-student-name h3{
+    position: absolute;
+    top: 8%;
+    bottom: 85%;
+    left: 0.1%;
+    right: 0.1%;
+  
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 8px;
+    line-height: 11px;
+  
+    color: #000000;
+  }
+  
+  .mobile-info .mobile-info-headings{
+    position: absolute;
+    display: inline-block;
+    list-style-type: none;
+    left: 0;
+    top: 5%;
+    padding: 5px;
+  
+    font-family: 'Segoe UI';
+    font-style: italic;
+    font-weight: 700;
+    font-size: 5px;
+    line-height: 20px;
+  }
+  
+  .mobile-info .mobile-info-content .bio-content{
+    position: absolute;
+    overflow-wrap: break-word;
+    display: inline-block;
+    list-style-type: none;
+    left: 30%;
+    top: 12%;
+    padding: 5px;
+  
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 5px;
+    line-height: 7px;
+  }
+  
+  .mobile-info .mobile-info-content .contact-content{
+    position: absolute;
+    overflow-wrap: break-word;
+    display: inline-block;
+    list-style-type: none;
+    left: 30%;
+    top: 37%;
+    padding: 5px;
+  
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 5px;
+    line-height: 7px;
+  }
+  
+  .mobile-info .mobile-info-content .tags-content{
+    position: absolute;
+    overflow-wrap: break-word;
+    display: inline-block;
+    list-style-type: none;
+    left: 30%;
+    right:28%;
+    top: 62%;
+    padding: 5px;
+  
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 5px;
+    line-height: 7px;
+  }
+  
+  button{
+    position: absolute;
+    text-align: center;
+    vertical-align: center;
+    left: 70.89%;
+    right: 1.9%;
+    top: 80.75%;
+    bottom: 3.75%;
+    background-color: #174372;
+    color: white;
+    border-radius: 4px;
+    border-style: none;
+  
+    position: absolute;
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 5px;
+    line-height: 7px;
+  
+    width: 43;
+    height: 14;
+  }
+  
+  button:hover{
+    cursor:pointer;
+  }

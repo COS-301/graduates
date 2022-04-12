@@ -1,1 +1,59 @@
 @import 'libs/client/shared/assets/ui/src/lib/global';
+
+
+.banner-text {
+    color: $primary-1;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: xx-large;
+    font-weight: bold;
+}
+p {
+    font-size: small;
+}
+
+h1 {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#search{
+    border: none;
+    padding: 10px;
+    box-shadow: 3px 4px 6px #888888;
+    width: 70vw;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#upload {
+    background-color: pink;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#uploadbanner {
+    background-color: lightblue;
+    padding-top: 25%;
+    padding-bottom: 25%;
+}
+
+#infomessage {
+
+}
+
+#fileinput {
+
+}
+
+#taginput {
+
+}
+
+#completebuttons {
+    
+}

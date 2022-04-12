@@ -13,11 +13,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { ReportMenuComponent } from './report-menu/report-menu.component';
-import { StorySelectedComponent } from './story-selected/story-selected.component';
 import { StoryExploreComponent } from './story-explore/story-explore.component';
 import { StoryUploadComponent } from './story-upload/story-upload.component';
+import { ShortsRoutingModule } from './shorts-routing.module';
 
 @NgModule({
 
@@ -34,13 +33,10 @@ import { StoryUploadComponent } from './story-upload/story-upload.component';
     MatCardModule,
     MatFormFieldModule,
     MatGridListModule,
-    RouterModule.forChild([
-      /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
-    ]),
+    ShortsRoutingModule,
   ],
   declarations: [
     ReportMenuComponent,
-    StorySelectedComponent,
     StoryExploreComponent,
     StoryUploadComponent
   ],
