@@ -13,6 +13,4 @@ export class ApiStorage {
   filePath!: string;
   @Field()
   fileAsString!: string;
-  @Field()
-  fileNameOrHash!: string;
 }
