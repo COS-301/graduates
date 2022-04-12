@@ -4,10 +4,13 @@
 
 
   <div class="grid-container">
-    <h1>Student Shorts</h1>
+    <h1 class="banner-text">Shorts Explore</h1><br>
 
     <div >
-      <input id = "search" type="text" fxFlex="70%" fxFlexOffset="-10%">
+      <input id = "search" fxFlex="70%" fxFlexOffset="-10%"
+      type="text"
+      (change)="search()"
+      placeholder="Enter tag or username" />
     </div>
     <mat-grid-list cols="3" rowHeight="350px">
       <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
@@ -24,7 +27,7 @@
                 <div class="col-8">
                   <mat-card-title> {{card.title}}</mat-card-title>       
                   <div class="row">
-                    <p  *ngFor="let tag of card.tags">{{tag}}</p>
+                    <p  *ngFor="let tag of card.tags">{{tag}}</p><p> </p>
                   </div>
                 </div>
                 <div class="col-4">
@@ -43,7 +46,6 @@
     </mat-grid-list>
 
   </div>
-
 
   <div class="stick-top" id="upload" *ngIf="upload">
 
