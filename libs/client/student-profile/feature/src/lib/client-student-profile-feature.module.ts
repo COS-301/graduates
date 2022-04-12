@@ -14,5 +14,6 @@ import { ProfileBodyComponent } from './profile-body/profile-body.component';
   declarations: [
     ProfileBodyComponent
   ],
+   exports: [ProfileBodyComponent]
 })
 export class ClientStudentProfileFeatureModule {}
