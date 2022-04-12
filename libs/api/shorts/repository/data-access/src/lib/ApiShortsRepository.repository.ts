@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 import { ShortCreateInput } from '@graduates/api/shorts/api/shared/entities/data-access';
-import { Short } from '@prisma/client';
+import { Short, ShortTag } from '@prisma/client';
 
 @Injectable()
 export class ShortsRepository {
@@ -38,11 +38,20 @@ export class ShortsRepository {
   }
 
   /**
-   * Find all shorts by tag id
+   * Find all shorts by tag
    * @param {string} tagId The id of the tag to find the shorts for
    * @return {Promise<Short[]>}
    */
   async findByTag(tagId: string): Promise<Short[]> {
+    // return this.prisma.short.findMany({
+    //   where: {
+    //     shortTag: {
+    //       some: {
+    //         tag: tagId,
+    //       },
+    //     },
+    //   },
+    // });
     return [];
   }
 
