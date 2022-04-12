@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ShortsService } from './ApiShortsService.service';
+import { ShortsService } from './api-shorts-service.service';
 import { QueryBus, CommandBus } from '@nestjs/cqrs';
 import { Short } from '@graduates/api/shorts/api/shared/entities/data-access';
 
