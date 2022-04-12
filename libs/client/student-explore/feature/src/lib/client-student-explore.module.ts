@@ -1,8 +1,8 @@
 //Basic Modules
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { BrowserModule } from '@angular/platform-browser';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { StudentExploreRoutingModule } from './student-explore-page/student-explore-routing.module';
 
@@ -30,8 +30,8 @@ import { StudentExplorePageComponent } from './student-explore-page/student-expl
 @NgModule({
   imports: [
     CommonModule,
-    BrowserModule,
-    BrowserAnimationsModule,
+    /*BrowserModule,
+    BrowserAnimationsModule,*/
     StudentExploreRoutingModule,
     FormsModule,
     LayoutModule,
