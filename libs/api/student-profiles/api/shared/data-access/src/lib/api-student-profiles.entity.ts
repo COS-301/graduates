@@ -45,15 +45,6 @@ export class ApiStudentProfilesEntity {
   links: string[];
 
   //uploaded documents return if they are uploaded or not
-<<<<<<< HEAD
-  @Field((type) => Boolean)
-  academicRecord: boolean;
-
-  @Field((type) => Boolean)
-  cv: boolean;
-
-  @Field((type) => Boolean)
-=======
   @Field()
   academicRecord: boolean;
 
@@ -61,6 +52,5 @@ export class ApiStudentProfilesEntity {
   cv: boolean;
 
   @Field()
->>>>>>> 4194381c9aa7b2f11f0db76e16ce481a59517096
   capstoneProject: boolean;
 }
