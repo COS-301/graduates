@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 
 import { StoryExploreComponent } from './story-explore.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('StoryExploreComponent', () => {
   let component: StoryExploreComponent;
@@ -24,6 +25,7 @@ describe('StoryExploreComponent', () => {
         MatGridListModule,
         MatIconModule,
         MatMenuModule,
+        ReactiveFormsModule,
       ]
       
     }).compileComponents();
