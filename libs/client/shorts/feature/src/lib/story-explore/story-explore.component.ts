@@ -17,18 +17,22 @@ export class StoryExploreComponent {
     map(({ matches }) => {
       if (matches) {
         return [
-          { title: 'Card 1', cols: 1, rows: 1 },
-          { title: 'Card 2', cols: 1, rows: 1 },
-          { title: 'Card 3', cols: 1, rows: 1 },
-          { title: 'Card 4', cols: 1, rows: 1 }
+          { title: 'Card 1', cols: 3, rows: 1 , pic: '', tags: []},
+          { title: 'Card 2', cols: 3, rows: 1 , pic: '', tags: []},
+          { title: 'Card 3', cols: 3, rows: 1 , pic: '', tags: []},
+          { title: 'Card 4', cols: 3, rows: 1 , pic: '', tags: []},
+          { title: 'Card 5', cols: 3, rows: 1 , pic: '', tags: []},
+          { title: 'Card 6', cols: 3, rows: 1 , pic: '', tags: []},
         ];
       }
 
       return [
-        { title: 'Card 1', cols: 2, rows: 1 },
-        { title: 'Card 2', cols: 1, rows: 1 },
-        { title: 'Card 3', cols: 1, rows: 2 },
-        { title: 'Card 4', cols: 1, rows: 1 }
+        { title: 'Card 1', cols: 1, rows: 1 , pic: '', tags: ["#COS301", "#TestLife", "UI"]},
+        { title: 'Card 2', cols: 1, rows: 1 , pic: '', tags: []},
+        { title: 'Card 3', cols: 1, rows: 1 , pic: '', tags: []},
+        { title: 'Card 4', cols: 1, rows: 1 , pic: '', tags: []},
+        { title: 'Card 5', cols: 1, rows: 1 , pic: '', tags: []},
+        { title: 'Card 6', cols: 1, rows: 1 , pic: '', tags: []},
       ];
     })
   );
