@@ -15,7 +15,7 @@ import { AccessState } from './request-for-access.state';
     FlexLayoutModule,
     HttpClientModule,
     MatIconModule,
-    NgxsModule.forRoot([
+    NgxsModule.forFeature([
       AccessState
     ])
   ],
