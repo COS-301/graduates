@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'api-notifications-api-feature',
+  displayName: 'api-notifications-repository-data-access',
   preset: '../../../../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -12,5 +12,5 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory:
-    '../../../../../coverage/libs/api/notifications/api/feature',
+    '../../../../../coverage/libs/api/notifications/repository/data-access',
 };
