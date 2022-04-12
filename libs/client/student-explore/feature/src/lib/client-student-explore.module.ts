@@ -24,6 +24,7 @@ import { StudentCardComponent } from './student-card/student-card.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MobileStudentCardComponent } from './mobile-student-card/mobile-student-card.component';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { StudentExplorePageComponent } from './student-explore-page/student-explore-page.component';
 
 @NgModule({
   imports: [
@@ -43,7 +44,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatFormFieldModule,
     MatGridListModule,
   ],
-  declarations: [FilterComponent, StudentCardComponent, SearchBarComponent, MobileStudentCardComponent],
+  declarations: [FilterComponent, StudentCardComponent, SearchBarComponent, MobileStudentCardComponent, StudentExplorePageComponent],
   exports:[
     StudentCardComponent,
     FilterComponent,
