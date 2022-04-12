@@ -1,11 +1,9 @@
 # ---
-# name: CI Release Tests
+# name: CI Develop Tests
 
 # on: 
-#   pull_request:
-#     branches: [ release/1.x, main ]
 #   push:
-#     branches: [ release/1.x, main ]
+#     branches: [ develop ]
 
 # jobs:
 #   test-all:
