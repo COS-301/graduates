@@ -13,7 +13,14 @@ describe('ApiNotificationsApiFeatureController', () => {
     controller = module.get(ApiNotificationsApiFeatureController);
   });
 
+  //Tests if component was created successfully
   it('should be defined', () => {
     expect(controller).toBeTruthy();
   });
+
+  //End of automatic nx generated tests
+
+  it('returns all notifications',() => {
+    expect(controller.returnAll()).toBe('will get all the notifications')
+  })
 });

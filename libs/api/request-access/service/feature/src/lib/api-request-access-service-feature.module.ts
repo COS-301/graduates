@@ -4,6 +4,6 @@ import { RequestAccessService } from './request-access.service';
 @Module({
   controllers: [],
   providers: [RequestAccessService],
-  exports: [],
+  exports: [RequestAccessService],
 })
 export class ApiRequestAccessServiceFeatureModule {}

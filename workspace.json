@@ -62,6 +62,7 @@
     "api-student-explore-service-feature": "libs/api/student-explore/service/feature",
     "api-student-profiles-api-feature": "libs/api/student-profiles/api/feature",
     "api-student-profiles-api-shared-data-access": "libs/api/student-profiles/api/shared/data-access",
+    "api-student-profiles-repository-data-access": "libs/api/student-profiles/repository/data-access",
     "api-student-profiles-service-feature": "libs/api/student-profiles/service/feature",
     "api-upintegration-api-feature": "libs/api/upintegration/api/feature",
     "api-upintegration-api-shared-data-access": "libs/api/upintegration/api/shared/data-access",
