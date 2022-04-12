@@ -1,6 +1,11 @@
 import { ShortsRepository } from '@graduates/api/shorts/repository/data-access';
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { GetAllShortsQuery, GetShortByIdQuery, GetShortByTagQuery, GetShortByUserQuery } from './ApiShortsQuery.query';
+import {
+  GetAllShortsQuery,
+  GetShortByIdQuery,
+  GetShortByTagQuery,
+  GetShortByUserQuery,
+} from './ApiShortsQuery.query';
 
 @QueryHandler(GetAllShortsQuery)
 export class GetAllShortsHandler implements IQueryHandler<GetAllShortsQuery> {
@@ -22,7 +27,9 @@ export class GetShortByIdHandler implements IQueryHandler<GetShortByIdQuery> {
 }
 
 @QueryHandler(GetShortByUserQuery)
-export class GetShortByUserHandler implements IQueryHandler<GetShortByUserQuery> {
+export class GetShortByUserHandler
+  implements IQueryHandler<GetShortByUserQuery>
+{
   constructor(private readonly repository: ShortsRepository) {}
 
   async execute(query: GetShortByUserQuery) {

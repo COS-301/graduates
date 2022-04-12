@@ -8,7 +8,7 @@ import {
   GetAllShortsQuery,
   GetShortByIdQuery,
   GetShortByTagQuery,
-  GetShortByUserQuery
+  GetShortByUserQuery,
 } from './queries/ApiShortsQuery.query';
 import { CreateShortCommand } from './commands/ApiShortsCommand.command';
 

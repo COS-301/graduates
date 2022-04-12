@@ -14,9 +14,13 @@ export class ShortsRepository {
     return this.prisma.short.findUnique({ where: { id: id } });
   }
 
-  async findByUser(userId: string) {return null;}
+  async findByUser(userId: string) {
+    return null;
+  }
 
-  async findByTag(tagId: string) {return null;}
+  async findByTag(tagId: string) {
+    return null;
+  }
 
   async createShort(short: ShortCreateInput, userId: string) {
     return this.prisma.short.create({
