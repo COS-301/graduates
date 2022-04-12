@@ -7,9 +7,14 @@ import { CompanyRepresentativeExperienceComponent } from './company-representati
 import { CompanyRepresentativeConnectionsComponent } from './company-representative-connections/company-representative-connections.component';
 import { CompanyRepresentativeContactComponent } from './company-representative-contact/company-representative-contact.component';
 import { MatCardModule } from '@angular/material/card';
+import { CompanyRepresentativeRoutingModule } from "./company-representative-router.module";
 
 @NgModule({
-  imports: [CommonModule,MatCardModule],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    CompanyRepresentativeRoutingModule
+  ],
   declarations: [
     CompanyRepresentativePageComponent,
     CompanyRepresentativeAboutComponent,
@@ -20,11 +25,6 @@ import { MatCardModule } from '@angular/material/card';
   ],
   exports : [
     CompanyRepresentativePageComponent,
-    CompanyRepresentativeAboutComponent,
-    CompanyRepresentativeTitleComponent,
-    CompanyRepresentativeExperienceComponent,
-    CompanyRepresentativeConnectionsComponent,
-    CompanyRepresentativeContactComponent
   ]
 })
 export class ClientCompanyRepresentativeFeatureModule {}
