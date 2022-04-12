@@ -39,7 +39,7 @@ export class StoryExploreComponent {
 
 
 
-  searchText: string = "";
+  searchText = "";
   search(){
     this.searchText = (<HTMLInputElement>document.getElementById("search")).value;
      alert('searching for ' + this.searchText);
