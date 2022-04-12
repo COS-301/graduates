@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { FeatureModule as ClientShellFeatureModule } from '@graduates/client/shell/feature';
+import { StorageFeatureModule as ClientStorageFeatureModule } from '@graduates/client/storage/feature';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 
@@ -20,6 +21,7 @@ import { AppComponent } from './app.component';
       registrationStrategy: 'registerWhenStable:30000',
     }),
     ClientShellFeatureModule,
+    ClientStorageFeatureModule
   ],
   providers: [],
   bootstrap: [AppComponent],

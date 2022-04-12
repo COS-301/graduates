@@ -211,6 +211,9 @@
       "@graduates/client-student-explore-feature": [
         "libs/client/student-explore/feature/src/index.ts"
       ],
+      "@graduates/client/company-explore/feature": [
+        "libs/client/company-explore/feature/src/index.ts"
+      ],
       "@graduates/client/example/feature": [
         "libs/client/example/feature/src/index.ts"
       ],
@@ -238,11 +241,12 @@
       "@graduates/client/shorts/feature": [
         "libs/client/shorts/feature/src/index.ts"
       ],
+      "@graduates/client/storage": ["libs/client/storage/src/index.ts"],
+      "@graduates/client/storage/feature": [
+        "libs/client/storage/feature/src/index.ts"
+      ],
       "@graduates/client/student-profile/feature": [
         "libs/client/student-profile/feature/src/index.ts"
-      ],
-      "@graduates/client/company-explore/feature": [
-        "libs/client/company-explore/feature/src/index.ts"
       ]
     }
   },

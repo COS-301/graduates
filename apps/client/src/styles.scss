@@ -36,3 +36,7 @@ $client-theme: mat.define-light-theme((
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body{
+  background-color: #E5E5E5;
+}
