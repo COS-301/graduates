@@ -37,5 +37,9 @@ export class StoryExploreComponent {
     })
   );
 
+  search(){
+
+    
+  }
   constructor(private breakpointObserver: BreakpointObserver) {}
 }
