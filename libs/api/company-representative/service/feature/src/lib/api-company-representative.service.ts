@@ -1,8 +1,13 @@
 import { CompanyRepresentative, CompanyRepresentativeCreate } from '@graduates/api/company-representative/api/shared/data-access';
 import { Injectable } from '@nestjs/common';
+import { QueryBus } from '@nestjs/cqrs';
+import { User ,Prisma} from '@prisma/client';
+import { GetAllRepresentatives } from './queries/impl/getAllRepresentatives.query';
 
 @Injectable()
 export class ApiCompanyRepresentativeService {
+
+  constructor(private readonly queryBus:QueryBus){}
     async create(
         data: CompanyRepresentative
       ): Promise<CompanyRepresentativeCreate> {
@@ -32,4 +37,10 @@ export class ApiCompanyRepresentativeService {
       async remove(id: number): Promise<boolean> {
         return true;
       }
+
+  async getAll():Promise<User|null>{
+    return this.queryBus.execute(new GetAllRepresentatives());
+  }
+
+  
 }
