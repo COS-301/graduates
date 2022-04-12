@@ -1,12 +1,12 @@
----
-name: CI Develop Tests
+# ---
+# name: CI Develop Tests
 
-on: 
-  push:
-    branches: [ develop ]
+# on: 
+#   push:
+#     branches: [ develop ]
 
-jobs:
-  test-all:
-    uses: ./.github/workflows/nxtest.yml
-    with:
-      test: 'all'
+# jobs:
+#   test-all:
+#     uses: ./.github/workflows/nxtest.yml
+#     with:
+#       test: 'all'
