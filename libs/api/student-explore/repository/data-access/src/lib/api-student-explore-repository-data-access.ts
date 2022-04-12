@@ -12,24 +12,42 @@ export class StudentExploreRepository {
 
   async initStudents() {
 
-    const test = await this.prisma.user.findMany();
-
-    console.log(test);
+    const students = await this.prisma.user.findMany();
 
     let studentArr = [];
-    let tempName;
-    let tempNumber;
 
-    for (let i = 0; i < 10; i++) {
-      tempName = "Name "+ i;
-      tempNumber = "Student Number: " + i;
+    let tempStudentObj;
 
-      let temp = new ApiStudentExplore();
-      temp.StudentName = test[i%2].email;
-      temp.StudentNumber = tempNumber;
+    let studentObjTags;
+    let studentObjProfile;
 
-      studentArr.push(temp);
+
+    for (let i = 0; i < students.length; i++) {
+
+      //Student Name
+      tempStudentObj = new ApiStudentExplore();
+      tempStudentObj.StudentName = students[i].name;
+
+      //Student Tag
+      studentObjTags = await this.prisma.userTag.findUnique({
+        where: { userId : students[i].id, },
+      });
+
+      tempStudentObj.StudentTags = studentObjTags.tag;
+
+      //Student Bio
+      studentObjProfile = await this.prisma.userProfile.findUnique({
+        where: { userId : students[i].id, },
+      });
+
+      tempStudentObj.StudentBio = studentObjProfile.bio;
+
+      //StudentProfilePicture
+
+      studentArr.push(tempStudentObj);
     }
+
+
 
     return studentArr;
 
