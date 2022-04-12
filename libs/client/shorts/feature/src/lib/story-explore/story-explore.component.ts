@@ -20,6 +20,7 @@ export class StoryExploreComponent implements OnInit {
   builder! : FormBuilder; 
   submit = false;
   return : boolean;
+  searchText = "";
 
   cardlist = [
     { title: 'Card 1', cols: 3, rows: 1 , pic: '', tags: []}
@@ -69,7 +70,7 @@ export class StoryExploreComponent implements OnInit {
 
 
 
-  searchText = "";
+  
   search(){
     this.searchText = (<HTMLInputElement>document.getElementById("search")).value;
      alert('searching for ' + this.searchText);
