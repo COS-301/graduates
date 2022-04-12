@@ -25,6 +25,9 @@ describe('ShortsRepository', () => {
     expect(repository).toBeDefined();
   });
 
+  /**
+   * Test the findAllShorts method
+   */
   describe('findAll', () => {
     const result = [shortMock];
     it('should return an array of shorts', async () => {
@@ -42,6 +45,9 @@ describe('ShortsRepository', () => {
     });
   });
 
+  /**
+   * Test the findShortById method
+   */
   describe('findById', () => {
     it('should return a short', async () => {
       jest
@@ -56,18 +62,27 @@ describe('ShortsRepository', () => {
     });
   });
 
+  /**
+   * Test the findByUser method
+   */
   describe('findByUser', () => {
-    it('should return null', async () => {
-      expect(await repository.findByUser('1')).toEqual(null);
+    it('should return empty array', async () => {
+      expect(await repository.findByUser('1')).toEqual([]);
     });
   });
 
+  /**
+   * Test the findByTag method
+   */
   describe('findByTag', () => {
-    it('should return null', async () => {
-      expect(await repository.findByTag('1')).toEqual(null);
+    it('should return empty array', async () => {
+      expect(await repository.findByTag('1')).toEqual([]);
     });
   });
 
+  /**
+   * Test the createShort method
+   */
   describe('createShort', () => {
     it('should return a short', async () => {
       jest

@@ -33,6 +33,9 @@ describe('ShortsResolver', () => {
     expect(commandBus).toBeDefined();
   });
 
+  /**
+   * Test the findAllShorts method
+   */
   describe('findAllShorts', () => {
     const result = [shortMock];
     it('should return an array of shorts', async () => {
@@ -46,6 +49,9 @@ describe('ShortsResolver', () => {
     });
   });
 
+  /**
+   * Test the findShortById method
+   */
   describe('findShortById', () => {
     it('should throw an exception', async () => {
       jest
@@ -64,6 +70,9 @@ describe('ShortsResolver', () => {
     });
   });
 
+  /**
+   * Test the findShortsByUser method
+   */
   describe('findShortsByUser', () => {
     const result = [shortMock];
     it('should return an array of shorts', async () => {
@@ -77,6 +86,9 @@ describe('ShortsResolver', () => {
     });
   });
 
+  /**
+   * Test the findShortsByTag method
+   */
   describe('findShortsByTag', () => {
     const result = [shortMock];
     it('should return an array of shorts', async () => {
@@ -90,6 +102,9 @@ describe('ShortsResolver', () => {
     });
   });
 
+  /**
+   * Test the createShort method
+   */
   describe('createShort', () => {
     it('should return a short', async () => {
       jest
@@ -102,6 +117,9 @@ describe('ShortsResolver', () => {
     });
   });
 
+  /**
+   * Test the user method
+   */
   describe('user', () => {
     it('should return a short', async () => {
       jest

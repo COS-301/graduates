@@ -30,6 +30,9 @@ describe('ShortsService', () => {
     expect(service).toBeDefined();
   });
 
+  /**
+   * Test the findAllShorts method
+   */
   describe('findAllShorts', () => {
     const result = [shortMock];
     it('should return an array of shorts', async () => {
@@ -43,6 +46,9 @@ describe('ShortsService', () => {
     });
   });
 
+  /**
+   * Test the findShortById method
+   */
   describe('findShortById', () => {
     it('should return a short', async () => {
       jest
@@ -53,6 +59,9 @@ describe('ShortsService', () => {
     });
   });
 
+  /**
+   * Test the findShortsByUser method
+   */
   describe('findShortsByUser', () => {
     const result = [shortMock];
     it('should return a short', async () => {
@@ -64,6 +73,9 @@ describe('ShortsService', () => {
     });
   });
 
+  /**
+   * Test the findShortsByTag method
+   */
   describe('findShortsByTag', () => {
     const result = [shortMock];
     it('should return a short', async () => {
@@ -75,6 +87,9 @@ describe('ShortsService', () => {
     });
   });
 
+  /**
+   * Test the createShort method
+   */
   describe('createShort', () => {
     it('should return a short', async () => {
       jest
