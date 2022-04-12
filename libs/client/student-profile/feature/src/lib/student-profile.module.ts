@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StudentProfileComponent } from './student-profile/student-profile.component';
-import { Routes} from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 
+import { StudentProfileComponent } from './student-profile/student-profile.component';
+import { RequestForAccessModule } from '@graduates/client/request-for-access/feature';
+
+
 @NgModule({
-  imports: [CommonModule, FlexLayoutModule],
+  imports: [CommonModule, FlexLayoutModule, RequestForAccessModule],
   declarations: [
-    StudentProfileComponent,
+    StudentProfileComponent
   ],
   exports: [StudentProfileComponent]
 })
