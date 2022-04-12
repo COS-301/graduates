@@ -1,7 +1,7 @@
 import { ApiStorageServiceFeatureModule } from '@graduates/api/storage/service/feature';
 import { Mutation, Query, Int, Resolver , ID, Args } from '@nestjs/graphql';
 import { GraphQLUpload, FileUpload } from 'graphql-upload';
-import { FirebaseService } from '@graduates/api/storage/repository/data-access';
+import { FirebaseFolders, FirebaseService } from '@graduates/api/storage/repository/data-access';
 import { ApiStorage , ApiStorageInput } from '@graduates/api/storage/api/shared/data-access';
 import { createWriteStream } from 'fs';
 import * as fs from 'fs/promises';
@@ -13,8 +13,7 @@ export class ApiStorageResolver {
   storage(): Promise<ApiStorage> {
     return this.storageService.getAll();
   }
-  
-  @Mutation(returns=>ApiStorage)
+  /*@Mutation(returns=>ApiStorage)
   async setAll(@Args('CreateApiStorage')apiStorage: ApiStorageInput)
     :Promise<ApiStorageInput>{
       return await this.storageService.create(apiStorage);
@@ -26,7 +25,7 @@ export class ApiStorageResolver {
    @Args("fileExtension")fileExtension:string,
    @Args("filePath")filePath:string){
      return this.storageService.partialAdd(userID, fileCategory, fileExtension, filePath);
-  }
+  }*/
 
   @Mutation(() => Int, { name: 'File' })
   async upload(@Args("filename")filename:string,
@@ -49,7 +48,7 @@ export class ApiStorageResolver {
       });
       const buffer = Buffer.concat(chunks);
       const base64 = buffer.toString('base64');
-      this.Firebaseservice.uploadFileAsString(base64,filename)
+      this.Firebaseservice.uploadAsBase64String(base64,filename,FirebaseFolders.Files)
       return base64.length
     } catch (err) {
       return 0;
