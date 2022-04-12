@@ -217,7 +217,6 @@
       "@graduates/client/company-representative/feature": [
         "libs/client/company-representative/feature/src/index.ts"
       ],
-
       "@graduates/client/example/feature": [
         "libs/client/example/feature/src/index.ts"
       ],
@@ -247,6 +246,9 @@
       ],
       "@graduates/client/shorts/feature": [
         "libs/client/shorts/feature/src/index.ts"
+      ],
+      "@graduates/client/status-page/feature": [
+        "libs/client/status-page/feature/src/index.ts"
       ],
       "@graduates/client/student-profile/feature": [
         "libs/client/student-profile/feature/src/index.ts"
