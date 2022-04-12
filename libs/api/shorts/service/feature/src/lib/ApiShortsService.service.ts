@@ -7,8 +7,10 @@ import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import {
   GetAllShortsQuery,
   GetShortByIdQuery,
-} from './queries/impl/ApiShortsQuery.query';
-import { CreateShortCommand } from './commands/impl/ApiShortsCommand.command';
+  GetShortByTagQuery,
+  GetShortByUserQuery
+} from './queries/ApiShortsQuery.query';
+import { CreateShortCommand } from './commands/ApiShortsCommand.command';
 
 @Injectable()
 export class ShortsService {
@@ -23,6 +25,14 @@ export class ShortsService {
 
   async findShortById(id: string): Promise<Short> {
     return await this.queryBus.execute(new GetShortByIdQuery(id));
+  }
+
+  async findShortsByUser(userId: string): Promise<Short[]> {
+    return await this.queryBus.execute(new GetShortByUserQuery(userId));
+  }
+
+  async findShortsByTag(tagId: string): Promise<Short[]> {
+    return await this.queryBus.execute(new GetShortByTagQuery(tagId));
   }
 
   async createShort(short: ShortCreateInput, userId: string): Promise<Short> {

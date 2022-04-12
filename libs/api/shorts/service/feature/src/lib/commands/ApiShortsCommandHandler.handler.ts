@@ -1,5 +1,5 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { CreateShortCommand } from '../impl/ApiShortsCommand.command';
+import { CreateShortCommand } from './ApiShortsCommand.command';
 import { ShortsRepository } from '@graduates/api/shorts/repository/data-access';
 
 @CommandHandler(CreateShortCommand)

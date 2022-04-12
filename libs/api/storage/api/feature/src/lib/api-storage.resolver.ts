@@ -13,6 +13,7 @@ export class ApiStorageResolver {
   storage(): Promise<ApiStorage> {
     return this.storageService.getAll();
   }
+  
   @Mutation(returns=>ApiStorage)
   async setAll(@Args('CreateApiStorage')apiStorage: ApiStorageInput)
     :Promise<ApiStorageInput>{

@@ -3,8 +3,6 @@ import {
   Query,
   Args,
   Mutation,
-  InputType,
-  Field,
   ResolveField,
   Root,
 } from '@nestjs/graphql';
@@ -25,8 +23,8 @@ export class ShortsResolver {
   }
 
   @Query(() => [Short])
-  findAllShorts(): Promise<Short[]> {
-    return this.service.findAllShorts();
+  async findAllShorts(): Promise<Short[]> {
+    return await this.service.findAllShorts();
   }
 
   @Query(() => Short)
@@ -36,6 +34,16 @@ export class ShortsResolver {
       throw new NotFoundException('Short not found');
     }
     return res;
+  }
+
+  @Query(() => [Short])
+  async findShortsByUser(@Args('userId') userId: string): Promise<Short[]> {
+    return await this.service.findShortsByUser(userId);
+  }
+
+  @Query(() => [Short])
+  async findShortsByTag(@Args('tagId') tagId: string): Promise<Short[]> {
+    return await this.service.findShortsByTag(tagId);
   }
 
   @Mutation(() => Short)
