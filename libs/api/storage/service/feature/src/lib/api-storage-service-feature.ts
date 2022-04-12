@@ -7,7 +7,7 @@ import { FileCategory } from '@prisma/client';
 @Injectable()
 export class ApiStorageServiceFeatureModule {
   repo = new StorageRepository(new PrismaService , new FirebaseService);
-    async getFile(userID , fileCategory): Promise<String> {
+    async getFile(userID , fileCategory): Promise<string> {
       let url = null;
       const storage = new ApiStorage();
       storage.userId= userID;
@@ -26,7 +26,7 @@ export class ApiStorageServiceFeatureModule {
     }
     async create(apiStorage: ApiStorage): Promise<ApiStorageInput>{
       const storage = new ApiStorageInput();
-      let res = await this.repo.createFile(apiStorage) ;
+      const res = await this.repo.createFile(apiStorage) ;
       storage.userId= res.userId
       storage.fileExtension= res.fileExtension;
       if(res.fileCategory==FileCategory.CV){
