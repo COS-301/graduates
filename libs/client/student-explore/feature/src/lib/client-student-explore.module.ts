@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { StudentExploreRoutingModule } from './student-explore-page/student-explore-routing.module';
 
 //Material Modules
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -31,6 +32,7 @@ import { StudentExplorePageComponent } from './student-explore-page/student-expl
     CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
+    StudentExploreRoutingModule,
     FormsModule,
     LayoutModule,
     MatToolbarModule,
@@ -46,12 +48,6 @@ import { StudentExplorePageComponent } from './student-explore-page/student-expl
     MatGridListModule,
   ],
   declarations: [FilterComponent, StudentCardComponent, SearchBarComponent, MobileStudentCardComponent, StudentExplorePageComponent],
-  exports:[
-    StudentCardComponent,
-    FilterComponent,
-    SearchBarComponent,
-    MobileStudentCardComponent,
-    StudentExplorePageComponent
-  ]
+  exports:[ StudentExplorePageComponent ]
 })
 export class ClientStudentExploreModule {}
