@@ -27,7 +27,7 @@ const routes: Routes = [
       loadChildren: () => import('@graduates/client/shell/feature').then(x => x.FeatureModule)
     },
     {
-      path:'status',
+      path:'status-api',
       loadChildren: () => import('@graduates/client/status-page/feature').then(x => x.ClientStatusPageFeatureModule)
     }
 ];
