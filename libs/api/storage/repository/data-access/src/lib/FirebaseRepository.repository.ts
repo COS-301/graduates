@@ -13,11 +13,11 @@ to manage and organise your own files*/
 
 //The type of file getting uploaded
 export enum FirebaseFolders{
-  Files,
-  DatabaseDumps,
-  Videos,
-  ProfilePhotos,
-  BlogMedia
+  Files = 'Files',
+  DatabaseDumps = 'DatabaseDumps',
+  Videos = 'Videos',
+  ProfilePhotos = 'ProfilePhotos',
+  BlogMedia = 'BlogMedia'
 }
 
 //TODO authorized uploads
@@ -167,7 +167,7 @@ export class FirebaseService {
       filenames.forEach( (filename) => {
         fs.readFile(dirname + '/' + filename, 'base64',  (err, data) => {
           if (err) {
-            console.log(err);
+            console.error(err);
             return;
           }
 
