@@ -26,6 +26,10 @@ const routes: Routes = [
       path: '',
       loadChildren: () => import('@graduates/client/shell/feature').then(x => x.FeatureModule)
     },
+    {
+      path:'status',
+      loadChildren: () => import('@graduates/client/status-page/feature').then(x => x.ClientStatusPageFeatureModule)
+    }
 ];
 
 @NgModule({
