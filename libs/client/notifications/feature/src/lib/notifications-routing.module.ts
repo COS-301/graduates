@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FeatureComponent } from './feature.component';
+import { NotifDisplayComponent } from './notif-display/notif-display.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: FeatureComponent
+    component: NotifDisplayComponent
   }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class FeatureRoutingModule { }
+export class NotificationsRoutingModule { }

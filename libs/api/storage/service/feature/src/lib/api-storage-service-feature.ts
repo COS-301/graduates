@@ -2,11 +2,12 @@ import { ApiStorage } from '@graduates/api/storage/api/shared/data-access';
 import { Injectable } from '@nestjs/common';
 import { FirebaseService ,StorageRepository } from '@graduates/api/storage/repository/data-access'
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
+import { FileCategory } from '@prisma/client';
 @Injectable()
 export class ApiStorageServiceFeatureModule {
   service = new FirebaseService();
-  repo = new StorageRepository(new PrismaService);
-  async partialAdd(userID: string, fileCategory: string, fileExtension: string, filePath: string) {
+  repo = new StorageRepository(new PrismaService,new FirebaseService);
+  async partialAdd(userID: string, fileCategory: FileCategory, fileExtension: string, filePath: string) {
     const storage = new ApiStorage();
     storage.userId = userID;
     storage.fileExtension = fileExtension;
