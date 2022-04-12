@@ -1,48 +1,17 @@
-<div id="rfa-container" class="container" >
+<div *ngIf="this.isFeatureVisible" id="rfa-container" class="container" >
   <mat-divider></mat-divider>
-  <div fxLayout="row" class="row">
-    <div fxFlex="none" fxLayoutAlign="start center" class="item">
-      <h3>Academic Record</h3>
+  <ng-container *ngFor='let item of this.items ;let i = index'>
+    <div fxLayout="row" class="row">
+      <div fxFlex="none" fxLayoutAlign="start center" class="item">
+        <h3>{{ item }}</h3>
+      </div>
+      <div fxFlex fxLayoutAlign="end center">
+        <button (click)="onClick(i, item)" fxLayoutAlign="center center" class="mr-5">{{this.buttons[i]}}
+          <mat-icon *ngIf="this.buttons[i] === 'Download'">get_app</mat-icon>
+          <mat-icon *ngIf="this.buttons[i] === 'Pending'" class="pendingIcon">pending</mat-icon>
+        </button>
+      </div>
     </div>
-    <div fxFlex fxLayoutAlign="end center">
-      <button>{{this.buttons[0]}}</button>
-    </div>
-  </div>
-  <mat-divider></mat-divider>
-  <div fxLayout="row" class="row">
-    <div fxFlex="none" fxLayoutAlign="start center" class="item">
-      <h3>Transcript</h3>
-    </div>
-    <div fxFlex fxLayoutAlign="end center">
-      <button>{{this.buttons[1]}}</button>
-    </div>
-  </div>
-  <mat-divider></mat-divider>
-  <div fxLayout="row" class="row">
-    <div fxFlex="none" fxLayoutAlign="start center" class="item">
-      <h3>Curriculum Vitae</h3>
-    </div>
-    <div fxFlex fxLayoutAlign="end center">
-      <button>{{this.buttons[2]}}</button>
-    </div>
-  </div>
-  <mat-divider></mat-divider>
-  <div fxLayout="row" class="row">
-    <div fxFlex="none" fxLayoutAlign="start center" class="item">
-      <h3>Certificates</h3>
-    </div>
-    <div fxFlex fxLayoutAlign="end center">
-      <button>{{this.buttons[3]}}</button>
-    </div>
-  </div>
-  <mat-divider></mat-divider>
-  <div fxLayout="row" class="row">
-    <div fxFlex="none" fxLayoutAlign="start center" class="item">
-      <h3>Capstone Project</h3>
-    </div>
-    <div fxFlex fxLayoutAlign="end center">
-      <button>{{this.buttons[4]}}</button>
-    </div>
-  </div>
-  <mat-divider></mat-divider>
+    <mat-divider></mat-divider>
+  </ng-container>
 </div>

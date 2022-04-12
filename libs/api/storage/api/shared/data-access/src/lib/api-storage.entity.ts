@@ -5,14 +5,14 @@ import { FileCategory } from '@prisma/client';
 export class ApiStorage {
   @Field(() => ID)
   userId!: string;
-  @Field()
+  @Field(()=> FileCategory)
   fileCategory!: FileCategory;
   @Field()
   fileExtension!: string;
-  @Field()
+  @Field({ nullable: true})
   filePath!: string;
-  @Field()
+  @Field({ nullable: true})
   fileAsString!: string;
-  @Field()
+  @Field({ nullable: true})
   fileNameOrHash!: string;
 }
