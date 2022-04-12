@@ -13,7 +13,7 @@ export class ApiStorageResolver {
   async download(
     @Args("userId")userID:string,
     @Args("fileCategory")fileCategory:string
-  ): Promise<String| boolean> {
+  ): Promise<string| boolean> {
     const res = await this.storageService.getFile(userID , fileCategory);
     if(res == null){
       return false
