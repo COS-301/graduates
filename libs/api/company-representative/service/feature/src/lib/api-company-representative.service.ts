@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { QueryBus } from '@nestjs/cqrs';
 import { User ,Prisma} from '@prisma/client';
 import { GetAllRepresentatives } from './queries/impl/getAllRepresentatives.query';
+import { GetOneRepresentativeQuery } from './queries/impl/getOneRepresentative.query';
 
 @Injectable()
 export class ApiCompanyRepresentativeService {
@@ -40,6 +41,10 @@ export class ApiCompanyRepresentativeService {
 
   async getAll():Promise<User|null>{
     return this.queryBus.execute(new GetAllRepresentatives());
+  }
+
+  async getOne(id:string):Promise<User|null>{
+    return this.queryBus.execute(new GetOneRepresentativeQuery(id));
   }
 
   
