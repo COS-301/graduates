@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'graduates-status-card',
@@ -6,5 +6,5 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./status-card.component.scss']
 })
 export class StatusCardComponent {
-  @Input() image: string = "";
+  @Input() image = "";
 }
