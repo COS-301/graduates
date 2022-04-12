@@ -6,7 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { NgxsModule } from '@ngxs/store';
-import { AccessState } from './request-for-access.state';
+import { AccessState } from './stores/request-for-access.state';
 
 @NgModule({
   imports: [
