@@ -8,7 +8,6 @@
   integrity sha512-YVAcA4DKLOj296CF5SrQ8cYiMRiUGc2sqFpLxsDGWE34suHqhGP/5yMsDHKsrh8hs8I5TiRVXNwKPWQpX3iGjw==
   dependencies:
     "@jridgewell/resolve-uri" "^3.0.3"
-    sourcemap-codec "1.4.8"
 
 "@angular-devkit/architect@0.1302.4":
   version "0.1302.4"
@@ -96,7 +95,6 @@
   integrity sha512-GNHXSSnIbL4Oi3fBHTtRyQ308YMSDdKs/bVrArIq8QDbiCuB3RQfooEfvkoN2M++MeSW0vNqtQ7pZyxqRey6fQ==
   dependencies:
     "@angular-devkit/architect" "0.1302.4"
-    rxjs "6.6.7"
 
 "@angular-devkit/core@13.2.2":
   version "13.2.2"
