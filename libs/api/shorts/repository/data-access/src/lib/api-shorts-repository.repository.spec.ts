@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ShortsRepository } from './ApiShortsRepository.repository';
+import { ShortsRepository } from './api-shorts-repository.repository';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 import { Short } from '@graduates/api/shorts/api/shared/entities/data-access';
 
@@ -54,6 +54,8 @@ describe('ShortsRepository', () => {
     });
 
     it('should return null', async () => {
+      jest.spyOn(repository, 'findById').mockResolvedValue(null);
+
       expect(await repository.findById('1')).toEqual(null);
     });
   });

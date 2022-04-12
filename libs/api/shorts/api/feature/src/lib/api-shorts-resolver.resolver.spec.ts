@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { Short } from '@graduates/api/shorts/api/shared/entities/data-access';
-import { ShortsResolver } from './ApiShortsResolver.resolver';
+import { ShortsResolver } from './api-shorts-resolver.resolver';
 import { ShortsService } from '@graduates/api/shorts/service/feature';
 import { QueryBus, CommandBus } from '@nestjs/cqrs';
 import { NotFoundException } from '@nestjs/common';

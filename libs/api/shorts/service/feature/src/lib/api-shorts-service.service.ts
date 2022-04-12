@@ -9,8 +9,8 @@ import {
   GetShortByIdQuery,
   GetShortByTagQuery,
   GetShortByUserQuery,
-} from './queries/ApiShortsQuery.query';
-import { CreateShortCommand } from './commands/ApiShortsCommand.command';
+} from './queries/api-shorts-query.query';
+import { CreateShortCommand } from './commands/api-shorts-command.command';
 
 @Injectable()
 export class ShortsService {

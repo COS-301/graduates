@@ -1,5 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Short } from './ApiShortsEntity.entity';
+import { Short } from './api-shorts-entity.entity';
 
 @ObjectType()
 export class ShortTag {

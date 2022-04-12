@@ -1,6 +1,6 @@
 import { Field, ObjectType, InputType } from '@nestjs/graphql';
 import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
-import { Short } from './ApiShortsEntity.entity';
+import { Short } from './api-shorts-entity.entity';
 
 @ObjectType()
 export class ShortReport {

@@ -6,7 +6,7 @@ import {
   GetShortByIdQuery,
   GetShortByTagQuery,
   GetShortByUserQuery,
-} from './ApiShortsQuery.query';
+} from './api-shorts-query.query';
 
 /**
  * Class to handle the fetchAllShorts query for the ShortsService
