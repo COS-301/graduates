@@ -4,11 +4,7 @@
 
 "@ampproject/remapping@1.1.1":
   version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@ampproject/remapping/-/remapping-1.1.1.tgz"
-  integrity sha512-YVAcA4DKLOj296CF5SrQ8cYiMRiUGc2sqFpLxsDGWE34suHqhGP/5yMsDHKsrh8hs8I5TiRVXNwKPWQpX3iGjw==
-  dependencies:
     "@jridgewell/resolve-uri" "^3.0.3"
-    sourcemap-codec "1.4.8"
 
 "@ampproject/remapping@^2.1.0":
   version "2.1.2"
@@ -99,11 +95,7 @@
 
 "@angular-devkit/build-webpack@0.1302.4":
   version "0.1302.4"
-  resolved "https://registry.yarnpkg.com/@angular-devkit/build-webpack/-/build-webpack-0.1302.4.tgz"
-  integrity sha512-GNHXSSnIbL4Oi3fBHTtRyQ308YMSDdKs/bVrArIq8QDbiCuB3RQfooEfvkoN2M++MeSW0vNqtQ7pZyxqRey6fQ==
-  dependencies:
     "@angular-devkit/architect" "0.1302.4"
-    rxjs "6.6.7"
 
 "@angular-devkit/core@13.2.2":
   version "13.2.2"

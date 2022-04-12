@@ -25,3 +25,30 @@ mat-form-field input
     padding-left: 2rem;
 }
 
+button{
+    position: absolute;
+    text-align: center;
+    vertical-align: center;
+    left: 70.89%;
+    right: 1.9%;
+    top: 78.75%;
+    bottom: 3.75%;
+    background-color: #174372;
+    color: white;
+    border-radius: 4px;
+    border-style: none;
+
+    position: absolute;
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 5px;
+    line-height: 7px;
+
+    width: 43;
+    height: 14;
+}
+
+button:hover{
+    cursor:pointer;
+}
