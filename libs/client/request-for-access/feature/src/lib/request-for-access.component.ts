@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { SetAccessStatus } from './request-for-access.actions';
+import { SetAccessStatus } from './actions/request-for-access.actions';
 import { RequestForAccessService } from './services/request-for-access.service';
 
 @Component({
@@ -31,11 +31,9 @@ export class RequestForAccessComponent implements OnInit {
           const jsonString = JSON.stringify(_res.response);
           const response = JSON.parse(jsonString);
 
-          let i=0;
-          while(response.data.status[i] != undefined) {
+          for(let i=0; i<5; i++) {
             this.items.push(response.data.status[i].item);
             actionsArr.push(new SetAccessStatus(response.data.status[i].item, response.data.status[i].accessStatus, i));
-            i++;
           }
 
           this.store.dispatch(actionsArr).subscribe(() => {
