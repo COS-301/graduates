@@ -1,43 +1,46 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ShortsService } from './ApiShortsService.service';
-import { QueryBus, CommandBus } from '@nestjs/cqrs';
 import { Short } from '@graduates/api/shorts/api/shared/entities/data-access';
+import { ShortsResolver } from './ApiShortsResolver.resolver';
+import { ShortsService } from '@graduates/api/shorts/service/feature';
+import { QueryBus, CommandBus } from '@nestjs/cqrs';
 
 jest.mock('@graduates/api/shorts/api/shared/entities/data-access');
 
 const shortMock: jest.Mocked<Short> = new Short() as Short;
-
-// Run `yarn test api-shorts-service-feature` to execute the unit tests
-describe('ShortsService', () => {
+// Run `yarn test api-shorts-api-feature`
+describe('ShortsResolver', () => {
+  let resolver: ShortsResolver;
   let service: ShortsService;
   let queryBus: QueryBus;
   let commandBus: CommandBus;
 
-  beforeAll(async () => {
+  beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ShortsService, QueryBus, CommandBus],
+      providers: [ShortsResolver, ShortsService, QueryBus, CommandBus],
     }).compile();
 
     await module.init();
 
-    commandBus = module.get<CommandBus>(CommandBus);
-    queryBus = module.get<QueryBus>(QueryBus);
+    resolver = module.get<ShortsResolver>(ShortsResolver);
     service = module.get<ShortsService>(ShortsService);
+    queryBus = module.get<QueryBus>(QueryBus);
+    commandBus = module.get<CommandBus>(CommandBus);
   });
   it('should be defined', () => {
-    expect(commandBus).toBeDefined();
-    expect(queryBus).toBeDefined();
+    expect(resolver).toBeDefined();
     expect(service).toBeDefined();
+    expect(queryBus).toBeDefined();
+    expect(commandBus).toBeDefined();
   });
 
   describe('findAllShorts', () => {
     const result = [shortMock];
     it('should return an array of shorts', async () => {
       jest
-        .spyOn(service, 'findAllShorts')
+        .spyOn(resolver, 'findAllShorts')
         .mockImplementation((): Promise<Short[]> => Promise.resolve(result));
 
-      expect(await service.findAllShorts()).toEqual(
+      expect(await resolver.findAllShorts()).toEqual(
         expect.arrayContaining(result)
       );
     });
@@ -46,42 +49,46 @@ describe('ShortsService', () => {
   describe('findShortById', () => {
     it('should return a short', async () => {
       jest
-        .spyOn(service, 'findShortById')
+        .spyOn(resolver, 'findShortById')
         .mockImplementation((): Promise<Short> => Promise.resolve(shortMock));
 
-      expect(await service.findShortById('1')).toMatchObject(shortMock);
+      expect(await resolver.findShortById('1')).toMatchObject(shortMock);
     });
   });
 
   describe('findShortsByUser', () => {
     const result = [shortMock];
-    it('should return a short', async () => {
+    it('should return an array of shorts', async () => {
       jest
-        .spyOn(service, 'findShortsByUser')
+        .spyOn(resolver, 'findShortsByUser')
         .mockImplementation((): Promise<Short[]> => Promise.resolve(result));
 
-      expect(await service.findShortsByUser('1')).toMatchObject(result);
+      expect(await resolver.findShortsByUser('1')).toEqual(
+        expect.arrayContaining(result)
+      );
     });
   });
 
   describe('findShortsByTag', () => {
     const result = [shortMock];
-    it('should return a short', async () => {
+    it('should return an array of shorts', async () => {
       jest
-        .spyOn(service, 'findShortsByTag')
+        .spyOn(resolver, 'findShortsByTag')
         .mockImplementation((): Promise<Short[]> => Promise.resolve(result));
 
-      expect(await service.findShortsByTag('1')).toMatchObject(result);
+      expect(await resolver.findShortsByTag('1')).toEqual(
+        expect.arrayContaining(result)
+      );
     });
   });
 
   describe('createShort', () => {
     it('should return a short', async () => {
       jest
-        .spyOn(service, 'createShort')
+        .spyOn(resolver, 'createShort')
         .mockImplementation((): Promise<Short> => Promise.resolve(shortMock));
 
-      expect(await service.createShort(shortMock, '1')).toMatchObject(
+      expect(await resolver.createShort(shortMock, '1')).toMatchObject(
         shortMock
       );
     });
