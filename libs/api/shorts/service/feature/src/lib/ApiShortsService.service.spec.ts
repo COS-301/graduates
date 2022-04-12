@@ -96,7 +96,7 @@ describe('ShortsService', () => {
         .spyOn(service, 'createShort')
         .mockImplementation((): Promise<Short> => Promise.resolve(shortMock));
 
-      expect(await service.createShort(shortMock, '1')).toMatchObject(
+      expect(await service.createShort(shortMock, [], '1')).toMatchObject(
         shortMock
       );
     });
