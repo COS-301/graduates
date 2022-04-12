@@ -1,1 +1,1 @@
-export * from './lib/ApiShortsRepository.repository';
+export * from './lib/api-shorts-repository.repository';
