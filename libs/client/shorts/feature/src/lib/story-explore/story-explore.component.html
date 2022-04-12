@@ -1,6 +1,7 @@
+<link  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"  rel="stylesheet">
+
 <div class="container-fluid">
 
-  <link  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"  rel="stylesheet">
 
   <div class="grid-container">
     <h1 class="banner-text">Shorts Explore</h1><br>
@@ -51,15 +52,42 @@
     <div class="row d-flex flex-column">
 
       <!-- banner for upload box -->
-      <div class="col-12" id="uploadbanner">Upload Your Content</div>
+      <div class="col-12 text-center" id="uploadbanner">Upload Your Content</div>
       <!-- info message -->
-      <div class="col-12" id="infomessage">Upload either an image or video</div>
-      <!-- file input -->
-      <div class="col-12"></div>
-      <!-- add tags box -->
-      <div class="col-12"></div>
-      <!-- buttons, cancel and upload -->
-      <div class="col-12"></div>
+      <div class="col-12 text-center" id="infomessage">Upload either an image or video</div>
+
+        <form [formGroup]="uploadfrm" (ngSubmit)="uploadStory()">
+
+          <!-- file input -->
+          <div class="col-12" class="uploadwrapper">
+
+            <div class="dropzone">
+              
+            </div>
+
+          </div>
+          <!-- add tags box -->
+          <div class="col-12">
+
+            <div class="form-group">
+              <input placeholder="Addtags here... #COS, #CSLife" type="text" formControlName="tags" class="m-2 form-control" [ngClass]="{'is-invalid': submit && uploadfrm.controls['tags'].errors}"/>
+              <div *ngIf="submit && uploadfrm.controls['tags'].errors" class="text-danger">
+                Please submit tags to add.
+              </div>
+            </div>
+
+          </div>
+          <!-- buttons, cancel and upload -->
+          <div class="col-12">
+
+            <div class="row justify-content-between">
+              <div class="ml-4 mb-2"><button class="btn" (click)="cancel()">Cancel</button></div>
+              <div class="mr-4 mb-2"><button class="btn justify-content-end">Submit</button></div>
+            </div>
+
+          </div>
+
+        </form>
 
     </div>
 
