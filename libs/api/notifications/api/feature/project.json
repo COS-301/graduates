@@ -1,6 +1,7 @@
 {
   "root": "libs/api/notifications/api/feature",
   "sourceRoot": "libs/api/notifications/api/feature/src",
+  "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
