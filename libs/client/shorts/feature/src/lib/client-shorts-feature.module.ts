@@ -38,12 +38,14 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, } from '@angular/forms';
     ShortsRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    FormBuilder
   ],
   declarations: [
     ReportMenuComponent,
     StoryExploreComponent,
-    StoryUploadComponent
+    StoryUploadComponent,
+  ],
+  providers: [
+    FormBuilder
   ],
   exports: [StoryExploreComponent]
 })
