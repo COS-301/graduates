@@ -13,8 +13,8 @@ export class CreateShortHandler implements ICommandHandler<CreateShortCommand> {
   constructor(private readonly repository: ShortsRepository) {}
 
   async execute(command: CreateShortCommand): Promise<Short | null> {
-    const { short, userId } = command;
+    const { short, tags, userId } = command;
 
-    return this.repository.createShort(short, userId);
+    return this.repository.createShort(short, tags, userId);
   }
 }

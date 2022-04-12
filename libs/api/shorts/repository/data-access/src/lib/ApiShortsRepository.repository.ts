@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 import { ShortCreateInput } from '@graduates/api/shorts/api/shared/entities/data-access';
-import { Short, ShortTag } from '@prisma/client';
+import { Short } from '@prisma/client';
 
 @Injectable()
 export class ShortsRepository {
@@ -58,11 +58,16 @@ export class ShortsRepository {
   /**
    * Create a new short
    * @param {Short} short The short to create
+   * @param {string[]} tags Array of strings which will be the tags for the short
    * @param {string} userId The id of the user to create the short for
    * @return {Promise<Short | null>}
    */
-  async createShort(short: ShortCreateInput, userId: string): Promise<Short> {
-    return this.prisma.short.create({
+  async createShort(
+    short: ShortCreateInput,
+    tags: string[],
+    userId: string
+  ): Promise<Short> {
+    const newShort = await this.prisma.short.create({
       data: {
         media: short.media,
         data: short.data,
@@ -73,5 +78,25 @@ export class ShortsRepository {
         datePosted: new Date(),
       },
     });
+
+    const createdTags = tags.map((tag) => ({
+      shortId: newShort.id,
+      tag: tag,
+    }));
+
+    const shortCreate = await this.prisma.short.update({
+      where: {
+        id: newShort.id,
+      },
+      data: {
+        shortTag: {
+          createMany: {
+            data: createdTags,
+          },
+        },
+      },
+    });
+
+    return shortCreate;
   }
 }
