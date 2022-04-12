@@ -14,7 +14,7 @@ export class ApiStorageResolver {
     @Args("userId")userID:string,
     @Args("fileCategory")fileCategory:string
   ): Promise<String| boolean> {
-    let res = await this.storageService.getFile(userID , fileCategory);
+    const res = await this.storageService.getFile(userID , fileCategory);
     if(res == null){
       return false
     }
