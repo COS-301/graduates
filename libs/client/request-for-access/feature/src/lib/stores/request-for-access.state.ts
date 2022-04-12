@@ -1,4 +1,4 @@
-import { SetAccessStatus } from './request-for-access.actions';
+import { SetAccessStatus } from '../actions/request-for-access.actions';
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext } from '@ngxs/store';
 

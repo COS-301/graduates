@@ -1,1 +1,27 @@
 @import 'libs/client/shared/assets/ui/src/lib/global';
+
+button {
+    
+}
+
+
+p{
+    font-size: small;
+}
+
+h1 {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#search{
+    border: none;
+    padding: 10px;
+    box-shadow: 3px 4px 6px #888888;
+    width: 70vw;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
