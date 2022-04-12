@@ -40,6 +40,7 @@ import { StudentExplorePageComponent } from './student-explore-page/student-expl
     MatListModule,
     MatCheckboxModule,
     MatMenuModule,
+    MatInputModule,
     MatCardModule,
     MatFormFieldModule,
     MatGridListModule,
@@ -50,6 +51,7 @@ import { StudentExplorePageComponent } from './student-explore-page/student-expl
     FilterComponent,
     SearchBarComponent,
     MobileStudentCardComponent,
+    StudentExplorePageComponent
   ]
 })
 export class ClientStudentExploreModule {}
