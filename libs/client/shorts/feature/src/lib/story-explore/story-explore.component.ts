@@ -40,6 +40,12 @@ export class StoryExploreComponent {
     })
   );
 
+  searchText: string = "";
+  search(){
+    this.searchText = (<HTMLInputElement>document.getElementById("search")).value;
+     alert('searching for ' + this.searchText);
+
+  }
   constructor(private breakpointObserver: BreakpointObserver) {
     this.upload = false;
   }

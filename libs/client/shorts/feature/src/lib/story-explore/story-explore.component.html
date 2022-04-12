@@ -6,7 +6,7 @@
     <h1>Student Shorts</h1>
 
     <div >
-      <input id = "search" type="text" fxFlex="70%" fxFlexOffset="-10%"
+      <input id = "search" fxFlex="70%" fxFlexOffset="-10%"
       type="text"
       (change)="search()"
       placeholder="Enter tag or username" />
@@ -46,7 +46,7 @@
 
   </div>
 
-  <div class="stick-top" id="upload">
+  <div class="stick-top" id="upload" *ngIf="upload">
 
     <div class="row d-flex flex-column">
 
