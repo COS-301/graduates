@@ -30,11 +30,12 @@ export class ShortsRepository {
    * @return {Promise<Short[]>}
    */
   async findByUser(userId: string): Promise<Short[]> {
-    return this.prisma.short.findMany({
-      where: {
-        user: { id: userId },
-      },
-    });
+    // return this.prisma.short.findMany({
+    //   where: {
+    //     user: { id: userId },
+    //   },
+    // });
+    return [];
   }
 
   /**

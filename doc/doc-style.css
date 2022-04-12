@@ -7,7 +7,7 @@ Original highlight.js style (c) Ivan Sagalaev <maniac@softwaremaniacs.org>
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  background: #f0f0f0;
+  background: #F0F0F0;
 }
 /* Base color: saturation 0; */
 .hljs,
@@ -48,11 +48,11 @@ Original highlight.js style (c) Ivan Sagalaev <maniac@softwaremaniacs.org>
 .hljs-link,
 .hljs-selector-attr,
 .hljs-selector-pseudo {
-  color: #bc6060;
+  color: #BC6060;
 }
 /* Language color: hue: 90; */
 .hljs-literal {
-  color: #78a960;
+  color: #78A960;
 }
 .hljs-built_in,
 .hljs-bullet,
@@ -159,13 +159,13 @@ a:visited {
 }
 #tree .nodename {
   text-indent: 12px;
-  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAg0lEQVQYlWNIS0tbAcSK////Z8CHGTIzM7+mp6d/ASouwqswKyvrO1DRfyg+CcRaxCgE4Z9A3AjEbIQUgjHQOQvwKgS6+ffChQt3AiUDcCqsra29d/v27R6ghCVWN2ZnZ/9YuXLlRqBAPBALYvVMR0fHmQcPHrQBOUZ4gwfqFj5CAQ4Al6wLIYDwo9QAAAAASUVORK5CYII=');
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAg0lEQVQYlWNIS0tbAcSK////Z8CHGTIzM7+mp6d/ASouwqswKyvrO1DRfyg+CcRaxCgE4Z9A3AjEbIQUgjHQOQvwKgS6+ffChQt3AiUDcCqsra29d/v27R6ghCVWN2ZnZ/9YuXLlRqBAPBALYvVMR0fHmQcPHrQBOUZ4gwfqFj5CAQ4Al6wLIYDwo9QAAAAASUVORK5CYII=");
   background-repeat: no-repeat;
   background-position: left center;
   cursor: pointer;
 }
 #tree .open > .nodename {
-  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAlElEQVQYlWNIS0tbCsT/8eCN////Z2B49OhRfHZ29jdsioDiP27evJkNVggkONeuXbscm8Jly5atA8rzwRSCsG5DQ8MtZEU1NTUPgOLGUHm4QgaQFVlZWT9BijIzM39fuHChDCaHohBkBdCq9SCF8+bN2wHkC+FSCMLGkyZNOvb9+3dbNHEMhSDsDsRMxCjEiolWCADeUBHgU/IGQQAAAABJRU5ErkJggg==');
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAlElEQVQYlWNIS0tbCsT/8eCN////Z2B49OhRfHZ29jdsioDiP27evJkNVggkONeuXbscm8Jly5atA8rzwRSCsG5DQ8MtZEU1NTUPgOLGUHm4QgaQFVlZWT9BijIzM39fuHChDCaHohBkBdCq9SCF8+bN2wHkC+FSCMLGkyZNOvb9+3dbNHEMhSDsDsRMxCjEiolWCADeUBHgU/IGQQAAAABJRU5ErkJggg==");
   background-position: left 7px;
 }
 #tree .dir,
@@ -294,7 +294,7 @@ td.docs {
   padding: 5px;
   padding-left: 10px;
   border: 1px solid #d6d6d6;
-  background: #f0f0f0;
+  background: #F0F0F0;
   font-size: 12px;
   overflow: auto;
 }
@@ -317,7 +317,7 @@ td.docs {
 }
 .dox .details {
   padding: 10px;
-  background: #f0f0f0;
+  background: #F0F0F0;
   border: 1px solid #d6d6d6;
   margin-bottom: 10px;
 }
@@ -366,7 +366,7 @@ td.code {
   width: 100%;
   vertical-align: top;
   border-left: 1px solid #d6d6d6;
-  background: #f0f0f0;
+  background: #F0F0F0;
 }
 .background {
   border-left: 1px solid #d6d6d6;
@@ -376,18 +376,18 @@ td.code {
   right: 0;
   bottom: 0;
   left: 525px;
-  background: #f0f0f0;
+  background: #F0F0F0;
 }
 pre,
 tt,
 code {
   font-size: 12px;
   line-height: 18px;
-  font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+  font-family: Menlo, Monaco, Consolas, "Lucida Console", monospace;
   margin: 0;
   padding: 0;
   white-space: pre-wrap;
-  background: #f0f0f0;
+  background: #F0F0F0;
 }
 .line-num {
   display: inline-block;

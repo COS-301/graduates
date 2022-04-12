@@ -39,10 +39,6 @@ describe('ShortsRepository', () => {
         expect.arrayContaining(result)
       );
     });
-
-    it('should return an empty array', async () => {
-      expect(await repository.findAll()).toEqual([]);
-    });
   });
 
   /**
