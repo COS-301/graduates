@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 
@@ -12,6 +12,9 @@ import { MatCardModule } from '@angular/material/card';
   providers: [MatCardModule, MatButtonModule],
 })
 export class StoryExploreComponent {
+
+  @Input() upload : boolean;
+
   /** Based on the screen size, switch from standard to one column per row */
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
@@ -37,5 +40,7 @@ export class StoryExploreComponent {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver) {
+    this.upload = false;
+  }
 }
