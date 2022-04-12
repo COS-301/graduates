@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ApiCompanyRepresentativeService } from './api-company-representative.service';
-import {CqrsModule} from '@nestjs/cqrs'
+import {CqrsModule, QueryBus} from '@nestjs/cqrs'
 
 
 import { GetAllRepresentativesHandler } from './queries/handlers/getAllRepresentativesHandler.handler';
@@ -11,7 +11,7 @@ import { DataAccess } from '@graduates/api/company-representative/repository';
 export const CommandHandlers=[GetAllRepresentativesHandler,GetOneRepresentativeHanlder]
 
 @Module({
-  imports:[CqrsModule],
+  imports:[CqrsModule,QueryBus],
   controllers: [],
   providers: [ApiCompanyRepresentativeService,DataAccess,...CommandHandlers],
   exports: [ApiCompanyRepresentativeService],
