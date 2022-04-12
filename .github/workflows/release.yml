@@ -1,0 +1,14 @@
+---
+name: CI Release Tests
+
+on: 
+  pull_request:
+    branches: [ release/1.x, main ]
+  push:
+    branches: [ release/1.x, main ]
+
+jobs:
+  test-all:
+    uses: ./.github/workflows/nxtest.yml
+    with:
+      test: 'all'
