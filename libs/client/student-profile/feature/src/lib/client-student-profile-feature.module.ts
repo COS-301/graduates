@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 //component imports
 import { ProfileBodyComponent } from './profile-body/profile-body.component';
 import { RequestForAccessModule } from '@graduates/client/request-for-access/feature';
+import { UserInfoComponent } from './user-info/user-info.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { RequestForAccessModule } from '@graduates/client/request-for-access/fea
     ]),
   ],
   declarations: [
-    ProfileBodyComponent
+    ProfileBodyComponent,
+    UserInfoComponent
   ],
    exports: [ProfileBodyComponent]
 })
