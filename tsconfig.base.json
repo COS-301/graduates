@@ -181,6 +181,9 @@
       "@graduates/api/student-profiles/api/shared/data-access": [
         "libs/api/student-profiles/api/shared/data-access/src/index.ts"
       ],
+      "@graduates/api/student-profiles/repository/data-access": [
+        "libs/api/student-profiles/repository/data-access/src/index.ts"
+      ],
       "@graduates/api/student-profiles/service/feature": [
         "libs/api/student-profiles/service/feature/src/index.ts"
       ],
@@ -205,7 +208,6 @@
       "@graduates/client/company-representative/feature": [
         "libs/client/company-representative/feature/src/index.ts"
       ],
-
       "@graduates/client/example/feature": [
         "libs/client/example/feature/src/index.ts"
       ],
