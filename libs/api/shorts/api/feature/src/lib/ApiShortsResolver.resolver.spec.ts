@@ -111,7 +111,7 @@ describe('ShortsResolver', () => {
         .spyOn(resolver, 'createShort')
         .mockImplementation((): Promise<Short> => Promise.resolve(shortMock));
 
-      expect(await resolver.createShort(shortMock, '1')).toMatchObject(
+      expect(await resolver.createShort(shortMock, [], '1')).toMatchObject(
         shortMock
       );
     });

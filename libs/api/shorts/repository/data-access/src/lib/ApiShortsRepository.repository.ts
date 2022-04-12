@@ -79,11 +79,6 @@ export class ShortsRepository {
       },
     });
 
-    const createdTags = tags.map((tag) => ({
-      shortId: newShort.id,
-      tag: tag,
-    }));
-
     const shortCreate = await this.prisma.short.update({
       where: {
         id: newShort.id,
@@ -91,10 +86,13 @@ export class ShortsRepository {
       data: {
         shortTag: {
           createMany: {
-            data: createdTags,
+            data: tags.map((tag) => ({
+              tag: tag,
+            })),
           },
         },
       },
+      include: { shortTag: true },
     });
 
     return shortCreate;

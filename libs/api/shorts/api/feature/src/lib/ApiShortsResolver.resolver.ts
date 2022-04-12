@@ -74,9 +74,10 @@ export class ShortsResolver {
   @Mutation(() => Short)
   async createShort(
     @Args('short') short: ShortCreateInput,
+    @Args({ name: 'tags', type: () => [String] }) tags: string[],
     @Args('userId') userId: string
   ): Promise<Short | null> {
-    const resp = await this.service.createShort(short, userId);
+    const resp = await this.service.createShort(short, tags, userId);
     return resp;
   }
 }
