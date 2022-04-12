@@ -15,38 +15,66 @@ export class StoryExploreComponent {
 
   @Input() upload : boolean;
 
+  cardlist = [
+    { title: 'Card 1', cols: 3, rows: 1 , pic: '', tags: []}
+  ];
+  
   /** Based on the screen size, switch from standard to one column per row */
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       if (matches) {
         return [
           { title: 'Card 1', cols: 3, rows: 1 , pic: '', tags: []},
-          { title: 'Card 2', cols: 3, rows: 1 , pic: '', tags: []},
-          { title: 'Card 3', cols: 3, rows: 1 , pic: '', tags: []},
-          { title: 'Card 4', cols: 3, rows: 1 , pic: '', tags: []},
-          { title: 'Card 5', cols: 3, rows: 1 , pic: '', tags: []},
-          { title: 'Card 6', cols: 3, rows: 1 , pic: '', tags: []},
         ];
       }
 
-      return [
-        { title: 'Card 1', cols: 1, rows: 1 , pic: '', tags: ["#COS301", "#TestLife", "UI"]},
-        { title: 'Card 2', cols: 1, rows: 1 , pic: '', tags: []},
-        { title: 'Card 3', cols: 1, rows: 1 , pic: '', tags: []},
-        { title: 'Card 4', cols: 1, rows: 1 , pic: '', tags: []},
-        { title: 'Card 5', cols: 1, rows: 1 , pic: '', tags: []},
-        { title: 'Card 6', cols: 1, rows: 1 , pic: '', tags: []},
-      ];
+      return this.cardlist;
     })
   );
+
+
+  constructor(private breakpointObserver: BreakpointObserver) {
+    this.upload = false;
+  }
+
+
 
   searchText: string = "";
   search(){
     this.searchText = (<HTMLInputElement>document.getElementById("search")).value;
      alert('searching for ' + this.searchText);
+     this.loadCards();
 
   }
-  constructor(private breakpointObserver: BreakpointObserver) {
-    this.upload = false;
+
+
+
+
+  loadCards(){
+
+    this.cardlist = [
+      { title: 'Card 1', cols: 1, rows: 1 , pic: '', tags: []}
+    ];
+
+
+    for (let index = 0; index < 100; index++) {
+      this.cardlist.push({ title: 'Card 1', cols: 1, rows: 1 , pic: '', tags: []});
+      
+    }
+    this.cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
+      map(({ matches }) => {
+      if (matches) {
+        this.cardlist.forEach(element => {      // Set to one card per row
+          element.cols = 3;
+        });
+      }
+      else {        
+        this.cardlist.forEach(element => {      // Set to three cards per row
+          element.cols = 1;
+        });
+      }
+      return this.cardlist;
+      })
+    );
   }
 }
