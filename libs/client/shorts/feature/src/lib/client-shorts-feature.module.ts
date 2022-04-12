@@ -18,7 +18,7 @@ import { StoryExploreComponent } from './story-explore/story-explore.component';
 import { StoryUploadComponent } from './story-upload/story-upload.component';
 import { ShortsRoutingModule } from './shorts-routing.module';
 
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, } from '@angular/forms';
 
 @NgModule({
 
@@ -37,7 +37,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatGridListModule,
     ShortsRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormBuilder
   ],
   declarations: [
     ReportMenuComponent,

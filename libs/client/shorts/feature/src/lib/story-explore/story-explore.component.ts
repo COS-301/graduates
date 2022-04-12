@@ -5,7 +5,6 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'graduates-story-explore',
@@ -13,6 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./story-explore.component.scss'],
   providers: [MatCardModule, MatButtonModule],
 })
+
 export class StoryExploreComponent implements OnInit {
 
   @Input() upload : boolean;
@@ -39,7 +39,7 @@ export class StoryExploreComponent implements OnInit {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver, f: FormBuilder, private router : Router) {
+  constructor(private breakpointObserver: BreakpointObserver, f : FormBuilder) {
     this.upload = false;
     this.builder = f;
     this.return = false;
@@ -65,7 +65,7 @@ export class StoryExploreComponent implements OnInit {
 
   cancel() {
     this.return = true;
-    this.router.navigate(['/shorts']); //must direct to the user-profile
+    //take user back a page to the user profile
   }
 
 
