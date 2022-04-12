@@ -138,6 +138,12 @@
       "@graduates/api/notifications/api/feature": [
         "libs/api/notifications/api/feature/src/index.ts"
       ],
+      "@graduates/api/notifications/api/shared": [
+        "libs/api/notifications/api/shared/src/index.ts"
+      ],
+      "@graduates/api/notifications/repository/data-access": [
+        "libs/api/notifications/repository/data-access/src/index.ts"
+      ],
       "@graduates/api/notifications/service/feature": [
         "libs/api/notifications/service/feature/src/index.ts"
       ],
@@ -193,6 +199,9 @@
       "@graduates/api/student-profiles/api/shared/data-access": [
         "libs/api/student-profiles/api/shared/data-access/src/index.ts"
       ],
+      "@graduates/api/student-profiles/repository/data-access": [
+        "libs/api/student-profiles/repository/data-access/src/index.ts"
+      ],
       "@graduates/api/student-profiles/service/feature": [
         "libs/api/student-profiles/service/feature/src/index.ts"
       ],
@@ -211,8 +220,17 @@
       "@graduates/client-student-explore-feature": [
         "libs/client/student-explore/feature/src/index.ts"
       ],
+      "@graduates/client/company-explore/feature": [
+        "libs/client/company-explore/feature/src/index.ts"
+      ],
+      "@graduates/client/company-representative/feature": [
+        "libs/client/company-representative/feature/src/index.ts"
+      ],
       "@graduates/client/example/feature": [
         "libs/client/example/feature/src/index.ts"
+      ],
+      "@graduates/client/notifications/feature": [
+        "libs/client/notifications/feature/src/index.ts"
       ],
       "@graduates/client/request-for-access/feature": [
         "libs/client/request-for-access/feature/src/index.ts"
