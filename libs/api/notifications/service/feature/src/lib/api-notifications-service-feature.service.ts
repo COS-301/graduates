@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Notification, NotificationData } from '@graduates/api/notifications/api/shared'
 
 @Injectable()
-export class ApiNotificationsServiceFeatureService {
+export class ApiNotificationsService {
     async findAll(): Promise<Notification[]> {
         const notificationData = new NotificationData();
         notificationData.notificationType = 'Request'
