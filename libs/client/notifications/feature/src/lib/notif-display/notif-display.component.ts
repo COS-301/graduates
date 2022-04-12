@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotifDisplayComponent{
 
-  constructor() { 
+  constructor() {
     //do something
   }
 }
