@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
+import { FeatureComponent } from './feature.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: FeatureComponent
+  }
+];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild([
-      {
-        path: '',
-        pathMatch: 'full',
-        loadChildren: () =>
-          import('@graduates/client/example/feature').then(
-            (m) => m.FeatureModule
-          ),
-      },
-    ]),
-  ],
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
-export class FeatureRoutingModule {}
+export class FeatureRoutingModule { }
