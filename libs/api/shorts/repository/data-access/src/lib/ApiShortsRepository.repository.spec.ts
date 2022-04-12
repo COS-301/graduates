@@ -89,7 +89,7 @@ describe('ShortsRepository', () => {
         .spyOn(repository, 'createShort')
         .mockImplementation((): Promise<Short> => Promise.resolve(shortMock));
 
-      expect(await repository.createShort(shortMock, '1')).toMatchObject(
+      expect(await repository.createShort(shortMock, [], '1')).toMatchObject(
         shortMock
       );
     });
