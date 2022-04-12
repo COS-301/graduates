@@ -1,0 +1,23 @@
+{
+  "root": "libs/api/notifications/api/shared",
+  "sourceRoot": "libs/api/notifications/api/shared/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api/notifications/api/shared/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/notifications/api/shared"],
+      "options": {
+        "jestConfig": "libs/api/notifications/api/shared/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
