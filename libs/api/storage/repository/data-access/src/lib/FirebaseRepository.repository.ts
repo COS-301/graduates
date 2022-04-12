@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { initializeApp } from 'firebase/app';
 import { deleteObject, getDownloadURL, getStorage, ref, uploadBytes, uploadString} from 'firebase/storage';
 import * as fs from 'fs';
+import {ConfigService} from '@nestjs/config'
 
 /*Since Firebase is only a temporary solution I tried making the storage as simple as 
 possible each feature's storage will be stored in the same bucket only under a 
@@ -20,9 +21,9 @@ export enum FirebaseFolders{
   BlogMedia = 'BlogMedia'
 }
 
-//TODO authorized uploads
 @Injectable()
 export class FirebaseService {
+  
   firebaseConfig = {
     apiKey: "API_KEY",
     authDomain: "AUTH_DOMAIN",
@@ -37,25 +38,34 @@ export class FirebaseService {
   //analytics = getAnalytics(this.app);
   storage = getStorage();
 
-  async uploadFile(file: File | Blob, fileName: string, folder: FirebaseFolders){
+  async uploadFile(file: File | Blob, fileName: string, folder: FirebaseFolders): Promise<boolean>{
     const fileRef = ref(this.storage, folder + '/' + fileName);
 
     uploadBytes(fileRef, file).then((snapshot) => {
       console.log('Successful upload');
       console.log(snapshot);
+      return true;
     });
+
+    console.error('Something went wrong during upload to firebase');
+    return false;
   }
 
-  async uploadAsBase64String(base64: string, fileName: string, folderName: FirebaseFolders){
+  async uploadAsBase64String(base64: string, fileName: string, folderName: FirebaseFolders) : Promise<boolean>{
 
     const fileRef = ref(this.storage, folderName + '/' + fileName);
 
     uploadString(fileRef, base64, 'base64').then((snapshot) => {
       console.log('Successful upload');
+      console.log(snapshot);
+      return true;
     });
+
+    console.error('Something went wrong during upload to firebase');
+    return false;
   }
 
-  async uploadAsBinaryString(binaryFile: string, fileName: string, folderName: FirebaseFolders){
+  async uploadAsBinaryString(binaryFile: string, fileName: string, folderName: FirebaseFolders) : Promise<boolean>{
 
     const fileRef = ref(this.storage, folderName + '/' + fileName);
 
@@ -64,7 +74,12 @@ export class FirebaseService {
 
     uploadString(fileRef, temp, 'base64').then((snapshot) => {
       console.log('Successful upload');
+      console.log(snapshot);
+      return true;
     });
+
+    console.error('Something went wrong during upload to firebase');
+    return false;
   }
 
   /*NOTE THAT IF THE FILE IS NOT UPLOADED AS BASE64 STRING IT DOESN't DOWNLOAD THE FILE DIRECTLY 
@@ -87,7 +102,7 @@ export class FirebaseService {
         return url;
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
 
     return null;
@@ -111,7 +126,7 @@ export class FirebaseService {
         return url;
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
 
     return null;
@@ -127,7 +142,7 @@ export class FirebaseService {
       console.log('Successfully deleted');
       return true;
     }).catch((error) => {
-      console.log(error);
+      console.error(error);
       return false;
     });
 
@@ -154,13 +169,13 @@ export class FirebaseService {
   
   //ex. FirebaseRepository.uploadAllUnderDirectory('@graduates/api/storage/uploads',FirebaseRepository.FirebaseFolders.Files)
   //ex. FirebaseRepository.uploadAllUnderDirectory('@graduates/api/stories/videos',FirebaseRepository.FirebaseFolders.Videos)
-  async uploadAllUnderDirectory(dirname:string, folder:FirebaseFolders) {
+  async uploadAllUnderDirectory(dirname:string, folder:FirebaseFolders) : Promise<boolean> {
 
      //access the directory provided and get all the filenames
      fs.readdir(dirname, function (err, filenames) {
       if (err) {
         console.log(err);
-        return;
+        return false;
       }
 
       //access each file in directory via filename
@@ -168,7 +183,7 @@ export class FirebaseService {
         fs.readFile(dirname + '/' + filename, 'base64',  (err, data) => {
           if (err) {
             console.error(err);
-            return;
+            return false;
           }
 
           //get a reference inside firebase on where to upload the files
@@ -177,6 +192,7 @@ export class FirebaseService {
           //upload the file in base64 string encryption
           uploadString(fileRef, data, 'base64').then((snapshot) => {
             console.log('Successful upload');
+            console.log(snapshot);
           });
 
           //clear directory
@@ -184,10 +200,13 @@ export class FirebaseService {
             fs.unlinkSync(dirname + '/' + filename)
           } catch(err) {
             console.error(err)
+            return false;
           }
 
         });
       });
     });
+
+    return true;
   }
 }
