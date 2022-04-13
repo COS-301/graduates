@@ -105,6 +105,9 @@
       "@graduates/api/companyprofilepage/api/shared/data-access": [
         "libs/api/companyprofilepage/api/shared/data-access/src/index.ts"
       ],
+      "@graduates/api/companyprofilepage/repository/data-access": [
+        "libs/api/companyprofilepage/repository/data-access/src/index.ts"
+      ],
       "@graduates/api/companyprofilepage/service/feature": [
         "libs/api/companyprofilepage/service/feature/src/index.ts"
       ],
@@ -258,6 +261,9 @@
       ],
       "@graduates/client/shorts/feature": [
         "libs/client/shorts/feature/src/index.ts"
+      ],
+      "@graduates/client/storage/feature": [
+        "libs/client/storage/feature/src/index.ts"
       ],
       "@graduates/client/student-profile/feature": [
         "libs/client/student-profile/feature/src/index.ts"
