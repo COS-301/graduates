@@ -214,6 +214,9 @@
       "@graduates/api/upintegration/service/feature": [
         "libs/api/upintegration/service/feature/src/index.ts"
       ],
+      "@graduates/client/adminconsole/feature": [
+        "libs/client/adminconsole/feature/src/index.ts"
+      ],
       "@graduates/client-shorts-feature": [
         "libs/client/shorts/feature/src/index.ts"
       ],
