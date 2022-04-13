@@ -78,6 +78,8 @@
     "client-example-feature": "libs/client/example/feature",
     "client-notifications-feature": "libs/client/notifications/feature",
     "client-shared-assets-ui": "libs/client/shared/assets/ui",
+    "client-shared-components-buttons-ui": "libs/client/shared/components/buttons/ui",
+    "client-shared-components-dropdown-ui": "libs/client/shared/components/dropdown/ui",
     "client-shared-components-navbar-ui": "libs/client/shared/components/navbar/ui",
     "client-shared-interfaces-user-data-access": "libs/client/shared/interfaces/user/data-access",
     "client-shared-services-authentication-data-access": "libs/client/shared/services/authentication/data-access",
