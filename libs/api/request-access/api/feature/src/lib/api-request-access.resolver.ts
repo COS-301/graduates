@@ -8,7 +8,7 @@ export class ApiRequestAccessResolver {
 
     @Mutation(returns => ApiRequestAccessEntity)
     // must add paramters to request
-    async requestAccess(@Args('compID', { type: () => ID }) compId: string, @Args('userID', { type: () => ID }) userId: string, @Args('item') id: string): Promise<ApiRequestAccessEntity> {
+    async requestAccess(@Args('compID', { type: () => ID }) compId: string, @Args('gradID', { type: () => ID }) grad: string, @Args('item') id: string): Promise<ApiRequestAccessEntity> {
         return this.requestAccessService.makeRequest();
     }
 }
