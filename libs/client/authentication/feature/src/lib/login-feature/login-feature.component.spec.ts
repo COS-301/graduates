@@ -11,7 +11,7 @@ describe('LoginFeatureComponent', () => {
       declarations: [ LoginFeatureComponent ]
     })
     .compileComponents();
-  });
+  }); 
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginFeatureComponent);
