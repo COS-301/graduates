@@ -28,7 +28,7 @@
                   </div>
                 </div>
                 <div class="col-4">
-                  <button type="button" class="btn btn-primary">View</button>
+                  <button type="button" class="btn btn-primary" (click)="viewStory(card.pk)">View</button>
                 </div>
               </div>
 
@@ -51,52 +51,65 @@
       <!-- banner for upload box -->
       <div class="text-center p-6" id="uploadbanner">Upload Your Content</div>
       <!-- info message -->
-      <div class="text-center py-3" id="infomessage">Upload an image or video</div>
+      <div class="text-center pt-3" id="infomessage"></div>
 
       <!-- line under message --> 
-      <div id="greyline"></div>
 
         <!-- form creation -->
         <form [formGroup]="uploadfrm" (ngSubmit)="uploadStory()">
 
           <!-- file input -->
-          <div class="fileupload mt-3 mr-3 ml-3 mb-2 flex justify-center">
+          <div class="fileupload mr-3 ml-3 mb-3">
             <!-- <input type="file" class="file:border file:border-solid ..." /> -->
             <div class="w-full">
-              <label
-                  class="flex justify-center w-full h-32 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
-                  <span class="flex items-center space-x-2">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24"
-                          stroke="currentColor" stroke-width="2">
-                          <path stroke-linecap="round" stroke-linejoin="round"
-                              d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                      </svg>
-                      <span class="font-medium text-gray-600">
-                          Drop files to Attach, or
-                          <span class="text-blue-600 underline">browse</span>
-                      </span>
-                  </span>
-                  <input type="file" name="file_upload" class="hidden">
-              </label>
-          </div>
+
+              <div class="text-center mb-1 infocolour">Select or Drag and Drop a file...</div>
+
+              <!-- fill input -->
+              <div id="fileupload" class="mt-2 px-8">
+
+                <div class="mt-1">
+
+                  <input id="file" type="file" class="block w-full text-sm text-slate-600
+                    file:py-1 file:px-1
+                    file:rounded file:border-0
+                    file:text-sm
+                    py-8
+                    h-500
+                  "
+                    value="hi"
+                    formcontrolname="file"
+                    [ngClass]="{'is-invalid': submit && uploadfrm.controls['file'].errors}"
+                    (change)="onFileUpload($event)"
+                  />
+
+                </div>
+
+              </div>
+
+              <div *ngIf="submit" class="text-right error mt-1">
+                {{ fileError }}
+              </div>
+
+            </div>
           </div>
 
           <!-- add tags box -->
           <div class="mb-3 ml-3 mr-3">
 
-              <input id="taginput" placeholder="Add Tags: #COS, #CSLife" type="text" formControlName="tags" class="drop-shadow-md h-8 w-full rounded" [ngClass]="{'is-invalid': submit && uploadfrm.controls['tags'].errors}"/>
-              <div *ngIf="submit && uploadfrm.controls['tags'].errors" class="text-right error">
-                Please submit tags to add.
+              <div class="infocolour mb-1">Add Tags:</div>
+
+              <input id="taginput" placeholder="#COS, #CSLife" type="text" formControlName="tags" class="drop-shadow-md h-8 w-full rounded" [ngClass]="{'is-invalid': submit && uploadfrm.controls['tags'].errors}"/>
+              <div *ngIf="submit && uploadfrm.controls['tags'].errors" class="text-right error mt-1">
+                A tag is required.
               </div>
 
           </div>
 
-          <div id="greyline"></div>
-
           <!-- buttons, cancel and upload -->
           <div>
 
-            <div class="grid grid-cols-2 place-content-center py-3">
+            <div class="grid grid-cols-2 place-content-center pb-3">
               <div class="flex justify-center"><button class="py-2.5 px-3 formbutton rounded" (click)="cancel()">Cancel</button></div>
               <div class="flex justify-center"><button class="py-2.5 px-3 formbutton rounded">Submit</button></div>
             </div>
@@ -108,4 +121,13 @@
 
   </div>
 
+  <!-- current displaying sstory after view click -->
+  <div *ngIf="viewing">
+    this is showing the current viewed story = {{ storyToView }}
+    <button (click)="closeViewing()">close</button>
+  </div>
+
+  <!-- current displaying report for story report -->
+
 </div>
+
