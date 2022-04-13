@@ -11,6 +11,10 @@ const routes: Routes = [
       loadChildren: () => import('@graduates/client/company-explore/feature').then(x => x.ClientCompanyExploreFeatureModule)
     },
     {
+      path: 'student-explore',
+      loadChildren: () => import('@graduates/client-student-explore-feature').then(x => x.ClientStudentExploreModule)
+    },
+    {
       path: 'company-representative',
       loadChildren: () => import('@graduates/client/company-representative/feature').then(x => x.ClientCompanyRepresentativeFeatureModule)
     },
