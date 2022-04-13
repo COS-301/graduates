@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditingPageComponent } from './editingPage.component';
+import { EditingPageComponent } from './editing-page.component';
 
 describe('CompanyProfileComponent', () => {
   let component: EditingPageComponent;

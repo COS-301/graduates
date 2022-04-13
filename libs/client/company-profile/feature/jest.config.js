@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'client-companyProfile-feature',
+  displayName: 'client-company-profile-feature',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -8,7 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../../../coverage/libs/client/companyProfile/feature',
+  coverageDirectory: '../../../../coverage/libs/client/company-profile/feature',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },
