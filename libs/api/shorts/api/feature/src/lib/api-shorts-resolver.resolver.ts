@@ -61,7 +61,11 @@ export class ShortsResolver {
    */
   @Query(() => [Short])
   async getShortsByUser(@Args('userId') userId: string): Promise<Short[]> {
-    return await this.service.findShortsByUser(userId);
+    const res = await this.service.findShortsByUser(userId);
+    if (!res) {
+      throw new NotFoundException('User not found');
+    }
+    return res;
   }
 
   /**
@@ -85,8 +89,8 @@ export class ShortsResolver {
     @Args('short') short: ShortCreateInput,
     @Args('userId') userId: string
   ): Promise<Short | null> {
-    const resp = await this.service.createShort(short, userId);
-    return resp;
+    const res = await this.service.createShort(short, userId);
+    return res;
   }
 
   /**
@@ -96,14 +100,21 @@ export class ShortsResolver {
    */
   @Mutation(() => Short)
   async deleteShort(@Args('id') id: string): Promise<Short | null> {
-    const resp = await this.service.deleteShort(id);
-    return resp;
+    const res = await this.service.deleteShort(id);
+    if (!res) {
+      throw new NotFoundException('Short not found');
+    }
+    return res;
   }
 
   @Mutation(() => Short)
   async updateShort(
     @Args('short') short: ShortUpdateInput
   ): Promise<Short | null> {
+    const res = await this.service.updateShort(short);
+    if (!res) {
+      throw new NotFoundException('Short not found');
+    }
     return await this.service.updateShort(short);
   }
 

@@ -6,6 +6,7 @@ import {
 } from '@graduates/api/shorts/api/shared/entities/data-access';
 import { Short, ShortTag, User } from '@prisma/client';
 import { ShortUpdateInput } from '@graduates/api/shorts/api/shared/entities/data-access';
+import { resourceLimits } from 'worker_threads';
 
 @Injectable()
 export class ShortsRepository {
@@ -71,7 +72,7 @@ export class ShortsRepository {
    * @return {Promise<Short | null>}
    */
   async createShort(short: ShortCreateInput, userId: string): Promise<Short> {
-    return this.prisma.short.create({
+    const res = await this.prisma.short.create({
       data: {
         media: short.media,
         data: short.data,
@@ -87,6 +88,8 @@ export class ShortsRepository {
         datePosted: new Date(),
       },
     });
+
+    return res;
   }
 
   async updateShort(short: ShortUpdateInput): Promise<Short | null> {
