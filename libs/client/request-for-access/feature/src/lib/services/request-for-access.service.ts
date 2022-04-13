@@ -9,10 +9,7 @@ export class RequestForAccessService {
     constructor(private httpClient: HttpClient) {}
 
     getResourceStatuses(companyID: string, graduateID: string): Observable<any> {
-      const body = {
-        'query': 'query ($compID: ID!, $gradID: ID!){status(compID: $id, gradID: $gradID){ accessStatus, item, userID }}',
-        'variables': { 'compID': companyID, 'gradID': graduateID }
-      }
+      const query = `query($compID: ID!, $gradID: ID!) {status(compID: $compID, gradID: $gradID) { accessStatus, item, userID }}`;
 
       const options = {
         headers: new HttpHeaders({
@@ -20,14 +17,11 @@ export class RequestForAccessService {
         })
       }
 
-      return this.httpClient.post<any>('http://localhost:3333/graphql', body, options);
+      return this.httpClient.post<any>('http://localhost:3333/graphql', JSON.stringify({query: query, variables: { compID: companyID, gradID: graduateID }}), options);
     }
 
-    requestAccess(companyID: string, studentID: string, item: string): void {
-      const body = {
-        'query': 'mutation ($compID: ID!, $studentID: ID!, $item: String!){requestAccess(compID: $compID, userID: $studentID, item: $item){ userID }}',
-        'variables': { 'compID': companyID, 'studentID': studentID, 'item': item }
-      }
+    requestAccess(companyID: string, graduateID: string, item: string): void {
+      const query = `mutation ($compID: ID!, $userID: ID!, $item: String!){requestAccess(compID: $compID, userID: $userID, item: $item){ userID }}`;
 
       const options = {
         headers: new HttpHeaders({
@@ -35,6 +29,6 @@ export class RequestForAccessService {
         })
       }
 
-      this.httpClient.post('http://localhost:3333/graphql', body, options);
+      this.httpClient.post('http://localhost:3333/graphql', JSON.stringify({query: query, variables: { compID: companyID, userID: graduateID, item: item }}), options);
     }
 }
