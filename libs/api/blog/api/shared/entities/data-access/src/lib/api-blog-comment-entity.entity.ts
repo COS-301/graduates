@@ -11,7 +11,7 @@ export class BlogComment {
   Id!: string;
 
   /**
-   * The id of the user who created the blog
+   * The id of the blog the comment is on
    */
   @Field()
   blogId!: string;
