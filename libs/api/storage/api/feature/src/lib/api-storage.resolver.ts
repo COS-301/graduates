@@ -22,12 +22,25 @@ export class ApiStorageResolver {
       return res;
     }
   }
+  @Query(() =>String)
+  async delete(
+    @Args("userId")userID:string,
+    @Args("fileCategory")fileCategory:string
+  ): Promise<number| boolean> {
+    const res = await this.storageService.deleteFile(userID , fileCategory);
+    if(res == null){
+      return false
+    }
+    else{
+      return res;
+    }
+  }
   @Mutation(returns => Boolean , { name: 'File' })
   async upload(
-   @Args("filename")fileName:string,
-   @Args("userId")userID:string,
-    @Args("fileCategory")fileCategory:string,
-   @Args("fileExtension")fileExtension:string,
+  //  @Args("filename")fileName:string,
+  //  @Args("userId")userID:string,
+  //   @Args("fileCategory")fileCategory:string,
+  //  @Args("fileExtension")fileExtension:string,
     @Args('file', { type: () => GraphQLUpload }) file: FileUpload
   ): Promise<boolean|ApiStorageInput> {
     try {
@@ -52,18 +65,18 @@ export class ApiStorageResolver {
       }
       const storage = new ApiStorage();
       storage.fileAsString = base64;
-      if(fileCategory=="CV"){
-        storage.fileCategory = FileCategory.CV 
-      }
-      if(fileCategory=="Transcript"){
-        storage.fileCategory = FileCategory.DEGREE
+      // if(fileCategory=="CV"){
+      //   storage.fileCategory = FileCategory.CV 
+      // }
+      // if(fileCategory=="Transcript"){
+      //   storage.fileCategory = FileCategory.DEGREE
   
-      }
-      if(fileCategory=="Academic Record"){
-        storage.fileCategory = FileCategory.ACADEMIC_RECORD
-      }
-      storage.userId = userID;
-      storage.fileExtension = fileExtension;
+      // }
+      // if(fileCategory=="Academic Record"){
+      //   storage.fileCategory = FileCategory.ACADEMIC_RECORD
+      // }
+      // storage.userId = userID;
+      // storage.fileExtension = fileExtension;
       return await this.storageService.create(storage);
     } catch (err) {
       return false;
