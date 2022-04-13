@@ -1,19 +1,5 @@
 {
-<<<<<<< HEAD:libs/client/adminconsole/feature/.eslintrc.json
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD:libs/client/adminconsole/feature/.eslintrc.json
->>>>>>> upstream/develop
   "extends": ["../../../../.eslintrc.json"],
-=======
-  "extends": ["../../.eslintrc.json"],
->>>>>>> upstream/develop:libs/client/shared/components/cards/ui/.eslintrc.json
-<<<<<<< HEAD
-=======
-=======
-  "extends": ["../../.eslintrc.json"],
->>>>>>> upstream/develop:libs/client/shared/components/cards/ui/.eslintrc.json
->>>>>>> upstream/develop
   "ignorePatterns": ["!**/*"],
   "overrides": [
     {

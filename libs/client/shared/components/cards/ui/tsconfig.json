@@ -1,19 +1,6 @@
+<<<<<<<< HEAD:libs/client/shared/components/cards/ui/tsconfig.json
 {
-<<<<<<< HEAD:libs/client/adminconsole/feature/tsconfig.json
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD:libs/client/adminconsole/feature/tsconfig.json
->>>>>>> upstream/develop
-  "extends": "../../../../tsconfig.base.json",
-=======
   "extends": "../../tsconfig.base.json",
->>>>>>> upstream/develop:libs/client/shared/components/cards/ui/tsconfig.json
-<<<<<<< HEAD
-=======
-=======
-  "extends": "../../tsconfig.base.json",
->>>>>>> upstream/develop:libs/client/shared/components/cards/ui/tsconfig.json
->>>>>>> upstream/develop
   "files": [],
   "include": [],
   "references": [
@@ -38,3 +25,5 @@
     "strictTemplates": true
   }
 }
+========
+>>>>>>>> upstream/develop:libs/client/student-explore/tsconfig.json
