@@ -14,7 +14,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card'; 
 import {MatChipsModule} from '@angular/material/chips';
-import { AchievementsComponent } from './achievements/achievements.component'; 
+import { AchievementsComponent } from './achievements/achievements.component';
+import { ProfileCardComponent } from './profile-card/profile-card.component'; 
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { AchievementsComponent } from './achievements/achievements.component';
     ProfileBodyComponent,
     UserInfoComponent,
     BioComponent,
-    AchievementsComponent
+    AchievementsComponent,
+    ProfileCardComponent
   ],
    exports: [ProfileBodyComponent]
 })
