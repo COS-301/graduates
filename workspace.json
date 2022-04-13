@@ -70,6 +70,7 @@
     "api-upintegration-api-shared-data-access": "libs/api/upintegration/api/shared/data-access",
     "api-upintegration-service-feature": "libs/api/upintegration/service/feature",
     "client": "apps/client",
+    "client-adminconsole-feature": "libs/client/adminconsole/feature",
     "client-company-explore-feature": "libs/client/company-explore/feature",
     "client-company-representative-feature": "libs/client/company-representative/feature",
     "client-e2e": "apps/client-e2e",
