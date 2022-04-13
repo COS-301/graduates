@@ -53,7 +53,7 @@ export class StudentExploreRepository {
 
   }
 
-  async SearchStudent(searchQuery){
+  async SearchStudent(){
 
     const students = await this.prisma.user.findMany();
 
@@ -75,6 +75,38 @@ export class StudentExploreRepository {
 
     return studentArr;
 
+  }
+
+  async FilterStudent(Filter){
+
+    const students = await this.prisma.userLocation.findMany();
+
+    let studentArr = [];
+
+    let tempStudentObj;
+
+    let studentsUser;
+
+    for (let i = 0; i < students.length; i++) {
+
+      if(students[i].location === Filter){
+
+        tempStudentObj = new ApiStudentExplore();
+
+        studentsUser = await this.prisma.user.findUnique({
+          where: { id : students[i].userId, },
+        });
+
+        tempStudentObj.StudentName = studentsUser.name;
+        tempStudentObj.StudentLocation = students[i].location;
+
+        studentArr.push(tempStudentObj);
+
+      }
+
+    }
+
+    return studentArr;
 
   }
 

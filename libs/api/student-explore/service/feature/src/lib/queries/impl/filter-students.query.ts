@@ -1,3 +1,3 @@
 export class FilterStudentsQuery {
-	constructor() { }
+	constructor(readonly Filter) { }
 }

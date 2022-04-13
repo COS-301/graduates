@@ -8,7 +8,7 @@ export class FilterStudentsHandler implements IQueryHandler<FilterStudentsQuery>
 
   async execute(query: FilterStudentsQuery) {
 	
-    return this.repository.initStudents();
+    return this.repository.FilterStudent(query.Filter);
 
   }
   

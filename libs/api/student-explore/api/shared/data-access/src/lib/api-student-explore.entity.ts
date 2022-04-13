@@ -20,4 +20,7 @@ export class ApiStudentExplore {
 
   @Field({ nullable: true })
   StudentRel : number;
+
+  @Field({ nullable: true })
+  StudentLocation : string;
 }

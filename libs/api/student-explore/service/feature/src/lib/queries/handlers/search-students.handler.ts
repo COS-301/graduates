@@ -9,7 +9,7 @@ export class SearchStudentsHandler implements IQueryHandler<SearchStudentsQuery>
 
   async execute(query : SearchStudentsQuery){
 
-    let students = await this.repository.SearchStudent(query.searchQuery);
+    let students = await this.repository.SearchStudent();
 
     let relStudents = []
 
