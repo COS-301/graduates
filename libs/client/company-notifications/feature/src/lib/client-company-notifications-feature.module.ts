@@ -1,17 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { CompanyNotificationsComponent } from './company-notifications/company-notifications.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatListModule } from '@angular/material/list';
+import { CompanyNotificationsRoutingModule } from "./company-notifications-routing.module";
 
 @NgModule({
   imports: [
     CommonModule,
-
-    RouterModule.forChild([
-      {path: '', pathMatch: '', component: CompanyNotificationsComponent}
-    ]),
+    MatCardModule,
+    MatIconModule,
+    MatExpansionModule,
+    MatListModule,
+    CompanyNotificationsRoutingModule
   ],
   declarations: [
     CompanyNotificationsComponent,

@@ -1,15 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { ResponsesTabComponent } from './responses-tab/responses-tab.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatListModule } from '@angular/material/list';
+import { StudentResponsesRoutingModule } from "./student-responses-routing.module";
 
 @NgModule({
   imports: [
     CommonModule,
-
-    RouterModule.forChild([
-      /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
-    ]),
+    MatCardModule,
+    MatIconModule,
+    MatExpansionModule,
+    MatListModule,
+    StudentResponsesRoutingModule
   ],
   declarations: [
     ResponsesTabComponent
