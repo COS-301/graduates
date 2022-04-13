@@ -11,6 +11,10 @@ const routes: Routes = [
       loadChildren: () => import('@graduates/client/company-explore/feature').then(x => x.ClientCompanyExploreFeatureModule)
     },
     {
+      path: 'student-explore',
+      loadChildren: () => import('@graduates/client-student-explore-feature').then(x => x.ClientStudentExploreModule)
+    },
+    {
       path: 'company-representative',
       loadChildren: () => import('@graduates/client/company-representative/feature').then(x => x.ClientCompanyRepresentativeFeatureModule)
     },
@@ -21,6 +25,14 @@ const routes: Routes = [
     {
       path: 'shorts',
       loadChildren: () => import('@graduates/client/shorts/feature').then(x => x.ClientShortsFeatureModule)
+    },
+    {
+      path: 'student-profile',
+      loadChildren: () => import('@graduates/client/student-profile/feature').then(x => x.ClientStudentProfileFeatureModule)
+    },
+    {
+      path: 'blog',
+      loadChildren: () => import('@graduates/client/blog/feature').then(x => x.ClientBlogFeatureModule)
     },
     {
       path: '',

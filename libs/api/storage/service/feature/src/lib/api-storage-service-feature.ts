@@ -36,6 +36,24 @@ export class ApiStorageServiceFeatureModule {
        
     }
 
+    async deleteFile(userID , fileCategory): Promise<number> {
+      let url = null;
+      const storage = new ApiStorage();
+      storage.userId= userID;
+      storage.fileCategory=fileCategory;
+      if(fileCategory=="CV"){
+        url = await this.repo.deleteFile(userID ,FileCategory.CV );
+      }
+      if(fileCategory=="Transcript"){
+        url = await this.repo.deleteFile(userID ,FileCategory.DEGREE );
+
+      }
+      if(fileCategory=="Academic Record"){
+        url = await this.repo.deleteFile(userID ,FileCategory.ACADEMIC_RECORD );
+      }
+        return url;
+    }
+
     async create(apiStorage: ApiStorage): Promise<ApiStorageInput>{
       const storage = new ApiStorageInput();
       const res = await this.repo.createFile(apiStorage) ;
