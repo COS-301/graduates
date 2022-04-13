@@ -39,6 +39,14 @@ const routes: Routes = [
       loadChildren: () => import('@graduates/client/shorts/feature').then(x => x.ClientShortsFeatureModule)
     },
     {
+      path: 'student-profile',
+      loadChildren: () => import('@graduates/client/student-profile/feature').then(x => x.ClientStudentProfileFeatureModule)
+    },
+    {
+      path: 'blog',
+      loadChildren: () => import('@graduates/client/blog/feature').then(x => x.ClientBlogFeatureModule)
+    },
+    {
       path: '',
       loadChildren: () => import('@graduates/client/shell/feature').then(x => x.FeatureModule)
     },
