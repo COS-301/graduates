@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DownloadAllComponent } from './download-all.component';
+import { BlogViewComponent } from './blog-view.component';
 
-describe('DownloadAllComponent', () => {
-  let component: DownloadAllComponent;
-  let fixture: ComponentFixture<DownloadAllComponent>;
+describe('BlogViewComponent', () => {
+  let component: BlogViewComponent;
+  let fixture: ComponentFixture<BlogViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DownloadAllComponent ]
+      declarations: [ BlogViewComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DownloadAllComponent);
+    fixture = TestBed.createComponent(BlogViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

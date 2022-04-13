@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeleteAllComponent } from './delete-all.component';
+import { BlogExploreCardComponent } from './blog-explore-card.component';
 
-describe('DeleteAllComponent', () => {
-  let component: DeleteAllComponent;
-  let fixture: ComponentFixture<DeleteAllComponent>;
+describe('BlogExploreCardComponent', () => {
+  let component: BlogExploreCardComponent;
+  let fixture: ComponentFixture<BlogExploreCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DeleteAllComponent ]
+      declarations: [ BlogExploreCardComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DeleteAllComponent);
+    fixture = TestBed.createComponent(BlogExploreCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

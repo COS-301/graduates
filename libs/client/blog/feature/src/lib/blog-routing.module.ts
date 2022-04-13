@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-// importing my component here to generate a path/route to it ... 
-import { StorageFeatureComponent } from './client-storage-feature.component';
+import { BlogExploreComponent } from './blog-explore/blog-explore.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: StorageFeatureComponent
+    component: BlogExploreComponent
   }
 ];
 
@@ -15,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class StorageFeatureRoutingModule { }
+export class BlogRoutingModule { }

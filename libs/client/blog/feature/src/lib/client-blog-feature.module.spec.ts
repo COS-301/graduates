@@ -1,10 +1,10 @@
 import { async, TestBed } from '@angular/core/testing';
-import { StorageFeatureModule } from './client-storage-feature.module';
+import { ClientBlogFeatureModule } from './client-blog-feature.module';
 
-describe('ClientStorageFeatureModule', () => {
+describe('ClientBlogFeatureModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [StorageFeatureModule],
+      imports: [ClientBlogFeatureModule],
     }).compileComponents();
   }));
 
@@ -13,6 +13,6 @@ describe('ClientStorageFeatureModule', () => {
   // NB: This particular test does not do anything useful.
   //     It does NOT check for correct instantiation of the module.
   it('should have a module definition', () => {
-    expect(StorageFeatureModule).toBeDefined();
+    expect(ClientBlogFeatureModule).toBeDefined();
   });
 });
