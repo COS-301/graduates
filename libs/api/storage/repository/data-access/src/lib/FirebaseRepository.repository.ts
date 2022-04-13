@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { initializeApp } from 'firebase/app';
 import { deleteObject, getDownloadURL, getStorage, ref, uploadBytes, uploadString} from 'firebase/storage';
 import * as fs from 'fs';
-import {ConfigService} from '@nestjs/config'
+
 
 /*Since Firebase is only a temporary solution I tried making the storage as simple as 
 possible each feature's storage will be stored in the same bucket only under a 
