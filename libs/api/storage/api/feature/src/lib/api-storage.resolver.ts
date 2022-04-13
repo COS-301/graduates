@@ -24,7 +24,7 @@ export class ApiStorageResolver {
   }
   @Mutation(returns => Boolean , { name: 'File' })
   async upload(
-    @Args("filename")fileName:string,
+    //@Args("filename")fileName:string,
     @Args("userId")userID:string,
     @Args("fileCategory")fileCategory:string,
     @Args("fileExtension")fileExtension:string,
@@ -64,7 +64,6 @@ export class ApiStorageResolver {
       }
       storage.userId = userID;
       storage.fileExtension = fileExtension;
-      storage.fileNameOrHash = fileName;
       return await this.storageService.create(storage);
     } catch (err) {
       return false;
