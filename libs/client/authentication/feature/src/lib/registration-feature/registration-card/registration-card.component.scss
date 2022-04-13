@@ -1,0 +1,136 @@
+@import "libs/client/shared/assets/global";
+
+.relative{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 6px;
+  //General size of card, change to suite your feature.
+  width: 18em;
+  margin-top: 5em;
+  margin-left: 5em;
+  animation-name: offhover;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;   
+}
+.relative:hover{
+  animation-name: onhover;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+h5{
+  padding-left: 1em;
+  padding-top: 1em;
+}
+
+p{
+  padding-left: 1em;
+  padding-bottom: 1em;
+}
+@keyframes offhover {
+  from { 
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+  }
+  to { 
+      transform: scale(1);
+  }
+}
+@keyframes onhover {
+  from { 
+      transform: scale(1);
+  }
+  to { 
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+  }
+}
+.flex-auto{
+  //General colour of card body, change to suite your feature.
+  background-color: #FFFFFF;
+}
+
+.w-full{
+  width: 100%;
+  height: 200px;
+}
+//General button, change to suite your feature.
+button {
+  color: #FFFFFF;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  background-color: #174372;
+  border-width: medium;
+  border-color: #174372;
+  outline: none !important;
+  box-shadow: none !important;
+  margin: 1em;
+}
+button:hover {
+  color: #174372;
+  font-weight: bold;
+  border-width: medium;
+  border-color: #174372;
+  background-color: #FFFFFF;
+  outline: none !important;
+  box-shadow: none !important;
+}
+button::disabled {
+  background-color: #577697;
+  color: #CFD7DE;
+}
+button:active {
+  background-color: #174372 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+button:focus {
+  background-color: #174372 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+@media only screen and (max-width: 428px) {
+  .relative{
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      border-radius: 6px;
+      //General size of card, change to suite your feature.
+      width: 9em;
+  }
+  .flex-auto{
+      display: none;    
+  }
+  h5{
+      font-size: 0.75em;
+  }
+  p{
+      
+      padding-left: 1em;
+      padding-bottom: 1em; 
+      font-size: 0.5em;
+  }
+  button{
+      display: none;
+  }
+  .w-full{
+      height: 100px;
+  }
+  .relative:focus > .flex-auto{
+      display: initial;
+      opacity: 0;
+      animation-name: display;
+      animation-duration: 0.5s;
+      animation-timing-function: ease-in;
+      animation-fill-mode: forwards;   
+  }
+  @keyframes display {
+      from { 
+          display: inline;
+          opacity: 0;
+      }
+      to { 
+          display: inline;
+          opacity: 1;
+      }
+    }
+}
