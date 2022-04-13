@@ -1,14 +1,14 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
+
+import { FeatureRoutingModule } from "./feature-routing.module";
+import { FeatureComponent } from './feature.component';
 
 @NgModule({
   imports: [
     CommonModule,
-
-    RouterModule.forChild([
-      /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
-    ]),
-  ],
+    FeatureRoutingModule
+],
+  declarations: [FeatureComponent],
 })
 export class FeatureModule {}

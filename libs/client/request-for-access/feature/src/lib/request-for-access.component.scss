@@ -1,0 +1,56 @@
+@import 'libs/client/shared/assets/ui/src/lib/global.scss';
+
+@mixin minHeight {
+  @media (max-height: 500px) {
+    @content;
+  }
+}
+
+#rfa-container {
+  height: 40vh;
+  width: 90vw;
+  margin: 10px;
+
+  @include desktop {
+    width: 25vw;
+  }
+
+  @include tablet {
+    margin: auto;
+  }
+
+  @include phone {
+    margin: auto;
+  }
+}
+
+button {
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 5vh;
+  width: 112px;
+
+  @include minHeight {
+    height: 30px;
+  }
+}
+
+h3 {
+  margin: 0;
+  margin-left: 10px;
+}
+
+.row {
+  height: 7.8vh;
+  @include minHeight {
+    height: 40px;
+  }
+}
+
+.item {
+  width: 150px;
+}
+
+.pendingIcon {
+  margin-left: 3px;
+}

@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/client/shell/feature",
+  "sourceRoot": "libs/client/shell/feature/src",
+  "prefix": "graduates",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/shell/feature"],
+      "options": {
+        "jestConfig": "libs/client/shell/feature/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/shell/feature/src/**/*.ts",
+          "libs/client/shell/feature/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": ["type:feature"]
+}

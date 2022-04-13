@@ -1,0 +1,23 @@
+{
+  "root": "libs/api/notifications/api/feature",
+  "sourceRoot": "libs/api/notifications/api/feature/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api/notifications/api/feature/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/notifications/api/feature"],
+      "options": {
+        "jestConfig": "libs/api/notifications/api/feature/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
