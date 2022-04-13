@@ -21,7 +21,7 @@ CMD ["yarn", "start:client"]
 
 From nginx
 
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=builder /app /usr/share/nginx/html
 # Set environment variable PORT which is the PORT the container will run on
 ENV PORT=80
 
