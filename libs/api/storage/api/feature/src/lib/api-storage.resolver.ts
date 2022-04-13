@@ -22,11 +22,24 @@ export class ApiStorageResolver {
       return res;
     }
   }
+  @Query(() =>String)
+  async delete(
+    @Args("userId")userID:string,
+    @Args("fileCategory")fileCategory:string
+  ): Promise<number| boolean> {
+    const res = await this.storageService.deleteFile(userID , fileCategory);
+    if(res == null){
+      return false
+    }
+    else{
+      return res;
+    }
+  }
   @Mutation(returns => Boolean , { name: 'File' })
   async upload(
-    //@Args("filename")fileName:string,
+    @Args("filename")fileName:string,
     @Args("userId")userID:string,
-    @Args("fileCategory")fileCategory:string,
+     @Args("fileCategory")fileCategory:string,
     @Args("fileExtension")fileExtension:string,
     @Args('file', { type: () => GraphQLUpload }) file: FileUpload
   ): Promise<boolean|ApiStorageInput> {
@@ -69,5 +82,6 @@ export class ApiStorageResolver {
       return false;
     }
 }
+
 }
 
