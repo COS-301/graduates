@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'graduates-adminconsole',
+  selector: 'cards-adminconsole',
   templateUrl: './adminconsole.component.html',
   styleUrls: ['./adminconsole.component.scss']
 })
