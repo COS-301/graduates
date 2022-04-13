@@ -28,6 +28,21 @@ export class CompanyProfilePage {
         })
     }
 
+    async getCompanyLocations(@Param() id:string) {
+        return await this.prisma.userLocation.findMany({
+            where: {userId: id}
+        })
+    }
+
+    async editCompanyLocations(@Param() id:string, locationIn: string) {
+        return await this.prisma.userLocation.update({
+            where: {userId: id},
+            data : {
+                location: locationIn
+            }
+        })
+    }
+
     async getCompanySocialMedia(@Param() id:string) {
         return await this.prisma.userSocialMedia.findMany({
             where: {userId: id}
@@ -40,21 +55,6 @@ export class CompanyProfilePage {
             data : {
                 type: linkType,
                 link: link
-            }
-        })
-    }
-
-    async getCompanyLocations(@Param() id:string) {
-        return await this.prisma.userLocation.findMany({
-            where: {userId: id}
-        })
-    }
-
-    async editCompanyLocations(@Param() id:string, locationIn: string) {
-        return await this.prisma.userLocation.update({
-            where: {userId: id},
-            data : {
-                location: locationIn
             }
         })
     }
