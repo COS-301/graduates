@@ -4,14 +4,13 @@
 }
 
 mat-card {
-    width: 200px;
-    height: 250px;
+    width: 300px;
+    height: 300px;
 }
 
-mat-card img {
-    object-fit: cover;
-    min-width: 200px;
-    height: 80%;
+.cardTitle {
+    position: absolute;
+    bottom: 50px;
 }
 
 .cardbutton {
@@ -23,4 +22,6 @@ mat-card img {
         border-width: 1px;
         border-color: $primary-1;
     }
+    position: absolute;
+    bottom: 10px;
 }

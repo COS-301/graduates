@@ -1,1 +1,15 @@
 @import 'libs/client/shared/assets/ui/src/lib/global';
+footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    color: $primary-1;
+    font-size: xx-large;
+}

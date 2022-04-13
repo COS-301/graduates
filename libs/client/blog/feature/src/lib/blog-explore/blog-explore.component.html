@@ -1,24 +1,39 @@
-<!-- <mat-grid-list cols="3" rowHeight="350px">
-    <mat-grid-tile class="">
-        <mat-card>
-            <mat-card-content class="dashboard-card-content">
-                <p>[Blog Summary] [Blog Summary]</p>
-                <p>[Blog Summary] [Blog Summary]</p>
-                <p>[Blog Summary] [Blog Summary]</p>
-                <p>[Blog Summary] [Blog Summary]</p>
-            </mat-card-content>
-            <mat-card-header>
-                <div>
-                    <div>
-                        <mat-card-title>Blog Title</mat-card-title>
-                        <mat-card-subtitle>By: Author</mat-card-subtitle>
-                    </div>
-                    <div>
-                        <button mat-button type="button" class="btn btn-primary">Open</button>
-                    </div>
-                </div>
-            </mat-card-header>
-        </mat-card>
+<head>
+    <meta name="author" content="DylanSpies" />
+    <meta name="component" content="Blog-Explore" />
+</head>
+
+<header>
+    <header-and-footer-header></header-and-footer-header>
+</header>
+
+<br>
+
+<h1 fxFlexAlign="center">Blog Posts</h1>
+
+<graduates-blog-explore-filter></graduates-blog-explore-filter>
+
+<mat-grid-list cols="3" rowHeight="350px">
+    <mat-grid-tile>
+        <cards-cards></cards-cards>
     </mat-grid-tile>
-</mat-grid-list> -->
-<graduates-blog-explore-card></graduates-blog-explore-card>
+    <mat-grid-tile>
+        <cards-cards></cards-cards>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <cards-cards></cards-cards>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <graduates-blog-explore-card></graduates-blog-explore-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <graduates-blog-explore-card></graduates-blog-explore-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <graduates-blog-explore-card></graduates-blog-explore-card>
+    </mat-grid-tile>
+</mat-grid-list>
+
+<footer>
+    <header-and-footer-footer></header-and-footer-footer>
+</footer>
