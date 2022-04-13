@@ -138,6 +138,12 @@
       "@graduates/api/notifications/api/feature": [
         "libs/api/notifications/api/feature/src/index.ts"
       ],
+      "@graduates/api/notifications/api/shared": [
+        "libs/api/notifications/api/shared/src/index.ts"
+      ],
+      "@graduates/api/notifications/repository/data-access": [
+        "libs/api/notifications/repository/data-access/src/index.ts"
+      ],
       "@graduates/api/notifications/service/feature": [
         "libs/api/notifications/service/feature/src/index.ts"
       ],
@@ -207,6 +213,9 @@
       ],
       "@graduates/api/upintegration/service/feature": [
         "libs/api/upintegration/service/feature/src/index.ts"
+      ],
+      "@graduates/client/adminconsole/feature": [
+        "libs/client/adminconsole/feature/src/index.ts"
       ],
       "@graduates/client-shorts-feature": [
         "libs/client/shorts/feature/src/index.ts"
