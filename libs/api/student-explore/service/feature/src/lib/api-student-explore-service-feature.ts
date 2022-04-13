@@ -33,9 +33,9 @@ export class StudentExploreService {
     );
   }
 
-  async FilterStudents(filterQuery) {
+  async FilterStudents(filterQuery, filterType) {
     return this.queryBus.execute(
-      new FilterStudentsQuery(filterQuery)
+      new FilterStudentsQuery(filterQuery, filterType)
     );
   }
 

@@ -12,8 +12,8 @@ export class ApiStudentExplore {
   @Field({ nullable: true })
   StudentPic: string;
 
-  @Field({ nullable: true })
-  StudentTags: string;
+  @Field(type => [String], { nullable: true })
+  StudentTags: string[];
 
   @Field({ nullable: true })
   StudentID: string;
@@ -23,4 +23,18 @@ export class ApiStudentExplore {
 
   @Field({ nullable: true })
   StudentLocation : string;
+
+  @Field({ nullable: true })
+  StudentDegreeType : string;
+
+  @Field({ nullable: true })
+  StudentDegreeName : string;
+
+  @Field({ nullable: true })
+  StudentEmpStatus : boolean;
+
+  @Field({ nullable: true })
+  StudentEmpOffer : boolean;
+
+
 }

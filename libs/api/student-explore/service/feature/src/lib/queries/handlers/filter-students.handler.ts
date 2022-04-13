@@ -7,8 +7,19 @@ export class FilterStudentsHandler implements IQueryHandler<FilterStudentsQuery>
   constructor(private readonly repository: StudentExploreRepository) {}
 
   async execute(query: FilterStudentsQuery) {
-	
-    return this.repository.FilterStudent(query.Filter);
+
+    if(query.Type === "Location"){
+      return this.repository.FilterStudentLocation(query.Filter);
+    }
+    else if(query.Type === "Degree Type"){
+      return this.repository.FilterStudentDegreeType(query.Filter);
+    }
+    else if(query.Type === "Degree Name"){
+      return this.repository.FilterStudentDegreeName(query.Filter);
+    }
+    else if(query.Type === "Employment/Offers"){
+      return this.repository.FilterStudentEmploymentStatus(query.Filter);
+    }
 
   }
   

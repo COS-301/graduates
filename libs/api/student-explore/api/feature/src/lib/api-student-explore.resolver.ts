@@ -24,8 +24,8 @@ export class ApiStudentExploreResolver {
   }
 
   @Query(() => [ApiStudentExplore])
-  FilterStudents(@Args('filterQuery') filterQuery : string) : Promise<ApiStudentExplore>{
-    return this.StudentExploreService.FilterStudents(filterQuery);
+  FilterStudents(@Args('filterQuery') filterQuery : string, @Args('filterType') filterType : string) : Promise<ApiStudentExplore>{
+    return this.StudentExploreService.FilterStudents(filterQuery, filterType);
   }
 
 
