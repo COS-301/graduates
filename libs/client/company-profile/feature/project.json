@@ -1,14 +1,14 @@
 {
   "projectType": "library",
   "root": "libs/client/example/feature",
-  "sourceRoot": "libs/client/companyProfile/feature/src",
+  "sourceRoot": "libs/client/company-profile/feature/src",
   "prefix": "graduates",
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/client/companyProfile/feature"],
+      "outputs": ["coverage/libs/client/company-profile/feature"],
       "options": {
-        "jestConfig": "libs/client/companyProfile/feature/jest.config.js",
+        "jestConfig": "libs/client/company-profile/feature/jest.config.js",
         "passWithNoTests": true
       }
     },
@@ -16,8 +16,8 @@
       "executor": "@nrwl/linter:eslint",
       "options": {
         "lintFilePatterns": [
-          "libs/client/companyProfile/feature/src/**/*.ts",
-          "libs/client/companyProfile/feature/src/**/*.html"
+          "libs/client/company-profile/feature/src/**/*.ts",
+          "libs/client/company-profile/feature/src/**/*.html"
         ]
       }
     }

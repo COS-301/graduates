@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CompanyProfileComponent } from './companyProfile.component';
+import { CompanyProfileComponent } from './company-profile.component';
 
 @NgModule({
   imports: [
