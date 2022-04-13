@@ -62,6 +62,7 @@ export class ShortsService {
     return await this.queryBus.execute(new GetShortByIdQuery(id));
   }
 
+  //* Remove later
   async findUserById(id: string): Promise<User> {
     return await this.queryBus.execute(new GetUserByIdQuery(id));
   }
@@ -103,13 +104,17 @@ export class ShortsService {
     return await this.commandBus.execute(new DeleteShortCommand(id));
   }
 
+  /**
+   * Update a short
+   * @param {ShortUpdateInput} short The short to be updated along with tyhe new values
+   * @return {Promise<Short | null>}
+   */
   async updateShort(short: ShortUpdateInput): Promise<Short | null> {
     return await this.commandBus.execute(new UpdateShortCommand(short));
   }
 
   /**
    * Find all tags
-   * @param {string} id The id of the tags to find
    * @return {Promise<ShortTag[]>}
    */
   async findAllTags(): Promise<ShortTag[]> {
@@ -117,7 +122,7 @@ export class ShortsService {
   }
 
   /**
-   * Find a tag by short id
+   * Find tags by short id
    * @param {string} id The id of the short to find the tags by
    * @return {Promise<ShortTag[]>}
    */
@@ -125,14 +130,32 @@ export class ShortsService {
     return await this.queryBus.execute(new GetTagsByShortIdQuery(id));
   }
 
+  /**
+   * Create a new tag
+   * @param {ShortCreateTagInput} tag The tag to create
+   * @return {Promise<ShortTag | null>}
+   */
   async createTag(tag: ShortCreateTagInput): Promise<ShortTag | null> {
     return await this.commandBus.execute(new CreateTagCommand(tag));
   }
 
+  /**
+   * Update a tag
+   * @param {string} tag The current text content of the tag
+   * @param {string} newTag The new text content of the tag
+   * @return {Promise<string>}
+   */
   async updateTags(tag: string, newTag: string): Promise<string> {
     return await this.commandBus.execute(new UpdateTagsCommand(tag, newTag));
   }
 
+  /**
+   * Update a tag by the short id
+   * @param {string} shortId The cid of the short
+   * @param {string} tag The current text content of the tag
+   * @param {string} newTag The new text content of the tag
+   * @return {Promise<string>}
+   */
   async updateTagByShortId(
     shortId: string,
     tag: string,
@@ -143,14 +166,30 @@ export class ShortsService {
     );
   }
 
+  /**
+   * Delete tags by text content
+   * @param {string} tag The text content of the tag
+   * @return {Promise<string>}
+   */
   async deleteTags(tag: string): Promise<string> {
     return await this.commandBus.execute(new DeleteTagsCommand(tag));
   }
 
+  /**
+   * Delete all tags for a short
+   * @param {string} shortId The short id
+   * @return {Promise<string>}
+   */
   async deleteTagsByShortId(shortId: string): Promise<string> {
     return await this.commandBus.execute(new DeleteTagsByShortCommand(shortId));
   }
 
+  /**
+   * Delete a certain tag
+   * @param {string} shortId The short id
+   * @param {string} tag The text content of the tag
+   * @return {Promise<string>}
+   */
   async deleteTagByShortTag(shortId: string, tag: string): Promise<string> {
     return await this.commandBus.execute(
       new DeleteTagByShortTagCommand(shortId, tag)
