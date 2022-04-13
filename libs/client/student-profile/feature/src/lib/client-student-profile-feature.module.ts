@@ -6,14 +6,17 @@ import { RouterModule } from '@angular/router';
 import { ProfileBodyComponent } from './profile-body/profile-body.component';
 import { RequestForAccessModule } from '@graduates/client/request-for-access/feature';
 import { UserInfoComponent } from './user-info/user-info.component';
+import { ProfileRoutingModule } from './profile-routing.module';
 
 // importing material 
 import { MatDividerModule } from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 
+
 @NgModule({
   imports: [
     CommonModule,
+    ProfileRoutingModule,
     RequestForAccessModule,
     MatDividerModule,
     MatListModule,
