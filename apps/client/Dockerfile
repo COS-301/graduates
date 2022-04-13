@@ -22,7 +22,7 @@ COPY . .
 ENV PORT=8080
 
 # Expose the PORT
-EXPOSE 8080
+EXPOSE 4200
 
 # Start the client application
 CMD ["yarn", "start:client"]
