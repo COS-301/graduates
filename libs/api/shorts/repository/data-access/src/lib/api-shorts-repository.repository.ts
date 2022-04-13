@@ -6,7 +6,6 @@ import {
 } from '@graduates/api/shorts/api/shared/entities/data-access';
 import { Short, ShortTag, User } from '@prisma/client';
 import { ShortUpdateInput } from '@graduates/api/shorts/api/shared/entities/data-access';
-import { resourceLimits } from 'worker_threads';
 
 @Injectable()
 export class ShortsRepository {
