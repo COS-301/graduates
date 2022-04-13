@@ -6,6 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'graduates-story-explore',
   templateUrl: './story-explore.component.html',
@@ -39,13 +41,11 @@ export class StoryExploreComponent implements OnInit {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver, f : FormBuilder) {
+  constructor(private breakpointObserver: BreakpointObserver, f : FormBuilder, private location: Location) {
     this.upload = false;
     this.builder = f;
     this.return = false;
   }
-
-
 
   ngOnInit(): void {
     this.uploadfrm = this.builder.group({
@@ -66,20 +66,15 @@ export class StoryExploreComponent implements OnInit {
   cancel() {
     this.return = true;
     //take user back a page to the user profile
+    this.location.back();
   }
 
-
-
-  
   search(){
     this.searchText = (<HTMLInputElement>document.getElementById("search")).value;
      alert('searching for ' + this.searchText);
      this.loadCards();
 
   }
-
-
-
 
   loadCards(){
 
