@@ -41,4 +41,15 @@ export class NotificationsRepository {
     return notifications;
   }
 
+  async updateSeen(id : string, seen : boolean) : Promise<Notification> {
+    return await this.prisma.notification.update({
+      where: { 
+        id : id
+      },
+      data: {
+        seen : seen
+      }
+    });
+  }
+
 }
