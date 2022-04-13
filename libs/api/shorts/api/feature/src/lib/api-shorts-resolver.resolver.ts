@@ -36,7 +36,7 @@ export class ShortsResolver {
    * @returns {Promise<Short[]>}
    */
   @Query(() => [Short])
-  async findAllShorts(): Promise<Short[]> {
+  async getAllShorts(): Promise<Short[]> {
     return await this.service.findAllShorts();
   }
 
@@ -46,7 +46,7 @@ export class ShortsResolver {
    * @returns {Promise<Short | null>}
    */
   @Query(() => Short)
-  async findShortById(@Args('id') id: string): Promise<Short | null> {
+  async getShortById(@Args('id') id: string): Promise<Short | null> {
     const res = await this.service.findShortById(id);
     if (!res) {
       throw new NotFoundException('Short not found');
@@ -60,7 +60,7 @@ export class ShortsResolver {
    * @returns {Promise<Short[]>}
    */
   @Query(() => [Short])
-  async findShortsByUser(@Args('userId') userId: string): Promise<Short[]> {
+  async getShortsByUser(@Args('userId') userId: string): Promise<Short[]> {
     return await this.service.findShortsByUser(userId);
   }
 
@@ -70,7 +70,7 @@ export class ShortsResolver {
    * @returns {Promise<Short[]>}
    */
   @Query(() => [Short])
-  async findShortsByTag(@Args('tagId') tagId: string): Promise<Short[]> {
+  async getShortsByTag(@Args('tagId') tagId: string): Promise<Short[]> {
     return await this.service.findShortsByTag(tagId);
   }
 
@@ -108,19 +108,17 @@ export class ShortsResolver {
   }
 
   @Query(() => [ShortTag])
-  async findAllTags(): Promise<ShortTag[]> {
+  async getAllTags(): Promise<ShortTag[]> {
     return await this.service.findAllTags();
   }
 
   @Query(() => [ShortTag])
-  async findTagsByShortId(@Args('id') id: string): Promise<ShortTag[]> {
+  async getTagsByShortId(@Args('id') id: string): Promise<ShortTag[]> {
     return await this.service.findTagsByShortId(id);
   }
 
   @Mutation(() => ShortTag)
-  async createShortTag(
-    @Args('tag') tag: ShortCreateTagInput
-  ): Promise<ShortTag> {
+  async createTag(@Args('tag') tag: ShortCreateTagInput): Promise<ShortTag> {
     return await this.service.createTag(tag);
   }
 
@@ -142,17 +140,19 @@ export class ShortsResolver {
   }
 
   @Mutation(() => String)
-  async deleteTags(@Args('tag') tag: string): Promise<string> {
+  async deleteTagsByTag(@Args('tag') tag: string): Promise<string> {
     return await this.service.deleteTags(tag);
   }
 
   @Mutation(() => String)
-  async deleteTagsByShortId(@Args('shortId') shortId: string): Promise<string> {
+  async deleteAllTagsForShort(
+    @Args('shortId') shortId: string
+  ): Promise<string> {
     return await this.service.deleteTagsByShortId(shortId);
   }
 
   @Mutation(() => String)
-  async deleteTagByShortTag(
+  async deleteTag(
     @Args('shortId') shortId: string,
     @Args('tag') tag: string
   ): Promise<string> {
