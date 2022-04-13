@@ -13,8 +13,8 @@ import { BioComponent } from './bio/bio.component';
 import { MatDividerModule } from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card'; 
-import {MatChipsModule} from '@angular/material/chips'; 
-
+import {MatChipsModule} from '@angular/material/chips';
+import { AchievementsComponent } from './achievements/achievements.component'; 
 
 
 @NgModule({
@@ -33,7 +33,8 @@ import {MatChipsModule} from '@angular/material/chips';
   declarations: [
     ProfileBodyComponent,
     UserInfoComponent,
-    BioComponent
+    BioComponent,
+    AchievementsComponent
   ],
    exports: [ProfileBodyComponent]
 })
