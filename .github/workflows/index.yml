@@ -2,8 +2,6 @@
 name: CI Tests
 
 on: 
-  push:
-    branches: [ main, develop ]
   pull_request:
     branches: [ main, develop ]
   #manual github action trigger with choices to run individual tests
