@@ -24,7 +24,7 @@ import { ApiAuthenticationApiFeatureModule } from '@graduates/api/authentication
     ApiShortsFeatureModule,
     ApiAccessStatusFeatureModule,
     ApiCompanyProfilePageFeatureModule,
-    //ApiStudentProfilesModule,
+    ApiStudentProfilesModule,
     ApiCompanyRepresentativeApiFeatureModule,
     ApiRequestAccessFeatureModule,
     ApiAuthenticationApiFeatureModule,
