@@ -1,8 +1,54 @@
+@import "libs/client/shared/assets/ui/src/lib/global";
+
+.card-grid{
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+
+  width: min(95%, 70rem);
+  margin-inline: auto;
+  padding-bottom: 5em;
+}
+
+//Media queries to adjust grid
+@include desktop{
+  .card-grid{
+    display: grid;
+    gap: 5rem;
+    grid-template-columns: repeat(3, 1fr);
+  
+    width: min(95%, 70rem);
+    margin-inline: auto;
+  }
+}
+
+@include tablet{
+  .card-grid{
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: repeat(2, 1fr);
+  
+    width: min(95%, 70rem);
+    margin-inline: auto;
+  }
+}
+
+@include phone{
+  .card-grid{
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: repeat(1, 1fr);
+  
+    width: min(95%, 70rem);
+    margin-inline: auto;
+  }
+}
+
 mat-card {
   padding: 0;
   margin: 0;
   height: 100%;
-  width: 100%;
+  width: 340px;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -42,7 +88,7 @@ div.content mat-card-actions button {
 
 div.content mat-card-actions button:hover {
   background-color: #fff;
-  color: #174372;
+  color: $primary-1;
 }
 
 div.banner img {
