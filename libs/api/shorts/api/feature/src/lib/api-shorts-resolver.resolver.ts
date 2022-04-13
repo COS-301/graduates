@@ -10,16 +10,23 @@ import {
   Short,
   ShortCreateInput,
 } from '@graduates/api/shorts/api/shared/entities/data-access';
+import { ShortTag } from '@graduates/api/shorts/api/shared/entities/data-access';
 import { ShortsService } from '@graduates/api/shorts/service/feature';
 import { NotFoundException } from '@nestjs/common';
+import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 
 @Resolver(Short)
 export class ShortsResolver {
   constructor(private readonly service: ShortsService) {}
 
   @ResolveField()
-  user(@Root() short: Short): Promise<Short> {
-    return this.service.findShortById(short.id);
+  user(@Root() short: Short): Promise<User> {
+    return this.service.findUserById(short.userId);
+  }
+
+  @ResolveField(() => [ShortTag])
+  async shortTag(@Root() short: Short): Promise<ShortTag[]> {
+    return await this.service.findTagsByShortId(short.id);
   }
 
   /**
@@ -74,10 +81,29 @@ export class ShortsResolver {
   @Mutation(() => Short)
   async createShort(
     @Args('short') short: ShortCreateInput,
-    @Args({ name: 'tags', type: () => [String] }) tags: string[],
     @Args('userId') userId: string
   ): Promise<Short | null> {
-    const resp = await this.service.createShort(short, tags, userId);
+    const resp = await this.service.createShort(short, userId);
+    return resp;
+  }
+  // @Mutation(() => Short)
+  // async createShort(
+  //   @Args('short') short: ShortCreateInput,
+  //   @Args({ name: 'tags', type: () => [String] }) tags: string[],
+  //   @Args('userId') userId: string
+  // ): Promise<Short | null> {
+  //   const resp = await this.service.createShort(short, tags, userId);
+  //   return resp;
+  // }
+
+  /**
+   * Mutation to delete a short
+   * @param {string} id The id of the short to delete
+   * @returns {Promise<Short | null>}
+   */
+  @Mutation(() => Short)
+  async deleteShort(@Args('id') id: string): Promise<Short | null> {
+    const resp = await this.service.deleteShort(id);
     return resp;
   }
 }

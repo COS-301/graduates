@@ -1,6 +1,7 @@
 import {
   Short,
   ShortCreateInput,
+  ShortTag,
 } from '@graduates/api/shorts/api/shared/entities/data-access';
 import { Injectable } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
@@ -9,8 +10,14 @@ import {
   GetShortByIdQuery,
   GetShortByTagQuery,
   GetShortByUserQuery,
+  GetUserByIdQuery,
+  GetTagByIdQuery,
 } from './queries/api-shorts-query.query';
-import { CreateShortCommand } from './commands/api-shorts-command.command';
+import {
+  CreateShortCommand,
+  DeleteShortCommand,
+} from './commands/api-shorts-command.command';
+import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 
 @Injectable()
 export class ShortsService {
@@ -42,6 +49,19 @@ export class ShortsService {
   }
 
   /**
+   * Find a tag by short id
+   * @param {string} id The id of the tags to find
+   * @return {Promise<ShortTag[]>}
+   */
+  async findTagsByShortId(id: string): Promise<ShortTag[]> {
+    return await this.queryBus.execute(new GetTagByIdQuery(id));
+  }
+
+  async findUserById(id: string): Promise<User> {
+    return await this.queryBus.execute(new GetUserByIdQuery(id));
+  }
+
+  /**
    * Find all shorts by user id
    * @param {string} userId The id of the user to find the shorts for
    * @return {Promise<Short[] | null>}
@@ -67,11 +87,21 @@ export class ShortsService {
    */
   async createShort(
     short: ShortCreateInput,
-    tags: string[],
+    // tags: string[],
     userId: string
   ): Promise<Short> {
     return await this.commandBus.execute(
-      new CreateShortCommand(short, tags, userId)
+      new CreateShortCommand(short, userId)
+      // new CreateShortCommand(short, tags, userId)
     );
+  }
+
+  /**
+   * Delete a short
+   * @param {string} id The id of the short to delete
+   * @return {Promise<Short | null>}
+   */
+  async deleteShort(id: string): Promise<Short | null> {
+    return await this.commandBus.execute(new DeleteShortCommand(id));
   }
 }

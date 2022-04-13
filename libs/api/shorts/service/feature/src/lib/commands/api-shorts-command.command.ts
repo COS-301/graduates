@@ -9,7 +9,15 @@ import { ShortCreateInput } from '@graduates/api/shorts/api/shared/entities/data
 export class CreateShortCommand {
   constructor(
     public readonly short: ShortCreateInput,
-    public readonly tags: string[],
+    // public readonly tags: string[],
     public readonly userId: string
   ) {}
+}
+
+/**
+ * Class representing a DeleteShortCommand command
+ * @param {string} id The id of the short to delete
+ */
+export class DeleteShortCommand {
+  constructor(public readonly id: string) {}
 }

@@ -1,6 +1,6 @@
 import { Field, InputType, ObjectType } from '@nestjs/graphql';
 import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
-import { ShortTag } from './api-shorts-tag-entity.entity';
+import { ShortTag, ShortTagInput } from './api-shorts-tag-entity.entity';
 import { ShortReport } from './api-shorts-report-entity.entity';
 import { ID } from '@nestjs/graphql';
 
@@ -86,4 +86,10 @@ export class ShortCreateInput {
    */
   @Field(() => Boolean)
   archived!: boolean;
+
+  /**
+   * The tags of the short
+   */
+  @Field(() => [ShortTagInput])
+  shortTag!: ShortTagInput[];
 }

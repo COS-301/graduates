@@ -1,5 +1,8 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { CreateShortCommand } from './api-shorts-command.command';
+import {
+  CreateShortCommand,
+  DeleteShortCommand,
+} from './api-shorts-command.command';
 import { ShortsRepository } from '@graduates/api/shorts/repository/data-access';
 import { Short } from '@prisma/client';
 
@@ -13,8 +16,31 @@ export class CreateShortHandler implements ICommandHandler<CreateShortCommand> {
   constructor(private readonly repository: ShortsRepository) {}
 
   async execute(command: CreateShortCommand): Promise<Short | null> {
-    const { short, tags, userId } = command;
+    const { short, userId } = command;
 
-    return this.repository.createShort(short, tags, userId);
+    return this.repository.createShort(short, userId);
+  }
+
+  // async execute(command: CreateShortCommand): Promise<Short | null> {
+  //   const { short, tags, userId } = command;
+
+  //   return this.repository.createShort(short, tags, userId);
+  // }
+}
+
+/**
+ * Class to implement the DeleteShort command for the ShortsService
+ * @param {DeleteShortCommand} command The command containing the id of the short to be deleted
+ * @return {Promise<boolean>} True if the short was deleted successfully, false otherwise
+ */
+@CommandHandler(DeleteShortCommand)
+export class DeleteShortHandler implements ICommandHandler<DeleteShortCommand> {
+  constructor(private readonly repository: ShortsRepository) {}
+
+  async execute(command: DeleteShortCommand): Promise<Short | null> {
+    const { id } = command;
+
+    // return this.repository.deleteShort(id);
+    return null;
   }
 }

@@ -1,5 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { Short } from '@graduates/api/shorts/api/shared/entities/data-access';
+import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 import { ShortsResolver } from './api-shorts-resolver.resolver';
 import { ShortsService } from '@graduates/api/shorts/service/feature';
 import { QueryBus, CommandBus } from '@nestjs/cqrs';
@@ -7,6 +8,9 @@ import { NotFoundException } from '@nestjs/common';
 
 jest.mock('@graduates/api/shorts/api/shared/entities/data-access');
 const shortMock: jest.Mocked<Short> = new Short() as Short;
+
+jest.mock('@graduates/api/authentication/api/shared/interfaces/data-access');
+const userMock: jest.Mocked<User> = new User() as User;
 // Run `yarn test api-shorts-api-feature`
 describe('ShortsResolver', () => {
   let resolver: ShortsResolver;
@@ -121,12 +125,12 @@ describe('ShortsResolver', () => {
    * Test the user method
    */
   describe('user', () => {
-    it('should return a short', async () => {
+    it('should return a user', async () => {
       jest
         .spyOn(resolver, 'user')
-        .mockImplementation((): Promise<Short> => Promise.resolve(shortMock));
+        .mockImplementation((): Promise<User> => Promise.resolve(userMock));
 
-      expect(await resolver.user(shortMock)).toMatchObject(shortMock);
+      expect(await resolver.user(shortMock)).toMatchObject(userMock);
     });
   });
 });

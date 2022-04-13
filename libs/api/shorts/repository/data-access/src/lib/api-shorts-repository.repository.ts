@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 import { ShortCreateInput } from '@graduates/api/shorts/api/shared/entities/data-access';
-import { Short } from '@prisma/client';
+import { Short, ShortTag, User } from '@prisma/client';
 
 @Injectable()
 export class ShortsRepository {
@@ -15,6 +15,10 @@ export class ShortsRepository {
     return this.prisma.short.findMany();
   }
 
+  async findUserById(id: string): Promise<User | null> {
+    return this.prisma.user.findUnique({ where: { id: id } });
+  }
+
   /**
    * Find a short by id
    * @param {string} id The id of the short to find
@@ -22,6 +26,15 @@ export class ShortsRepository {
    */
   async findById(id: string): Promise<Short | null> {
     return this.prisma.short.findUnique({ where: { id: id } });
+  }
+
+  /**
+   * Find a tag by id
+   * @param {string} id The id of the short to find
+   * @return {Promise<ShortTag[]>}
+   */
+  async findTagByShortId(id: string): Promise<ShortTag[]> {
+    return this.prisma.shortTag.findMany({ where: { shortId: id } });
   }
 
   /**
@@ -59,16 +72,11 @@ export class ShortsRepository {
   /**
    * Create a new short
    * @param {Short} short The short to create
-   * @param {string[]} tags Array of strings which will be the tags for the short
    * @param {string} userId The id of the user to create the short for
    * @return {Promise<Short | null>}
    */
-  async createShort(
-    short: ShortCreateInput,
-    tags: string[],
-    userId: string
-  ): Promise<Short> {
-    const newShort = await this.prisma.short.create({
+  async createShort(short: ShortCreateInput, userId: string): Promise<Short> {
+    return await this.prisma.short.create({
       data: {
         media: short.media,
         data: short.data,
@@ -76,26 +84,13 @@ export class ShortsRepository {
         user: {
           connect: { id: userId },
         },
+        shortTag: {
+          createMany: {
+            data: short.shortTag,
+          },
+        },
         datePosted: new Date(),
       },
     });
-
-    const shortCreate = await this.prisma.short.update({
-      where: {
-        id: newShort.id,
-      },
-      data: {
-        shortTag: {
-          createMany: {
-            data: tags.map((tag) => ({
-              tag: tag,
-            })),
-          },
-        },
-      },
-      include: { shortTag: true },
-    });
-
-    return shortCreate;
   }
 }

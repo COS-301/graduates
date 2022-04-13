@@ -12,6 +12,14 @@ export class GetShortByIdQuery {
 }
 
 /**
+ * Class representing a GetTagById query
+ * @param {string} id The id of the short to find
+ */
+export class GetTagByIdQuery {
+  constructor(public readonly id: string) {}
+}
+
+/**
  * Class representing a GetShortByUser query
  * @param {string} userId The id of the user to find the shorts for
  */
@@ -25,4 +33,8 @@ export class GetShortByUserQuery {
  */
 export class GetShortByTagQuery {
   constructor(public readonly tagId: string) {}
+}
+
+export class GetUserByIdQuery {
+  constructor(public readonly id: string) {}
 }
