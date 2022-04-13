@@ -1,15 +1,13 @@
+<link  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"  rel="stylesheet">
+
 <div class="container-fluid">
 
-  <link  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"  rel="stylesheet">
 
   <div class="grid-container">
-    <h1 class="banner-text">Shorts Explore</h1><br>
+    <h1>Student Shorts</h1>
 
     <div >
-      <input id = "search" fxFlex="70%" fxFlexOffset="-10%"
-      type="text"
-      (change)="search()"
-      placeholder="Enter tag or username" />
+      <input id = "search" type="text" fxFlex="70%" fxFlexOffset="-10%">
     </div>
     <mat-grid-list cols="3" rowHeight="350px">
       <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
@@ -26,7 +24,7 @@
                 <div class="col-8">
                   <mat-card-title> {{card.title}}</mat-card-title>       
                   <div class="row">
-                    <p  *ngFor="let tag of card.tags">{{tag}}</p><p> </p>
+                    <p  *ngFor="let tag of card.tags">{{tag}}</p>
                   </div>
                 </div>
                 <div class="col-4">
@@ -46,22 +44,67 @@
 
   </div>
 
-  <div class="stick-top" id="upload" *ngIf="upload">
 
-    <div class="row d-flex flex-column">
+  <div class="grid grid-cols-1 max-w-prose w-2/3 drop-shadow-2xl" id="upload" *ngIf="upload">
+
 
       <!-- banner for upload box -->
-      <div class="col-12" id="uploadbanner">Upload Your Content</div>
+      <div class="text-center p-6" id="uploadbanner">Upload Your Content</div>
       <!-- info message -->
-      <div class="col-12" id="infomessage">Upload either an image or video</div>
-      <!-- file input -->
-      <div class="col-12"></div>
-      <!-- add tags box -->
-      <div class="col-12"></div>
-      <!-- buttons, cancel and upload -->
-      <div class="col-12"></div>
+      <div class="text-center py-3" id="infomessage">Upload an image or video</div>
 
-    </div>
+      <!-- line under message --> 
+      <div id="greyline"></div>
+
+        <!-- form creation -->
+        <form [formGroup]="uploadfrm" (ngSubmit)="uploadStory()">
+
+          <!-- file input -->
+          <div class="fileupload mt-3 mr-3 ml-3 mb-2 flex justify-center">
+            <!-- <input type="file" class="file:border file:border-solid ..." /> -->
+            <div class="w-full">
+              <label
+                  class="flex justify-center w-full h-32 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
+                  <span class="flex items-center space-x-2">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24"
+                          stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                      </svg>
+                      <span class="font-medium text-gray-600">
+                          Drop files to Attach, or
+                          <span class="text-blue-600 underline">browse</span>
+                      </span>
+                  </span>
+                  <input type="file" name="file_upload" class="hidden">
+              </label>
+          </div>
+          </div>
+
+          <!-- add tags box -->
+          <div class="mb-3 ml-3 mr-3">
+
+              <input id="taginput" placeholder="Add Tags: #COS, #CSLife" type="text" formControlName="tags" class="drop-shadow-md h-8 w-full rounded" [ngClass]="{'is-invalid': submit && uploadfrm.controls['tags'].errors}"/>
+              <div *ngIf="submit && uploadfrm.controls['tags'].errors" class="text-right error">
+                Please submit tags to add.
+              </div>
+
+          </div>
+
+          <div id="greyline"></div>
+
+          <!-- buttons, cancel and upload -->
+          <div>
+
+            <div class="grid grid-cols-2 place-content-center py-3">
+              <div class="flex justify-center"><button class="py-2.5 px-3 formbutton rounded" (click)="cancel()">Cancel</button></div>
+              <div class="flex justify-center"><button class="py-2.5 px-3 formbutton rounded">Submit</button></div>
+            </div>
+
+          </div>
+
+        </form>
+
 
   </div>
 

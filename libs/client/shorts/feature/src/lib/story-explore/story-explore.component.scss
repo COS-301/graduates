@@ -1,12 +1,12 @@
 @import 'libs/client/shared/assets/ui/src/lib/global';
 
-
 .banner-text {
     color: $primary-1;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: xx-large;
     font-weight: bold;
 }
+
 p {
     font-size: small;
 }
@@ -28,32 +28,48 @@ h1 {
     display: block;
 }
 
+.error {
+    color: $text-red;
+}
+
 #upload {
-    background-color: pink;
+    background-color: $background-white;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    // width: 50vw;
+    color: $text-white;
 }
 
 #uploadbanner {
-    background-color: lightblue;
-    padding-top: 25%;
-    padding-bottom: 25%;
+    background-color: $card-blue;
 }
 
 #infomessage {
-
+    color: $primary-3;
 }
 
-#fileinput {
+#greyline {
+    border-bottom: 1.8px solid #888888;
+    margin-left: 2vh;
+    margin-right: 2vh;
+}
+
+#fileupload {
 
 }
 
 #taginput {
-
+    outline: none;
+    color: $primary-3;
+    padding: 0 8px;
 }
 
 #completebuttons {
     
+}
+
+.formbutton {
+    background-color: $card-blue;
 }
