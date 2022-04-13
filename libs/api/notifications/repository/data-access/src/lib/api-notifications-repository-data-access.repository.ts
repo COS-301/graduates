@@ -10,7 +10,7 @@ export class NotificationsRepository {
     return this.prisma.notification.findMany();
   }
 
-  async findById(id: string): Promise<Notification | null> {
+  async findByNotificationId(id: string): Promise<Notification | null> {
     return this.prisma.notification.findUnique({ 
       where: { 
         id : id
@@ -18,7 +18,7 @@ export class NotificationsRepository {
     });
   }
 
-  async findbyUserIDTo(userId : string): Promise<Notification[] | null> {
+  async findByUserIDTo(userId : string): Promise<Notification[] | null> {
     return this.prisma.notification.findMany({
       where: {
         userIdTo : userId
@@ -28,20 +28,15 @@ export class NotificationsRepository {
 
   async findByNotificationType(userId : string, notificationType : string): Promise<Notification[] | null> {
 
-    const notifications =  this.prisma.notification.findMany({ 
+    const notifications =  await this.prisma.notification.findMany({ 
       where: {
         userIdTo : userId,
-      }
+        data: { 
+          path: ['notificationType'],
+          equals: notificationType
+        },
+      },
     });
-
-    // (await notifications).forEach(notification => {
-    //   if (notification.data && typeof notification.data === 'object' && !Array.isArray(notification.data)) {
-    //     const notificationData = notification.data as Prisma.JsonObject
-    //     if (notificationData['notificationType'] === notificationType) {
-
-    //     }
-    //   }
-    // })
     
     return notifications;
   }
