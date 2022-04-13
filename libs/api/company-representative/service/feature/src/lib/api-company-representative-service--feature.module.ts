@@ -10,7 +10,7 @@ import { DataAccess } from '@graduates/api/company-representative/repository';
 
 
 @Module({
-  imports:[CqrsModule],
+  imports:[CqrsModule,QueryBus],
   providers: [ApiCompanyRepresentativeService,DataAccess,...QueryHandlers,QueryBus,CommandBus,...CommandHandlers],
   exports: [ApiCompanyRepresentativeService],
   controllers: [],
