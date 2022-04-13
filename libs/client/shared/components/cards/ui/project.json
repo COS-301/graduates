@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/cards",
+  "sourceRoot": "libs/cards/src",
+  "prefix": "cards",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/cards"],
+      "options": {
+        "jestConfig": "libs/cards/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/cards/src/**/*.ts",
+          "libs/cards/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

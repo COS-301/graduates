@@ -29,23 +29,26 @@ model User {
 
   company User? @relation(name: "company_id", fields: [companyId], references: [id])
 
-  User             User[]            @relation("company_id")
-  userScout        UserScouted[]     @relation("userScout")
-  userScouted      UserScouted[]     @relation("userScouted")
-  UserRole         UserRole[]
-  UserPermissions  UserPermissions[]
-  UserProfile      UserProfile[]
-  UserTag          UserTag[]
-  UserSocialMedia  UserSocialMedia[]
-  UserLocation     UserLocation[]
-  UserEmail        UserEmail[]
-  UserProfileFile  UserProfileFile[]
-  Story            Story[]
-  StoryReport      StoryReport[]
-  notificationFrom Notification[]    @relation("notificationFrom")
-  notificationTo   Notification[]    @relation("notificationTo")
-  Blog             Blog[]
-
+  User              User[]            @relation("company_id")
+  userScout         UserScouted[]     @relation("userScout")
+  userScouted       UserScouted[]     @relation("userScouted")
+  UserRole          UserRole[]
+  UserPermissions   UserPermissions[]
+  UserProfile       UserProfile[]
+  UserTag           UserTag[]
+  UserContactNumber UserContactNumber[]
+  UserExperience    UserExperience[]
+  UserSocialMedia   UserSocialMedia[]
+  UserLocation      UserLocation[]
+  UserEmail         UserEmail[]
+  UserProfileFile   UserProfileFile[]
+  Short             Short[]
+  ShortReport       ShortReport[]
+  notificationFrom  Notification[]    @relation("notificationFrom")
+  notificationTo    Notification[]    @relation("notificationTo")
+  Blog              Blog[]
+  UserToken         UserToken[]    
+  
   @@map("user")
 }
 
@@ -227,11 +230,11 @@ enum FileCategory {
 }
 
 ///////////////////////////////////////////////////////////////////////
-// 2. Story
+// 2. Short
 ///////////////////////////////////////////////////////////////////////
 
-// Stories of users
-model Story {
+// Shorts of users
+model Short {
   id         String   @id @default(cuid())
   userId     String   @map("user_id")
   media      String?
@@ -241,33 +244,33 @@ model Story {
 
   user User @relation(fields: [userId], references: [id])
 
-  storyTag    StoryTag[]
-  storyReport StoryReport[]
-  @@map("story")
+  shortTag    ShortTag[]
+  shortReport ShortReport[]
+  @@map("short")
 }
 
-// Story tags to be filtered by
-model StoryTag {
-  storyId String @map("story_id")
+// Short tags to be filtered by
+model ShortTag {
+  shortId String @map("short_id")
   tag     String
 
-  story Story @relation(fields: [storyId], references: [id])
+  short Short @relation(fields: [shortId], references: [id])
 
-  @@id([storyId, tag])
-  @@map("story_tag")
+  @@id([shortId, tag])
+  @@map("short_tag")
 }
 
-// Story reports
-model StoryReport {
-  storyId String @map("story_id")
+// Short reports
+model ShortReport {
+  shortId String @map("short_id")
   userId  String @map("user_id")
   reason  String
 
   user  User  @relation(fields: [userId], references: [id])
-  story Story @relation(fields: [storyId], references: [id])
+  short Short @relation(fields: [shortId], references: [id])
 
-  @@id([storyId, userId])
-  @@map("story_report")
+  @@id([shortId, userId])
+  @@map("short_report")
 }
 
 ///////////////////////////////////////////////////////////////////////
@@ -332,6 +335,24 @@ model BlogMedia {
   @@map("blog_media")
 }
 
+
+///////////////////////////////////////////////////////////////////////
+// 5. Token
+///////////////////////////////////////////////////////////////////////
+
+model UserToken { 
+  userId              String  @map("user_id") 
+  userToken           String  @map("user_token")
+  userTokenType       Int     @map("user_token_type")
+  userTokenExpiration Int     @map("user_token_expiration")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@id ([userId])
+  @@map("user_token")
+}
+
+
 ///////////////////////////////////////////////////////////////////////
 // Tests
 ///////////////////////////////////////////////////////////////////////
@@ -341,3 +362,21 @@ model Test {
   test1 String  @unique
   test2 String?
 }
+
+// User contact number
+model UserContactNumber {
+  userId    String  @id  @map("user_id")
+  number    String  @db.VarChar(10)
+
+  user User @relation(fields: [userId], references: [id])
+  @@map("user_contact_number")
+}
+
+model UserExperience {
+  userId      String @id  @map("user_id")
+  experience  String
+
+  user User @relation(fields: [userId], references: [id])
+  @@map("user_experience")
+}
+
