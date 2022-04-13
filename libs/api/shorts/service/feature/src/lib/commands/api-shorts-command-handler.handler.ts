@@ -2,6 +2,7 @@ import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import {
   CreateShortCommand,
   DeleteShortCommand,
+  UpdateShortCommand,
 } from './api-shorts-command.command';
 import { ShortsRepository } from '@graduates/api/shorts/repository/data-access';
 import { Short } from '@prisma/client';
@@ -20,12 +21,6 @@ export class CreateShortHandler implements ICommandHandler<CreateShortCommand> {
 
     return this.repository.createShort(short, userId);
   }
-
-  // async execute(command: CreateShortCommand): Promise<Short | null> {
-  //   const { short, tags, userId } = command;
-
-  //   return this.repository.createShort(short, tags, userId);
-  // }
 }
 
 /**
@@ -40,7 +35,17 @@ export class DeleteShortHandler implements ICommandHandler<DeleteShortCommand> {
   async execute(command: DeleteShortCommand): Promise<Short | null> {
     const { id } = command;
 
-    // return this.repository.deleteShort(id);
-    return null;
+    return this.repository.deleteShort(id);
+  }
+}
+
+@CommandHandler(UpdateShortCommand)
+export class UpdateShortHandler implements ICommandHandler<UpdateShortCommand> {
+  constructor(private readonly repository: ShortsRepository) {}
+
+  async execute(command: UpdateShortCommand): Promise<Short | null> {
+    const { short } = command;
+
+    return this.repository.updateShort(short);
   }
 }

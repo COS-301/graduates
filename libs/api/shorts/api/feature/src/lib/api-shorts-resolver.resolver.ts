@@ -9,8 +9,10 @@ import {
 import {
   Short,
   ShortCreateInput,
+  ShortCreateTagInput,
+  ShortTag,
+  ShortUpdateInput,
 } from '@graduates/api/shorts/api/shared/entities/data-access';
-import { ShortTag } from '@graduates/api/shorts/api/shared/entities/data-access';
 import { ShortsService } from '@graduates/api/shorts/service/feature';
 import { NotFoundException } from '@nestjs/common';
 import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
@@ -86,15 +88,6 @@ export class ShortsResolver {
     const resp = await this.service.createShort(short, userId);
     return resp;
   }
-  // @Mutation(() => Short)
-  // async createShort(
-  //   @Args('short') short: ShortCreateInput,
-  //   @Args({ name: 'tags', type: () => [String] }) tags: string[],
-  //   @Args('userId') userId: string
-  // ): Promise<Short | null> {
-  //   const resp = await this.service.createShort(short, tags, userId);
-  //   return resp;
-  // }
 
   /**
    * Mutation to delete a short
@@ -105,5 +98,64 @@ export class ShortsResolver {
   async deleteShort(@Args('id') id: string): Promise<Short | null> {
     const resp = await this.service.deleteShort(id);
     return resp;
+  }
+
+  @Mutation(() => Short)
+  async updateShort(
+    @Args('short') short: ShortUpdateInput
+  ): Promise<Short | null> {
+    return await this.service.updateShort(short);
+  }
+
+  @Query(() => [ShortTag])
+  async findAllTags(): Promise<ShortTag[]> {
+    return await this.service.findAllTags();
+  }
+
+  @Query(() => [ShortTag])
+  async findTagsByShortId(@Args('id') id: string): Promise<ShortTag[]> {
+    return await this.service.findTagsByShortId(id);
+  }
+
+  @Mutation(() => ShortTag)
+  async createShortTag(
+    @Args('tag') tag: ShortCreateTagInput
+  ): Promise<ShortTag> {
+    return await this.service.createTag(tag);
+  }
+
+  @Mutation(() => String)
+  async updateTags(
+    @Args('tag') tag: string,
+    @Args('newTag') newTag: string
+  ): Promise<string> {
+    return await this.service.updateTags(tag, newTag);
+  }
+
+  @Mutation(() => String)
+  async updateTagByShortId(
+    @Args('shortId') shortId: string,
+    @Args('tag') tag: string,
+    @Args('newTag') newTag: string
+  ): Promise<string> {
+    return await this.service.updateTagByShortId(shortId, tag, newTag);
+  }
+
+  @Mutation(() => String)
+  async deleteTags(@Args('tag') tag: string): Promise<string> {
+    return await this.service.deleteTags(tag);
+  }
+
+  @Mutation(() => String)
+  async deleteTagsByShortId(@Args('shortId') shortId: string): Promise<string> {
+    return await this.service.deleteTagsByShortId(shortId);
+  }
+
+  @Mutation(() => String)
+  async deleteTagByShortTag(
+    @Args('shortId') shortId: string,
+    @Args('tag') tag: string
+  ): Promise<string> {
+    return await this.service.deleteTagByShortTag(shortId, tag);
   }
 }

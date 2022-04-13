@@ -1,13 +1,12 @@
 import { ShortsRepository } from '@graduates/api/shorts/repository/data-access';
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { Short, ShortTag, User } from '@prisma/client';
+import { Short, User } from '@prisma/client';
 import {
   GetAllShortsQuery,
   GetShortByIdQuery,
   GetShortByTagQuery,
   GetShortByUserQuery,
   GetUserByIdQuery,
-  GetTagByIdQuery,
 } from './api-shorts-query.query';
 
 /**
@@ -24,26 +23,11 @@ export class GetAllShortsHandler implements IQueryHandler<GetAllShortsQuery> {
 }
 
 /**
- * Class to implement the fetchShortById query for the ShortsService
- * @param {GetShortByIdQuery} query The query containing the id to search by
- * @return {Promise<Short | null>}
- */
-@QueryHandler(GetTagByIdQuery)
-export class GetTagByIdHandler implements IQueryHandler<GetTagByIdQuery> {
-  constructor(private readonly repository: ShortsRepository) {}
-
-  async execute(query: GetTagByIdQuery): Promise<ShortTag[]> {
-    const { id } = query;
-    return this.repository.findTagByShortId(id);
-  }
-}
-
-/**
  * Class to implement the fetchTagById query for the ShortsService
  * @param {GetTagByIdQuery} query The query containing the id to search by
  * @return {Promise<ShortTag[]>}
  */
-@QueryHandler(GetTagByIdQuery)
+@QueryHandler(GetShortByIdQuery)
 export class GetShortByIdHandler implements IQueryHandler<GetShortByIdQuery> {
   constructor(private readonly repository: ShortsRepository) {}
 

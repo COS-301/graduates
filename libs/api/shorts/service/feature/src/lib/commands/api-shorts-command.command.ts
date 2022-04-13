@@ -1,4 +1,7 @@
-import { ShortCreateInput } from '@graduates/api/shorts/api/shared/entities/data-access';
+import {
+  ShortCreateInput,
+  ShortUpdateInput,
+} from '@graduates/api/shorts/api/shared/entities/data-access';
 
 /**
  * Class representing a CreateShortCommand command
@@ -9,7 +12,6 @@ import { ShortCreateInput } from '@graduates/api/shorts/api/shared/entities/data
 export class CreateShortCommand {
   constructor(
     public readonly short: ShortCreateInput,
-    // public readonly tags: string[],
     public readonly userId: string
   ) {}
 }
@@ -20,4 +22,8 @@ export class CreateShortCommand {
  */
 export class DeleteShortCommand {
   constructor(public readonly id: string) {}
+}
+
+export class UpdateShortCommand {
+  constructor(public readonly short: ShortUpdateInput) {}
 }

@@ -93,3 +93,33 @@ export class ShortCreateInput {
   @Field(() => [ShortTagInput])
   shortTag!: ShortTagInput[];
 }
+
+/**
+ * Definition of the ShortUpdateInput entity as input type
+ */
+@InputType()
+export class ShortUpdateInput {
+  /**
+   * The id of the short
+   */
+  @Field(() => ID)
+  id!: string;
+
+  /**
+   * The description/name of the short
+   */
+  @Field({ nullable: true })
+  media!: string;
+
+  /**
+   * The url of the short
+   */
+  @Field({ nullable: true })
+  data!: string;
+
+  /**
+   * Wether the short is archived or not
+   */
+  @Field(() => Boolean, { nullable: true })
+  archived!: boolean;
+}

@@ -30,3 +30,18 @@ export class ShortTagInput {
   @Field()
   tag!: string;
 }
+
+@InputType()
+export class ShortCreateTagInput {
+  /**
+   * The id of the short
+   */
+  @Field()
+  shortId!: string;
+
+  /**
+   * The text of the tag
+   */
+  @Field()
+  tag!: string;
+}
