@@ -1,10 +1,16 @@
 <link  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"  rel="stylesheet">
 
-<div class="grid-container">
-    <h1>Student Shorts</h1>
+<div class="container-fluid">
+
+
+  <div class="grid-container">
+    <h1 class="banner-text">Shorts Explore</h1><br>
 
     <div >
-      <input id = "search" type="text" fxFlex="70%" fxFlexOffset="-10%">
+      <input id = "search" fxFlex="70%" fxFlexOffset="-10%"
+      type="text"
+      (change)="search()"
+      placeholder="Enter tag or username" />
     </div>
     <mat-grid-list cols="3" rowHeight="350px">
       <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
@@ -21,7 +27,7 @@
                 <div class="col-8">
                   <mat-card-title> {{card.title}}</mat-card-title>       
                   <div class="row">
-                    <p  *ngFor="let tag of card.tags">{{tag}}</p>
+                    <p  *ngFor="let tag of card.tags">{{tag}}</p><p> </p>
                   </div>
                 </div>
                 <div class="col-4">
@@ -38,5 +44,53 @@
       </mat-grid-tile>
       
     </mat-grid-list>
+
   </div>
-  
+
+  <div class="stick-top" id="upload" *ngIf="upload">
+
+    <div class="row d-flex flex-column">
+
+      <!-- banner for upload box -->
+      <div class="col-12 text-center" id="uploadbanner">Upload Your Content</div>
+      <!-- info message -->
+      <div class="col-12 text-center" id="infomessage">Upload either an image or video</div>
+
+        <form [formGroup]="uploadfrm" (ngSubmit)="uploadStory()">
+
+          <!-- file input -->
+          <div class="col-12" class="uploadwrapper">
+
+            <div class="dropzone">
+              
+            </div>
+
+          </div>
+          <!-- add tags box -->
+          <div class="col-12">
+
+            <div class="form-group">
+              <input placeholder="Addtags here... #COS, #CSLife" type="text" formControlName="tags" class="m-2 form-control" [ngClass]="{'is-invalid': submit && uploadfrm.controls['tags'].errors}"/>
+              <div *ngIf="submit && uploadfrm.controls['tags'].errors" class="text-danger">
+                Please submit tags to add.
+              </div>
+            </div>
+
+          </div>
+          <!-- buttons, cancel and upload -->
+          <div class="col-12">
+
+            <div class="row justify-content-between">
+              <div class="ml-4 mb-2"><button class="btn" (click)="cancel()">Cancel</button></div>
+              <div class="mr-4 mb-2"><button class="btn justify-content-end">Submit</button></div>
+            </div>
+
+          </div>
+
+        </form>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD:libs/client/adminconsole/feature/tsconfig.json
   "extends": "../../../../tsconfig.base.json",
-=======
-  "extends": "../../tsconfig.base.json",
->>>>>>> upstream/develop:libs/client/shared/components/cards/ui/tsconfig.json
   "files": [],
   "include": [],
   "references": [

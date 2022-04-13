@@ -2,7 +2,11 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
 <<<<<<< HEAD:libs/client/adminconsole/feature/tsconfig.lib.json
+<<<<<<< HEAD:libs/client/adminconsole/feature/tsconfig.lib.json
     "outDir": "../../../../dist/out-tsc",
+=======
+    "outDir": "../../dist/out-tsc",
+>>>>>>> upstream/develop:libs/client/shared/components/cards/ui/tsconfig.lib.json
 =======
     "outDir": "../../dist/out-tsc",
 >>>>>>> upstream/develop:libs/client/shared/components/cards/ui/tsconfig.lib.json

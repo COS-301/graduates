@@ -1,11 +1,6 @@
 module.exports = {
-<<<<<<< HEAD:libs/client/adminconsole/feature/jest.config.js
-  displayName: 'client-adminconsole-feature',
-  preset: '../../../../jest.preset.js',
-=======
   displayName: 'cards',
   preset: '../../jest.preset.js',
->>>>>>> upstream/develop:libs/client/shared/components/cards/ui/jest.config.js
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
     'ts-jest': {
@@ -13,11 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-<<<<<<< HEAD:libs/client/adminconsole/feature/jest.config.js
-  coverageDirectory: '../../../../coverage/libs/client/adminconsole/feature',
-=======
   coverageDirectory: '../../coverage/libs/cards',
->>>>>>> upstream/develop:libs/client/shared/components/cards/ui/jest.config.js
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },
