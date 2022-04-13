@@ -9,4 +9,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./registration-feature.component.scss']
 })
 
-export class RegistrationFeatureComponent {} 
+export class RegistrationFeatureComponent {}  
