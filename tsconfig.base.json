@@ -217,6 +217,9 @@
       "@graduates/client/company-explore/feature": [
         "libs/client/company-explore/feature/src/index.ts"
       ],
+      "@graduates/client/company-notifications/feature": [
+        "libs/client/company-notifications/feature/src/index.ts"
+      ],
       "@graduates/client/company-representative/feature": [
         "libs/client/company-representative/feature/src/index.ts"
       ],
