@@ -30,4 +30,4 @@ describe('AuthenticationFeatureModule', () => {
   it('should have a module definition', () => {
     expect(AuthenticationFeatureModule).toBeDefined();
   });
-});
+}); 
