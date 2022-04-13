@@ -1,11 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-<<<<<<< HEAD:libs/client/adminconsole/feature/tsconfig.spec.json
     "outDir": "../../../../dist/out-tsc",
-=======
-    "outDir": "../../dist/out-tsc",
->>>>>>> upstream/develop:libs/client/shared/components/cards/ui/tsconfig.spec.json
     "module": "commonjs",
     "types": ["jest", "node"]
   },
