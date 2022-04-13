@@ -8,9 +8,9 @@ module.exports = {
   },
   testEnvironment: 'node',
   transform: {
-    '^.+\\.[tj]sx?$': 'ts-jest',
+    '^.+\\.[tj]s$': 'ts-jest',
   },
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
+  moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory:
     '../../../../../coverage/libs/api/notifications/api/feature',
 };
