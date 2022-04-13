@@ -32,7 +32,7 @@ import { LoginPageFeatureComponent } from './login-page-feature/login-page-featu
 
 @NgModule({
   imports: [
-    CommonModule,
+    CommonModule, 
     LayoutModule,
     BrowserModule,
     //AppRoutingModule,
