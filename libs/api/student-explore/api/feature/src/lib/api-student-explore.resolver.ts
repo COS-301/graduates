@@ -1,4 +1,4 @@
-import { Resolver, Args, Query } from '@nestjs/graphql';
+import { Resolver, Args, Query, ResolveField, Parent } from '@nestjs/graphql';
 //import { Student } from '@graduates/api/student-explore/repository/data-access';
 import { StudentExploreService } from '@graduates/api/student-explore/service/feature';
 
@@ -19,8 +19,8 @@ export class ApiStudentExploreResolver {
   }
 
   @Query(() => [ApiStudentExplore])
-  SearchStudents() : Promise<ApiStudentExplore>{
-    return this.StudentExploreService.SearchStudents();
+  SearchStudents(@Args('searchQuery') searchQuery : string ) : Promise<ApiStudentExplore>{
+    return this.StudentExploreService.SearchStudents(searchQuery);
   }
 
   @Query(() => [ApiStudentExplore])

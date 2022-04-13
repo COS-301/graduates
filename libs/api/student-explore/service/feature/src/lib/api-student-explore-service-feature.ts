@@ -27,9 +27,9 @@ export class StudentExploreService {
     );
   }
 
-  async SearchStudents() {
+  async SearchStudents(searchQuery) {
     return this.queryBus.execute(
-      new SearchStudentsQuery()
+      new SearchStudentsQuery(searchQuery)
     );
   }
 

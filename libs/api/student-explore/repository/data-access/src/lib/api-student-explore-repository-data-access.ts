@@ -53,5 +53,30 @@ export class StudentExploreRepository {
 
   }
 
+  async SearchStudent(searchQuery){
+
+    const students = await this.prisma.user.findMany();
+
+    let studentArr = [];
+
+    let tempStudentObj;
+
+    for (let i = 0; i < students.length; i++) {
+
+      tempStudentObj = new ApiStudentExplore();
+
+      tempStudentObj.StudentID = students[i].id;
+      tempStudentObj.StudentName = students[i].name;
+      tempStudentObj.StudentRel = 0;
+
+      studentArr.push(tempStudentObj);
+
+    }
+
+    return studentArr;
+
+
+  }
+
 
 }

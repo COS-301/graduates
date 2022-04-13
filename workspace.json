@@ -82,8 +82,10 @@
     "client-shared-services-authentication-data-access": "libs/client/shared/services/authentication/data-access",
     "client-shared-stores-authentication-data-access": "libs/client/shared/stores/authentication/data-access",
     "client-shell-feature": "libs/client/shell/feature",
-    "client-shorts": "libs/client/shorts",
-    "client-student-explore": "libs/client/student-explore",
+    
+    
     "client-student-profile-feature": "libs/client/student-profile/feature"
   }
 }
+
+

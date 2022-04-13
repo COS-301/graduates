@@ -1,3 +1,3 @@
 export class SearchStudentsQuery {
-	constructor() { }
+	constructor(readonly searchQuery) { }
 }

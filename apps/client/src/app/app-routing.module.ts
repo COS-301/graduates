@@ -20,7 +20,7 @@ const routes: Routes = [
     },
     {
       path: 'shorts',
-      loadChildren: () => import('@graduates/client/shorts/feature').then(x => x.ClientShortsFeatureModule)
+      //loadChildren: () => import('@graduates/client/shorts/feature').then(x => x.ClientShortsFeatureModule)
     },
     {
       path: '',
