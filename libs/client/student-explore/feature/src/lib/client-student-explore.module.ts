@@ -1,9 +1,10 @@
 //Basic Modules
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import { BrowserModule } from '@angular/platform-browser';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { StudentExploreRoutingModule } from './student-explore-page/student-explore-routing.module';
 
 //Material Modules
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -24,12 +25,14 @@ import { StudentCardComponent } from './student-card/student-card.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MobileStudentCardComponent } from './mobile-student-card/mobile-student-card.component';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { StudentExplorePageComponent } from './student-explore-page/student-explore-page.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    BrowserModule,
-    BrowserAnimationsModule,
+    /*BrowserModule,
+    BrowserAnimationsModule,*/
+    StudentExploreRoutingModule,
     FormsModule,
     LayoutModule,
     MatToolbarModule,
@@ -39,16 +42,12 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatListModule,
     MatCheckboxModule,
     MatMenuModule,
+    MatInputModule,
     MatCardModule,
     MatFormFieldModule,
     MatGridListModule,
   ],
-  declarations: [FilterComponent, StudentCardComponent, SearchBarComponent, MobileStudentCardComponent],
-  exports:[
-    StudentCardComponent,
-    FilterComponent,
-    SearchBarComponent,
-    MobileStudentCardComponent,
-  ]
+  declarations: [FilterComponent, StudentCardComponent, SearchBarComponent, MobileStudentCardComponent, StudentExplorePageComponent],
+  exports:[ StudentExplorePageComponent ]
 })
 export class ClientStudentExploreModule {}

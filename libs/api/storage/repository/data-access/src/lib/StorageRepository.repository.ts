@@ -90,11 +90,8 @@ export class StorageRepository {
   }
 
   //the file deleted will be unique since a user can only upload one file per type
-  async deleteFile(data:ApiStorage){
-    const u_id=data.userId;
-    const file_category=data.fileCategory;
-
-    this.prismaService.userProfileFile.deleteMany({
+  async deleteFile(u_id: string, file_category:FileCategory){
+    return await this.prismaService.userProfileFile.deleteMany({
       where: {
         userId: u_id,
         fileCategory: file_category,
