@@ -7,11 +7,11 @@ WORKDIR /app
 # Copy package.json to the working directory
 COPY package*.json ./
 
-# Copy yarn.lock to the working directory
-COPY yarn.lock ./
-
 # Install dependencies using package.json
 RUN yarn install
+
+# Copy yarn.lock to the working directory
+COPY yarn.lock ./
 
 # Copy project files to the working directory
 COPY . .
