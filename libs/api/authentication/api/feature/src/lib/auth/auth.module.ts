@@ -6,9 +6,10 @@ import { PassportModule } from '@nestjs/passport'
 import { UsersModule } from '../users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt-strategy';
+import { GoogleStrategy } from './google-strategy';
 
 @Module({
-  providers: [AuthService, AuthResolver, LocalStrategy, JwtStrategy
+  providers: [AuthService, AuthResolver, LocalStrategy, JwtStrategy, GoogleStrategy
 ],
   imports: [PassportModule, UsersModule, JwtModule.register({
     signOptions: {expiresIn: '60s'},

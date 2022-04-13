@@ -11,7 +11,7 @@ export class AuthService {
         const user = await this.usersService.findOne(username);
 
         if (user && user.password === password){
-            const {password, ...result } =user;
+            const {password, ...result } =user;         //result contains the user object without the password
             return result;
         }
         return null;
@@ -23,6 +23,17 @@ export class AuthService {
             access_token: this.jwtService.sign({username:user.username, sub:user}),
             user,
         }
+    }
+
+    googleLogin(req){
+        if(!req.user){
+            return 'There is no user'
+        }
+        return{
+            message: 'User info',
+            user: req.user
+        }
+
     }
 }
 
