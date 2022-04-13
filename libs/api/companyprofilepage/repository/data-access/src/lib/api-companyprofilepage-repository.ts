@@ -5,6 +5,7 @@ import { SocialMedia } from '@prisma/client';
 @Injectable()
 export class CompanyProfilePage {
     constructor(private prisma: PrismaService) {}
+    
     async getCompanyById(@Param() id:string) {
         return await this.prisma.user.findFirst({
             where: {id: id}
