@@ -1,36 +1,35 @@
 import { ApiStorageServiceFeatureModule } from '@graduates/api/storage/service/feature';
 import { Mutation, Query, Int, Resolver , ID, Args } from '@nestjs/graphql';
 import { GraphQLUpload, FileUpload } from 'graphql-upload';
-import { FirebaseService } from '@graduates/api/storage/repository/data-access';
-import { ApiStorage , ApiStorageInput } from '@graduates/api/storage/api/shared/data-access';
+import { ApiStorage , ApiStorageInput} from '@graduates/api/storage/api/shared/data-access';
+import { FileCategory } from '@prisma/client';
 import { createWriteStream } from 'fs';
 import * as fs from 'fs/promises';
 @Resolver(() => ApiStorage)
 export class ApiStorageResolver {
   constructor(private storageService: ApiStorageServiceFeatureModule,
-              private Firebaseservice: FirebaseService) {}
-  @Query(() => ApiStorage)
-  storage(): Promise<ApiStorage> {
-    return this.storageService.getAll();
-  }
-  @Mutation(returns=>ApiStorage)
-  async setAll(@Args('CreateApiStorage')apiStorage: ApiStorageInput)
-    :Promise<ApiStorageInput>{
-      return await this.storageService.create(apiStorage);
+              ) {}
+  @Query(() =>String)
+  async download(
+    @Args("userId")userID:string,
+    @Args("fileCategory")fileCategory:string
+  ): Promise<string| boolean> {
+    const res = await this.storageService.getFile(userID , fileCategory);
+    if(res == null){
+      return false
     }
-    //this partially fills the ApiStorage schema using the arguments userID , fileCategory and fileExtension
-  @Mutation(returns=>ApiStorage) async setPartial
-  (@Args("userId")userID:string,
-   @Args("fileCategory")fileCategory:string,
-   @Args("fileExtension")fileExtension:string,
-   @Args("filePath")filePath:string){
-     return this.storageService.partialAdd(userID, fileCategory, fileExtension, filePath);
+    else{
+      return res;
+    }
   }
-
-  @Mutation(() => Int, { name: 'File' })
-  async upload(@Args("filename")filename:string,
-    @Args('file', { type: () => GraphQLUpload }) file: FileUpload,
-  ): Promise<number> {
+  @Mutation(returns => Boolean , { name: 'File' })
+  async upload(
+   @Args("filename")fileName:string,
+   @Args("userId")userID:string,
+    @Args("fileCategory")fileCategory:string,
+   @Args("fileExtension")fileExtension:string,
+    @Args('file', { type: () => GraphQLUpload }) file: FileUpload
+  ): Promise<boolean|ApiStorageInput> {
     try {
       const { createReadStream } = file;
       const stream = createReadStream();
@@ -48,11 +47,28 @@ export class ApiStorageResolver {
       });
       const buffer = Buffer.concat(chunks);
       const base64 = buffer.toString('base64');
-      this.Firebaseservice.uploadFileAsString(base64,filename)
-      return base64.length
+      if(base64.length==0) {
+        return false;
+      }
+      const storage = new ApiStorage();
+      storage.fileAsString = base64;
+      if(fileCategory=="CV"){
+        storage.fileCategory = FileCategory.CV 
+      }
+      if(fileCategory=="Transcript"){
+        storage.fileCategory = FileCategory.DEGREE
+  
+      }
+      if(fileCategory=="Academic Record"){
+        storage.fileCategory = FileCategory.ACADEMIC_RECORD
+      }
+      storage.userId = userID;
+      storage.fileExtension = fileExtension;
+      return await this.storageService.create(storage);
     } catch (err) {
-      return 0;
+      return false;
     }
 }
+
 }
 

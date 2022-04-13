@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NotifDisplayComponent } from './notif-display.component';
 
-describe('NotifDisplayComponent', () => {
+describe('Notification Component Tests', () => {
   let component: NotifDisplayComponent;
   let fixture: ComponentFixture<NotifDisplayComponent>;
 
@@ -22,4 +22,7 @@ describe('NotifDisplayComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  //End of default nx generated tests. Need to add unit tests here
+  //As soon as program logic is implemented
 });
