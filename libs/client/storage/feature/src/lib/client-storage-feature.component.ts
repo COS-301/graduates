@@ -5,10 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './client-storage-feature.component.html',
   styleUrls: ['./client-storage-feature.component.scss'],
 })
-export class ClientStorageFeatureComponent {
-
-  constructor() { 
-    // do
-  }
+export class StorageFeatureComponent {
 
 }
