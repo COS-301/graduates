@@ -64,7 +64,6 @@ export class ApiStorageResolver {
       }
       storage.userId = userID;
       storage.fileExtension = fileExtension;
-      storage.fileNameOrHash = fileName;
       return await this.storageService.create(storage);
     } catch (err) {
       return false;
