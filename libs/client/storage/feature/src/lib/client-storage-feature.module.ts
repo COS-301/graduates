@@ -22,7 +22,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     CommonModule, 
     MatGridListModule
   ],
-  exports: [StorageFeatureComponent],
+//   exports: [StorageFeatureComponent],
 })
 export class StorageFeatureModule {}
 
