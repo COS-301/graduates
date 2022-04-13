@@ -12,6 +12,7 @@ import { DeleteRepresentative } from './commands/impl/deleteRepresentative.comma
 export class ApiCompanyRepresentativeService {
 
   constructor(private readonly queryBus:QueryBus,private readonly commandBus:CommandBus){}
+  
     async create(
         data: CompanyRepresentative
       ): Promise<CompanyRepresentativeCreate> {
