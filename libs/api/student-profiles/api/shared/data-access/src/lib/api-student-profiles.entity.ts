@@ -1,15 +1,18 @@
-import { Field, Int, ObjectType } from "@nestjs/graphql";
+import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
-export class ApiStudentProfilesEntity{
+export class ApiStudentProfilesEntity {
   @Field()
-  studentNum: string
+  studentNum: string;
 
   @Field()
   firstName: string;
 
   @Field()
   lastName: string;
+
+  @Field()
+  title: string;
 
   @Field()
   email: string;
@@ -20,6 +23,34 @@ export class ApiStudentProfilesEntity{
   @Field()
   dateOfBirth: string;
 
-  @Field(type => [Int])
-  marks: number[];
+  @Field()
+  nameOfDegree: string;
+
+  @Field()
+  bio: string;
+
+  @Field((type) => [String])
+  tags: string[];
+
+  @Field()
+  preferredLocation: string;
+
+  @Field()
+  employmentStatus: string;
+
+  @Field((type) => [String])
+  notableAchievements: string[];
+
+  @Field((type) => [String])
+  links: string[];
+
+  //uploaded documents return if they are uploaded or not
+  @Field()
+  academicRecord: boolean;
+
+  @Field()
+  cv: boolean;
+
+  @Field()
+  capstoneProject: boolean;
 }
