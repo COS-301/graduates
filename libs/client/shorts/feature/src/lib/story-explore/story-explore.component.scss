@@ -1,9 +1,12 @@
 @import 'libs/client/shared/assets/ui/src/lib/global';
 
-button {
-    
-}
 
+.banner-text {
+    color: $primary-1;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: xx-large;
+    font-weight: bold;
+}
 p {
     font-size: small;
 }
@@ -31,12 +34,13 @@ h1 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: 30vw;
 }
 
 #uploadbanner {
     background-color: lightblue;
-    padding-top: 25%;
-    padding-bottom: 25%;
+    padding-top: 5%;
+    padding-bottom: 5%;
 }
 
 #infomessage {
