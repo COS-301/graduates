@@ -13,7 +13,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "cards",
+            "prefix": "graduates",
             "style": "camelCase"
           }
         ],
@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "cards",
+            "prefix": "graduates",
             "style": "kebab-case"
           }
         ]
