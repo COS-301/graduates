@@ -18,6 +18,8 @@ import { StoryExploreComponent } from './story-explore/story-explore.component';
 import { StoryUploadComponent } from './story-upload/story-upload.component';
 import { ShortsRoutingModule } from './shorts-routing.module';
 
+import { FormBuilder, FormsModule, ReactiveFormsModule, } from '@angular/forms';
+
 @NgModule({
 
   imports: [
@@ -34,11 +36,16 @@ import { ShortsRoutingModule } from './shorts-routing.module';
     MatFormFieldModule,
     MatGridListModule,
     ShortsRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     ReportMenuComponent,
     StoryExploreComponent,
-    StoryUploadComponent
+    StoryUploadComponent,
+  ],
+  providers: [
+    FormBuilder
   ],
   exports: [StoryExploreComponent]
 })
