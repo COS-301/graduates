@@ -26,8 +26,14 @@ export class StoryExploreComponent implements OnInit {
   submit = false;
   return : boolean;
   searchText = "";
+
   viewing : boolean;
-  storyToView! : number;
+  reporting: boolean;
+  currentlyViewing! : number;
+  currentlyReporting! : number;
+  successfulReport : boolean;
+
+
   fileError = "File is required.";
   uploadedFile! : any;
 
@@ -54,6 +60,8 @@ export class StoryExploreComponent implements OnInit {
     this.return = false;
     this.report = false;
     this.viewing = false;
+    this.reporting = false;
+    this.successfulReport = false;
   }
 
   ngOnInit(): void {
@@ -88,7 +96,7 @@ export class StoryExploreComponent implements OnInit {
       //upload form here:
   }
 
-  cancel() {
+  cancelUpload() {
     this.return = true;
     //take user back a page to the user profile
     this.location.back();
@@ -101,13 +109,47 @@ export class StoryExploreComponent implements OnInit {
 
   }
 
+  closeSuccessReport() {
+    this.reporting = false;
+    this.viewing = false;
+    this.successfulReport = false;
+  }
+
   viewStory(n : number) {
-    this.storyToView = n;
+    this.currentlyViewing = n;
     this.viewing = true;
+    this.reporting = false;
   }
 
   closeViewing() {
     this.viewing = false;
+  }
+
+  cancelReport() {
+    this.reporting = false;
+    this.viewing = true;
+  }
+
+  makeReportpopup(reportID : number) {
+    //create report popup:
+    this.viewing = false;
+    this.reporting = true;
+    this.currentlyReporting = this.currentlyViewing;
+  }
+
+  submitReport() {
+    alert("report for " + this.currentlyReporting + " goes to API");
+    this.reporting = false;
+
+    //push report to API:
+
+    //check for successful response from API:
+
+    //true -> this.successfulReport = true;
+    //else -> push an error to the form.
+
+    this.successfulReport = true;
+
   }
 
   loadCards(){
@@ -117,7 +159,7 @@ export class StoryExploreComponent implements OnInit {
     ];
 
 
-    for (let index = 0; index < 6; index++) {
+    for (let index = 0; index < 4; index++) {
       this.cardlist.push({ title: 'Card 1', cols: 1, rows: 1 , pic: '', tags: [], pk: index});
       
     }

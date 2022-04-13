@@ -32,7 +32,7 @@ h1 {
     color: $text-red;
 }
 
-#upload {
+.popupcard {
     background-color: $background-white;
     position: fixed;
     top: 50%;
@@ -48,6 +48,15 @@ h1 {
 
 #infomessage {
     color: $primary-3;
+}
+
+.thumbnailselected {
+    width: auto;
+    height: 60vh;
+}
+
+.bigblur {
+    
 }
 
 .infocolour {
@@ -76,6 +85,10 @@ h1 {
     padding: 0 8px;
 }
 
-.formbutton {
+.formbuttonblue {
     background-color: $card-blue;
+}
+
+.formbuttonred {
+    background-color: $card-red;
 }
