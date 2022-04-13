@@ -27,6 +27,10 @@ const routes: Routes = [
       loadChildren: () => import('@graduates/client/shorts/feature').then(x => x.ClientShortsFeatureModule)
     },
     {
+      path: 'blog',
+      loadChildren: () => import('@graduates/client/blog/feature').then(x => x.ClientBlogFeatureModule)
+    },
+    {
       path: '',
       loadChildren: () => import('@graduates/client/shell/feature').then(x => x.FeatureModule)
     },
