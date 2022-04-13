@@ -1,19 +1,28 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'graduates-story-explore',
   templateUrl: './story-explore.component.html',
   styleUrls: ['./story-explore.component.scss'],
-  
   providers: [MatCardModule, MatButtonModule],
 })
-export class StoryExploreComponent {
+
+export class StoryExploreComponent implements OnInit {
 
   @Input() upload : boolean;
+  uploadfrm! : FormGroup;
+  builder! : FormBuilder; 
+  submit = false;
+  return : boolean;
+  searchText = "";
 
   cardlist = [
     { title: 'Card 1', cols: 3, rows: 1 , pic: '', tags: []}
@@ -32,23 +41,40 @@ export class StoryExploreComponent {
     })
   );
 
-
-  constructor(private breakpointObserver: BreakpointObserver) {
+  constructor(private breakpointObserver: BreakpointObserver, f : FormBuilder, private location: Location) {
     this.upload = false;
+    this.builder = f;
+    this.return = false;
   }
 
+  ngOnInit(): void {
+    this.uploadfrm = this.builder.group({
+      file: ['', Validators.required],
+      tags: ['', Validators.required]
+    })
+  }
 
+  uploadStory() {
+    if (this.return) 
+      return;
+    
+    this.submit = true;
+      //validate form here:
+      //upload form here:
+  }
 
-  searchText = "";
+  cancel() {
+    this.return = true;
+    //take user back a page to the user profile
+    this.location.back();
+  }
+
   search(){
     this.searchText = (<HTMLInputElement>document.getElementById("search")).value;
      alert('searching for ' + this.searchText);
      this.loadCards();
 
   }
-
-
-
 
   loadCards(){
 
@@ -77,4 +103,5 @@ export class StoryExploreComponent {
       })
     );
   }
+
 }
