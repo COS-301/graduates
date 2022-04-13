@@ -29,7 +29,7 @@ export class ApiStudentProfilesEntity {
   @Field()
   bio: string;
 
-  @Field()
+  @Field((type) => [String])
   tags: string[];
 
   @Field()
@@ -38,19 +38,19 @@ export class ApiStudentProfilesEntity {
   @Field()
   employmentStatus: string;
 
-  @Field()
+  @Field((type) => [String])
   notableAchievements: string[];
 
-  @Field()
+  @Field((type) => [String])
   links: string[];
 
   //uploaded documents return if they are uploaded or not
-  @Field(type => Boolean)
+  @Field()
   academicRecord: boolean;
 
-  @Field(type => Boolean)
+  @Field()
   cv: boolean;
 
-  @Field(type => Boolean)
+  @Field()
   capstoneProject: boolean;
 }
