@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/client/adminconsole/feature",
+  "sourceRoot": "libs/client/adminconsole/feature/src",
+  "prefix": "graduates",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/adminconsole/feature"],
+      "options": {
+        "jestConfig": "libs/client/adminconsole/feature/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/adminconsole/feature/src/**/*.ts",
+          "libs/client/adminconsole/feature/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

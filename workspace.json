@@ -31,6 +31,7 @@
     "api-companyexplore-service-shared-interfaces-data-access": "libs/api/companyexplore/service/shared/interfaces/data-access",
     "api-companyprofilepage-api-feature": "libs/api/companyprofilepage/api/feature",
     "api-companyprofilepage-api-shared-data-access": "libs/api/companyprofilepage/api/shared/data-access",
+    "api-companyprofilepage-repository-data-access": "libs/api/companyprofilepage/repository/data-access",
     "api-companyprofilepage-service-feature": "libs/api/companyprofilepage/service/feature",
     "api-example-api-feature": "libs/api/example/api/feature",
     "api-example-api-shared-interfaces-data-access": "libs/api/example/api/shared/interfaces/data-access",
@@ -69,7 +70,10 @@
     "api-upintegration-api-shared-data-access": "libs/api/upintegration/api/shared/data-access",
     "api-upintegration-service-feature": "libs/api/upintegration/service/feature",
     "client": "apps/client",
+    "client-adminconsole-feature": "libs/client/adminconsole/feature",
+    "client-blog-feature": "libs/client/blog/feature",
     "client-company-explore-feature": "libs/client/company-explore/feature",
+    "client-company-notifications-feature": "libs/client/company-notifications/feature",
     "client-company-representative-feature": "libs/client/company-representative/feature",
     "client-e2e": "apps/client-e2e",
     "client-example-feature": "libs/client/example/feature",
@@ -81,7 +85,10 @@
     "client-shared-stores-authentication-data-access": "libs/client/shared/stores/authentication/data-access",
     "client-shell-feature": "libs/client/shell/feature",
     "client-shorts-feature": "libs/client/shorts/feature",
+    "client-storage-feature": "libs/client/storage/feature",
     "client-student-explore-feature": "libs/client/student-explore/feature",
-    "client-student-profile-feature": "libs/client/student-profile/feature"
+    "client-student-profile-feature": "libs/client/student-profile/feature",
+    "client-student-requests-feature": "libs/client/student-requests/feature",
+    "client-student-responses-feature": "libs/client/student-responses/feature"
   }
 }

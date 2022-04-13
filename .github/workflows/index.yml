@@ -19,6 +19,7 @@ on:
         - build
         - unit
         - e2e
+        - all
 
 #jobs in the workflow with passed in parameters
 jobs:
@@ -49,3 +50,9 @@ jobs:
     with:
       test: 'affected'
       testtype: 'e2e'
+
+  test-all:
+    uses: ./.github/workflows/nxtest.yml
+    if: ${{ github.event.inputs.testchoice == 'all'}}
+    with:
+      test: 'all'
