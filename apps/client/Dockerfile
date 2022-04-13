@@ -19,7 +19,8 @@ RUN yarn install
 COPY . .
 
 # Set environment variable PORT which is the PORT the container will run on
-ENV PORT=8080
+ENV PORT=4200
+
 
 # Expose the PORT
 EXPOSE 4200
