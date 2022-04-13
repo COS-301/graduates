@@ -6,6 +6,7 @@
     "api-access-status-repository-feature": "libs/api/access-status/repository/feature",
     "api-access-status-service-feature": "libs/api/access-status/service/feature",
     "api-adminconsole-api-feature": "libs/api/adminconsole/api/feature",
+    "api-adminconsole-api-shared-data-access": "libs/api/adminconsole/api/shared/data-access",
     "api-adminconsole-repository-data-access": "libs/api/adminconsole/repository/data-access",
     "api-adminconsole-service-feature": "libs/api/adminconsole/service/feature",
     "api-authentication-api-feature": "libs/api/authentication/api/feature",

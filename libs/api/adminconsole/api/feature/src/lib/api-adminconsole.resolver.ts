@@ -1,15 +1,13 @@
-import { ApiAdminConsole } from '@graduates/api/adminconsole/repository/data-access'
-import { ApiAdminconsoleServiceFeatureModule } from '@graduates/api/adminconsole/service/feature'
-import { Query, Resolver } from '@nestjs/graphql'
+import { ApiAdminConsoleServiceFeatureModule } from "@graduates/api/adminconsole/service/feature";
+import { Resolver, Query } from "@nestjs/graphql";
+import { ApiAdminConsole } from "@graduates/api/adminconsole/api/shared/data-access";
 
-
-@Resolver(()=> ApiAdminConsole)
+@Resolver(() => ApiAdminConsole)
 export class ApiAdminConsoleResolver{
-    constructor(private adminConsoleService: ApiAdminconsoleServiceFeatureModule){}
+    constructor(private adminService: ApiAdminConsoleServiceFeatureModule){}
 
-    @Query(()=>[ApiAdminConsole])
-    adminConsole(): Promise<ApiAdminConsole[]> {
-        return null;
+    @Query(() => [ApiAdminConsole])
+    adminconsole(): Promise<ApiAdminConsole[]>{
+        return this.adminService.getUsers();
     }
-      
 }

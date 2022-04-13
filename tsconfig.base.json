@@ -27,6 +27,9 @@
       "@graduates/api/adminconsole/api/feature": [
         "libs/api/adminconsole/api/feature/src/index.ts"
       ],
+      "@graduates/api/adminconsole/api/shared/data-access": [
+        "libs/api/adminconsole/api/shared/data-access/src/index.ts"
+      ],
       "@graduates/api/adminconsole/repository/data-access": [
         "libs/api/adminconsole/repository/data-access/src/index.ts"
       ],
