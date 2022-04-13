@@ -7,10 +7,12 @@ import { ProfileBodyComponent } from './profile-body/profile-body.component';
 import { RequestForAccessModule } from '@graduates/client/request-for-access/feature';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { ProfileRoutingModule } from './profile-routing.module';
+import { BioComponent } from './bio/bio.component';
 
 // importing material 
 import { MatDividerModule } from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
+
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import {MatListModule} from '@angular/material/list';
   ],
   declarations: [
     ProfileBodyComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    BioComponent
   ],
    exports: [ProfileBodyComponent]
 })
