@@ -18,39 +18,56 @@ describe('AuthenticationRepository', () => {
   });
 });
 
-//Example of a simple test to be run 1+4=5
-test('Get User Token from ID',async ()=>{
-  const test:AuthenticationRepository = new AuthenticationRepository();//call imported function to be tested
-  const data = await test.getId("temp@gmail.com");
+test('Test falsy entries in userCreation',async ()=>{
+  const test:AuthenticationRepository = new AuthenticationRepository();
+  await (expect(test.createUser("", "test@gmail.com", false, false, false)).rejects.toThrow("password"));
+  await (expect(test.createUser("pass", "", false, false, false)).rejects.toThrow("email"));
+  await (expect(test.createUser("pass", "test@gmail.com", null, false, false)).rejects.toThrow("created"));
+  await (expect(test.createUser("pass", "test@gmail.com", false, null, false)).rejects.toThrow("suspended"));
+  await (expect(test.createUser("pass", "test@gmail.com", false, false, null)).rejects.toThrow("validated"));
+});
+
+test('Test falsy entries in tokenDeclaration',async ()=>{
+  const test:AuthenticationRepository = new AuthenticationRepository();
+  await (expect(test.setToken("", "bGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ikpv", 0, 172938459)).rejects.toThrow("email"));
+  await (expect(test.setToken("temp@gmail.com", "", 0, 172938459)).rejects.toThrow("token"));
+  await (expect(test.setToken("temp@gmail.com", "bGciOiJIUzI1NiIsInR5cCI6Ik", 10, 172938459)).rejects.toThrow("token_type"));
+  await (expect(test.setToken("temp@gmail.com", "bGciOiJIUzI1NiIsInR5cCI6Ik", 0, null)).rejects.toThrow("token_expiration"));
+});
+
+test('Get User Id from Email',async ()=>{
+  const test:AuthenticationRepository = new AuthenticationRepository();
+  const data = await test.getIdFromEmail("temp@gmail.com");
   expect(data).toBe("1");
+
+});test('Get User Role from ID',async ()=>{
+  const test:AuthenticationRepository = new AuthenticationRepository();
+  const data = await test.getRoleFromId("1");
+  expect(data).toBe("student");
+
+});test('Get User Email from ID',async ()=>{
+  const test:AuthenticationRepository = new AuthenticationRepository();
+  const data = await test.getEmailFromId("1");
+  expect(data).toBe("temp@gmail.com");
 });
 
-test('Test falsy email',async ()=>{
-  expect.assertions(1);
-  const test:AuthenticationRepository = new AuthenticationRepository();//call imported function to be tested
-  expect(await test.setToken("", "bGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ikpv", 0, 172938459)).toThrow("email"); 
-});
-
-test('Test falsy token',async ()=>{
-  const test:AuthenticationRepository = new AuthenticationRepository();//call imported function to be tested
-  expect(await test.setToken("test@gmail.com", "", 0, 172938459)).toThrow();
-});
-
-test('Test incorrect token_type',async ()=>{
-  const test:AuthenticationRepository = new AuthenticationRepository();//call imported function to be tested
-  expect(await test.setToken("test@gmail.com", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c", 5, 172938459)).toThrow();
-});
-
-test('Test incorrect token_expiration',async ()=>{
-  const test:AuthenticationRepository = new AuthenticationRepository();//call imported function to be tested
-  expect(await test.setToken("test@gmail.com", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c", 1, 0)).toThrow();
+test('Get User Token from Email',async ()=>{
+  const test:AuthenticationRepository = new AuthenticationRepository();
+  const data = await test.getToken("temp@gmail.com");  
+  console.log(data);
+  expect(data).toBe("Token Created Successfully");
 });
 
 test('Set User Token from ID',async ()=>{
-  const test:AuthenticationRepository = new AuthenticationRepository();//call imported function to be tested
+  const test:AuthenticationRepository = new AuthenticationRepository();
   const data = await test.setToken("temp@gmail.com", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c", 0, 172938459);  
   expect(data).toBe("Token Created Successfully");
 });
 
 
-
+test('Get User Token Expiration from Email',async ()=>{
+  const test:AuthenticationRepository = new AuthenticationRepository();
+  const data = await test.getTokenExpiration("temp@gmail.com");  
+  console.log(data);
+  expect(data).toBe("Token Created Successfully");
+});
