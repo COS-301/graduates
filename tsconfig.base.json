@@ -69,6 +69,9 @@
       "@graduates/api/authorization/service/shared": [
         "libs/api/authorization/service/shared/src/index.ts"
       ],
+      "@graduates/api/blog/api/shared/entities/data-access": [
+        "libs/api/blog/api/shared/entities/data-access/src/index.ts"
+      ],
       "@graduates/api/blog/repository/data-access": [
         "libs/api/blog/repository/data-access/src/index.ts"
       ],
@@ -77,6 +80,9 @@
       ],
       "@graduates/api/company-representative/api/shared/data-access": [
         "libs/api/company-representative/api/shared/data-access/src/index.ts"
+      ],
+      "@graduates/api/company-representative/repository/data-access": [
+        "libs/api/company-representative/repository/data-access/src/index.ts"
       ],
       "@graduates/api/company-representative/service/feature": [
         "libs/api/company-representative/service/feature/src/index.ts"
@@ -232,6 +238,9 @@
       "@graduates/client/company-explore/feature": [
         "libs/client/company-explore/feature/src/index.ts"
       ],
+      "@graduates/client/company-notifications/feature": [
+        "libs/client/company-notifications/feature/src/index.ts"
+      ],
       "@graduates/client/company-representative/feature": [
         "libs/client/company-representative/feature/src/index.ts"
       ],
@@ -270,6 +279,12 @@
       ],
       "@graduates/client/student-profile/feature": [
         "libs/client/student-profile/feature/src/index.ts"
+      ],
+      "@graduates/client/student-requests/feature": [
+        "libs/client/student-requests/feature/src/index.ts"
+      ],
+      "@graduates/client/student-responses/feature": [
+        "libs/client/student-responses/feature/src/index.ts"
       ]
     }
   },
