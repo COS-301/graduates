@@ -32,7 +32,7 @@ h1 {
     color: $text-red;
 }
 
-#upload {
+.popupcard {
     background-color: $background-white;
     position: fixed;
     top: 50%;
@@ -50,6 +50,33 @@ h1 {
     color: $primary-3;
 }
 
+#viewname {
+    color: $primary-3;
+    text-align: left !important;
+}
+
+#viewtags {
+    color: $primary-3;
+}
+
+.thumbnailselected {
+    height: auto;
+    width: 80vw;
+    max-width: 80vh;
+}
+
+.bigblur {
+    box-shadow: 0px 0px 400px 50px rgba(179, 178, 178, 0.75);
+}
+
+.infocolour {
+    color: $primary-3;
+}
+
+.hint {
+    color: #888888;
+}
+
 #greyline {
     border-bottom: 1.8px solid #888888;
     margin-left: 2vh;
@@ -57,19 +84,25 @@ h1 {
 }
 
 #fileupload {
-
+    outline: 0.2vh dashed #a3bdc0;
+    outline-offset: -6px;
+    background-color: #c9dade;
 }
 
-#taginput {
+#taginput, #reason {
     outline: none;
     color: $primary-3;
-    padding: 0 8px;
+    padding: 8px 8px;
+    max-height: 60vh;
+    min-height: 10vh;
 }
 
-#completebuttons {
-    
-}
-
-.formbutton {
+.formbuttonblue {
     background-color: $card-blue;
+    color: $text-white;
+}
+
+.formbuttonred {
+    background-color: $card-red;
+    color: $text-white;
 }
