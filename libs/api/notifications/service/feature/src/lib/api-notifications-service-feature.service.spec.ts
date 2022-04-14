@@ -1,15 +1,15 @@
 import { Test } from '@nestjs/testing';
-import { ApiNotificationsServiceFeatureService } from './api-notifications-service-feature.service';
+import { ApiNotificationsService } from './api-notifications-service-feature.service';
 
 describe('ApiNotificationsServiceFeatureService', () => {
-  let service: ApiNotificationsServiceFeatureService;
+  let service: ApiNotificationsService;
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
-      providers: [ApiNotificationsServiceFeatureService],
+      providers: [ApiNotificationsService],
     }).compile();
 
-    service = module.get(ApiNotificationsServiceFeatureService);
+    service = module.get(ApiNotificationsService);
   });
 
   it('should be defined', () => {
