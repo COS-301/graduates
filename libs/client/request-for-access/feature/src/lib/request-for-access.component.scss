@@ -1,4 +1,4 @@
-@import '../../../../shared/assets/global.scss';
+@import 'libs/client/shared/assets/ui/src/lib/global.scss';
 
 @mixin minHeight {
   @media (max-height: 500px) {
