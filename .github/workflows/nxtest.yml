@@ -60,7 +60,7 @@ jobs:
         if: ${{ inputs.testtype == 'e2e' }}
         uses: actions/cache@v2
         with:
-          path: ~/.cache/cypress
+          path: ~/.cache/Cypress
           key: cypress-binary-${{ hashFiles('**/yarn.lock') }}
 
       - name: Lint test affected
