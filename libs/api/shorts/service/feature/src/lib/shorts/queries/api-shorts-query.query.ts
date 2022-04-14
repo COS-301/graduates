@@ -26,3 +26,7 @@ export class GetShortByUserQuery {
 export class GetShortByTagQuery {
   constructor(public readonly tagId: string) {}
 }
+
+export class GetUserByIdQuery {
+  constructor(public readonly id: string) {}
+}
