@@ -7,7 +7,7 @@ export class ApiCompanyRepresentativeRepositoryDataAccessService extends PrismaC
         super();
     }
 
-    async OnModuleInit() {
+    async onModuleInit() {
         await this.$connect();
     }
 
