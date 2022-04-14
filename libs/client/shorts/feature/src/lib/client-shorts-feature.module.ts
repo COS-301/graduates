@@ -19,6 +19,8 @@ import { StoryUploadComponent } from './story-upload/story-upload.component';
 
 import { ShortsRoutingModule } from './shorts-routing.module';
 import { FormBuilder, FormsModule, ReactiveFormsModule, } from '@angular/forms';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -43,6 +45,8 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, } from '@angular/forms';
   declarations: [
     StoryExploreComponent,
     StoryUploadComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   providers: [
     FormBuilder

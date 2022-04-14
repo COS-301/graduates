@@ -1,15 +1,18 @@
 <link  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"  rel="stylesheet">
 
+<shorts-header></shorts-header>
 
 <div class="container-fluid">
 
-  <div class="mainpage grid-container">
-    <h1>Student Shorts</h1>
+  <div class="mainpage grid-container mt-3">
+
+    <h1 class="text-center my-4">Student Shorts</h1>
 
     <div >
-      <input (click)="searchClick()" id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
+      <input placeholder="Search for a story..." (click)="searchClick()" id="search" type="text" fxFlex="70%" fxFlexOffset="-10%" class="drop-shadow-xl p-3">
     </div>
-    <mat-grid-list cols="3" rowHeight="350px">
+
+    <mat-grid-list cols="3" rowHeight="350px" class="drop-shadow-lg">
       <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
         <mat-card class="dashboard-card">
 
@@ -192,3 +195,5 @@
   </div>
 
 </div>
+
+<shorts-footer></shorts-footer>

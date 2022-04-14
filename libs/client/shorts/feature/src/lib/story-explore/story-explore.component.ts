@@ -187,7 +187,7 @@ export class StoryExploreComponent implements OnInit {
     ];
 
 
-    for (let index = 0; index < 20; index++) {
+    for (let index = 0; index < 11; index++) {
       this.cardlist.push({ title: 'Card 1', cols: 1, rows: 1 , pic: '', tags: [], pk: index});
       
     }
