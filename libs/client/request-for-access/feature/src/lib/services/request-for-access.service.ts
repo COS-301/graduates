@@ -9,7 +9,7 @@ export class RequestForAccessService {
     constructor(private httpClient: HttpClient) {}
 
     getResourceStatuses(companyID: string, graduateID: string): Observable<any> {
-      const query = `query($compID: ID!, $gradID: ID!) {status(compID: $compID, gradID: $gradID) { accessStatus, item, userID }}`;
+      const query = 'query ($compID: ID!, $gradID: ID!) {status(compId: $compID, gradId: $gradID) { accessStatus, item }}';
 
       const options = {
         headers: new HttpHeaders({

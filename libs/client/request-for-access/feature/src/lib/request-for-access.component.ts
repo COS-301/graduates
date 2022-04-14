@@ -26,14 +26,13 @@ export class RequestForAccessComponent implements OnInit {
     const actionsArr: SetAccessStatus[] = [];
 
     //make API call to access status of resources for particular company
-      this.apiService.getResourceStatuses('4', '2').subscribe({
+      this.apiService.getResourceStatuses('42', '2').subscribe({
         next: (_res) => {
-          const jsonString = JSON.stringify(_res.response);
-          const response = JSON.parse(jsonString);
-
           for(let i=0; i<5; i++) {
-            this.items.push(response.data.status[i].item);
-            actionsArr.push(new SetAccessStatus(response.data.status[i].item, response.data.status[i].accessStatus, i));
+            if(_res.data.status[i] != undefined) {
+              this.items.push(_res.data.status[i].item);
+              actionsArr.push(new SetAccessStatus(_res.data.status[i].item, _res.data.status[i].accessStatus, i));
+            }
           }
 
           this.store.dispatch(actionsArr).subscribe(() => {
