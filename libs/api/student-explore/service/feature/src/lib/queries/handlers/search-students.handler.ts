@@ -9,9 +9,9 @@ export class SearchStudentsHandler implements IQueryHandler<SearchStudentsQuery>
 
   async execute(query : SearchStudentsQuery){
 
-    let students = await this.repository.SearchStudent();
+    const students = await this.repository.SearchStudent();
 
-    let relStudents = []
+    const relStudents = []
 
     let count = 0;
 
@@ -39,7 +39,7 @@ export class SearchStudentsHandler implements IQueryHandler<SearchStudentsQuery>
 
     //Sort the students by StudentRel using bubble sort
 
-    let n = relStudents.length;
+    const n = relStudents.length;
     let tempSwap;
 
     for (let i = 0; i < n-1; i++){

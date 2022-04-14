@@ -10,7 +10,7 @@ export class StudentExploreRepository {
 
     const students = await this.prisma.user.findMany();
 
-    let studentArr = [];
+    const studentArr = [];
 
     let tempStudentObj;
 
@@ -94,7 +94,7 @@ export class StudentExploreRepository {
 
     const students = await this.prisma.user.findMany();
 
-    let studentArr = [];
+    const studentArr = [];
 
     let tempStudentObj;
 
@@ -183,7 +183,7 @@ export class StudentExploreRepository {
 
     const students = await this.prisma.user.findMany();
 
-    let studentArr = [];
+    const studentArr = [];
 
     let tempStudentObj;
 
@@ -203,7 +203,7 @@ export class StudentExploreRepository {
 
   async SearchStudentTag(searchTag){
 
-    let studentArr = [];
+    const studentArr = [];
 
     let tempStudentObj;
 
@@ -227,9 +227,9 @@ export class StudentExploreRepository {
   
   async FilterStudentLocation(Filter){
 
-    let students = await this.prisma.userLocation.findMany();
+    const students = await this.prisma.userLocation.findMany();
 
-    let studentArr = [];
+    const studentArr = [];
 
     let tempStudentObj;
 
@@ -259,9 +259,9 @@ export class StudentExploreRepository {
 
   async FilterStudentDegreeType(Filter){
 
-    let students = await this.prisma.userDegree.findMany();
+    const students = await this.prisma.userDegree.findMany();
 
-    let studentArr = [];
+    const studentArr = [];
 
     let tempStudentObj;
 
@@ -291,9 +291,9 @@ export class StudentExploreRepository {
 
   async FilterStudentDegreeName(Filter){
 
-    let students = await this.prisma.userDegree.findMany();
+    const students = await this.prisma.userDegree.findMany();
 
-    let studentArr = [];
+    const studentArr = [];
 
     let tempStudentObj;
 
@@ -351,9 +351,9 @@ export class StudentExploreRepository {
       
     }
 
-    let students = await this.prisma.userProfile.findMany();
+    const students = await this.prisma.userProfile.findMany();
 
-    let studentArr = [];
+    const studentArr = [];
 
     let tempStudentObj;
 
@@ -383,9 +383,9 @@ export class StudentExploreRepository {
 
   async FindAllLocation(){
 
-    let locations = await this.prisma.userLocation.findMany();
+    const locations = await this.prisma.userLocation.findMany();
 
-    let foundLocations = []
+    const foundLocations = []
 
     let found = false;
 
@@ -407,11 +407,11 @@ export class StudentExploreRepository {
 
     }
 
-    let tempStudentObj = new ApiStudentExplore();
+    const tempStudentObj = new ApiStudentExplore();
 
     tempStudentObj.Available = foundLocations;
 
-    let returnArr = []
+    const returnArr = []
 
     returnArr.push(tempStudentObj)
 
@@ -421,9 +421,9 @@ export class StudentExploreRepository {
 
   async FindAllDegreeType(){
 
-    let degreeType = await this.prisma.userDegree.findMany();
+    const degreeType = await this.prisma.userDegree.findMany();
 
-    let foundDegreeType = []
+    const foundDegreeType = []
 
     let found = false;
 
@@ -445,11 +445,11 @@ export class StudentExploreRepository {
 
     }
 
-    let tempStudentObj = new ApiStudentExplore();
+    const tempStudentObj = new ApiStudentExplore();
 
     tempStudentObj.Available = foundDegreeType;
 
-    let returnArr = []
+    const returnArr = []
 
     returnArr.push(tempStudentObj)
 
@@ -459,9 +459,9 @@ export class StudentExploreRepository {
 
   async FindAllDegreeName(){
 
-    let degreeName = await this.prisma.userDegree.findMany();
+    const degreeName = await this.prisma.userDegree.findMany();
 
-    let foundDegreeName = []
+    const foundDegreeName = []
 
     let found = false;
 
@@ -483,11 +483,11 @@ export class StudentExploreRepository {
 
     }
 
-    let tempStudentObj = new ApiStudentExplore();
+    const tempStudentObj = new ApiStudentExplore();
 
     tempStudentObj.Available = foundDegreeName;
 
-    let returnArr = []
+    const returnArr = []
 
     returnArr.push(tempStudentObj)
 
@@ -497,18 +497,18 @@ export class StudentExploreRepository {
 
   async FindAllEmpStatus(){
 
-    let foundEmpStatus = []
+    const foundEmpStatus = []
 
     foundEmpStatus.push("Employed, Open to Offers")
     foundEmpStatus.push("Employed, Not open to Offers")
     foundEmpStatus.push("Unemployed, Open to Offers")
     foundEmpStatus.push("Unemployed, Not open to Offers")
 
-    let tempStudentObj = new ApiStudentExplore();
+    const tempStudentObj = new ApiStudentExplore();
 
     tempStudentObj.Available = foundEmpStatus;
 
-    let returnArr = []
+    const returnArr = []
 
     returnArr.push(tempStudentObj)
 
