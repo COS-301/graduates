@@ -13,6 +13,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule} from '@angular/flex-layout';
 import { BlogViewComponent } from './blog-view/blog-view.component';
 import { BlogExploreComponent } from './blog-explore/blog-explore.component';
@@ -28,6 +29,7 @@ import { BlogExploreFilterComponent } from './blog-explore/blog-explore-filter/b
 
   imports: [
     CommonModule,
+    FormsModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,

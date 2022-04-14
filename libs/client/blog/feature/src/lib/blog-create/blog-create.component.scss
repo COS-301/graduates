@@ -1,1 +1,63 @@
 @import 'libs/client/shared/assets/ui/src/lib/global';
+footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+
+h1 {
+    text-align: left;
+    float: left;
+    color: black;
+    font-size: 400%;
+    font-weight: bold;
+    padding-left: 10%;
+}
+
+h2 {
+    float: left;
+    color: $primary-1;
+    font-size: 250%;
+    padding-left: 5px;
+    padding-top: 6px;
+}
+
+h3 {
+    color: $primary-1;
+    font-size: 200%;
+    padding-left: 12%;
+    font-weight: 500;
+}
+
+.formbutton {
+    background-color: $primary-1;
+    &:hover {
+        color: $primary-1;
+        background-color: $background-white;
+        border-style: solid;
+        border-width: 1px;
+        border-color: $primary-1;
+    }
+    float: right;
+}
+
+.input {
+    width: 50%;
+    border: 10px;
+    border-color: $primary-1;
+    padding-left: 12%;
+}
+
+.title {
+    width: 50%;
+    border: 1px;
+    border-style: solid;
+    border-color: $primary-1;
+}
+
+.content {
+    width: 100%;
+    border: 1px;
+    border-style: solid;
+    border-color: $primary-1;
+}
