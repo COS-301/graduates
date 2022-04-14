@@ -1,6 +1,7 @@
 import {
   Short,
   ShortCreateInput,
+  ShortUpdateInput,
 } from '@graduates/api/shorts/api/shared/entities/data-access';
 import { Injectable } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
@@ -9,8 +10,14 @@ import {
   GetShortByIdQuery,
   GetShortByTagQuery,
   GetShortByUserQuery,
+  GetUserByIdQuery,
 } from './queries/api-shorts-query.query';
-import { CreateShortCommand } from './commands/api-shorts-command.command';
+import {
+  CreateShortCommand,
+  DeleteShortCommand,
+  UpdateShortCommand,
+} from './commands/api-shorts-command.command';
+import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 
 @Injectable()
 export class ShortsService {
@@ -41,6 +48,11 @@ export class ShortsService {
     return await this.queryBus.execute(new GetShortByIdQuery(id));
   }
 
+  //* Remove later
+  async findUserById(id: string): Promise<User> {
+    return await this.queryBus.execute(new GetUserByIdQuery(id));
+  }
+
   /**
    * Find all shorts by user id
    * @param {string} userId The id of the user to find the shorts for
@@ -65,13 +77,25 @@ export class ShortsService {
    * @param {string} userId The id of the user to create the short for
    * @return {Promise<Short | null>}
    */
-  async createShort(
-    short: ShortCreateInput,
-    tags: string[],
-    userId: string
-  ): Promise<Short> {
-    return await this.commandBus.execute(
-      new CreateShortCommand(short, tags, userId)
-    );
+  async createShort(short: ShortCreateInput, userId: string): Promise<Short> {
+    return await this.commandBus.execute(new CreateShortCommand(short, userId));
+  }
+
+  /**
+   * Delete a short
+   * @param {string} id The id of the short to delete
+   * @return {Promise<Short | null>}
+   */
+  async deleteShort(id: string): Promise<Short | null> {
+    return await this.commandBus.execute(new DeleteShortCommand(id));
+  }
+
+  /**
+   * Update a short
+   * @param {ShortUpdateInput} short The short to be updated along with tyhe new values
+   * @return {Promise<Short | null>}
+   */
+  async updateShort(short: ShortUpdateInput): Promise<Short | null> {
+    return await this.commandBus.execute(new UpdateShortCommand(short));
   }
 }
