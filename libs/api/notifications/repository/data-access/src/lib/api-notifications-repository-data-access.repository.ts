@@ -1,16 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
-import { Notification } from '@prisma/client';
+import { Notification, Prisma } from '@prisma/client';
 
 @Injectable()
 export class NotificationsRepository {
   constructor(private prisma: PrismaService) {}
 
-  async findAll() {
+  async findNotificationsAll() {
     return this.prisma.notification.findMany();
   }
 
-  async findByNotificationId(id: string): Promise<Notification | null> {
+  async findNotificationById(id: string): Promise<Notification | null> {
     return this.prisma.notification.findUnique({ 
       where: { 
         id : id
@@ -18,7 +18,7 @@ export class NotificationsRepository {
     });
   }
 
-  async findByUserIDTo(userId : string): Promise<Notification[] | null> {
+  async findNotificationsRecieved(userId : string): Promise<Notification[] | null> {
     return this.prisma.notification.findMany({
       where: {
         userIdTo : userId
@@ -26,9 +26,17 @@ export class NotificationsRepository {
     });
   }
 
-  async findByNotificationType(userId : string, notificationType : string): Promise<Notification[] | null> {
+  async findNotificationsSent(userId : string): Promise<Notification[] | null> {
+    return this.prisma.notification.findMany({
+      where: {
+        userIdFrom : userId
+      }
+    });
+  }
 
-    const notifications =  await this.prisma.notification.findMany({ 
+  async findNotificationsByType(userId : string, notificationType : string): Promise<Notification[] | null> {
+
+    return await this.prisma.notification.findMany({ 
       where: {
         userIdTo : userId,
         data: { 
@@ -37,8 +45,6 @@ export class NotificationsRepository {
         },
       },
     });
-    
-    return notifications;
   }
 
   async updateSeen(id : string, seen : boolean) : Promise<Notification> {
@@ -52,11 +58,36 @@ export class NotificationsRepository {
     });
   }
 
-  // async createNotification(userTo : string, userFrom : string, notificationType : string) : Promise<Notification> {
-  //   const json = {
-  //     notificationType: notificationType
-  //   }
-    // const notification = 
-  // }
+  async createRequestNotification(userTo : string, userFrom : string, notificationType : string) : Promise<Notification> {
+    const json = {
+      notificationType: notificationType,
+      status: "pending"
+    } as Prisma.JsonObject
 
+    return await this.prisma.notification.create({
+      data: {
+        userIdFrom: userFrom,
+        userIdTo: userTo,
+        data: json,
+        date: new Date(),
+        seen: false
+      }
+    });
+  }
+
+  async updateRequestNotification(id : string, status: string) : Promise<Notification> {
+    const notification = await this.findNotificationById(id);
+
+    let notificationData = notification.data as Prisma.JsonObject;
+    notificationData['status'] = status;
+
+    return await this.prisma.notification.update({
+      where: {
+        id: id
+      },
+      data: {
+        data : notificationData
+      }
+    });
+  }
 }
