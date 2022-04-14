@@ -333,4 +333,45 @@ export class StudentProfilesRepository
         });
         */
     }
+
+    async getCellNum(userid : string)
+    {     
+        /*     
+        return await this.prisma.userCellNum.findMany({
+            where:
+            {
+                userId: userid
+            },
+            select:
+            {
+                cellNum : true
+            }
+        });
+        */
+    }
+
+    async addCellNum(userid : string, cellnum : string)
+    {  
+        /*      
+        return await this.prisma.userCellNum.create({
+            data:
+            {
+                userId: userid,
+                cellNum : cellnum
+            }
+        });
+        */
+    }
+
+    async removeCellNum(userid : string)
+    {  
+        /*      
+        return await this.prisma.userCellNum.delete({
+            where:
+            {
+                userId: userid
+            }
+        });
+        */
+    }
 }
