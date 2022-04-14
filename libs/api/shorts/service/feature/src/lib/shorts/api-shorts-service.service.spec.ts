@@ -1,12 +1,22 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ShortsService } from './api-shorts-service.service';
 import { QueryBus, CommandBus } from '@nestjs/cqrs';
-import { Short } from '@graduates/api/shorts/api/shared/entities/data-access';
+import {
+  Short,
+  ShortCreateInput,
+  ShortUpdateInput,
+} from '@graduates/api/shorts/api/shared/entities/data-access';
 
 jest.mock('@graduates/api/shorts/api/shared/entities/data-access');
-
 const shortMock: jest.Mocked<Short> = new Short() as Short;
 
+jest.mock('@graduates/api/shorts/api/shared/entities/data-access');
+const shortCreateMock: jest.Mocked<ShortCreateInput> =
+  new ShortCreateInput() as ShortCreateInput;
+
+jest.mock('@graduates/api/shorts/api/shared/entities/data-access');
+const shortUpdateMock: jest.Mocked<ShortUpdateInput> =
+  new ShortUpdateInput() as ShortUpdateInput;
 // Run `yarn test api-shorts-service-feature` to execute the unit tests
 describe('ShortsService', () => {
   let service: ShortsService;
@@ -96,7 +106,35 @@ describe('ShortsService', () => {
         .spyOn(service, 'createShort')
         .mockImplementation((): Promise<Short> => Promise.resolve(shortMock));
 
-      expect(await service.createShort(shortMock, [], '1')).toMatchObject(
+      expect(await service.createShort(shortCreateMock, '1')).toMatchObject(
+        shortMock
+      );
+    });
+  });
+
+  /**
+   * Test the deleteShort method
+   */
+  describe('deleteShort', () => {
+    it('should return a short', async () => {
+      jest
+        .spyOn(service, 'deleteShort')
+        .mockImplementation((): Promise<Short> => Promise.resolve(shortMock));
+
+      expect(await service.deleteShort('1')).toMatchObject(shortMock);
+    });
+  });
+
+  /**
+   * Test the updateShort method
+   */
+  describe('updateShort', () => {
+    it('should return a short', async () => {
+      jest
+        .spyOn(service, 'updateShort')
+        .mockImplementation((): Promise<Short> => Promise.resolve(shortMock));
+
+      expect(await service.updateShort(shortUpdateMock)).toMatchObject(
         shortMock
       );
     });
