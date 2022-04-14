@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["filterJson"]
 }
 
 datasource db {
@@ -283,7 +284,7 @@ model Notification {
   id         String   @id @default(cuid())
   userIdFrom String?  @map("user_id_from")
   userIdTo   String   @map("user_id_to")
-  data       Json?
+  data       Json
   date       DateTime
   seen       Boolean
 
