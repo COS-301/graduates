@@ -20,14 +20,27 @@ export class StoryExploreComponent implements OnInit {
 
   @Input() upload : boolean;
   @Input() report : boolean;
+
   uploadfrm! : FormGroup;
+  reportfrm! : FormGroup;
   builder! : FormBuilder; 
+
   counter =0;
   submit = false;
   return : boolean;
   searchText = "";
+
   viewing : boolean;
-  storyToView! : number;
+  reporting: boolean;
+  currentlyViewing! : number;
+  currentlyReporting! : number;
+  successfulReport : boolean;
+  reported : boolean;
+
+  viewingName = "Ernest Wright";
+  viewingTags = "#Design #IMY #COS #software"
+
+
   fileError = "File is required.";
   uploadedFile! : any;
 
@@ -54,13 +67,21 @@ export class StoryExploreComponent implements OnInit {
     this.return = false;
     this.report = false;
     this.viewing = false;
+    this.reporting = false;
+    this.successfulReport = false;
+    this.reported = false;
   }
 
   ngOnInit(): void {
     this.uploadfrm = this.builder.group({
       file: ['', Validators.required],
       tags: ['', Validators.required]
-    })
+    });
+
+    this.reportfrm = this.builder.group({
+      reason: ['', Validators.required]
+    });
+
     this.loadCards();
   }
 
@@ -88,10 +109,16 @@ export class StoryExploreComponent implements OnInit {
       //upload form here:
   }
 
-  cancel() {
+  cancelUpload() {
     this.return = true;
     //take user back a page to the user profile
     this.location.back();
+  }
+
+  searchClick() {
+    this.viewing = false;
+    this.reporting = false;
+    this.successfulReport = false;
   }
 
   search(){
@@ -101,13 +128,59 @@ export class StoryExploreComponent implements OnInit {
 
   }
 
+  closeSuccessReport() {
+    this.reporting = false;
+    this.viewing = false;
+    this.successfulReport = false;
+  }
+
   viewStory(n : number) {
-    this.storyToView = n;
+    this.currentlyViewing = n;
     this.viewing = true;
+    this.reporting = false;
+    this.successfulReport = false;
   }
 
   closeViewing() {
     this.viewing = false;
+  }
+
+  cancelReport() {
+    this.reporting = false;
+    this.viewing = true;
+  }
+
+  makeReportpopup() {
+    //create report popup:
+    this.viewing = false;
+    this.reporting = true;
+    this.currentlyReporting = this.currentlyViewing;
+  }
+
+  submitReport() {
+    // alert("report for " + this.currentlyReporting + " goes to API");
+    this.reported = true;
+
+
+    for (const input in this.reportfrm.controls) {
+      if (this.reportfrm.controls[input].invalid) {
+        return;
+      }
+    }
+    alert("To submit to API - '" + this.reportfrm.controls['reason'].value + "'")
+
+    //reset for another report:
+    this.reportfrm.reset();
+    this.reported = false;
+
+    //push report to API:
+
+    //check for successful response from API:
+
+    //true case after report (make a case if the API fails...)
+    this.reporting = false;
+    this.successfulReport = true;
+
   }
 
   loadCards(){
@@ -117,7 +190,7 @@ export class StoryExploreComponent implements OnInit {
     ];
 
 
-    for (let index = 0; index < 6; index++) {
+    for (let index = 0; index < 4; index++) {
       this.cardlist.push({ title: 'Card 1', cols: 1, rows: 1 , pic: '', tags: [], pk: index});
       
     }

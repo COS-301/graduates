@@ -1,0 +1,56 @@
+button {
+    color: #FFFFFF;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    background-color: #174372;
+    border-width: medium;
+    border-color: #174372;
+    margin-top: 2em;
+    margin-left: 5em;
+    outline: none !important;
+    box-shadow: none !important;
+}
+button:hover {
+    color: #174372;
+    font-weight: bold;
+    border-width: medium;
+    border-color: #174372;
+    background-color: #FFFFFF;
+    outline: none !important;
+    box-shadow: none !important;
+}
+button:disabled {
+    background-color: #577697;
+    color: #CFD7DE;
+}
+button:active {
+    background-color: #174372 !important;
+    outline: none !important;
+    box-shadow: none !important;
+    color: #fff;
+}
+button:focus {
+    background-color: #174372 !important;
+    outline: none !important;
+    box-shadow: none !important;
+    color: #fff !important;
+}
+
+@media (max-width: 400px) {
+ 
+    button:active {
+        background-color: #fff !important;
+        outline: none !important;
+        box-shadow: none !important;
+        color: #174372;
+        border: 1px solid #174372;
+    }
+    button:focus {
+        background-color: #fff !important;
+        outline: none !important;
+        box-shadow: none !important;
+        color: #174372 !important;
+        border: 1px solid #174372;
+    }
+    
+}

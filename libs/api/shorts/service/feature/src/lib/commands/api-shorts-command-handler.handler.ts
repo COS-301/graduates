@@ -15,6 +15,6 @@ export class CreateShortHandler implements ICommandHandler<CreateShortCommand> {
   async execute(command: CreateShortCommand): Promise<Short | null> {
     const { short, tags, userId } = command;
 
-    return this.repository.createShort(short, tags, userId);
+    return this.repository.createShort(short, userId);
   }
 }
