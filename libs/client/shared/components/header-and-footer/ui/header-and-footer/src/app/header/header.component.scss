@@ -17,7 +17,7 @@
     padding-top: 3px;
     width: 22%;
 }
-.header{
+.head{
     padding-top: 20px;
     padding-bottom: 20px;
     color: white;
@@ -28,9 +28,17 @@
     width: 100% ;
     height: 100%;
     overflow: hidden !important;
+    
 }
 h1{
     padding-left: 2px;
+}
+header{
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    position: absolute;
 }
 @media (max-width:428px) {
     .uplogo{
@@ -43,7 +51,7 @@ h1{
     .hat{
         display: none !important;
     }
-    .header{
+    .head{
         margin-right: 0 !important;
         margin: 0px !important;
         padding-top: 3px !important;
@@ -62,4 +70,11 @@ h1{
         padding-bottom: 0% !important;
         display: none !important;
     }
+        header{
+            width: 100% !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+        }
 }
