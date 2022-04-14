@@ -24,6 +24,14 @@
     margin-top: -5px;
     background-color: $card-blue;
     color: $text-white;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: $card-blue;
+    &:hover{
+        color: $primary-1;
+        background-color: $background-white;
+    }   
     
 }
 #tags{
@@ -123,9 +131,24 @@ h1 {
 .formbuttonblue {
     background-color: $card-blue;
     color: $text-white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $card-blue;
+    &:hover{
+        color: $primary-1;
+        background-color: $background-white;
+    }   
 }
 
 .formbuttonred {
     background-color: $card-red;
     color: $text-white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $card-red;
+    &:hover{
+        color: $primary-1;
+        background-color: $background-white;
+
+    }   
 }

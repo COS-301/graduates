@@ -5,7 +5,7 @@
     <h1 class = "banner-text">Student Shorts</h1>
 
     <div >
-      <input (click)="searchClick()" id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
+      <input (change)="search()" (click)="searchClick()" id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
     </div>
     <mat-grid-list cols="3" rowHeight="380px">
 
@@ -44,7 +44,7 @@
             Prev
         </button>
     
-        <button id ="curBtn" disabled class="px-4 py-2 formbuttonblue rounded">
+        <button id ="curBtn" disabled class="px-4 py-2 rounded bg-gray-300">
             1
         </button>
         <button id ="nextBtn" (click)="btnNaviClick(1)" class="px-4 py-2 formbuttonblue rounded">
