@@ -1,4 +1,4 @@
-import {Adminauthorization} from '../lib/api-authorization-repository-admin';
+/*import {Adminauthorization} from '../lib/api-authorization-repository-admin';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 import exp = require('constants');
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
@@ -82,4 +82,4 @@ test('company add user to company', async () => {
               permissionTenant:"ALL"}});
      console.log(call);
     expect(call).toBe(call);
-});
+});*/
