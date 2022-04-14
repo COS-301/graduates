@@ -1,8 +1,18 @@
 import { Component} from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'graduates-company-explore-searchbar',
   templateUrl: './company-explore-searchbar.component.html',
   styleUrls: ['./company-explore-searchbar.component.scss']
 })
-export class CompanyExploreSearchbarComponent{}
+export class CompanyExploreSearchbarComponent{
+  constructor(private router: Router)
+  {
+
+  }
+  onSubmit(form:NgForm){
+    this.router.navigate(['search',form.value.search])
+  }
+}
