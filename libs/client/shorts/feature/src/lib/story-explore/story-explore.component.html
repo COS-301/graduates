@@ -6,37 +6,36 @@
 
   <!-- Story Explore -->
   <div class="grid-container" max-w-prose w-2>
-    <h1 class = "banner-text">Student Shorts</h1>
+    <h1 class = "banner-text text-center pt-3">Student Shorts</h1>
 
     <div >
-      <input (change)="search()" (click)="searchClick()" id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
+      <input *ngIf="!upload" (change)="search()" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
+      <input *ngIf="upload" disabled="true" (change)="search()" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
     </div>
     <mat-grid-list cols="3" rowHeight="380px">
 
       <!-- Generate Cards -->
       <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="0.5">
-        <mat-card class="dashboard-card " id = "card">
+        <mat-card class="dashboard-card" id = "card">
 
 
           <mat-card-content class="dashboard-card-content ">
             <img src={{card.pic}} id="thumbnail">
-
                 <div class="grid grid-rows-2 py-2 ">
                   <div>
                     <mat-card-title id = "cardHeader" > 
                       {{card.username}}
-                      <button (click) = "viewStory(card.pk)" class="formbutton rounded py-2 px-5" id ="cardbuttton">View</button>
+                      <button *ngIf="!upload" (click) = "viewStory(card.pk)" class="formbutton rounded py-2 px-5 cardbutton">View</button>
+                      <button *ngIf="upload" disabled="true" (click) = "viewStory(card.pk)" class="formbutton rounded py-2 px-5 cardbutton-nohov">View</button>
                    
                    </mat-card-title>  
  
                   </div>
                   <div id ="tags"><i *ngFor="let tag of card.tags" >{{tag}} </i>
                   </div>
-
-
                 </div>    
+          </mat-card-content>
 
-              </mat-card-content>
         </mat-card>
       </mat-grid-tile>
       
