@@ -115,6 +115,12 @@ export class StoryExploreComponent implements OnInit {
     this.location.back();
   }
 
+  searchClick() {
+    this.viewing = false;
+    this.reporting = false;
+    this.successfulReport = false;
+  }
+
   search(){
     this.searchText = (<HTMLInputElement>document.getElementById("search")).value;
      alert('searching for ' + this.searchText);
@@ -132,6 +138,7 @@ export class StoryExploreComponent implements OnInit {
     this.currentlyViewing = n;
     this.viewing = true;
     this.reporting = false;
+    this.successfulReport = false;
   }
 
   closeViewing() {

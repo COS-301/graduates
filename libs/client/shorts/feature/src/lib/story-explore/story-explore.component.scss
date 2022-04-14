@@ -66,7 +66,7 @@ h1 {
 }
 
 .bigblur {
-    box-shadow: 0px 0px 400px 200px rgba(163,163,163,0.75);
+    box-shadow: 0px 0px 400px 50px rgba(179, 178, 178, 0.75);
 }
 
 .infocolour {
@@ -93,6 +93,7 @@ h1 {
     outline: none;
     color: $primary-3;
     padding: 8px 8px;
+    max-height: 60vh;
 }
 
 .formbuttonblue {
