@@ -281,8 +281,55 @@ export class StudentProfilesRepository
             select:
             {
                 EmploymentStatus : true,
-                filePath : true,
-                fileExtension : true
+                OpenToOffers : true
+            }
+        });
+        */
+    }
+
+    async setEmploymentStatus(userid : string, employmentstatus: boolean, opentooffers : boolean,)
+    {   
+        /*     
+        return await this.prisma.userProfile.update({
+            data:
+            {
+                EmploymentStatus : employmentstatus,
+                OpenToOffers : opentooffers
+            },
+            where:
+            {
+                userId: userid
+            }
+        });
+        */
+    }
+
+    async getDegree(userid : string)
+    {     
+        /*     
+        return await this.prisma.userDegree.findMany({
+            where:
+            {
+                userId: userid
+            },
+            select:
+            {
+                DegreeTitle : true,
+                DegreeName : true
+            }
+        });
+        */
+    }
+
+    async addDegree(userid : string, degreetitle : string, degreename : string)
+    {  
+        /*      
+        return await this.prisma.userProfileFile.create({
+            data:
+            {
+                userId: userid,
+                DegreeTitle : degreetitle,
+                DegreeName : degreename
             }
         });
         */
