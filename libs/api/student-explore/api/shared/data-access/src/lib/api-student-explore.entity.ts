@@ -10,6 +10,12 @@ export class ApiStudentExplore {
   StudentBio: string;
 
   @Field({ nullable: true })
+  StudentEmail: string;
+
+  @Field({ nullable: true })
+  StudentNumber: string;
+
+  @Field({ nullable: true })
   StudentPic: string;
 
   @Field(type => [String], { nullable: true })
