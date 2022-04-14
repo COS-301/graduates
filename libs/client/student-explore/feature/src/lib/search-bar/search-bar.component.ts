@@ -87,4 +87,15 @@ export class SearchBarComponent {
   {
     return this.searchStudent(this.qry);
   }
+
+  /*getStudentArray()
+  {
+    const arr: Array<{"id": string, "name": string}> = [];
+
+    this.studentArray.forEach(element => {
+      arr.push(element);
+    });
+
+    return arr;
+  }*/
 }
