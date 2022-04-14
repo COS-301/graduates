@@ -1,6 +1,6 @@
 <div class="container-fluid">
 
-
+  <!-- Story Explore -->
   <div class="grid-container" max-w-prose w-2>
     <h1 class = "banner-text">Student Shorts</h1>
 
@@ -8,6 +8,8 @@
       <input (click)="searchClick()" id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
     </div>
     <mat-grid-list cols="3" rowHeight="380px">
+
+      <!-- Generate Cards -->
       <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="0.5">
         <mat-card class="dashboard-card " id = "card">
 
@@ -36,24 +38,19 @@
       
     </mat-grid-list>
 
+    <!-- Page Navigation -->
     <div class="flex justify-center items-center space-x-1">
-      <button  class="flex items-center px-4 py-2 text-gray-500 bg-gray-300 rounded-md">
-          Previous
-      </button>
-  
-      <button class="px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-blue-400 hover:text-white">
-          1
-      </button>
-      <button  class="px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-blue-400 hover:text-white">
-          2
-      </button>
-      <button class="px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-blue-400 hover:text-white">
-          3
-      </button>
-      <button  class="px-4 py-2 font-bold text-gray-500 bg-gray-300 rounded-md hover:bg-blue-400 hover:text-white">
-          Next
-      </button>
-  </div>
+        <button id ="prevBtn" disabled (click)="btnNaviClick(-1)" class=" px-4 py-2 formbuttonblue rounded">
+            Prev
+        </button>
+    
+        <button id ="curBtn" disabled class="px-4 py-2 formbuttonblue rounded">
+            1
+        </button>
+        <button id ="nextBtn" (click)="btnNaviClick(1)" class="px-4 py-2 formbuttonblue rounded">
+            Next
+        </button>
+    </div>
 
   </div>
 

@@ -38,8 +38,10 @@ export class StoryExploreComponent implements OnInit {
   reported : boolean;
 
   viewingName = "Ernest Wright";
-  viewingTags = "#Design #IMY #COS #software"
+  viewingTags = "#Design #IMY #COS #software";
 
+  pageIndex: number = 1;
+  endIndex: number = 2;
 
   fileError = "File is required.";
   uploadedFile! : any;
@@ -93,6 +95,22 @@ export class StoryExploreComponent implements OnInit {
   //   return null;
   // }
 
+  btnNaviClick(i : number){
+    
+    (<HTMLInputElement>document.getElementById("prevBtn")).disabled = false;
+    (<HTMLInputElement>document.getElementById("nextBtn")).disabled = false;
+    this.pageIndex += i;
+    if(this.pageIndex ==1){
+      (<HTMLInputElement>document.getElementById("prevBtn")).disabled = true;
+    }
+    if(this.endIndex == this.pageIndex){
+      (<HTMLInputElement>document.getElementById("nextBtn")).disabled = true;
+    }
+
+    (<HTMLInputElement>document.getElementById("curBtn")).innerHTML = (this.pageIndex).toString();
+
+  }
+
   onFileUpload(event : any) {
     alert();
     console.log(event.target.length);
@@ -124,8 +142,8 @@ export class StoryExploreComponent implements OnInit {
 
   search(){
     this.searchText = (<HTMLInputElement>document.getElementById("search")).value;
-     alert('searching for ' + this.searchText);
-     this.loadCards();
+    alert('searching for ' + this.searchText);
+    this.loadCards();
 
   }
 
