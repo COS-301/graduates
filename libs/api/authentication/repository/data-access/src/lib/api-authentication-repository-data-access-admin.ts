@@ -9,7 +9,23 @@ export class AuthenticationRepository
 
     async setToken(email : string, token : string, token_type : number, token_expiration : number)
     {
-        const id = await this.getId(email);
+        if(!email)
+            throw Error("email");
+        else if(!token)
+            throw Error("token");
+        else if(token_type == null || token_type < 0 || token_type > 3)
+            throw Error("token_type");
+        else if(!token_expiration)
+            throw Error("token_expiration");
+
+        const id = await this.getId(email); 
+        
+        if(!id)
+            throw Error("user_does_not_exist");
+
+        if(!this.getToken(email))
+            throw Error("user_already_has_token");
+
         await this.prisma.userToken.create({
             data:
             {
@@ -19,11 +35,17 @@ export class AuthenticationRepository
                 userTokenExpiration: token_expiration
             }
         })
+
+        return "Created";
     }
 
     async getToken(email : string)
     {
-        const id = await this.getId(email);        
+        const id = await this.getId(email); 
+        
+        if(!id)
+            throw Error("user_does_not_exist");
+        
         return await this.prisma.userToken.findFirst({
             where:
             {
@@ -39,6 +61,10 @@ export class AuthenticationRepository
     async setTokenExpiration(email : string, time : number)
     {
         const id = await this.getId(email);
+
+        if(!id)
+            throw Error("user_does_not_exist");
+
         await this.prisma.userToken.update({
             where:
             {
@@ -56,6 +82,10 @@ export class AuthenticationRepository
     async getTokenExpiration(email : string)
     {
         const id = await this.getId(email);
+
+        if(!id)
+            throw Error("user_does_not_exist");
+
         return await this.prisma.userToken.findFirst({
             where:{
                 userId:id
@@ -70,6 +100,10 @@ export class AuthenticationRepository
     async setTokenType(email : string, token_type : number)
     {
         const id = await this.getId(email);
+
+        if(!id)
+            throw Error("user_does_not_exist");
+
         await this.prisma.userToken.update({
             where:
             {
@@ -85,6 +119,10 @@ export class AuthenticationRepository
     async getTokenType(email : string)
     {
         const id = await this.getId(email);
+
+        if(!id)
+            throw Error("user_does_not_exist");
+            
         await this.prisma.userToken.findFirst({
             where:
             {
@@ -106,7 +144,10 @@ export class AuthenticationRepository
             }
         });
 
-        return id.email;
+        if(id)
+            return id.id;
+        else
+            return null;
     }
 }
 
