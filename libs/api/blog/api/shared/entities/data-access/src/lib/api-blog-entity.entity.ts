@@ -28,7 +28,7 @@ export class Blog {
   title!: string;
 
   /**
-   * The url of the Blog
+   * The content of the Blog
    */
   @Field({ nullable: true })
   content!: string;
