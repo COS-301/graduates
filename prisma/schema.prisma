@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["filterJson"]
 }
 
 datasource db {
@@ -47,6 +48,7 @@ model User {
   notificationFrom  Notification[]    @relation("notificationFrom")
   notificationTo    Notification[]    @relation("notificationTo")
   Blog              Blog[]
+  BlogComment       BlogComment[]
   UserToken         UserToken[]    
   
   @@map("user")
@@ -282,7 +284,7 @@ model Notification {
   id         String   @id @default(cuid())
   userIdFrom String?  @map("user_id_from")
   userIdTo   String   @map("user_id_to")
-  data       Json?
+  data       Json
   date       DateTime
   seen       Boolean
 
@@ -317,10 +319,14 @@ model Blog {
 model BlogComment {
   id      String   @id @default(cuid())
   blogId  String   @map("blog_id")
+  userId  String   @map("user_id")
   content String
   date    DateTime
 
   blog Blog @relation(fields: [blogId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+
+  
   @@map("blog_comment")
 }
 
