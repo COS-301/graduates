@@ -63,20 +63,20 @@ describe('ShortsRepository', () => {
   /**
    * Test the findByUser method
    */
-  describe('findByUser', () => {
-    it('should return empty array', async () => {
-      expect(await repository.findByUser('1')).toEqual([]);
-    });
-  });
+  // describe('findByUser', () => {
+  //   it('should return empty array', async () => {
+  //     expect(await repository.findByUser('1')).toEqual([]);
+  //   });
+  // });
 
-  /**
-   * Test the findByTag method
-   */
-  describe('findByTag', () => {
-    it('should return empty array', async () => {
-      expect(await repository.findByTag('1')).toEqual([]);
-    });
-  });
+  // /**
+  //  * Test the findByTag method
+  //  */
+  // describe('findByTag', () => {
+  //   it('should return empty array', async () => {
+  //     expect(await repository.findByTag('1')).toEqual([]);
+  //   });
+  // });
 
   /**
    * Test the createShort method
@@ -87,7 +87,7 @@ describe('ShortsRepository', () => {
         .spyOn(repository, 'createShort')
         .mockImplementation((): Promise<Short> => Promise.resolve(shortMock));
 
-      expect(await repository.createShort(shortMock, [], '1')).toMatchObject(
+      expect(await repository.createShort(shortMock, '1')).toMatchObject(
         shortMock
       );
     });
