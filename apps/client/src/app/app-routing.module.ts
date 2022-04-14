@@ -50,6 +50,10 @@ const routes: Routes = [
       path: '',
       loadChildren: () => import('@graduates/client/shell/feature').then(x => x.FeatureModule)
     },
+    {
+      path: 'storage',
+      loadChildren: () => import('@graduates/client/storage/feature').then(x => x.ClientStorageFeatureModule)
+    }
 ];
 
 @NgModule({

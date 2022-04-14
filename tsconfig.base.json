@@ -69,6 +69,9 @@
       "@graduates/api/authorization/service/shared": [
         "libs/api/authorization/service/shared/src/index.ts"
       ],
+      "@graduates/api/blog/api/shared/entities/data-access": [
+        "libs/api/blog/api/shared/entities/data-access/src/index.ts"
+      ],
       "@graduates/api/blog/repository/data-access": [
         "libs/api/blog/repository/data-access/src/index.ts"
       ],
@@ -77,6 +80,9 @@
       ],
       "@graduates/api/company-representative/api/shared/data-access": [
         "libs/api/company-representative/api/shared/data-access/src/index.ts"
+      ],
+      "@graduates/api/company-representative/repository/data-access": [
+        "libs/api/company-representative/repository/data-access/src/index.ts"
       ],
       "@graduates/api/company-representative/service/feature": [
         "libs/api/company-representative/service/feature/src/index.ts"
@@ -226,6 +232,9 @@
       "@graduates/client/adminconsole/feature": [
         "libs/client/adminconsole/feature/src/index.ts"
       ],
+      "@graduates/client/authorization/feature": [
+        "libs/client/authorization/feature/src/index.ts"
+      ],
       "@graduates/client/blog/feature": [
         "libs/client/blog/feature/src/index.ts"
       ],
@@ -249,6 +258,12 @@
       ],
       "@graduates/client/shared/assets/ui": [
         "libs/client/shared/assets/ui/src/index.ts"
+      ],
+      "@graduates/client/shared/components/buttons/ui": [
+        "libs/client/shared/components/buttons/ui/src/index.ts"
+      ],
+      "@graduates/client/shared/components/dropdown/ui": [
+        "libs/client/shared/components/dropdown/ui/src/index.ts"
       ],
       "@graduates/client/shared/components/navbar/ui": [
         "libs/client/shared/components/navbar/ui/src/index.ts"
