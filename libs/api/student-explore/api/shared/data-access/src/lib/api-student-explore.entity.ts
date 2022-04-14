@@ -36,5 +36,8 @@ export class ApiStudentExplore {
   @Field({ nullable: true })
   StudentEmpOffer : boolean;
 
+  @Field(type => [String], { nullable: true })
+  Available: string[];
+
 
 }

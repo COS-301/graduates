@@ -28,5 +28,10 @@ export class ApiStudentExploreResolver {
     return this.StudentExploreService.FilterStudents(filterQuery, filterType);
   }
 
+  @Query(() => [ApiStudentExplore])
+  AllAvailable(@Args('availableQuery') availableQuery : string) : Promise<ApiStudentExplore>{
+    return this.StudentExploreService.AllAvailable(availableQuery);
+  }
+
 
 }

@@ -87,7 +87,8 @@ export class StudentExploreRepository {
 
   }
 
-  //Filters = Degree Type, Location, Employment Status
+  //Filters = Degree Type, Degree Name, Location, Employment Status
+  
   async FilterStudentLocation(Filter){
 
     let students = await this.prisma.userLocation.findMany();
@@ -248,6 +249,142 @@ export class StudentExploreRepository {
     return studentArr;
 
   }
+
+  async FindAllLocation(){
+
+    let locations = await this.prisma.userLocation.findMany();
+
+    let foundLocations = []
+
+    let found = false;
+
+    for (let i = 0; i < locations.length; i++) {
+
+      found = false;
+
+      for(let j=0; j< foundLocations.length; j++){
+
+        if(foundLocations[j] === locations[i].location){
+          found = true;
+        }
+
+      }
+
+      if( found == false){
+        foundLocations.push(locations[i].location);
+      }
+
+    }
+
+    let tempStudentObj = new ApiStudentExplore();
+
+    tempStudentObj.Available = foundLocations;
+
+    let returnArr = []
+
+    returnArr.push(tempStudentObj)
+
+    return returnArr;
+
+  }
+
+  async FindAllDegreeType(){
+
+    let degreeType = await this.prisma.userDegree.findMany();
+
+    let foundDegreeType = []
+
+    let found = false;
+
+    for (let i = 0; i < degreeType.length; i++) {
+
+      found = false;
+
+      for(let j=0; j< foundDegreeType.length; j++){
+
+        if(foundDegreeType[j] === degreeType[i].degreeType){
+          found = true;
+        }
+
+      }
+
+      if( found == false){
+        foundDegreeType.push(degreeType[i].degreeType);
+      }
+
+    }
+
+    let tempStudentObj = new ApiStudentExplore();
+
+    tempStudentObj.Available = foundDegreeType;
+
+    let returnArr = []
+
+    returnArr.push(tempStudentObj)
+
+    return returnArr;
+
+  }
+
+  async FindAllDegreeName(){
+
+    let degreeName = await this.prisma.userDegree.findMany();
+
+    let foundDegreeName = []
+
+    let found = false;
+
+    for (let i = 0; i < degreeName.length; i++) {
+
+      found = false;
+
+      for(let j=0; j< foundDegreeName.length; j++){
+
+        if(foundDegreeName[j] === degreeName[i].degreeName){
+          found = true;
+        }
+
+      }
+
+      if( found == false){
+        foundDegreeName.push(degreeName[i].degreeName);
+      }
+
+    }
+
+    let tempStudentObj = new ApiStudentExplore();
+
+    tempStudentObj.Available = foundDegreeName;
+
+    let returnArr = []
+
+    returnArr.push(tempStudentObj)
+
+    return returnArr;
+
+  }
+
+  async FindAllEmpStatus(){
+
+    let foundEmpStatus = []
+
+    foundEmpStatus.push("Employed, Open to Offers")
+    foundEmpStatus.push("Employed, Not open to Offers")
+    foundEmpStatus.push("Unemployed, Open to Offers")
+    foundEmpStatus.push("Unemployed, Not open to Offers")
+
+    let tempStudentObj = new ApiStudentExplore();
+
+    tempStudentObj.Available = foundEmpStatus;
+
+    let returnArr = []
+
+    returnArr.push(tempStudentObj)
+
+    return returnArr;
+
+  }
+
 
 
 }

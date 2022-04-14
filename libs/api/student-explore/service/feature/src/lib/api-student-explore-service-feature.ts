@@ -7,6 +7,7 @@ import { InitStudentsQuery } from './queries/impl/init-students.query';
 import { SearchStudentsByTagQuery } from './queries/impl/search-students-by-tag.query';
 import { SearchStudentsQuery } from './queries/impl/search-students.query';
 import { FilterStudentsQuery } from './queries/impl/filter-students.query';
+import { AvailableQuery } from './queries/impl/available.query';
 
 @Injectable()
 export class StudentExploreService {
@@ -36,6 +37,12 @@ export class StudentExploreService {
   async FilterStudents(filterQuery, filterType) {
     return this.queryBus.execute(
       new FilterStudentsQuery(filterQuery, filterType)
+    );
+  }
+
+  async AllAvailable(availableQuery){
+    return this.queryBus.execute(
+      new AvailableQuery(availableQuery)
     );
   }
 
