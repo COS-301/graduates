@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/client/authorization/feature",
+  "sourceRoot": "libs/client/authorization/feature/src",
+  "prefix": "graduates",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/authorization/feature"],
+      "options": {
+        "jestConfig": "libs/client/authorization/feature/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/authorization/feature/src/**/*.ts",
+          "libs/client/authorization/feature/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
