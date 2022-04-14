@@ -13,3 +13,13 @@ describe('client', () => {
     //TODO setup proper e2e testing for client
   });
 });*/
+
+describe('client-shorts-feature e2e test', () => {
+  beforeEach(() => cy.visit('/shorts'));
+
+  it('should display shorts page', () => {
+    cy.get('h1').contains('Student Shorts');
+  });
+
+
+});
