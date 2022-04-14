@@ -1,29 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-// Importing all the component that will be used
-import { StorageFeatureComponent } from './client-storage-feature.component';
+import { RouterModule } from '@angular/router';
+import { MainStoragePageComponent } from './main-storage-page/main-storage-page.component';
 import { PageTitleComponent } from './page-title/page-title.component';
 import { DeleteAllComponent } from './delete-all/delete-all.component';
 import { DownloadAllComponent } from './download-all/download-all.component';
-// import { StorageFeatureRoutingModule } from './client-storage-feature-routing.module';
-
-// importing material things
-import { MatGridListModule } from '@angular/material/grid-list';
-
+import { StorageRoutingModule } from "./storage-routing.module";
 @NgModule({
+  imports: [
+    CommonModule,
+    StorageRoutingModule,
+    RouterModule.forChild([
+      /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
+    ]),
+  ],
   declarations: [
-    StorageFeatureComponent, 
-    PageTitleComponent, 
-    DeleteAllComponent, 
+    MainStoragePageComponent,
+    PageTitleComponent,
+    DeleteAllComponent,
     DownloadAllComponent
   ],
-  imports: [
-    CommonModule, 
-    MatGridListModule
-  ],
-//   exports: [StorageFeatureComponent],
+  exports: [MainStoragePageComponent]
 })
-export class StorageFeatureModule {}
-
-// client-storage-feature-routing.module.ts
+export class ClientStorageFeatureModule {}

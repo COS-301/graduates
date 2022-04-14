@@ -4,6 +4,7 @@ import { SearchBarComponent } from './search-bar.component';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -16,7 +17,7 @@ describe('SearchBarComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ SearchBarComponent ],
-      imports: [MatFormFieldModule, MatInputModule, BrowserModule, BrowserAnimationsModule, FormsModule]
+      imports: [MatFormFieldModule, MatInputModule, BrowserModule, BrowserAnimationsModule, FormsModule, CommonModule]
     })
     .compileComponents();
   });
@@ -41,7 +42,7 @@ describe('SearchBarComponent Input', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ SearchBarComponent ],
-      imports: [MatFormFieldModule, MatInputModule, BrowserModule, BrowserAnimationsModule, FormsModule]
+      imports: [MatFormFieldModule, MatInputModule, BrowserModule, BrowserAnimationsModule, FormsModule, CommonModule]
     })
     .compileComponents();
   });

@@ -50,6 +50,14 @@ h1 {
     color: $primary-3;
 }
 
+.infocolour {
+    color: $primary-3;
+}
+
+.hint {
+    color: #888888;
+}
+
 #greyline {
     border-bottom: 1.8px solid #888888;
     margin-left: 2vh;
@@ -57,17 +65,15 @@ h1 {
 }
 
 #fileupload {
-
+    outline: 0.2vh dashed #a3bdc0;
+    outline-offset: -6px;
+    background-color: #c9dade;
 }
 
 #taginput {
     outline: none;
     color: $primary-3;
     padding: 0 8px;
-}
-
-#completebuttons {
-    
 }
 
 .formbutton {
