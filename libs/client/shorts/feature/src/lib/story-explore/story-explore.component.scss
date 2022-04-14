@@ -1,31 +1,72 @@
 @import 'libs/client/shared/assets/ui/src/lib/global';
 
+#thumbnail{
+    height: 65%;
+    width: fit-content;
+}
 .banner-text {
     color: $primary-1;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: xx-large;
     font-weight: bold;
 }
+#cardHeader{
+    padding-top: 2px;
+}
+#card{
+    height: 85%;
+}
+#cardbuttton{
+    font-size: medium;
+    color: $text-white;
+    float: right;
+    padding-right: 20px;
+    margin-top: -5px;
+    background-color: $card-blue;
+    color: $text-white;
 
-p {
+    border-style: solid;
+    border-width: 1px;
+    border-color: $card-blue;
+    &:hover{
+        color: $primary-1;
+        background-color: $background-white;
+    }   
+    
+}
+#tags{
     font-size: small;
+    flex-wrap: wrap;
+    display: inline-block;
+    max-width: fit-content;
 }
 
+
 h1 {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+    font-size: 4vh;
+    color: $text-blue;
 }
 
 #search{
     border: none;
-    padding: 10px;
-    box-shadow: 3px 4px 6px #888888;
-    width: 70vw;
+    width: 50vw;
     margin-left: auto;
     margin-right: auto;
     display: block;
+    outline: 1px solid $background-white;
+}
+
+@media (max-width: 428px) {
+
+    #search {
+        border: none;
+        width: 80vw;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        outline: 1px solid $background-white;
+    }
+    
 }
 
 .error {
@@ -89,7 +130,7 @@ h1 {
     background-color: #c9dade;
 }
 
-#taginput, #reason {
+#reason {
     outline: none;
     color: $primary-3;
     padding: 8px 8px;
@@ -97,12 +138,33 @@ h1 {
     min-height: 10vh;
 }
 
+#taginput {
+    outline: none;
+    color: $primary-3;
+    padding: 8px 8px;
+}
+
 .formbuttonblue {
     background-color: $card-blue;
     color: $text-white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $card-blue;
+    &:hover{
+        color: $primary-1;
+        background-color: $background-white;
+    }   
 }
 
 .formbuttonred {
     background-color: $card-red;
     color: $text-white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $card-red;
+    &:hover{
+        color: $primary-1;
+        background-color: $background-white;
+
+    }   
 }

@@ -371,7 +371,7 @@ export class ShortsRepository {
   /**
    * Function to report a short
    * @param {ShortReportInput} report The report to create
-   * @param {string} userId The id of teh user reporting the short
+   * @param {string} userId The id of the user reporting the short
    * @return {Promise<ShortReport>}
    */
   async reportShort(
