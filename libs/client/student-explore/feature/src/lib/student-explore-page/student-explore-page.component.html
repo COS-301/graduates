@@ -2,32 +2,27 @@
     <meta name="author" content="Matthew Reed & Daniel Azmanov" />
 </head>
 
-<header>
-    <!--Header Banner To Go Here-->
+<header-and-footer-header></header-and-footer-header>
     <!--NavBar To Go Here-->
 
+<div id="content">
     <graduates-student-explore-filter></graduates-student-explore-filter>
 
-    <h1>Student Explore</h1>
+    <h1 id="pageTitle">Student Explore</h1>
 
     <graduates-search-bar></graduates-search-bar>
-</header>
 
-<section> <!--This is where all the student cards will be displayed-->
-    <!--Desktop Student Card-->
-    <graduates-student-card></graduates-student-card>
-    <graduates-student-card></graduates-student-card>
-    <graduates-student-card></graduates-student-card>
-    <!--End Desktop Student Card-->
-</section>
+    <section>
+        <graduates-student-card></graduates-student-card>
+        <graduates-student-card></graduates-student-card>
+        <graduates-student-card></graduates-student-card>
+    </section>
   
-  <!-- Mobile student cards -->
-<section>
-    <graduates-student-explore-mobile-student-card></graduates-student-explore-mobile-student-card>
-    <graduates-student-explore-mobile-student-card></graduates-student-explore-mobile-student-card>
-    <graduates-student-explore-mobile-student-card></graduates-student-explore-mobile-student-card>
-</section>
+    <section>
+        <graduates-student-explore-mobile-student-card></graduates-student-explore-mobile-student-card>
+        <graduates-student-explore-mobile-student-card></graduates-student-explore-mobile-student-card>
+        <graduates-student-explore-mobile-student-card></graduates-student-explore-mobile-student-card>
+    </section>
+</div>
 
-<footer>
-    <!--Footer Banner To Go Here-->
-</footer>
+<header-and-footer-footer id="footer"></header-and-footer-footer>
