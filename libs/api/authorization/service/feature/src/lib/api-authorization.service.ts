@@ -11,7 +11,7 @@ export class ApiAuthorizationService {
             userRole: "Student", 
             userId: "220432083", 
             accessPermission : true,
-            viewPermission : true,
+            editPermission : true,
             deletePermission: false,
         };
         return data;

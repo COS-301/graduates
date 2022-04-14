@@ -15,7 +15,7 @@ export class ApiAuthorization {
     accessPermission!: boolean;
 
     @Field((type) => Boolean)
-    viewPermission! : boolean;
+    editPermission! : boolean;
 
     @Field((type) => Boolean)
     deletePermission! : boolean;
