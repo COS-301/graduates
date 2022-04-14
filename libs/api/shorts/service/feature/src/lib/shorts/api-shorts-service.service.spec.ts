@@ -5,8 +5,6 @@ import {
   Short,
   ShortCreateInput,
   ShortUpdateInput,
-  ShortTag,
-  ShortCreateTagInput,
 } from '@graduates/api/shorts/api/shared/entities/data-access';
 
 jest.mock('@graduates/api/shorts/api/shared/entities/data-access');
@@ -19,13 +17,6 @@ const shortCreateMock: jest.Mocked<ShortCreateInput> =
 jest.mock('@graduates/api/shorts/api/shared/entities/data-access');
 const shortUpdateMock: jest.Mocked<ShortUpdateInput> =
   new ShortUpdateInput() as ShortUpdateInput;
-
-jest.mock('@graduates/api/shorts/api/shared/entities/data-access');
-const tagMock: jest.Mocked<ShortTag> = new ShortTag() as ShortTag;
-
-jest.mock('@graduates/api/shorts/api/shared/entities/data-access');
-const tagCreateMock: jest.Mocked<ShortCreateTagInput> =
-  new ShortCreateTagInput() as ShortCreateTagInput;
 // Run `yarn test api-shorts-service-feature` to execute the unit tests
 describe('ShortsService', () => {
   let service: ShortsService;
