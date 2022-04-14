@@ -20,7 +20,6 @@
 
           <mat-card-content class="dashboard-card-content ">
             <img src={{card.pic}} id="thumbnail">
-
                 <div class="grid grid-rows-2 py-2 ">
                   <div>
                     <mat-card-title id = "cardHeader" > 
@@ -32,11 +31,9 @@
                   </div>
                   <div id ="tags"><i *ngFor="let tag of card.tags" >{{tag}} </i>
                   </div>
-
-
                 </div>    
+          </mat-card-content>
 
-              </mat-card-content>
         </mat-card>
       </mat-grid-tile>
       
