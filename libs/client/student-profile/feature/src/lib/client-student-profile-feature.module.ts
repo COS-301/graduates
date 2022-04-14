@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 //component imports
 import { ProfileBodyComponent } from './profile-body/profile-body.component';
