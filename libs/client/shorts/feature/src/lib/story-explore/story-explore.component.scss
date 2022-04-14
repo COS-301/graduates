@@ -1,15 +1,46 @@
 @import 'libs/client/shared/assets/ui/src/lib/global';
 
+#thumbnail{
+    height: 65%;
+    width: fit-content;
+}
 .banner-text {
     color: $primary-1;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: xx-large;
     font-weight: bold;
 }
-
-p {
-    font-size: small;
+#cardHeader{
+    padding-top: 2px;
 }
+#card{
+    height: 85%;
+}
+#cardbuttton{
+    font-size: medium;
+    color: $text-white;
+    float: right;
+    padding-right: 20px;
+    margin-top: -5px;
+    background-color: $card-blue;
+    color: $text-white;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: $card-blue;
+    &:hover{
+        color: $primary-1;
+        background-color: $background-white;
+    }   
+    
+}
+#tags{
+    font-size: small;
+    flex-wrap: wrap;
+    display: inline-block;
+    max-width: fit-content;
+}
+
 
 h1 {
     text-align: center;
@@ -100,9 +131,24 @@ h1 {
 .formbuttonblue {
     background-color: $card-blue;
     color: $text-white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $card-blue;
+    &:hover{
+        color: $primary-1;
+        background-color: $background-white;
+    }   
 }
 
 .formbuttonred {
     background-color: $card-red;
     color: $text-white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $card-red;
+    &:hover{
+        color: $primary-1;
+        background-color: $background-white;
+
+    }   
 }
