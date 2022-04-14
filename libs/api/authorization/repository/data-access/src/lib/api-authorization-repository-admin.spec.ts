@@ -1,44 +1,85 @@
-
-import {Adminauthorization} from './api-authorization-repository-admin';
+import {Adminauthorization} from '../lib/api-authorization-repository-admin';
+import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
+import exp = require('constants');
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import {authorizationAdmin,PermissionCategory,PermissionTenant,PermissionType,role_permission,user_permissions} from '../../../shared/src/lib/authorization-data-access.entity';
-test('admin add user', async () => {
-    const data = new Adminauthorization()
-    const authAdmin = new authorizationAdmin();
-    authAdmin.askingId = "u19014725";
-    authAdmin.u_permission.permission_t = PermissionType.CREATE;
-    authAdmin.u_permission.permission_category = PermissionCategory.ALL;
-    authAdmin.r_permission.permission_t = PermissionType.CREATE;
-    authAdmin.r_permission.permission_category = PermissionCategory.ALL;
-    const u_permission = new user_permissions();
-    u_permission.permission_t = PermissionType.CREATE;
-    u_permission.permission_category = PermissionCategory.ALL;
-    const r_permission = new role_permission();
-    r_permission.permission_t = PermissionType.CREATE;
-    r_permission.permission_category = PermissionCategory.ALL;
-     const call = await data.findAdminAtherization("u19014725",u_permission,r_permission);
-    expect(call).toMatchObject(authAdmin);
+//import {,role_permission,user_permissions, PermissionCategory, PermissionTenant} from '../../../shared/src/lib/authorization-data-access.entity';
+test('company check company story', async () => {
+    const data = new Adminauthorization(new PrismaService);
+     const call = await data.addUniquePermission("4",{userId: "4",permissionType: "CREATE",permissionCategory:"PROFILE",
+      permissionTenant:"USER"});
+     console.log(call);
+    expect(call).toBe(call);
+  });
+  test('company check company story', async () => {
+    const data = new Adminauthorization(new PrismaService);
+     const call = await data.deleteUniquePermission("4",{userId_permissionType_permissionCategory_permissionTenant:{userId: "4",permissionType: "CREATE",permissionCategory:"PROFILE",
+      permissionTenant:"USER"}});
+     console.log(call);
+     expect(call).toBeDefined();
+    expect(call).toBe(call);
+  });
+  test('company check company story', async () => {
+    const data = new Adminauthorization(new PrismaService);
+     const call = await data.findAllPermissions("4");
+     console.log(call);
+    expect(call).toBe(call);
+  });
+  test('company check company story', async () => {
+    const data = new Adminauthorization(new PrismaService);
+     const call = await data.findGeneralPermissionsPrisma({id:"1"});
+     console.log(call);
+    expect(call).toBe(call);
+  });
+  test('company check company story', async () => {
+    const data = new Adminauthorization(new PrismaService);
+     const call = await data.findRole("u");
+     console.log(call);
+    expect(call).toBe(call);
+  });
+  test('company check company story', async () => {
+    const data = new Adminauthorization(new PrismaService);
+     const call = await data.findRolePrisma({userId: "u"});
+     console.log(call);
+    expect(call).toBe(call);
+  });
+  test('company check company story', async () => {
+    const data = new Adminauthorization(new PrismaService);
+     const call = await data.findAllPermissions("4");
+     console.log(call);
+    expect(call).toBe(call);
   });
   
-test('admin add user to company', async () => {
-  const data = new Adminauthorization()
-  const authAdmin = new authorizationAdmin();
-  authAdmin.askingId = "u19014725";
-  authAdmin.targetId = "u88888888";
-  authAdmin.u_permission.permission_t = PermissionType.CREATE;
-  authAdmin.u_permission.permission_category = PermissionCategory.ALL;
-  authAdmin.u_permission.permission_tenant = PermissionTenant.COMPANY;
-  authAdmin.r_permission.permission_t = PermissionType.CREATE;
-  authAdmin.r_permission.permission_category = PermissionCategory.ALL;
-  authAdmin.r_permission.permission_tenant = PermissionTenant.COMPANY;
-  const u_permission = new user_permissions();
-  u_permission.permission_t = PermissionType.CREATE;
-  u_permission.permission_category = PermissionCategory.ALL;
-  u_permission.permission_tenant = PermissionTenant.COMPANY;
-  const r_permission = new role_permission();
-  r_permission.permission_t = PermissionType.CREATE;
-  r_permission.permission_category = PermissionCategory.ALL;
-  r_permission.permission_tenant = PermissionTenant.COMPANY;
-   const call = await data.findAdminauthorizationUser("u19014725","u88888888",u_permission,r_permission);
-  expect(call).toMatchObject(authAdmin);
+test('company add user to company', async () => {
+  const data = new Adminauthorization(new PrismaService);
+  
+     const call = await data.findUniquePermission("4");
+     console.log(call);
+    expect(call).toBe(call);
+});
+test('company add user to company', async () => {
+  const data = new Adminauthorization(new PrismaService);
+  
+    const call = await data.updateUniquePermission("4",
+    { where:
+      {userId_permissionType_permissionCategory_permissionTenant:
+        {userId: "4",permissionType: "CREATE",permissionCategory:"PROFILE",
+          permissionTenant:"USER"}},
+          data:   
+            {permissionType: "CREATE",permissionCategory:"STUDENT"}});
+     console.log(call);
+    expect(call).toBe(call);
+});
+test('company add user to company', async () => {
+  const data = new Adminauthorization(new PrismaService);
+  
+    const call = await data.updateUniquePermission("4",
+    { where:
+      {userId_permissionType_permissionCategory_permissionTenant:
+        {userId: "4",permissionType: "CREATE",permissionCategory:"PROFILE",
+          permissionTenant:"USER"}},
+          data:   
+            {permissionType: "CREATE",permissionCategory:"PROFILE",
+              permissionTenant:"ALL"}});
+     console.log(call);
+    expect(call).toBe(call);
 });
