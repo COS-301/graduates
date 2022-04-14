@@ -6,16 +6,16 @@
 
   <!-- Story Explore -->
   <div class="grid-container" max-w-prose w-2>
-    <h1 class = "banner-text">Student Shorts</h1>
+    <h1 class = "banner-text text-center pt-3">Student Shorts</h1>
 
     <div >
-      <input (change)="search()" (click)="searchClick()" id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
+      <input (change)="search()" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
     </div>
     <mat-grid-list cols="3" rowHeight="380px">
 
       <!-- Generate Cards -->
       <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="0.5">
-        <mat-card class="dashboard-card " id = "card">
+        <mat-card class="dashboard-card" id = "card">
 
 
           <mat-card-content class="dashboard-card-content ">
