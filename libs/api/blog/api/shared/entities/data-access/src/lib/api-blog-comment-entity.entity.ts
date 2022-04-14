@@ -20,7 +20,7 @@ export class BlogComment {
    * content of blog
    */
   @Field()
-  userID!: string;
+  userId!: string;
 
   @Field()
   content!: string;
@@ -39,7 +39,7 @@ export class BlogComment {
 }
 
 @InputType()
-export class BlogCommentInput {
+export class BlogCommentCreateInput {
 
   @Field()
   Id!: string;
@@ -51,7 +51,7 @@ export class BlogCommentInput {
   blogId!: string;
 
   @Field()
-  userID!: string;
+  userId!: string;
   
   @Field()
   content!: string;
