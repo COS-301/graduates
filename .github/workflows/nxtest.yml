@@ -18,7 +18,7 @@ jobs:
   build:
     name: Generate cache
     runs-on: ubuntu-latest
-    steps: 
+    steps:
         #Checking out to the develop branch
       - name: Checkout develop
         uses: actions/checkout@v2
@@ -57,15 +57,11 @@ jobs:
 
       - name: Cache Cypress Binary
         id: cache-cypress-binary
-        if: ${{ inputs.testtype == 'e2e'  }}
+        if: ${{ inputs.testtype == 'e2e' }}
         uses: actions/cache@v2
         with:
-          path: cypress/cache
+          path: ~/.cache/cypress
           key: cypress-binary-${{ hashFiles('**/yarn.lock') }}
-
-      - name: Cypress Install
-        if: ${{ inputs.testtype == 'e2e'  }}
-        run: npm install cypress
 
       - name: Lint test affected
         if: ${{ inputs.testtype == 'lint' && inputs.test == 'affected' }}
