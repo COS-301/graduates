@@ -86,4 +86,51 @@ export class BlogCreateInput {
    */
   @Field(() => Boolean)
   archived!: boolean;
+
+  /**
+  * The user who uploaded the Blog
+  */
+  @Field(() => User)
+  user!: User;
+  /**
+  * The date the Blog was created
+  */
+  @Field(() => Date)
+  date!: Date;
 }
+
+/**
+ * Definition of the BlogUpdateInput entity as input type
+ */
+@InputType()
+export class BlogUpdateInput {
+  /**
+  * The id of the Blog
+  */
+  @Field(() => ID)
+  id!: string;
+  /**
+  * The description/name of the Blog
+  */
+  @Field({ nullable: true })
+  title!: string;
+ 
+  /**
+  * The content of the Blog
+  */
+  @Field({ nullable: true })
+  content!: string;
+ 
+  /**
+  * The content of the Blog
+  */
+  @Field({ nullable: true })
+  media!: string;
+ 
+  /**
+  * Wether the Blog is archived or not
+  */
+  @Field(() => Boolean)
+  archived!: boolean;
+}
+ 
