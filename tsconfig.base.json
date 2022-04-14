@@ -232,6 +232,9 @@
       "@graduates/client/adminconsole/feature": [
         "libs/client/adminconsole/feature/src/index.ts"
       ],
+      "@graduates/client/authorization/feature": [
+        "libs/client/authorization/feature/src/index.ts"
+      ],
       "@graduates/client/blog/feature": [
         "libs/client/blog/feature/src/index.ts"
       ],
@@ -279,6 +282,9 @@
       ],
       "@graduates/client/shorts/feature": [
         "libs/client/shorts/feature/src/index.ts"
+      ],
+      "@graduates/client/status-page/feature": [
+        "libs/client/status-page/feature/src/index.ts"
       ],
       "@graduates/client/storage/feature": [
         "libs/client/storage/feature/src/index.ts"
