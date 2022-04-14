@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
-import { Notification, Prisma } from '@prisma/client';
+import { Notification } from '@prisma/client';
 
 @Injectable()
 export class NotificationsRepository {
@@ -51,5 +51,12 @@ export class NotificationsRepository {
       }
     });
   }
+
+  // async createNotification(userTo : string, userFrom : string, notificationType : string) : Promise<Notification> {
+  //   const json = {
+  //     notificationType: notificationType
+  //   }
+    // const notification = 
+  // }
 
 }
