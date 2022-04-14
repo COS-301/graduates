@@ -1,9 +1,9 @@
 <link  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"  rel="stylesheet">
 
+
 <div class="container-fluid">
 
-
-  <div class="grid-container">
+  <div class="mainpage grid-container">
     <h1>Student Shorts</h1>
 
     <div >
@@ -99,7 +99,7 @@
 
               <div class="infocolour mb-1">Add Tags:</div>
 
-              <input id="taginput" placeholder="#COS, #CSLife" type="text" formControlName="tags" class="drop-shadow-md h-8 w-full rounded" [ngClass]="{'is-invalid': submit && uploadfrm.controls['tags'].errors}"/>
+              <input id="taginput" placeholder="#COS, #CSLife" type="text" formControlName="tags" class="drop-shadow-md w-full rounded" [ngClass]="{'is-invalid': submit && uploadfrm.controls['tags'].errors}"/>
               <div *ngIf="submit && uploadfrm.controls['tags'].errors" class="text-right error mt-1">
                 A tag is required.
               </div>

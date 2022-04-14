@@ -93,11 +93,8 @@ export class StoryExploreComponent implements OnInit {
   // }
 
   onFileUpload(event : any) {
-    alert();
-    console.log(event.target.length);
-    if (event.target.length > 0) {
-      this.fileError = "";
-    }
+    this.fileError = "";
+    console.log(event);
   }
 
   uploadStory() {
@@ -190,7 +187,7 @@ export class StoryExploreComponent implements OnInit {
     ];
 
 
-    for (let index = 0; index < 4; index++) {
+    for (let index = 0; index < 20; index++) {
       this.cardlist.push({ title: 'Card 1', cols: 1, rows: 1 , pic: '', tags: [], pk: index});
       
     }

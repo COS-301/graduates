@@ -89,12 +89,18 @@ h1 {
     background-color: #c9dade;
 }
 
-#taginput, #reason {
+#reason {
     outline: none;
     color: $primary-3;
     padding: 8px 8px;
     max-height: 60vh;
     min-height: 10vh;
+}
+
+#taginput {
+    outline: none;
+    color: $primary-3;
+    padding: 8px 8px;
 }
 
 .formbuttonblue {
