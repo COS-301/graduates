@@ -20,8 +20,11 @@ export class StoryExploreComponent implements OnInit {
 
   @Input() upload : boolean;
   @Input() report : boolean;
+
   uploadfrm! : FormGroup;
+  reportfrm! : FormGroup;
   builder! : FormBuilder; 
+
   counter =0;
   submit = false;
   return : boolean;
@@ -32,6 +35,10 @@ export class StoryExploreComponent implements OnInit {
   currentlyViewing! : number;
   currentlyReporting! : number;
   successfulReport : boolean;
+  reported : boolean;
+
+  viewingName = "Ernest Wright";
+  viewingTags = "#Design #IMY #COS #software"
 
 
   fileError = "File is required.";
@@ -62,13 +69,19 @@ export class StoryExploreComponent implements OnInit {
     this.viewing = false;
     this.reporting = false;
     this.successfulReport = false;
+    this.reported = false;
   }
 
   ngOnInit(): void {
     this.uploadfrm = this.builder.group({
       file: ['', Validators.required],
       tags: ['', Validators.required]
-    })
+    });
+
+    this.reportfrm = this.builder.group({
+      reason: ['', Validators.required]
+    });
+
     this.loadCards();
   }
 
@@ -130,7 +143,7 @@ export class StoryExploreComponent implements OnInit {
     this.viewing = true;
   }
 
-  makeReportpopup(reportID : number) {
+  makeReportpopup() {
     //create report popup:
     this.viewing = false;
     this.reporting = true;
@@ -138,16 +151,27 @@ export class StoryExploreComponent implements OnInit {
   }
 
   submitReport() {
-    alert("report for " + this.currentlyReporting + " goes to API");
-    this.reporting = false;
+    // alert("report for " + this.currentlyReporting + " goes to API");
+    this.reported = true;
+
+
+    for (const input in this.reportfrm.controls) {
+      if (this.reportfrm.controls[input].invalid) {
+        return;
+      }
+    }
+    alert("To submit to API - '" + this.reportfrm.controls['reason'].value + "'")
+
+    //reset for another report:
+    this.reportfrm.reset();
+    this.reported = false;
 
     //push report to API:
 
     //check for successful response from API:
 
-    //true -> this.successfulReport = true;
-    //else -> push an error to the form.
-
+    //true case after report (make a case if the API fails...)
+    this.reporting = false;
     this.successfulReport = true;
 
   }

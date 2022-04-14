@@ -50,13 +50,23 @@ h1 {
     color: $primary-3;
 }
 
+#viewname {
+    color: $primary-3;
+    text-align: left !important;
+}
+
+#viewtags {
+    color: $primary-3;
+}
+
 .thumbnailselected {
-    width: auto;
-    height: 60vh;
+    height: auto;
+    width: 80vw;
+    max-width: 80vh;
 }
 
 .bigblur {
-    
+    box-shadow: 0px 0px 400px 200px rgba(163,163,163,0.75);
 }
 
 .infocolour {
@@ -79,16 +89,18 @@ h1 {
     background-color: #c9dade;
 }
 
-#taginput {
+#taginput, #reason {
     outline: none;
     color: $primary-3;
-    padding: 0 8px;
+    padding: 8px 8px;
 }
 
 .formbuttonblue {
     background-color: $card-blue;
+    color: $text-white;
 }
 
 .formbuttonred {
     background-color: $card-red;
+    color: $text-white;
 }
