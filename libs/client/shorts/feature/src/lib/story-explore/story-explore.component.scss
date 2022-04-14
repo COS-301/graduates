@@ -25,7 +25,8 @@
     height: 95%;
     width: fit-content;
 }
-#cardbuttton{
+
+.cardbutton {
     font-size: medium;
     color: $text-white;
     float: right;
@@ -42,6 +43,20 @@
     }   
     
 }
+
+.cardbutton-nohov {
+    font-size: medium;
+    color: $text-white;
+    float: right;
+    padding-right: 20px;
+    margin-top: -5px;
+    background-color: $card-blue;
+    color: $text-white;
+
+    border-style: solid;
+    border-width: 1px;  
+}
+
 #tags{
     font-size: small;
     flex-wrap: wrap;
