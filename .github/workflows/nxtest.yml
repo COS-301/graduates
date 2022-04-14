@@ -31,16 +31,6 @@ jobs:
         with:
           main-branch-name: 'develop'
 
-        #Cache of the yarn generated module
-      - name: Cache node modules
-        id: dependency_cache
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: '**/node_modules'
-          key: ${{ runner.os }}-build-cache-node-modules-${{ hashFiles('**/yarn.lock') }}
-
         #Installs node.js
       - name: Use Node.js 16
         uses: actions/setup-node@v2
@@ -55,13 +45,12 @@ jobs:
       - name: Install packages
         run: yarn install --frozen-lockfile
 
-      - name: Cache Cypress Binary
-        id: cache-cypress-binary
-        if: ${{ inputs.testtype == 'e2e' }}
+      - name: Cache Yarn Packages
+        id: cache-yarn-packages
         uses: actions/cache@v2
         with:
-          path: ~/.cache/Cypress
-          key: cypress-binary-${{ hashFiles('**/yarn.lock') }}
+          path: ~/.cache
+          key: yarn-packages-${{ hashFiles('**/yarn.lock') }}
 
       - name: Lint test affected
         if: ${{ inputs.testtype == 'lint' && inputs.test == 'affected' }}
