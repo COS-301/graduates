@@ -6,8 +6,11 @@ import { ApiAccessStatusService } from "./api-access-status.service";
 export class ApiAccessStatusResolver {
     constructor(private accessStatusService: ApiAccessStatusService) {}
 
-    @Query(returns => [ApiAccessStatusEntity])
+    @Query(returns => [ApiAccessStatusEntity], { nullable: true })
     async status(@Args('compId', { type: () => ID }) compId: string, @Args('gradId', { type: () => ID }) gradId: string): Promise<ApiAccessStatusEntity[]> {
+        if (compId == "" || gradId == "") // obviously empty elements are not allowed
+            return null;
+
         return this.accessStatusService.getAll(compId, gradId);
     }
 }
