@@ -27,38 +27,53 @@ import {
   DeleteReportHandler,
 } from '@graduates/api/shorts/service/feature';
 import { ShortsResolver } from './shorts/api-shorts-resolver.resolver';
-import { ShortsService } from '@graduates/api/shorts/service/feature';
+import { ShortsReportsResolver } from './short-reports/api-shorts-reports-resolver.resolver';
+import { ShortsTagsResolver } from './short-tags/api-shorts-tags-resolver.resolver';
+import {
+  ShortsService,
+  ShortsReportsService,
+  ShortsTagsService,
+} from '@graduates/api/shorts/service/feature';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 
 @Module({
   imports: [CqrsModule],
   providers: [
+    // repository
     ShortsRepository,
+    //resolvers
     ShortsResolver,
-    DeleteTagsByShortHandler,
-    DeleteTagsHandler,
-    DeleteTagByShortTagHandler,
+    ShortsReportsResolver,
+    ShortsTagsResolver,
+    // services
     PrismaService,
-    CreateShortHandler,
     ShortsService,
-    UpdateTagByShortHandler,
+    ShortsReportsService,
+    ShortsTagsService,
+    //query handlers
     GetAllShortsHandler,
-    GetAllTagsHandler,
-    CreateTagHandler,
-    UpdateTagsHandler,
-    GetTagsByShortIdHandler,
     GetShortByIdHandler,
     GetShortByUserHandler,
     GetShortByTagHandler,
-    DeleteShortHandler,
-    UpdateShortHandler,
-    GetUserByIdHandler,
     GetAllReportsHandler,
     GetReportsByUserHandler,
     GetReportsForShortHandler,
     GetReportHandler,
+    GetAllTagsHandler,
+    GetTagsByShortIdHandler,
+    GetUserByIdHandler,
+    // command handlers
+    CreateShortHandler,
     CreateReportHandler,
+    CreateTagHandler,
+    UpdateShortHandler,
+    UpdateTagsHandler,
+    UpdateTagByShortHandler,
+    DeleteShortHandler,
     DeleteReportHandler,
+    DeleteTagsByShortHandler,
+    DeleteTagsHandler,
+    DeleteTagByShortTagHandler,
   ],
   exports: [],
 })

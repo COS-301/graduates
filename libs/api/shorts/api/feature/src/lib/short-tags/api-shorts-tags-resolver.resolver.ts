@@ -1,32 +1,14 @@
-import {
-  Resolver,
-  Query,
-  Args,
-  Mutation,
-  ResolveField,
-  Root,
-} from '@nestjs/graphql';
+import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
 import {
   Short,
   ShortCreateTagInput,
   ShortTag,
 } from '@graduates/api/shorts/api/shared/entities/data-access';
-import {
-  ShortsService,
-  ShortsTagsService,
-} from '@graduates/api/shorts/service/feature';
+import { ShortsTagsService } from '@graduates/api/shorts/service/feature';
 
 @Resolver(Short)
-export class ShortsResolver {
-  constructor(
-    private readonly service: ShortsTagsService,
-    private readonly shortsService: ShortsService
-  ) {}
-
-  @ResolveField(() => Short)
-  async short(@Root() shortTag: ShortTag): Promise<Short> {
-    return await this.shortsService.findShortById(shortTag.shortId);
-  }
+export class ShortsTagsResolver {
+  constructor(private readonly service: ShortsTagsService) {}
 
   @Query(() => [ShortTag])
   async getAllTags(): Promise<ShortTag[]> {
