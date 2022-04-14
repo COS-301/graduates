@@ -18,7 +18,7 @@ export class StudentExploreService {
 
   async InitStudents() {
     return this.queryBus.execute(
-      new InitStudentsQuery()
+      new InitStudentsQuery("input")
     );
   }
 
