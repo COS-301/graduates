@@ -4,6 +4,8 @@
   display: grid;
   gap: 1.5rem;
   grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
 
   width: min(95%, 70rem);
   margin-inline: auto;
