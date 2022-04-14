@@ -4,6 +4,10 @@
     height: 65%;
     width: fit-content;
 }
+#navBar{
+    position: absolute;
+    bottom: 100% important;
+}
 .banner-text {
     color: $primary-1;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -18,7 +22,8 @@
     padding-top: 2px;
 }
 #card{
-    height: 85%;
+    height: 95%;
+    width: fit-content;
 }
 #cardbuttton{
     font-size: medium;
@@ -27,7 +32,6 @@
     padding-right: 20px;
     margin-top: -5px;
     background-color: $card-blue;
-    color: $text-white;
 
     border-style: solid;
     border-width: 1px;
