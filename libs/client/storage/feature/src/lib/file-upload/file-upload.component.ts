@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FileUploadComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    // do something
+   }
 
   ngOnInit(): void {
+    return
   }
 
 }
