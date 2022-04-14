@@ -81,6 +81,9 @@
       "@graduates/api/company-representative/api/shared/data-access": [
         "libs/api/company-representative/api/shared/data-access/src/index.ts"
       ],
+      "@graduates/api/company-representative/repository/data-access": [
+        "libs/api/company-representative/repository/data-access/src/index.ts"
+      ],
       "@graduates/api/company-representative/service/feature": [
         "libs/api/company-representative/service/feature/src/index.ts"
       ],
