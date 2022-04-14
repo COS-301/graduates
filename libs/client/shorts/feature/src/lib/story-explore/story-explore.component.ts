@@ -40,8 +40,8 @@ export class StoryExploreComponent implements OnInit {
   viewingName = "Ernest Wright";
   viewingTags = "#Design #IMY #COS #software";
 
-  pageIndex: number = 1;
-  endIndex: number = 2;
+  pageIndex = 1;
+  endIndex = 2;
 
   fileError = "File is required.";
   uploadedFile! : any;
