@@ -13,7 +13,7 @@ export class ApiRequestAccessResolver {
             return null;
 
         // if new items become available add here
-        if (!["CV", "Transcript", "Academic", "Certificates", "Capstone"].includes(item)) // if a valid item has been requested
+        if (!["CV", "Transcript", "Academic", "Certificates", "Capstone"].includes(item)) // if an invalid item has been requested
             return null;
 
         return this.requestAccessService.makeRequest();
