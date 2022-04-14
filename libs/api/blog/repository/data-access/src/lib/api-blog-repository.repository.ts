@@ -155,23 +155,23 @@ export class BlogRepository {
    * @param {string} blogId Id of blog comment is created from 
    * @return {Promise<BlogComment>}
    */
-  async createComment(comment: BlogCommentCreateInput, userId: string, blogId: string ): Promise<BlogComment | null> {
-    return this.prisma.blogComment.create({
-      data: {
-        id: comment.Id,
-        blogId: blogId,
-        content: comment.content,
-        userId: userId,
-        user: {
-          connect: {id: userId}
-        },
-        blog: {
-          connect: {id: blogId}
-        },
-        date: new Date()
-      },
-    });
-  }
+  // async createComment(comment: BlogCommentCreateInput, userId: string, blogId: string ): Promise<BlogComment | null> {
+  //   return this.prisma.blogComment.create({
+  //     data: {
+  //       id: comment.Id,
+  //       blogId: blogId,
+  //       userId: userId,
+  //       content: comment.content,
+  //       user: {
+  //         connect: {id: userId}
+  //       },
+  //       blog: {
+  //         connect: {id: blogId}
+  //       },
+  //       date: new Date()
+  //     },
+  //   });
+  // }
 
   /**
    * Update comment by id
