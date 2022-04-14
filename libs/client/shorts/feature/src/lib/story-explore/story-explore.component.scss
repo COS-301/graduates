@@ -9,6 +9,10 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: xx-large;
     font-weight: bold;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 #cardHeader{
     padding-top: 2px;
@@ -42,18 +46,14 @@
 }
 
 
-h1 {
-    font-size: 4vh;
-    color: $text-blue;
-}
-
 #search{
     border: none;
-    width: 50vw;
+    padding: 10px;
+    box-shadow: 3px 4px 6px #888888;
+    width: 70vw;
     margin-left: auto;
     margin-right: auto;
     display: block;
-    outline: 1px solid $background-white;
 }
 
 @media (max-width: 428px) {
