@@ -14,8 +14,8 @@ export class ApiStudentExploreResolver {
   }
 
   @Query(() => [ApiStudentExplore])
-  SearchStudentsByTag() : Promise<ApiStudentExplore>{
-    return this.StudentExploreService.SearchStudentsByTag();
+  SearchStudentsByTag(@Args('searchTag') searchTag : string) : Promise<ApiStudentExplore>{
+    return this.StudentExploreService.SearchStudentsByTag(searchTag);
   }
 
   @Query(() => [ApiStudentExplore])

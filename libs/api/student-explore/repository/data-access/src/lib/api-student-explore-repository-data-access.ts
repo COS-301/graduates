@@ -87,6 +87,47 @@ export class StudentExploreRepository {
 
   }
 
+  async SearchStudentTag(searchTag){
+
+    const students = await this.prisma.user.findMany();
+
+    let studentTags = [];
+
+    let studentObjTags;
+
+    let tempStudentObj = new ApiStudentExplore();
+
+    for (let i = 0; i < students.length; i++) {
+
+      if(students[i].id == searchTag){
+
+        //Student Tag
+        studentObjTags = await this.prisma.userTag.findMany({
+          where: { userId : students[i].id, },
+        });
+
+        for(let j = 0; j < studentObjTags.length; j++){
+
+          studentTags.push(studentObjTags[j].tag)
+
+        }
+
+        tempStudentObj.StudentID = students[i].id;
+        tempStudentObj.StudentName = students[i].name;
+        tempStudentObj.StudentTags = studentTags;
+
+        let returnArr = []
+
+        returnArr.push(tempStudentObj)
+
+        return returnArr;
+
+      }
+
+    }
+
+  }
+
   //Filters = Degree Type, Degree Name, Location, Employment Status
   
   async FilterStudentLocation(Filter){

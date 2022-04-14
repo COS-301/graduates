@@ -22,9 +22,9 @@ export class StudentExploreService {
     );
   }
 
-  async SearchStudentsByTag() {
+  async SearchStudentsByTag(searchTag) {
     return this.queryBus.execute(
-      new SearchStudentsByTagQuery()
+      new SearchStudentsByTagQuery(searchTag)
     );
   }
 

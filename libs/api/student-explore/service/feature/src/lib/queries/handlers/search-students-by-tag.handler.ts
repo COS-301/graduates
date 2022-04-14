@@ -8,7 +8,7 @@ export class SearchStudentsByTagHandler implements IQueryHandler<SearchStudentsB
 
   async execute(query: SearchStudentsByTagQuery) {
 	
-    return this.repository.initStudents();
+    return this.repository.SearchStudentTag(query.searchTag);
     
   }
   
