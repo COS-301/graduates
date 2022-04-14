@@ -4,10 +4,9 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Location } from '@angular/common';
-import { EventListenerFocusTrapInertStrategy } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'graduates-story-explore',
