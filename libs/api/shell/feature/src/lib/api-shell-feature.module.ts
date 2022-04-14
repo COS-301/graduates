@@ -14,8 +14,8 @@ import { ApiRequestAccessApiFeatureModule as ApiRequestAccessFeatureModule } fro
 import { ApiAuthenticationApiFeatureModule } from '@graduates/api/authentication/api/feature'
 import { ApiNotificationsApiFeatureModule } from '@graduates/api/notifications/api/feature'
 import { ApiAuthorizationApiFeatureModule as ApiAuthorizationFeatureModule } from '@graduates/api/authorization/api/feature';
-import { ApiStudentExploreApiFeatureModule as ApiStudentExploreApiFeatureModule } from '@graduates/api/student-explore/api/feature';
-
+import { ApiAdminConsoleApiFeatureModule  as ApiAdminconsoleApiFeatureModule } from '@graduates/api/adminconsole/api/feature';
+import { ApiStudentExploreApiFeatureModule as ApiStudentExploreApiFeatureModule} from '@graduates/api/student-explore/api/feature';
 @Module({
   imports: [
     ApiExampleFeatureModule,
@@ -34,7 +34,8 @@ import { ApiStudentExploreApiFeatureModule as ApiStudentExploreApiFeatureModule 
     ApiRequestAccessFeatureModule,
     ApiAuthenticationApiFeatureModule,
     ApiAuthorizationFeatureModule,
-    ApiStudentExploreApiFeatureModule
+    ApiStudentExploreApiFeatureModule,
+    ApiAdminconsoleApiFeatureModule
   ],
 })
 export class ApiShellFeatureModule {}
