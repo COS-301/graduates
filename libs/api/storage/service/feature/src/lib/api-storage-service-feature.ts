@@ -4,71 +4,76 @@ import { StorageRepository } from '@graduates/api/storage/repository/data-access
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 import { FirebaseService } from '@graduates/api/storage/repository/data-access'
 import { FileCategory } from '@prisma/client';
+import { fileURLToPath } from 'url';
 @Injectable()
 export class ApiStorageServiceFeatureModule {
+
   repo = new StorageRepository(new PrismaService , new FirebaseService);
+
     async getFile(userID:string , fileCategory:string): Promise< string | null > {
-      let promise;
+
+      let url=null;
+
       const storage = new ApiStorage();
       storage.userId= userID;
 
-      //storage.fileCategory=fileCategory;
-
+      //TODO ADD REST OF FILE TYPES @OmolemoMashigo
       if(fileCategory==="CV"){
-        promise =  await this.repo.getUserFile(userID ,FileCategory.CV );
+        await this.repo.getUserFile(userID ,FileCategory.CV ).then(async (value)=> {
+            url = value;
+        });
       }
-      else if(fileCategory==="Transcript"){
-        promise = await this.repo.getUserFile(userID ,FileCategory.DEGREE );
-
+      else if(fileCategory==="Degree"){
+        await this.repo.getUserFile(userID ,FileCategory.DEGREE).then(async (value)=> {
+          url = value;
+        });
       }
       else if(fileCategory==="Academic Record"){
-        promise = await this.repo.getUserFile(userID ,FileCategory.ACADEMIC_RECORD );
+        await this.repo.getUserFile(userID ,FileCategory.ACADEMIC_RECORD ).then(async (value)=> {
+          url = value;
+        });
       }
-        //this is printing before the printing is done because of getUserFile
-        console.log("promise"+promise);
-        if(promise)
-        promise.then((url)=>{
-          console.log("HERE"+url);
-          return url;
-        })
-
-        return promise;
+        return url;
        
     }
 
-    async deleteFile(userID , fileCategory): Promise<number> {
-      let url = null;
+    async deleteFile(userID:string , fileCategory:string): Promise<number> {
+
+      let num =0 ;
+
+      //TODO ADD REST OF FILE TYPES @OmolemoMashigo
       const storage = new ApiStorage();
       storage.userId= userID;
-      storage.fileCategory=fileCategory;
-      if(fileCategory=="CV"){
-        url = await this.repo.deleteFile(userID ,FileCategory.CV );
-      }
-      if(fileCategory=="Transcript"){
-        url = await this.repo.deleteFile(userID ,FileCategory.DEGREE );
 
+      if(fileCategory==="CV"){
+        await this.repo.deleteFile(userID ,FileCategory.CV ).then(async (value)=> {
+          num = value;
+        });
+      }
+      if(fileCategory=="Degree"){
+        await this.repo.deleteFile(userID ,FileCategory.DEGREE ).then(async (value)=> {
+          num = value;
+        });
       }
       if(fileCategory=="Academic Record"){
-        url = await this.repo.deleteFile(userID ,FileCategory.ACADEMIC_RECORD );
+        await this.repo.deleteFile(userID ,FileCategory.ACADEMIC_RECORD ).then(async (value)=> {
+          num = value;
+        });
       }
-        return url;
+        return num;
     }
 
     async create(apiStorage: ApiStorage): Promise<ApiStorageInput>{
-      const storage = new ApiStorageInput();
-      const res = await this.repo.createFile(apiStorage) ;
-      storage.userId= res.userId
-      storage.fileExtension= res.fileExtension;
-      if(res.fileCategory==FileCategory.CV){
-        storage.fileCategory = "CV";
-      }
-      if(res.fileCategory==FileCategory.ACADEMIC_RECORD){
-        storage.fileCategory = "Academic Record";
-      }
-      if(res.fileCategory==FileCategory.DEGREE){
-        storage.fileCategory = "Transcript";
-      }
-      storage.filePath = res.filePath
+      
+      //TODO ADD REST OF FILE TYPES @OmolemoMashigo
+      const storage = new ApiStorage();
+      storage.userId= apiStorage.userId;
+
+      //value = UserProfileFile
+      await this.repo.createFile(apiStorage).then(async (value)=> {
+        storage.filePath = value.filePath;
+      });
+
       return storage;
     }
    
