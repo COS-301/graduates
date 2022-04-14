@@ -3,10 +3,8 @@ import {
   ShortReportInput,
   ShortReport,
 } from '@graduates/api/shorts/api/shared/entities/data-access';
-import {
-  ShortsReportsService,
-  ShortsService,
-} from '@graduates/api/shorts/service/feature';
+import { ShortsService } from '../shorts/api-shorts-service.service';
+import { ShortsReportsService } from './api-shorts-reports-service.service';
 import { QueryBus, CommandBus } from '@nestjs/cqrs';
 
 jest.mock('@graduates/api/shorts/api/shared/entities/data-access');
