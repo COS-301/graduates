@@ -32,7 +32,7 @@ depending on what your role is you should use these resources accordingly.
 
 **Create a feature branch**:
 - On your fork, you should create a new branch where your changes will be made.
-- To create a new branch, run `git checkout -b feature/{name_of_feature}`
+- To create a new branch, run `git checkout -b feature/{what_you_are_doing}`. This can be something like `feature/add-api-endpoints-for-foo` and should not be generic to all your PRs. A branch name like `feature/authorization` or `feature/accessStatus` is not a good name, since it is too generic and does not convey what change is actually made in the branch.
 - Make your changes in this branch, keeping commits small.
 - Ensure your commits follow the Gitmoji convention. Refer to the [list of Gitmoji](https://gitmoji.dev/) for guidance.
 
