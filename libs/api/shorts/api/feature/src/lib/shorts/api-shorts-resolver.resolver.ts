@@ -9,19 +9,25 @@ import {
 import {
   Short,
   ShortCreateInput,
-  ShortCreateTagInput,
   ShortTag,
   ShortUpdateInput,
   ShortReport,
-  ShortReportInput,
 } from '@graduates/api/shorts/api/shared/entities/data-access';
-import { ShortsService } from '@graduates/api/shorts/service/feature';
+import {
+  ShortsService,
+  ShortsTagsService,
+  ShortsReportsService,
+} from '@graduates/api/shorts/service/feature';
 import { NotFoundException } from '@nestjs/common';
 import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 
 @Resolver(Short)
 export class ShortsResolver {
-  constructor(private readonly service: ShortsService) {}
+  constructor(
+    private readonly service: ShortsService,
+    private readonly tagsService: ShortsTagsService,
+    private readonly reportsService: ShortsReportsService
+  ) {}
 
   @ResolveField()
   user(@Root() short: Short): Promise<User> {
@@ -30,7 +36,12 @@ export class ShortsResolver {
 
   @ResolveField(() => [ShortTag])
   async shortTag(@Root() short: Short): Promise<ShortTag[]> {
-    return await this.service.findTagsByShortId(short.id);
+    return await this.tagsService.findTagsByShortId(short.id);
+  }
+
+  @ResolveField(() => [ShortReport])
+  async shortReport(@Root() short: Short): Promise<ShortReport[]> {
+    return await this.reportsService.getReportsForShort(short.id);
   }
 
   /**
@@ -118,100 +129,5 @@ export class ShortsResolver {
       throw new NotFoundException('Short not found');
     }
     return await this.service.updateShort(short);
-  }
-
-  @Query(() => [ShortTag])
-  async getAllTags(): Promise<ShortTag[]> {
-    return await this.service.findAllTags();
-  }
-
-  @Query(() => [ShortTag])
-  async getTagsByShortId(@Args('id') id: string): Promise<ShortTag[]> {
-    return await this.service.findTagsByShortId(id);
-  }
-
-  @Mutation(() => ShortTag)
-  async createTag(@Args('tag') tag: ShortCreateTagInput): Promise<ShortTag> {
-    return await this.service.createTag(tag);
-  }
-
-  @Mutation(() => String)
-  async updateTags(
-    @Args('tag') tag: string,
-    @Args('newTag') newTag: string
-  ): Promise<string> {
-    return await this.service.updateTags(tag, newTag);
-  }
-
-  @Mutation(() => String)
-  async updateTagByShortId(
-    @Args('shortId') shortId: string,
-    @Args('tag') tag: string,
-    @Args('newTag') newTag: string
-  ): Promise<string> {
-    return await this.service.updateTagByShortId(shortId, tag, newTag);
-  }
-
-  @Mutation(() => String)
-  async deleteTagsByTag(@Args('tag') tag: string): Promise<string> {
-    return await this.service.deleteTags(tag);
-  }
-
-  @Mutation(() => String)
-  async deleteAllTagsForShort(
-    @Args('shortId') shortId: string
-  ): Promise<string> {
-    return await this.service.deleteTagsByShortId(shortId);
-  }
-
-  @Mutation(() => String)
-  async deleteTag(
-    @Args('shortId') shortId: string,
-    @Args('tag') tag: string
-  ): Promise<string> {
-    return await this.service.deleteTagByShortTag(shortId, tag);
-  }
-
-  @Query(() => [ShortReport])
-  async getAllReports(): Promise<ShortReport[]> {
-    return await this.service.getAllReports();
-  }
-
-  @Query(() => [ShortReport])
-  async getReportsByUser(
-    @Args('userId') userId: string
-  ): Promise<ShortReport[]> {
-    return await this.service.getReportsByUser(userId);
-  }
-
-  @Query(() => [ShortReport])
-  async getReportsForShort(
-    @Args('shortId') shortId: string
-  ): Promise<ShortReport[]> {
-    return await this.service.getReportsForShort(shortId);
-  }
-
-  @Query(() => ShortReport)
-  async getReport(
-    @Args('shortId') shortId: string,
-    @Args('userId') userId: string
-  ): Promise<ShortReport> {
-    return await this.service.getReport(shortId, userId);
-  }
-
-  @Mutation(() => ShortReport)
-  async reportShort(
-    @Args('report') report: ShortReportInput,
-    @Args('userId') userId: string
-  ): Promise<ShortReport> {
-    return await this.service.reportShort(report, userId);
-  }
-
-  @Mutation(() => ShortReport)
-  async deleteReport(
-    @Args('shortId') shortId: string,
-    @Args('userId') userId: string
-  ): Promise<ShortReport> {
-    return await this.service.deleteReport(shortId, userId);
   }
 }
