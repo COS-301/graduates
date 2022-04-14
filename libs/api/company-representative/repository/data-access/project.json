@@ -1,0 +1,26 @@
+{
+  "root": "libs/api/company-representative/repository/data-access",
+  "sourceRoot": "libs/api/company-representative/repository/data-access/src",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/api/company-representative/repository/data-access/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/api/company-representative/repository/data-access"
+      ],
+      "options": {
+        "jestConfig": "libs/api/company-representative/repository/data-access/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -13,10 +13,11 @@ import { MatGridListModule } from '@angular/material/grid-list';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReportMenuComponent } from './report-menu/report-menu.component';
 import { StoryExploreComponent } from './story-explore/story-explore.component';
 import { StoryUploadComponent } from './story-upload/story-upload.component';
 import { ShortsRoutingModule } from './shorts-routing.module';
+
+import { FormBuilder, FormsModule, ReactiveFormsModule, } from '@angular/forms';
 
 @NgModule({
 
@@ -34,11 +35,15 @@ import { ShortsRoutingModule } from './shorts-routing.module';
     MatFormFieldModule,
     MatGridListModule,
     ShortsRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   declarations: [
-    ReportMenuComponent,
     StoryExploreComponent,
-    StoryUploadComponent
+    StoryUploadComponent,
+  ],
+  providers: [
+    FormBuilder
   ],
   exports: [StoryExploreComponent]
 })
