@@ -13,14 +13,31 @@ export class ApiStorageServiceFeatureModule {
       storage.userId= userID;
       storage.fileCategory=fileCategory;
       if(fileCategory=="CV"){
-        url = await this.repo.getUserDegree(userID ,FileCategory.CV );
+        url = await this.repo.getUserFile(userID ,FileCategory.CV );
       }
       if(fileCategory=="Transcript"){
-        url = await this.repo.getUserDegree(userID ,FileCategory.DEGREE );
+        url = await this.repo.getUserFile(userID ,FileCategory.DEGREE );
 
       }
       if(fileCategory=="Academic Record"){
-        url = await this.repo.getUserDegree(userID ,FileCategory.ACADEMIC_RECORD );
+        url = await this.repo.getUserFile(userID ,FileCategory.ACADEMIC_RECORD );
+      }
+        return url;
+    }
+    async deleteFile(userID , fileCategory): Promise<number> {
+      let url = null;
+      const storage = new ApiStorage();
+      storage.userId= userID;
+      storage.fileCategory=fileCategory;
+      if(fileCategory=="CV"){
+        url = await this.repo.deleteFile(userID ,FileCategory.CV );
+      }
+      if(fileCategory=="Transcript"){
+        url = await this.repo.deleteFile(userID ,FileCategory.DEGREE );
+
+      }
+      if(fileCategory=="Academic Record"){
+        url = await this.repo.deleteFile(userID ,FileCategory.ACADEMIC_RECORD );
       }
         return url;
     }
