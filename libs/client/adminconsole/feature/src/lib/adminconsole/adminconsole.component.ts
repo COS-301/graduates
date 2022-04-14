@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'cards-adminconsole',
   templateUrl: './adminconsole.component.html',
   styleUrls: ['./adminconsole.component.scss']
 })
-export class AdminconsoleComponent {
+export class AdminconsoleComponent{
 
 
   burger : boolean
@@ -17,7 +18,8 @@ export class AdminconsoleComponent {
   shortsOption = "Permission"
   usersPORS = "Permission"
   allPermissions: any[]
-  constructor() {
+
+  constructor(private http : HttpClient, ) {
     //Populate the sidenav with these options
     this.sidenavOptions = ["Create User", "Users", "Story", "Roles", "Blogs", "Shorts"]
 
@@ -29,6 +31,21 @@ export class AdminconsoleComponent {
     this.allPermissions = []
     this.fetchData()
   }
+
+  // ngOnInit(): void {
+  //     const body = {
+  //       'query': 'query ($compID: ID!, $gradID: ID!){status(compID: $id, gradID: $gradID){ accessStatus, item, userID }}',
+  //       'variables': { 'compID': companyID, 'gradID': graduateID }
+  //     }
+
+  //     const options = {
+  //       headers: new HttpHeaders({
+  //         'Content-Type': 'application/json'
+  //       })
+  //     }
+
+  //     return this.httpClient.post<any>('http://localhost:3333/graphql', body, options);
+  // }
  
   fetchData() {
     switch(this.option) {

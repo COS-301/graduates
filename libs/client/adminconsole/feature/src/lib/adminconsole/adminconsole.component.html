@@ -1,12 +1,9 @@
 <!-- <div class="header"><div class="info"><img id = "logo" src="https://db3pap005files.storage.live.com/y4mJWXeGlcq2q-_LBJ9-BDZTPujTus_oIMoNV0gC2wAnkCASuTKP5DSViLJmu3EILatPUCCYrMH0Sh_Hnt60Zwr9aoidttEMDD9TYH_Eh6hRSweXaDyiIWsjqnaRt4O2B9JLFRZ9fXpYvQKlthLNdJSKakRb2qrvneHWM-IF1--SAbt7Y0D2yKFOkxrAfMyoTdM?width=78&height=90&cropmode=none"><p>University of Pretoria</p></div> <div class ="title"><img id = "graduateHat" src="https://db3pap005files.storage.live.com/y4m9-IoEhWBrqqH_TRDxtgZZBGBRJmbmslmpMMMztnJICx-qhNq4j88VI7QDhemZ9jW-GtoFYtsC8-hi5zqwxH55MLsnfFzTZrntO5VmadTJPjXrwgjYewWTtYrpP_HjjE7ijEIkdY45jdY--tCB7tMJiPiBAjEdPhEZN-0ihJbpG_NHyu5LoeKVxlOTMkfa2p1?width=145&height=126&cropmode=none"><b>Admin</b>Portal</div> -->
-<header-and-footer-header></header-and-footer-header>
-<label>
-<input type="checkbox">
-<span class="menu"> <span class="hamburger"></span> </span>
-<ul>
-  <li *ngFor="let o of sidenavOptions;" (click)="sidenavOption(o)"> <a>{{o}}</a></li>
-</ul>
-</label>
+<!-- <header-and-footer-header></header-and-footer-header> -->
+<button id = "mobileMenu" mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item *ngFor="let o of sidenavOptions;" (click)="sidenavOption(o)">{{o}}</button>
+</mat-menu>
 <!-- </div> -->
 <div class="subheader"> <div class="logout">Logout<img src="" alt=""></div></div>
 <div *ngIf="burger === true">
@@ -85,12 +82,10 @@
                         <p class="roleName">{{p}}</p><p (click)="removeRole(p)" class="removeRole">Remove</p>
                     </div>
                 </div>
-                <div class="dropdown">
-                    <button class="dropbtn">Add Permission</button>
-                    <div class="dropdown-content">
-                    <a *ngFor="let aR of allPermissions" (click)="addRole(aR)">{{aR}}</a>
-                    </div>
-                </div>
+                <button id = "permissionsButton" mat-button [matMenuTriggerFor]="permissions">Add Permissions</button>
+                <mat-menu #permissions="matMenu">
+                    <button mat-menu-item *ngFor="let aR of allPermissions" (click)="addRole(aR)">{{aR}}</button>
+                </mat-menu>
             </div>  
             <button id = "usersSaveButton">Save</button>
         </div>  
@@ -146,12 +141,10 @@
                     <p class="roleName">{{r}}</p><p (click)="removeRole(r)" class="removeRole">Remove</p>
                 </div>
             </div>
-            <div class="dropdown">
-                <button class="dropbtn">Add Role</button>
-                <div class="dropdown-content">
-                  <a *ngFor="let aR of allRoles" (click)="addRole(aR)">{{aR}}</a>
-                </div>
-            </div>
+            <button id = "permissionsButton" mat-button [matMenuTriggerFor]="permissions">Add Role</button>
+                <mat-menu #permissions="matMenu">
+                    <button mat-menu-item *ngFor="let aR of allRoles" (click)="addRole(aR)">{{aR}}</button>
+                </mat-menu>
         </div>    
         <button id = "usersSaveButton">Save</button>
     </div>
@@ -200,5 +193,5 @@
         </div>
     </div>
     <button id = "usersSaveButton">Save</button>
-    <header-and-footer-footer></header-and-footer-footer>
 </div>
+<!-- <header-and-footer-footer></header-and-footer-footer> -->
