@@ -5,7 +5,6 @@
 
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
-import { ArgumentOutOfRangeError } from 'rxjs';
 
 import { AppModule } from './app/app.module';
 
