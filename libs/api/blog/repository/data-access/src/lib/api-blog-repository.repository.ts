@@ -1,9 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
-import { BlogCreateInput } from '@graduates/api/blog/api/shared/entities/data-access';
-import { BlogUpdateInput } from '@graduates/api/blog/api/shared/entities/data-access';
-import { BlogCommentCreateInput } from '@graduates/api/blog/api/shared/entities/data-access';
-import { BlogMediaCreateInput } from '@graduates/api/blog/api/shared/entities/data-access';
 import { Blog, BlogComment, BlogMedia } from '@prisma/client';
 
 @Injectable()
@@ -62,12 +58,12 @@ export class BlogRepository {
    * @param {string} userId The id of the user to create the blog for
    * @return {Promise<Blog | null>}
    */
-  async createBlog(blog: BlogCreateInput, userId: string ): Promise<Blog> {
+  async createBlog(title: string, content: string, archived: boolean, userId: string ): Promise<Blog> {
     return this.prisma.blog.create({
       data: {
-        title: blog.title,
-        content: blog.content,
-        archived: blog.archived,
+        title: title,
+        content: content,
+        archived: archived,
         user: {
           connect: {id: userId}
         },
@@ -81,13 +77,29 @@ export class BlogRepository {
    * @param {BlogUpdateInput} Blog The Blog to update along with updated data
    * @return {Promise<Blog | null>}
    */
-  async updateBlog(blog: BlogUpdateInput): Promise<Blog | null> {
+  async updateBlogTitle(blogId: string, title: string): Promise<Blog | null> {
     return this.prisma.blog.update({
-      where: { id: blog.id, },
+      where: { id: blogId, },
       data: {
-        title: blog.title,
-        content: blog.content,
-        archived: blog.archived
+        title: title
+      },
+    });
+  }
+
+  async updateBlogContent(blogId: string, content: string): Promise<Blog | null> {
+    return this.prisma.blog.update({
+      where: { id: blogId, },
+      data: {
+        content: content
+      },
+    });
+  }
+
+  async updateBlogArchived(blogId: string, archived: boolean): Promise<Blog | null> {
+    return this.prisma.blog.update({
+      where: { id: blogId, },
+      data: {
+        archived: archived
       },
     });
   }
@@ -155,23 +167,23 @@ export class BlogRepository {
    * @param {string} blogId Id of blog comment is created from 
    * @return {Promise<BlogComment>}
    */
-  // async createComment(comment: BlogCommentCreateInput, userId: string, blogId: string ): Promise<BlogComment | null> {
-  //   return this.prisma.blogComment.create({
-  //     data: {
-  //       id: comment.Id,
-  //       blogId: blogId,
-  //       userId: userId,
-  //       content: comment.content,
-  //       user: {
-  //         connect: {id: userId}
-  //       },
-  //       blog: {
-  //         connect: {id: blogId}
-  //       },
-  //       date: new Date()
-  //     },
-  //   });
-  // }
+  async createComment(id: string, blogId: string, userId: string, content: string): Promise<BlogComment | null> {
+    return this.prisma.blogComment.create({
+      data: {
+        //userId: userId,
+        id: id,
+        blogId: blogId,
+        content: content,
+        // user: {
+        //   connect: {id: userId}
+        // },
+        // blog: {
+        //   connect: {id: blogId}
+        // },
+        date: new Date()
+      },
+    });
+  }
 
   /**
    * Update comment by id
@@ -234,11 +246,11 @@ export class BlogRepository {
     });
   }
 
-  async createMedia(media: BlogMediaCreateInput): Promise<BlogMedia | null> {
+  async createMedia(blogId: string, media: string): Promise<BlogMedia | null> {
     return this.prisma.blogMedia.create({
       data: {
-        blogId: media.blogId,
-        media: media.media
+        blogId: blogId,
+        media: media
       },
     });
   }

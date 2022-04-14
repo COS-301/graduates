@@ -1,7 +1,4 @@
-import {
-  Blog,
-  BlogCreateInput,
-} from '@graduates/api/blog/api/shared/entities/data-access';
+import { Blog } from '@graduates/api/blog/api/shared/entities/data-access';
 import { Injectable } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 // import {
@@ -22,13 +19,13 @@ export class BlogService {
   ) {}
 
 
-  // /**
-  //  * Create a new blog
-  //  * create blog params
-  //  */
-  // async createBlog(): Promise<Blog> {
-  //   return await this.commandBus.execute(
-  //     new CreateBlogCommand();
-  //   );
-  // }
+  /**
+   * Create a new blog
+   * create blog params
+   */
+  async createBlog(title, content, archived, userId): Promise<Blog> {
+    return await this.commandBus.execute(
+      new CreateBlogCommand(title, content, archived, userId)
+    );
+  }
 }
