@@ -1,5 +1,5 @@
 import { Field, InputType, ObjectType } from '@nestjs/graphql';
-import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
+import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 import { ShortTag } from './api-shorts-tag-entity.entity';
 import { ShortReport } from './api-shorts-report-entity.entity';
 import { ID } from '@nestjs/graphql';
@@ -48,8 +48,8 @@ export class Short {
   /**
    * The user who uploaded the short
    */
-  @Field(() => User)
-  user!: User;
+  @Field(() => AuthenticationUser)
+  user!: AuthenticationUser;
 
   /**
    * The tags of the short
