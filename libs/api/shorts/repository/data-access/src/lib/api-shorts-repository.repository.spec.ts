@@ -83,8 +83,13 @@ describe('ShortsRepository', () => {
    * Test the findByUser method
    */
   describe('findByUser', () => {
-    it('should return empty array', async () => {
-      expect(await repository.findByUser('1')).toEqual([]);
+    const result = [shortMock];
+    it('should return an array of shorts', async () => {
+      jest
+        .spyOn(repository, 'findByUser')
+        .mockImplementation((): Promise<Short[]> => Promise.resolve(result));
+
+      expect(await repository.findByUser('1')).toMatchObject(shortMock);
     });
   });
 
@@ -92,8 +97,13 @@ describe('ShortsRepository', () => {
    * Test the findByTag method
    */
   describe('findByTag', () => {
-    it('should return empty array', async () => {
-      expect(await repository.findByTag('1')).toEqual([]);
+    const result = [shortMock];
+    it('should return an array of shorts', async () => {
+      jest
+        .spyOn(repository, 'findByTag')
+        .mockImplementation((): Promise<Short[]> => Promise.resolve(result));
+
+      expect(await repository.findByTag('1')).toMatchObject(shortMock);
     });
   });
 
@@ -101,8 +111,13 @@ describe('ShortsRepository', () => {
    * Test the findByTagPaged method
    */
   describe('findByTagPaged', () => {
-    it('should return empty array', async () => {
-      expect(await repository.findByTagPaged('1', 0, 2)).toEqual([]);
+    const result = [shortMock];
+    it('should return an array of shorts', async () => {
+      jest
+        .spyOn(repository, 'findByTagPaged')
+        .mockImplementation((): Promise<Short[]> => Promise.resolve(result));
+
+      expect(await repository.findByTagPaged('1', 0, 2)).toMatchObject(shortMock);
     });
   });
 
@@ -183,8 +198,13 @@ describe('ShortsRepository', () => {
    * Test the findTagByShortId method
    */
    describe('findTagByShortId', () => {
-    it('should return empty array', async () => {
-      expect(await repository.findTagByShortId('1')).toEqual([]);
+    const result = [shortTagMock];
+    it('should return an array of shorts', async () => {
+      jest
+        .spyOn(repository, 'findTagByShortId')
+        .mockImplementation((): Promise<ShortTag[]> => Promise.resolve(result));
+
+      expect(await repository.findTagByShortId('1')).toMatchObject(shortTagMock);
     });
   });
 
