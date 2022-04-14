@@ -14,7 +14,7 @@ export class ShortReport {
    * The id of the user who created the report
    */
   @Field()
-  userID!: string;
+  userId!: string;
 
   /**
    * The reason why the user created the report
@@ -44,26 +44,8 @@ export class ShortReportInput {
   shortId!: string;
 
   /**
-   * The id of the user who created the report
-   */
-  @Field()
-  userID!: string;
-
-  /**
    * The reason why the user created the report
    */
   @Field()
   reason!: string;
-
-  /**
-   * The user who created the report
-   */
-  @Field(() => User)
-  user!: User;
-
-  /**
-   * The short that the report belongs to
-   */
-  @Field(() => Short)
-  short!: Short;
 }
