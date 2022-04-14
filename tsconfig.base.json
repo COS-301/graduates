@@ -259,6 +259,12 @@
       "@graduates/client/shared/assets/ui": [
         "libs/client/shared/assets/ui/src/index.ts"
       ],
+      "@graduates/client/shared/components/buttons/ui": [
+        "libs/client/shared/components/buttons/ui/src/index.ts"
+      ],
+      "@graduates/client/shared/components/dropdown/ui": [
+        "libs/client/shared/components/dropdown/ui/src/index.ts"
+      ],
       "@graduates/client/shared/components/navbar/ui": [
         "libs/client/shared/components/navbar/ui/src/index.ts"
       ],
