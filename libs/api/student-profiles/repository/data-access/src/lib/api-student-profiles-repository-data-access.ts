@@ -1,5 +1,4 @@
 import {FileCategory, PrismaClient, SocialMedia} from '@prisma/client';
-//todo: david roodt: implement employment status once added to db
 
 export class StudentProfilesRepository
 {
