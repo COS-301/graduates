@@ -6,9 +6,24 @@ import { ApiRequestAccessService } from "./api-request-access.service";
 export class ApiRequestAccessResolver {
     constructor(private requestAccessService: ApiRequestAccessService) {}
 
-    @Mutation(returns => ApiRequestAccessEntity)
+    @Mutation(returns => ApiRequestAccessEntity, { nullable: true })
     // must add paramters to request
-    async requestAccess(@Args('compID', { type: () => ID }) compId: string, @Args('gradID', { type: () => ID }) grad: string, @Args('item') id: string): Promise<ApiRequestAccessEntity> {
+    async requestAccess(@Args('compId', { type: () => ID }) compId: string, @Args('gradId', { type: () => ID }) gradId: string, @Args('item') item: string): Promise<ApiRequestAccessEntity> {
+        enum Items {
+            CV = "CV",
+            Transcript = "Transcript",
+            Academic = "Academic",
+            Certificates = "Certificates",
+            Capstone = "Capstone"
+        };
+
+        if (compId == "" || gradId == "" || item == "") // obviously empty elements are not allowed
+            return null;
+
+        // if new items become available add here
+        if (!(item in Items)) // if a valid item has been requested
+            return null;
+
         return this.requestAccessService.makeRequest();
     }
 }
