@@ -16,7 +16,7 @@ describe('AccessStatusService', () => {
     expect(service).toBeDefined();
   });
 
-  it('should be not be null',async () => {
+  it('should be not be null', async () => {
     const call = await service.getAccessStatus("u12345678","42");
     expect(call).not.toBeNull();
   });
