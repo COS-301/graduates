@@ -289,6 +289,9 @@
       "@graduates/client/shorts/feature": [
         "libs/client/shorts/feature/src/index.ts"
       ],
+      "@graduates/client/status-page/feature": [
+        "libs/client/status-page/feature/src/index.ts"
+      ],
       "@graduates/client/storage/feature": [
         "libs/client/storage/feature/src/index.ts"
       ],
@@ -300,6 +303,9 @@
       ],
       "@graduates/client/student-responses/feature": [
         "libs/client/student-responses/feature/src/index.ts"
+      ],
+      "@graduates/client/status-page/feature": [
+        "libs/client/status-page/feature/src/index.ts"
       ]
     }
   },

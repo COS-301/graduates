@@ -122,6 +122,12 @@ export class BlogUpdateInput {
   content!: string;
  
   /**
+  * The content of the Blog
+  */
+  @Field({ nullable: true })
+  media!: string;
+ 
+  /**
   * Wether the Blog is archived or not
   */
   @Field(() => Boolean)

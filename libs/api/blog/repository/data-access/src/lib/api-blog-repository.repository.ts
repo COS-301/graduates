@@ -3,7 +3,8 @@ import { PrismaService } from '@graduates/api/shared/services/prisma/data-access
 import { BlogCreateInput } from '@graduates/api/blog/api/shared/entities/data-access';
 import { BlogUpdateInput } from '@graduates/api/blog/api/shared/entities/data-access';
 import { BlogCommentCreateInput } from '@graduates/api/blog/api/shared/entities/data-access';
-import { Blog, BlogComment } from '@prisma/client';
+import { BlogMediaCreateInput } from '@graduates/api/blog/api/shared/entities/data-access';
+import { Blog, BlogComment, BlogMedia } from '@prisma/client';
 
 @Injectable()
 export class BlogRepository {
@@ -154,23 +155,23 @@ export class BlogRepository {
    * @param {string} blogId Id of blog comment is created from 
    * @return {Promise<BlogComment>}
    */
-  async createComment(comment: BlogCommentCreateInput, userId: string, blogId: string ): Promise<BlogComment | null> {
-    return this.prisma.blogComment.create({
-      data: {
-        id: comment.Id,
-        blogId: blogId,
-        content: comment.content,
-        userId: userId,
-        user: {
-          connect: {id: userId}
-        },
-        blog: {
-          connect: {id: blogId}
-        },
-        date: new Date()
-      },
-    });
-  }
+  // async createComment(comment: BlogCommentCreateInput, userId: string, blogId: string ): Promise<BlogComment | null> {
+  //   return this.prisma.blogComment.create({
+  //     data: {
+  //       id: comment.Id,
+  //       blogId: blogId,
+  //       userId: userId,
+  //       content: comment.content,
+  //       user: {
+  //         connect: {id: userId}
+  //       },
+  //       blog: {
+  //         connect: {id: blogId}
+  //       },
+  //       date: new Date()
+  //     },
+  //   });
+  // }
 
   /**
    * Update comment by id
@@ -227,6 +228,28 @@ export class BlogRepository {
  
 // Media
 
+  async findMediaByBlogId (blogId: string): Promise<BlogMedia[]> {
+    return this.prisma.blogMedia.findMany({ 
+      where: { blogId : blogId } 
+    });
+  }
 
+  async createMedia(media: BlogMediaCreateInput): Promise<BlogMedia | null> {
+    return this.prisma.blogMedia.create({
+      data: {
+        blogId: media.blogId,
+        media: media.media
+      },
+    });
+  }
+
+  // async updateBlogMedia(blogId: string, mediaId: string): Promise<BlogMedia | null> {
+  //   return this.prisma.blogMedia.update({
+  //     where: { blogId: blogId },
+  //     data: {
+  //       media: mediaId
+  //     },
+  //   });
+  // }
 
 }

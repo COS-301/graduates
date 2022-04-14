@@ -34,16 +34,16 @@ describe('BlogResolver', () => {
   });
 
   
-  describe('createBlog', () => {
-    it('should return a blog', async () => {
-      jest
-        .spyOn(resolver, 'createBlog')
-        .mockImplementation((): Promise<Blog> => Promise.resolve(blogMock));
+  // describe('createBlog', () => {
+  //   it('should return a blog', async () => {
+  //     jest
+  //       .spyOn(resolver, 'createBlog')
+  //       .mockImplementation((): Promise<Blog> => Promise.resolve(blogMock));
 
-      expect(await resolver.createBlog(blogMock, [], '1')).toMatchObject(
-        blogMock
-      );
-    });
-  });
+  //     expect(await resolver.createBlog(blogMock, [], '1')).toMatchObject(
+  //       blogMock
+  //     );
+  //   });
+  // });
 
 });

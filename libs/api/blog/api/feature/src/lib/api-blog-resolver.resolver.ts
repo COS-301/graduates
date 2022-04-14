@@ -21,11 +21,11 @@ export class BlogResolver {
    * Mutation to create a blog
    * params to create a blog
    */
-  @Mutation(() => Blog)
-  async createBlog(
-    // @Args('') blog: BlogCreateInput - example
+  // @Mutation(() => Blog)
+  // async createBlog(
+  //   // @Args('') blog: BlogCreateInput - example
 
-  ): Promise<Blog | null> {
+  // ): Promise<Blog | null> {
 
-  }
+  // }
 }
