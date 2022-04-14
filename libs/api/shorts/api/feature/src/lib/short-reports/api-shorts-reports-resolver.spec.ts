@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import {
   ShortReportInput,
   ShortReport,
+  Short,
 } from '@graduates/api/shorts/api/shared/entities/data-access';
 import { ShortsReportsResolver } from './api-shorts-reports-resolver.resolver';
 import {
@@ -9,6 +10,7 @@ import {
   ShortsService,
 } from '@graduates/api/shorts/service/feature';
 import { QueryBus, CommandBus } from '@nestjs/cqrs';
+import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 
 jest.mock('@graduates/api/shorts/api/shared/entities/data-access');
 const reportsMock: jest.Mocked<ShortReport> = new ShortReport() as ShortReport;
@@ -16,6 +18,12 @@ const reportsMock: jest.Mocked<ShortReport> = new ShortReport() as ShortReport;
 jest.mock('@graduates/api/shorts/api/shared/entities/data-access');
 const reportCreateMock: jest.Mocked<ShortReportInput> =
   new ShortReportInput() as ShortReportInput;
+
+jest.mock('@graduates/api/shorts/api/shared/entities/data-access');
+const shortMock: jest.Mocked<Short> = new Short() as Short;
+
+jest.mock('@graduates/api/authentication/api/shared/interfaces/data-access');
+const userMock: jest.Mocked<User> = new User() as User;
 
 // Run `yarn test api-shorts-api-feature`
 describe('ShortsReportsResolver', () => {
@@ -50,6 +58,32 @@ describe('ShortsReportsResolver', () => {
     expect(shortsService).toBeDefined();
     expect(queryBus).toBeDefined();
     expect(commandBus).toBeDefined();
+  });
+
+  /**
+   * Test the user field resolver method
+   */
+  describe('user', () => {
+    it('should return a user', async () => {
+      jest
+        .spyOn(resolver, 'user')
+        .mockImplementation((): Promise<User> => Promise.resolve(userMock));
+
+      expect(await resolver.user(reportsMock)).toMatchObject(userMock);
+    });
+  });
+
+  /**
+   * Test the short field resolver method
+   */
+  describe('short', () => {
+    it('should return a Short', async () => {
+      jest
+        .spyOn(resolver, 'short')
+        .mockImplementation((): Promise<Short> => Promise.resolve(shortMock));
+
+      expect(await resolver.short(reportsMock)).toMatchObject(shortMock);
+    });
   });
 
   /**

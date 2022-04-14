@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import {
   ShortTag,
   ShortCreateTagInput,
+  Short,
 } from '@graduates/api/shorts/api/shared/entities/data-access';
 import { ShortsTagsResolver } from './api-shorts-tags-resolver.resolver';
 import {
@@ -16,6 +17,9 @@ const tagMock: jest.Mocked<ShortTag> = new ShortTag() as ShortTag;
 jest.mock('@graduates/api/shorts/api/shared/entities/data-access');
 const tagCreateMock: jest.Mocked<ShortCreateTagInput> =
   new ShortCreateTagInput() as ShortCreateTagInput;
+
+jest.mock('@graduates/api/shorts/api/shared/entities/data-access');
+const shortMock: jest.Mocked<Short> = new Short() as Short;
 
 // Run `yarn test api-shorts-api-feature`
 describe('ShortsTagsResolver', () => {
@@ -53,6 +57,32 @@ describe('ShortsTagsResolver', () => {
   });
 
   /**
+   * Test the short field resolver method
+   */
+  describe('short', () => {
+    it('should return a Short', async () => {
+      jest
+        .spyOn(resolver, 'short')
+        .mockImplementation((): Promise<Short> => Promise.resolve(shortMock));
+
+      expect(await resolver.short(tagMock)).toMatchObject(shortMock);
+    });
+  });
+
+  /**
+   * Test the createTag method
+   */
+  describe('createTag', () => {
+    it('should return a ShortTag', async () => {
+      jest
+        .spyOn(resolver, 'createTag')
+        .mockImplementation((): Promise<ShortTag> => Promise.resolve(tagMock));
+
+      expect(await resolver.createTag(tagCreateMock)).toMatchObject(tagMock);
+    });
+  });
+
+  /**
    * Test the getAllTags method
    */
   describe('getAllTags', () => {
@@ -85,19 +115,6 @@ describe('ShortsTagsResolver', () => {
   });
 
   /**
-   * Test the createTag method
-   */
-  describe('createTag', () => {
-    it('should return a ShortTag', async () => {
-      jest
-        .spyOn(resolver, 'createTag')
-        .mockImplementation((): Promise<ShortTag> => Promise.resolve(tagMock));
-
-      expect(await resolver.createTag(tagCreateMock)).toMatchObject(tagMock);
-    });
-  });
-
-  /**
    * Test the updateTags method
    */
   describe('updateTags', () => {
@@ -120,22 +137,14 @@ describe('ShortsTagsResolver', () => {
    * Test the updateTagByShortId method
    */
   describe('updateTagByShortId', () => {
-    it('should return "success"', async () => {
-      jest.spyOn(resolver, 'updateTagByShortId').mockResolvedValue('success');
-
-      expect(
-        await resolver.updateTagByShortId('1', 'tagName', 'newTag')
-      ).toEqual('success');
-    });
-
-    it('should return "Tag not found"', async () => {
+    it('should return a ShortTag', async () => {
       jest
         .spyOn(resolver, 'updateTagByShortId')
-        .mockResolvedValue('Tag not found');
+        .mockImplementation((): Promise<ShortTag> => Promise.resolve(tagMock));
 
       expect(
         await resolver.updateTagByShortId('1', 'tagName', 'newTag')
-      ).toEqual('Tag not found');
+      ).toMatchObject(tagMock);
     });
   });
 
@@ -187,16 +196,12 @@ describe('ShortsTagsResolver', () => {
    * Test the deleteTag method
    */
   describe('deleteTag', () => {
-    it('should return "success"', async () => {
-      jest.spyOn(resolver, 'deleteTag').mockResolvedValue('success');
+    it('should return a ShortTag', async () => {
+      jest
+        .spyOn(resolver, 'deleteTag')
+        .mockImplementation((): Promise<ShortTag> => Promise.resolve(tagMock));
 
-      expect(await resolver.deleteTag('1', 'tagText')).toEqual('success');
-    });
-
-    it('should return "Tag not found"', async () => {
-      jest.spyOn(resolver, 'deleteTag').mockResolvedValue('Tag not found');
-
-      expect(await resolver.deleteTag('1', 'tagText')).toEqual('Tag not found');
+      expect(await resolver.deleteTag('1', 'tagText')).toMatchObject(tagMock);
     });
   });
 });

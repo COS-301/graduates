@@ -77,7 +77,7 @@ export class ShortsTagsService {
     shortId: string,
     tag: string,
     newTag: string
-  ): Promise<string> {
+  ): Promise<ShortTag> {
     return await this.commandBus.execute(
       new UpdateTagByShortCommand(shortId, tag, newTag)
     );
@@ -107,7 +107,7 @@ export class ShortsTagsService {
    * @param {string} tag The text content of the tag
    * @return {Promise<string>}
    */
-  async deleteTagByShortTag(shortId: string, tag: string): Promise<string> {
+  async deleteTagByShortTag(shortId: string, tag: string): Promise<ShortTag> {
     return await this.commandBus.execute(
       new DeleteTagByShortTagCommand(shortId, tag)
     );
