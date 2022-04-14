@@ -23,6 +23,7 @@
     "api-blog-repository-data-access": "libs/api/blog/repository/data-access",
     "api-company-representative-api-feature": "libs/api/company-representative/api/feature",
     "api-company-representative-api-shared--data-access": "libs/api/company-representative/api/shared/data-access",
+    "api-company-representative-repository-data-access": "libs/api/company-representative/repository/data-access",
     "api-company-representative-service--feature": "libs/api/company-representative/service/feature",
     "api-companyexplore-api-feature": "libs/api/companyexplore/api/feature",
     "api-companyexplore-api-shared-interfaces-data-access": "libs/api/companyexplore/api/shared/interfaces/data-access",
