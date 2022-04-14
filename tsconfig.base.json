@@ -81,9 +81,6 @@
       "@graduates/api/company-representative/api/shared/data-access": [
         "libs/api/company-representative/api/shared/data-access/src/index.ts"
       ],
-      "@graduates/api/company-representative/repository/data-access": [
-        "libs/api/company-representative/repository/data-access/src/index.ts"
-      ],
       "@graduates/api/company-representative/service/feature": [
         "libs/api/company-representative/service/feature/src/index.ts"
       ],
@@ -232,6 +229,9 @@
       "@graduates/client/adminconsole/feature": [
         "libs/client/adminconsole/feature/src/index.ts"
       ],
+      "@graduates/client/authorization/feature": [
+        "libs/client/authorization/feature/src/index.ts"
+      ],
       "@graduates/client/blog/feature": [
         "libs/client/blog/feature/src/index.ts"
       ],
@@ -256,6 +256,12 @@
       "@graduates/client/shared/assets/ui": [
         "libs/client/shared/assets/ui/src/index.ts"
       ],
+      "@graduates/client/shared/components/buttons/ui": [
+        "libs/client/shared/components/buttons/ui/src/index.ts"
+      ],
+      "@graduates/client/shared/components/dropdown/ui": [
+        "libs/client/shared/components/dropdown/ui/src/index.ts"
+      ],
       "@graduates/client/shared/components/navbar/ui": [
         "libs/client/shared/components/navbar/ui/src/index.ts"
       ],
@@ -273,6 +279,9 @@
       ],
       "@graduates/client/shorts/feature": [
         "libs/client/shorts/feature/src/index.ts"
+      ],
+      "@graduates/client/status-page/feature": [
+        "libs/client/status-page/feature/src/index.ts"
       ],
       "@graduates/client/storage/feature": [
         "libs/client/storage/feature/src/index.ts"
