@@ -4,23 +4,6 @@
   "sourceRoot": "libs/client/storage/feature/src",
   "prefix": "graduates",
   "targets": {
-    "build": {
-      "executor": "@nrwl/angular:ng-packagr-lite",
-      "outputs": ["dist/libs/client/storage/feature"],
-      "options": {
-        "project": "libs/client/storage/feature/ng-package.json",
-        "tailwindConfig": "libs/client/storage/feature/tailwind.config.js"
-      },
-      "configurations": {
-        "production": {
-          "tsConfig": "libs/client/storage/feature/tsconfig.lib.prod.json"
-        },
-        "development": {
-          "tsConfig": "libs/client/storage/feature/tsconfig.lib.json"
-        }
-      },
-      "defaultConfiguration": "production"
-    },
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/client/storage/feature"],
