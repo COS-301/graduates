@@ -144,8 +144,8 @@ export class StoryExploreComponent implements OnInit {
   search(){
     this.searchText = (<HTMLInputElement>document.getElementById("search")).value;
     alert('searching for ' + this.searchText);
-    this.loadCards();
-
+    this.searchText = (<HTMLInputElement>document.getElementById("search")).value= "";
+    
   }
 
   closeSuccessReport() {
