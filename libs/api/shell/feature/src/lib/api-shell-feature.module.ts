@@ -13,6 +13,7 @@ import { ApiCompanyRepresentativeApiFeatureModule } from '@graduates/api/company
 import { ApiRequestAccessApiFeatureModule as ApiRequestAccessFeatureModule } from '@graduates/api/request-access/api/feature';
 import { ApiAuthenticationApiFeatureModule } from '@graduates/api/authentication/api/feature'
 import { ApiNotificationsApiFeatureModule } from '@graduates/api/notifications/api/feature'
+import { ApiAuthorizationApiFeatureModule as ApiAuthorizationFeatureModule } from '@graduates/api/authorization/api/feature';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { ApiNotificationsApiFeatureModule } from '@graduates/api/notifications/a
     ApiCompanyRepresentativeApiFeatureModule,
     ApiRequestAccessFeatureModule,
     ApiAuthenticationApiFeatureModule,
+    ApiAuthorizationFeatureModule
   ],
 })
 export class ApiShellFeatureModule {}

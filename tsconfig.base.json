@@ -69,6 +69,9 @@
       "@graduates/api/authorization/service/shared": [
         "libs/api/authorization/service/shared/src/index.ts"
       ],
+      "@graduates/api/blog/api/shared/entities/data-access": [
+        "libs/api/blog/api/shared/entities/data-access/src/index.ts"
+      ],
       "@graduates/api/blog/repository/data-access": [
         "libs/api/blog/repository/data-access/src/index.ts"
       ],
@@ -77,6 +80,9 @@
       ],
       "@graduates/api/company-representative/api/shared/data-access": [
         "libs/api/company-representative/api/shared/data-access/src/index.ts"
+      ],
+      "@graduates/api/company-representative/repository/data-access": [
+        "libs/api/company-representative/repository/data-access/src/index.ts"
       ],
       "@graduates/api/company-representative/service/feature": [
         "libs/api/company-representative/service/feature/src/index.ts"
