@@ -10,7 +10,7 @@ export class GetAllUserNotificationsHandler implements IQueryHandler<GetAllUserN
   constructor(private readonly repository: ApiNotificationsRepositoryDataAccessModule) {}
 
   async execute() {
-    return this.repository.findAll();
+    // return this.repository.findAll();
   }
 }
 

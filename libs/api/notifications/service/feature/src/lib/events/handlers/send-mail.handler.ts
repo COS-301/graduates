@@ -10,28 +10,28 @@ export class SendMailHandler implements IEventHandler<SendMailEvent>{
     handle(event: SendMailEvent) {
         // const {rep} = this.repository.findAll() when the API is fully functional
 
-        const notification = this.repository.findByUserIdTo("cl1rpkemf0148e7x5zy7087ma")
+        // const notification = this.repository.findByUserIdTo("cl1rpkemf0148e7x5zy7087ma")
 
-        const transport = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: "upminiproject301@gmail.com",
-                pass: "miniproject301"
-            }
-            });
+        // const transport = nodemailer.createTransport({
+        //     service: 'gmail',
+        //     auth: {
+        //         user: "upminiproject301@gmail.com",
+        //         pass: "miniproject301"
+        //     }
+        //     });
         
-        const message = {
-            from: "upminiproject301@gmail.com",
-            to: notification.email,   //data.email    
-            subject: notification.subject,         //data.notification.data
-            text: notification.data
-        }
-        transport.sendMail(message, function(err, info) {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log(info);
-            }
-        })
+        // const message = {
+        //     from: "upminiproject301@gmail.com",
+        //     to: notification.email,   //data.email    
+        //     subject: notification.subject,         //data.notification.data
+        //     text: notification.data
+        // }
+        // transport.sendMail(message, function(err, info) {
+        //     if (err) {
+        //         console.log(err);
+        //     } else {
+        //         console.log(info);
+        //     }
+        // })
     }
 }
