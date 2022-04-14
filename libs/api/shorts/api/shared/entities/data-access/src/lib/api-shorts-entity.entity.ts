@@ -1,6 +1,6 @@
 import { Field, InputType, ObjectType } from '@nestjs/graphql';
 import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
-import { ShortTag } from './api-shorts-tag-entity.entity';
+import { ShortTag, ShortTagInput } from './api-shorts-tag-entity.entity';
 import { ShortReport } from './api-shorts-report-entity.entity';
 import { ID } from '@nestjs/graphql';
 
@@ -85,5 +85,41 @@ export class ShortCreateInput {
    * Wether the short is archived or not
    */
   @Field(() => Boolean)
+  archived!: boolean;
+
+  /**
+   * The tags of the short
+   */
+  @Field(() => [ShortTagInput])
+  shortTag!: ShortTagInput[];
+}
+
+/**
+ * Definition of the ShortUpdateInput entity as input type
+ */
+@InputType()
+export class ShortUpdateInput {
+  /**
+   * The id of the short
+   */
+  @Field(() => ID)
+  id!: string;
+
+  /**
+   * The description/name of the short
+   */
+  @Field({ nullable: true })
+  media!: string;
+
+  /**
+   * The url of the short
+   */
+  @Field({ nullable: true })
+  data!: string;
+
+  /**
+   * Wether the short is archived or not
+   */
+  @Field(() => Boolean, { nullable: true })
   archived!: boolean;
 }
