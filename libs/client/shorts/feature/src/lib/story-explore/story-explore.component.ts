@@ -231,7 +231,7 @@ export class StoryExploreComponent implements OnInit {
           element.cols = 1;
         });
       }
-      let out = [];
+      const out = [];
       this.endIndex = Math.ceil(this.cardlist.length/6);
 
       for (let index = 0; index < 6; index++) {
