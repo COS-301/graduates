@@ -1,7 +1,132 @@
-<p>main-storage-page works!</p>
+<!-- <p>main-storage-page works!</p>
 
 <graduates-page-title></graduates-page-title>
 
 <graduates-delete-all></graduates-delete-all>
 
-<graduates-download-all></graduates-download-all>
+<graduates-download-all></graduates-download-all> -->
+
+<div class="p-20 select-none">
+
+    <!-- Page Title -->
+    <graduates-page-title></graduates-page-title>
+    
+    <!-- Top Buttons -->
+    <div class="lg:flex lg:flex-row lg:justify-end mt-8">
+
+      <div class=" lg:flex lg:w-2/3 text-center">
+        <div class="lg:flex justify-end lg:w-1/2 py-3 lg:pr-5">
+          <graduates-delete-all></graduates-delete-all>
+        </div>
+  
+        <div class="lg:w-1/2 py-3 lg:pr-24">
+          <graduates-download-all></graduates-download-all>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Document Label and Buttons -->
+
+    <!-- For the Document Label -->
+    <div class="lg:flex mt-10">
+      <h1 class="lg:flex lg:items-stretch lg:w-1/3 sm:justify-center lg:py-16 lg:border-r lg:border-blue-800 document-label hidden">Documents</h1>
+
+      <div class="lg:w-2/3">
+
+        <!-- this div is for Academic Record -->
+        <div class= "lg:flex sm:justify-around lg:h-12 lg:ml-10 border-b border-blue-800">
+          
+          <!-- Document Label -->
+          <div class="lg:w-1/2 text-center p-3">
+            <button (click)="acadUp()">Click to Upload: Academic Record</button>
+          </div>
+
+          <!-- Extension and Buttons -->
+          <div class="lg:w-1/2 flex p-3">
+            <div class="w-1/3 lg:text-center text-right">
+              <span>pdf</span>
+            </div>
+            
+            <!-- Buttons -->
+            <div class="w-2/3 text-center">
+              <span class="material-icons lg:w-1/5 sm:w-1/6" style="color: #B8B4B5;">
+                <button (click)="del()">delete_outline</button>
+              </span>
+              <span class="material-icons lg:w-1/5 sm:w-1/6" style="color: #B8B4B5;">
+                <button (click)="down()">file_download</button>
+              </span>
+              <span class="material-icons lg:w-1/5 sm:w-1/6" style="color: #59AF43;">
+                <button (click)="up()">file_upload</button>
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- this div is for Transcript -->
+        <div class= "lg:flex sm:justify-around lg:h-12 lg:ml-10 border-b border-blue-800">
+          
+          <div class="lg:w-1/2 text-center p-3 lg:mt-0 mt-10">
+            <button (click)="transUp()">Click to Upload: Transcript</button>
+          </div>
+
+          <!-- Extension and Buttons -->
+          <div class="lg:w-1/2 flex p-3">
+            <div class="w-1/3 lg:text-center text-right">
+              <span>pdf</span>
+            </div>
+            
+            <!-- Buttons -->
+            <div class="w-2/3 text-center">
+              <span class="material-icons lg:w-1/5 sm:w-1/6" style="color: #B8B4B5;">
+                <button (click)="del()">delete_outline</button>
+              </span>
+              <span class="material-icons lg:w-1/5 sm:w-1/6" style="color: #B8B4B5;">
+                <button (click)="down()">file_download</button>
+              </span>
+              <span class="material-icons lg:w-1/5 sm:w-1/6" style="color: #59AF43;">
+                <button (click)="up()">file_upload</button>
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- this div is for cv -->
+        <div class= "lg:flex sm:justify-around lg:h-12 lg:ml-10 border-b border-blue-800">
+          
+          <div class="lg:w-1/2 text-center p-3 lg:mt-0 mt-10">
+            <button (click)="cvUp()">Click to Upload: CV</button>
+          </div>
+
+          <!-- Extension and Buttons -->
+          <div class="lg:w-1/2 flex p-3">
+            <div class="w-1/3 lg:text-center text-right">
+              <span>pdf</span>
+            </div>
+            
+            <!-- Buttons -->
+            <div class="w-2/3 text-center">
+              <span class="material-icons lg:w-1/5 sm:w-1/6" style="color: #B8B4B5;">
+                <button (click)="del()">delete_outline</button>
+              </span>
+              <span class="material-icons lg:w-1/5 sm:w-1/6" style="color: #B8B4B5;">
+                <button (click)="down()">file_download</button>
+              </span>
+              <span class="material-icons lg:w-1/5 sm:w-1/6" style="color: #59AF43;">
+                <button (click)="up()">file_upload</button>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      
+
+    </div>
+  
+  </div>
+  
+  
+  
