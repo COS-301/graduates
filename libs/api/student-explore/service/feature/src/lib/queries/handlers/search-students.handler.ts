@@ -1,5 +1,5 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { Student, StudentExploreRepository } from '@graduates/api/student-explore/repository/data-access';
+import { StudentExploreRepository } from '@graduates/api/student-explore/repository/data-access';
 import { SearchStudentsQuery } from '../impl/search-students.query';
 import { OrphanedTypesFactory } from '@nestjs/graphql/dist/schema-builder/factories/orphaned-types.factory';
 

@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ApiStudentExplore } from '@graduates/api/student-explore/api/shared/data-access';
-import { PrismaService } from './prisma.service';
-
+import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 
 @Injectable()
 export class StudentExploreRepository {

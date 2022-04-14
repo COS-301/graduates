@@ -6,7 +6,7 @@ import { StudentExploreService } from './api-student-explore-service-feature';
 
 import { StudentExploreRepository } from '@graduates/api/student-explore/repository/data-access';
 
-import { PrismaService } from '@graduates/api/student-explore/repository/data-access';
+import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 
 
 @Module({

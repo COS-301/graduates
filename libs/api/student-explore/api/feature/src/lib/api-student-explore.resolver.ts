@@ -1,5 +1,4 @@
 import { Resolver, Args, Query, ResolveField, Parent } from '@nestjs/graphql';
-//import { Student } from '@graduates/api/student-explore/repository/data-access';
 import { StudentExploreService } from '@graduates/api/student-explore/service/feature';
 
 import { ApiStudentExplore } from '@graduates/api/student-explore/api/shared/data-access';
