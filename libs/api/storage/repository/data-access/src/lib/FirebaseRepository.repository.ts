@@ -25,13 +25,13 @@ export enum FirebaseFolders{
 export class FirebaseService {
   
   firebaseConfig = {
-    apiKey: "API_KEY",
-    authDomain: "AUTH_DOMAIN",
-    projectId: "PROJECT_ID",
-    storageBucket: "STORAGE_BUCKET",
-    messagingSenderId: "MSF_SENDER_ID",
-    appId: "APP_ID",
-    measurementId: "MEASUREMENT_ID",
+    apiKey: "AIzaSyCJDoT3fRnol23upGcl4O2q90Hsmq0aQ-s",
+    authDomain: "cos301-storage-test.firebaseapp.com",
+    projectId: "cos301-storage-test",
+    storageBucket: "cos301-storage-test.appspot.com",
+    messagingSenderId: "994861102315",
+    appId: "1:994861102315:web:6a4b736d15abc7915cbaae"
+    //measurementId: "MEASUREMENT_ID",
   };
 
   app = initializeApp(this.firebaseConfig);
@@ -120,16 +120,19 @@ export class FirebaseService {
     console.log(fileRef.fullPath);
 
     //get the url that will download the file
-    getDownloadURL(fileRef)
+
+    let urlS = null;
+
+    urlS = await getDownloadURL(fileRef)
       .then((url) => {
-        console.log(url); 
         return url;
       })
       .catch((error) => {
         console.error(error);
+        return null;
       });
 
-    return null;
+     return urlS;
   }
 
   async deleteByFilename(filename:string, folder:FirebaseFolders):Promise<boolean>{

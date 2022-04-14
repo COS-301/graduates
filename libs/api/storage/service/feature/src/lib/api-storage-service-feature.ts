@@ -22,6 +22,10 @@ export class ApiStorageServiceFeatureModule {
       if(fileCategory=="Academic Record"){
         url = await this.repo.getUserFile(userID ,FileCategory.ACADEMIC_RECORD );
       }
+      if(fileCategory=="Profile Picture"){
+        url = await this.repo.getUserFile(userID ,FileCategory.PROFILE_PHOTO );
+      }
+    
         return url;
     }
     async deleteFile(userID , fileCategory): Promise<number> {

@@ -14,13 +14,14 @@ export class ApiStorageResolver {
     @Args("userId")userID:string,
     @Args("fileCategory")fileCategory:string
   ): Promise<string| boolean> {
-    const res = await this.storageService.getFile(userID , fileCategory);
+    let res = await this.storageService.getFile(userID , fileCategory);
     if(res == null){
-      return false
+      return true
     }
     else{
       return res;
     }
+   
   }
   @Query(() =>String)
   async delete(
