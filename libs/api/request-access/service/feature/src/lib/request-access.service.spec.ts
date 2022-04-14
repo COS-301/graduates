@@ -18,12 +18,12 @@ describe('RequestAccessService', () => {
     expect(service).toBeDefined();
   });
 
-  it('should be not be null',async () => {
+  it('should be not be null', async () => {
     const call = await service.getAccessEntity("u12345678","42","5");
     expect(call).not.toBeNull();
   });
 
-  it('should be equal to entity',async () => {
+  it('should be equal to entity', async () => {
     const call = await service.getAccessEntity("u12345678","42","5");
     expect(call).toEqual({"companyID": "u12345678", "userID": "42", "item": "5"});
   });  

@@ -16,17 +16,17 @@ describe('AccessStatusService', () => {
     expect(service).toBeDefined();
   });
 
-  it('should be not be null',async () => {
+  it('should be not be null', async () => {
     const call = await service.getAccessStatus("u12345678","42");
     expect(call).not.toBeNull();
   });
 
-  it('should be equal to entity',async () => {
+  it('should be equal to entity', async () => {
     const call = await service.getAccessStatus("u12345678","42");
     expect(call).toEqual([{"accessStatus": "Pending", "item": "CV"}]);
   });  
 
-  it('should be equal to entity',async () => {
+  it('should be equal to entity', async () => {
     const call = await service.getAccessStatus("u12345678","5");
     expect(call).toEqual([{"accessStatus": "Rejected", "item": "Academic Record"}]);
   });
