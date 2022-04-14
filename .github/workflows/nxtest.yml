@@ -41,16 +41,16 @@ jobs:
       - name: Install yarn
         run: npm install yarn -g
 
-        #installs the yarn lockfile
-      - name: Install packages
-        run: yarn install --frozen-lockfile
-
       - name: Cache Yarn Packages
         id: cache-yarn-packages
         uses: actions/cache@v2
         with:
           path: ~/.cache
           key: yarn-packages-${{ hashFiles('**/yarn.lock') }}
+
+        #installs the yarn lockfile
+      - name: Install packages
+        run: yarn install --frozen-lockfile
 
       - name: Lint test affected
         if: ${{ inputs.testtype == 'lint' && inputs.test == 'affected' }}
