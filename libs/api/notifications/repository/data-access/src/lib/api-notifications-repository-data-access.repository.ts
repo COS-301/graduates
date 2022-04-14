@@ -78,7 +78,7 @@ export class NotificationsRepository {
   async updateRequestNotification(id : string, status: string) : Promise<Notification> {
     const notification = await this.findNotificationById(id);
 
-    let notificationData = notification.data as Prisma.JsonObject;
+    const notificationData = notification.data as Prisma.JsonObject;
     notificationData['status'] = status;
 
     return await this.prisma.notification.update({
@@ -86,7 +86,7 @@ export class NotificationsRepository {
         id: id
       },
       data: {
-        data : notificationData
+        data : notificationData //this looks confusing but data: {} is a prisma keyword and data is the name of our JSON field
       }
     });
   }
