@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/client/student-requests/feature",
+  "sourceRoot": "libs/client/student-requests/feature/src",
+  "prefix": "graduates",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/student-requests/feature"],
+      "options": {
+        "jestConfig": "libs/client/student-requests/feature/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/student-requests/feature/src/**/*.ts",
+          "libs/client/student-requests/feature/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
