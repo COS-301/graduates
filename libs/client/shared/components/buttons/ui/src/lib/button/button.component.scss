@@ -19,7 +19,7 @@ button:hover {
     outline: none !important;
     box-shadow: none !important;
 }
-button::disabled {
+button:disabled {
     background-color: #577697;
     color: #CFD7DE;
 }
