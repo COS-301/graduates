@@ -14,6 +14,7 @@ export class ApiHostingServiceFeatureModule {
       const companyRepresentativeAPI = new ApiHosting();
       const requestAccessAPI = new ApiHosting();
       const authenticationAPI = new ApiHosting();
+      const blogAPI = new ApiHosting();
 
       storageAPI.name = "Storage API";
       storageAPI.status = "Operational";
@@ -26,6 +27,9 @@ export class ApiHostingServiceFeatureModule {
       
       shortsAPI.name = "Shorts API";
       shortsAPI.status = "Operational";
+
+      blogAPI.name = "Blog API";
+      blogAPI.status = "Operational";
 
       accessStatusAPI.name = "Access Status API";
       accessStatusAPI.status = "Operational";
@@ -49,6 +53,7 @@ export class ApiHostingServiceFeatureModule {
         ,statusAPI
         ,companyProfileAPI
         ,shortsAPI
+        ,blogAPI
         ,accessStatusAPI
         ,companyProfilePageAPI
         ,studentProfilesAPI
