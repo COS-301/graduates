@@ -19,6 +19,12 @@ import {
   DeleteTagsHandler,
   DeleteTagsByShortHandler,
   DeleteTagByShortTagHandler,
+  GetAllReportsHandler,
+  GetReportsByUserHandler,
+  GetReportsForShortHandler,
+  GetReportHandler,
+  CreateReportHandler,
+  DeleteReportHandler,
 } from '@graduates/api/shorts/service/feature';
 import { ShortsResolver } from './api-shorts-resolver.resolver';
 import { ShortsService } from '@graduates/api/shorts/service/feature';
@@ -47,6 +53,12 @@ import { PrismaService } from '@graduates/api/shared/services/prisma/data-access
     DeleteShortHandler,
     UpdateShortHandler,
     GetUserByIdHandler,
+    GetAllReportsHandler,
+    GetReportsByUserHandler,
+    GetReportsForShortHandler,
+    GetReportHandler,
+    CreateReportHandler,
+    DeleteReportHandler,
   ],
   exports: [],
 })

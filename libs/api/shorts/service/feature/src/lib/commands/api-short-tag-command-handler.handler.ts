@@ -38,7 +38,7 @@ export class UpdateTagByShortHandler
 {
   constructor(private readonly repository: ShortsRepository) {}
 
-  async execute(command: UpdateTagByShortCommand): Promise<string> {
+  async execute(command: UpdateTagByShortCommand): Promise<ShortTag> {
     const { shortId, tag, newTag } = command;
 
     return this.repository.updateTagByShort(shortId, tag, newTag);
@@ -75,7 +75,7 @@ export class DeleteTagByShortTagHandler
 {
   constructor(private readonly repository: ShortsRepository) {}
 
-  async execute(command: DeleteTagByShortTagCommand): Promise<string> {
+  async execute(command: DeleteTagByShortTagCommand): Promise<ShortTag> {
     const { shortId, tag } = command;
 
     return this.repository.deleteTagByShortTag(shortId, tag);
