@@ -9,7 +9,8 @@
     <h1 class = "banner-text text-center pt-3">Student Shorts</h1>
 
     <div >
-      <input (change)="search()" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
+      <input *ngIf="!upload" (change)="search()" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
+      <input *ngIf="upload" disabled="true" (change)="search()" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
     </div>
     <mat-grid-list cols="3" rowHeight="380px">
 
@@ -24,7 +25,8 @@
                   <div>
                     <mat-card-title id = "cardHeader" > 
                       {{card.username}}
-                      <button (click) = "viewStory(card.pk)" class="formbutton rounded py-2 px-5" id ="cardbuttton">View</button>
+                      <button *ngIf="!upload" (click) = "viewStory(card.pk)" class="formbutton rounded py-2 px-5 cardbutton">View</button>
+                      <button *ngIf="upload" disabled="true" (click) = "viewStory(card.pk)" class="formbutton rounded py-2 px-5 cardbutton-nohov">View</button>
                    
                    </mat-card-title>  
  
