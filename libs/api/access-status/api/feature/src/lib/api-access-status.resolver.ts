@@ -7,7 +7,7 @@ export class ApiAccessStatusResolver {
     constructor(private accessStatusService: ApiAccessStatusService) {}
 
     @Query(returns => [ApiAccessStatusEntity])
-    async status(@Args('compID', { type: () => ID }) compId: string, @Args('gradID', { type: () => ID }) gradId: string): Promise<ApiAccessStatusEntity[]> {
+    async status(@Args('compId', { type: () => ID }) compId: string, @Args('gradId', { type: () => ID }) gradId: string): Promise<ApiAccessStatusEntity[]> {
         return this.accessStatusService.getAll(compId, gradId);
     }
 }
