@@ -300,6 +300,9 @@
       ],
       "@graduates/client/student-responses/feature": [
         "libs/client/student-responses/feature/src/index.ts"
+      ],
+      "@graduates/client/status-page/feature": [
+        "libs/client/status-page/feature/src/index.ts"
       ]
     }
   },
