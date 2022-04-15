@@ -57,8 +57,8 @@
       "@graduates/api/authentication/service/feature": [
         "libs/api/authentication/service/feature/src/index.ts"
       ],
-      "@graduates/api/authentication_copy/service/feature": [
-        "libs/api/authentication_copy/service/feature/src/index.ts"
+      "@graduates/api/authentication/api/feature/src/lib/users": [
+        "libs/api/authentication/api/feature/src/lib/users/index.ts"
       ],
       "@graduates/api/authorization/api/feature": [
         "libs/api/authorization/api/feature/src/index.ts"

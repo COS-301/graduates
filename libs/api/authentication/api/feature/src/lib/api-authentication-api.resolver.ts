@@ -1,4 +1,4 @@
-import { UsersService } from "@graduates/api/authentication/service/feature";
+import { UsersService } from "./api-authentication-api.service";
 import { Query, Resolver } from "@nestjs/graphql";
 import { AuthenticationUser } from "@graduates/api/authentication/api/shared/interfaces/data-access";
 
@@ -6,8 +6,19 @@ import { AuthenticationUser } from "@graduates/api/authentication/api/shared/int
 export class ApiAuthenticationResolver{
     constructor(private apiauthenticationService: UsersService){}
 
-    @Query(returns => [AuthenticationUser])
-    authentication(): Promise<AuthenticationUser[]>{
-        return this.apiauthenticationService.getAll();
+    // @Query(returns => [AuthenticationUser])
+    // authentication(): Promise<AuthenticationUser[]>{
+    //     return this.apiauthenticationService.getAll();
+    // }
+
+
+    @Query(() => [AuthenticationUser], {name: 'users'})
+    findAll(){
+        return this.apiauthenticationService.findAll();
     }
 }
+
+
+
+
+
