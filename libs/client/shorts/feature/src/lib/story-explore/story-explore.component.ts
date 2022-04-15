@@ -220,7 +220,7 @@ export class StoryExploreComponent implements OnInit {
       const out = [];
       this.endIndex = Math.ceil(this.cardlist.length/6);
 
-      for (let index = 0; index < 6; index++) {
+      for (let index = 0; index < 3; index++) {
         if(index+(this.pageIndex-1)*6 < this.cardlist.length) out.push(this.cardlist[index+(this.pageIndex-1)*6])
       }
   
