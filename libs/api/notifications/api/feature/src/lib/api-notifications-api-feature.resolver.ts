@@ -2,6 +2,7 @@ import { Resolver, Query, Args, Mutation } from "@nestjs/graphql";
 import { Notification } from "@graduates/api/notifications/api/shared";
 import { ApiNotificationsService } from "@graduates/api/notifications/service/feature";
 import { NotFoundException } from '@nestjs/common';
+import { error } from "console";
 
 @Resolver(() => Notification)
 export class NotificationsResolver {
@@ -12,15 +13,13 @@ export class NotificationsResolver {
     @Query(returns => [Notification])
     async notificationsAll(): Promise<Notification[] | null> {
         const res = await this.notificationService.getAllNoifications();
-        if (!res) throw new NotFoundException("Notifications Not Found")
-        else return res;
+        return (res) ? res : null;
     }
 
     @Query(returns => Notification)
     async notificationByID(@Args('ID', {type: () => String}) id: string): Promise<Notification | null> {
         const res = await this.notificationService.getNotificationsById(id);
-        if (!res) throw new NotFoundException("Notifications Not Found")
-        else return res;
+        return (res) ? res : null;
         
     }
 
@@ -55,8 +54,7 @@ export class NotificationsResolver {
         @Args('notificationType', {type: () => String}) notificationType : string
     ) : Promise<Notification | null> {
         const res = await this.notificationService.createRequestNotification(userIdTo, userIdFrom, notificationType)
-        if (!res) throw new NotFoundException("Notifications Not Found")
-        else return res;
+        return (res) ? res : null;
     }
 
     @Mutation(()=>Notification)
@@ -65,8 +63,7 @@ export class NotificationsResolver {
         @Args('status', {type: () => String}) status : string
     ) : Promise<Notification | null> {
         const res = await this.notificationService.updateRequestNotification(id, status);
-        if (!res) throw new NotFoundException("Notifications Not Found")
-        else return res;
+        return (res) ? res : null;
     }
 
     @Mutation(()=>Notification)
@@ -75,7 +72,6 @@ export class NotificationsResolver {
         @Args('seen', {type: () => Boolean}) seen : boolean
     ) : Promise<Notification | null> {
         const res = await this.notificationService.updateSeen(id, seen);
-        if (!res) throw new NotFoundException("Notifications Not Found")
-        else return res;
+        return (res) ? res : null;
     }
 }
