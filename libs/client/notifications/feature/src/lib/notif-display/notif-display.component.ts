@@ -8,6 +8,18 @@ import { Component, OnInit } from '@angular/core';
 export class NotifDisplayComponent{
 
   constructor() {
-    //do something
+/*     fetch('http://localhost:3333/graphql', {
+      method: 'POST',
+      headers: {'Content-Type' : 'application/json'},
+      body: JSON.stringify({ query: `
+        query {
+          notificationsAll {
+            ID
+          }
+        }`
+      }),
+    })
+    .then(res =>  res.json())
+    .then(res => console.log(res.data)); */
   }
 }
