@@ -1,10 +1,15 @@
 import {FileCategory, PrismaClient, SocialMedia} from '@prisma/client';
+import { FirebaseService, StorageRepository } from '@graduates/api/storage/repository/data-access';
+import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
+import { Select } from '@ngxs/store';
+import { ApiStorage } from '@graduates/api/storage/api/shared/data-access';
 
 //todo: david roodt removeSocialMedia and removeEmail find out why composite doesn't work
 
 export class StudentProfilesRepository
 {
     prisma = new PrismaClient();
+    storage = new StorageRepository(new PrismaService,new FirebaseService)
 
     async getName(userid : string)
     {
@@ -257,43 +262,74 @@ export class StudentProfilesRepository
         });
     }
 
+    /*
+    ApiStorageInput
+    {
+        @Field(() => ID)
+        userId!: string;
+        @Field()
+        fileCategory!: string;
+        @Field()
+        fileExtension!: string;
+        @Field()
+        filePath!: string;
+    }
+    */
+
+    //get an array of links to all the user's files
     async getFiles(userid : string)
-    {        
-        return await this.prisma.userProfileFile.findMany({
+    {
+        const list = await this.prisma.userProfileFile.findMany({
             where:
             {
                 userId: userid
             },
             select:
             {
-                fileCategory : true,
-                filePath : true,
-                fileExtension : true
+                fileId:true
             }
         });
+        let result;
+        list.forEach(i => {
+            result.push(this.storage.getUserFiles(i));
+        });
+        return result;
+    }
+
+    //get an array of links to all the user's files
+    async getSpesificFile(userid : string, type: FileCategory)
+    {
+        const list = await this.prisma.userProfileFile.findMany({
+            where:
+            {
+                userId: userid,
+                fileCategory: type
+            },
+            select:
+            {
+                fileId:true
+            }
+        });
+        let result;
+        list.forEach(i => {
+            result.push(this.storage.getUserFiles(i));
+        });
+        return result;
     }
 
     async addFiles(userid : string, fileCategory : FileCategory, filePath : string, fileExtension : string)
     {        
-        return await this.prisma.userProfileFile.create({
-            data:
-            {
-                userId: userid,
-                fileCategory : fileCategory,
-                filePath : fileCategory,
-                fileExtension : fileExtension
-            }
-        });
+        const newfile = new ApiStorage();
+        newfile.userId = userid;
+        newfile.fileCategory = fileCategory;
+        newfile.filePath = filePath;
+        newfile.fileExtension = fileExtension;
+        this.storage.createFile(newfile);
     }
 
     async removeFiles(userid : string, fileCategory : FileCategory)
     {        
-        return await this.prisma.userProfileFile.delete({
-            where:
-            {
-                fileId: userid
-            }
-        });
+        this.storage.deleteFile(userid,fileCategory);
     }
 
     async getEmploymentStatus(userid : string)
