@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CompanyExploreMaterialModule } from '../../../materials/company-explore-material.module';
-
+import { UiModule } from '@graduates/client/shared/assets/ui';
 import { CompanyExploreFilterComponent } from './company-explore-filter.component';
 
 describe('CompanyExploreFilterComponent', () => {
@@ -9,7 +8,7 @@ describe('CompanyExploreFilterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports:[CompanyExploreMaterialModule],
+      imports:[UiModule],
       declarations: [ CompanyExploreFilterComponent ]
     })
     .compileComponents();
