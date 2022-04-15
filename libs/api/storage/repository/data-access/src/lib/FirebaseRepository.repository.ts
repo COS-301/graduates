@@ -25,13 +25,21 @@ export enum FirebaseFolders{
 export class FirebaseService {
   
   firebaseConfig = {
-    apiKey: "API_KEY",
-    authDomain: "AUTH_DOMAIN",
-    projectId: "PROJECT_ID",
-    storageBucket: "STORAGE_BUCKET",
-    messagingSenderId: "MSF_SENDER_ID",
-    appId: "APP_ID",
-    measurementId: "MEASUREMENT_ID",
+    apiKey: 'AIzaSyD7fH_aHqly7Z7jiyPT-H_gc1J807BTkZQ',
+
+    authDomain: 'practice-23667.firebaseapp.com',
+
+    databaseURL: 'https://practice-23667-default-rtdb.firebaseio.com',
+
+    projectId: 'practice-23667',
+
+    storageBucket: 'practice-23667.appspot.com',
+
+    messagingSenderId: '180246940109',
+
+    appId: '1:180246940109:web:9ab1846b487e40e32f1c84',
+
+    measurementId: 'G-GC7N8G15QC',
   };
 
   app = initializeApp(this.firebaseConfig);
@@ -122,7 +130,7 @@ export class FirebaseService {
     //get the url that will download the file
     getDownloadURL(fileRef)
       .then((url) => {
-        console.log(url); 
+        console.log("NOW"+url); 
         return url;
       })
       .catch((error) => {
