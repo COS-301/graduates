@@ -64,7 +64,7 @@ export class ApiCompanyRepresentativeService {
   {
    
     //this.createRep('000','000','000','0000','0000','000','0000','0000',true,false,'0000','000','0000','0000','000','0000')
-    return this.queryBus.execute(new GetOneRepresentative({id}));
+    return this.queryBus.execute(new GetOneRepresentative(id));
   }
 
   /***
