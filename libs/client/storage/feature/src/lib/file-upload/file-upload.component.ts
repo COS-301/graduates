@@ -15,7 +15,7 @@ export class FileUploadComponent implements OnInit {
   greyImageAlt = 'noFileSelected';
 
   // for user details
-  userID = 0;
+  userID = "";
   fileCategory = "";
   cat = "";
 
@@ -31,7 +31,8 @@ export class FileUploadComponent implements OnInit {
   // Variable to store shortLink from api response
     success = "";
     loading = false; // Flag variable
-    file: File | undefined; // Variable to store file
+    file!: File; // Variable to store file
+ // Variable to store file
   
     // Inject service 
     constructor(
@@ -41,12 +42,12 @@ export class FileUploadComponent implements OnInit {
     ngOnInit(): void {
       this.route.paramMap.subscribe((params: any) => {
 
-        this.userID = +params.get('userID');
+        this.userID = params.get('userID');
         this.fileCategory = params.get('fileCategory');
 
-        if (params.get('fileCategory') == "academic-record") {
+        if (params.get('fileCategory') === "academic-record") {
           this.cat = "Academic Record";
-        }else if (params.get('fileCategory') == "transcript") {
+        }else if (params.get('fileCategory') === "transcript") {
           this.cat = "Transcript";
         }else{
           this.cat = "CV";
@@ -110,6 +111,30 @@ export class FileUploadComponent implements OnInit {
         );
 
     }
+
+    // just a duplicate of the above function 
+    onUploadFile() {
+
+      // Loading design activation
+      this.loading = !this.loading;
+
+      console.log(this.file);
+
+      this.fileUploadService.uploadFile(this.file.name, this.userID, this.fileCategory, this.file?.type, this.file).subscribe(
+          (event: any) => {
+              if (typeof (event) === 'object') {
+
+                  // Short link via api response
+                  this.success = event.link;
+
+                  this.loading = false; // Flag variable 
+                  this.safeToUpload = false;
+                  this.invalid_2 = true;
+              }
+          }
+      );
+
+  }
 
     goBack(){
       window.location.href = "storage/" + this.userID;
