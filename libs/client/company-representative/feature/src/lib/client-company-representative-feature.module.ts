@@ -9,6 +9,7 @@ import { CompanyRepresentativeContactComponent } from './company-representative-
 import { MatCardModule } from '@angular/material/card';
 import { CompanyRepresentativeRoutingModule } from "./company-representative-routing.module";
 import { CompanyRepresentativeMockLoginPageComponent } from './company-representative-mock-login-page/company-representative-mock-login-page.component';
+import { CompanyRepresentativeExploreComponent } from './company-representative-explore/company-representative-explore.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import { CompanyRepresentativeMockLoginPageComponent } from './company-represent
     CompanyRepresentativeExperienceComponent,
     CompanyRepresentativeConnectionsComponent,
     CompanyRepresentativeContactComponent,
-    CompanyRepresentativeMockLoginPageComponent
+    CompanyRepresentativeMockLoginPageComponent,
+    CompanyRepresentativeExploreComponent,
   ],
   exports : [
     CompanyRepresentativePageComponent,
