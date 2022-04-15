@@ -5,7 +5,7 @@ import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { 
   GetAllUserNotificationsQuery,
   GetNotificationByIdQuery,
-  GetNotificationsRecievedQuery,
+  GetNotificationsReceivedQuery,
   GetNotificationsSentQuery,
   GetNotificationsByTypeQuery
 } from './api-notifications-service-queries.query';
@@ -32,13 +32,13 @@ export class GetNotificationsByIdHandler implements IQueryHandler<GetNotificatio
 }
 
 
-@QueryHandler(GetNotificationsRecievedQuery)
-export class GetNotificationsRecievedHandler implements IQueryHandler<GetNotificationsRecievedQuery> {
+@QueryHandler(GetNotificationsReceivedQuery)
+export class GetNotificationsReceivedHandler implements IQueryHandler<GetNotificationsReceivedQuery> {
   constructor(private readonly repository: NotificationsRepository) {}
 
-  async execute(query: GetNotificationsRecievedQuery): Promise<Notification[] | null> {
+  async execute(query: GetNotificationsReceivedQuery): Promise<Notification[] | null> {
     const { userId }  = query;
-    return this.repository.findNotificationsRecieved(userId);
+    return this.repository.findNotificationsReceived(userId);
   }
 }
 

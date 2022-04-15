@@ -44,7 +44,7 @@ describe('API Notifications Data Access Module', () => {
 
   it('should be defined', () => {
     const userID = "userID";
-    expect(controller.findNotificationsRecieved(userID)).toBeDefined;
+    expect(controller.findNotificationsReceived(userID)).toBeDefined;
   })
 
   it('should be defined', () => {

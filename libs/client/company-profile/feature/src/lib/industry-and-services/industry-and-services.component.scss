@@ -1,0 +1,41 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+h2 {
+    color: #174372;
+    margin-bottom: 1px;
+}
+
+mat-divider {
+    border-top-color: #174372;
+    // border-top-color: $primary-1;
+    // margin-bottom: 5%;
+}
+
+button{
+    position: absolute;
+    text-align: center;
+    vertical-align: center;
+    left: 70.89%;
+    right: 1.9%;
+    top: 85%;
+    bottom: 3.75%;
+    background-color: #174372;
+    color: white;
+    border-radius: 4px;
+    border-style: none;
+
+    position: absolute;
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 5px;
+    line-height: 7px;
+
+    width: 43;
+    height: 14;
+}
+
+.icon {
+    float: right;
+    color: #174372;
+    font-size: xx-large;
+}

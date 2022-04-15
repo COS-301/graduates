@@ -1,1 +1,1 @@
-export * from './lib/company-profile.module';
+export * from './lib/client-company-profile.module';
