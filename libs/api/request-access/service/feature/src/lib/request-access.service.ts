@@ -11,8 +11,15 @@ export class RequestAccessService {
   ) {}
 
   async getAccessEntity(companyID: string, userID: string, itemID: string): Promise<ApiRequestAccessEntity> {
-      return this.queryBus.execute(
-        new GetAccessEntitiesQuery(companyID, userID, itemID)
-      )
+      // return this.queryBus.execute(
+      //   new GetAccessEntitiesQuery(companyID, userID, itemID)
+      // )
+      const entity = {
+        companyID: companyID,
+        userID: userID,
+        item: itemID,
+      };
+  
+      return entity;
     }
 }
