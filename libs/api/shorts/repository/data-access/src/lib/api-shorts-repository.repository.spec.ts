@@ -3,7 +3,6 @@ import { ShortsRepository } from './api-shorts-repository.repository';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 import { Short, ShortTag, ShortReport, ShortCreateTagInput, ShortCreateInput } from '@graduates/api/shorts/api/shared/entities/data-access';
 import { User} from '@graduates/api/authentication/api/shared/interfaces/data-access';
-import { Prisma } from '@prisma/client';
 
 jest.mock('@graduates/api/shorts/api/shared/entities/data-access');
 
@@ -100,8 +99,6 @@ describe('ShortsRepository', () => {
 describe("DB Integration Tests", () => {
   let repository: ShortsRepository;
   let prisma: PrismaService;  
-  let shortTest: Short;
-  let shortTagTest: ShortTag;
 
 
   beforeAll(async () => {
