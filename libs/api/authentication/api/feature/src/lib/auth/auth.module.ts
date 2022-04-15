@@ -9,7 +9,7 @@ import { JwtStrategy } from './jwt-strategy';
 // import { GoogleStrategy } from './google-strategy';
 
 @Module({
-  providers: [AuthService, AuthResolver, LocalStrategy, JwtStrategy, // GoogleStrategy
+  providers: [AuthService, AuthResolver, LocalStrategy, JwtStrategy, //GoogleStrategy
 ],
   imports: [PassportModule, UsersModule, JwtModule.register({
     signOptions: {expiresIn: '60s'},
