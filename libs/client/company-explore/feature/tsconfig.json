@@ -16,7 +16,9 @@
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "emitDecoratorMetadata": true,
+     "outDir": "./out-tsc/spec"
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,

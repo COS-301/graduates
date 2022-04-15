@@ -5,7 +5,7 @@
             fxFlex.md="20%"  fxFlexOffset.md="4%"
             fxFlex.sm="33%" fxFlexOffset.sm="10%"
             fxFlex.xs="100%" fxFlexOffset.xs="25%"
-            *ngFor="let company of companies">
+            *ngFor="let company of companies|async">
           
             <graduates-company-explore-card [company]="company"></graduates-company-explore-card>
         

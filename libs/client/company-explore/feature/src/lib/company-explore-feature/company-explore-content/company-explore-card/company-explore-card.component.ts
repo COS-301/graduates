@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import{Company}from '../../mock-Company-interface';
+import{Company}from '../../store/company-model';
+
 @Component({
   selector: 'graduates-company-explore-card',
   templateUrl: './company-explore-card.component.html',

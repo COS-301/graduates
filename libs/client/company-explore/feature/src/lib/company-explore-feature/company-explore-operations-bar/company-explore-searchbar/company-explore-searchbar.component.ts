@@ -13,6 +13,6 @@ export class CompanyExploreSearchbarComponent{
 
   }
   onSubmit(form:NgForm){
-    this.router.navigate(['search',form.value.search])
+    this.router.navigate(['company-explore/search',form.value.search])
   }
 }
