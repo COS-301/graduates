@@ -14,8 +14,8 @@ export class ApiStudentProfileService {
     }
 
     
-    getStudentDetails() {
-      const query = 'query ($studentNum: String!) {student(studentNum: $studentNum) { firstName, lastName }}';
+    getStudentDetails(): Observable<any> {
+      const query = 'query ($studentNum: String!) {student(studentNum: $studentNum) { firstName, lastName, studentNum }}';
   
       const options = {
         headers: new HttpHeaders({
@@ -23,7 +23,7 @@ export class ApiStudentProfileService {
         })
       }
   
-      console.log(this.client.post<any>('http://localhost:3333/graphql', JSON.stringify({ query: query, variables: { studentNum: "u20465026" } }), options).subscribe(val => console.log(val)));
+      return this.client.post<any>('http://localhost:3333/graphql', JSON.stringify({ query: query, variables: { studentNum: "u19001836" } }), options);
 
      }
 }

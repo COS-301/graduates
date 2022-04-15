@@ -30,7 +30,7 @@ import { ApiAdminConsoleApiFeatureModule  as ApiAdminconsoleApiFeatureModule } f
     ApiAccessStatusFeatureModule,
     ApiCompanyProfilePageFeatureModule,
     ApiStudentProfilesModule,
-    //ApiCompanyRepresentativeApiFeatureModule,
+    ApiCompanyRepresentativeApiFeatureModule,
     ApiRequestAccessFeatureModule,
     ApiAuthenticationApiFeatureModule,
     ApiAuthorizationFeatureModule,

@@ -1,5 +1,5 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'graduates-profile-card',
@@ -9,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
 export class ProfileCardComponent implements OnInit {
 
    // eslint-disable-next-line @typescript-eslint/no-empty-function
-  constructor() { }
+  constructor() { 
+    this.name = null;
+  }
+
+  @Input() name: any;
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   ngOnInit(): void {
   }
+
+ 
 
 }
