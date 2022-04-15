@@ -33,8 +33,8 @@ export class StoryExploreComponent implements OnInit {
 
   viewing : boolean;
   reporting: boolean;
-  currentlyViewing! : number;
-  currentlyReporting! : number;
+  currentlyViewing! : string;
+  currentlyReporting! : string;
   successfulReport : boolean;
   reported : boolean;
 
@@ -47,7 +47,7 @@ export class StoryExploreComponent implements OnInit {
   fileError = "File is required.";
   uploadedFile! : any;
 
-  cardlist = [{"user": {"name": "Matthew"},"shortTag":[{"tag":"TeamWork"}],"thumbnail":""}];
+  cardlist = [{"user": {"name": "Matthew"},"shortTag":[{"tag":"TeamWork"}],"userId":"test","id":"fake","thumbnail":""}];
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       return this.cardlist;
@@ -124,8 +124,8 @@ export class StoryExploreComponent implements OnInit {
     this.successfulReport = false;
   }
 
-  viewStory(n : number) {
-    this.currentlyViewing = n;
+  viewStory(s : string) {
+    this.currentlyViewing = s;
     this.viewing = true;
     this.reporting = false;
     this.successfulReport = false;
@@ -180,7 +180,7 @@ export class StoryExploreComponent implements OnInit {
 
   
   loadCards(){
-    const test = "query{ getAllShorts{ user{  name  },shortTag{ tag }, thumbnail}}";
+    const test = "query{ getAllShorts{ user{  name  },shortTag{ tag },userId,id, thumbnail}}";
     
     if(!(this.apollo.client===undefined)) this.apollo
     .watchQuery({
