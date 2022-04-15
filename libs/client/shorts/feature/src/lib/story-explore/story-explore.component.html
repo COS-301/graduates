@@ -1,45 +1,46 @@
+
+
 <div class="container-fluid">
 
   <!-- Story Explore -->
   <div class="grid-container" max-w-prose w-2>
-    <h1 class = "banner-text">Student Shorts</h1>
+    <h1 class = "banner-text text-center pt-3">Student Shorts</h1>
 
     <div >
-      <input (change)="search()" (click)="searchClick()" id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
+      <input *ngIf="!upload" (change)="search()" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
+      <input *ngIf="upload" disabled="true" (change)="search()" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
     </div>
-    <mat-grid-list cols="3" rowHeight="380px">
+    <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-1 md:-mx-4 lg:-mx-6 xl:-mx-4 ">
+      <div *ngFor="let card of cards | async" class="flex justify-center my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-full md:my-4 md:px-4 md:w-1/2 lg:my-6 lg:px-6 lg:w-1/3 xl:my-4 xl:px-4 xl:w-1/3" >
 
       <!-- Generate Cards -->
-      <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="0.5">
         <mat-card class="dashboard-card " id = "card">
 
 
           <mat-card-content class="dashboard-card-content ">
             <img src={{card.pic}} id="thumbnail">
-
                 <div class="grid grid-rows-2 py-2 ">
                   <div>
                     <mat-card-title id = "cardHeader" > 
                       {{card.username}}
-                      <button (click) = "viewStory(card.pk)" class="formbutton rounded py-2 px-5" id ="cardbuttton">View</button>
+                      <button *ngIf="!upload" (click) = "viewStory(card.pk)" class="formbutton rounded py-2 px-5 cardbutton">View</button>
+                      <button *ngIf="upload" disabled="true" (click) = "viewStory(card.pk)" class="formbutton rounded py-2 px-5 cardbutton-nohov">View</button>
                    
                    </mat-card-title>  
  
                   </div>
                   <div id ="tags"><i *ngFor="let tag of card.tags" >{{tag}} </i>
                   </div>
-
-
                 </div>    
+          </mat-card-content>
 
-              </mat-card-content>
         </mat-card>
-      </mat-grid-tile>
+      </div>
       
-    </mat-grid-list>
+    </div>
 
     <!-- Page Navigation -->
-    <div class="flex justify-center items-center space-x-1">
+    <div class="flex justify-center space-x-1">
         <button id ="prevBtn" disabled (click)="btnNaviClick(-1)" class=" px-4 py-2 formbuttonblue rounded">
             Prev
         </button>
@@ -109,7 +110,7 @@
 
               <div class="infocolour mb-1">Add Tags:</div>
 
-              <input id="taginput" placeholder="#COS, #CSLife" type="text" formControlName="tags" class="drop-shadow-md h-8 w-full rounded" [ngClass]="{'is-invalid': submit && uploadfrm.controls['tags'].errors}"/>
+              <input id="taginput" placeholder="#COS, #CSLife" type="text" formControlName="tags" class="drop-shadow-md w-full rounded" [ngClass]="{'is-invalid': submit && uploadfrm.controls['tags'].errors}"/>
               <div *ngIf="submit && uploadfrm.controls['tags'].errors" class="text-right error mt-1">
                 A tag is required.
               </div>
