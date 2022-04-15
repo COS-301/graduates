@@ -9,7 +9,6 @@ import {
   GetCommentsByBlogIdQuery, 
   GetCommentByCommentIdQuery, 
   GetMediaByBlogIdQuery } from './api-blog-query.query';
-import { Blog } from '@prisma/client';
 
 @QueryHandler(GetBlogByIdQuery)
 export class GetBlogByIdHandler implements IQueryHandler<GetBlogByIdQuery> {
