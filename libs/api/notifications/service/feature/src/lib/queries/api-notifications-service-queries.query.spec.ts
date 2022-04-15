@@ -1,4 +1,4 @@
-import { GetAllUserNotificationsQuery } from './get-all-user-notifications.query';
+import { GetAllUserNotificationsQuery } from './api-notifications-service-queries.query';
 
 describe('GetAllUserNotificationsQuery', () => {
   it('should be defined', () => {
