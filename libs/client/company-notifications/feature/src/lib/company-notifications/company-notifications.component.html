@@ -1,0 +1,94 @@
+<!-- Initial Design made by Aryan Ramnand (u20443626), modified by Hugo Esterhuyse/UI Engineer(u20532581) -->
+<div><graduates-header></graduates-header></div>
+<mat-card class="notification-card">
+  <mat-card-header class="matCardHeader">
+    <mat-card-title class="matCardTitle" style="margin-bottom: 0%"
+      >Company Notification Board</mat-card-title
+    >
+    <mat-icon style="color: white;">pending_actions</mat-icon>
+  </mat-card-header>
+  <mat-accordion class="example-headers-align" multi>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>account_circle</mat-icon>Aryan
+        </mat-panel-title>
+        <mat-panel-description>Denied request for CV. </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-list>
+        <mat-list-item>
+          <mat-icon matListIcon>account_circle</mat-icon>
+          <h3 matLine>Aryan Ramnand</h3>
+          <h3 matLine>aryanramnand@gmail.co.za</h3>
+          <p>Denied request for CV.</p>
+        </mat-list-item>
+        <mat-action-row class="matActionRow">
+          <h4>
+            Good afternoon User.<br/>The request for the student's CV 
+            has been rejected.
+          </h4>
+        </mat-action-row>
+        <mat-action-row>
+          <button mat-raised-button color="primary">Mark as seen</button>
+        </mat-action-row>
+      </mat-list>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>account_circle</mat-icon>Thabo
+        </mat-panel-title>
+        <mat-panel-description>
+          Accepted request for Academic Record.
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-list>
+        <mat-list-item>
+          <mat-icon matListIcon>account_circle</mat-icon>
+          <h3 matLine>Thabo Chesane</h3>
+          <h3 matLine>thabochesane@gmail.co.za</h3>
+          <p>Accepted request for Academic Record.</p>
+        </mat-list-item>
+        <mat-action-row class="matActionRow">
+          <h4>
+            Good Afternoon User.<br />The request for the student's Academic Record 
+            has been accepted. You can view it <a href="#">here</a>.
+          </h4>
+        </mat-action-row>
+        <mat-action-row>
+          <button mat-raised-button color="primary">Mark as seen</button>
+        </mat-action-row>
+      </mat-list>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>account_circle</mat-icon>Hugo
+        </mat-panel-title>
+        <mat-panel-description>Denied request for contact details.</mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-list>
+        <mat-list-item>
+          <mat-icon matListIcon>account_circle</mat-icon>
+          <h3 matLine>Hugo Esterhuyse</h3>
+          <h3 matLine>hugo@gmail.co.za</h3>
+          <p>Denied request for contact details.</p>
+        </mat-list-item>
+        <mat-action-row class="matActionRow">
+          <h4>
+            Good Afternoon User.<br/>The request for the student's contact 
+            details has been denied.
+          </h4>
+        </mat-action-row>
+        <mat-action-row>
+          <button mat-raised-button color="primary">Mark as seen</button>
+        </mat-action-row>
+      </mat-list>
+    </mat-expansion-panel>
+    <mat-action-row>
+      <button mat-raised-button color="primary">Mark all as seen</button>
+    </mat-action-row>
+  </mat-accordion>
+</mat-card>
+
+<div><graduates-footer></graduates-footer></div>

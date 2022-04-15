@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
-import { ApiNotificationsApiFeatureController } from './api-notifications-api-feature.controller';
+import { NotificationsResolver } from './api-notifications-api-feature.resolver';
+import { ApiNotificationsService } from '@graduates/api/notifications/service/feature';
+import { CqrsModule } from '@nestjs/cqrs';
 
 @Module({
-  controllers: [ApiNotificationsApiFeatureController],
-  providers: [],
+  imports: [CqrsModule],
+  providers: [NotificationsResolver,ApiNotificationsService],
   exports: [],
 })
 export class ApiNotificationsApiFeatureModule {}

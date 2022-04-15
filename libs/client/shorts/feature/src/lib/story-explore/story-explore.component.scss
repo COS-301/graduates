@@ -1,0 +1,189 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+
+#thumbnail{
+    height: 65%;
+    width: fit-content;
+}
+#navBar{
+    position: absolute;
+    bottom: 100% important;
+}
+.banner-text {
+    color: $primary-1;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+#cardHeader{
+    padding-top: 2px;
+}
+#card{
+    height: 95%;
+    width: fit-content;
+}
+
+.cardbutton {
+    font-size: medium;
+    color: $text-white;
+    float: right;
+    padding-right: 20px;
+    margin-top: -5px;
+    background-color: $card-blue;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: $card-blue;
+    &:hover{
+        color: $primary-1;
+        background-color: $background-white;
+    }   
+    
+}
+
+.cardbutton-nohov {
+    font-size: medium;
+    color: $text-white;
+    float: right;
+    padding-right: 20px;
+    margin-top: -5px;
+    background-color: $card-blue;
+    color: $text-white;
+
+    border-style: solid;
+    border-width: 1px;  
+}
+
+#tags{
+    font-size: small;
+    flex-wrap: wrap;
+    display: inline-block;
+    max-width: fit-content;
+}
+
+
+#search{
+    border: none;
+    padding: 10px;
+    box-shadow: 3px 4px 6px #888888;
+    width: 70vw;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+@media (max-width: 428px) {
+
+    #search {
+        border: none;
+        width: 80vw;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        outline: 1px solid $background-white;
+    }
+    
+}
+
+.error {
+    color: $text-red;
+}
+
+.popupcard {
+    background-color: $background-white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    // width: 50vw;
+    color: $text-white;
+}
+
+#uploadbanner {
+    background-color: $card-blue;
+}
+
+#infomessage {
+    color: $primary-3;
+}
+
+#viewname {
+    color: $primary-3;
+    text-align: left !important;
+}
+
+#viewtags {
+    color: $primary-3;
+}
+
+.thumbnailselected {
+    height: auto;
+    width: 80vw;
+    max-width: 80vh;
+}
+
+.bigblur {
+    box-shadow: 0px 0px 400px 50px rgba(179, 178, 178, 0.75);
+}
+
+.infocolour {
+    color: $primary-3;
+}
+
+.hint {
+    color: #888888;
+}
+
+#greyline {
+    border-bottom: 1.8px solid #888888;
+    margin-left: 2vh;
+    margin-right: 2vh;
+}
+
+#fileupload {
+    outline: 0.2vh dashed #a3bdc0;
+    outline-offset: -6px;
+    background-color: #c9dade;
+}
+
+#reason {
+    outline: none;
+    color: $primary-3;
+    padding: 8px 8px;
+    max-height: 60vh;
+    min-height: 10vh;
+}
+
+#taginput {
+    outline: none;
+    color: $primary-3;
+    padding: 8px 8px;
+}
+
+.formbuttonblue {
+    background-color: $card-blue;
+    color: $text-white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $card-blue;
+    &:hover{
+        color: $primary-1;
+        background-color: $background-white;
+    }   
+}
+
+.formbuttonred {
+    background-color: $card-red;
+    color: $text-white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $card-red;
+    &:hover{
+        color: $primary-1;
+        background-color: $background-white;
+
+    }   
+}
