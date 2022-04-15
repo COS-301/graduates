@@ -172,7 +172,9 @@ export class StudentExploreRepository {
 
         //StudentProfilePicture
 
-        tempStudentObj;
+        tempStudentObj.StudentPic = this.storage.getFile(students[i].id, "Profile Picture");
+
+        //tempStudentObj;
 
         return tempStudentObj;
 
