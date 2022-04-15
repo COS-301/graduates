@@ -50,9 +50,8 @@ export class StorageRepository {
       }
     });
       //only the first element of array since it will be unique
-      let urlS = null;
 
-      urlS = await arr.then(async (value) => {
+      return await arr.then(async (value) => {
         if(value){
           return await this.firebaseService.getURLByFilePath(value[0].filePath);
         }
@@ -60,8 +59,6 @@ export class StorageRepository {
           return null;
         }
       });
-
-      return urlS;
 
   }
   //TODO update func, config

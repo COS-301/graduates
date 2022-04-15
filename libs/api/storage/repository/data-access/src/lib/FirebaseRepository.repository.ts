@@ -121,9 +121,7 @@ export class FirebaseService {
 
     //get the url that will download the file
 
-    let urlS = null;
-
-    urlS = await getDownloadURL(fileRef)
+    return await getDownloadURL(fileRef)
       .then((url) => {
         return url;
       })
@@ -132,7 +130,6 @@ export class FirebaseService {
         return null;
       });
 
-     return urlS;
   }
 
   async deleteByFilename(filename:string, folder:FirebaseFolders):Promise<boolean>{
