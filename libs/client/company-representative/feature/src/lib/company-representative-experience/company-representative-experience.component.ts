@@ -5,4 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './company-representative-experience.component.html',
   styleUrls: ['./company-representative-experience.component.scss']
 })
-export class CompanyRepresentativeExperienceComponent {}
+export class CompanyRepresentativeExperienceComponent {
+  experience = "Some quick example text to build on the card title and make up the bulk of the card's content";
+}
