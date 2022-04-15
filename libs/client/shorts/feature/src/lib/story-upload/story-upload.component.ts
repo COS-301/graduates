@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'graduates-story-upload',
   templateUrl: './story-upload.component.html',

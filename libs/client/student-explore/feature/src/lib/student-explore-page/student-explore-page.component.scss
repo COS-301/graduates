@@ -1,0 +1,58 @@
+header h1
+{
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    margin-bottom: 1;
+
+    color: #174372;
+    width: 100%;
+    text-align: center;
+
+    left: 1%;
+    right: 1%;
+}
+
+header{
+    background: #F8F9FA;
+}
+
+header app-search-bar
+{
+    background: #F8F9FA;
+    margin: auto;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+section
+{
+    background: #F8F9FA;
+    width: 100%;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+    /*margin-top: 1.5rem;
+    margin-bottom: 1.5rem;*/
+   /* margin-left: 5%;
+    margin-right: 5%;*/
+}
+
+section app-student-card
+{
+    background: #F8F9FA;
+    display: inline-block;
+    height: 500px;
+    min-width: 261px; /*Got removed*/
+    width: 29.25%; /*Was 25%*/
+    margin-left: 2rem; /*Was 4%*/
+    margin-right: 2rem; /*Was 4%*/
+}
+
+footer
+{
+    visibility: hidden;
+    position: sticky;
+    bottom: 0;
+}

@@ -2,7 +2,8 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["filterJson"]
 }
 
 datasource db {
@@ -29,22 +30,27 @@ model User {
 
   company User? @relation(name: "company_id", fields: [companyId], references: [id])
 
-  User             User[]            @relation("company_id")
-  userScout        UserScouted[]     @relation("userScout")
-  userScouted      UserScouted[]     @relation("userScouted")
-  UserRole         UserRole[]
-  UserPermissions  UserPermissions[]
-  UserProfile      UserProfile[]
-  UserTag          UserTag[]
-  UserSocialMedia  UserSocialMedia[]
-  UserLocation     UserLocation[]
-  UserEmail        UserEmail[]
-  UserProfileFile  UserProfileFile[]
-  Short            Short[]
-  ShortReport      ShortReport[]
-  notificationFrom Notification[]    @relation("notificationFrom")
-  notificationTo   Notification[]    @relation("notificationTo")
-  Blog             Blog[]
+  User              User[]              @relation("company_id")
+  userScout         UserScouted[]       @relation("userScout")
+  userScouted       UserScouted[]       @relation("userScouted")
+  UserRole          UserRole[]
+  UserPermissions   UserPermissions[]
+  UserProfile       UserProfile[]
+  UserTag           UserTag[]
+  UserContactNumber UserContactNumber[]
+  UserDegree        UserDegree[]
+  UserExperience    UserExperience[]
+  UserSocialMedia   UserSocialMedia[]
+  UserLocation      UserLocation[]
+  UserEmail         UserEmail[]
+  UserProfileFile   UserProfileFile[]
+  Short             Short[]
+  ShortReport       ShortReport[]
+  notificationFrom  Notification[]      @relation("notificationFrom")
+  notificationTo    Notification[]      @relation("notificationTo")
+  Blog              Blog[]
+  BlogComment       BlogComment[]
+  UserToken         UserToken[]
 
   @@map("user")
 }
@@ -151,9 +157,11 @@ enum PermissionTenant {
 
 // Profile information for a user
 model UserProfile {
-  userId         String  @id @map("user_id")
-  profilePicture String? @map("profile_picture")
-  bio            String?
+  userId           String  @id @map("user_id")
+  profilePicture   String? @map("profile_picture")
+  bio              String?
+  employmentStatus Boolean @default(false) @map("employment_status")
+  openToOffers     Boolean @default(false) @map("open_to_offers")
 
   user User @relation(fields: [userId], references: [id])
   @@map("user_profile")
@@ -161,10 +169,11 @@ model UserProfile {
 
 // Tag on which to filter users
 model UserTag {
-  userId String @id @map("user_id")
+  userId String @map("user_id")
   tag    String
 
   user User @relation(fields: [userId], references: [id])
+  @@id([userId, tag])
   @@map("user_tag")
 }
 
@@ -226,18 +235,28 @@ enum FileCategory {
   VIDEO
 }
 
+model UserDegree {
+  userID     String @id @map("user_id")
+  degreeType String @map("degree_type")
+  degreeName String @map("degree_name")
+
+  user User @relation(fields: [userID], references: [id])
+  @@map("user_degree")
+}
+
 ///////////////////////////////////////////////////////////////////////
 // 2. Short
 ///////////////////////////////////////////////////////////////////////
 
 // Shorts of users
 model Short {
-  id         String   @id @default(cuid())
-  userId     String   @map("user_id")
-  media      String?
-  data       String?
-  datePosted DateTime @default(now()) @map("date_posted")
-  archived   Boolean
+  id          String   @id @default(cuid())
+  userId      String   @map("user_id")
+  description String?
+  link        String?
+  thumbnail   String?
+  datePosted  DateTime @default(now()) @map("date_posted")
+  archived    Boolean
 
   user User @relation(fields: [userId], references: [id])
 
@@ -314,10 +333,14 @@ model Blog {
 model BlogComment {
   id      String   @id @default(cuid())
   blogId  String   @map("blog_id")
+  userId  String   @map("user_id")
   content String
   date    DateTime @default(now())
 
   blog Blog @relation(fields: [blogId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+
+
   @@map("blog_comment")
 }
 
@@ -333,6 +356,22 @@ model BlogMedia {
 }
 
 ///////////////////////////////////////////////////////////////////////
+// 5. Token
+///////////////////////////////////////////////////////////////////////
+
+model UserToken {
+  userId              String @map("user_id")
+  userToken           String @map("user_token")
+  userTokenType       Int    @map("user_token_type")
+  userTokenExpiration Int    @map("user_token_expiration")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@id([userId])
+  @@map("user_token")
+}
+
+///////////////////////////////////////////////////////////////////////
 // Tests
 ///////////////////////////////////////////////////////////////////////
 
@@ -340,4 +379,21 @@ model Test {
   id    Int     @id @default(autoincrement())
   test1 String  @unique
   test2 String?
+}
+
+// User contact number
+model UserContactNumber {
+  userId String @id @map("user_id")
+  number String @db.VarChar(10)
+
+  user User @relation(fields: [userId], references: [id])
+  @@map("user_contact_number")
+}
+
+model UserExperience {
+  userId     String @id @map("user_id")
+  experience String
+
+  user User @relation(fields: [userId], references: [id])
+  @@map("user_experience")
 }
