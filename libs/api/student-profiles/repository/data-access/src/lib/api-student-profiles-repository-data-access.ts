@@ -4,8 +4,6 @@ import { PrismaService } from '@graduates/api/shared/services/prisma/data-access
 import { Select } from '@ngxs/store';
 import { ApiStorage } from '@graduates/api/storage/api/shared/data-access';
 
-//todo: david roodt removeSocialMedia and removeEmail find out why composite doesn't work
-
 export class StudentProfilesRepository
 {
     prisma = new PrismaClient();
@@ -180,14 +178,11 @@ export class StudentProfilesRepository
         return await this.prisma.userSocialMedia.delete({
             where:
             {
-                userId: userid
-                /* //the below should work will querry
                 userId_type:
                 {
                     userid: userid,
                     type: type
                 }
-                */
             }
         });
     }
@@ -250,14 +245,11 @@ export class StudentProfilesRepository
         return await this.prisma.userEmail.delete({
             where:
             {
-                userId : userid
-                /*
                 userId_email:
                 {
                     userId : userid,
                     email: email
                 }
-                */
             }
         });
     }
