@@ -1,13 +1,13 @@
 @import 'libs/client/shared/assets/ui/src/lib/global';
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
 h2 {
     color: #174372;
+    margin-bottom: 1px;
 }
 
 mat-divider {
-    color: #174372;
+    border-top-color: #174372;
+    // border-top-color: $primary-1;
+    // margin-bottom: 5%;
 }
 
 button{
@@ -37,4 +37,5 @@ button{
 .icon {
     float: right;
     color: #174372;
+    font-size: xx-large;
 }
