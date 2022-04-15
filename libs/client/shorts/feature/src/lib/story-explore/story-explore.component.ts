@@ -206,8 +206,8 @@ export class StoryExploreComponent implements OnInit {
 
   loadCards(){
 
-
-    this.apollo
+    
+    if(!(this.apollo.client===undefined)) this.apollo
     .watchQuery({
       query: gql`
       query{
@@ -242,6 +242,7 @@ export class StoryExploreComponent implements OnInit {
         })
       );
     });
+
 
 
   }
