@@ -1,5 +1,7 @@
 import {FileCategory, PrismaClient, SocialMedia} from '@prisma/client';
 
+//todo: david roodt removeSocialMedia and removeEmail find out why composite doesn't work
+
 export class StudentProfilesRepository
 {
     prisma = new PrismaClient();
@@ -131,8 +133,12 @@ export class StudentProfilesRepository
     {
         return await this.prisma.userTag.delete({
             where:
-            {
-                userId: userid
+            {   
+                userId_tag:
+                {
+                    userId: userid,
+                    tag: tag
+                }
             }
         });
     }
@@ -164,12 +170,19 @@ export class StudentProfilesRepository
         });
     }
 
-    async removeSocialMedia(userid : string)
+    async removeSocialMedia(userid : string, type: SocialMedia)
     {        
         return await this.prisma.userSocialMedia.delete({
             where:
             {
                 userId: userid
+                /* //the below should work will querry
+                userId_type:
+                {
+                    userid: userid,
+                    type: type
+                }
+                */
             }
         });
     }
@@ -216,16 +229,30 @@ export class StudentProfilesRepository
         });
     }
 
-    async setEmails(userid : string, email: string)
+    async addEmail(userid : string, email: string)
     {        
-        return await this.prisma.userEmail.update({
+        return await this.prisma.userEmail.create({
             data:
             {
+                userId : userid,
                 email: email
-            },
+            }
+        });
+    }
+
+    async removeEmail(userid : string, email: string)
+    {        
+        return await this.prisma.userEmail.delete({
             where:
             {
                 userId : userid
+                /*
+                userId_email:
+                {
+                    userId : userid,
+                    email: email
+                }
+                */
             }
         });
     }
@@ -270,8 +297,7 @@ export class StudentProfilesRepository
     }
 
     async getEmploymentStatus(userid : string)
-    {   
-        /*     
+    {     
         return await this.prisma.userProfile.findFirst({
             where:
             {
@@ -279,99 +305,86 @@ export class StudentProfilesRepository
             },
             select:
             {
-                EmploymentStatus : true,
-                OpenToOffers : true
+                employmentStatus : true,
+                openToOffers : true
             }
         });
-        */
     }
 
     async setEmploymentStatus(userid : string, employmentstatus: boolean, opentooffers : boolean,)
     {   
-        /*     
         return await this.prisma.userProfile.update({
             data:
             {
-                EmploymentStatus : employmentstatus,
-                OpenToOffers : opentooffers
+                employmentStatus : employmentstatus,
+                openToOffers : opentooffers
             },
             where:
             {
                 userId: userid
             }
         });
-        */
     }
 
-    async getDegree(userid : string)
+    async getDegrees(userid : string)
     {     
-        /*     
         return await this.prisma.userDegree.findMany({
             where:
             {
-                userId: userid
+                userID: userid
             },
             select:
             {
-                DegreeTitle : true,
-                DegreeName : true
+                degreeType: true,
+                degreeName : true
             }
         });
-        */
     }
 
     async addDegree(userid : string, degreetitle : string, degreename : string)
-    {  
-        /*      
-        return await this.prisma.userProfileFile.create({
+    {      
+        return await this.prisma.userDegree.create({
             data:
             {
-                userId: userid,
-                DegreeTitle : degreetitle,
-                DegreeName : degreename
+                userID: userid,
+                degreeType: degreetitle,
+                degreeName: degreename
             }
         });
-        */
     }
 
     async getCellNum(userid : string)
-    {     
-        /*     
-        return await this.prisma.userCellNum.findMany({
+    {          
+        return await this.prisma.userContactNumber.findMany({
             where:
             {
                 userId: userid
             },
             select:
             {
-                cellNum : true
+                number : true
             }
         });
-        */
     }
 
     async addCellNum(userid : string, cellnum : string)
-    {  
-        /*      
-        return await this.prisma.userCellNum.create({
+    {     
+        return await this.prisma.userContactNumber.create({
             data:
             {
                 userId: userid,
-                cellNum : cellnum
+                number : cellnum
             }
         });
-        */
     }
 
     async removeCellNum(userid : string)
-    {  
-        /*      
-        return await this.prisma.userCellNum.delete({
+    {      
+        return await this.prisma.userContactNumber.delete({
             where:
             {
                 userId: userid
             }
         });
-        */
     }
 }
