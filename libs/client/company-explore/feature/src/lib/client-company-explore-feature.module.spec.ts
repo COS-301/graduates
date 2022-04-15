@@ -7,12 +7,11 @@ import { CompanyExploreFeatureComponent } from './company-explore-feature/compan
 import { CompanyExploreFilterComponent } from './company-explore-feature/company-explore-operations-bar/company-explore-filter/company-explore-filter.component';
 import { CompanyExploreOperationsBarComponent } from './company-explore-feature/company-explore-operations-bar/company-explore-operations-bar.component';
 import { CompanyExploreSearchbarComponent } from './company-explore-feature/company-explore-operations-bar/company-explore-searchbar/company-explore-searchbar.component';
-import { CompanyExploreMaterialModule } from './materials/company-explore-material.module';
-
+import { UiModule } from '@graduates/client/shared/assets/ui';
 describe('ClientCompanyExploreFeatureModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ClientCompanyExploreFeatureModule,CompanyExploreMaterialModule],
+      imports: [ClientCompanyExploreFeatureModule,UiModule],
       declarations: [ CompanyExploreBannerComponent,
                       CompanyExploreCardComponent,
                       CompanyExploreContentComponent,
