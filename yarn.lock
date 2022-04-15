@@ -2304,6 +2304,13 @@
     jsonc-parser "3.0.0"
     pluralize "8.0.0"
 
+"@nestjs/terminus@^8.0.6":
+  version "8.0.6"
+  resolved "https://registry.yarnpkg.com/@nestjs/terminus/-/terminus-8.0.6.tgz#012c00fb9bc133f53f6e029358e4bcbe1638ec90"
+  integrity sha512-HevQNlJzIkiZ5S1Yb+ll4pwiqg8qB5M6G+2LD0hIkUHzWFvVdCAZDIhLhtwjjRGJ76dwC8BFE/YyUC/4reGAzQ==
+  dependencies:
+    check-disk-space "3.3.0"
+
 "@nestjs/testing@^8.0.0":
   version "8.3.1"
   resolved "https://registry.npmjs.org/@nestjs/testing/-/testing-8.3.1.tgz"
@@ -4967,6 +4974,11 @@ chardet@^0.7.0:
   version "0.7.0"
   resolved "https://registry.npmjs.org/chardet/-/chardet-0.7.0.tgz"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
+
+check-disk-space@3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/check-disk-space/-/check-disk-space-3.3.0.tgz#2a8f4c9542ed71a70878fc28fda7e265d40942ec"
+  integrity sha512-Hvr+Nr01xSSvuCpXvJ8oZ2iXjIu4XT3uHbw3g7F/Uiw6O5xk8c/Ot7ZGFDaTRDf2Bz8AdWA4DvpAgCJVKt8arw==
 
 check-more-types@^2.24.0:
   version "2.24.0"
@@ -10203,6 +10215,11 @@ node-releases@^2.0.2:
   version "2.0.2"
   resolved "https://registry.npmjs.org/node-releases/-/node-releases-2.0.2.tgz"
   integrity sha512-XxYDdcQ6eKqp/YjI+tb2C5WM2LgjnZrfYg4vgQt49EK268b6gYCHsBLrK2qvJo4FmCtqmKezb0WZFK4fkrZNsg==
+
+nodemailer@^6.7.3:
+  version "6.7.3"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.7.3.tgz#b73f9a81b9c8fa8acb4ea14b608f5e725ea8e018"
+  integrity sha512-KUdDsspqx89sD4UUyUKzdlUOper3hRkDVkrKh/89G+d9WKsU5ox51NWS4tB1XR5dPUdR4SP0E3molyEfOvSa3g==
 
 nopt@^5.0.0:
   version "5.0.0"

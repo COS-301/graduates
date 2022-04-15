@@ -123,6 +123,7 @@ export class FirebaseService {
 
     return await getDownloadURL(fileRef)
       .then((url) => {
+        console.log("NOW"+url); 
         return url;
       })
       .catch((error) => {

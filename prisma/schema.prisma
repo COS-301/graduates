@@ -250,12 +250,13 @@ model UserDegree {
 
 // Shorts of users
 model Short {
-  id         String   @id @default(cuid())
-  userId     String   @map("user_id")
-  media      String?
-  data       String?
-  datePosted DateTime @map("date_posted")
-  archived   Boolean
+  id          String   @id @default(cuid())
+  userId      String   @map("user_id")
+  description String?
+  link        String?
+  thumbnail   String?
+  datePosted  DateTime @map("date_posted")
+  archived    Boolean
 
   user User @relation(fields: [userId], references: [id])
 
