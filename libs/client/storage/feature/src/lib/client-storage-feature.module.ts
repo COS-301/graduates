@@ -18,18 +18,20 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { HttpClientModule } from "@angular/common/http";
 import { FileUploadService } from "./services/file-upload.service";
 
+// file upload related libraries
+// import { BrowserModule } from "@angular/platform-browser";
+// import {  } from "module";
+import { HttpClientModule } from "@angular/common/http";
+
 // adding material related modules 
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatButtonModule } from "@angular/material/button";
-// import { BrowserModule } from '@angular/platform-browser';
+
 @NgModule({
   imports: [
     CommonModule,
     StorageRoutingModule,
-    // HttpModule,
-    // ApolloModule,
-    // HttpLinkModule,
     HttpClientModule,
     MatIconModule,
     MatButtonModule,

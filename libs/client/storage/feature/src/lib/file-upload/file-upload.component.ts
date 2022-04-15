@@ -15,7 +15,8 @@ export class FileUploadComponent implements OnInit {
   greyImageAlt = 'noFileSelected';
 
   // for user details
-  userID = "";
+  userID = 0;
+
   fileCategory = "";
   cat = "";
 
@@ -42,7 +43,9 @@ export class FileUploadComponent implements OnInit {
     ngOnInit(): void {
       this.route.paramMap.subscribe((params: any) => {
 
+
         this.userID = params.get('userID');
+======
         this.fileCategory = params.get('fileCategory');
 
         if (params.get('fileCategory') == "academic-record") {
@@ -61,11 +64,11 @@ export class FileUploadComponent implements OnInit {
     onChange(event:any) {
 
         console.log("A file has been selected");
+
         console.log(event.target.files[0].name);
         console.log(event.target.files[0].type);
         console.log(event.target.files[0]);
-        
-        
+
         if (event.target.files.length == 1 && event.target.files[0].type == "application/pdf") {
           this.noFileSelected = false;
           this.safeToUpload = true;
@@ -96,6 +99,7 @@ export class FileUploadComponent implements OnInit {
         this.loading = !this.loading;
 
         console.log(this.file);
+
 
         // this.fileUploadService.uploadFile(this.file.name, this.userID, this.fileCategory, this.file?.type, this.file).subscribe(
           this.fileUploadService.upload(this.file).subscribe(

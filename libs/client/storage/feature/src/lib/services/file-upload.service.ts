@@ -1,11 +1,14 @@
+
 import { FileCategory } from '@prisma/client';
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+
 import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
+
 
 export class FileUploadService {
 
@@ -28,6 +31,7 @@ export class FileUploadService {
     // Make http post request over api
     // with formData as req
     return this.http.post(this.baseApiUrl, formData)
+
   }
 
   uploadFile(FileName: string, UserId: string, FileCategory: string, FileExtension: string, Files: File): Observable<any> {
