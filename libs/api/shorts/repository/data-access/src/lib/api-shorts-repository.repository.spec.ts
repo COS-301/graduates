@@ -1,13 +1,13 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ShortsRepository } from './api-shorts-repository.repository';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
-import { Short, ShortTag } from '@graduates/api/shorts/api/shared/entities/data-access';
-import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
+import { Short, ShortTag, ShortReport, ShortCreateTagInput, ShortCreateInput } from '@graduates/api/shorts/api/shared/entities/data-access';
+import { User} from '@graduates/api/authentication/api/shared/interfaces/data-access';
+import { Prisma } from '@prisma/client';
 
 jest.mock('@graduates/api/shorts/api/shared/entities/data-access');
 
 const shortMock: jest.Mocked<Short> = new Short() as Short;
-const shortTagMock: jest.Mocked<ShortTag> = new ShortTag() as ShortTag;
 
 // Run `yarn test api-shorts-repository-data-access`
 describe('ShortsRepository', () => {
@@ -103,6 +103,7 @@ describe("DB Integration Tests", () => {
   let shortTest: Short;
   let shortTagTest: ShortTag;
 
+
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [ShortsRepository, PrismaService],
@@ -121,7 +122,7 @@ describe("DB Integration Tests", () => {
     it("should return an array", async () => {
       const result = await repository.findAll();
       if (result.length > 0) {
-        expect(result).toMatchObject([shortMock]);
+        expect.arrayContaining(result);
       }
       else {
         expect(result).toMatchObject([]);
@@ -133,7 +134,7 @@ describe("DB Integration Tests", () => {
     it('should return an array', async () => {
       const result = await repository.findAllShortsPaged(1, 10);
       if (result.length > 0) {
-        expect(result).toMatchObject([shortTest]);
+        expect.arrayContaining(result);
       }
       else {
         expect(result).toMatchObject([]);
@@ -143,7 +144,7 @@ describe("DB Integration Tests", () => {
 
   describe("findUserById", () => {
     it("should return a user or null", async () => {
-      const result = await repository.findUserById("1");
+      const result = await repository.findUserById("UserIdTest");
       if (result !== null) {
         expect(result).toMatchObject(new User());
       }
@@ -156,9 +157,9 @@ describe("DB Integration Tests", () => {
   describe('findByUser', () => {
 
     it('should return an array', async () => {
-      const result = await repository.findByUser('1');
+      const result = await repository.findByUser('UserIdTest');
       if (result.length > 0) {
-        expect(result).toMatchObject([shortTest]);
+        expect.arrayContaining(result);
       }
       else {
         expect(result).toMatchObject([]);
@@ -168,9 +169,9 @@ describe("DB Integration Tests", () => {
 
   describe('findByTag', () => {
       it('should return array', async () => {
-        const result = await repository.findByTag('1');
+        const result = await repository.findByTag('TagIdTest');
         if (result.length > 0) {
-          expect(result).toMatchObject([shortTest]);
+          expect.arrayContaining(result);
         }
         else {
           expect(result).toMatchObject([]);
@@ -180,27 +181,20 @@ describe("DB Integration Tests", () => {
 
     describe('findByTagPaged', () => {
       it('should return array', async () => {
-        const result = await repository.findByTagPaged('1', 1, 10);
+        const result = await repository.findByTagPaged("TagIdTest", 1, 10);
         if (result.length > 0) {
-          expect(result).toMatchObject([shortMock]);
+          expect.arrayContaining(result);
         }
         else {
           expect(result).toMatchObject([]);
         }
       });
     });
-
-    //! Cannot live test createTag as it requires a user to be created and there is no createUser function available, User table needs to be populated first
-    //! Cannot live test createShort as it requires a user to be created and there is no createUser function available, User table needs to be populated first
-    //! Cannot live test updateShort as it requires a user to be created and there is no createUser function available, User table needs to be populated first
-    //! Cannot live test deleteShort as it requires a user to be created and there is no createUser function available, User table needs to be populated first
-    //! Cannot live test deleteShortReport as it requires a user to be created and there is no createUser function available, User table needs to be populated first
-
     describe("findAllTags", () => {
       it("should return an array", async () => {
         const result = await repository.findAllTags();
         if (result.length > 0) {
-          expect(result).toMatchObject([shortTagTest]);
+          expect.arrayContaining(result);
         }
         else {
           expect(result).toMatchObject([]);
@@ -210,9 +204,9 @@ describe("DB Integration Tests", () => {
 
     describe("findTagByShortId", () => {
       it("should return an array", async () => {
-        const result = await repository.findTagByShortId("1");
+        const result = await repository.findTagByShortId("ShortIdTest");
         if (result.length > 0) {
-          expect(result).toMatchObject([shortTagTest]);
+          expect.arrayContaining(result);
         }
         else {
           expect(result).toMatchObject([]);
@@ -220,7 +214,55 @@ describe("DB Integration Tests", () => {
       });
     });
 
-    
+    describe("findById", () => {
+      it("should return a short", async () => {
+        const result = await repository.findById("1");
+        if (result !== null) {
+          expect(result).toMatchObject(new Short());
+        }
+        else {
+          expect(result).toBeNull();
+        }
+      });
+    });
 
+    describe("getReport", () => {
+      it("should return a report", async () => {
+        const result = await repository.getReport("UserIdTest", "ShortIdTest");
+        if (result !== null) {
+          expect(result).toMatchObject(new ShortReport());
+        }
+        else {
+          expect(result).toBeNull();
+        }
+      });
+    });
 
-});
+    describe("getReportsByUser", () => {
+      it("should return an array", async () => {
+        const result = await repository.getReportsByUser("UserIdTest");
+        if (result.length > 0) {
+          expect.arrayContaining(result);
+        }
+        else {
+          expect(result).toMatchObject([]);
+        }
+      });
+    });
+
+    describe("getReportsForShort", () => {
+      it("should return an array", async () => {
+        const result = await repository.getReportsForShort("ShortIdTest");
+        if (result.length > 0) {
+          expect.arrayContaining(result);
+        }
+        else {
+          expect(result).toMatchObject([]);
+        }
+      });
+    });
+
+    // TODO
+    // tests for mutators (delete, update, create)
+    // mutators for: short, shortTag, report
+  });
