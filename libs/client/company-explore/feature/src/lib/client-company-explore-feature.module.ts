@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CompanyExploreFeatureComponent } from './company-explore-feature/company-explore-feature.component';
-import{CompanyExploreMaterialModule} from './materials/company-explore-material.module';
+import { UiModule } from '@graduates/client/shared/assets/ui';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CompanyExploreBannerComponent } from './company-explore-feature/company-explore-banner/company-explore-banner.component';
@@ -15,7 +15,7 @@ import { CompanyExploreRoutingModule } from './company-explore-feature/company-e
 @NgModule({
   imports: [CommonModule,
     CompanyExploreRoutingModule,
-    CompanyExploreMaterialModule,
+    UiModule,
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule

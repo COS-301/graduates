@@ -30,7 +30,7 @@ export class ApiCompanyRepresentativeService {
           connection: ['Amanda CEO', 'Chris Founder'],
         };
     
-        return data;
+        return null;
       }
     
       async findAll(): Promise<CompanyRepresentative[]> {
