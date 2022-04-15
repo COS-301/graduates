@@ -53,6 +53,10 @@ const routes: Routes = [
     {
       path: 'storage',
       loadChildren: () => import('@graduates/client/storage/feature').then(x => x.ClientStorageFeatureModule)
+    },
+    {
+      path:'status-api',
+      loadChildren: () => import('@graduates/client/status-page/feature').then(x => x.ClientStatusPageFeatureModule)
     }
 ];
 
