@@ -7,7 +7,7 @@
 
 */
 -- AlterTable
-ALTER TABLE "blog_comment" ADD COLUMN     "user_id" TEXT NOT NULL;
+-- ALTER TABLE "blog_comment" ADD COLUMN     "user_id" TEXT NOT NULL;
 
 -- AlterTable
 ALTER TABLE "short" DROP COLUMN "data",
@@ -17,4 +17,4 @@ ADD COLUMN     "link" TEXT,
 ADD COLUMN     "thumbnail" TEXT;
 
 -- AddForeignKey
-ALTER TABLE "blog_comment" ADD CONSTRAINT "blog_comment_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+-- ALTER TABLE "blog_comment" ADD CONSTRAINT "blog_comment_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
