@@ -1,12 +1,8 @@
-import { BlogCreateInput } from '@graduates/api/blog/api/shared/entities/data-access';
-
-/**
- * Class representing a CreateBlogCommand command
-
- */
 export class CreateBlogCommand {
   constructor(
-    public readonly blog: BlogCreateInput,
-
+    public readonly title, 
+    public readonly content, 
+    public readonly archived, 
+    public readonly userId 
   ) {}
 }
