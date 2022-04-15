@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
 
 //component imports
 import { ProfileBodyComponent } from './profile-body/profile-body.component';
@@ -31,6 +33,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatChipsModule,
     MatButtonModule,
     MatIconModule,
+    HttpClientModule,
     RouterModule.forChild([
       /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
     ]),

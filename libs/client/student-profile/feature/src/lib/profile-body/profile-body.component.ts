@@ -1,5 +1,6 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import { Component, OnInit } from '@angular/core';
+import { ApiStudentProfileService } from '../api-student-profile/api-student-profile.service';
 
 @Component({
   selector: 'graduates-profile-body',
@@ -8,11 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileBodyComponent implements OnInit {
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  constructor() { }
+  constructor(private apiCaller: ApiStudentProfileService) { }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   ngOnInit(): void {
+    this.apiCaller.getStudentDetails();
   }
 
 }
