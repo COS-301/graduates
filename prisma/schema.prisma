@@ -157,7 +157,7 @@ enum PermissionTenant {
 // Profile information for a user
 model UserProfile {
   userId         String  @id @map("user_id")
-  studentNumber  String  @map("student_number")
+  studentNumber  String? @map("student_number")
   profilePicture String? @map("profile_picture")
   bio            String?
   employmentStatus Boolean @map("employment_status") @default(false)
