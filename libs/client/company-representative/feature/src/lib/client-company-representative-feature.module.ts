@@ -8,11 +8,15 @@ import { CompanyRepresentativeConnectionsComponent } from './company-representat
 import { CompanyRepresentativeContactComponent } from './company-representative-contact/company-representative-contact.component';
 import { MatCardModule } from '@angular/material/card';
 import { CompanyRepresentativeRoutingModule } from "./company-representative-routing.module";
+import { CompanyRepresentativeExploreComponent } from './company-representative-explore/company-representative-explore.component';
+import { CompanyRepresentativeMockStudentExplorePageComponent } from './company-representative-mock-student-explore-page/company-representative-mock-student-explore-page.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   imports: [
     CommonModule,
     MatCardModule,
+    MatButtonModule,
     CompanyRepresentativeRoutingModule
   ],
   declarations: [
@@ -21,9 +25,12 @@ import { CompanyRepresentativeRoutingModule } from "./company-representative-rou
     CompanyRepresentativeTitleComponent,
     CompanyRepresentativeExperienceComponent,
     CompanyRepresentativeConnectionsComponent,
-    CompanyRepresentativeContactComponent
+    CompanyRepresentativeContactComponent,
+    CompanyRepresentativeExploreComponent,
+    CompanyRepresentativeMockStudentExplorePageComponent
   ],
   exports : [
+    CompanyRepresentativeMockStudentExplorePageComponent,
     CompanyRepresentativePageComponent,
   ]
 })

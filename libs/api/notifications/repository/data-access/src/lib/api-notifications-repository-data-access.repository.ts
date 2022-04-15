@@ -6,7 +6,7 @@ import { Notification, Prisma } from '@prisma/client';
 export class NotificationsRepository {
   constructor(private prisma: PrismaService) {}
 
-  async findNotificationsAll() {
+  async findNotificationsAll(): Promise<Notification[] | null> {
     return this.prisma.notification.findMany();
   }
 
