@@ -1,29 +1,95 @@
 //TODO: create Student model on service layer
 import { Injectable } from '@nestjs/common';
-import { ApiStudentProfilesInputEntity as StudentInput } from '@graduates/api/student-profiles/api/shared/data-access';
+import { CommandBus } from '@nestjs/cqrs';
+import { CreateStudentProfileCommand, DeleteStudentProfileCommand, FindStudentProfileCommand, UpdateStudentProfileCommand } from './commands/impl';
 
 @Injectable()
 export class ApiStudentProfileService {
-  public async findOneById(studentNum: string): Promise<any[]> {
-    const student = [];
-    if (studentNum == 'u19001836') student.push('Cena');
-    else student.push('Wick');
-    student.push('u19001836');
-    student.push('John');
-    student.push('John' + student[0] + '@gmail.com');
-    student.push('+27791506145');
-    student.push('1 January 2000');
 
-    return student;
+  constructor(private commandBus: CommandBus) {}
+
+  //returns all 
+  async find(entity) {
+    return this.commandBus.execute(new FindStudentProfileCommand(
+      entity.id,
+      entity.studentNum,
+      entity.firstName,
+      entity.lastName,
+      entity.title,
+      entity.email,
+      entity.phoneNum,
+      entity.dateOfBirth,
+      entity.nameOfDegree,
+      entity.bio,
+      entity.tags,
+      entity.preferredLocation,
+      entity.employmentStatus,
+      entity.notableAchievements,
+      entity.links,
+      entity.academicRecod,
+      entity.cv,
+      entity.capstoneProject,
+    ))
   }
 
-  public async editStudentProfiles(studentData: StudentInput): Promise<any[]> {
-    //edit data here
-    return this.findOneById(studentData.studentNum);
+  // returns single instance
+  async findById(id: string) {
+    return this.commandBus.execute(new FindStudentProfileCommand(id))
   }
 
-  public async deleteStudentProfiles(studentNum: string): Promise<string> {
-    //delete student data here
-    return 'Delete not implemented yet';
+  async update(entity) {
+    return this.commandBus.execute(
+      new UpdateStudentProfileCommand(
+        entity.id,
+        entity.studentNum,
+        entity.firstName,
+        entity.lastName,
+        entity.title,
+        entity.email,
+        entity.phoneNum,
+        entity.dateOfBirth,
+        entity.nameOfDegree,
+        entity.bio,
+        entity.tags,
+        entity.preferredLocation,
+        entity.employmentStatus,
+        entity.notableAchievements,
+        entity.links,
+        entity.academicRecod,
+        entity.cv,
+        entity.capstoneProject,)
+    ); // link to repository
   }
+
+  async delete(id: string) {
+    return this.commandBus.execute(
+      new DeleteStudentProfileCommand(id)
+    ); 
+  }
+
+  async create(entity) {
+    return this.commandBus.execute(
+      new CreateStudentProfileCommand(
+        entity.id,
+        entity.studentNum,
+        entity.firstName,
+        entity.lastName,
+        entity.title,
+        entity.email,
+        entity.phoneNum,
+        entity.dateOfBirth,
+        entity.nameOfDegree,
+        entity.bio,
+        entity.tags,
+        entity.preferredLocation,
+        entity.employmentStatus,
+        entity.notableAchievements,
+        entity.links,
+        entity.academicRecod,
+        entity.cv,
+        entity.capstoneProject,
+      )
+    );
+  }
+  
 }
