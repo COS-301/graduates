@@ -95,6 +95,7 @@
     "client-student-explore-feature": "libs/client/student-explore/feature",
     "client-student-profile-feature": "libs/client/student-profile/feature",
     "client-student-requests-feature": "libs/client/student-requests/feature",
-    "client-student-responses-feature": "libs/client/student-responses/feature"
+    "client-student-responses-feature": "libs/client/student-responses/feature",
+    "client-company-profile-feature": "libs/client/student-profile/feature"
   }
 }

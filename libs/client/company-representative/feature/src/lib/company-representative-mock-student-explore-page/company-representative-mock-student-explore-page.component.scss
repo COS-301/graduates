@@ -1,0 +1,65 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+* {
+    text-align: center;
+  }
+  
+  .mat-card {
+    text-align: center;
+    margin-top: 0.25%;
+    margin-bottom: 0.25%;
+    border-width: 0.5px;
+    border-color: silver;
+  }
+
+  .picture {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+  }
+
+  .name {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+  }
+
+  .tags {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+  }
+
+  .image {
+    flex: 0 1 20%;
+    clip-path: circle();
+    background-position: 50% 50%;
+  }
+  .button-container {
+    position: absolute;
+    bottom: 1%;
+    right: 1%;
+  }
+  .contain {
+    display: flex;
+    overflow: auto;
+  }
+
+  #left {
+    float: left;
+    width: 33.3333%;
+  }
+  
+  .button {
+    border-radius: 10%;
+    background-color: lightgrey;
+    height: 30px;
+    width: 60px;
+  }
+
+  .button:hover {
+    background-color: grey;
+  }
+
+  .button:active {
+    background-color: green;
+  }
