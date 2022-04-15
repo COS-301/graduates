@@ -16,93 +16,76 @@ import { MatIconModule } from '@angular/material/icon';
 export class SearchBarComponent {
   qry: string;
 
-  studentArray = [{"id" : "0", "name" : "Matthew Reed"}, 
-                        {"id" : "2", "name" : "Matthew Reed"}, 
-                        {"id" : "3", "name" : "Jonah Gasura"}, 
-                        {"id" : "4", "name" : "Damiaan Jordaan"},
-                        {"id" : "5", "name" : "Daniel Azmanov"},
-                        {"id" : "6", "name" : "Daniel Burgess"},
-                        {"id" : "7", "name" : "Tawanda Coder"}, 
-                        {"id" : "8", "name" : "Timo Werner"}, 
-                        {"id" : "9", "name" : "King Mohammed Salah"}, 
-                        {"id" : "10", "name" : "Super Sadio Mane"},
-                        {"id" : "11", "name" : "Snr. Roberto Firmino"},
-                        {"id" : "12", "name" : "Diogoal Jota"},
-                        {"id" : "13", "name" : "Naby Lad"}, 
-                        {"id" : "14", "name" : "Captain Henderson"}, 
-                        {"id" : "15", "name" : "James Pilsner"}, 
-                        {"id" : "16", "name" : "Big Virge"},
-                        {"id" : "17", "name" : "Trent Alexcrossner-Arnold"},
-                        {"id" : "18", "name" : "Fabulous Fabinho"},
-                        {"id" : "19", "name" : "Goal Matip"}, 
-                        {"id" : "20", "name" : "Braveheart Robertson"}, 
-                        {"id" : "21", "name" : "Jurgs Klopp"}, 
-                        {"id" : "22", "name" : "John Doe"},
-                        {"id" : "23", "name" : "Mike Oliver"},
-                        {"id" : "24", "name" : "Mike Dean"},
-                        {"id" : "25", "name" : "Antoine Griezmode"}, 
-                        {"id" : "26", "name" : "Paul Pogboom"}, 
-                        {"id" : "27", "name" : "Scott McSauce"}, 
-                        {"id" : "28", "name" : "Project Foden"},
-                        {"id" : "29", "name" : "Levi Ackerman"},
-                        {"id" : "30", "name" : "Mikasa Ackerman"},
-                        {"id" : "31", "name" : "Eren Jaeger"}, 
-                        {"id" : "32", "name" : "Kamaboko Gonpachiro"}, 
-                        {"id" : "33", "name" : "Kaneki"}, 
-                        {"id" : "34", "name" : "Zenitsu"},
-                        {"id" : "35", "name" : "Inosuke"},
-                        {"id" : "36", "name" : "Tengen Uzui"},
-                        {"id" : "37", "name" : "Kyojorou Rengoku"}, 
-                        {"id" : "38", "name" : "Gojo"}, 
-                        {"id" : "39", "name" : "Megumi Fushiguro"}, 
-                        {"id" : "40", "name" : "Itadori Yuji"},
-                        {"id" : "41", "name" : "Kugisaki Nobura"},
-                        {"id" : "42", "name" : "Todo"}];
+  responseArray: Array<any> = [];
 
   constructor() 
   { 
     this.qry = '';
   }
 
-  searchStudent(name: string)
+  async searchStudent(query: string)
   {
-    const respArr: Array<{"id": string, "name": string}> = [];
-    const err: Array<{"id": string, "name": string}> = [];
+    const resp = await this.getStudentArray();
 
-    const resp = this.studentArray.filter((el) => {
-        if(el.name === name || el.id === name)
-        {
-          respArr.push(el);
-        }
-        else
-        {
-          err.push(el);
-        }
-    });
-
-    if(respArr.length === 0)
+    if(resp.data === undefined)
     {
-      return {"id":"-1", "name":"NOT FOUND"};
+      this.responseArray.push("Could Not Get Students");
     }
     else
     {
-      return respArr[0];
+
+      resp.data.filter((el: any) => {
+        if(query === el.name || query === el.name + " " + el.surname || query === el.surname || query === el.id)
+        {
+          this.responseArray.push(el);
+        }
+        else if(this.searchStudentsByTags(el.tags))
+        {
+          this.responseArray.push(el);
+        }
+      });
+
     }
+
+    return this.responseArray;
   }
 
-  query()
+  searchStudentsByTags(arr: Array<any>)
   {
-    return this.searchStudent(this.qry);
+    let hasTag = false;
+
+    for(let i=0; i < arr.length; i++)
+    {
+      if(arr[i] === this.qry)
+      {
+        hasTag = true;
+      }
+    }
+
+    return hasTag;
   }
 
-  /*getStudentArray()
+  async query()
   {
-    const arr: Array<{"id": string, "name": string}> = [];
+    const val = await this.searchStudent(this.qry);
 
-    this.studentArray.forEach(element => {
-      arr.push(element);
-    });
+    if(val.length === 0)
+    {
+      this.responseArray.push("Student Not Found");
+    }
 
-    return arr;
-  }*/
+    return this.responseArray;
+  }
+
+  async getStudentArray(): Promise<any>
+  {
+    console.log();
+
+     // Pull data from api-student-explore
+
+     // Populate studentArray with information from API
+
+     // return true if success, else false
+     return [];
+  }
 }
