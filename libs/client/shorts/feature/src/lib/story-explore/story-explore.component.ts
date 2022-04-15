@@ -14,7 +14,7 @@ import {Apollo, gql} from 'apollo-angular';
   selector: 'graduates-story-explore',
   templateUrl: './story-explore.component.html',
   styleUrls: ['./story-explore.component.scss'],
-  providers: [MatCardModule, MatButtonModule,],
+  providers: [MatCardModule, MatButtonModule, Apollo,],
 })
 
 export class StoryExploreComponent implements OnInit {
