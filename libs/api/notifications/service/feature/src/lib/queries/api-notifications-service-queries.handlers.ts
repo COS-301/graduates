@@ -22,7 +22,7 @@ export class GetAllUserNotificationsHandler implements IQueryHandler<GetAllUserN
 }
 
 @QueryHandler(GetNotificationByIdQuery)
-export class GeNotificationsByIdHandler implements IQueryHandler<GetNotificationByIdQuery> {
+export class GetNotificationsByIdHandler implements IQueryHandler<GetNotificationByIdQuery> {
   constructor(private readonly repository: NotificationsRepository) {}
 
   async execute(query: GetNotificationByIdQuery): Promise<Notification | null> {
