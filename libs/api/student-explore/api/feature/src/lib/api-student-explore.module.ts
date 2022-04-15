@@ -3,6 +3,7 @@ import { ApiStudentExploreResolver } from './api-student-explore.resolver';
 import { StudentExploreServiceModule } from '@graduates/api/student-explore/service/feature';
 import { StudentExploreRepository } from '@graduates/api/student-explore/repository/data-access';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access'; 
+import { ApiStorageServiceFeatureModule } from '@graduates/api/storage/service/feature'; 
 import { CommandBus, CqrsModule, QueryBus } from '@nestjs/cqrs';
 
 

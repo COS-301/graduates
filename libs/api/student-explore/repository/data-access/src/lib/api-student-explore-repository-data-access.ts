@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { ApiStudentExplore } from '@graduates/api/student-explore/api/shared/data-access';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
+import { ApiStorageServiceFeatureModule } from '@graduates/api/storage/service/feature'; //
 
 @Injectable()
 export class StudentExploreRepository {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService, private storage: ApiStorageServiceFeatureModule) {}
 
   async initStudents() {
 
@@ -82,6 +83,8 @@ export class StudentExploreRepository {
       tempStudentObj.StudentLocation = studentObjProfile.location;
 
       //StudentProfilePicture
+
+      tempStudentObj.StudentPic = this.storage.getFile(students[i].id, "Profile Picture");
 
       studentArr.push(tempStudentObj);
     }
