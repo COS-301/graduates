@@ -25,8 +25,8 @@ import { ApiAdminConsoleApiFeatureModule  as ApiAdminconsoleApiFeatureModule } f
     }),
     ApiStorageFeatureModule,
     ApiHostingFeatureModule,
-    ApiShortsFeatureModule,
-    ApiNotificationsApiFeatureModule,
+    // ApiShortsFeatureModule,
+    // ApiNotificationsApiFeatureModule,
     ApiAccessStatusFeatureModule,
     ApiCompanyProfilePageFeatureModule,
     ApiStudentProfilesModule,
@@ -34,7 +34,7 @@ import { ApiAdminConsoleApiFeatureModule  as ApiAdminconsoleApiFeatureModule } f
     ApiRequestAccessFeatureModule,
     ApiAuthenticationApiFeatureModule,
     ApiAuthorizationFeatureModule,
-    ApiStudentExploreApiFeatureModule,
+    // ApiStudentExploreApiFeatureModule,
     ApiAdminconsoleApiFeatureModule
 
   ],
