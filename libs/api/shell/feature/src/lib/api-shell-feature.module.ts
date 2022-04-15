@@ -24,9 +24,15 @@ import { ApiAdminConsoleApiFeatureModule  as ApiAdminconsoleApiFeatureModule } f
       driver: ApolloDriver,
     }),
     ApiStorageFeatureModule,
+<<<<<<< HEAD
     // ApiHostingFeatureModule,
     // ApiShortsFeatureModule,
     // ApiNotificationsApiFeatureModule,
+=======
+    ApiHostingFeatureModule,
+    ApiShortsFeatureModule,
+    ApiNotificationsApiFeatureModule,
+>>>>>>> 6516a34213b770979b2081716c65f120410bf48b
     ApiAccessStatusFeatureModule,
     ApiCompanyProfilePageFeatureModule,
     ApiStudentProfilesModule,
