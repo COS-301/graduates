@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Notification, NotificationData } from '@graduates/api/notifications/api/shared'
-import { GetAllUserNotificationsQuery } from './queries/get-all-user-notifications.query';
+import { GetAllUserNotificationsQuery } from './queries/api-notifications-service-queries.query';
 import { SendMailEvent } from './events/send-mail.event';
 import { QueryBus } from '@nestjs/cqrs';
 import { EventBus } from '@nestjs/cqrs';
