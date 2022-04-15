@@ -6,11 +6,9 @@ export class AccessStatusService {
         const accessStatus = new ApiAccessStatusEntity();
         
         if (gradID == "42") {
-            accessStatus.userID = "u00000000";
             accessStatus.item = "CV";
             accessStatus.accessStatus = "Pending";
         } else {
-            accessStatus.userID = "u00000001";
             accessStatus.item = "Academic Record";
             accessStatus.accessStatus = "Rejected";
         }
