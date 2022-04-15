@@ -66,20 +66,27 @@ export class SearchBarComponent {
 
   searchStudent(name: string)
   {
+    const respArr: Array<{"id": string, "name": string}> = [];
+    const err: Array<{"id": string, "name": string}> = [];
+
     const resp = this.studentArray.filter((el) => {
         if(el.name === name || el.id === name)
         {
-            return el;
+          respArr.push(el);
+        }
+        else
+        {
+          err.push(el);
         }
     });
 
-    if(resp.length === 0)
+    if(respArr.length === 0)
     {
-      return "404";
+      return {"id":"-1", "name":"NOT FOUND"};
     }
     else
     {
-      return resp;
+      return respArr[0];
     }
   }
 
