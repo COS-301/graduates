@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Notification, NotificationData } from '@graduates/api/notifications/api/shared'
-import { GetAllUserNotificationsQuery } from './queries/impl/get-all-user-notifications.query';
-import { SendMailEvent } from './events/impl/send-mail.event';
+import { GetAllUserNotificationsQuery } from './queries/get-all-user-notifications.query';
+import { SendMailEvent } from './events/send-mail.event';
 import { QueryBus } from '@nestjs/cqrs';
 import { EventBus } from '@nestjs/cqrs';
 
@@ -12,7 +12,7 @@ export class ApiNotificationsService {
         
     }
     
-    async findAll(): Promise<Notification[]> {
+    async findAllMock(): Promise<Notification[]> {
         const notificationData = new NotificationData();
         notificationData.notificationType = 'Request'
         const notification = new Notification();
