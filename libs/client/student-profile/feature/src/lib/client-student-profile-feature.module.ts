@@ -17,6 +17,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatChipsModule} from '@angular/material/chips';
 import { AchievementsComponent } from './achievements/achievements.component';
 import { ProfileCardComponent } from './profile-card/profile-card.component'; 
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { ProfileCardComponent } from './profile-card/profile-card.component';
     MatCardModule,
     MatChipsModule,
     MatButtonModule,
+    MatIconModule,
     RouterModule.forChild([
       /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
     ]),
