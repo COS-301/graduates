@@ -1,9 +1,6 @@
 import { Blog, BlogComment, BlogMedia } from '@graduates/api/blog/api/shared/entities/data-access';
 import { Injectable } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-// import {
-
-// } from './queries/api-blog-query.query';
 import { CreateBlogCommand, 
   UpdateBlogTitleCommand, 
   UpdateBlogContentCommand, 
@@ -15,7 +12,6 @@ import { CreateBlogCommand,
   CreateMediaCommand,
   UpdateBlogMediaCommand, 
   CreateCommentCommand } from './commands/api-blog-command.command';
-
 import { 
   GetBlogByIdQuery, 
   GetAllBlogsQuery, 
@@ -106,4 +102,51 @@ export class BlogService {
   }
 
   // Queries
+  async getBlogById(blogId): Promise<Blog | null> {
+    return await this.queryBus.execute(
+      new GetBlogByIdQuery(blogId)
+    );
+  }
+
+  async getAllBlogs(): Promise<Blog[]> {
+    return await this.queryBus.execute(
+      new GetAllBlogsQuery()
+    );
+  }
+
+  async getAllArchivedBlogs(): Promise<Blog[]> {
+    return await this.queryBus.execute(
+      new GetAllArchivedBlogsQuery()
+    );
+  }
+
+  async getBlogByUserId(userId): Promise<Blog[]> {
+    return await this.queryBus.execute(
+      new GetBlogByUserIdQuery(userId)
+    );
+  }
+
+  async getAllComments(): Promise<BlogComment[]> {
+    return await this.queryBus.execute(
+      new GetAllCommentsQuery()
+    );
+  }
+
+  async getCommentsByBlogId(blogId): Promise<BlogComment[]> {
+    return await this.queryBus.execute(
+      new GetCommentsByBlogIdQuery(blogId)
+    );
+  }
+
+  async getCommentByCommentId(commentId): Promise<BlogComment[]> {
+    return await this.queryBus.execute(
+      new GetCommentByCommentIdQuery(commentId)
+    );
+  }
+
+  async getMediaByBlogId(blogId): Promise<BlogMedia[]> {
+    return await this.queryBus.execute(
+      new GetMediaByBlogIdQuery(blogId)
+    );
+  }
 }
