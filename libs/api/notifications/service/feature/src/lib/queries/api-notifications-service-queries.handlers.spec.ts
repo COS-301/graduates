@@ -1,4 +1,4 @@
-import { GetAllUserNotificationsHandler } from './get-all-user-notifications.handlers';
+import { GetAllUserNotificationsHandler } from './api-notifications-service-queries.handlers';
 
 describe('GetAllUserNotificationsHandlers', () => {
   it('should be defined', () => {
