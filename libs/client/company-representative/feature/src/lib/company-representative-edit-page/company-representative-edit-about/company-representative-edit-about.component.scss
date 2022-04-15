@@ -1,0 +1,26 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+* {
+    text-align: center;
+  }
+  
+  .mat-card {
+    text-align: center;
+    margin-top: 0.25%;
+    margin-bottom: 0.25%;
+    border-width: 0.5px;
+    border-color: silver;
+  }
+
+  textarea {
+    border: 1px solid;
+    width: 100%;
+    text-align: left;
+  }
+
+  textarea:hover {
+    border: 1px solid;
+    width: 100%;
+    text-align: left;
+    background-color: lightgrey;
+  }
+  
