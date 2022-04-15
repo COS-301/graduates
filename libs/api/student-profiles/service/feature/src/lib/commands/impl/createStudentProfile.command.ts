@@ -14,7 +14,7 @@ export class CreateStudentProfileCommand {
       public readonly preferredLocation: string,
       public readonly employmentStatus: string,
       public readonly notableAchievements: string,
-      public readonly links: string,
+      public readonly links: string[],
       public readonly academicRecod: string,
       public readonly cv: string,
       public readonly capstoneProject: string
