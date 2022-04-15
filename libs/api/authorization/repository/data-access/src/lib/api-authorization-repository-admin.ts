@@ -3,7 +3,6 @@
 import { Injectable, Param } from '@nestjs/common';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 import { Prisma, UserPermissions } from '@prisma/client';
-import { resolveObjectURL } from 'buffer';
 @Injectable()
 export class Adminauthorization {
   constructor(private prisma: PrismaService) {}
@@ -13,9 +12,9 @@ export class Adminauthorization {
     if(role != null){
       return this.prisma.rolePermissions.findMany({where: {role:  role.role}});
     }
-    else{
+    
       return null;
-    }
+    
   }
   async findGeneralPermissionsPrisma(id:string) {
     const role = await this.findRole(id);

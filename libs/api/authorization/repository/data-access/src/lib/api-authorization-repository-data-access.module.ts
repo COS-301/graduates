@@ -1,8 +1,7 @@
 import { Module } from '@nestjs/common';
-import {Adminauthorization} from '../lib/api-authorization-repository-admin';
 @Module({
   controllers: [],
-  providers: [Adminauthorization],
+  providers: [],
   exports: [],
 })
 export class ApiAuthorizationRepositoryDataAccessModule {}
