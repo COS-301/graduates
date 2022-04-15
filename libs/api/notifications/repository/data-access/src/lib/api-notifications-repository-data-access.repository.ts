@@ -18,7 +18,7 @@ export class NotificationsRepository {
     });
   }
 
-  async findNotificationsRecieved(userId : string): Promise<Notification[] | null> {
+  async findNotificationsReceived(userId : string): Promise<Notification[] | null> {
     return this.prisma.notification.findMany({
       where: {
         userIdTo : userId
