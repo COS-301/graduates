@@ -1,4 +1,4 @@
-import { Field, InputType, ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
 import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 import { BlogComment } from './api-blog-comment-entity.entity';
 import { BlogMedia } from './api-blog-media-entity.entity';
@@ -28,7 +28,7 @@ export class Blog {
   title!: string;
 
   /**
-   * The url of the Blog
+   * The content of the Blog
    */
   @Field({ nullable: true })
   content!: string;
@@ -62,28 +62,4 @@ export class Blog {
    */
   @Field(() => [BlogComment])
   blogComment!: BlogComment[];
-}
-
-/**
- * Definition of the BlogCreateInput entity as input type
- */
-@InputType()
-export class BlogCreateInput {
-  /**
-   * The description/name of the Blog
-   */
-  @Field({ nullable: true })
-  title!: string;
-
-  /**
-   * The content of the Blog
-   */
-  @Field({ nullable: true })
-  content!: string;
-
-  /**
-   * Wether the Blog is archived or not
-   */
-  @Field(() => Boolean)
-  archived!: boolean;
 }

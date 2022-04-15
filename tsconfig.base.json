@@ -69,6 +69,9 @@
       "@graduates/api/authorization/service/shared": [
         "libs/api/authorization/service/shared/src/index.ts"
       ],
+      "@graduates/api/blog/api/feature": [
+        "libs/api/blog/api/feature/src/index.ts"
+      ],
       "@graduates/api/blog/api/shared/entities/data-access": [
         "libs/api/blog/api/shared/entities/data-access/src/index.ts"
       ],
@@ -178,6 +181,9 @@
       "@graduates/api/shorts/service/feature": [
         "libs/api/shorts/service/feature/src/index.ts"
       ],
+      "@graduates/api/blog/service/feature": [
+        "libs/api/blog/service/feature/src/index.ts"
+      ],      
       "@graduates/api/storage/api/feature": [
         "libs/api/storage/api/feature/src/index.ts"
       ],
@@ -232,6 +238,9 @@
       "@graduates/client/adminconsole/feature": [
         "libs/client/adminconsole/feature/src/index.ts"
       ],
+      "@graduates/client/authorization/feature": [
+        "libs/client/authorization/feature/src/index.ts"
+      ],
       "@graduates/client/blog/feature": [
         "libs/client/blog/feature/src/index.ts"
       ],
@@ -256,6 +265,12 @@
       "@graduates/client/shared/assets/ui": [
         "libs/client/shared/assets/ui/src/index.ts"
       ],
+      "@graduates/client/shared/components/buttons/ui": [
+        "libs/client/shared/components/buttons/ui/src/index.ts"
+      ],
+      "@graduates/client/shared/components/dropdown/ui": [
+        "libs/client/shared/components/dropdown/ui/src/index.ts"
+      ],
       "@graduates/client/shared/components/navbar/ui": [
         "libs/client/shared/components/navbar/ui/src/index.ts"
       ],
@@ -274,6 +289,9 @@
       "@graduates/client/shorts/feature": [
         "libs/client/shorts/feature/src/index.ts"
       ],
+      "@graduates/client/status-page/feature": [
+        "libs/client/status-page/feature/src/index.ts"
+      ],
       "@graduates/client/storage/feature": [
         "libs/client/storage/feature/src/index.ts"
       ],
@@ -285,6 +303,9 @@
       ],
       "@graduates/client/student-responses/feature": [
         "libs/client/student-responses/feature/src/index.ts"
+      ],
+      "@graduates/client/status-page/feature": [
+        "libs/client/status-page/feature/src/index.ts"
       ]
     }
   },

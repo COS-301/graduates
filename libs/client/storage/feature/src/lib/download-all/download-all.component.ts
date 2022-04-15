@@ -15,4 +15,8 @@ export class DownloadAllComponent implements OnInit {
     return
   }
 
+  downBut(){
+    alert("Download all button works!!!");
+  }
+
 }
