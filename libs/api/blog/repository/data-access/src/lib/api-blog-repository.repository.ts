@@ -13,7 +13,14 @@ export class BlogRepository {
   //Blogs
   
   async findAll(): Promise<Blog[]> {
-    return this.prisma.blog.findMany();
+    return this.prisma.blog.findMany({
+      where: {
+        archived : false
+      },
+      orderBy: {
+        date: 'desc'
+      }
+    });
   }
 
   /**
@@ -21,10 +28,10 @@ export class BlogRepository {
    * @param {boolean} archived The page number used to offset the query
    * @return {Promise<Blog[]>}
    */
-     async findAllArchivedBlogs(archived : boolean): Promise<Blog[]> {
+     async findAllArchivedBlogs(): Promise<Blog[]> {
       return this.prisma.blog.findMany({
         where: {
-          archived: archived,
+          archived: true,
         },
       });
     }
@@ -167,23 +174,24 @@ export class BlogRepository {
    * @param {string} blogId Id of blog comment is created from 
    * @return {Promise<BlogComment>}
    */
-  // async createComment(id: string, blogId: string, userId: string, content: string): Promise<BlogComment | null> {
-  //   return this.prisma.blogComment.create({
-  //     data: {
-  //       //userId: userId,
-  //       id: id,
-  //       blogId: blogId,
-  //       content: content,
-  //       // user: {
-  //       //   connect: {id: userId}
-  //       // },
-  //       // blog: {
-  //       //   connect: {id: blogId}
-  //       // },
-  //       date: new Date()
-  //     },
-  //   });
-  // }
+  async createComment(id: string, blogId: string, userId: string, content: string): Promise<BlogComment | null> {
+    // return this.prisma.blogComment.create({
+    //   data: {
+    //     userId: userId,
+    //     id: id,
+    //     blogId: blogId,
+    //     content: content,
+    //      user: {
+    //        connect: {id: userId}
+    //      },
+    //      blog: {
+    //        connect: {id: blogId}
+    //      },
+    //     date: new Date()
+    //   },
+    // });
+    return null;
+  }
 
   /**
    * Update comment by id
@@ -255,13 +263,14 @@ export class BlogRepository {
     });
   }
 
-  // async updateBlogMedia(blogId: string, mediaId: string): Promise<BlogMedia | null> {
-  //   return this.prisma.blogMedia.update({
-  //     where: { blogId: blogId },
-  //     data: {
-  //       media: mediaId
-  //     },
-  //   });
-  // }
+  async updateBlogMedia(blogId: string, mediaId: string): Promise<BlogMedia | null> {
+    // return this.prisma.blogMedia.update({
+    //   where: { blogId: blogId },
+    //   data: {
+    //     media: mediaId
+    //   },
+    // });
+    return null;
+  }
 
 }
