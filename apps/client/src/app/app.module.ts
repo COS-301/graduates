@@ -7,12 +7,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxsModule } from '@ngxs/store';
-
+import { ClientAdminconsoleFeatureModule as AdminConsole } from '@graduates/client/adminconsole/feature';
 
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
+    AdminConsole,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,

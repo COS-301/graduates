@@ -8,7 +8,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class AdminconsoleComponent{
 
-
   burger : boolean
   sidenavOptions : string[] 
   option : string
@@ -32,39 +31,44 @@ export class AdminconsoleComponent{
     this.fetchData()
   }
 
-  // ngOnInit(): void {
-  //     const body = {
-  //       'query': 'query ($compID: ID!, $gradID: ID!){status(compID: $id, gradID: $gradID){ accessStatus, item, userID }}',
-  //       'variables': { 'compID': companyID, 'gradID': graduateID }
-  //     }
-
-  //     const options = {
-  //       headers: new HttpHeaders({
-  //         'Content-Type': 'application/json'
-  //       })
-  //     }
-
-  //     return this.httpClient.post<any>('http://localhost:3333/graphql', body, options);
-  // }
+  ngOnInit(): void {
+      fetch('http://localhost:3333/graphql', {
+      method: 'POST',
+      headers: {'Content-Type' : 'application/json'},
+      body: JSON.stringify({ query: `
+        query {
+          adminconsole {
+            id
+            email
+            suspended
+            name
+          }
+        }`
+      }),
+    })
+    .then(res => 
+      res.json().then( ress => this.users = ress.data.adminconsole)
+    );
+}
  
   fetchData() {
-    switch(this.option) {
-      case "Blogs" :
-        this.users = [{"name" : "Jack", "archived" : true},  {"name" : "Angela", "archived" : false}, {"name" : "Marceline", "archived" : true},{"name" : "Jonathan", "archived" : false}]
-        break
-      case "Users" :
-        this.users = [{"name" : "Jack", "roles" : ["A", "B"], "permissions" : ["Permission A", "Permission B"]}, {"name" : "Angela", "roles" : ["A", "D"], "permissions" : ["Permission A", "Permission B"]}, {"name" : "Marceline", "roles" : ["A","B", "C"], "permissions" : ["Permission A", "Permission B"]},{"name" : "Jonathan", "roles" : ["D"], "permissions" : ["Permission A", "Permission B"]}]
-        this.currentUser = this.users[0]
-        break
-      case "Roles" :
-        this.users = [{"name" : "Jack", "roles" : ["A", "B"]}, {"name" : "Angela", "roles" : ["A", "D"]}, {"name" : "Marceline", "roles" : ["A","B", "C"]},{"name" : "Jonathan", "roles" : ["D"]}]
-        this.currentUser = this.users[0]
-        break
-    }
-    this.currentUser = this.users[0]
+    // switch(this.option) {
+    //   case "Blogs" :
+    //     this.users = [{"name" : "Jack", "archived" : true},  {"name" : "Angela", "archived" : false}, {"name" : "Marceline", "archived" : true},{"name" : "Jonathan", "archived" : false}]
+    //     break
+    //   case "Users" :
+    //     this.users = [{"name" : "Jack", "roles" : ["A", "B"], "permissions" : ["Permission A", "Permission B"]}, {"name" : "Angela", "roles" : ["A", "D"], "permissions" : ["Permission A", "Permission B"]}, {"name" : "Marceline", "roles" : ["A","B", "C"], "permissions" : ["Permission A", "Permission B"]},{"name" : "Jonathan", "roles" : ["D"], "permissions" : ["Permission A", "Permission B"]}]
+    //     this.currentUser = this.users[0]
+    //     break
+    //   case "Roles" :
+    //     this.users = [{"name" : "Jack", "roles" : ["A", "B"]}, {"name" : "Angela", "roles" : ["A", "D"]}, {"name" : "Marceline", "roles" : ["A","B", "C"]},{"name" : "Jonathan", "roles" : ["D"]}]
+    //     this.currentUser = this.users[0]
+    //     break
+    // }
+    // this.currentUser = this.users[0]
 
-    this.allPermissions = ["Permission 1", "Permission 2", "Permission 3", "Permission 4"]
-    this.allRoles = ["Role 1", "Role 2", "Role 3", "Role 4", "Role 5"]
+    // this.allPermissions = ["Permission 1", "Permission 2", "Permission 3", "Permission 4"]
+    // this.allRoles = ["Role 1", "Role 2", "Role 3", "Role 4", "Role 5"]
   }
 
   sidenavOption(option : string) {
