@@ -20,7 +20,7 @@ export class BlogComment {
    * content of blog
    */
   @Field()
-  userID!: string;
+  userId!: string;
 
   @Field()
   content!: string;
@@ -31,37 +31,6 @@ export class BlogComment {
   @Field(() => User)
   user!: User;
 
-  /**
-   * The blog that the comment belongs to
-   */
-  @Field(() => Blog)
-  blog!: Blog;
-}
-
-@InputType()
-export class BlogCommentInput {
-
-  @Field()
-  Id!: string;
- 
-  /**
-   * The id of the blog that the comment belongs to
-   */
-  @Field()
-  blogId!: string;
-
-  @Field()
-  userID!: string;
-  
-  @Field()
-  content!: string;
-
-  @Field(() => Date)
-  date!: Date;
- 
-  @Field(() => User)
-  user!: User;
- 
   /**
    * The blog that the comment belongs to
    */

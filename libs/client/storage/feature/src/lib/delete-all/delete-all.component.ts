@@ -15,4 +15,8 @@ export class DeleteAllComponent implements OnInit {
     return
   }
 
+  delBut(){
+    alert("Delete all button works!!!");
+  }
+
 }
