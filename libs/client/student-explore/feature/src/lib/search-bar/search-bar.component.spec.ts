@@ -35,7 +35,7 @@ describe('SearchBarComponent', () => {
   });
 });
 
-describe('SearchBarComponent Input', () => {
+describe('SearchBarComponent Input Form Field Transfers to Class', () => {
   //Variables
   let component: SearchBarComponent;
   let fixture: ComponentFixture<SearchBarComponent>;
