@@ -1,3 +1,25 @@
+<!-- Filters -->
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Filter Menu">
+  <mat-icon>filter_list</mat-icon>
+</button>
+<mat-menu #menu="matMenu" yPosition="below" xPosition="after">
+
+  <h2>Emplyment status</h2>
+  <button *ngFor="let emp of empArray" mat-menu-item role="menuitemcheckbox">
+    <mat-checkbox id="{{emp.filter_name}}" (click)="$event.stopPropagation(); filter_tags(emp)" >{{emp.filter_name}}</mat-checkbox>
+  </button>
+
+  <h2>Location</h2>
+  <button *ngFor="let loca of locationArray" mat-menu-item role="menuitemcheckbox">
+    <mat-checkbox id="{{loca.filter_name}}" (click)="$event.stopPropagation(); filter_tags(loca)">{{loca.filter_name}}</mat-checkbox>
+  </button>
+
+  <h2>Tags</h2>
+  <button *ngFor="let tags of tagsArray" mat-menu-item role="menuitemcheckbox">
+    <mat-checkbox id="{{tags.filter_name}}" (click)="$event.stopPropagation(); filter_tags(tags)" >{{tags.filter_name}}</mat-checkbox>
+  </button>
+</mat-menu>
+
 <!-- Making a grid for the student cards -->
 <main class="card-grid">
   <mat-card *ngFor="let student of studentArray" id = "{{student.id}}">
