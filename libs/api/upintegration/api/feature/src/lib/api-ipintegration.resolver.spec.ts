@@ -1,18 +1,24 @@
-import { async, TestBed } from '@angular/core/testing';
-import { ApiUpintegrationApiFeatureModule } from './api-upintegration.module';
+import { Test, TestingModule } from '@nestjs/testing';
+import { ApiUpIntegrationResolver } from './api-upintegration.resolver';
+import { ApiUpIntegrationServiceFeatureModule } from '@graduates/api/upintegration/service/feature';
 
-describe('ApiIntegrationApiModule', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [ApiUpintegrationApiFeatureModule],
-    }).compileComponents();
-  }));
+describe('ApiUpIntegrationResolver', () => {
+  let resolver:ApiUpIntegrationResolver;
 
-  // TODO: Add real tests here.
-  //
-  // NB: This particular test does not do anything useful.
-  //     It does NOT check for correct instantiation of the module.
-  it('should have a module definition', () => {
-    expect(ApiUpintegrationApiFeatureModule).toBeDefined();
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [
+        ApiUpIntegrationResolver, 
+        ApiUpIntegrationServiceFeatureModule
+      ],
+    }).compile();
+
+    await module.init();
+
+    resolver = module.get<ApiUpIntegrationResolver>(ApiUpIntegrationResolver);
+  });
+
+  it('should be defined', () => {
+    expect(resolver).toBeDefined();
   });
 });
