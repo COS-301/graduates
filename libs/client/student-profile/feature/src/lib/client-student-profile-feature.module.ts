@@ -12,13 +12,15 @@ import { DegreeComponent } from './degree/degree.component';
 import { EmploymentStatusComponent } from './employment-status/employment-status.component';
 import { LocationComponent } from './location/location.component';
 import { BioComponent } from './bio/bio.component';
+import {MatButtonModule} from '@angular/material/button';
 
 // importing material 
 import { MatDividerModule } from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card'; 
 import {MatChipsModule} from '@angular/material/chips';
-import { AchievementsComponent } from './achievements/achievements.component'; 
+import { AchievementsComponent } from './achievements/achievements.component';
+import { ProfileCardComponent } from './profile-card/profile-card.component'; 
 
 
 
@@ -29,8 +31,9 @@ import { AchievementsComponent } from './achievements/achievements.component';
     RequestForAccessModule,
     MatDividerModule,
     MatListModule,
-    MatCardModule, 
+    MatCardModule,
     MatChipsModule,
+    MatButtonModule,
     RouterModule.forChild([
       /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
     ]),
@@ -43,7 +46,8 @@ import { AchievementsComponent } from './achievements/achievements.component';
     EmploymentStatusComponent,
     LocationComponent,
     BioComponent,
-    AchievementsComponent
+    AchievementsComponent,
+    ProfileCardComponent
   ],
    exports: [ProfileBodyComponent]
 })

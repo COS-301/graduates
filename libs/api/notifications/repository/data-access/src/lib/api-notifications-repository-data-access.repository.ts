@@ -6,13 +6,13 @@ import { Notification, Prisma } from '@prisma/client';
 export class NotificationsRepository {
   constructor(private prisma: PrismaService) {}
 
-  async findNotificationsAll() {
+  async findNotificationsAll(): Promise<Notification[] | null> {
     return this.prisma.notification.findMany();
   }
 
   async findNotificationById(id: string): Promise<Notification | null> {
-    return this.prisma.notification.findUnique({ 
-      where: { 
+    return this.prisma.notification.findUnique({
+      where: {
         id : id
       }
     });
@@ -36,10 +36,10 @@ export class NotificationsRepository {
 
   async findNotificationsByType(userId : string, notificationType : string): Promise<Notification[] | null> {
 
-    return await this.prisma.notification.findMany({ 
+    return await this.prisma.notification.findMany({
       where: {
         userIdTo : userId,
-        data: { 
+        data: {
           path: ['notificationType'],
           equals: notificationType
         },
@@ -49,7 +49,7 @@ export class NotificationsRepository {
 
   async updateSeen(id : string, seen : boolean) : Promise<Notification> {
     return await this.prisma.notification.update({
-      where: { 
+      where: {
         id : id
       },
       data: {

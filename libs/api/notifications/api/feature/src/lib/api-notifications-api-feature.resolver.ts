@@ -8,6 +8,6 @@ export class NotificationsResolver {
 
     @Query(returns => [Notification])
     async notificationsAll(): Promise<Notification[]> {
-        return this.notificationService.findAll();
+        return this.notificationService.findAllMock();
     }
 }

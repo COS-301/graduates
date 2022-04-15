@@ -69,6 +69,9 @@
       "@graduates/api/authorization/service/shared": [
         "libs/api/authorization/service/shared/src/index.ts"
       ],
+      "@graduates/api/blog/api/feature": [
+        "libs/api/blog/api/feature/src/index.ts"
+      ],
       "@graduates/api/blog/api/shared/entities/data-access": [
         "libs/api/blog/api/shared/entities/data-access/src/index.ts"
       ],
@@ -178,6 +181,9 @@
       "@graduates/api/shorts/service/feature": [
         "libs/api/shorts/service/feature/src/index.ts"
       ],
+      "@graduates/api/blog/service/feature": [
+        "libs/api/blog/service/feature/src/index.ts"
+      ],      
       "@graduates/api/storage/api/feature": [
         "libs/api/storage/api/feature/src/index.ts"
       ],
@@ -282,6 +288,9 @@
       ],
       "@graduates/client/shorts/feature": [
         "libs/client/shorts/feature/src/index.ts"
+      ],
+      "@graduates/client/status-page/feature": [
+        "libs/client/status-page/feature/src/index.ts"
       ],
       "@graduates/client/storage/feature": [
         "libs/client/storage/feature/src/index.ts"
