@@ -6,6 +6,8 @@ import { GetAllRepresentativesHandler, GetOneRepresentativeHandler } from './que
 import { CreateCompanyRepresentativeHandler } from './commands/handlers';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 
+import { CompanyRepresentativeRepository } from '@graduates/api/company-representative/repository/data-access';
+
 
 @Module({
   imports: [CqrsModule],
@@ -14,6 +16,7 @@ import { PrismaService } from '@graduates/api/shared/services/prisma/data-access
     ApiCompanyRepresentativeService,GetAllRepresentativesHandler,
     GetOneRepresentativeHandler,
     CreateCompanyRepresentativeHandler,
+    CompanyRepresentativeRepository,
     QueryBus,
     CommandBus,
     EventBus,
