@@ -1,6 +1,6 @@
 import { Component} from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'graduates-company-explore-searchbar',
@@ -8,9 +8,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./company-explore-searchbar.component.scss']
 })
 export class CompanyExploreSearchbarComponent{
-  constructor(private router: Router)
+  search!:string;
+  constructor(private router: Router,private route:ActivatedRoute)
   {
-
+    this.route.params.subscribe((params:Params)=>{
+      if(params['search'])
+      {
+        this.search=params['search'];
+      }
+      else
+      {
+        this.search="";
+      }});
   }
   onSubmit(form:NgForm){
     this.router.navigate(['company-explore/search',form.value.search])
