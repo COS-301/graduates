@@ -37,6 +37,7 @@ model User {
   UserPermissions   UserPermissions[]
   UserProfile       UserProfile[]
   UserTag           UserTag[]
+  UserCellNum       UserCellNum[]
   UserContactNumber UserContactNumber[]
   UserDegree        UserDegree[]
   UserExperience    UserExperience[]
@@ -157,6 +158,7 @@ enum PermissionTenant {
 // Profile information for a user
 model UserProfile {
   userId         String  @id @map("user_id")
+  studentNumber  String  @map("student_number")
   profilePicture String? @map("profile_picture")
   bio            String?
   employmentStatus Boolean @map("employment_status") @default(false)
@@ -174,6 +176,16 @@ model UserTag {
   @@id([userId, tag])
   user User @relation(fields: [userId], references: [id])
   @@map("user_tag")
+}
+
+// CellNumbers for users
+model UserCellNum {
+  userId     String @map("user_id")
+  cellNum    String @map("cellnum")
+
+  @@id([userId, cellNum])
+  user User @relation(fields: [userId], references: [id])
+  @@map("user_cellnum")
 }
 
 // Social Media links for users
@@ -235,10 +247,11 @@ enum FileCategory {
 }
 
 model UserDegree {
-  userID     String @id @map("user_id")
+  userID     String @map("user_id")
   degreeType String @map("degree_type")
   degreeName String @map("degree_name")
 
+  @@id([userID, degreeName])
   user User @relation(fields: [userID], references: [id])
   @@map("user_degree")
 }
