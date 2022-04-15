@@ -10,11 +10,14 @@ import { MatCardModule } from '@angular/material/card';
 import { CompanyRepresentativeRoutingModule } from "./company-representative-routing.module";
 import { CompanyRepresentativeMockLoginPageComponent } from './company-representative-mock-login-page/company-representative-mock-login-page.component';
 import { CompanyRepresentativeExploreComponent } from './company-representative-explore/company-representative-explore.component';
+import { CompanyRepresentativeMockStudentExplorePageComponent } from './company-representative-mock-student-explore-page/company-representative-mock-student-explore-page.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   imports: [
     CommonModule,
     MatCardModule,
+    MatButtonModule,
     CompanyRepresentativeRoutingModule
   ],
   declarations: [
@@ -26,8 +29,10 @@ import { CompanyRepresentativeExploreComponent } from './company-representative-
     CompanyRepresentativeContactComponent,
     CompanyRepresentativeMockLoginPageComponent,
     CompanyRepresentativeExploreComponent,
+    CompanyRepresentativeMockStudentExplorePageComponent
   ],
   exports : [
+    CompanyRepresentativeMockStudentExplorePageComponent,
     CompanyRepresentativePageComponent,
     CompanyRepresentativeMockLoginPageComponent
   ]
