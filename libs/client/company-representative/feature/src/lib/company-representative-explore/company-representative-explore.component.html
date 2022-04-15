@@ -2,13 +2,15 @@
 <div>
     <mat-card>
       <div>
-        <h1><b>About Me</b></h1>
+        <h1><b>explore</b></h1>
       </div>
       <div>
         <h2>
-          <b>{{about}}</b>
+          <ul>
+            <li [value]="student" *ngFor="let student of students">{{student}}</li>
+          </ul>
+          <button>+ see more</button>
         </h2>
       </div>
     </mat-card>
   </div>
-  
