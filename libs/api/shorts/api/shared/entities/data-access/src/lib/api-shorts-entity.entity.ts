@@ -1,6 +1,6 @@
 import { Field, InputType, ObjectType } from '@nestjs/graphql';
 import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
-import { ShortTag } from './api-shorts-tag-entity.entity';
+import { ShortTag, ShortTagInput } from './api-shorts-tag-entity.entity';
 import { ShortReport } from './api-shorts-report-entity.entity';
 import { ID } from '@nestjs/graphql';
 
@@ -25,13 +25,19 @@ export class Short {
    * The description/name of the short
    */
   @Field({ nullable: true })
-  media!: string;
+  description!: string;
 
   /**
    * The url of the short
    */
   @Field({ nullable: true })
-  data!: string;
+  link!: string;
+
+  /**
+   * The url of the thumbnail of the short
+   */
+   @Field({ nullable: true })
+   thumbnail!: string;
 
   /**
    * The date the short was created
@@ -40,7 +46,7 @@ export class Short {
   datePosted!: Date;
 
   /**
-   * Wether the short is archived or not
+   * Whether the short is archived or not
    */
   @Field(() => Boolean)
   archived!: boolean;
@@ -73,17 +79,65 @@ export class ShortCreateInput {
    * The description/name of the short
    */
   @Field({ nullable: true })
-  media!: string;
+  description!: string;
 
   /**
    * The url of the short
    */
   @Field({ nullable: true })
-  data!: string;
+  link!: string;
 
   /**
-   * Wether the short is archived or not
+   * The url of the thumbnail of the short
+   */
+  @Field({ nullable: true })
+  thumbnail!: string; 
+
+  /**
+   * Whether the short is archived or not
    */
   @Field(() => Boolean)
+  archived!: boolean;
+
+  /**
+   * The tags of the short
+   */
+  @Field(() => [ShortTagInput])
+  shortTag!: ShortTagInput[];
+}
+
+/**
+ * Definition of the ShortUpdateInput entity as input type
+ */
+@InputType()
+export class ShortUpdateInput {
+  /**
+   * The id of the short
+   */
+  @Field(() => ID)
+  id!: string;
+
+  /**
+   * The description/name of the short
+   */
+  @Field({ nullable: true })
+  description!: string;
+
+  /**
+   * The url of the short
+   */
+  @Field({ nullable: true })
+  link!: string;
+
+  /**
+   * The url of the thumbnail of the short
+   */
+  @Field({ nullable: true })
+  thumbnail!: string;
+
+  /**
+   * Whether the short is archived or not
+   */
+  @Field(() => Boolean, { nullable: true })
   archived!: boolean;
 }

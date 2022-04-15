@@ -11,14 +11,38 @@ export class StorageRepository {
     private firebaseService: FirebaseService
   ) {}
 
-  async getUserFiles(u_id: Prisma.UserProfileFileWhereInput): Promise<UserProfileFile[] | null> {
-    return this.prismaService.userProfileFile.findMany({
+  //get an array of links to all the user's files
+  async getUserFiles(u_id: Prisma.UserProfileFileWhereInput): Promise<string[] | null> {
+
+    const arr : Promise<UserProfileFile[] | null> = this.prismaService.userProfileFile.findMany({
       where: u_id,
     });
+
+    let ret:string[];
+    arr.then((value) => {
+      if(value){
+        for(let i=0;i<value.length;i++)
+        {
+          const url = this.firebaseService.getURLByFilePath(value[i].filePath);
+          
+          url.then((value)=>{
+            if(value)
+              ret[ret.length-1]=value;
+          });
+        }
+          return ret;
+      }
+      else
+      return null;
+    })
+
+    return null;
+
   }
 
-  //TODO rest of categories
-  async getUserDegree(u_id: string, file_type:FileCategory): Promise<string|null> {
+  //get a link to a specific user file
+  async getUserFile(u_id: string, file_type:FileCategory): Promise<string|null> {
+    
     const arr : Promise<UserProfileFile[] | null> = this.prismaService.userProfileFile.findMany({
       where: {
           userId: u_id,
@@ -26,27 +50,47 @@ export class StorageRepository {
       }
     });
       //only the first element of array since it will be unique
-      arr.then((value) => {
+      /*arr.then((value) => {
         if(value)
+        {
         return this.firebaseService.getURLByFilePath(value[0].filePath);
+        }
         else
         return null;
       }
-      )
+      )*/
 
-      return null;
+      return await arr.then(async (value) => {
+        if(value){
+          return await this.firebaseService.getURLByFilePath(value[0].filePath);
+        }
+        else{
+          return null;
+        }
+      });
+
+      //return null;
 
   }
+  //TODO update func, config
 
-  /*@MuziwandileTNdlovu check changes to api-storage. If you cant give me the name I will 
-  code a hashing function*/
-  async createFile(data: ApiStorage) : Promise<UserProfileFile> {
+  //create a file record if the user does not already added this file type
+  async createFile(data: ApiStorage) : Promise<UserProfileFile|null> {
 
-   const file_name = data.fileNameOrHash;
-   this.firebaseService.uploadAsBase64String(data.fileAsString,file_name,FirebaseFolders.Files);
    const u_id = data.userId;
-   const file_ext = data.fileExtension;
    const file_category = data.fileCategory;
+   const file_name = u_id+file_category;
+   
+   this.firebaseService.getURLByName(file_name, FirebaseFolders.Files)
+      .then((value) => {
+        if(value)
+        this.firebaseService.uploadAsBase64String(data.fileAsString,file_name,FirebaseFolders.Files);
+        else
+        console.error('User already has this document');
+        return null;
+      });
+    
+   const file_ext = data.fileExtension;
    
    const file = await this.prismaService.userProfileFile.create({
     data: { userId: u_id,
@@ -56,34 +100,15 @@ export class StorageRepository {
     })
    return file;
   }
-/*
-  async createFile2(u_id: string, file_Path: string, file_category: FileCategory, file_ext: string ) : Promise<UserProfileFile> {
-    const file = await this.prismaService.userProfileFile.create({
-      data: { userId: u_id,
-              fileCategory: file_category,
-              filePath: file_Path,
-              fileExtension: file_ext },
+
+  //the file deleted will be unique since a user can only upload one file per type
+  async deleteFile(u_id: string, file_category:FileCategory){
+    return await this.prismaService.userProfileFile.deleteMany({
+      where: {
+        userId: u_id,
+        fileCategory: file_category,
+      },
     })
-    return file;
   }
-}
-/*
-  //file_Path = Files/fileName for Firebase retrieval;
-  async createFile(binaryFile: string, fileName: string, u_id: string, file_category: FileCategory, file_ext:string) : Promise<UserProfileFile> ;
-  async createFile(u_id: string, file_Path: string, file_category: FileCategory, file_ext: string ) : Promise<UserProfileFile> ;
-  async createFile(arg1: string, arg2: string, arg3: string | FileCategory, arg4: string | FileCategory, arg5? : string) {
-    if(typeof(arg3) === 'string' && typeof(arg4) !== 'string' && arg5)
-    {
-      FirebaseService.uploadFileAsString(arg1,arg2);
-      this.createFile(arg3,"Files/"+arg2,arg4,arg5)
-    }
-    else if(typeof(arg4) === 'string' && typeof(arg3) !== 'string') {
-      const file = await this.prismaService.userProfileFile.create({
-        data: { userId: arg1,
-                fileCategory: arg3,
-                filePath: arg2,
-                fileExtension: arg4 },
-      })
-      return file;
-    }*/
+
   }
