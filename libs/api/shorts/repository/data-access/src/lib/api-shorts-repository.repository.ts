@@ -113,8 +113,9 @@ export class ShortsRepository {
   async createShort(short: ShortCreateInput, userId: string): Promise<Short> {
     return this.prisma.short.create({
       data: {
-        media: short.media,
-        data: short.data,
+        description: short.description,
+        link: short.link,
+        thumbnail: short.thumbnail,
         archived: short.archived,
         user: {
           connect: { id: userId },
@@ -138,8 +139,9 @@ export class ShortsRepository {
     return this.prisma.short.update({
       where: { id: short.id },
       data: {
-        media: short.media,
-        data: short.data,
+        description: short.description,
+        link: short.link,
+        thumbnail: short.thumbnail,
         archived: short.archived,
       },
     });
@@ -371,7 +373,7 @@ export class ShortsRepository {
   /**
    * Function to report a short
    * @param {ShortReportInput} report The report to create
-   * @param {string} userId The id of teh user reporting the short
+   * @param {string} userId The id of the user reporting the short
    * @return {Promise<ShortReport>}
    */
   async reportShort(
