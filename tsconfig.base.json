@@ -306,6 +306,9 @@
       ],
       "@graduates/client/status-page/feature": [
         "libs/client/status-page/feature/src/index.ts"
+      ],
+      "@graduates/client/company-profile/feature": [
+        "libs/client/company-profile/feature/src/index.ts"
       ]
     }
   },
