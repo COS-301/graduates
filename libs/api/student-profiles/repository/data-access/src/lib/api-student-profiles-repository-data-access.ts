@@ -1,13 +1,30 @@
 import {FileCategory, PrismaClient, SocialMedia} from '@prisma/client';
 import { FirebaseService, StorageRepository } from '@graduates/api/storage/repository/data-access';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
-import { Select } from '@ngxs/store';
 import { ApiStorage } from '@graduates/api/storage/api/shared/data-access';
 
 export class StudentProfilesRepository
 {
     prisma = new PrismaClient();
     storage = new StorageRepository(new PrismaService,new FirebaseService)
+
+    async getUserIDFromStudentNumber(studentnum : string)
+    {
+        const list = await this.prisma.userProfile.findMany({
+            select:
+            {
+                userId: true,
+                studentNumber: true
+            }
+        });
+        list.forEach(i => {
+            if (i.studentNumber==studentnum)
+            {
+                return i.userId;
+            }
+        });
+        return null;
+    }
 
     async getName(userid : string)
     {
@@ -180,7 +197,7 @@ export class StudentProfilesRepository
             {
                 userId_type:
                 {
-                    userid: userid,
+                    userId: userid,
                     type: type
                 }
             }
