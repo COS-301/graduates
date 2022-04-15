@@ -25,20 +25,6 @@ export class ApiNotificationsService {
         private readonly commandBus:CommandBus, 
         private readonly eventBus:EventBus
     ){}
-    
-    async findAllMock(): Promise<Notification[]> {
-        const notificationData = new NotificationData();
-        notificationData.notificationType = 'Request'
-        const notification = new Notification();
-        notification.ID = '00001';
-        notification.userIDTo = 'Richard';
-        notification.userIDFrom = 'Thabo';
-        notification.data = notificationData;
-        notification.date = new Date();
-        notification.seen = false;
-        return [notification];
-    }
-
     sendToMail(){
         return this.eventBus.publish(new SendMailEvent(this));
     }
