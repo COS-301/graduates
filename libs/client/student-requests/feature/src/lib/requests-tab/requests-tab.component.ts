@@ -9,5 +9,9 @@ export class RequestsTabComponent {
 
   constructor() {
     //do something
-   }
+  }
+
+  callNotif(msg: string) {
+    alert("The following has been requested: "+msg);
+  }
 }
