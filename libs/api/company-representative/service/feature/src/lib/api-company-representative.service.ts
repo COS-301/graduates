@@ -73,9 +73,10 @@ export class ApiCompanyRepresentativeService {
    * 
    */
 
-   async createRep(id:string,email:string,password:string,passwordSalt:string,name:string,dateOfBirth:string,companyId:string,created:string,suspended:boolean,validated:boolean,userScout:Prisma.UserCreateNestedOneWithoutUserScoutInput, date:string,number:string, experience:string,type:SocialMedia,link:string,bio:string):Promise<User|null> 
+   async createRep(data:User):Promise<User|null> 
   {
-    return this.commandBus.execute(new CreateCompanyRepresentative(id,email,password,passwordSalt,name,dateOfBirth,companyId,created,suspended,validated,userScout,date,number,experience,type,link,bio));
+    // return this.commandBus.execute(new CreateCompanyRepresentative(id,email,password,passwordSalt,name,dateOfBirth,companyId,created,suspended,validated,userScout,date,number,experience,type,link,bio));
+    return null;
   }
 
   

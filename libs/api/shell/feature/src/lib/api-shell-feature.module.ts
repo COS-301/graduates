@@ -23,19 +23,19 @@ import { ApiAdminConsoleApiFeatureModule  as ApiAdminconsoleApiFeatureModule } f
       autoSchemaFile: true,
       driver: ApolloDriver,
     }),
-    ApiStorageFeatureModule,
-    ApiHostingFeatureModule,
-    ApiShortsFeatureModule,
-    ApiNotificationsApiFeatureModule,
-    ApiAccessStatusFeatureModule,
+    // ApiStorageFeatureModule,
+    // ApiHostingFeatureModule,
+    // ApiShortsFeatureModule,
+    // ApiNotificationsApiFeatureModule,
+    // ApiAccessStatusFeatureModule,
     // ApiCompanyProfilePageFeatureModule,
     // ApiStudentProfilesModule,
-    ApiCompanyRepresentativeApiFeatureModule,
-    ApiRequestAccessFeatureModule,
-    ApiAuthenticationApiFeatureModule,
-    ApiAuthorizationFeatureModule,
+    ApiCompanyRepresentativeApiFeatureModule
+    // ApiRequestAccessFeatureModule,
+    // ApiAuthenticationApiFeatureModule,
+    // ApiAuthorizationFeatureModule,
     // ApiStudentExploreApiFeatureModule,
-    ApiAdminconsoleApiFeatureModule
+    // ApiAdminconsoleApiFeatureModule
 
   ],
 })
