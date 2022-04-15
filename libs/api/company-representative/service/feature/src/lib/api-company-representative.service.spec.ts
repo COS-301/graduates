@@ -58,10 +58,10 @@ const mockDataBase = {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports:[CqrsModule],
-      providers: [ApiCompanyRepresentativeService ,{
+      providers: [ApiCompanyRepresentativeService,QueryBus,CommandBus,{
         provide: PrismaService,
         useValue: mockDataBase
-    },QueryBus,CommandBus],
+    }],
     }).compile();
 
     service = module.get<ApiCompanyRepresentativeService>(ApiCompanyRepresentativeService);
