@@ -96,9 +96,9 @@ export class Adminauthorization {
   }
   async updateUserRole(@Param() idasking:string, params: {where: Prisma.UserRoleWhereUniqueInput; 
     data: Prisma.UserRoleUncheckedUpdateInput;}) {
-    const role = this.findRole(idasking);
+    const role = await this.findRole(idasking);
     const {where, data} = params
-    if((await role).role == "ADMIN")
+    if( role != null && role.role == "ADMIN")
     {
         return this.prisma.userRole.update({data,where});
     }
@@ -131,7 +131,7 @@ export class Adminauthorization {
       data:Prisma.RolePermissionsUpdateInput;}) {
         const {where,data} = params;
       const role = await this.findRole(idasking);
-      if( role.role == "ADMIN")
+      if(role != null && role.role == "ADMIN")
       {
           return this.prisma.rolePermissions.update({data,where});
       }
