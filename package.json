@@ -39,6 +39,7 @@
     "@nestjs/graphql": "^10.0.8",
     "@nestjs/passport": "^8.2.1",
     "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/terminus": "^8.0.6",
     "@ngxs-labs/actions-executing": "^0.1.9",
     "@ngxs/cli": "^2.0.0",
     "@ngxs/devtools-plugin": "^3.7.3",
