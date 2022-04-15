@@ -1,5 +1,5 @@
 import { EventsHandler, IEventHandler } from "@nestjs/cqrs";
-import { SendMailEvent } from "../impl/send-mail.event";
+import { SendMailEvent } from "./send-mail.event";
 import * as nodemailer from 'nodemailer';
 import { NotificationsRepository } from "@graduates/api/notifications/repository/data-access";
 
