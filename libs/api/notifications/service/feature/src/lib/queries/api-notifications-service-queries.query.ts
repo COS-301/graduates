@@ -4,7 +4,7 @@ export class GetNotificationByIdQuery {
     constructor(public readonly id: string) {}
 }
 
-export class GetNotificationsRecievedQuery {
+export class GetNotificationsReceivedQuery {
     constructor(public readonly userId: string) {}
 }
 
