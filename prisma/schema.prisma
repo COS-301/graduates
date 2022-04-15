@@ -63,8 +63,8 @@ model UserScouted {
   userId      String    @map("user_id")
   date        DateTime?
 
-  userScout User @relation(name: "userScout", fields: [userIdScout], references: [id])
-  user      User @relation(name: "userScouted", fields: [userId], references: [id])
+  userScout User @relation(name: "userScout", fields: [userIdScout], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  user      User @relation(name: "userScouted", fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@map("user_scouted")
 }
@@ -78,7 +78,7 @@ model UserRole {
   userId String @map("user_id")
   role   Role
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@id([userId, role])
   @@map("user_role")
 }
@@ -90,7 +90,7 @@ model UserPermissions {
   permissionCategory PermissionCategory @map("permission_category")
   permissionTenant   PermissionTenant   @map("permission_tenant")
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@id([userId, permissionType, permissionCategory, permissionTenant])
   @@map("user_permissions")
 }
@@ -163,7 +163,7 @@ model UserProfile {
   employmentStatus Boolean @map("employment_status") @default(false)
   openToOffers     Boolean @map("open_to_offers")    @default(false)
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_profile")
 }
 
@@ -173,7 +173,7 @@ model UserTag {
   tag    String
 
   @@id([userId, tag])
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_tag")
 }
 
@@ -183,8 +183,8 @@ model UserSocialMedia {
   type   SocialMedia
   link   String
 
-  @@id([userId,type])
-  user User @relation(fields: [userId], references: [id])
+@@id([userId,type])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_social_media")
 }
 
@@ -202,7 +202,7 @@ model UserLocation {
   userId   String @id @map("user_id")
   location String
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_location")
 }
 
@@ -211,8 +211,9 @@ model UserEmail {
   userId String @map("user_id")
   email  String
 
+
   @@id([userId,email])
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_email")
 }
 
@@ -224,7 +225,7 @@ model UserProfileFile {
   fileCategory  FileCategory? @map("file_category")
   fileExtension String?       @map("file_extension")
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_student_profile_file")
 }
 
@@ -389,7 +390,7 @@ model UserContactNumber {
   userId    String  @id  @map("user_id")
   number    String  @db.VarChar(10)
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_contact_number")
 }
 
@@ -397,7 +398,7 @@ model UserExperience {
   userId      String @id  @map("user_id")
   experience  String
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_experience")
 }
 
