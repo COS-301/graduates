@@ -1,9 +1,9 @@
+import { ApiAdminConsoleServiceFeatureModule } from '@graduates/api/adminconsole/service/feature';
 import { Module } from '@nestjs/common';
-import { ApiAdminconsoleApiFeatureController } from './api-adminconsole-api-feature.controller';
-
+import { ApiAdminConsoleResolver } from './api-adminconsole.resolver';
 @Module({
-  controllers: [ApiAdminconsoleApiFeatureController],
-  providers: [],
+  controllers: [],
+  providers: [ApiAdminConsoleResolver,ApiAdminConsoleServiceFeatureModule],
   exports: [],
 })
-export class ApiAdminconsoleApiFeatureModule {}
+export class ApiAdminConsoleApiFeatureModule {}

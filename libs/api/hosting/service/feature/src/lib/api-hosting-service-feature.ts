@@ -1,59 +1,44 @@
 import { ApiHosting } from '@graduates/api/hosting/api/shared/data-access';
+import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 import { Injectable } from '@nestjs/common';
+import { HealthIndicator, HealthIndicatorResult } from '@nestjs/terminus';
 
 @Injectable()
-export class ApiHostingServiceFeatureModule {
+export class ApiHostingServiceFeatureModule extends HealthIndicator {
+  
+  private readonly prismaService: PrismaService;
+  private hosting: ApiHosting[] = [
+   {name: 'Storage API' , status: 'Operational'},
+   {name: 'Shorts API', status: 'Operational'},
+   {name: 'Company Profile API', status: 'Operational'},
+   {name: 'Shorts API', status: 'Operational'},
+   {name: 'Access Status API', status: 'Operational'},
+   {name: 'Student Profiles API', status: 'Operational'},
+   {name: 'Company Representative API', status: 'Operational'},
+   {name: 'Request Access API', status: 'Operational'},
+   {name: 'authentication API', status: 'Operational'},
+   {name: 'Block Chain', status: 'Under Development'}
+  ];
   async get_all(): Promise<ApiHosting[]>{
-    const storageAPI = new ApiHosting();
-      const statusAPI = new ApiHosting();
-      const companyProfileAPI = new ApiHosting();
-      const shortsAPI = new ApiHosting();
-      const accessStatusAPI = new ApiHosting();
-      const companyProfilePageAPI = new ApiHosting();
-      const studentProfilesAPI = new ApiHosting();
-      const companyRepresentativeAPI = new ApiHosting();
-      const requestAccessAPI = new ApiHosting();
-      const authenticationAPI = new ApiHosting();
+    //heatlth checks
+    this.checkDatabase();
+    return this.hosting;
+  }
+  async checkDatabase(): Promise<HealthIndicatorResult>{
+    const prisma = new ApiHosting();
+    try{
+      await this.prismaService.$queryRaw;   
+      prisma.name = "Database";
+      prisma.status = "Operational";
+      this.hosting.push(prisma);
+      return this.getStatus("Database", true);
 
-      storageAPI.name = "Storage API";
-      storageAPI.status = "Operational";
-
-      statusAPI.name = "Status API";
-      statusAPI.status = "Operational";
-
-      companyProfileAPI.name = "Company Profile API";
-      companyProfileAPI.status = "Operational";
-      
-      shortsAPI.name = "Shorts API";
-      shortsAPI.status = "Operational";
-
-      accessStatusAPI.name = "Access Status API";
-      accessStatusAPI.status = "Operational";
-
-      companyProfilePageAPI.name = "company Profile Page API";
-      companyProfilePageAPI.status = "Operational";
-
-      studentProfilesAPI.name = "student Profiles API";
-      studentProfilesAPI.status = "Operational";
-
-      companyRepresentativeAPI.name = "company Representative API";
-      companyRepresentativeAPI.status = "Operational";
-
-      requestAccessAPI.name = "request Access API";
-      requestAccessAPI.status = "Operational";
-
-      authenticationAPI.name = "authentication API";
-      authenticationAPI.status = "Operational";
-      return[
-        storageAPI
-        ,statusAPI
-        ,companyProfileAPI
-        ,shortsAPI
-        ,accessStatusAPI
-        ,companyProfilePageAPI
-        ,studentProfilesAPI
-        ,companyRepresentativeAPI
-        ,requestAccessAPI
-        ,authenticationAPI];
+    }
+    catch(error){
+      prisma.name = "Database";
+      prisma.status = "Non Operational";
+      this.hosting.push(prisma);
+      return this.getStatus("Database", false);
+    }
   }
 }

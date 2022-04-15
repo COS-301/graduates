@@ -1,1 +1,1 @@
-export * from './lib/api-blog-repository-data-access.module';
+export * from './lib/api-blog-repository.repository';
