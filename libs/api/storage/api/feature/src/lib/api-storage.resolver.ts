@@ -60,6 +60,8 @@ export class ApiStorageResolver {
       });
       const buffer = Buffer.concat(chunks);
       const base64 = buffer.toString('base64');
+      console.log(base64);
+      
       if(base64.length==0) {
         return false;
       }

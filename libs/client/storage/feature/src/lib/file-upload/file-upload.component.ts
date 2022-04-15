@@ -15,7 +15,7 @@ export class FileUploadComponent implements OnInit {
   greyImageAlt = 'noFileSelected';
 
   // for user details
-  userID = 0;
+  userID = "";
   fileCategory = "";
   cat = "";
 
@@ -31,7 +31,8 @@ export class FileUploadComponent implements OnInit {
   // Variable to store shortLink from api response
     success = "";
     loading = false; // Flag variable
-    file: File | undefined; // Variable to store file
+    file!: File; // Variable to store file
+ // Variable to store file
   
     // Inject service 
     constructor(
@@ -41,7 +42,7 @@ export class FileUploadComponent implements OnInit {
     ngOnInit(): void {
       this.route.paramMap.subscribe((params: any) => {
 
-        this.userID = +params.get('userID');
+        this.userID = params.get('userID');
         this.fileCategory = params.get('fileCategory');
 
         if (params.get('fileCategory') == "academic-record") {
@@ -60,9 +61,10 @@ export class FileUploadComponent implements OnInit {
     onChange(event:any) {
 
         console.log("A file has been selected");
-        
+        console.log(event.target.files[0].name);
         console.log(event.target.files[0].type);
         console.log(event.target.files[0]);
+        
         
         if (event.target.files.length == 1 && event.target.files[0].type == "application/pdf") {
           this.noFileSelected = false;
@@ -95,7 +97,8 @@ export class FileUploadComponent implements OnInit {
 
         console.log(this.file);
 
-        this.fileUploadService.upload(this.file).subscribe(
+        // this.fileUploadService.uploadFile(this.file.name, this.userID, this.fileCategory, this.file?.type, this.file).subscribe(
+          this.fileUploadService.upload(this.file).subscribe(
             (event: any) => {
                 if (typeof (event) === 'object') {
   

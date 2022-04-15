@@ -8,20 +8,28 @@ import { DeleteAllComponent } from './delete-all/delete-all.component';
 import { DownloadAllComponent } from './download-all/download-all.component';
 import { StorageRoutingModule } from "./storage-routing.module";
 import { FileUploadComponent } from './file-upload/file-upload.component';
+// import { HttpModule } from "@angular/common";
+// import { ApolloModule } from "apollo-angular";
+// import { HttpLinkModule } from 'apollo-angular-link-http';
 
 // file upload related libraries
 // import { BrowserModule } from "@angular/platform-browser";
 // import {  } from "module";
 import { HttpClientModule } from "@angular/common/http";
+import { FileUploadService } from "./services/file-upload.service";
 
 // adding material related modules 
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatButtonModule } from "@angular/material/button";
+// import { BrowserModule } from '@angular/platform-browser';
 @NgModule({
   imports: [
     CommonModule,
     StorageRoutingModule,
+    // HttpModule,
+    // ApolloModule,
+    // HttpLinkModule,
     HttpClientModule,
     MatIconModule,
     MatButtonModule,
@@ -38,6 +46,7 @@ import { MatButtonModule } from "@angular/material/button";
     DownloadAllComponent,
     FileUploadComponent
   ],
+  providers:[FileUploadService],
   exports: [MainStoragePageComponent]
 })
 export class ClientStorageFeatureModule {}

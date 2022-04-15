@@ -4049,6 +4049,13 @@ anymatch@^3.0.3, anymatch@~3.1.2:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
 
+apollo-angular@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/apollo-angular/-/apollo-angular-3.0.1.tgz#e2cea7502fbacda3337db92c2fac8878814ef9e0"
+  integrity sha512-gMUa+XdNXYtc4bwK/XFELnYptOKHAW6DYDlQUjxjWlrzqbmiHb49bFI/IT3EK5sR4sukCyYb8rbC4jfsztd/Qg==
+  dependencies:
+    tslib "^2.0.0"
+
 apollo-datasource@^3.3.1:
   version "3.3.1"
   resolved "https://registry.npmjs.org/apollo-datasource/-/apollo-datasource-3.3.1.tgz"
