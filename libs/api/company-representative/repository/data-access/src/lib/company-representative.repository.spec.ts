@@ -2,16 +2,6 @@ import { PrismaService } from "@graduates/api/shared/services/prisma/data-access
 import { Test, TestingModule } from '@nestjs/testing';
 import { CompanyRepresentativeRepository } from './company-representative.repository';
 import { prismaMock } from './singleton';
-import { MockContext, Context, createMockContext } from './context';
-
-
-let mockCtx: MockContext
-let ctx: Context
-
-beforeEach(() => {
-    mockCtx = createMockContext()
-    ctx = mockCtx as unknown as Context
-  })
 
 
 describe('CompanyRepresentativeRepository', () => {
@@ -34,7 +24,7 @@ describe('CompanyRepresentativeRepository', () => {
       expect(repository).toBeDefined();
     });
 
-    
+         
     describe('@login', () => {
 
         const email = 'tester@gmail.com';
@@ -62,12 +52,5 @@ describe('CompanyRepresentativeRepository', () => {
             }    
         })
     });
-
-    // describe('@getRepresentativeUser', () => {
-    //     const userId = '1';
-
-    //     it('should ')
-
-    // })
 
 });
