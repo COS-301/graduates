@@ -22,9 +22,7 @@ describe('ApiRequestAccessRepository', () => {
     it('generic test', async () => {
       const call1 = await data.insertRequest("1322","1322","CV",false);
       const call2 = await data.findRequestByStudIdCompId("1322","1322");
-      console.log(call1);
-      console.log(call2[0]);
-      console.log(call2[1]);
-     expect(true).toBeTruthy();
+        expect(call1).toBeDefined();
+        expect(call2).toBeDefined();
    });
   });
