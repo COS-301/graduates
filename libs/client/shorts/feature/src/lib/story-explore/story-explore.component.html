@@ -157,7 +157,7 @@
       <div class="m-3">
         <textarea id="reason" placeholder="Type your reason here..." rows="6" type="text" formControlName="reason" class="w-full drop-shadow-md rounded" [ngClass]="{'is-invalid': submit && uploadfrm.controls['reason'].errors}">this is a test</textarea>
         <div *ngIf="reported && reportfrm.controls['reason'].errors" class="text-right error mt-1">
-          A reason is required is required.
+          {{ reportfrm.controls['reason'].errors!['errormsg']}}
         </div>
       </div>
       <!-- buttons for CANCEL and REPORT -->

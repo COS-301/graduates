@@ -4,7 +4,7 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Location } from '@angular/common';
 
@@ -61,7 +61,7 @@ export class StoryExploreComponent implements OnInit {
     this.return = false;
     this.report = false;
     this.viewing = false;
-    this.reporting = false;
+    this.reporting = true;
     this.successfulReport = false;
     this.reported = false;
   }
@@ -73,7 +73,7 @@ export class StoryExploreComponent implements OnInit {
     });
 
     this.reportfrm = this.builder.group({
-      reason: ['', Validators.required]
+      reason: ['', this.reasonValidator]
     });
 
     this.loadCards();
@@ -134,6 +134,7 @@ export class StoryExploreComponent implements OnInit {
   closeViewing() {
     this.viewing = false;
   }
+
   //  ==================================================================================== //
   //  Report Pop-Up Functions ============================================================ //
 
@@ -143,31 +144,44 @@ export class StoryExploreComponent implements OnInit {
   }
 
   makeReportpopup() {
-    //create report popup:
     this.viewing = false;
     this.reporting = true;
     this.currentlyReporting = this.currentlyViewing;
   }
 
+  //report VALIDATOR
+  reasonValidator(reason : FormControl) : {[valtype : string] : string} | null {
+    const text = reason.value;
+    const spaceCounter = text.split(' ').length - 1;
+    if (spaceCounter < 4) {
+      return {'errormsg' : 'At least 5 words are required.'};
+    }
+    if (text.length > 256) {
+      return {'errormsg' : 'Characters limited to 256.'};
+    }
+    return null;
+  }
+
   submitReport() {
-    // alert("report for " + this.currentlyReporting + " goes to API");
     this.reported = true;
+    const reportText = this.reportfrm.controls['reason'].value;
 
-
+    //check for any invalid input in the form
     for (const input in this.reportfrm.controls) {
       if (this.reportfrm.controls[input].invalid) {
         return;
       }
     }
-    alert("To submit to API - '" + this.reportfrm.controls['reason'].value + "'")
 
-    //reset for another report:
+    //Send reportText to the api:
+
+
+    //reset for another report on another card:
     this.reportfrm.reset();
     this.reported = false;
 
     //push report to API:
 
-    //check for successful response from API:
 
     //true case after report (make a case if the API fails...)
     this.reporting = false;
