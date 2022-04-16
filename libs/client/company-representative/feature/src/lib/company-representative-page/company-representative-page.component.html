@@ -8,6 +8,17 @@
         <img src="assets/mobileheader.png" class="logoandhat" alt="landg">
       </div>
   </div>
+  <!-- Navbar start -->
+  <div class="nav">
+    <button mat-button (click)="navigateToHome()">Home</button>
+    <button mat-button [matMenuTriggerFor]="menu">Options</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="navigateToEdit()">Edit Profile</button>
+      <button mat-menu-item (click)="navigateToExplore()">Student Explore</button>
+    </mat-menu>
+    <button mat-button (click)="navigateToLogin()">Logout</button>
+  </div>
+<!-- Navbar end -->
 </header>
 <!-- Header end -->
 <section>
@@ -137,7 +148,7 @@
           <ul>
             <li [value]="student" *ngFor="let student of students">{{student}}</li>
           </ul>
-          <button>+ see more</button>
+          <button mat-button (click)="navigateToExplore()">+ see more</button>
         </h2>
       </div>
     </mat-card>
