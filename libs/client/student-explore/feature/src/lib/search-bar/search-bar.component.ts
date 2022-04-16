@@ -23,46 +23,71 @@ export class SearchBarComponent {
     this.qry = '';
   }
 
+  /*window.onload = function init()
+  {
+    var query = `query{
+        SearchStudents(searchQuery: ${this.qry}){
+           StudentID
+           StudentName
+           StudentBio
+           StudentEmail
+           StudentNumber
+           StudentTags
+           StudentDegreeType
+           StudentDegreeName
+           StudentLocation
+        }
+      }`;
+
+      fetch('http://localhost:3333/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          query
+        })
+      })
+        .then(r => r.json())
+        .then(data => console.log('data returned:', data.data.InitStudent));
+  }*/
+
   async searchStudent(query: string)
   {
-    const resp = await this.getStudentArray();
+    const resp: Promise<any> = await this.getSearchResults(query);
 
-    if(resp.data === undefined)
-    {
-      this.responseArray.push("Could Not Get Students");
-    }
-    else
-    {
-
-      resp.data.filter((el: any) => {
-        if(query === el.name || query === el.name + " " + el.surname || query === el.surname || query === el.id)
-        {
-          this.responseArray.push(el);
-        }
-        else if(this.searchStudentsByTags(el.tags))
-        {
-          this.responseArray.push(el);
-        }
-      });
-
-    }
+    resp.then(response => {
+      if(!response.ok)
+      {
+        this.responseArray.push(new Student("", "Could Not Get Students From Source", "", "", "", "", "", "", "", []));
+      }
+      else
+      {
+        response.json()
+        
+        if(response.data === undefined)
+          {
+            this.responseArray.push(new Student("", "Could Not Get Students From Source", "", "", "", "", "", "", "", []));
+          }
+          else if(response.data.SearchStudents.length === 0)
+          {
+            this.responseArray.push(new Student("", "Search Request Not Found", "", "", "", "", "", "", "", []));
+          }
+          else
+          {
+            for(const student of response.data.SearchStudents)
+            {
+              const studentObj = new Student(student.StudentID, student.StudentName, student.StudentEmail, 
+                                              student.StudentBio, student.StudentNumber, student.StudentDegreeType, 
+                                              student.StudentDegreeName, student.StudentLocation, student.StudentPic, student.StudentTags);
+              this.responseArray.push(studentObj);
+            }
+          }
+      }
+    });
 
     return this.responseArray;
-  }
-
-  searchStudentsByTags(arr: Array<any>)
-  {
-    let hasTag = false;
-
-    for(let i=0; i < arr.length; i++)
-    {
-      if(arr[i] === this.qry)
-      {
-        hasTag = true;
-      }
-    }
-
-    return hasTag;
   }
 
   async query()
@@ -71,21 +96,161 @@ export class SearchBarComponent {
 
     if(val.length === 0)
     {
-      this.responseArray.push("Student Not Found");
+      this.responseArray.push(new Student("", "Search Request Not Found", "", "", "", "", "", "", "", []));
     }
 
     return this.responseArray;
   }
 
-  async getStudentArray(): Promise<any>
+  async getSearchResults(searchItem: string): Promise<any>
   {
-    console.log();
+    const query = `query{
+      SearchStudents(searchQuery: ${searchItem}){
+         StudentID
+         StudentName
+         StudentBio
+         StudentEmail
+         StudentNumber
+         StudentTags
+         StudentDegreeType
+         StudentDegreeName
+         StudentLocation
+         StudentPic
+      }
+    }`;
 
-     // Pull data from api-student-explore
+    const fetchCall = await fetch('http://localhost:3333/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        query
+      })
+    })
 
-     // Populate studentArray with information from API
+     return fetchCall;
+  }
+}
 
-     // return true if success, else false
-     return [];
+export class Student
+{
+  private _id = "";
+  private _name = "";
+  //private _surname = "";
+  private _email = "";
+  private _bio = "";
+  private _studentNum = "";
+  private _degType = "";
+  private _degName = "";
+  private _studentLoc = "";
+  private _picURL = "";
+  private _tags: Array<string> = [];
+
+  //Getters and setters
+  public get id() {
+    return this._id;
+  }
+  public get name() {
+    return this._name;
+  }
+  public set name(value) {
+    this._name = value;
+  }
+  
+  /*public get surname() {
+    return this._surname;
+  }
+  public set surname(value) {
+    this._surname = value;
+  }*/
+
+  public get email() {
+    return this._email;
+  }
+  public set email(value) {
+  this._email = value;
+  }
+
+  public get bio()
+  {
+    return this._bio;
+  }
+  public set bio(value: string)
+  {
+    this._bio = value;
+  }
+
+  public get studentNum()
+  {
+    return this._studentNum;
+  }
+  public set studentNum(value: string)
+  {
+    this._studentNum = value;
+  }
+
+  public get degType()
+  {
+    return this._degType;
+  }
+  public set degType(value: string)
+  {
+    this._degType = value;
+  }
+
+  public get degName()
+  {
+    return this._degName;
+  }
+  public set degName(value: string)
+  {
+    this._degName = value;
+  }
+
+  public get studentLoc()
+  {
+    return this._studentLoc;
+  }
+  public set studentLoc(value: string)
+  {
+    this._studentLoc = value;
+  }
+
+  public get picURL()
+  {
+    return this._picURL;
+  }
+  public set picURL(value: string)
+  {
+    this._picURL = value;
+  }
+
+  public get tags(): Array<string>
+  {
+    return this._tags;
+  }
+  public set tags(arr: Array<string>)
+  {
+    arr.forEach((el: string) => {
+      this._tags.push(el);
+    });
+  }
+
+  //constructors
+  constructor(id: string, name: string, contact: string, bio: string, phoneNum: string, degreeType: string, degreeName: string, studentLocation: string, picURL: string ,stags: Array<string>)
+  {
+    this._id = id;
+    this._name = name;
+    //this._surname = surname;
+    this._email = contact;
+    this._bio = bio;
+    this._studentNum = phoneNum;
+    this._degType = degreeType;
+    this._degName = degreeName;
+    this._studentLoc = studentLocation;
+    this._picURL = picURL;
+    this.tags = stags;
   }
 }
