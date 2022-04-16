@@ -2,25 +2,22 @@ describe('client-shorts-feature e2e test', () => {
 
     describe('Explore Component Tests', () => {
       beforeEach(() => cy.visit('/shorts'));
-  
-      it('should display shorts page', () => {
-        cy.get('h1').contains('Student Shorts');
-      });
-  
       it('should click short view and close the view', () => {
-        cy.get('.mat-grid-tile:first > .mat-grid-tile-content > #card > .mat-card-content > .grid > :nth-child(1) > #cardHeader > #cardbuttton').click();
-        cy.get('.formbuttonblue').contains('Close').click();
+        cy.get('.formbutton:first').contains('View').click();
+        cy.get('.text-right > .formbuttonblue').contains('Close').click();
       });
   
       it('should make and submit a report', () => {
-        cy.get('.mat-grid-tile:first > .mat-grid-tile-content > #card > .mat-card-content > .grid > :nth-child(1) > #cardHeader > #cardbuttton').click();
+        cy.get('.formbutton').contains('View').click();
         cy.get('.formbuttonred').contains('Report').click();
         cy.get('#reason').type('This is a test report');
         cy.get('.formbuttonred').contains('Submit').click();
+        cy.get('#uploadbanner').should('contain', 'Report Successful');
         cy.get('.formbuttonblue').contains('Continue').click();
       });
   
-      it('tests navigating between tabs', () => {
+      // TODO Recreate when nav is updated
+      it.skip('tests navigating between tabs', () => {
         cy.get('#curBtn').should('contain.text', '1');
         cy.get('.formbuttonblue').contains('Next').click();
         cy.get('#curBtn').should('contain.text', '2');
