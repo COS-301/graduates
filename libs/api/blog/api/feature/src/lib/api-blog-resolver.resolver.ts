@@ -7,25 +7,79 @@ import {
   Root,
 } from '@nestjs/graphql';
 import {
-  Blog,
-  BlogCreateInput,
+  Blog
 } from '@graduates/api/blog/api/shared/entities/data-access';
 import { BlogService } from '@graduates/api/blog/service/feature';
 import { NotFoundException } from '@nestjs/common';
 
-@Resolver(Blog)
-export class BlogResolver {
-  constructor(private readonly service: BlogService) {}
+@Resolver(() => Notification)
+export class NotificationsResolver {
+    constructor(
+        private notificationService: ApiNotificationsService
+    ) {}
 
-   /**
-   * Mutation to create a blog
-   * params to create a blog
-   */
-  // @Mutation(() => Blog)
-  // async createBlog(
-  //   // @Args('') blog: BlogCreateInput - example
+    @Query(returns => [Notification])
+    async notificationsAll(): Promise<Notification[] | null> {
+        const res = await this.notificationService.getAllNoifications();
+        return (res) ? res : null;
+    }
 
-  // ): Promise<Blog | null> {
+    @Query(returns => Notification)
+    async notificationByID(@Args('ID', {type: () => String}) id: string): Promise<Notification | null> {
+        const res = await this.notificationService.getNotificationsById(id);
+        return (res) ? res : null;
+        
+    }
 
-  // }
+    @Query(returns => [Notification])
+    async notificationsReceived(@Args('userID', {type: () => String}) userId: string): Promise<Notification[] | null> {
+        const res = await this.notificationService.getNotificationsReceived(userId);
+        if (!res) throw new NotFoundException("Notifications Not Found")
+        else return res;
+    }
+
+    @Query(returns => [Notification])
+    async notificationsSent(@Args('userID', {type: () => String}) userId: string): Promise<Notification[] | null> {
+        const res = await this.notificationService.getNotificationsSent(userId);
+        if (!res) throw new NotFoundException("Notifications Not Found")
+        else return res;
+    }
+
+    @Query(returns => [Notification])
+    async notificationsByType(
+        @Args('userID', {type: () => String}) userId: string, 
+        @Args('notificationType', {type: () => String}) notificationType: string
+    ): Promise<Notification[] | null> {
+        const res = await this.notificationService.getNotificationsByType(userId, notificationType);
+        if (!res) throw new NotFoundException("Notifications Not Found")
+        else return res;
+    }
+
+    @Mutation(()=>Notification)
+    async createRequestNotification(
+        @Args('userIDTo', {type: () => String}) userIdTo : string,
+        @Args('userIDFrom', {type: () => String}) userIdFrom : string,
+        @Args('notificationType', {type: () => String}) notificationType : string
+    ) : Promise<Notification | null> {
+        const res = await this.notificationService.createRequestNotification(userIdTo, userIdFrom, notificationType)
+        return (res) ? res : null;
+    }
+
+    @Mutation(()=>Notification)
+    async updateRequestNotification(
+        @Args('ID', {type: () => String}) id : string,
+        @Args('status', {type: () => String}) status : string
+    ) : Promise<Notification | null> {
+        const res = await this.notificationService.updateRequestNotification(id, status);
+        return (res) ? res : null;
+    }
+
+    @Mutation(()=>Notification)
+    async updateSeen(
+        @Args('ID', {type: () => String}) id : string,
+        @Args('seen', {type: () => Boolean}) seen : boolean
+    ) : Promise<Notification | null> {
+        const res = await this.notificationService.updateSeen(id, seen);
+        return (res) ? res : null;
+    }
 }

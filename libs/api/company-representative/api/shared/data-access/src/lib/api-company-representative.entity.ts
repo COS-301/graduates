@@ -14,8 +14,8 @@ export class CompanyRepresentative {
   @Field()
   aboutMe!: string;
 
-  @Field(type => [String])
-  repExperiences!: string[];
+  @Field()
+  repExperience!: string;
 
   @Field()
   location!: string;

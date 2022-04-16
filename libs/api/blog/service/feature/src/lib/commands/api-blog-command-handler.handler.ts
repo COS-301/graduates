@@ -8,7 +8,6 @@ import { CreateBlogCommand,
   DeleteCommentCommand, 
   DeleteCommentsByBlogIdCommand, 
   CreateMediaCommand,
-  UpdateBlogMediaCommand, 
   CreateCommentCommand } from './api-blog-command.command';
 import { BlogRepository } from '@graduates/api/blog/repository/data-access';
 
@@ -115,15 +114,5 @@ export class CreateMediaHandler implements ICommandHandler<CreateMediaCommand> {
   async execute(command: CreateMediaCommand) {
     const { blogId, media } = command; 
     return this.repository.createMedia(blogId, media);
-  }
-}
-
-@CommandHandler(UpdateBlogMediaCommand)
-export class UpdateBlogMediaHandler implements ICommandHandler<UpdateBlogMediaCommand> {
-  constructor(private readonly repository: BlogRepository) {}
-
-  async execute(command: UpdateBlogMediaCommand) {
-    const { blogId, media } = command; 
-    return this.repository.updateBlogMedia(blogId, media);
   }
 }
