@@ -1,0 +1,16 @@
+<div fxLayout="row">
+    <button fxFlexAlign="center" mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon >menu</mat-icon>  
+    </button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+        <span>Newest First</span>
+    </button>
+        <button mat-menu-item>
+        <span>Oldest First</span>
+    </button>
+    </mat-menu>
+    <div fxLayout="column">
+        <p fxFlexOffset="15px" fxFlexAlign="center" fxShow="true" fxHide.lt-sm="true" fxHide.sm="true">SORT</p>
+    </div>
+</div>
