@@ -2,8 +2,6 @@ import { Query, Args, Resolver, Mutation } from '@nestjs/graphql';
 import { ApiStudentProfilesEntity } from '@graduates/api/student-profiles/api/shared/data-access';
 import { ApiStudentProfileService } from '@graduates/api/student-profiles/service/feature';
 import { ApiStudentProfilesInputEntity as StudentInput } from '@graduates/api/student-profiles/api/shared/data-access';
-import { stringify } from 'querystring';
-import { GetStudentProfilePhoneNumberQuery } from 'libs/api/student-profiles/service/feature/src/lib/queries/impl';
 
 @Resolver((of) => ApiStudentProfilesEntity)
 export class ApiStudentProfileResolver {
