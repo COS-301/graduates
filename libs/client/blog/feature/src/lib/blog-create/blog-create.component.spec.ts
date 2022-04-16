@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { BlogCreateComponent } from './blog-create.component';
 
@@ -8,6 +9,7 @@ describe('BlogCreateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [MatMenuModule],
       declarations: [ BlogCreateComponent ]
     })
     .compileComponents();

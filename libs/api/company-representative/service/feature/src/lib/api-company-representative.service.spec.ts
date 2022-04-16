@@ -2,7 +2,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 import { ApiCompanyRepresentativeService } from './api-company-representative.service';
 import { CommandBus, CqrsModule, QueryBus } from '@nestjs/cqrs';
-import { GetAllRepresentativesHandler } from './queries/handlers';
 
 
 describe('ApiCompanyRepresentativeService', () => {
