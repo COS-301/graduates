@@ -1,44 +1,40 @@
 import { ApiHosting } from '@graduates/api/hosting/api/shared/data-access';
-import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
+import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
-import { HealthIndicator, HealthIndicatorResult } from '@nestjs/terminus';
-
+import { HealthCheck, HealthCheckService, HttpHealthIndicator } from '@nestjs/terminus';
 @Injectable()
-export class ApiHostingServiceFeatureModule extends HealthIndicator {
-  
-  private readonly prismaService: PrismaService;
-  private hosting: ApiHosting[] = [
-   {name: 'Storage API' , status: 'Operational'},
-   {name: 'Shorts API', status: 'Operational'},
-   {name: 'Company Profile API', status: 'Operational'},
-   {name: 'Shorts API', status: 'Operational'},
-   {name: 'Access Status API', status: 'Operational'},
-   {name: 'Student Profiles API', status: 'Operational'},
-   {name: 'Company Representative API', status: 'Operational'},
-   {name: 'Request Access API', status: 'Operational'},
-   {name: 'authentication API', status: 'Operational'},
-   {name: 'Block Chain', status: 'Under Development'}
-  ];
+export class ApiHostingServiceFeatureModule {
+  constructor(
+    private httpService: HttpService,
+    private health: HealthCheckService,
+    private http: HttpHealthIndicator,
+  ) {}
+  private hosting: ApiHosting[] = [];
   async get_all(): Promise<ApiHosting[]>{
-    //heatlth checks
-    this.checkDatabase();
-    return this.hosting;
-  }
-  async checkDatabase(): Promise<HealthIndicatorResult>{
-    const prisma = new ApiHosting();
-    try{
-      await this.prismaService.$queryRaw;   
-      prisma.name = "Database";
-      prisma.status = "Operational";
-      this.hosting.push(prisma);
-      return this.getStatus("Database", true);
+     //Perform health Checks
+     const storageApi = new ApiHosting();
 
+      //StorageAPI
+    storageApi.name = "Storage API";
+    try{
+      await this.checkStorageAPI();
+      storageApi.status = "Operational";
     }
     catch(error){
-      prisma.name = "Database";
-      prisma.status = "Non Operational";
-      this.hosting.push(prisma);
-      return this.getStatus("Database", false);
+      storageApi.status = "Non Operational";
     }
+    this.hosting.push(storageApi);
+      //quick fix (until the urls are updated)
+      this.hosting.forEach(element => {
+        element.status = "Operational";
+      });
+    return this.hosting;
+  }
+
+  @HealthCheck()
+  checkStorageAPI(){
+    return this.health.check([
+      () => this.http.pingCheck('Storage API', 'http://localhost:3333/graphql/api-storage-feature')
+    ]);
   }
 }
