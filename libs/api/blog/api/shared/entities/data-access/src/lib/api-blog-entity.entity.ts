@@ -9,57 +9,23 @@ import { ID } from '@nestjs/graphql';
  */
 @ObjectType()
 export class Blog {
-  /**
-   * The id of the Blog
-   */
-  @Field(() => ID)
-  id!: string;
 
-  /**
-   * The id of the user who uploaded the Blog
-   */
-  @Field()
-  userId!: string;
+  //linking blog to user entities
+  @Column()
+  @Field(() => Int)
+  userId: number;
 
-  /**
-   * The description/name of the Blog
-   */
-  @Field({ nullable: true })
-  title!: string;
+  @ManyToOne(() => User, user => user.blogs)
+  @Field(()=> User)
+  user: User;
 
-  /**
-   * The content of the Blog
-   */
-  @Field({ nullable: true })
-  content!: string;
+    //linking blog to comments
+    @OneToMany(()=> Comment, comment => comment.blog)
+    @Field(() => [Comment], {nullable: true})
+    comments?: Comment[];
 
-  /**
-   * The date the Blog was created
-   */
-  @Field(() => Date)
-  date!: Date;
-
-  /**
-   * Wether the Blog is archived or not
-   */
-  @Field(() => Boolean)
-  archived!: boolean;
-
-  /**
-   * The user who uploaded the Blog
-   */
-  @Field(() => User)
-  user!: User;
-
-  /**
-   * The media of the Blog
-   */
-  @Field(() => [BlogMedia])
-  blogMedia!: BlogMedia[];
-
-  /**
-   * The comments of the Blog
-   */
-  @Field(() => [BlogComment])
-  blogComment!: BlogComment[];
+  //linking blog to medias
+  @OneToMany(()=> Media, media => media.blog)
+  @Field(() => [Media], {nullable: true})
+  medias?: Media[];  
 }

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
-
+import { BlogService } from '@graduates/api/blog/service/feature';
 import { BlogRepository } from '@graduates/api/blog/repository/data-access';
 // import {
 
@@ -17,6 +17,6 @@ import { PrismaService } from '@graduates/api/shared/services/prisma/data-access
     PrismaService
     // BlogService,
   ],
-  exports: [],
+  exports: [BlogService],
 })
 export class ApiBlogApiFeatureModule {}

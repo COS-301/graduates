@@ -4,36 +4,35 @@ import { Blog } from './api-blog-entity.entity';
 
 @ObjectType()
 export class BlogComment {
-  /**
-   * The id of the blog that the comment belongs to
-   */
-  @Field()
-  Id!: string;
 
-  /**
-   * The id of the blog the comment is on
-   */
-  @Field()
-  blogId!: string;
+ // @PrimaryGeneratedColumn()
+  @Field(() => Int)  
+  id: number;
 
-  /**
-   * content of blog
-   */
-  @Field()
-  userId!: string;
-
+  //@Column()  
   @Field()
   content!: string;
 
-  @Field(() => Date)
+  //@Column()  
+  @Field(() => Date)  
   date!: Date;
 
-  @Field(() => User)
-  user!: User;
+ //linking comments to a blog entities
+ //@Column()
+ @Field(() => Int)
+ blogId: number;
 
-  /**
-   * The blog that the comment belongs to
-   */
-  @Field(() => Blog)
-  blog!: Blog;
+ //@ManyToOne(() => Blog, blog => blog.comments)
+ @Field(()=> Blog)
+ blog: Blog;
+
+ //linking comments to a User entity
+ //@Column()
+ @Field(() => Int)
+ UserId: number;
+
+ //@ManyToOne(() => User, user => user.comments)
+ @Field(()=> User)
+ user: User;
+
 }
