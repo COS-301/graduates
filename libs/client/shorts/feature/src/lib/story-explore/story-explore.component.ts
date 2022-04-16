@@ -164,7 +164,6 @@ export class StoryExploreComponent implements OnInit {
 
   submitReport() {
     this.reported = true;
-    const reportText = this.reportfrm.controls['reason'].value;
 
     //check for any invalid input in the form
     for (const input in this.reportfrm.controls) {
@@ -173,13 +172,24 @@ export class StoryExploreComponent implements OnInit {
       }
     }
 
-    //Send reportText to the api:
-    const query = `query{  }`;
+    const shortId = "cl1xss9mt00475dt0wh5vo22z";
+    const reason = this.reportfrm.controls['reason'].value;
+    const userId = "cl1v0x7g700278gt0ud3f4tcj";
 
+
+    //Send reportText to the api:
     if (!(this.apollo.client === undefined))
       this.apollo
         .mutate({
-          mutation: gql`${query}`,
+          mutation: gql`
+            mutation {
+              reportShort(report: {shortId: "${ shortId }", reason: "${ reason }"}, userId: "${ userId }") {
+                shortId,
+                userId,
+                reason
+              }
+            }
+          `,
         })
         .subscribe((result : any) => {
           console.log(result);
