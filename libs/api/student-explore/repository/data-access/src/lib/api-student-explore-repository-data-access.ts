@@ -53,7 +53,7 @@ export class StudentExploreRepository {
       tempStudentObj.StudentBio = studentObjProfile.bio;
 
       //Student Email
-      studentObjProfile = await this.prisma.userEmail.findUnique({
+      studentObjProfile = await this.prisma.userEmail.findMany({
         where: { userId : students[i].id, },
       });
 
@@ -67,7 +67,7 @@ export class StudentExploreRepository {
       tempStudentObj.StudentNumber = studentObjProfile.number;
 
       //Student Degree Type and Name
-      studentObjProfile = await this.prisma.userDegree.findUnique({
+      studentObjProfile = await this.prisma.userDegree.findMany({
         where: { userID : students[i].id, },
       });
 
@@ -139,7 +139,7 @@ export class StudentExploreRepository {
         tempStudentObj.StudentBio = studentObjProfile.bio;
 
         //Student Email
-        studentObjProfile = await this.prisma.userEmail.findUnique({
+        studentObjProfile = await this.prisma.userEmail.findMany({
           where: { userId : students[i].id, },
         });
 
@@ -153,7 +153,7 @@ export class StudentExploreRepository {
         tempStudentObj.StudentNumber = studentObjProfile.number;
 
         //Student Degree Type and Name
-        studentObjProfile = await this.prisma.userDegree.findUnique({
+        studentObjProfile = await this.prisma.userDegree.findMany({
          where: { userID : students[i].id, },
         });
 
