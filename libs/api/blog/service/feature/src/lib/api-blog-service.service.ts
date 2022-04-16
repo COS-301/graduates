@@ -40,7 +40,7 @@ export class BlogService {
     );
   }
 
-  async updateBlogTitle(blogId, title): Promise<Blog | null> {
+  async updateBlogTitle(blogId, title): Promise<string> {
     return await this.commandBus.execute(
       new UpdateBlogTitleCommand(blogId, title)
     );
@@ -58,7 +58,7 @@ export class BlogService {
     );
   }
 
-  async deleteBlog(blogId): Promise<Blog | null> {
+  async deleteBlog(blogId): Promise<string> {
     return await this.commandBus.execute(
       new DeleteBlogCommand(blogId)
     );
@@ -131,7 +131,7 @@ export class BlogService {
     );
   }
 
-  async getCommentByCommentId(commentId): Promise<BlogComment[]> {
+  async getCommentByCommentId(commentId): Promise<BlogComment> {
     return await this.queryBus.execute(
       new GetCommentByCommentIdQuery(commentId)
     );
