@@ -4,18 +4,23 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { Logger } from '@nestjs/common';
+import { match } from 'assert';
+import { ApiExampleRepositorySharedInterfacesDataAccessModule } from '@graduates/api/example/repository/shared/interfaces/data-access';
 
 @Component({
   selector: 'graduates-student-card',
   templateUrl: './student-card.component.html',
   styleUrls: ['./student-card.component.scss'],
-  providers: [MatCardModule, MatButtonModule,MatCheckboxModule, MatMenuModule,MatIconModule],
+  providers: [MatCardModule, MatButtonModule,MatCheckboxModule, MatMenuModule,MatIconModule]
 })
 export class StudentCardComponent implements OnInit
 {
 
   //MOCK DATA FROM API
   studentArray: Student[] = [];
+  tempStudentArray: Student[] = [];
+  matchingStudentArray: Student[] = [];
   activeFilters: filter[] = [];
   allFilters: filter[] = [];
 
@@ -26,140 +31,13 @@ export class StudentCardComponent implements OnInit
   //JSON's to be used for filtering
   filter_JSON = "";
 
-  mock_json_databases = `{
-    "data": {
-
-      "InitStudent": [
-        {
-          "StudentID" : "0129583027939",
-          "StudentName": "Matthew",
-          "StudentBio": "This is the bio of Student Matthew. They are a student at UP!",
-          "StudentEmail": "exmaple@gmail.com",
-          "StudentNumber": "0688888888",
-          "StudentTags": ["Databases", "UI Engineer"],
-          "StudentDegreeType": "Bsc",
-          "StudentDegreeName": "Computer Science",
-          "StudentLocation": "Midrand"
-        }
-      ]
-    }
-  }`;
-  mock_json_AI = `{
-    "data": {
-
-      "InitStudent": [
-        {
-          "StudentID" : "0129583027937",
-          "StudentName": "Timo",
-          "StudentBio": "This is the bio of Student Timo. They are a student at UP!",
-          "StudentEmail": "exmaple@gmail.com",
-          "StudentNumber": "0688888888",
-          "StudentTags": ["Networks", "AI"],
-          "StudentDegreeType": "Bsc",
-          "StudentDegreeName": "Computer Science",
-          "StudentLocation": "Pretoria"
-        },
-        {
-          "StudentID" : "0129583027938",
-          "StudentName": "Daniel A",
-          "StudentBio": "This is the bio of Student Daniel. They are a student at UP!",
-          "StudentEmail": "exmaple@gmail.com",
-          "StudentNumber": "0688888888",
-          "StudentTags": ["Computer security", "AI"],
-          "StudentDegreeType": "Bsc",
-          "StudentDegreeName": "Computer Science",
-          "StudentLocation": "Pretoria"
-        }
-      ]
-    }
-  }`;
-  mock_json = `{
-  "data": {
-
-    "InitStudent": [
-      {
-        "StudentID" : "0129583027937",
-        "StudentName": "Timo",
-        "StudentBio": "This is the bio of Student Timo. They are a student at UP!",
-        "StudentEmail": "exmaple@gmail.com",
-        "StudentNumber": "0688888888",
-        "StudentTags": ["Networks", "AI"],
-        "StudentDegreeType": "Bsc",
-        "StudentDegreeName": "Computer Science",
-        "StudentLocation": "Pretoria"
-      },
-      {
-        "StudentID" : "0129583027938",
-        "StudentName": "Daniel A",
-        "StudentBio": "This is the bio of Student Daniel. They are a student at UP!",
-        "StudentEmail": "exmaple@gmail.com",
-        "StudentNumber": "0688888888",
-        "StudentTags": ["Computer security", "AI"],
-        "StudentDegreeType": "Bsc",
-        "StudentDegreeName": "Computer Science",
-        "StudentLocation": "Pretoria"
-      },
-      {
-        "StudentID" : "0129583027939",
-        "StudentName": "Danielv2",
-        "StudentBio": "This is the bio of Student DanielV2. They are a student at UP!",
-        "StudentEmail": "exmaple@gmail.com",
-        "StudentNumber": "0688888888",
-        "StudentTags": ["Dev ops", "Typing"],
-        "StudentDegreeType": "Bsc",
-        "StudentDegreeName": "Computer Science",
-        "StudentLocation": "KZN"
-      },
-      {
-        "StudentID" : "0129583027939",
-        "StudentName": "Matthew",
-        "StudentBio": "This is the bio of Student Matthew. They are a student at UP!",
-        "StudentEmail": "exmaple@gmail.com",
-        "StudentNumber": "0688888888",
-        "StudentTags": ["Databases", "UI Engineer"],
-        "StudentDegreeType": "Bsc",
-        "StudentDegreeName": "Computer Science",
-        "StudentLocation": "Midrand"
-      }
-    ]
-  }
-  }`;
-
-  //MOCK ALL AVAILABLE
-  available_empStatus = `{
-    "data": {
-      "AllAvailable":[
-        {
-          "Available": [
-            "Employed, open to offers",
-            "Employed, not open to offers",
-            "Unmployed, open to offers",
-            "Unmployed, not open to offers"
-          ]
-        }
-      ]
-    }
-   }`;
-  available_location = `{
-    "data": {
-      "AllAvailable":[
-        {
-          "Available": [
-            "Pretoria",
-            "JHB",
-            "Midrand",
-            "KZN"
-          ]
-        }
-      ]
-    }
-   }`;
+  //MOCK AVAILABLE DATA
    available_tags = `{
     "data": {
       "AllAvailable":[
         {
           "Available": [
-            "Networks",
+            "Networking",
             "Databases",
             "AI",
             "UI Engineer"
@@ -209,37 +87,29 @@ export class StudentCardComponent implements OnInit
       //Pushing new student onto the array
       const student = new Student(stud_details.StudentID, stud_details.StudentName, stud_details.StudentBio,
           stud_details.StudentEmail, stud_details.StudentNumber, stud_tags, stud_details.StudentDegreeType, 
-          stud_details.StudentDegreeName , stud_details.StudentLocation );
+          stud_details.StudentDegreeName , stud_details.StudentLocation, stud_details.StudentPic );
+          
       this.studentArray.push(student);
     }
   }
 
   //Populate the Students by anything
-  async loadStudentCardsByFilter(json_string : string)
+  async loadStudentCardsByFilter(filtered_student_array : Student[])
   {
-  const response = JSON.parse(json_string);
-
-    if(response.data===undefined){
+    if(filtered_student_array === []){
       return;
     }
 
-    const len = response.data.InitStudent.length;
+    const len = filtered_student_array.length;
     for (let j = 0; j < len; j++) 
     {
-      const stud_details = response.data.InitStudent[j];
-
       //Building Student Tags string
       let stud_tags = "";
-      let i = 0;
-      for (i = 0; i < stud_details.StudentTags.length-1; i++) 
-      {
-        stud_tags += stud_details.StudentTags[i] + ", ";
-      }
-      stud_tags += stud_details.StudentTags[i];
+      stud_tags += filtered_student_array[j].tags;
 
-      const student = new Student(stud_details.StudentID, stud_details.StudentName, stud_details.StudentBio,
-                          stud_details.StudentEmail, stud_details.StudentNumber, stud_tags, stud_details.StudentDegreeType, 
-                          stud_details.StudentDegreeName , stud_details.StudentLocation );
+      const student = new Student(filtered_student_array[j].id, filtered_student_array[j].name, filtered_student_array[j].bio,
+        filtered_student_array[j].email, filtered_student_array[j].contactNo, stud_tags, filtered_student_array[j].degreeType, 
+        filtered_student_array[j].degreeName , filtered_student_array[j].location, filtered_student_array[j].StudentPic);
       this.studentArray.push(student);
     }
   }
@@ -255,22 +125,99 @@ export class StudentCardComponent implements OnInit
   async retrieveStudentObjects() : Promise<string>
   {
     //Make service call and make JSON object
-    const students = JSON.parse(this.mock_json);
+    const query = `query{
+      InitStudent{
+        StudentID
+        StudentName
+        StudentBio
+        StudentEmail
+        StudentNumber
+        StudentTags
+        StudentDegreeType
+        StudentDegreeName
+        StudentPic
+      }
+    }`;
 
-    // return true if success, else false
-    return JSON.stringify(students);
+    //Get initial students
+    let initial_students = "";
+    await fetch('http://localhost:3333/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          query
+        })
+      }).then(r => r.json()).then(data => 
+            initial_students = data
+        );
+    console.log("INITIAL STUDENTS: ", initial_students);
+
+    //Return the JSON object of all relevant students
+    return JSON.stringify(initial_students);
   }
 
   async retrieve_available_filters()
   {
-    //Make appropriate API Calls to get JSON for
     //Employment Status
-    //Location
-    //Tags
+    let empQuery = "";
+    let query = `query{
+      AllAvailable(availableQuery: "Emp Status"){
+        Available
+      }
+      }`;
+    await fetch('http://localhost:3333/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          query
+        })
+      }).then(r => r.json()).then(data => empQuery = JSON.stringify(data));
 
-    const emp = JSON.parse(this.available_empStatus);
-    const loca = JSON.parse(this.available_location);
-    const tagss = JSON.parse(this.available_tags);
+    //Location
+    let locaQuery = "";
+    query = `query{
+      AllAvailable(availableQuery: "Location"){
+        Available
+      }
+      }`;
+    await fetch('http://localhost:3333/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          query
+        })
+      }).then(r => r.json()).then(data => locaQuery = JSON.stringify(data));
+
+    //Tags
+    const tagsQuery = this.available_tags; //make let tagsQuery = ""; and uncomment the lines below when API call works
+    // query = `query{
+    //   AllAvailable(availableQuery: "Tags"){
+    //     Available
+    //   }
+    //   }`;
+    // await fetch('http://localhost:3333/graphql', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       'Accept': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //       query
+    //     })
+    //   }).then(r => r.json()).then(data => tagsQuery = JSON.stringify(data));
+
+    const emp = JSON.parse(empQuery);
+    const loca = JSON.parse(locaQuery);
+    const tagss = JSON.parse(tagsQuery);
 
     //Populating the filters arrays
     const emp_data = emp.data.AllAvailable[0];
@@ -297,18 +244,191 @@ export class StudentCardComponent implements OnInit
 
   //FILTERING
   
-  //By Tags
-  async filter_tags(filt:filter)
+  //Main filtering function
+  async filter_students(filt:filter)
   {
     filt.checked = !filt.checked;
     const active_filters = await this.find_active_filters();
-
-    //Make temp student array
-    //Loop through each activeFilter and populate the temp
-    //each next active filter, check if the student names match
+    console.log(active_filters);
     
-    //Stringify filter_JSON response
 
+    //Get all common students between all active_filters
+    this.tempStudentArray = [];
+    this.matchingStudentArray = [];
+    let query = "";
+    for (let i = 0; i < active_filters.length; i++) 
+    {
+      //Tags query
+      if(active_filters[i].type === "tags")
+        query = `query{
+        SearchStudentsByTag(searchTag: "${active_filters[i].filter_name}"){
+          StudentID
+          StudentName
+          StudentBio
+          StudentEmail
+          StudentNumber
+          StudentTags
+          StudentPic
+        }
+        }`;
+
+      //Employment Staus query
+      if(filt.type === "employment")
+      {
+        if(active_filters[i].filter_name === "Employed, Open to Offers")
+        {
+          query = `query{
+            FilterStudents(filterQuery: "True True", filterType: "Employment/Offers"){
+            StudentID
+            StudentName
+            StudentBio
+            StudentEmail
+            StudentNumber
+            StudentTags
+            StudentPic
+            }
+          }`;
+        }
+        else if(active_filters[i].filter_name === "Employed, Not open to Offers")
+        {
+          query = `query{
+            FilterStudents(filterQuery: "True False", filterType: "Employment/Offers"){
+              StudentID
+              StudentName
+              StudentBio
+              StudentEmail
+              StudentNumber
+              StudentTags
+              StudentPic
+            }
+          }`;
+        }
+        else if(active_filters[i].filter_name === "Unemployed, Open to Offers")
+        {
+          query = `query{
+            FilterStudents(filterQuery: "False True", filterType: "Employment/Offers"){
+              StudentID
+              StudentName
+              StudentBio
+              StudentEmail
+              StudentNumber
+              StudentTags
+              StudentPic
+            }
+          }`;
+        }
+        else if(active_filters[i].filter_name === "Unemployed, Not open to Offers")
+        {
+          query = `query{
+            FilterStudents(filterQuery: "False False", filterType: "Employment/Offers"){
+              StudentID
+              StudentName
+              StudentBio
+              StudentEmail
+              StudentNumber
+              StudentTags
+              StudentPic
+            }
+          }`;
+        }
+      }
+
+      //Location query
+      if(active_filters[i].type === "location")
+        query = `query{
+        FilterStudents(filterQuery: "${active_filters[i].filter_name}", filterType:"Location"){
+          StudentID
+          StudentName
+          StudentBio
+          StudentEmail
+          StudentNumber
+          StudentTags
+          StudentPic
+          }
+        }`;
+
+      //Make the API call with the correct query
+      let filtered = "";
+      await fetch('http://localhost:3333/graphql', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify({
+            query
+          })
+        }).then(r => r.json()).then(data => 
+          filtered = JSON.stringify(data)
+          );
+
+      // console.log(filtered);
+      
+      //ACTUALLY FILTER NOW LOL
+      this.matchingStudentArray = [];
+        
+      //First filter
+      if(i === 0)
+      {
+        const filtered_students = JSON.parse(filtered);
+        let stud_details;
+        if(active_filters[i].type === "tags")
+          stud_details = filtered_students.data.SearchStudentsByTag;
+        if(active_filters[i].type === "employment" || active_filters[i].type === "location")
+          stud_details = filtered_students.data.FilterStudents;
+      
+        for (let j = 0; j < stud_details.length; j++) 
+        {
+          const person = stud_details[j];
+          
+          //Building Student Tags string
+          let stud_tags = "";
+          let i = 0;
+          for (i = 0; i < person.StudentTags.length-1; i++) 
+            stud_tags += person.StudentTags[i] + ", ";
+          stud_tags += person.StudentTags[i];
+    
+          //Add student to the Array
+          const student = new Student(person.StudentID, person.StudentName, person.StudentBio, person.StudentEmail, person.StudentNumber, stud_tags, person.StudentDegreeType, person.StudentDegreeName , person.StudentLocation, person.StudentPic );     
+          this.tempStudentArray.push(student);
+        }
+      }
+      else //Second + filters
+      { 
+        const filtered_students = JSON.parse(filtered);
+        
+        let stud_details;
+        if(active_filters[i].type === "tags")
+          stud_details = filtered_students.data.SearchStudentsByTag;
+        if(active_filters[i].type === "employment" || active_filters[i].type === "location")
+          stud_details = filtered_students.data.FilterStudents;
+
+        for (let j = 0; j < stud_details.length; j++) 
+        {
+          const person = stud_details[j];
+          
+          //Building Student Tags string
+          let stud_tags = "";
+          let i = 0;
+          for (i = 0; i < person.StudentTags.length-1; i++) 
+            stud_tags += person.StudentTags[i] + ", ";
+          stud_tags += person.StudentTags[i];
+    
+          //Add student to the Array
+          const student = new Student(person.StudentID, person.StudentName, person.StudentBio, person.StudentEmail, person.StudentNumber, stud_tags, person.StudentDegreeType, person.StudentDegreeName , person.StudentLocation, person.StudentPic );    
+          //Checking if this student is in previously filtered student array
+          for (let k = 0; k < this.tempStudentArray.length; k++) 
+          {
+            if(this.tempStudentArray[k].id === student.id)
+            {
+              this.matchingStudentArray.push(student);
+            }
+          }
+        }
+        this.tempStudentArray = this.matchingStudentArray;
+      }
+    }
+    // console.log("two filter fields: ",JSON.stringify(this.tempStudentArray))
     //NOT SURE IF THIS WILL STAY, Clearing studentArray
     this.studentArray = [];
 
@@ -316,7 +436,7 @@ export class StudentCardComponent implements OnInit
     if(active_filters.length > 0)
     {
       //Will load by JSON/ or array object made above
-      this.loadStudentCardsByFilter(this.mock_json_AI);
+      this.loadStudentCardsByFilter(this.tempStudentArray);
     }
     else
     {
@@ -326,18 +446,18 @@ export class StudentCardComponent implements OnInit
 
   async find_active_filters() : Promise<filter[]>
   {
-  //Clearing all active filters
-  this.activeFilters = [];
+    //Clearing all active filters
+    this.activeFilters = [];
 
-  //Adding all active filters
-  for (let i = 0; i < this.allFilters.length; i++) 
-  {
-    if(this.allFilters[i].checked === true)
+    //Adding all active filters
+    for (let i = 0; i < this.allFilters.length; i++) 
     {
-      this.activeFilters.push(this.allFilters[i]);
+      if(this.allFilters[i].checked === true)
+      {
+        this.activeFilters.push(this.allFilters[i]);
+      }
     }
-  }
-  return this.activeFilters;
+    return this.activeFilters;
   }
 }
 
@@ -352,6 +472,7 @@ export class Student{
   private _degreeType = "";
   private _degreeName = "";
   private _location = "";
+  private _StudentPic = "";
 
   //Getters and setters
   public get id() {
@@ -408,9 +529,15 @@ export class Student{
   public set location(value) {
     this._location = value;
   }
+  public get StudentPic() {
+    return this._StudentPic;
+  }
+  public set StudentPic(value) {
+    this._StudentPic = value;
+  }
 
   //constructor
-  constructor(id: string, name: string, bio: string, email: string, number: string, tags: string, degreeType : string, degreeName: string, location: string){
+  constructor(id: string, name: string, bio: string, email: string, number: string, tags: string, degreeType : string, degreeName: string, location: string, StudentPic: string){
     this._id = id;
     this._name = name;
     this._bio = bio;
@@ -420,6 +547,7 @@ export class Student{
     this._degreeType = degreeType;
     this._degreeName = degreeName;
     this._location = location;
+    this._StudentPic = StudentPic;
   }
 }
 

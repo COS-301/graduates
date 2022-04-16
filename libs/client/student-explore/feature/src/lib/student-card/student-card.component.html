@@ -6,17 +6,17 @@
 
   <h2>Emplyment status</h2>
   <button *ngFor="let emp of empArray" mat-menu-item role="menuitemcheckbox">
-    <mat-checkbox id="{{emp.filter_name}}" (click)="$event.stopPropagation(); filter_tags(emp)" >{{emp.filter_name}}</mat-checkbox>
+    <mat-checkbox id="{{emp.filter_name}}" (click)="$event.stopPropagation(); filter_students(emp)" >{{emp.filter_name}}</mat-checkbox>
   </button>
 
   <h2>Location</h2>
   <button *ngFor="let loca of locationArray" mat-menu-item role="menuitemcheckbox">
-    <mat-checkbox id="{{loca.filter_name}}" (click)="$event.stopPropagation(); filter_tags(loca)">{{loca.filter_name}}</mat-checkbox>
+    <mat-checkbox id="{{loca.filter_name}}" (click)="$event.stopPropagation(); filter_students(loca)">{{loca.filter_name}}</mat-checkbox>
   </button>
 
   <h2>Tags</h2>
   <button *ngFor="let tags of tagsArray" mat-menu-item role="menuitemcheckbox">
-    <mat-checkbox id="{{tags.filter_name}}" (click)="$event.stopPropagation(); filter_tags(tags)" >{{tags.filter_name}}</mat-checkbox>
+    <mat-checkbox id="{{tags.filter_name}}" (click)="$event.stopPropagation(); filter_students(tags)" >{{tags.filter_name}}</mat-checkbox>
   </button>
 </mat-menu>
 
@@ -26,7 +26,7 @@
     <div class="banner">
       <!-- Image will be replaces by URL path from student -->
       <img
-        src="https://previews.123rf.com/images/deagreez/deagreez1911/deagreez191103657/133740519-portrait-of-confident-cool-entrepreneur-guy-cross-hands-look-feel-positive-cheerful-emotions-real-pr.jpg"
+        src={{student.StudentPic}}
         alt="Profile Photo"
       />
     </div>
