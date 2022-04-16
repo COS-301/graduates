@@ -8,7 +8,7 @@ import { CompanyRepresentativeMockStudentExplorePageComponent } from './company-
 
 @NgModule({
   imports: [
-    RouterModule.forChild([
+    RouterModule.forRoot([
       {
         path: 'CompanyRepresentativeLogin',
         component: CompanyRepresentativeMockLoginPageComponent,
