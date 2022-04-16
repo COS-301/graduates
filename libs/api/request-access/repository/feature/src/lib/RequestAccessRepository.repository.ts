@@ -17,4 +17,14 @@ export class RequestAccessRepository {
       }
     });
   }
+
+  //   find request using studId and compId
+  async findRequestByStudIdCompId(studId:string,compId:string): Promise<Requested[]> {
+    return await this.prismaService.requested.findMany({
+      where: {
+        StudId: studId,
+        CompId: compId
+      }
+    });
+  }
 }
