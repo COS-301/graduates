@@ -62,3 +62,66 @@ h3 {
     padding-left: 12%;
     font-weight: 500;
 }
+
+.card {
+    margin: 1px;
+}
+
+mat-card {
+    width: 350px;
+    height: 300px;
+}
+
+.cardTitle {
+    position: absolute;
+    bottom: 50px;
+}
+
+.viewbutton {
+    background-color: $primary-1;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $primary-1;
+    &:hover {
+        color: $primary-1;
+        background-color: $background-white;
+    }
+    position: relative;
+    float: right;
+}
+
+.editbutton {
+    color: $primary-1;
+    background-color: $background-white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $primary-1;
+    &:hover {
+        background-color: $primary-1;
+        color: $background-white;
+    }
+    position: relative;
+    float: left;
+}
+
+.deletebutton {
+    color: $primary-1;
+    background-color: $background-white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $primary-1;
+    &:hover {
+        background-color: $primary-1;
+        color: $background-white;
+    }
+}
+
+.buttons {
+    position: absolute;
+    bottom: 20px;
+}
+
+.auto-col-maker {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}

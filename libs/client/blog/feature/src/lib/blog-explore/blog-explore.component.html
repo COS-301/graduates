@@ -17,24 +17,33 @@
     </div>
 
     <mat-grid-list #grid [cols]="cols" rowHeight="350px">
-        <mat-grid-tile>
-            <graduates-blog-explore-card></graduates-blog-explore-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <graduates-blog-explore-card></graduates-blog-explore-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <graduates-blog-explore-card></graduates-blog-explore-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <graduates-blog-explore-card></graduates-blog-explore-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <graduates-blog-explore-card></graduates-blog-explore-card>
-        </mat-grid-tile>
-        <mat-grid-tile>
-            <graduates-blog-explore-card></graduates-blog-explore-card>
-        </mat-grid-tile>
+        <div *ngFor="let card of blogs | async">
+            <mat-grid-tile>
+                <mat-card class="card" fxLayout="column">
+
+                    <div>
+                        Blog Summary Blog Summary Blog Summary Blog Summary Blog Summary Blog Summary Blog Summary
+                    </div>
+
+                    <br>
+
+                    <mat-card-header fxFlexAlign="center" class="cardTitle">
+                        <mat-card-title>{{card.blog.title}}</mat-card-title>
+                        <mat-card-subtitle>{{card.blog.author}}</mat-card-subtitle>
+                    </mat-card-header>
+
+                    <mat-card-content>
+                        <div class="buttons">
+                            <button *ngIf="admin" class="editbutton" mat-raised-button color="accent">Edit Post</button>
+                            <button *ngIf="admin" class="deletebutton" mat-raised-button color="accent">Delete Post</button>
+                            <button class="viewbutton" mat-raised-button color="accent">Read More</button>
+                        </div>
+                    </mat-card-content>
+
+                </mat-card>
+            </mat-grid-tile>
+        </div>
+
     </mat-grid-list>
 </div>
 

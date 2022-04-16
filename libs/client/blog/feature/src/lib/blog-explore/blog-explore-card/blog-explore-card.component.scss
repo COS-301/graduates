@@ -22,6 +22,7 @@ mat-card {
         color: $primary-1;
         background-color: $background-white;
     }
+    position: relative;
     float: right;
 }
 
@@ -35,6 +36,7 @@ mat-card {
         background-color: $primary-1;
         color: $background-white;
     }
+    position: relative;
     float: left;
 }
 
@@ -51,7 +53,6 @@ mat-card {
 }
 
 .buttons {
-    position: relative;
-    top: 100%;
-    transform: translateY(-100%);
+    position: absolute;
+    bottom: 20px;
 }
