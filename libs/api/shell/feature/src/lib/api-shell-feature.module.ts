@@ -27,7 +27,7 @@ import { ApiUpintegrationApiFeatureModule as ApiUpintegrationFeatureModule } fro
     ApiStorageFeatureModule,
     // ApiHostingFeatureModule,
     ApiShortsFeatureModule,
-    ApiNotificationsApiFeatureModule,
+    // ApiNotificationsApiFeatureModule,
     ApiAccessStatusFeatureModule,
     //ApiCompanyProfilePageFeatureModule,
     // ApiStudentProfilesModule,
