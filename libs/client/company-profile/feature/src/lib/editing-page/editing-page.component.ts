@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'graduates-example-feature',
+  selector: 'graduates-editing-page-feature',
   templateUrl: './editing-page.component.html',
   styleUrls: ['./editing-page.component.scss'],
 })
-export class EditingPageComponent {}
+export class EditingPageComponent {
+  constructor() {
+    //do something
+  }
+}

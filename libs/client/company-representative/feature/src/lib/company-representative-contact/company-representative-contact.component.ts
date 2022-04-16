@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./company-representative-contact.component.scss']
 })
 export class CompanyRepresentativeContactComponent {
+  number = "0814941334"
   location = "Pretoria, SA";
   email = "johndoe@example.com";
   website = "www.JohnDoe.com";
