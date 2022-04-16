@@ -5,7 +5,7 @@ async function main() {
 
     //mock users 1 student 2 companies
 
-  await prisma.user.create({
+    const student = await prisma.user.create({
         data:
         {
             email: "u12345678@tuks.ac.za",
@@ -50,12 +50,10 @@ async function main() {
 
     //User Profiles
 
-    const studentid = await prisma.user.findFirst({where:{name:"Anne Frankly"},select:{id:true}});
-
     await prisma.userProfile.create({
         data:
         {
-            userId: studentid,
+            userId: student.id,
             studentNumber: "u12345678",
             bio: "Self-Published Author, Never trust anyone #soldout, <3 Gaslight, Gatekeep, Girlboss <3"
         }
@@ -64,7 +62,7 @@ async function main() {
     await prisma.userTag.create({
         data:
         {
-            userId: studentid,
+            userId: student.id,
             tag: "Espionage"
         }
     });
@@ -72,7 +70,7 @@ async function main() {
     await prisma.userTag.create({
         data:
         {
-            userId: studentid,
+            userId: student.id,
             tag: "AI"
         }
     });
@@ -82,7 +80,7 @@ async function main() {
     await prisma.userSocialMedia.create({
         data:
         {
-            userId: studentid,
+            userId: student.id,
             type: linkedin,
             link: "linked.com/Anne"
         }
@@ -93,7 +91,7 @@ async function main() {
     await prisma.userSocialMedia.create({
         data:
         {
-            userId: studentid,
+            userId: student.id,
             type: insta,
             link: "insta.com/AnnieeeeFinsta"
         }
@@ -102,7 +100,7 @@ async function main() {
     await prisma.userLocation.create({
         data:
         {
-            userId: studentid,
+            userId: student.id,
             location: "Prefer not to say"
         }
     });
@@ -112,7 +110,7 @@ async function main() {
     await prisma.userDegree.create({
         data:
         {
-            userId: studentid,
+            userId: student.id,
             degreeType: "B.Sc",
             degreeName: "ComputerScience"
         }
