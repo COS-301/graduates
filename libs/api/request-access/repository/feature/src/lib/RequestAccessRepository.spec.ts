@@ -25,7 +25,6 @@ describe('ApiRequestAccessRepository', () => {
       console.log(call1);
       console.log(call2[0]);
       console.log(call2[1]);
-     //expect(call).toBe(null);
      expect(true).toBeTruthy();
    });
   });
