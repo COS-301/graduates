@@ -1,1 +1,118 @@
 @import 'libs/client/shared/assets/ui/src/lib/global';
+footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+
+.page {
+    padding-top: 8%;
+    padding-bottom: 8%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+h1 {
+    text-align: left;
+    float: left;
+    color: black;
+    font-size: 400%;
+    font-weight: bold;
+}
+
+.returnbutton {
+    background-color: $primary-1;
+    &:hover {
+        color: $primary-1;
+        background-color: $background-white;
+        border-style: solid;
+        border-width: 1px;
+        border-color: $primary-1;
+    }
+    float: right;
+}
+
+.formbutton {
+    background-color: $primary-1;
+    &:hover {
+        color: $primary-1;
+        background-color: $background-white;
+        border-style: solid;
+        border-width: 1px;
+        border-color: $primary-1;
+    }
+    float: right;
+}
+
+.output {
+    width: 100%;
+    border: 1px;
+    border-style: solid;
+    border-color: $primary-1;
+    border-radius: 5px;
+    font-size: medium;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    &:hover {
+        box-shadow: 1px 1px $primary-1;
+    }
+}
+
+.title {
+    color: black;
+    font-size: 200%;
+}
+
+.author {
+    display: inline;
+}
+
+.date {
+    float: right;
+    color: $primary-1;
+}
+
+.image {
+    max-height: 200px;
+}
+
+.commentDIV {
+    width: 100%;
+    border: 1px;
+    border-style: solid;
+    border-color: $primary-1;
+    border-radius: 5px;
+    font-size: medium;
+    padding-left: 4%;
+    padding-right: 4%;
+    padding-top: 1%;
+    padding-bottom: 60px;
+    &:hover {
+        box-shadow: 1px 1px $primary-1;
+    }
+}
+
+.commentTitle {
+    font-size: x-large;
+    color: $primary-1;
+}
+
+.username {
+    font-weight: bolder;
+    color: $primary-1;
+}
+
+.comment {
+    width: 100%;
+    border: 1px;
+    border-style: solid;
+    border-color: $primary-1;
+    padding: 15px;
+}
+
+.smallerDiv {
+    padding-left: 10%;
+    padding-right: 10%;
+}
