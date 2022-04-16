@@ -5,9 +5,10 @@
 <div class="container">
     <div class="section">
        <!-- user-info component -->
-       <div *ngIf="studentObj">
+       <!-- <div *ngIf="studentObj">
            <graduates-user-info [studentInfo]=studentObj></graduates-user-info>
-       </div> 
+       </div>  -->
+       <graduates-user-info></graduates-user-info>
 
         <!-- title component -->
         <graduates-title></graduates-title>
@@ -26,11 +27,11 @@
     </div>
     <div class="section">
         <!-- profile-card componenet -->
-        <div *ngIf="studentObj">
+        <!-- <div *ngIf="studentObj">
             <graduates-profile-card [name]=studentObj></graduates-profile-card>
-        </div>
-
+        </div> -->
         <graduates-profile-card></graduates-profile-card>
+        
     </div>
     <div class="section">
         <!--Request for Access Component-->

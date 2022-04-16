@@ -29,7 +29,6 @@ import { ProfileCardComponent } from './profile-card/profile-card.component';
 import {MatIconModule} from '@angular/material/icon';
 
 
-
 @NgModule({
   imports: [
     CommonModule,
@@ -57,7 +56,7 @@ import {MatIconModule} from '@angular/material/icon';
     LocationComponent,
     BioComponent,
     AchievementsComponent,
-    ProfileCardComponent
+    ProfileCardComponent,
   ],
    exports: [ProfileBodyComponent]
 })
