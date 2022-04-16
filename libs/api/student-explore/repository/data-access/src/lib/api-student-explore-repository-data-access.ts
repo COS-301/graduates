@@ -53,7 +53,7 @@ export class StudentExploreRepository {
       tempStudentObj.StudentBio = studentObjProfile.bio;
 
       //Student Email
-      studentObjProfile = await this.prisma.userEmail.findMany({
+      studentObjProfile = await this.prisma.userEmail.findUnique({
         where: { userId : students[i].id, },
       });
 

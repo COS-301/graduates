@@ -67,10 +67,10 @@ export class CompanyProfilePage {
 
     async editCompanyEmail(@Param() id:string, emailIn: string) {
         return await this.prisma.userEmail.update({
-            where: {userId: id},
-            data : {
-                email: emailIn
-            }
+        where: {userId: id},
+        data : {
+            email: emailIn
+        }
         })
     }
 
