@@ -43,12 +43,17 @@ describe('BlogService', () => {
     it('Should return a blog',async () => {
       jest
       .spyOn(service, 'createBlog')
-      .mockImplementation((): Promise<Blog | null> => Promise.resolve(blogMock));
+      .mockImplementation((): Promise<Blog> => Promise.resolve(blogMock));
     
     expect(await service.createBlog('Title','Contents - this is a test',true,'1')).toMatchObject(
       blogMock
     )
-    })
+    });
+    it('should return null', async () => {
+      jest.spyOn(service, 'createBlog').mockResolvedValue(null);
+
+      expect(await service.createBlog('Title','Contents - this is a test',true,'NULL')).toEqual(null);
+    });
   })
 
   //Test updateBlogTitle function
@@ -70,24 +75,34 @@ describe('BlogService', () => {
   it('Should return a updated Blog Content',async () => {
     jest
     .spyOn(service, 'updateBlogContent')
-    .mockImplementation((): Promise<Blog | null> => Promise.resolve(blogMock));
+    .mockImplementation((): Promise<Blog> => Promise.resolve(blogMock));
 
     expect(await service.updateBlogContent('1','New content')).toMatchObject(
       blogMock
     )
-  })
+  });
+  it('should return null', async () => {
+    jest.spyOn(service, 'updateBlogContent').mockResolvedValue(null);
+
+    expect(await service.updateBlogContent('NULL','New content')).toEqual(null);
+  });
 })
  //Test updateBlogArchived function
  describe('updateBlogArchived', () => {
   it('Should return a updated Blog Archive',async () => {
     jest
     .spyOn(service, 'updateBlogArchived')
-    .mockImplementation((): Promise<Blog | null> => Promise.resolve(blogMock));
+    .mockImplementation((): Promise<Blog> => Promise.resolve(blogMock));
 
     expect(await service.updateBlogArchived('1',false)).toMatchObject(
       blogMock
     )
-  })
+  });
+  it('should return null', async () => {
+    jest.spyOn(service, 'updateBlogArchived').mockResolvedValue(null);
+
+    expect(await service.updateBlogArchived('NULL',false)).toEqual(null);
+  });
 })
 
  //Test deleteBlog function
@@ -107,12 +122,17 @@ describe('BlogService', () => {
   it('Should return a new comment',async () => {
     jest
     .spyOn(service, 'createComment')
-    .mockImplementation((): Promise<BlogComment | null> => Promise.resolve(BlogCommentMock));
+    .mockImplementation((): Promise<BlogComment> => Promise.resolve(BlogCommentMock));
 
     expect(await service.createComment('1','2A4','38GB23J','This is a new Comment')).toMatchObject(
       BlogCommentMock
     )
-  })
+  });
+  it('should return null', async () => {
+    jest.spyOn(service, 'createComment').mockResolvedValue(null);
+
+    expect(await service.createComment('NULL','NULL','NULL','This is a new Comment')).toEqual(null);
+  });
 })
 
  //Test updateComment function
@@ -159,12 +179,17 @@ describe('BlogService', () => {
   it('Should return a new media',async () => {
     jest
     .spyOn(service, 'createMedia')
-    .mockImplementation((): Promise<BlogMedia | null> => Promise.resolve(BlogMediaMock));
+    .mockImplementation((): Promise<BlogMedia> => Promise.resolve(BlogMediaMock));
 
     expect(await service.createMedia('2A4','asd3.png')).toMatchObject(
       stringMock
     )
-  })
+  });
+  it('should return null', async () => {
+    jest.spyOn(service, 'createMedia').mockResolvedValue(null);
+
+    expect(await service.createMedia('NULL','asd3.pSng')).toEqual(null);
+  });
 })
  //Test updateBlogMedia function
 //  describe('updateBlogMedia', () => {
@@ -187,12 +212,17 @@ describe('BlogService', () => {
   it('Should return a blog by the ID',async () => {
     jest
     .spyOn(service, 'getBlogById')
-    .mockImplementation((): Promise<Blog | null> => Promise.resolve(blogMock));
+    .mockImplementation((): Promise<Blog> => Promise.resolve(blogMock));
 
     expect(await service.getBlogById('2A4')).toMatchObject(
       blogMock
     )
-  })
+  });
+  it('should return null', async () => {
+    jest.spyOn(service, 'getBlogById').mockResolvedValue(null);
+
+    expect(await service.getBlogById('NULL')).toEqual(null);
+  });
 })
  //Test getAllBlogs function
  describe('getAllBlogs', () => {
