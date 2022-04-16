@@ -16,6 +16,7 @@ import {
 from './commands/api-notifications-service-commands.command'
 import { SendMailEvent } from './events/send-mail.event';
 import { QueryBus, CommandBus, EventBus } from '@nestjs/cqrs';
+import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 
 
 @Injectable()
@@ -25,8 +26,9 @@ export class ApiNotificationsService {
         private readonly commandBus:CommandBus, 
         private readonly eventBus:EventBus
     ){}
-    sendToMail(){
-        return this.eventBus.publish(new SendMailEvent(this));
+
+    sendToMail(emailFrom:string, emailTo:string, emailSubject:string, emailText:string){
+        return this.eventBus.publish(new SendMailEvent(emailFrom, emailTo, emailSubject, emailText));
     }
 
     async getAllNoifications() : Promise<Notification[]>{
@@ -60,4 +62,45 @@ export class ApiNotificationsService {
     async updateSeen(id:string, seen:boolean) : Promise<Notification> {
         return await this.commandBus.execute(new UpdateSeenCommand(id,seen));
     }
+
+    async requestCV(){
+        this.sendToMail("madunathabo2@gmail.com",
+        this.emailToUser()[3],
+        "Maduna TE has requested your CV",
+        "<p>Good day</p>\n <p>please make sure that you send you cv to madunathabo2@gmail.com</p>")
+    }
+
+    async currentUser(): Promise<User[]>{
+        const  currentUser = new User();
+        currentUser.id = '1';
+        currentUser.name = 'John';
+        currentUser.email = 'JohnDoe@gmail.com';
+        return [currentUser];
+    }
+
+    async getNameFromID(id:string){
+        const currentUser = new User();
+        currentUser.id = id;
+        currentUser.name = 'T';
+        currentUser.email = 'madunathabo2@gmail.com';
+        return currentUser.name
+    }
+
+    async getEmailFromID(id:string){
+        const currentUser = new User();
+        currentUser.id = id;
+        currentUser.name = 'T';
+        currentUser.email = 'madunathabo2@gmail.com';
+        return currentUser.email
+    }
+
+    async emailToUser(){
+        const  user = new User();
+        user.id = '2';
+        user.name = 'emailer';
+        user.email = 'JohnDoe@gmail.com';
+        return [ user ];
+    }
+
+
 }
