@@ -20,6 +20,9 @@ import { StoryUploadComponent } from './story-upload/story-upload.component';
 import { ShortsRoutingModule } from './shorts-routing.module';
 import { FormBuilder, FormsModule, ReactiveFormsModule, } from '@angular/forms';
 import {Apollo, gql} from 'apollo-angular';
+
+import { HeaderModule } from 'libs/client/shared/components/header/src/lib/header.module';
+import { FooterModule } from 'libs/client/shared/components/footer/src/lib/footer.module';
 @NgModule({
 
   imports: [
@@ -38,6 +41,9 @@ import {Apollo, gql} from 'apollo-angular';
     ShortsRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    
+    FooterModule,
+    HeaderModule,
   ],
   declarations: [
     StoryExploreComponent,
