@@ -4,7 +4,7 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Location } from '@angular/common';
 
@@ -33,8 +33,8 @@ export class StoryExploreComponent implements OnInit {
 
   viewing : boolean;
   reporting: boolean;
-  currentlyViewing! : number;
-  currentlyReporting! : number;
+  currentlyViewing! : string;
+  currentlyReporting! : string;
   successfulReport : boolean;
   reported : boolean;
 
@@ -47,20 +47,7 @@ export class StoryExploreComponent implements OnInit {
   fileError = "File is required.";
   uploadedFile! : any;
 
-  cardlist = [{
-        
-    "user": {
-      "name": "Matthew"
-    },
-    "shortTag": [
-       {
-          "tag": "TeamWork"
-       }
-    ],
-    "thumbnail": ""
-  }];
-  
-  /** Based on the screen size, switch from standard to one column per row */
+  cardlist = [{"user": {"name": "Matthew"},"shortTag":[{"tag":"TeamWork"}],"userId":"test","id":"fake","thumbnail":""}];
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       return this.cardlist;
@@ -74,7 +61,7 @@ export class StoryExploreComponent implements OnInit {
     this.return = false;
     this.report = false;
     this.viewing = false;
-    this.reporting = false;
+    this.reporting = true;
     this.successfulReport = false;
     this.reported = false;
   }
@@ -86,7 +73,7 @@ export class StoryExploreComponent implements OnInit {
     });
 
     this.reportfrm = this.builder.group({
-      reason: ['', Validators.required]
+      reason: ['', this.reasonValidator]
     });
 
     this.loadCards();
@@ -99,23 +86,10 @@ export class StoryExploreComponent implements OnInit {
   //   return null;
   // }
 
-  btnNaviClick(i : number){
-    
-    (<HTMLInputElement>document.getElementById("prevBtn")).disabled = false;
-    (<HTMLInputElement>document.getElementById("nextBtn")).disabled = false;
-    this.pageIndex += i;
-    if(this.pageIndex ==1){
-      (<HTMLInputElement>document.getElementById("prevBtn")).disabled = true;
-    }
-    if(this.endIndex == this.pageIndex){
-      (<HTMLInputElement>document.getElementById("nextBtn")).disabled = true;
-    }
 
-    (<HTMLInputElement>document.getElementById("curBtn")).innerHTML = (this.pageIndex).toString();
-
-    this.loadCards();
-  }
-
+  //  ==================================================================================== //
+  //  Submit Pop-Up Functions ============================================================ //
+  
   onFileUpload(event : any) {
     this.fileError = "";
     console.log(event);
@@ -141,13 +115,8 @@ export class StoryExploreComponent implements OnInit {
     this.reporting = false;
     this.successfulReport = false;
   }
-
-  search(){
-    this.searchText = (<HTMLInputElement>document.getElementById("search")).value;
-    alert('searching for ' + this.searchText);
-    this.searchText = (<HTMLInputElement>document.getElementById("search")).value= "";
-    
-  }
+  //  ====================================================================================== //
+  //  Selected Pop-Up Functions ============================================================ //
 
   closeSuccessReport() {
     this.reporting = false;
@@ -155,8 +124,8 @@ export class StoryExploreComponent implements OnInit {
     this.successfulReport = false;
   }
 
-  viewStory(n : number) {
-    this.currentlyViewing = n;
+  viewStory(s : string) {
+    this.currentlyViewing = s;
     this.viewing = true;
     this.reporting = false;
     this.successfulReport = false;
@@ -166,37 +135,72 @@ export class StoryExploreComponent implements OnInit {
     this.viewing = false;
   }
 
+  //  ==================================================================================== //
+  //  Report Pop-Up Functions ============================================================ //
+
   cancelReport() {
     this.reporting = false;
     this.viewing = true;
   }
 
   makeReportpopup() {
-    //create report popup:
     this.viewing = false;
     this.reporting = true;
     this.currentlyReporting = this.currentlyViewing;
   }
 
+  //report VALIDATOR
+  reasonValidator(reason : FormControl) : {[valtype : string] : string} | null {
+    const text = reason.value;
+    const spaceCounter = text.split(' ').length - 1;
+    if (spaceCounter < 4) {
+      return {'errormsg' : 'At least 5 words are required.'};
+    }
+    if (text.length > 256) {
+      return {'errormsg' : 'Characters limited to 256.'};
+    }
+    return null;
+  }
+
   submitReport() {
-    // alert("report for " + this.currentlyReporting + " goes to API");
     this.reported = true;
 
-
+    //check for any invalid input in the form
     for (const input in this.reportfrm.controls) {
       if (this.reportfrm.controls[input].invalid) {
         return;
       }
     }
-    alert("To submit to API - '" + this.reportfrm.controls['reason'].value + "'")
 
-    //reset for another report:
+    const shortId = "cl1xss9mt00475dt0wh5vo22z";
+    const reason = this.reportfrm.controls['reason'].value;
+    const userId = "cl1v0x7g700278gt0ud3f4tcj";
+
+
+    //Send reportText to the api:
+    if (!(this.apollo.client === undefined))
+      this.apollo
+        .mutate({
+          mutation: gql`
+            mutation {
+              reportShort(report: {shortId: "${ shortId }", reason: "${ reason }"}, userId: "${ userId }") {
+                shortId,
+                userId,
+                reason
+              }
+            }
+          `,
+        })
+        .subscribe((result : any) => {
+          console.log(result);
+        })
+
+    //reset for another report on another card:
     this.reportfrm.reset();
     this.reported = false;
 
     //push report to API:
 
-    //check for successful response from API:
 
     //true case after report (make a case if the API fails...)
     this.reporting = false;
@@ -204,23 +208,16 @@ export class StoryExploreComponent implements OnInit {
 
   }
 
-  loadCards(){
+  //  ==================================================================================== //
+  //  Story Explore Functions ============================================================ //
 
+  
+  loadCards(){
+    const test = "query{ getAllShorts{ user{  name  },shortTag{ tag },userId,id, thumbnail}}";
     
     if(!(this.apollo.client===undefined)) this.apollo
     .watchQuery({
-      query: gql`
-      query{
-        getAllShorts{
-          user{ 
-            name 
-          },
-          shortTag{
-            tag
-          },
-          thumbnail
-        }
-      }`,
+      query: gql(test),
     })
     .valueChanges.subscribe((result: any) => {
       this.cardlist = result.data.getAllShorts;
@@ -242,9 +239,33 @@ export class StoryExploreComponent implements OnInit {
         })
       );
     });
-
-
-
   }
 
+  
+  btnNaviClick(i : number){
+    
+    (<HTMLInputElement>document.getElementById("prevBtn")).disabled = false;
+    (<HTMLInputElement>document.getElementById("nextBtn")).disabled = false;
+    this.pageIndex += i;
+    if(this.pageIndex ==1){
+      (<HTMLInputElement>document.getElementById("prevBtn")).disabled = true;
+    }
+    if(this.endIndex == this.pageIndex){
+      (<HTMLInputElement>document.getElementById("nextBtn")).disabled = true;
+    }
+
+    (<HTMLInputElement>document.getElementById("curBtn")).innerHTML = (this.pageIndex).toString();
+
+    this.loadCards();
+  }
+
+
+  search(){
+    this.searchText = (<HTMLInputElement>document.getElementById("search")).value;
+    alert('searching for ' + this.searchText);
+    this.searchText = (<HTMLInputElement>document.getElementById("search")).value= "";
+    
+  }
 }
+
+
