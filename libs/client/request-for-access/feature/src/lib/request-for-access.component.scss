@@ -25,7 +25,17 @@
 }
 
 button {
-  border: 1px solid black;
+  color: #FFFFFF;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: lighter;
+  background-color: #174372;
+  border-width: medium;
+  border-color: #174372;
+  // margin-top: 2em;
+  // margin-left: 5em;
+  outline: none !important;
+  box-shadow: none !important;
+
   border-radius: 5px;
   height: 5vh;
   width: 112px;
@@ -33,6 +43,24 @@ button {
   @include minHeight {
     height: 30px;
   }
+}
+button:hover {
+  color: #174372;
+  border-color: #174372;
+  background-color: #FFFFFF;
+  outline: none !important;
+  box-shadow: none !important;
+}
+button:disabled {
+  background-color: #577697;
+  border-color: #577697;
+  color: #CFD7DE;
+}
+button:focus {
+  background-color: #174372 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  color: #fff !important;
 }
 
 h3 {
@@ -53,4 +81,9 @@ h3 {
 
 .pendingIcon {
   margin-left: 3px;
+  color: $text-gold;
+}
+
+.downloadIcon {
+  color: $notification-green;
 }
