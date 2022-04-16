@@ -4,7 +4,7 @@ import { ExpansionNotifComponent } from '../expansion-notif/expansion-notif.comp
 @Component({
   selector: 'graduates-notif-display',
   templateUrl: './notif-display.component.html',
-  styleUrls: ['./notif-display.component.scss']
+  styleUrls: ['./notif-display.component.scss'],
 })
 export class NotifDisplayComponent implements OnInit{
 

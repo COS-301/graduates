@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderModule } from '../../../../shared/components/header/src/lib/header.module';
-import { FooterModule } from '../../../../shared/components/footer/src/lib/footer.module';
 import { NotifDisplayComponent } from './notif-display/notif-display.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,6 +7,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
 import { NotificationsRoutingModule } from "./notifications-routing.module";
 import { ExpansionNotifComponent } from './expansion-notif/expansion-notif.component';
+
+import { HeaderModule } from '../../../../shared/components/header/src/lib/header.module';
+import { FooterModule } from '../../../../shared/components/footer/src/lib/footer.module';
 
 @NgModule({
   imports: [
@@ -19,11 +20,11 @@ import { ExpansionNotifComponent } from './expansion-notif/expansion-notif.compo
     MatExpansionModule,
     MatListModule,
     FooterModule,
-    HeaderModule
+    HeaderModule,
+
   ],
   declarations: [
-    NotifDisplayComponent,
-    ExpansionNotifComponent
+    NotifDisplayComponent,   
   ],
   exports: [
     NotifDisplayComponent,
