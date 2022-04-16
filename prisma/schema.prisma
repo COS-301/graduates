@@ -157,6 +157,7 @@ enum PermissionTenant {
 // Profile information for a user
 model UserProfile {
   userId         String  @id @map("user_id")
+  studentNumber  String? @map("student_number")
   profilePicture String? @map("profile_picture")
   bio            String?
   employmentStatus Boolean @map("employment_status") @default(false)
@@ -178,10 +179,11 @@ model UserTag {
 
 // Social Media links for users
 model UserSocialMedia {
-  userId String      @id @map("user_id")
+  userId String      @map("user_id")
   type   SocialMedia
   link   String
 
+@@id([userId,type])
   user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_social_media")
 }
@@ -206,9 +208,11 @@ model UserLocation {
 
 // Emails of users
 model UserEmail {
-  userId String @id @map("user_id")
+  userId String @map("user_id")
   email  String
 
+
+  @@id([userId,email])
   user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_email")
 }
@@ -235,10 +239,11 @@ enum FileCategory {
 }
 
 model UserDegree {
-  userID     String @id @map("user_id")
+  userID     String @map("user_id")
   degreeType String @map("degree_type")
   degreeName String @map("degree_name")
 
+  @@id([userID, degreeName])
   user User @relation(fields: [userID], references: [id])
   @@map("user_degree")
 }
