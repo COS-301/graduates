@@ -1,0 +1,54 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+
+* {
+  background-color: rgb(233, 233, 233);
+}
+
+input {
+  border: 1px solid;
+  width: 100%;
+}
+
+input:hover {
+  border: 1px solid;
+  width: 100%;
+  background-color: lightgrey;
+}
+
+.block {
+  display: flex;
+  justify-content: center;
+}
+
+.image {
+  flex: 0 1 20%;
+  min-width: 25%;
+  clip-path: circle();
+  background-position: 50% 50%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding-left: 10px;
+}
+
+.boxes {
+  display: flex;
+  flex: 1;
+}
+
+.box1 {
+  flex: 1;
+  text-align: center;
+}
+
+.box2 {
+  flex: 1;
+}
+
+.description {
+  flex: 1;
+  text-align: center;
+}

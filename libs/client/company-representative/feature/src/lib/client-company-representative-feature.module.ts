@@ -12,6 +12,11 @@ import { CompanyRepresentativeMockLoginPageComponent } from './company-represent
 import { CompanyRepresentativeExploreComponent } from './company-representative-explore/company-representative-explore.component';
 import { CompanyRepresentativeMockStudentExplorePageComponent } from './company-representative-mock-student-explore-page/company-representative-mock-student-explore-page.component';
 import { MatButtonModule } from '@angular/material/button';
+import { CompanyRepresentativeEditPageComponent } from './company-representative-edit-page/company-representative-edit-page.component';
+import { CompanyRepresentativeEditTitleComponent } from './company-representative-edit-page/company-representative-edit-title/company-representative-edit-title.component';
+import { CompanyRepresentativeEditExperienceComponent } from './company-representative-edit-page/company-representative-edit-experience/company-representative-edit-experience.component';
+import { CompanyRepresentativeEditAboutComponent } from './company-representative-edit-page/company-representative-edit-about/company-representative-edit-about.component';
+import { CompanyRepresentativeEditContactComponent } from './company-representative-edit-page/company-representative-edit-contact/company-representative-edit-contact.component';
 
 @NgModule({
   imports: [
@@ -29,12 +34,18 @@ import { MatButtonModule } from '@angular/material/button';
     CompanyRepresentativeContactComponent,
     CompanyRepresentativeMockLoginPageComponent,
     CompanyRepresentativeExploreComponent,
-    CompanyRepresentativeMockStudentExplorePageComponent
+    CompanyRepresentativeMockStudentExplorePageComponent,
+    CompanyRepresentativeEditPageComponent,
+    CompanyRepresentativeEditTitleComponent,
+    CompanyRepresentativeEditExperienceComponent,
+    CompanyRepresentativeEditAboutComponent,
+    CompanyRepresentativeEditContactComponent
   ],
   exports : [
     CompanyRepresentativeMockStudentExplorePageComponent,
     CompanyRepresentativePageComponent,
-    CompanyRepresentativeMockLoginPageComponent
+    CompanyRepresentativeMockLoginPageComponent,
+    CompanyRepresentativeEditPageComponent
   ]
 })
 export class ClientCompanyRepresentativeFeatureModule {}
