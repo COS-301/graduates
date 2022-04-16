@@ -10,8 +10,8 @@ export class BlogComment {
 //   id: number;
 
 //   //@Column()  
-//   @Field()
-//   content!: string;
+  @Field()
+content!: string;
 
 //   //@Column()  
 //   @Field(() => Date)  
