@@ -17,6 +17,7 @@ export class ApiStudentProfileResolver {
     studentObj.firstName = (await studentArr).pop();
     studentObj.studentNum = (await studentArr).pop();
     studentObj.lastName = (await studentArr).pop();
+    studentObj.links = [["discord","http"],["twitch","https"]];
 
     return studentObj;
   }
@@ -41,5 +42,11 @@ export class ApiStudentProfileResolver {
   async deleteStudent(@Args('studentNum', {type: () => String})id: string ) {
     const res = this.studentService.delete(id);
     return res;
+  }
+
+  @Mutation( returns => ApiStudentProfilesEntity)
+  async removeTags(@Args('tag',{type: () => [String]})tags: string[]) {
+    const studentObj = new ApiStudentProfilesEntity();
+    return studentObj;
   }
 }
