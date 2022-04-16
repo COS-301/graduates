@@ -13,13 +13,13 @@ import { MatGridListModule } from '@angular/material/grid-list';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReportMenuComponent } from './report-menu/report-menu.component';
+
 import { StoryExploreComponent } from './story-explore/story-explore.component';
 import { StoryUploadComponent } from './story-upload/story-upload.component';
+
 import { ShortsRoutingModule } from './shorts-routing.module';
-
 import { FormBuilder, FormsModule, ReactiveFormsModule, } from '@angular/forms';
-
+import {Apollo, gql} from 'apollo-angular';
 @NgModule({
 
   imports: [
@@ -40,12 +40,11 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, } from '@angular/forms';
     ReactiveFormsModule,
   ],
   declarations: [
-    ReportMenuComponent,
     StoryExploreComponent,
     StoryUploadComponent,
   ],
   providers: [
-    FormBuilder
+    FormBuilder, Apollo,
   ],
   exports: [StoryExploreComponent]
 })
