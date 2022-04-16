@@ -1,11 +1,15 @@
-import {PrismaClient } from '@prisma/client';
+import { Injectable } from '@nestjs/common';
+import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
+import { Prisma, User, UserTag } from '@prisma/client';
+import { ApiCompanyExploreEntity } from '@graduates/api/companyexplore/api/shared/interfaces/data-access';
 
+@Injectable()
 export class CompanyExploreRepository{
 
-prisma = new PrismaClient()
+  constructor(private prisma: PrismaService) {}
 
 // Function used when searching for the name of a company
-   async  getSearchResults(nameOfCompany: string){
+   async  getSearchResults(nameOfCompany: string) {
       const allUsers = await this.prisma.user.findMany({
         where: {
           name: {
@@ -14,7 +18,7 @@ prisma = new PrismaClient()
        },
        include: {UserProfile: true }
       });
-     console.dir(allUsers, { depth: null })
+    //  console.dir(allUsers, { depth: null })
       return allUsers;
     }
 
@@ -28,7 +32,7 @@ prisma = new PrismaClient()
       ],
      include: {UserProfile: true }
     });
-   console.dir(allUsers, { depth: null })
+    console.dir(allUsers, { depth: null })
     return allUsers;
   }
 
@@ -45,4 +49,6 @@ prisma = new PrismaClient()
     return allUsers;
   }
 }
+
+
 
