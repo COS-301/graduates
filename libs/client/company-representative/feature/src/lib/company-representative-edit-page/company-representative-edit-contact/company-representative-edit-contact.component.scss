@@ -1,5 +1,5 @@
 @import 'libs/client/shared/assets/ui/src/lib/global';
-
+  
   .mat-card {
     margin-top: 0.25%;
     margin-bottom: 0.25%;
@@ -13,14 +13,31 @@
   }
 
   .left {
-    float: left;
     text-align: left;
+    float: left;
     width: 33%;
   }
 
   .right {
-    float: left;
-    text-align:right;
     width: 66%;
+    float: right;
+    text-align: right;
+  }
+
+  div {
+    text-align: center;
+  }
+
+  input {
+    border: 1px solid;
+    width: 100%;
+    text-align: center;
+  }
+
+  input:hover {
+    border: 1px solid;
+    width: 100%;
+    text-align: center;
+    background-color: lightgrey;
   }
   
