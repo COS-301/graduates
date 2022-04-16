@@ -1,5 +1,5 @@
 import { IQueryHandler,QueryHandler } from "@nestjs/cqrs";
-import { GetCompanyRepresentativeQuery } from "../impl/getCompanyRepresentative.query";
+import { GetCompanyRepresentativeQuery } from "../impl/getRepresentative.query";
 import { CompanyRepresentativeRepository } from "@graduates/api/company-representative/repository/data-access";
 
 @QueryHandler(GetCompanyRepresentativeQuery)
