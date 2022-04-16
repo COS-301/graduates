@@ -10,7 +10,6 @@ import { CreateBlogCommand,
   DeleteCommentCommand, 
   DeleteCommentsByBlogIdCommand, 
   CreateMediaCommand,
-  UpdateBlogMediaCommand, 
   CreateCommentCommand } from './commands/api-blog-command.command';
 import { 
   GetBlogByIdQuery, 
@@ -92,12 +91,6 @@ export class BlogService {
   async createMedia(blogId, media): Promise<BlogMedia | null> {
     return await this.commandBus.execute(
       new CreateMediaCommand(blogId, media)
-    );
-  }
-
-  async updateBlogMedia(blogId, media): Promise<BlogMedia | null> {
-    return await this.commandBus.execute(
-      new UpdateBlogMediaCommand(blogId, media)
     );
   }
 
