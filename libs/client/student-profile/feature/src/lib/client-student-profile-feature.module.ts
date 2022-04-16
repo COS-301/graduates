@@ -9,6 +9,10 @@ import { ProfileBodyComponent } from './profile-body/profile-body.component';
 import { RequestForAccessModule } from '@graduates/client/request-for-access/feature';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { ProfileRoutingModule } from './profile-routing.module';
+import { TitleComponent } from './title/title.component';
+import { DegreeComponent } from './degree/degree.component';
+import { EmploymentStatusComponent } from './employment-status/employment-status.component';
+import { LocationComponent } from './location/location.component';
 import { BioComponent } from './bio/bio.component';
 import {MatButtonModule} from '@angular/material/button';
 
@@ -20,6 +24,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { AchievementsComponent } from './achievements/achievements.component';
 import { ProfileCardComponent } from './profile-card/profile-card.component'; 
 import {MatIconModule} from '@angular/material/icon';
+
 
 
 @NgModule({
@@ -41,6 +46,10 @@ import {MatIconModule} from '@angular/material/icon';
   declarations: [
     ProfileBodyComponent,
     UserInfoComponent,
+    TitleComponent,
+    DegreeComponent,
+    EmploymentStatusComponent,
+    LocationComponent,
     BioComponent,
     AchievementsComponent,
     ProfileCardComponent
