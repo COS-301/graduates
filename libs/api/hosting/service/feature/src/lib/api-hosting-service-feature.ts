@@ -47,7 +47,7 @@ export class ApiHostingServiceFeatureModule{
     //companyProfileAPI
     companyProfileAPI.name = "Company Profile API";
     try{
-      await this.checkStorageAPI();
+      await this.checkCompanyProfileAPI();
       companyProfileAPI.status = "Operational";
     }
     catch(error){
@@ -58,7 +58,7 @@ export class ApiHostingServiceFeatureModule{
     //accessStatusAPI
     accessStatusAPI.name = "access StatusAPI";
     try{
-      await this.checkStorageAPI();
+      await this.checkAccessStatusAPI();
       accessStatusAPI.status = "Operational";
     }
     catch(error){
@@ -69,7 +69,7 @@ export class ApiHostingServiceFeatureModule{
     //studentProfilesAPI
     studentProfilesAPI.name = "student Profiles API";
     try{
-      await this.checkStorageAPI();
+      await this.checkStudentProfilesAPI();
       studentProfilesAPI.status = "Operational";
     }
     catch(error){
@@ -80,7 +80,7 @@ export class ApiHostingServiceFeatureModule{
     //companyRepresentativeAPI
     companyRepresentativeAPI.name = "company Representative API";
     try{
-      await this.checkStorageAPI();
+      await this.checkCompanyRepresentativeAPI();
       companyRepresentativeAPI.status = "Operational";
     }
     catch(error){
@@ -91,7 +91,7 @@ export class ApiHostingServiceFeatureModule{
     //requestAccessAPI
     requestAccessAPI.name = "request Access API";
     try{
-      await this.checkStorageAPI();
+      await this.checkRequestAccessAPI();
       requestAccessAPI.status = "Operational";
     }
     catch(error){
@@ -102,7 +102,7 @@ export class ApiHostingServiceFeatureModule{
     //authenticationAPI
     authenticationAPI.name = "authentication API";
     try{
-      await this.checkStorageAPI();
+      await this.checkAuthenticationAPI();
       authenticationAPI.status = "Operational";
     }
     catch(error){
