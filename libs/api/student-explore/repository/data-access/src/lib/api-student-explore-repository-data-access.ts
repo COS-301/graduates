@@ -544,6 +544,44 @@ export class StudentExploreRepository {
 
   }
 
+  async FindAllTag(){
+
+    const tags = await this.prisma.userTag.findMany();
+
+    const foundTag = []
+
+    let found = false;
+
+    for (let i = 0; i < tags.length; i++) {
+
+      found = false;
+
+      for(let j=0; j< foundTag.length; j++){
+
+        if(foundTag[j] === tags[i].tag){
+          found = true;
+        }
+
+      }
+
+      if( found == false){
+        foundTag.push(tags[i].tag);
+      }
+
+    }
+
+    const tempStudentObj = new ApiStudentExplore();
+
+    tempStudentObj.Available = foundTag;
+
+    const returnArr = []
+
+    returnArr.push(tempStudentObj)
+
+    return returnArr;
+
+  }
+
   async FindAllEmpStatus(){
 
     const foundEmpStatus = []

@@ -62,8 +62,7 @@ export class StorageRepository {
 
       return await arr.then(async (value) => {
         if(value){
-          //return await this.firebaseService.getURLByFilePath(value[0].filePath);
-          return null
+          return await this.firebaseService.getURLByFilePath(value[0].filePath);
         }
         else{
           return null;
