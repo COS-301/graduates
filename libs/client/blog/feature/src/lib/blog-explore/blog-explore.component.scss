@@ -5,6 +5,11 @@ footer {
     width: 100%;
 }
 
+.page {
+    padding-top: 8%;
+    padding-bottom: 8%;
+}
+
 h1 {
     text-align: center;
     margin-left: auto;
@@ -21,12 +26,12 @@ h1 {
 
 .createbutton {
     background-color: $primary-1;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $primary-1;
     &:hover {
         color: $primary-1;
         background-color: $background-white;
-        border-style: solid;
-        border-width: 1px;
-        border-color: $primary-1;
     }
 }
 

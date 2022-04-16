@@ -1,12 +1,14 @@
-import { Component} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'graduates-blog-explore',
   templateUrl: './blog-explore.component.html',
-  styleUrls: ['./blog-explore.component.scss']
+  styleUrls: ['./blog-explore.component.scss'],
 })
 export class BlogExploreComponent {
+  @Input() admin : boolean;
+
   cols : number | undefined;
 
   gridByBreakpoint = {
@@ -18,6 +20,7 @@ export class BlogExploreComponent {
   }
 
   constructor(private breakpointObserver: BreakpointObserver) {
+    this.admin = false;
     this.breakpointObserver.observe([
       Breakpoints.XSmall,
       Breakpoints.Small,

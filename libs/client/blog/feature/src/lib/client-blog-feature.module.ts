@@ -20,8 +20,8 @@ import { BlogExploreComponent } from './blog-explore/blog-explore.component';
 import { BlogCreateComponent } from './blog-create/blog-create.component';
 import { BlogRoutingModule } from './blog-routing.module';
 import { BlogExploreCardComponent } from './blog-explore/blog-explore-card/blog-explore-card.component';
-import { HeaderComponent } from './../../../../shared/components/header-and-footer/ui/header-and-footer/src/app/header/header.component';
-import { FooterComponent } from './../../../../shared/components/header-and-footer/ui/header-and-footer/src/app/footer/footer.component';
+import { HeaderModule } from './../../../../shared/components/header/src/lib/header.module';
+import { FooterModule } from './../../../../shared/components/footer/src/lib/footer.module';
 import { CardsComponent } from './../../../../shared/components/cards/ui/src/lib/cards/cards.component';
 import { BlogExploreFilterComponent } from './blog-explore/blog-explore-filter/blog-explore-filter.component';
 
@@ -42,17 +42,17 @@ import { BlogExploreFilterComponent } from './blog-explore/blog-explore-filter/b
     MatFormFieldModule,
     MatGridListModule,
     BlogRoutingModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HeaderModule,
+    FooterModule
   ],
   declarations: [
     BlogViewComponent,
     BlogExploreComponent,
     BlogCreateComponent,
     BlogExploreCardComponent,
-    HeaderComponent,
-    FooterComponent,
     CardsComponent,
-    BlogExploreFilterComponent
+    BlogExploreFilterComponent,
   ],
   exports: [BlogExploreComponent]
 })

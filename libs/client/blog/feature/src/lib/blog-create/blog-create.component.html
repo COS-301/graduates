@@ -3,24 +3,27 @@
     <meta name="component" content="Blog-Create" />
 </head>
 
-<header>
+<div>
     <header-and-footer-header></header-and-footer-header>
-</header>
+</div>
 
 <br>
 
-<h1>UP Student Blog</h1>
-<h2>Editor</h2><br><br><br>
-<h3>Add New Post</h3>
+<div class="page">
+    <h1>UP Student Blog</h1>
+    <h2>Editor</h2><br><br><br>
+    <h3>Add New Post</h3>
 
-<div class="input">
-    <form>
-        <input type="text" name="title" class="title" placeholder="Post Title" ngModel><br><br>
-        <pre></pre>
-        <textarea type="text" name="content" class="content" placeholder="Post Content" ngModel></textarea><br><br>
-        <pre></pre>
-        <button type="submit" class="formbutton" mat-raised-button color="accent">Post</button>
-    </form>
+
+    <div class="input">
+        <form>
+            <input type="text" name="title" class="title" placeholder="Post Title" ngModel><br><br>
+            <pre></pre>
+            <textarea type="text" name="content" class="content" placeholder="Post Content" rows="13" ngModel></textarea><br><br>
+            <pre></pre>
+            <button type="submit" class="formbutton" mat-raised-button color="accent">Post</button>
+        </form>
+    </div>
 </div>
 
 <footer>

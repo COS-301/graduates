@@ -14,7 +14,8 @@ const routes: Routes = [
     component: BlogCreateComponent
   },
   {
-    path: 'view?blogID=',
+    path: 'view',
+    // path: 'view?blogID=',
     component: BlogViewComponent
   }
 ];

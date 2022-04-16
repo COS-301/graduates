@@ -7,45 +7,36 @@
     <header-and-footer-header></header-and-footer-header>
 </header>
 
-<br>
+<div class="page">
+    <h1>UP Student Blog</h1><br><br><br>
+    <h3>Blog Posts</h3><br>
 
-<h1>UP Student Blog</h1><br><br><br>
-<h3>Blog Posts</h3><br>
+    <div class="utilities">
+        <graduates-blog-explore-filter class="sort"></graduates-blog-explore-filter>
+        <button class="createbutton" mat-raised-button color="accent">Create Blog</button>
+    </div>
 
-<div class="utilities">
-    <graduates-blog-explore-filter class="sort"></graduates-blog-explore-filter>
-    <button class="createbutton" mat-raised-button color="accent">Create Blog</button>
+    <mat-grid-list #grid [cols]="cols" rowHeight="350px">
+        <mat-grid-tile>
+            <graduates-blog-explore-card></graduates-blog-explore-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <graduates-blog-explore-card></graduates-blog-explore-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <graduates-blog-explore-card></graduates-blog-explore-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <graduates-blog-explore-card></graduates-blog-explore-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <graduates-blog-explore-card></graduates-blog-explore-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+            <graduates-blog-explore-card></graduates-blog-explore-card>
+        </mat-grid-tile>
+    </mat-grid-list>
 </div>
-
-<mat-grid-list #grid [cols]="cols" rowHeight="350px">
-    <!-- <mat-grid-tile>
-        <cards-cards></cards-cards>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <cards-cards></cards-cards>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <cards-cards></cards-cards>
-    </mat-grid-tile> -->
-    <mat-grid-tile>
-        <graduates-blog-explore-card></graduates-blog-explore-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <graduates-blog-explore-card></graduates-blog-explore-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <graduates-blog-explore-card></graduates-blog-explore-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <graduates-blog-explore-card></graduates-blog-explore-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <graduates-blog-explore-card></graduates-blog-explore-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <graduates-blog-explore-card></graduates-blog-explore-card>
-    </mat-grid-tile>
-</mat-grid-list>
 
 <footer>
     <header-and-footer-footer></header-and-footer-footer>
