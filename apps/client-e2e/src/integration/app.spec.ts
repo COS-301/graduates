@@ -56,6 +56,8 @@ describe('client-shorts-feature e2e test', () => {
       cy.get('input[type="file"]').selectFile('src/fixtures/test.mp4');
       cy.get('#taginput').type('#cats #test');
       cy.get('.formbuttonblue').contains('Submit').click();
+
+      // TODO get confirmation of upload once implemented
     });
   });
 
