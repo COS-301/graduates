@@ -10,6 +10,10 @@ import { CompanyRepresentativeMockStudentExplorePageComponent } from './company-
   imports: [
     RouterModule.forRoot([
       {
+        path: '',
+        component: CompanyRepresentativeMockLoginPageComponent,
+      },
+      {
         path: 'CompanyRepresentativeLogin',
         component: CompanyRepresentativeMockLoginPageComponent,
       },
@@ -27,5 +31,6 @@ import { CompanyRepresentativeMockStudentExplorePageComponent } from './company-
       },
     ]),
   ],
+  exports: [RouterModule]
 })
 export class CompanyRepresentativeRoutingModule { }
