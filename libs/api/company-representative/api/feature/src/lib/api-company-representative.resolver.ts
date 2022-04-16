@@ -18,12 +18,12 @@ export class ApiCompanyRepresentativeResolver {
     return resp;
   }
 
-  @Mutation((returns) => CompanyRepresentative)
-  async addCompanyrep(
-    @Args('newCompanyrepData') newCompanyrepData: CompanyRepresentativeCreate
-  ): Promise<CompanyRepresentativeCreate> {
-    const resp = await this.companyrepService.create(newCompanyrepData);
-    pubSub.publish('companyrepAdded', { companyrepAdded: resp });
-    return resp;
-  }
+  // @Mutation((returns) => CompanyRepresentative)
+  // async addCompanyrep(
+  //   @Args('newCompanyrepData') newCompanyrepData: CompanyRepresentativeCreate
+  // ): Promise<CompanyRepresentativeCreate> {
+    // const resp = await this.companyrepService.create(newCompanyrepData);
+    // pubSub.publish('companyrepAdded', { companyrepAdded: resp });
+    // return resp;
+  // }
 }

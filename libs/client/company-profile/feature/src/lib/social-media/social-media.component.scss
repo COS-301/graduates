@@ -1,0 +1,37 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+h2 {
+    color: #174372;
+    margin-bottom: 1px;
+}
+
+mat-divider {
+    border-top-color: #174372;
+    // border-top-color: $primary-1;
+    // margin: 0 5%;
+}
+
+a {
+    font-size: small;
+    white-space: pre-wrap;
+    display: inline;
+}
+svg {
+    // align-items: center;
+    width: 25%;
+    display: inline-flex;
+    margin-left: 5%;
+    // max-width: 25%;
+    // flex-wrap: wrap;
+}
+
+.icon {
+    float: right;
+    color: #174372;
+    font-size: xx-large;
+}
+
+mat-icon {
+    color: #174372;
+    font-size: large;
+    margin-top: 2%;
+}
