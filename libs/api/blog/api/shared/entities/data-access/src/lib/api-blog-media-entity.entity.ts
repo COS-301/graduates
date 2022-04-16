@@ -19,5 +19,6 @@ export class BlogMedia {
   //   @ManyToOne(() => Blog, blog => blog.medias)
   //   @Field(()=> Blog)
   //   blog: Blog;
+  //links to blog
 
 }

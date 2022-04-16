@@ -27,4 +27,5 @@ import { BlogMedia } from './api-blog-media-entity.entity';
 //   @OneToMany(()=> Media, media => media.blog)
 //   @Field(() => [Media], {nullable: true})
 //   medias?: Media[];  
+//media data
 }

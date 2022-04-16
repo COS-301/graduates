@@ -10,8 +10,8 @@ export class BlogComment {
 //   id: number;
 
 //   //@Column()  
-  @Field()
-content!: string;
+  //@Field()
+//content!: string;
 
 //   //@Column()  
 //   @Field(() => Date)  
@@ -34,5 +34,6 @@ content!: string;
 //  //@ManyToOne(() => User, user => user.comments)
 //  @Field(()=> User)
 //  user: User;
+// users data
 
 }

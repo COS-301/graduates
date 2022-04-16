@@ -34,4 +34,5 @@ export class BlogResolver {
   // user(@Parent() blog: Blog): Promise<User>{
   //     return this.blogsService.getUser(blog.userId);
   // }
+  //querying user
 }
