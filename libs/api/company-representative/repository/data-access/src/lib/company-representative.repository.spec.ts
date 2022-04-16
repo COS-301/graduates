@@ -34,9 +34,6 @@ describe('CompanyRepresentativeRepository', () => {
       expect(repository).toBeDefined();
     });
 
-<<<<<<< Updated upstream
-    //Write Tests Below
-=======
     
     describe('@login', () => {
 
@@ -72,6 +69,5 @@ describe('CompanyRepresentativeRepository', () => {
     //     it('should ')
 
     // })
->>>>>>> Stashed changes
 
 });
