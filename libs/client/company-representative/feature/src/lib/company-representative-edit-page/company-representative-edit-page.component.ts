@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'graduates-company-representative-edit-page',
@@ -22,7 +23,7 @@ export class CompanyRepresentativeEditPageComponent {
   snapchat = "JohnDoe";
   github = "JohnDoe@github.com";
   students: string[];
-  constructor() {
+  constructor(private _router: Router) {
     this.students = [
       "Student 1 uXXXXXXXX",
       "Student 2 uXXXXXXXX",
@@ -31,5 +32,21 @@ export class CompanyRepresentativeEditPageComponent {
       "Student 5 uXXXXXXXX",
       "Student 6 uXXXXXXXX"
     ];
+  }
+
+  navigateToHome() {
+    this._router.navigate(['CompanyRepresentativeHome'])
+  }
+
+  navigateToLogin() {
+    this._router.navigate(['CompanyRepresentativeLogin'])
+  }
+
+  navigateToEdit() {
+    this._router.navigate(['CompanyRepresentativeEdit'])
+  }
+
+  navigateToExplore() {
+    this._router.navigate(['CompanyRepresentativeExplore'])
   }
 }
