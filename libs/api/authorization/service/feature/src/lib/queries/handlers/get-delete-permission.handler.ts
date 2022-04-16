@@ -1,25 +1,24 @@
-import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { User } from '@prisma/client';
-import { GetDeletePermissionCommand } from '../commands/get-delete-permission.command';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { Adminauthorization } from '../../../../../../repository/data-access/src/lib/api-authorization-repository-admin';
+import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
+import { Prisma, User } from '@prisma/client';
+import { GetDeletePermissionQuery } from '../impl/get-delete-permission.query';
 
 /*
 create-user.handler.ts
 */
-@CommandHandler(GetDeletePermissionCommand)
+@QueryHandler(GetDeletePermissionQuery)
 export class GetDeletePermissionHandler
-  implements ICommandHandler<GetDeletePermissionCommand>
+  implements IQueryHandler<GetDeletePermissionQuery>
 {
-  constructor(private repository: UserRepository) {}
+  constructor(private repository: Adminauthorization) {}
 
-  async execute(command: GetDeletePermissionCommand): Promise<User> {
+  async execute(query: GetDeletePermissionQuery) {
     // Destruct data from command object
-    const { userType, isUserPermitted } = command;
+    const { userId } = query;
 
-    // Create new user object from User model
-    const user = new User();
-    user.userType = userType;
-    user.isUserPermitted = isUserPermitted;
-
-    return this.repository.save(user);
+    return this.repository.findAllPermissionsFilter(userId, {
+      equals: 'REMOVE',
+    });
   }
 }

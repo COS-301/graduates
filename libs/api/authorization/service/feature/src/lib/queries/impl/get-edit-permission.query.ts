@@ -1,6 +1,3 @@
-export class GetEditPermissionCommand {
-  constructor(
-    public readonly userType: string,
-    public readonly isUserPermitted: boolean
-  ) {}
+export class GetEditPermissionQuery {
+  constructor(public readonly userId: string) {}
 }

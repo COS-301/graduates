@@ -1,6 +1,3 @@
-export class GetDeletePermissionCommand {
-  constructor(
-    public readonly userType: string,
-    public readonly isUserPermitted: boolean
-  ) {}
+export class GetDeletePermissionQuery {
+  constructor(public readonly userId: string) {}
 }

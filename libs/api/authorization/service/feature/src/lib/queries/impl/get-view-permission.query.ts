@@ -1,6 +1,3 @@
-export class GetViewPermissionCommand {
-  constructor(
-    public readonly userType: string,
-    public readonly isUserPermitted: boolean
-  ) {}
+export class GetViewPermissionQuery {
+  constructor(public readonly userId: string) {}
 }

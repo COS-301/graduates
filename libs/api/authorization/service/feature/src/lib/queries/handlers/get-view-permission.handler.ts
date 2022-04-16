@@ -1,25 +1,24 @@
-import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { Adminauthorization } from '../../../../../../repository/data-access/src/lib/api-authorization-repository-admin';
+import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { User } from '@prisma/client';
-import { GetViewPermissionCommand } from '../commands/get-view-permission.command';
+import { GetViewPermissionQuery } from '../impl/get-View-permission.query';
 
 /*
 create-user.handler.ts
 */
-@CommandHandler(GetViewPermissionCommand)
+@QueryHandler(GetViewPermissionQuery)
 export class GetViewPermissionHandler
-  implements ICommandHandler<GetViewPermissionCommand>
+  implements IQueryHandler<GetViewPermissionQuery>
 {
-  constructor(private repository: UserRepository) {}
+  constructor(private repository: Adminauthorization) {}
 
-  async execute(command: GetViewPermissionCommand): Promise<User> {
+  async execute(query: GetViewPermissionQuery) {
     // Destruct data from command object
-    const { userType, isUserPermitted } = command;
+    const { userId } = query;
 
-    // Create new user object from User model
-    const user = new User();
-    user.userType = userType;
-    user.isUserPermitted = isUserPermitted;
-
-    return this.repository.save(user);
+    return this.repository.findAllPermissionsFilter(userId, {
+      equals: 'VIEW',
+    });
   }
 }
