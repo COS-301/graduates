@@ -1,31 +1,46 @@
-import { ObjectType, Field, ID, Directive, Int } from '@nestjs/graphql';
+import { ObjectType, Field, ID} from '@nestjs/graphql';
 
-@ObjectType({ description: 'companey represantative profile profile' })
+@ObjectType({ description: 'company representative profile' })
 export class CompanyRepresentative {
-  @Field((type) => ID)
+  @Field(type => ID)
   id!: string;
 
   @Field()
-  name!: string;
+  repName!: string;
 
   @Field()
-  Occupation!: string;
+  jobTitle!: string;
 
   @Field()
-  experience!: string;
+  aboutMe!: string;
 
   @Field()
-  about_me!: string;
+  repExperience!: string;
 
   @Field()
-  email!: string;
+  location!: string;
 
   @Field()
-  phone_no!: string;
+  email!: string
 
   @Field()
-  website!: string;
+  linkedIn?: string
 
-  @Field((type) => [String])
-  connection!: string[];
+  @Field()
+  twitter?: string
+
+  @Field()
+  instagram?: string;
+
+  @Field()
+  snapChat?: string;
+
+  @Field()
+  gitHub?: string
+
+  @Field()
+  phoneNumber!: string;
+
+  @Field()
+  website?: string;
 }

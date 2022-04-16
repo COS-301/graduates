@@ -1,42 +1,20 @@
-<!-- Basic body outline for components in the page -->
-<!-- Angular components need to be explored and added still -->
-<!-- Currently no styling -->
-<div class="banner">
-    <div><img alt="item" src="{{imageUrl}}"></div>
-</div>
-<div>
-    <article class="right">
-        <div class="company_bio">
-            <h2>Company Bio</h2>
-            <mat-divider></mat-divider>
-            <p id="company_bio">A space for compnies to outline their history and their values.</p>
-        </div>
-            <div class="industry_and_services">
-            <h2>Industry and Services</h2>
-            <mat-divider></mat-divider>
-            <p id="industry_and_services">This are will be used to showcase what projects the company has been working on and what it is currently doing in the industry.</p>
-        </div>
-    </article>
-    <article class="left">
-        <div class="company_details">
-            <h2>Company Details</h2>
-            <mat-divider></mat-divider>
-            <p id="company_details_website">www.website.com</p>
-            <p id="company_details_location">example street, pretoria</p>
-            <p id="company_details_phone">0123456789</p>
-            <p id="company_details_email">user@example.com</p>
-        </div>
-        <div class="representatives_list">                
-            <h2>Representatives List</h2>
-            <mat-divider></mat-divider>
-            <div id="representatives_list">
-                <a href="">@rep_example1</a>
-            </div>
-        </div>
-        <div class="social_links">
-            <h2>Social Links</h2>
-            <mat-divider></mat-divider>
-            <p>display icons as links to list</p>
-        </div>
-    </article>
-</div>
+<!-- <div><header-and-footer-footer></header-and-footer-footer></div> -->
+<mat-card fxFlexAlign="center">
+    <img fxFlexAlign="center" mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" style="width: 100%; height: 100px;">
+    <h1>{{companyName}}</h1>
+</mat-card>
+<mat-card class="outer" fxFlexAlign="center" fxLayout="row" fxLayout.xs="column-reverse">
+    <mat-card class="child-1" fxFlex.gt-sm="25">
+        <graduates-company-details></graduates-company-details>
+        <br/>
+        <graduates-representative-list></graduates-representative-list>
+        <br/>
+        <graduates-social-media></graduates-social-media>
+    </mat-card> 
+    <mat-card class="child-2">
+        <graduates-company-bio></graduates-company-bio>
+        <br/>
+        <graduates-industry-and-services></graduates-industry-and-services>
+    </mat-card> 
+</mat-card>
+ <!-- <div><header-and-footer-footer></header-and-footer-footer></div> -->

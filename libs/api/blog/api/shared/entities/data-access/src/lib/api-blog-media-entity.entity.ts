@@ -14,4 +14,10 @@ export class BlogMedia {
    */
   @Field()
   media!: string;
+
+  /**
+   * The blog that the media belongs to
+   */
+   @Field(() => Blog)
+   blog!: Blog;
 }
