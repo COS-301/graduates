@@ -9,7 +9,7 @@ export class GetOneRepresentativeHandler implements IQueryHandler<GetOneRepresen
     constructor(private readonly dataAccess:CompanyRepresentativeRepository){}
 
     async execute(query: GetOneRepresentative): Promise<User|null> {
-        return this.dataAccess.getRepresentativeUser(query.id);
+        return null;
     }
 
 }
