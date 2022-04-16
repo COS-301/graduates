@@ -9,7 +9,7 @@ export class ApiAuthorizationService {
     
         const data={
             userRole: "Student", 
-            userId: "220432083", 
+            companyId: "220432083", 
             accessPermission : true,
             editPermission : true,
             deletePermission: false,

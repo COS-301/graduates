@@ -6,6 +6,7 @@ import { RegistrationFeatureComponent} from './registration-feature/registration
 import { LoginFeatureComponent } from './login-feature/login-feature.component';*/
 import { AuthenticationMaterialModule } from './materials/authentication-material.module';
 import {LoginPageFeatureComponent} from './login-page-feature/login-page-feature.component'
+import {RegistrationPageFeatureComponent} from './registration-page-feature/registration-page-feature.component'
 
 describe('AuthenticationFeatureModule', () => {
   beforeEach(async(() => {
@@ -17,6 +18,7 @@ describe('AuthenticationFeatureModule', () => {
                       RegistrationCardComponent,
                       RegistrationFeatureComponent,*/
                       LoginPageFeatureComponent, 
+                      RegistrationPageFeatureComponent, 
                     
                     
                     ]
