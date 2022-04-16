@@ -65,7 +65,7 @@ export class CompanyProfilePage {
         })
     }
 
-    async editCompanyEmail(@Param() id:string,currentEmail:string, emailIn: string) {
+    async editCompanyEmail(@Param() id: string,currentEmail:string, emailIn: string) {
         return await this.prisma.userEmail.updateMany({
             where: {userId: id, email: currentEmail},
             data : {
