@@ -440,11 +440,11 @@ describe("DB Integration Tests", () => {
     repository = module.get<ShortsRepository>(ShortsRepository);
   });
 
-  it('should be defined', () => {
+  it('should ensure prisma and repository modules are defined', () => {
     expect(prisma).toBeDefined();
     expect(repository).toBeDefined();
   });
-  
+ 
   describe("findAll", () => {
     it("should return an array", async () => {
       const result = await repository.findAll();
