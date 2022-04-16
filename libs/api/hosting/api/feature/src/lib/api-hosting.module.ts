@@ -6,7 +6,7 @@ import { ApiHostingResolver } from './api-hosting.resolver';
 
 @Module({
   controllers: [],
-  imports: [TerminusModule, HttpModule],
+  imports: [HttpModule, TerminusModule],
   providers: [ApiHostingResolver,ApiHostingServiceFeatureModule],
   exports: [],
 })
