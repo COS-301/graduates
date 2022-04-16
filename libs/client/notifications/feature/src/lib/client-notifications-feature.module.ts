@@ -8,8 +8,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatListModule } from '@angular/material/list';
 import { NotificationsRoutingModule } from "./notifications-routing.module";
 
-import { HeaderModule } from 'libs/client/shared/components/header/src/lib/header.module';
-import { FooterModule } from 'libs/client/shared/components/footer/src/lib/footer.module';
+import { HeaderModule } from '../../../../shared/components/header/src/lib/header.module';
+import { FooterModule } from '../../../../shared/components/footer/src/lib/footer.module';
+
 @NgModule({
   imports: [
     NotificationsRoutingModule,

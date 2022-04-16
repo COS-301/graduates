@@ -21,8 +21,9 @@ import { ShortsRoutingModule } from './shorts-routing.module';
 import { FormBuilder, FormsModule, ReactiveFormsModule, } from '@angular/forms';
 import {Apollo, gql} from 'apollo-angular';
 
-import { HeaderModule } from 'libs/client/shared/components/header/src/lib/header.module';
-import { FooterModule } from 'libs/client/shared/components/footer/src/lib/footer.module';
+import { HeaderModule } from '../../../../shared/components/header/src/lib/header.module';
+import { FooterModule } from '../../../../shared/components/footer/src/lib/footer.module';
+
 @NgModule({
 
   imports: [
