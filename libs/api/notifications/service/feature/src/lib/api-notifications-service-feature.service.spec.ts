@@ -31,17 +31,37 @@ describe('ApiNotificationsService', () => {
   });
 
   it('should be defined', async () => {
-    const creator = jest.spyOn(service,'sendToMail');
-    const result = await service.sendToMail("emailFrom","emailTo","Subject","text");
+    const creator = jest.spyOn(service,'requestCV');
+    const result = await service.requestCV();
     expect(creator).toBeCalled();
     expect(result).toBeUndefined();
   });
 
-/*   it('should be defined', async () => {
-    const creator = jest.spyOn(service,'getAllNoifications');
-    const result = await service.getAllNoifications();
+  it('should be defined', async () => {
+    const creator = jest.spyOn(service,'currentUser');
+    const result = await service.currentUser();
     expect(creator).toBeCalled();
-    expect(result).toBeInstanceOf(Promise);
-  }); */
+    expect(result).toBeInstanceOf(Array);
+  });
 
+  it('should be defined', async () => {
+    const creator = jest.spyOn(service,'getNameFromID');
+    const result = await service.getNameFromID("userID");
+    expect(creator).toBeCalled();
+    expect(result).toBe('T');
+  });
+
+  it('should be defined', async () => {
+    const creator = jest.spyOn(service,'getEmailFromID');
+    const result = await service.getEmailFromID("userID");
+    expect(creator).toBeCalled();
+    expect(result).toBe('madunathabo2@gmail.com');
+  });
+
+  it('should be defined', async () => {
+    const creator = jest.spyOn(service,'emailToUser');
+    const result = await service.emailToUser();
+    expect(creator).toBeCalled();
+    expect(result).toBeInstanceOf(Array);
+  });
 });
