@@ -36,11 +36,11 @@ export class CompanyProfilePage {
 
     async editCompanySocialMedia(@Param() id:string, linkType: SocialMedia, link: string) {
         return await this.prisma.userSocialMedia.update({
-                where: {userId: id},
-                data : {
-                    type: linkType,
-                    link: link
-                }
+            where: {userId: id},
+            data : {
+                type: linkType,
+                link: link
+            }
         })
     }
     
@@ -67,10 +67,10 @@ export class CompanyProfilePage {
 
     async editCompanyEmail(@Param() id:string, emailIn: string) {
         return await this.prisma.userEmail.update({
-        where: {userId: id},
-        data : {
-            email: emailIn
-        }
+            where: {userId: id},
+            data : {
+                email: emailIn
+            }
         })
     }
 
