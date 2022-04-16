@@ -26,7 +26,7 @@
 #card{
     height: 95%;
     width: fit-content;
-    box-shadow: 10px 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 10px 10px 50px rgba(0,0,0, 0.15);
 }
 
 .cardbutton {
@@ -71,7 +71,7 @@
 #search{
     border: none;
     padding: 10px;
-    box-shadow: 3px 4px 6px #888888;
+    box-shadow: 10px 10px 50px rgba(0,0,0, 0.15);
     width: 65vw;
     margin-left: auto;
     margin-right: auto;
@@ -109,14 +109,6 @@
     background-color: $card-blue;
 }
 
-.grey {
-    background-color: gray;
-}
-
-.pink {
-    background-color: pink;
-}
-
 #infomessage {
     color: $primary-3;
 }
@@ -137,7 +129,7 @@
 }
 
 .bigblur {
-    box-shadow: 0px 0px 400px 50px rgba(179, 178, 178, 0.75);
+    box-shadow: 20px 20px 50px rgba(0,0,0, 0.25);
 }
 
 .infocolour {
