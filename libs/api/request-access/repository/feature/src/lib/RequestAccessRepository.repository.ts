@@ -5,4 +5,16 @@ import { PrismaService } from '@graduates/api/shared/services/prisma/data-access
 @Injectable()
 export class RequestAccessRepository {
   constructor(private prismaService: PrismaService ) {}
+  
+  async insertRequest(studId:string,compId:string,item:Item,accepted:boolean): Promise<Requested> {
+    return await this.prismaService.requested.create({
+      data:
+       { 
+        StudId: studId,
+        CompId: compId,
+        ItemId: item,
+        Accepted: accepted
+      }
+    });
+  }
 }
