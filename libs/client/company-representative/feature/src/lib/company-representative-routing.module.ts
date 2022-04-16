@@ -8,7 +8,8 @@ import { CompanyRepresentativeMockStudentExplorePageComponent } from './company-
 
 @NgModule({
   imports: [
-    RouterModule.forRoot([
+    RouterModule.forRoot([]),
+    RouterModule.forChild([
       {
         path: '',
         component: CompanyRepresentativeMockLoginPageComponent,
