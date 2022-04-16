@@ -5,6 +5,8 @@ async function main() {
 
     //mock users 1 student 2 companies
 
+    let dob = new Date("1929-06-12 00:00");
+    let created = new Date("2022-04-16 10:28");
     const student = await prisma.user.create({
         data:
         {
@@ -12,12 +14,15 @@ async function main() {
             password: "SecurePassword123!",
             passwordSalt: "Pepper",
             name: "Anne Frankly",
-            dateOfBirth: "1929-06-12 00:00",
-            created: "2022-04-16 10:28",
+            dateOfBirth: dob,
+            created: created,
             suspended: false,
             validated: false
         }
     });
+
+    let dob1 = new Date("1999-08-29 00:00");
+    let created1 = new Date("2022-04-16 10:32");
     await prisma.user.create({
         data:
         {
@@ -25,13 +30,16 @@ async function main() {
             password: "B3stBr3ad",
             passwordSalt: "Pepper",
             name: "Tertius Carstens",
-            dateOfBirth: "1999-08-29 00:00",
+            dateOfBirth: dob1,
             //companyID : "", no idea what to store here
-            created: "2022-04-16 10:32",
+            created: created1,
             suspended: false,
             validated: false
         },
     });
+
+    let dob2 = new Date("1990-10-18 00:00");
+    let created2 = new Date("2022-04-16 10:40");
     await prisma.user.create({
         data:
         {
@@ -39,9 +47,9 @@ async function main() {
             password: "EnglishBlacksmithingCompany",
             passwordSalt: "Pepper",
             name: "Gerrie Naude",
-            dateOfBirth: "1990-10-18 00:00",
+            dateOfBirth: dob2,
             //companyID : "", no idea what to store here
-            created: "2022-04-16 10:40",
+            created: created2,
             suspended: false,
             validated: true
         },
@@ -110,7 +118,7 @@ async function main() {
     await prisma.userDegree.create({
         data:
         {
-            userId: student.id,
+            userID: student.id,
             degreeType: "B.Sc",
             degreeName: "ComputerScience"
         }
