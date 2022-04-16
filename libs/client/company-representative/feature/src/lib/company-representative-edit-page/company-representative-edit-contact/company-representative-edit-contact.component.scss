@@ -1,0 +1,43 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+  
+  .mat-card {
+    margin-top: 0.25%;
+    margin-bottom: 0.25%;
+    border-width: 0.5px;
+    border-color: silver;
+    overflow: hidden;
+  }
+  
+  .title {
+    text-align: center;
+  }
+
+  .left {
+    text-align: left;
+    float: left;
+    width: 33%;
+  }
+
+  .right {
+    width: 66%;
+    float: right;
+    text-align: right;
+  }
+
+  div {
+    text-align: center;
+  }
+
+  input {
+    border: 1px solid;
+    width: 100%;
+    text-align: center;
+  }
+
+  input:hover {
+    border: 1px solid;
+    width: 100%;
+    text-align: center;
+    background-color: lightgrey;
+  }
+  

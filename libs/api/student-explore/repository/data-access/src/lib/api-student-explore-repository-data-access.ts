@@ -54,9 +54,9 @@ export class StudentExploreRepository {
       tempStudentObj.StudentBio = studentObjProfile.bio;
 
       //Student Email
-      studentObjProfile = await this.prisma.userEmail.findUnique({
+      /*studentObjProfile = await this.prisma.userEmail.findUnique({
         where: { userId : students[i].id, },
-      });
+      });*/
 
       tempStudentObj.StudentEmail = studentObjProfile.email;
 
@@ -68,9 +68,9 @@ export class StudentExploreRepository {
       tempStudentObj.StudentNumber = studentObjProfile.number;
 
       //Student Degree Type and Name
-      studentObjProfile = await this.prisma.userDegree.findUnique({
+      /*studentObjProfile = await this.prisma.userDegree.findUnique({
         where: { userID : students[i].id, },
-      });
+      });*/
 
       tempStudentObj.StudentDegreeType = studentObjProfile.degreeType;
       tempStudentObj.StudentDegreeName = studentObjProfile.degreeName;
@@ -142,9 +142,9 @@ export class StudentExploreRepository {
         tempStudentObj.StudentBio = studentObjProfile.bio;
 
         //Student Email
-        studentObjProfile = await this.prisma.userEmail.findUnique({
+        /*studentObjProfile = await this.prisma.userEmail.findUnique({
           where: { userId : students[i].id, },
-        });
+        });*/
 
         tempStudentObj.StudentEmail = studentObjProfile.email;
 
@@ -156,9 +156,9 @@ export class StudentExploreRepository {
         tempStudentObj.StudentNumber = studentObjProfile.number;
 
         //Student Degree Type and Name
-        studentObjProfile = await this.prisma.userDegree.findUnique({
+        /*studentObjProfile = await this.prisma.userDegree.findUnique({
          where: { userID : students[i].id, },
-        });
+        });*/
 
         tempStudentObj.StudentDegreeType = studentObjProfile.degreeType;
         tempStudentObj.StudentDegreeName = studentObjProfile.degreeName;
