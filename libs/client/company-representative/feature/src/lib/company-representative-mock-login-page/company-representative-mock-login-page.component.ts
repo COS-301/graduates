@@ -10,6 +10,6 @@ export class CompanyRepresentativeMockLoginPageComponent {
   constructor(private _router: Router) { }
 
   navigateToFirst() {
-    this._router.navigate(['home-page'])
+    this._router.navigate(['CompanyRepresentativeHome'])
   }
 }
