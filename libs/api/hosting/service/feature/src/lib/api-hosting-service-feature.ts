@@ -1,12 +1,8 @@
 import { ApiHosting } from '@graduates/api/hosting/api/shared/data-access';
-import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 import { Injectable } from '@nestjs/common';
-import { HealthIndicator, HealthIndicatorResult } from '@nestjs/terminus';
 
 @Injectable()
-export class ApiHostingServiceFeatureModule extends HealthIndicator {
-  
-  private readonly prismaService: PrismaService;
+export class ApiHostingServiceFeatureModule{
   private hosting: ApiHosting[] = [
    {name: 'Storage API' , status: 'Operational'},
    {name: 'Shorts API', status: 'Operational'},
@@ -21,24 +17,6 @@ export class ApiHostingServiceFeatureModule extends HealthIndicator {
   ];
   async get_all(): Promise<ApiHosting[]>{
     //heatlth checks
-    this.checkDatabase();
     return this.hosting;
-  }
-  async checkDatabase(): Promise<HealthIndicatorResult>{
-    const prisma = new ApiHosting();
-    try{
-      await this.prismaService.$queryRaw;   
-      prisma.name = "Database";
-      prisma.status = "Operational";
-      this.hosting.push(prisma);
-      return this.getStatus("Database", true);
-
-    }
-    catch(error){
-      prisma.name = "Database";
-      prisma.status = "Non Operational";
-      this.hosting.push(prisma);
-      return this.getStatus("Database", false);
-    }
   }
 }
