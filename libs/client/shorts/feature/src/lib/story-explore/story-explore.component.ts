@@ -33,8 +33,8 @@ export class StoryExploreComponent implements OnInit {
 
   viewing : boolean;
   reporting: boolean;
-  currentlyViewing! : number;
-  currentlyReporting! : number;
+  currentlyViewing! : string;
+  currentlyReporting! : string;
   successfulReport : boolean;
   reported : boolean;
 
@@ -47,20 +47,7 @@ export class StoryExploreComponent implements OnInit {
   fileError = "File is required.";
   uploadedFile! : any;
 
-  cardlist = [{
-        
-    "user": {
-      "name": "Matthew"
-    },
-    "shortTag": [
-       {
-          "tag": "TeamWork"
-       }
-    ],
-    "thumbnail": ""
-  }];
-  
-  /** Based on the screen size, switch from standard to one column per row */
+  cardlist = [{"user": {"name": "Matthew"},"shortTag":[{"tag":"TeamWork"}],"userId":"test","id":"fake","thumbnail":""}];
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       return this.cardlist;
@@ -99,23 +86,10 @@ export class StoryExploreComponent implements OnInit {
   //   return null;
   // }
 
-  btnNaviClick(i : number){
-    
-    (<HTMLInputElement>document.getElementById("prevBtn")).disabled = false;
-    (<HTMLInputElement>document.getElementById("nextBtn")).disabled = false;
-    this.pageIndex += i;
-    if(this.pageIndex ==1){
-      (<HTMLInputElement>document.getElementById("prevBtn")).disabled = true;
-    }
-    if(this.endIndex == this.pageIndex){
-      (<HTMLInputElement>document.getElementById("nextBtn")).disabled = true;
-    }
 
-    (<HTMLInputElement>document.getElementById("curBtn")).innerHTML = (this.pageIndex).toString();
-
-    this.loadCards();
-  }
-
+  //  ==================================================================================== //
+  //  Submit Pop-Up Functions ============================================================ //
+  
   onFileUpload(event : any) {
     this.fileError = "";
     console.log(event);
@@ -141,13 +115,8 @@ export class StoryExploreComponent implements OnInit {
     this.reporting = false;
     this.successfulReport = false;
   }
-
-  search(){
-    this.searchText = (<HTMLInputElement>document.getElementById("search")).value;
-    alert('searching for ' + this.searchText);
-    this.searchText = (<HTMLInputElement>document.getElementById("search")).value= "";
-    
-  }
+  //  ====================================================================================== //
+  //  Selected Pop-Up Functions ============================================================ //
 
   closeSuccessReport() {
     this.reporting = false;
@@ -155,8 +124,8 @@ export class StoryExploreComponent implements OnInit {
     this.successfulReport = false;
   }
 
-  viewStory(n : number) {
-    this.currentlyViewing = n;
+  viewStory(s : string) {
+    this.currentlyViewing = s;
     this.viewing = true;
     this.reporting = false;
     this.successfulReport = false;
@@ -165,6 +134,8 @@ export class StoryExploreComponent implements OnInit {
   closeViewing() {
     this.viewing = false;
   }
+  //  ==================================================================================== //
+  //  Report Pop-Up Functions ============================================================ //
 
   cancelReport() {
     this.reporting = false;
@@ -204,23 +175,16 @@ export class StoryExploreComponent implements OnInit {
 
   }
 
-  loadCards(){
+  //  ==================================================================================== //
+  //  Story Explore Functions ============================================================ //
 
+  
+  loadCards(){
+    const test = "query{ getAllShorts{ user{  name  },shortTag{ tag },userId,id, thumbnail}}";
     
     if(!(this.apollo.client===undefined)) this.apollo
     .watchQuery({
-      query: gql`
-      query{
-        getAllShorts{
-          user{ 
-            name 
-          },
-          shortTag{
-            tag
-          },
-          thumbnail
-        }
-      }`,
+      query: gql(test),
     })
     .valueChanges.subscribe((result: any) => {
       this.cardlist = result.data.getAllShorts;
@@ -242,9 +206,33 @@ export class StoryExploreComponent implements OnInit {
         })
       );
     });
-
-
-
   }
 
+  
+  btnNaviClick(i : number){
+    
+    (<HTMLInputElement>document.getElementById("prevBtn")).disabled = false;
+    (<HTMLInputElement>document.getElementById("nextBtn")).disabled = false;
+    this.pageIndex += i;
+    if(this.pageIndex ==1){
+      (<HTMLInputElement>document.getElementById("prevBtn")).disabled = true;
+    }
+    if(this.endIndex == this.pageIndex){
+      (<HTMLInputElement>document.getElementById("nextBtn")).disabled = true;
+    }
+
+    (<HTMLInputElement>document.getElementById("curBtn")).innerHTML = (this.pageIndex).toString();
+
+    this.loadCards();
+  }
+
+
+  search(){
+    this.searchText = (<HTMLInputElement>document.getElementById("search")).value;
+    alert('searching for ' + this.searchText);
+    this.searchText = (<HTMLInputElement>document.getElementById("search")).value= "";
+    
+  }
 }
+
+
