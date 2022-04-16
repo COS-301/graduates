@@ -1,18 +1,26 @@
 @import 'libs/client/shared/assets/ui/src/lib/global';
-* {
-    text-align: center;
-  }
-  
+
   .mat-card {
-    text-align: center;
     margin-top: 0.25%;
     margin-bottom: 0.25%;
     border-width: 0.5px;
     border-color: silver;
+    overflow: hidden;
   }
   
-  #left {
+  .title {
+    text-align: center;
+  }
+
+  .left {
     float: left;
-    width: 40%;
+    text-align: left;
+    width: 33%;
+  }
+
+  .right {
+    float: left;
+    text-align:right;
+    width: 66%;
   }
   
