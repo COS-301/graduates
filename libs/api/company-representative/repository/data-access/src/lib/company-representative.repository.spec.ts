@@ -1,7 +1,6 @@
-import { PrismaService } from "@graduates/api/shared/services/prisma/data-access";
+
 import { Test, TestingModule } from '@nestjs/testing';
 import { CompanyRepresentativeRepository } from './company-representative.repository';
-import { prismaMock } from './singleton';
 
 
 describe('CompanyRepresentativeRepository', () => {
@@ -10,15 +9,13 @@ describe('CompanyRepresentativeRepository', () => {
 
     beforeAll(async () => {
         const module: TestingModule = await Test.createTestingModule({
-            providers: [CompanyRepresentativeRepository,
-                { provide: PrismaService, useValue: prismaMock},
-            ],
+            providers: [CompanyRepresentativeRepository]
         }).compile();
 
         repository = module.get<CompanyRepresentativeRepository>(CompanyRepresentativeRepository);
     });
 
-
+    
 
     it('Should be defined', async () => {
       expect(repository).toBeDefined();

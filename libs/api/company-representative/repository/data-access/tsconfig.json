@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 {
   "extends": "../../../../../tsconfig.base.json",
   "compilerOptions": {
@@ -15,22 +14,3 @@
     }
   ]
 }
-=======
-{
-  "extends": "../../../../../tsconfig.base.json",
-  "compilerOptions": {
-    "module": "commonjs",
-    "strictNullChecks": true
-  },
-  "files": [],
-  "include": [],
-  "references": [
-    {
-      "path": "./tsconfig.lib.json"
-    },
-    {
-      "path": "./tsconfig.spec.json"
-    }
-  ]
-}
->>>>>>> Stashed changes
