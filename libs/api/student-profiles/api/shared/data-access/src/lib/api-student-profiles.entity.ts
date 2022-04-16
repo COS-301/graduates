@@ -44,6 +44,9 @@ export class ApiStudentProfilesEntity {
   @Field((type) => [[String]])
   links: string[][];
 
+  @Field()
+  profilePhoto: string;
+
   //uploaded documents return if they are uploaded or not
   @Field()
   academicRecord: boolean;

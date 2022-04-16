@@ -44,10 +44,6 @@ export class ApiStudentProfilesInputEntity {
   @Field(type => [[String]],{ nullable: 'itemsAndList' })
   links?: string[][];
 
-  //uploaded documents return if they are uploaded or not
-  @Field({ nullable: true })
-  academicRecord?: boolean;
-
-  @Field({ nullable: true })
-  cv?: boolean;
+  @Field({nullable: true})
+  profilePhoto?: string;
 }
