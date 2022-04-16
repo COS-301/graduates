@@ -16,7 +16,7 @@ import {
 export class GetAllUserNotificationsHandler implements IQueryHandler<GetAllUserNotificationsQuery> {
   constructor(private readonly repository: NotificationsRepository) {}
 
-  async execute() {
+  async execute(): Promise<Notification[] | null> {
     return this.repository.findNotificationsAll();
   }
 }
