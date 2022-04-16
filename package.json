@@ -10,6 +10,7 @@
     "prisma:studio": "yarn prisma studio",
     "prisma:generate": "yarn prisma generate",
     "prisma:migrate:dev": "yarn prisma migrate dev",
+    "prisma:seed": "ts-node prisma\\seed.ts",
     "build": "nx build",
     "lint": "nx lint",
     "test": "nx test",
