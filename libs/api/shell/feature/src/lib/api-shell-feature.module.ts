@@ -29,7 +29,7 @@ import { ApiUpintegrationApiFeatureModule as ApiUpintegrationFeatureModule } fro
     ApiShortsFeatureModule,
     ApiNotificationsApiFeatureModule,
     ApiAccessStatusFeatureModule,
-    ApiCompanyProfilePageFeatureModule,
+   // ApiCompanyProfilePageFeatureModule,
     ApiStudentProfilesModule,
     ApiCompanyRepresentativeApiFeatureModule,
     ApiRequestAccessFeatureModule,
