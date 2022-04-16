@@ -1,1 +1,3 @@
-export * from './createRepresentativeHandler.handler'
+import { DeleteRepresentativeHandler } from "./deleteRepresentative.handler";
+
+export const CommandHandlers = [DeleteRepresentativeHandler];
