@@ -19,12 +19,12 @@ export class ApiAuthorizationResolver {
     return respond;
   }
 
-  @Query((returns) => ApiAuthorization)
-  async permissions(@Args('id') id: string): Promise<ApiAuthorization> {
-    const respond = await this.authourizationService.findPermidssions(id);
-    if (!respond) {
-      throw new NotFoundException(id);
-    }
-    return respond;
-  }
+  // @Query((returns) => ApiAuthorization)
+  // async permissions(@Args('id') id: string): Promise<ApiAuthorization> {
+  //   const respond = await this.authourizationService.findres;
+  //   if (!respond) {
+  //     throw new NotFoundException(id);
+  //   }
+  //   return respond;
+  //}
 }

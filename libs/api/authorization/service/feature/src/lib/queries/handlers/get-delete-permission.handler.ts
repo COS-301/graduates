@@ -1,7 +1,6 @@
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { Adminauthorization } from '../../../../../../repository/data-access/src/lib/api-authorization-repository-admin';
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { Prisma, User } from '@prisma/client';
 import { GetDeletePermissionQuery } from '../impl/get-delete-permission.query';
 
 /*
