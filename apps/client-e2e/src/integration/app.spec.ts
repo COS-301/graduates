@@ -45,7 +45,7 @@ describe('client-shorts-feature e2e test', () => {
     });
   });
 
-  describe.only('upload component tests', () => {
+  describe('upload component tests', () => {
     beforeEach(() => cy.visit('/shorts/upload'));
 
     it('should display then cancel upload component', () => {
