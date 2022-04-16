@@ -13,7 +13,7 @@
       <!-- search bar -->
       <div class="">
         <input *ngIf="!upload" (change)="search()" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
-        <input *ngIf="upload" disabled="true" (change)="search()" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
+        <input *ngIf="upload" disabled="true" (change)="search()" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." type="text" fxFlex="70%" fxFlexOffset="-10%">
       </div>
 
       <!-- column manager for all cards -->
@@ -185,4 +185,4 @@
 </div>
 
 <!-- footer from shared -->
-<div><header-and-footer-footer></header-and-footer-footer></div>
+<header-and-footer-footer></header-and-footer-footer>

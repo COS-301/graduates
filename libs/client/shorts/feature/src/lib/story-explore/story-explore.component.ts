@@ -26,10 +26,10 @@ export class StoryExploreComponent implements OnInit {
   reportfrm! : FormGroup;
   builder! : FormBuilder; 
 
-  counter =0;
+  counter = 0;
   submit = false;
   return : boolean;
-  searchText = "";
+
 
   viewing : boolean;
   reporting: boolean;
@@ -41,18 +41,12 @@ export class StoryExploreComponent implements OnInit {
   viewingName = "Ernest Wright";
   viewingTags = "#Design #IMY #COS #software";
 
-  pageIndex = 1;
-  endIndex = 2;
+
 
   fileError = "File is required.";
   uploadedFile! : any;
 
-  cardlist = [{"user": {"name": "Matthew"},"shortTag":[{"tag":"TeamWork"}],"userId":"test","id":"fake","thumbnail":""}];
-  cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    map(({ matches }) => {
-      return this.cardlist;
-    })
-  );
+
 
 
   constructor(private apollo: Apollo ,private breakpointObserver: BreakpointObserver, f : FormBuilder, private location: Location) {
@@ -61,7 +55,7 @@ export class StoryExploreComponent implements OnInit {
     this.return = false;
     this.report = false;
     this.viewing = false;
-    this.reporting = true;
+    this.reporting = false;
     this.successfulReport = false;
     this.reported = false;
   }
@@ -76,7 +70,7 @@ export class StoryExploreComponent implements OnInit {
       reason: ['', this.reasonValidator]
     });
 
-    this.loadCards();
+    this.loadAllCards();
   }
 
   // uploadValidater(file : FormControl) : {[valtype: string] : string} | null {
@@ -211,8 +205,24 @@ export class StoryExploreComponent implements OnInit {
   //  ==================================================================================== //
   //  Story Explore Functions ============================================================ //
 
+  // VARS
+
+  cardsPerPage = 6;
+  pageIndex = 1;
+  endIndex = 1;
+
+  searchText = "";
+
+  cardlist = [{"user": {"name": "Matthew"},"shortTag":[{"tag":"TeamWork"}],"userId":"test","id":"fake","thumbnail":""}];
+  cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
+    map(({ matches }) => {
+      return this.cardlist;
+    })
+  );
+
+  // FUNCS
   
-  loadCards(){
+  loadAllCards(){
     const test = "query{ getAllShorts{ user{  name  },shortTag{ tag },userId,id, thumbnail}}";
     
     if(!(this.apollo.client===undefined)) this.apollo
@@ -224,20 +234,7 @@ export class StoryExploreComponent implements OnInit {
       
       console.log(result.data);
 
-      this.cards = this.breakpointObserver.observe( Breakpoints.Handset).pipe(
-      
-        map(() => {
-  
-        const out = [];
-        this.endIndex = Math.ceil(this.cardlist.length/6);
-  
-        for (let index = 0; index < 3; index++) {
-          if(index+(this.pageIndex-1)*6 < this.cardlist.length) out.push(this.cardlist[index+(this.pageIndex-1)*6])
-        }
-    
-        return out;
-        })
-      );
+      this.refreshCards();
     });
   }
 
@@ -256,7 +253,7 @@ export class StoryExploreComponent implements OnInit {
 
     (<HTMLInputElement>document.getElementById("curBtn")).innerHTML = (this.pageIndex).toString();
 
-    this.loadCards();
+    this.refreshCards();
   }
 
 
@@ -265,6 +262,32 @@ export class StoryExploreComponent implements OnInit {
     alert('searching for ' + this.searchText);
     this.searchText = (<HTMLInputElement>document.getElementById("search")).value= "";
     
+  }
+
+  loadCardsByUserName(sText: string){
+
+  }
+
+  loadCardsByTag(sText: string){
+
+  }
+
+  refreshCards(){
+    this.endIndex = Math.ceil(this.cardlist.length/this.cardsPerPage);
+
+    this.cards = this.breakpointObserver.observe( Breakpoints.Handset).pipe(
+      
+      map(() => {
+
+      const out = [];
+
+      for (let index = 0; index < this.cardsPerPage; index++) {
+        if(index+(this.pageIndex-1)*this.cardsPerPage < this.cardlist.length) out.push(this.cardlist[index+(this.pageIndex-1)*this.cardsPerPage])
+      }
+  
+      return out;
+      })
+    );
   }
 }
 
