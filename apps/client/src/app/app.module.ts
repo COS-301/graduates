@@ -9,7 +9,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxsModule } from '@ngxs/store';
 import { ClientAdminconsoleFeatureModule as AdminConsole } from '@graduates/client/adminconsole/feature';
 
-
+import {ApolloModule, APOLLO_OPTIONS} from 'apollo-angular';
+import {HttpLink} from 'apollo-angular/http';
+import {InMemoryCache} from '@apollo/client/core';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -17,6 +19,8 @@ import { ClientAdminconsoleFeatureModule as AdminConsole } from '@graduates/clie
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
+    ApolloModule,
     HttpClientModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
@@ -26,7 +30,20 @@ import { ClientAdminconsoleFeatureModule as AdminConsole } from '@graduates/clie
     }),
     NgxsModule.forRoot([])
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory: (httpLink: HttpLink) => {
+        return {
+          cache: new InMemoryCache(),
+          link: httpLink.create({
+            uri: 'http://localhost:3333/graphql',
+          }),
+        };
+      },
+      deps: [HttpLink],
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
