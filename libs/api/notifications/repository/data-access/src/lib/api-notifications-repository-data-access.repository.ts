@@ -7,7 +7,8 @@ export class NotificationsRepository {
   constructor(private prisma: PrismaService) {}
 
   async findNotificationsAll(): Promise<Notification[] | null> {
-    return this.prisma.notification.findMany();
+    const res = this.prisma.notification.findMany();
+    return (res) ? res : null;
   }
 
   async findNotificationById(id: string): Promise<Notification | null> {
@@ -18,7 +19,7 @@ export class NotificationsRepository {
     });
   }
 
-  async findNotificationsRecieved(userId : string): Promise<Notification[] | null> {
+  async findNotificationsReceived(userId : string): Promise<Notification[] | null> {
     return this.prisma.notification.findMany({
       where: {
         userIdTo : userId

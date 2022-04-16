@@ -9,7 +9,7 @@ export class ApiStudentProfileResolver {
 
   @Query((returns) => ApiStudentProfilesEntity, { name: 'student' })
   async getStudent(@Args('studentNum', { type: () => String }) id: string) {
-    const studentArr = this.studentService.findOneById(id);
+    const studentArr = this.studentService.findById(id);
     const studentObj = new ApiStudentProfilesEntity();
     studentObj.dateOfBirth = (await studentArr).pop();
     studentObj.phoneNum = (await studentArr).pop();
@@ -25,7 +25,7 @@ export class ApiStudentProfileResolver {
   async editStudent(
     @Args('editStudentData') editStudentData: StudentInput
   ) {
-    const studentArr = this.studentService.editStudentProfiles(editStudentData);
+    const studentArr = this.studentService.update(editStudentData);
     const studentObj = new ApiStudentProfilesEntity();
     studentObj.dateOfBirth = (await studentArr).pop();
     studentObj.phoneNum = (await studentArr).pop();
@@ -39,7 +39,7 @@ export class ApiStudentProfileResolver {
 
   @Mutation((returns) => String)
   async deleteStudent(@Args('studentNum', {type: () => String})id: string ) {
-    const res = this.studentService.deleteStudentProfiles(id);
+    const res = this.studentService.delete(id);
     return res;
   }
 }
