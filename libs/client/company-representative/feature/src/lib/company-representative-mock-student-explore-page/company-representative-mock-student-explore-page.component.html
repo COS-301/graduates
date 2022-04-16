@@ -1,0 +1,22 @@
+<!-- Waiting for backend to be functional to make API calls -->
+<div>
+  <mat-card>
+    <div>
+      <h1><b>Students</b></h1>
+    </div>
+    <mat-card class="contain" *ngFor="let item of [].constructor(10); let i = index">
+      <div class="picture" id="left" >
+        <img class="image" src="{{profilePicture}}" alt="Cat">
+      </div>
+      <div class="name" id="left">
+        <h2><b>{{mocknames[i]}}</b></h2>
+      </div>
+      <div class="tags" id="left">
+        <h2><b>{{mocktags[i]}}</b></h2>
+        <div class="button-container">
+          <button class="button">Scout</button>
+        </div>
+      </div>
+    </mat-card>
+  </mat-card>
+</div>
