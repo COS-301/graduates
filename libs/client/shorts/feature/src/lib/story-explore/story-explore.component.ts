@@ -174,7 +174,16 @@ export class StoryExploreComponent implements OnInit {
     }
 
     //Send reportText to the api:
+    const query = `query{  }`;
 
+    if (!(this.apollo.client === undefined))
+      this.apollo
+        .mutate({
+          mutation: gql`${query}`,
+        })
+        .subscribe((result : any) => {
+          console.log(result);
+        })
 
     //reset for another report on another card:
     this.reportfrm.reset();
