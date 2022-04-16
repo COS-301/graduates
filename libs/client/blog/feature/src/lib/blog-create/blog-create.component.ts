@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'graduates-blog-create',
@@ -7,8 +8,11 @@ import { Component } from '@angular/core';
 })
 export class BlogCreateComponent {
 
-  constructor() {
+  constructor(private router: Router) {
     //CODE
   }
 
+  cancel() {
+    this.router.navigate(['blog']);
+  }
 }

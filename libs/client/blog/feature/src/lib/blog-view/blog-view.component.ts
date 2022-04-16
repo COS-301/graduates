@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'graduates-blog-view',
@@ -7,8 +8,12 @@ import { Component } from '@angular/core';
 })
 export class BlogViewComponent {
 
-  constructor() {
+  constructor(private router: Router) {
     //CODE
+  }
+
+  return(){ 
+    this.router.navigate(['blog']);
   }
 
 }

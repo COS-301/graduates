@@ -5,6 +5,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Location } from '@angular/common';
 
 import {Apollo, gql} from 'apollo-angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'graduates-blog-explore',
@@ -14,6 +15,8 @@ import {Apollo, gql} from 'apollo-angular';
 })
 export class BlogExploreComponent implements OnInit  {
   @Input() admin : boolean;
+
+  newestFirstSort : boolean;
 
   cols : number | undefined;
 
@@ -34,13 +37,14 @@ export class BlogExploreComponent implements OnInit  {
               {"blog": {"title": "Title 7", "author": "author", "content": "Blog Summary Blog Summary Blog Summary Blog Summary Blog Summary Blog Summary Blog Summary"}},
               {"blog": {"title": "Title 8", "author": "author", "content": "Blog Summary Blog Summary Blog Summary Blog Summary Blog Summary Blog Summary Blog Summary"}}];
   blogs = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    map(({ matches }) => {
+    map(() => {
       return this.blogList;
     })
   );
 
-  constructor(private apollo: Apollo, private breakpointObserver: BreakpointObserver, private location: Location) {
+  constructor(private apollo: Apollo, private breakpointObserver: BreakpointObserver, private location: Location, private router: Router) {
     this.admin = false;
+    this.newestFirstSort = true;
     this.loadGrid();
   }
 
@@ -77,9 +81,50 @@ export class BlogExploreComponent implements OnInit  {
     this.loadBlogs();
   }
 
+  createBlog(){ 
+    this.router.navigate(['blog/create']);
+  }
+
+  readBlog(blog: unknown){
+    blog;
+    this.router.navigate(['blog/view']); //Change later when ID is added to the URL
+  }
+
+  editBlog(blog: unknown){
+    blog;
+    this.router.navigate(['blog/create']); //Change later when ID is added to the URL
+  }
+
+  deleteBlog(blog: unknown){
+    blog;
+  }
+
+  newestFirst() {
+    if (!this.newestFirstSort) {
+      this.blogList.reverse();
+      this.newestFirstSort = true;
+    }
+  }
+
+  oldestFirst() {
+    if (this.newestFirstSort) {
+      this.blogList.reverse();
+      this.newestFirstSort = false;
+    }
+  }
+
+  changeAdmin(){
+    if (this.admin){
+      this.admin = false;
+    } else {
+      this.admin = true;
+    }
+    this.loadGrid();
+  }
+
   //Add to blogs array (Hopefully from API)
   loadBlogs(){
-    const getAllBlogs = "query{ getAllBlogs{} }";
+    const getAllBlogs = "query{ getAllBlogs{ blog{ title, author, content } } }";
 
     if(!(this.apollo.client===undefined)) this.apollo
     .watchQuery({
@@ -87,8 +132,6 @@ export class BlogExploreComponent implements OnInit  {
     })
     .valueChanges.subscribe((result: any) => {
       this.blogs = result.data.getAllBlogs;
-
-      console.log(result.data);
 
       this.blogs = this.breakpointObserver.observe( Breakpoints.Handset).pipe(
       

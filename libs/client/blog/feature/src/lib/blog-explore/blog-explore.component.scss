@@ -35,6 +35,19 @@ h1 {
     }
 }
 
+.adminbutton {
+    color: $primary-1;
+    background-color: $background-white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $primary-1;
+    &:hover {
+        background-color: $primary-1;
+        color: $background-white;
+    }
+    left: 40%;
+}
+
 .sort {
     float: right;
 }
@@ -86,8 +99,7 @@ mat-card {
         color: $primary-1;
         background-color: $background-white;
     }
-    position: relative;
-    float: right;
+    left: 20px;
 }
 
 .editbutton {
@@ -100,8 +112,6 @@ mat-card {
         background-color: $primary-1;
         color: $background-white;
     }
-    position: relative;
-    float: left;
 }
 
 .deletebutton {
@@ -114,6 +124,7 @@ mat-card {
         background-color: $primary-1;
         color: $background-white;
     }
+    left: 10px;
 }
 
 .buttons {
