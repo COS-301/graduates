@@ -9,22 +9,10 @@ import { NotificationsApi } from './notif-display.api';
 export class NotifDisplayComponent{
 
   constructor( private notifApi : NotificationsApi) {
-/*     fetch('http://localhost:3333/graphql', {
-      method: 'POST',
-      headers: {'Content-Type' : 'application/json'},
-      body: JSON.stringify({ query: `
-        query {
-          notificationsAll {
-            ID
-          }
-        }`
-      }),
-    })
-    .then(res =>  res.json())
-    .then(res => console.log(res.data)); */
+
     this.notifApi.getNotificationsAll().subscribe({
       next: (res) => {
-        console.log(res)
+        console.log(res.data.notificationsAll[0]);
       }
     });
   }

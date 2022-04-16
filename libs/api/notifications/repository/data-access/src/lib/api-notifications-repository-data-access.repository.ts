@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
-import { Notification, Prisma, User  } from '@prisma/client';
+import { Notification, User, Prisma } from '@prisma/client';
 
 @Injectable()
 export class NotificationsRepository {
@@ -91,14 +91,10 @@ export class NotificationsRepository {
     });
   }
 
-  async getUserNameAndEmail(userId : string) : Promise<User | null> {
-    // return await this.prisma.user.findUnique({
+  async getUserEntity(userId : string) : Promise<User | null> {
+    // return await this.prisma.userEmail.findUnique({
     //   where: {
-    //     id: userId
-    //   },
-    //   select: {
-    //     name: true,
-    //     email: true
+    //     userId: userId
     //   }
     // })
     return null;
