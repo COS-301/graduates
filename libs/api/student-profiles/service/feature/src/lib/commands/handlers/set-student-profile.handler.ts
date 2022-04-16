@@ -108,7 +108,7 @@ export class SetStudentProfileEmailHandler implements ICommandHandler<SetStudent
   constructor(private repository: StudentProfilesRepository, private publisher: EventPublisher) {} 
 
   async execute({id, email}: SetStudentProfileEmailCommand) { 
-    const profile = this.publisher.mergeObjectContext(await this.repository.setEmails(id, email) as any);
+    const profile = this.publisher.mergeObjectContext(await this.repository.getEmails( email) as any);
     profile.apply(new SetStudentProfileEmailsEvent(
         id,
         email
