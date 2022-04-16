@@ -1,9 +1,19 @@
+import { CompanyRepresentativeRepository } from '@graduates/api/company-representative/repository/data-access';
+import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 import { Module } from '@nestjs/common';
+import { CqrsModule } from '@nestjs/cqrs';
 import { ApiCompanyRepresentativeService } from './api-company-representative.service';
+import { QueryHandlers } from './queries/handlers';
 
 @Module({
-  controllers: [],
-  providers: [ApiCompanyRepresentativeService],
+  imports: [CqrsModule],
+  controllers:[],
+  providers: [
+    ...QueryHandlers,
+    ApiCompanyRepresentativeService,
+    PrismaService,
+    CompanyRepresentativeRepository
+  ],
   exports: [ApiCompanyRepresentativeService],
 })
 export class ApiCompanyRepresentativeServiceFeatureModule {}

@@ -13,11 +13,16 @@ import { MatGridListModule } from '@angular/material/grid-list';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { StoryExploreComponent } from './story-explore/story-explore.component';
 import { StoryUploadComponent } from './story-upload/story-upload.component';
-import { ShortsRoutingModule } from './shorts-routing.module';
 
+import { ShortsRoutingModule } from './shorts-routing.module';
 import { FormBuilder, FormsModule, ReactiveFormsModule, } from '@angular/forms';
+import {Apollo, gql} from 'apollo-angular';
+
+import { HeaderModule } from '../../../../shared/components/header/src/lib/header.module';
+import { FooterModule } from '../../../../shared/components/footer/src/lib/footer.module';
 
 @NgModule({
 
@@ -37,13 +42,16 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, } from '@angular/forms';
     ShortsRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    
+    FooterModule,
+    HeaderModule,
   ],
   declarations: [
     StoryExploreComponent,
     StoryUploadComponent,
   ],
   providers: [
-    FormBuilder
+    FormBuilder, Apollo,
   ],
   exports: [StoryExploreComponent]
 })

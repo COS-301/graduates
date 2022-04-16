@@ -1,1 +1,64 @@
 @import 'libs/client/shared/assets/ui/src/lib/global';
+footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+
+.page {
+    padding-top: 8%;
+    padding-bottom: 8%;
+}
+
+h1 {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    color: $primary-1;
+    font-size: xx-large;
+}
+
+.utilities {
+    padding-right: 10%;
+    padding-left: 10%;
+}
+
+.createbutton {
+    background-color: $primary-1;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $primary-1;
+    &:hover {
+        color: $primary-1;
+        background-color: $background-white;
+    }
+}
+
+.sort {
+    float: right;
+}
+
+h1 {
+    text-align: left;
+    float: left;
+    color: black;
+    font-size: 400%;
+    font-weight: bold;
+    padding-left: 10%;
+}
+
+h2 {
+    float: left;
+    color: $primary-1;
+    font-size: 250%;
+    padding-left: 5px;
+    padding-top: 6px;
+}
+
+h3 {
+    color: $primary-1;
+    font-size: 200%;
+    padding-left: 12%;
+    font-weight: 500;
+}

@@ -1,11 +1,3 @@
-<!-- <p>main-storage-page works!</p>
-
-<graduates-page-title></graduates-page-title>
-
-<graduates-delete-all></graduates-delete-all>
-
-<graduates-download-all></graduates-download-all> -->
-
 <div class="p-20 select-none">
 
     <!-- Page Title -->
@@ -39,7 +31,8 @@
           
           <!-- Document Label -->
           <div class="lg:w-1/2 text-center p-3">
-            <button (click)="acadUp()">Click to Upload: Academic Record</button>
+            <button routerLink="file-upload/academic-record">Click to Upload: Academic Record</button>
+            <!-- <button (click)="acadUp()" routerLink="/file-upload">Click to Upload: Academic Record</button> -->
           </div>
 
           <!-- Extension and Buttons -->
@@ -57,7 +50,8 @@
                 <button (click)="down()">file_download</button>
               </span>
               <span class="material-icons lg:w-1/5 sm:w-1/6" style="color: #59AF43;">
-                <button (click)="up()">file_upload</button>
+                <button routerLink="file-upload/academic-record">file_upload</button>
+                <!-- <button (click)="up()" routerLink="/file-upload">file_upload</button> -->
               </span>
             </div>
           </div>
@@ -68,7 +62,7 @@
         <div class= "lg:flex sm:justify-around lg:h-12 lg:ml-10 border-b border-blue-800">
           
           <div class="lg:w-1/2 text-center p-3 lg:mt-0 mt-10">
-            <button (click)="transUp()">Click to Upload: Transcript</button>
+            <button routerLink="file-upload/transcript">Click to Upload: Transcript</button>
           </div>
 
           <!-- Extension and Buttons -->
@@ -86,7 +80,7 @@
                 <button (click)="down()">file_download</button>
               </span>
               <span class="material-icons lg:w-1/5 sm:w-1/6" style="color: #59AF43;">
-                <button (click)="up()">file_upload</button>
+                <button routerLink="file-upload/transcript">file_upload</button>
               </span>
             </div>
           </div>
@@ -97,7 +91,7 @@
         <div class= "lg:flex sm:justify-around lg:h-12 lg:ml-10 border-b border-blue-800">
           
           <div class="lg:w-1/2 text-center p-3 lg:mt-0 mt-10">
-            <button (click)="cvUp()">Click to Upload: CV</button>
+            <button routerLink="file-upload/cv">Click to Upload: CV</button>
           </div>
 
           <!-- Extension and Buttons -->
@@ -115,7 +109,7 @@
                 <button (click)="down()">file_download</button>
               </span>
               <span class="material-icons lg:w-1/5 sm:w-1/6" style="color: #59AF43;">
-                <button (click)="up()">file_upload</button>
+                <button routerLink="file-upload/cv">file_upload</button>
               </span>
             </div>
           </div>
@@ -127,6 +121,4 @@
     </div>
   
   </div>
-  
-  
   

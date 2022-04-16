@@ -1,12 +1,13 @@
 import { Test } from '@nestjs/testing';
+import { CommandBus, QueryBus, EventBus } from '@nestjs/cqrs';
 import { ApiNotificationsService } from './api-notifications-service-feature.service';
 
-describe('ApiNotificationsServiceFeatureService', () => {
+describe('ApiNotificationsService', () => {
   let service: ApiNotificationsService;
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
-      providers: [ApiNotificationsService],
+      providers: [ApiNotificationsService, QueryBus, CommandBus, EventBus],
     }).compile();
 
     service = module.get(ApiNotificationsService);

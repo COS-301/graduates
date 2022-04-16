@@ -4,16 +4,17 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Location } from '@angular/common';
-import { EventListenerFocusTrapInertStrategy } from '@angular/cdk/a11y';
+
+import {Apollo, gql} from 'apollo-angular';
 
 @Component({
   selector: 'graduates-story-explore',
   templateUrl: './story-explore.component.html',
   styleUrls: ['./story-explore.component.scss'],
-  providers: [MatCardModule, MatButtonModule],
+  providers: [MatCardModule, MatButtonModule, Apollo,],
 })
 
 export class StoryExploreComponent implements OnInit {
@@ -32,36 +33,29 @@ export class StoryExploreComponent implements OnInit {
 
   viewing : boolean;
   reporting: boolean;
-  currentlyViewing! : number;
-  currentlyReporting! : number;
+  currentlyViewing! : string;
+  currentlyReporting! : string;
   successfulReport : boolean;
   reported : boolean;
 
   viewingName = "Ernest Wright";
-  viewingTags = "#Design #IMY #COS #software"
+  viewingTags = "#Design #IMY #COS #software";
 
+  pageIndex = 1;
+  endIndex = 2;
 
   fileError = "File is required.";
   uploadedFile! : any;
 
-  cardlist = [
-    { title: 'Card 1', cols: 3, rows: 1 , pic: '', tags: [], pk: 0}
-  ];
-  
-  /** Based on the screen size, switch from standard to one column per row */
+  cardlist = [{"user": {"name": "Matthew"},"shortTag":[{"tag":"TeamWork"}],"userId":"test","id":"fake","thumbnail":""}];
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
-      if (matches) {
-        return [
-          { title: 'Card 1', cols: 3, rows: 1 , pic: '', tags: [], pk: 0},
-        ];
-      }
-
       return this.cardlist;
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver, f : FormBuilder, private location: Location) {
+
+  constructor(private apollo: Apollo ,private breakpointObserver: BreakpointObserver, f : FormBuilder, private location: Location) {
     this.upload = false;
     this.builder = f;
     this.return = false;
@@ -92,12 +86,13 @@ export class StoryExploreComponent implements OnInit {
   //   return null;
   // }
 
+
+  //  ==================================================================================== //
+  //  Submit Pop-Up Functions ============================================================ //
+  
   onFileUpload(event : any) {
-    alert();
-    console.log(event.target.length);
-    if (event.target.length > 0) {
-      this.fileError = "";
-    }
+    this.fileError = "";
+    console.log(event);
   }
 
   uploadStory() {
@@ -120,13 +115,8 @@ export class StoryExploreComponent implements OnInit {
     this.reporting = false;
     this.successfulReport = false;
   }
-
-  search(){
-    this.searchText = (<HTMLInputElement>document.getElementById("search")).value;
-     alert('searching for ' + this.searchText);
-     this.loadCards();
-
-  }
+  //  ====================================================================================== //
+  //  Selected Pop-Up Functions ============================================================ //
 
   closeSuccessReport() {
     this.reporting = false;
@@ -134,8 +124,8 @@ export class StoryExploreComponent implements OnInit {
     this.successfulReport = false;
   }
 
-  viewStory(n : number) {
-    this.currentlyViewing = n;
+  viewStory(s : string) {
+    this.currentlyViewing = s;
     this.viewing = true;
     this.reporting = false;
     this.successfulReport = false;
@@ -144,6 +134,8 @@ export class StoryExploreComponent implements OnInit {
   closeViewing() {
     this.viewing = false;
   }
+  //  ==================================================================================== //
+  //  Report Pop-Up Functions ============================================================ //
 
   cancelReport() {
     this.reporting = false;
@@ -183,32 +175,64 @@ export class StoryExploreComponent implements OnInit {
 
   }
 
+  //  ==================================================================================== //
+  //  Story Explore Functions ============================================================ //
+
+  
   loadCards(){
-
-    this.cardlist = [
-      { title: 'Card 1', cols: 1, rows: 1 , pic: '', tags: [], pk: 0}
-    ];
-
-
-    for (let index = 0; index < 4; index++) {
-      this.cardlist.push({ title: 'Card 1', cols: 1, rows: 1 , pic: '', tags: [], pk: index});
+    const test = "query{ getAllShorts{ user{  name  },shortTag{ tag },userId,id, thumbnail}}";
+    
+    if(!(this.apollo.client===undefined)) this.apollo
+    .watchQuery({
+      query: gql(test),
+    })
+    .valueChanges.subscribe((result: any) => {
+      this.cardlist = result.data.getAllShorts;
       
-    }
-    this.cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-      map(({ matches }) => {
-      if (matches) {
-        this.cardlist.forEach(element => {      // Set to one card per row
-          element.cols = 3;
-        });
-      }
-      else {        
-        this.cardlist.forEach(element => {      // Set to three cards per row
-          element.cols = 1;
-        });
-      }
-      return this.cardlist;
-      })
-    );
+      console.log(result.data);
+
+      this.cards = this.breakpointObserver.observe( Breakpoints.Handset).pipe(
+      
+        map(() => {
+  
+        const out = [];
+        this.endIndex = Math.ceil(this.cardlist.length/6);
+  
+        for (let index = 0; index < 3; index++) {
+          if(index+(this.pageIndex-1)*6 < this.cardlist.length) out.push(this.cardlist[index+(this.pageIndex-1)*6])
+        }
+    
+        return out;
+        })
+      );
+    });
   }
 
+  
+  btnNaviClick(i : number){
+    
+    (<HTMLInputElement>document.getElementById("prevBtn")).disabled = false;
+    (<HTMLInputElement>document.getElementById("nextBtn")).disabled = false;
+    this.pageIndex += i;
+    if(this.pageIndex ==1){
+      (<HTMLInputElement>document.getElementById("prevBtn")).disabled = true;
+    }
+    if(this.endIndex == this.pageIndex){
+      (<HTMLInputElement>document.getElementById("nextBtn")).disabled = true;
+    }
+
+    (<HTMLInputElement>document.getElementById("curBtn")).innerHTML = (this.pageIndex).toString();
+
+    this.loadCards();
+  }
+
+
+  search(){
+    this.searchText = (<HTMLInputElement>document.getElementById("search")).value;
+    alert('searching for ' + this.searchText);
+    this.searchText = (<HTMLInputElement>document.getElementById("search")).value= "";
+    
+  }
 }
+
+

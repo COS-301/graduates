@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { ApiCompanyRepresentativeRepositoryDataAccessService } from './api-company-representative-repository-data-access.service';
+import { CompanyRepresentativeRepository } from './company-representative.repository';
 
 @Module({
   controllers: [],
-  providers: [ApiCompanyRepresentativeRepositoryDataAccessService],
-  exports: [ApiCompanyRepresentativeRepositoryDataAccessService],
+  providers: [CompanyRepresentativeRepository],
+  exports: [CompanyRepresentativeRepository],
 })
 export class ApiCompanyRepresentativeRepositoryDataAccessModule {}

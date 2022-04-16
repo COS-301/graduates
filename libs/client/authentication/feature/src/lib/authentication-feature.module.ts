@@ -28,6 +28,7 @@ import { RegistrationFeatureComponent } from './registration-feature/registratio
 import { LoginCardComponent } from './login-feature/login-card/login-card.component';
 import { RegistrationCardComponent } from './registration-feature/registration-card/registration-card.component';*/
 import { LoginPageFeatureComponent } from './login-page-feature/login-page-feature.component';
+import { RegistrationPageFeatureComponent } from './registration-page-feature/registration-page-feature.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { LoginPageFeatureComponent } from './login-page-feature/login-page-featu
                   LoginCardComponent,
                   RegistrationCardComponent, */ 
                   LoginPageFeatureComponent, 
+                  RegistrationPageFeatureComponent, 
                   
                 ], 
 

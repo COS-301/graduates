@@ -1,4 +1,4 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType, InputType } from '@nestjs/graphql';
 import { Blog } from './api-blog-entity.entity';
 
 @ObjectType()
@@ -16,8 +16,8 @@ export class BlogMedia {
   media!: string;
 
   /**
-   * The media of blog
+   * The blog that the media belongs to
    */
-  @Field(() => Blog)
-  blog!: Blog;
+   @Field(() => Blog)
+   blog!: Blog;
 }
