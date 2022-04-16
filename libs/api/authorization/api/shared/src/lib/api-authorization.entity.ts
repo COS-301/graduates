@@ -9,7 +9,7 @@ export class ApiAuthorization {
     userRole!: string;
 
     @Field()
-    userId! : string;
+    companyId! : string;
   
     @Field((type) => Boolean)
     accessPermission!: boolean;

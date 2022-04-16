@@ -6,8 +6,9 @@ import { Notification, Prisma } from '@prisma/client';
 export class NotificationsRepository {
   constructor(private prisma: PrismaService) {}
 
-  async findNotificationsAll() {
-    return this.prisma.notification.findMany();
+  async findNotificationsAll(): Promise<Notification[] | null> {
+    const res = this.prisma.notification.findMany();
+    return (res) ? res : null;
   }
 
   async findNotificationById(id: string): Promise<Notification | null> {
@@ -18,7 +19,7 @@ export class NotificationsRepository {
     });
   }
 
-  async findNotificationsRecieved(userId : string): Promise<Notification[] | null> {
+  async findNotificationsReceived(userId : string): Promise<Notification[] | null> {
     return this.prisma.notification.findMany({
       where: {
         userIdTo : userId
