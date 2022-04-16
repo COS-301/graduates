@@ -8,6 +8,7 @@ import { CompanyRepresentativeConnectionsComponent } from './company-representat
 import { CompanyRepresentativeContactComponent } from './company-representative-contact/company-representative-contact.component';
 import { MatCardModule } from '@angular/material/card';
 import { CompanyRepresentativeRoutingModule } from "./company-representative-routing.module";
+import { CompanyRepresentativeMockLoginPageComponent } from './company-representative-mock-login-page/company-representative-mock-login-page.component';
 import { CompanyRepresentativeExploreComponent } from './company-representative-explore/company-representative-explore.component';
 import { CompanyRepresentativeMockStudentExplorePageComponent } from './company-representative-mock-student-explore-page/company-representative-mock-student-explore-page.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -31,6 +32,7 @@ import { CompanyRepresentativeEditContactComponent } from './company-representat
     CompanyRepresentativeExperienceComponent,
     CompanyRepresentativeConnectionsComponent,
     CompanyRepresentativeContactComponent,
+    CompanyRepresentativeMockLoginPageComponent,
     CompanyRepresentativeExploreComponent,
     CompanyRepresentativeMockStudentExplorePageComponent,
     CompanyRepresentativeEditPageComponent,
@@ -42,6 +44,7 @@ import { CompanyRepresentativeEditContactComponent } from './company-representat
   exports : [
     CompanyRepresentativeMockStudentExplorePageComponent,
     CompanyRepresentativePageComponent,
+    CompanyRepresentativeMockLoginPageComponent,
     CompanyRepresentativeEditPageComponent
   ]
 })
