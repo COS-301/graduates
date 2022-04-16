@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BlogExploreFilterComponent } from './blog-explore-filter.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 describe('BlogExploreFilterComponent', () => {
   let component: BlogExploreFilterComponent;
@@ -8,6 +9,7 @@ describe('BlogExploreFilterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [MatMenuModule],
       declarations: [ BlogExploreFilterComponent ]
     })
     .compileComponents();
