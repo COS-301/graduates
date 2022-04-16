@@ -4,23 +4,54 @@
 }
 
 mat-card {
-    width: 200px;
-    height: 250px;
+    width: 350px;
+    height: 300px;
 }
 
-mat-card img {
-    object-fit: cover;
-    min-width: 200px;
-    height: 80%;
+.cardTitle {
+    position: absolute;
+    bottom: 50px;
 }
 
-.cardbutton {
+.viewbutton {
     background-color: $primary-1;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $primary-1;
     &:hover {
         color: $primary-1;
         background-color: $background-white;
-        border-style: solid;
-        border-width: 1px;
-        border-color: $primary-1;
     }
+    float: right;
+}
+
+.editbutton {
+    color: $primary-1;
+    background-color: $background-white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $primary-1;
+    &:hover {
+        background-color: $primary-1;
+        color: $background-white;
+    }
+    float: left;
+}
+
+.deletebutton {
+    color: $primary-1;
+    background-color: $background-white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $primary-1;
+    &:hover {
+        background-color: $primary-1;
+        color: $background-white;
+    }
+}
+
+.buttons {
+    position: relative;
+    top: 100%;
+    transform: translateY(-100%);
 }

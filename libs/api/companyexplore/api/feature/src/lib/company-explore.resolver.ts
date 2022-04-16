@@ -6,19 +6,9 @@ import { CompanyExploreRepository } from '@graduates/api/companyexplore/reposito
 import { ApiCompanyExploreUserEntity } from "@graduates/api/companyexplore/api/shared/interfaces/data-access";
 import { ApiCompanyExploreTaggedEntity } from "@graduates/api/companyexplore/api/shared/interfaces/data-access";
 
-@Resolver((of) => ApiCompanyExploreEntity)
+@Resolver(() => ApiCompanyExploreEntity)
 export class ApiCompanyExploreResolver {
    constructor(private companyRepository: CompanyExploreRepository) {}
-
-  /*@Query((returns) => ApiCompanyExploreEntity,{ name: 'company' })
-  async getCompanyDec(@Args('companyID', { type: () => String }) id: string) {
-    const companyArr = this.companyService.findOneById(id);
-    const companyObj = new ApiCompanyExploreEntity();
-    companyObj.companyID = (await companyArr).pop();
-    companyObj.name = (await companyArr).pop();
-
-    return companyObj;
-  }*/
 
   @Query((returns) => ApiCompanyExploreEntity)
   async GetListOfComapnies() {
