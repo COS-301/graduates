@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NotificationsApi } from './notif-display.api';
 
 @Component({
   selector: 'graduates-notif-display',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotifDisplayComponent{
 
-  constructor() {
+  constructor( private notifApi : NotificationsApi) {
 /*     fetch('http://localhost:3333/graphql', {
       method: 'POST',
       headers: {'Content-Type' : 'application/json'},
@@ -21,5 +22,10 @@ export class NotifDisplayComponent{
     })
     .then(res =>  res.json())
     .then(res => console.log(res.data)); */
+    this.notifApi.getNotificationsAll().subscribe({
+      next: (res) => {
+        console.log(res)
+      }
+    });
   }
 }
