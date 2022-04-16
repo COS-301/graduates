@@ -35,7 +35,7 @@ import { ApiUpintegrationApiFeatureModule as ApiUpintegrationFeatureModule } fro
     ApiRequestAccessFeatureModule,
     ApiAuthenticationApiFeatureModule,
     ApiAuthorizationFeatureModule,
-    ApiStudentExploreApiFeatureModule,
+    // ApiStudentExploreApiFeatureModule,
     ApiAdminconsoleApiFeatureModule,
     ApiUpintegrationFeatureModule
   ],
