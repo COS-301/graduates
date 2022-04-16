@@ -11,7 +11,7 @@ import {MockTestAuthorizationRepo} from '../lib/api-mock-testing.repository';
     
 describe('ApiAuthorizationRepository', () => {
   let data:MockTestAuthorizationRepo;
-  const prisma = new PrismaService();
+  //const prisma = new PrismaService();
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [MockTestAuthorizationRepo],
@@ -53,7 +53,7 @@ it('add new unique permission already exists', async () => {
 });
 
 it('find unique permissions', async () => {
-  const data = new Adminauthorization(new PrismaService);
+  //const data = new Adminauthorization(new PrismaService);
     //await prisma.userPermissions.createMany({data:{userId: "10",permissionType: "CREATE",permissionCategory:"PROFILE",permissionTenant:"USER"}});
      const call = await data.findUniquePermission("10");
      //console.log(call);
@@ -62,7 +62,7 @@ it('find unique permissions', async () => {
 });
 
 it('find unique permissions not there', async () => {
-  const data = new Adminauthorization(new PrismaService);
+  //const data = new Adminauthorization(new PrismaService);
   
      const call = await data.findUniquePermission("11");
      //console.log(call);
@@ -71,7 +71,7 @@ it('find unique permissions not there', async () => {
 });
 
 it('update unique permissions as user', async () => {
-  const data = new Adminauthorization(new PrismaService);
+  //const data = new Adminauthorization(new PrismaService);
 
     const call = await data.updateUniquePermission("10",
     { where:
@@ -86,7 +86,7 @@ it('update unique permissions as user', async () => {
 });
 
 it('update unique permissions as admin', async () => {
-  const data = new Adminauthorization(new PrismaService);
+  //const data = new Adminauthorization(new PrismaService);
   //await prisma.userPermissions.createMany({data:{userId: "10",permissionType: "CREATE",permissionCategory:"PROFILE",permissionTenant:"USER"}});
     const call = await data.updateUniquePermission("9",
     { where:
@@ -101,7 +101,7 @@ it('update unique permissions as admin', async () => {
 });
 
 it('update unique permissions as admin not there', async () => {
-  const data = new Adminauthorization(new PrismaService);
+ // const data = new Adminauthorization(new PrismaService);
   
     const call = await data.updateUniquePermission("10",
     { where:
