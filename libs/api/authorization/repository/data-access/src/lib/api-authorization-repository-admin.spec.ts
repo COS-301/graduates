@@ -57,7 +57,7 @@ it('find unique permissions', async () => {
     //await prisma.userPermissions.createMany({data:{userId: "10",permissionType: "CREATE",permissionCategory:"PROFILE",permissionTenant:"USER"}});
      const call = await data.findUniquePermission("10");
      //console.log(call);
-    expect(call).toStrictEqual([]);
+    expect(call).toStrictEqual([{userId: "10",permissionType: "CREATE",permissionCategory:"PROFILE",permissionTenant:"USER"}]);
     expect(call).toBeDefined();
 });
 
@@ -96,7 +96,7 @@ it('update unique permissions as admin', async () => {
           data:   
             {permissionType: "CREATE",permissionCategory:"COMPANY"}});
      //console.log(call);
-    expect(call).toBe( null);
+    expect(call).toStrictEqual({"permissionCategory": "COMPANY", "permissionTenant": "USER", "permissionType": "CREATE", "userId": "10"});
       expect(call).toBeDefined();
 });
 

@@ -57,7 +57,7 @@ export class MockTestAuthorizationRepo {
       }
   }
   async findUniquePermission(@Param("id") id:string) {
-      if(id=='11'){return null;}
+      if(id=='11'){return [];}
       
     return [{userId: "10",permissionType: "CREATE",permissionCategory:"PROFILE",permissionTenant:"USER"}];
   }
