@@ -1,6 +1,6 @@
 import { Injectable, Param } from '@nestjs/common';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
-import { SocialMedia } from '@prisma/client';
+import { SocialMedia, UserSocialMedia } from '@prisma/client';
 
 @Injectable()
 export class CompanyProfilePage {
@@ -28,17 +28,17 @@ export class CompanyProfilePage {
         })
     }
 
-    async getCompanySocialMedia(@Param() id:string) {
+    async getCompanySocialMedia(@Param() id: string) {
         return await this.prisma.userSocialMedia.findMany({
             where: {userId: id}
         })
     }
 
-    async editCompanySocialMedia(@Param() id:string, linkType: SocialMedia, link: string) {
-        return await this.prisma.userSocialMedia.update({
-            where: {userId: id},
+    async editCompanySocialMedia(@Param() id: string, intype: SocialMedia, outtype: SocialMedia, link: string) {
+        return await this.prisma.userSocialMedia.updateMany({
+            where: {userId: id, type: intype},
             data : {
-                type: linkType,
+                type: outtype,
                 link: link
             }
         })
@@ -65,9 +65,9 @@ export class CompanyProfilePage {
         })
     }
 
-    async editCompanyEmail(@Param() id:string, emailIn: string) {
-        return await this.prisma.userEmail.update({
-            where: {userId: id},
+    async editCompanyEmail(@Param() id: string,currentEmail:string, emailIn: string) {
+        return await this.prisma.userEmail.updateMany({
+            where: {userId: id, email: currentEmail},
             data : {
                 email: emailIn
             }
