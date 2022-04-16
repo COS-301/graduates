@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ShortsRepository } from './api-shorts-repository.repository';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
-import { Short, ShortTag, ShortReport, ShortCreateTagInput, ShortCreateInput } from '@graduates/api/shorts/api/shared/entities/data-access';
+import { Short, ShortTag, ShortReport} from '@graduates/api/shorts/api/shared/entities/data-access';
 import { User} from '@graduates/api/authentication/api/shared/interfaces/data-access';
 
 jest.mock('@graduates/api/shorts/api/shared/entities/data-access');
