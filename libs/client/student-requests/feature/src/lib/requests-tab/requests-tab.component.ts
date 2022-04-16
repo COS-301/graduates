@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RequestTabApi } from './requests-tab.api';
 
 @Component({
   selector: 'graduates-requests-tab',
@@ -6,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./requests-tab.component.scss']
 })
 export class RequestsTabComponent {
-  constructor() {
+  constructor(private notifApi : RequestTabApi) {
     //do something
   }
 
@@ -17,62 +18,26 @@ export class RequestsTabComponent {
   }
 
   requestCV() {
-    fetch('http://localhost:3333/graphQL', {
-      method: 'POST',
-      headers: {'Content-Type' : 'application/json'},
-      body: JSON.stringify({ query: `
-      mutation {
-        createRequestNotification (
-                userIDTo: "cl20wx4ka0061boun3qhcpkzq",
-                userIDFrom: "cl20wxms80114bounbcjvfui4",
-                notificationType: "CV"
-        ) {
-          data {
-            notificationType
-          }
-        }
-    }`
-      }),
+    this.notifApi.requestCV().subscribe({
+      next: (res) => {
+        console.log(res);
+      }
     });
     alert("CV requested");
   }
   requestAR() {
-    fetch('http://localhost:3333/graphQL', {
-      method: 'POST',
-      headers: {'Content-Type' : 'application/json'},
-      body: JSON.stringify({ query: `
-      mutation {
-        createRequestNotification (
-                userIDTo: "cl20wx4ka0061boun3qhcpkzq",
-                userIDFrom: "cl20wxms80114bounbcjvfui4",
-                notificationType: "Academic Record"
-        ) {
-          data {
-            notificationType
-          }
-        }
-    }`
-      }),
+    this.notifApi.requestAR().subscribe({
+      next: (res) => {
+        console.log(res);
+      }
     });
     alert("Academic record requested");
   }
   requestCD() {
-    fetch('http://localhost:3333/graphQL', {
-      method: 'POST',
-      headers: {'Content-Type' : 'application/json'},
-      body: JSON.stringify({ query: `
-        mutation {
-          createRequestNotification (
-                  userIDTo: "cl20wx4ka0061boun3qhcpkzq",
-                  userIDFrom: "cl20wxms80114bounbcjvfui4",
-                  notificationType: "Contact Details"
-          ) {
-            data {
-              notificationType
-            }
-          }
-        }`
-      }),
+    this.notifApi.requestCD().subscribe({
+      next: (res) => {
+        console.log(res);
+      }
     });
     alert("Contact details requested");
   }
