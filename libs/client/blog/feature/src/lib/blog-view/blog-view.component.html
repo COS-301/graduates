@@ -1,1 +1,63 @@
-<p>blog-view works!</p>
+<head>
+    <meta name="author" content="DylanSpies" />
+    <meta name="component" content="Blog-Create" />
+</head>
+
+<div>
+    <header-and-footer-header></header-and-footer-header>
+</div>
+
+<br>
+
+<div class="page">
+    <h1>UP Student Blog</h1>
+    <button type="submit" class="returnbutton" mat-raised-button color="accent">Return to Blog Posts</button>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="output">
+        <div class="title">TITLE</div><br>
+        <div class="author">Author: Dylan Spies</div>
+        <div class="date">Wednesday, 12 February 2022</div><br>
+        <hr><br>
+        <div class="image">IMAGE HERE</div><br>
+        <div class="content">CONTENT</div><br>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="smallerDiv">
+        <div class="commentDIV">
+            <div class="commentTitle">Comments</div><br>
+
+            <div class="userComment">
+                <div class="username">Bob - </div>
+                <div class="viewComment">This is boring!!!</div>
+                <br>
+            </div>
+
+            <div class="userComment">
+                <div class="username">Liam - </div>
+                <div class="viewComment">Nice.</div>
+                <br>
+            </div>
+
+            <div class="username">Username</div>
+            <form>
+                <textarea type="text" name="comment" class="comment" placeholder="Add a comment" rows="3" ngModel></textarea><br><br>
+                <pre></pre>
+                <div class="commentBut">
+                    <button type="submit" class="formbutton" mat-raised-button color="accent">Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <header-and-footer-footer></header-and-footer-footer>
+</footer>

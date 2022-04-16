@@ -2212,6 +2212,13 @@
     lodash.omit "4.5.0"
     tslib "2.3.1"
 
+"@nestjs/axios@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@nestjs/axios/-/axios-0.0.7.tgz#7f134636db13c2c1e8299365c7eceb73cd782b67"
+  integrity sha512-at8nj+1Nb8UleHcIN5QqZYeWX54m4m9s9gxzVE1qWy00neX2rg0+h2TfbWsnDi2tc23zIxqexanxMOJZbzO0CA==
+  dependencies:
+    axios "0.26.0"
+
 "@nestjs/common@^8.4.4":
   version "8.4.4"
   resolved "https://registry.npmjs.org/@nestjs/common/-/common-8.4.4.tgz"
@@ -4401,6 +4408,13 @@ aws4@^1.2.1, aws4@^1.8.0:
   version "1.11.0"
   resolved "https://registry.npmjs.org/aws4/-/aws4-1.11.0.tgz"
   integrity sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==
+
+axios@0.26.0:
+  version "0.26.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.26.0.tgz#9a318f1c69ec108f8cd5f3c3d390366635e13928"
+  integrity sha512-lKoGLMYtHvFrPVt3r+RBMp9nh34N0M8zEfCWqdWZx6phynIEhQqAdydpyBAAG211zlhX9Rgu08cOamy6XjE5Og==
+  dependencies:
+    follow-redirects "^1.14.8"
 
 axios@0.26.1:
   version "0.26.1"
@@ -8916,6 +8930,13 @@ jest-message-util@^27.5.1:
     pretty-format "^27.5.1"
     slash "^3.0.0"
     stack-utils "^2.0.3"
+
+jest-mock-extended@2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/jest-mock-extended/-/jest-mock-extended-2.0.4.tgz#2bb430ba0adb9e10ea6a68d08731f2129330c8fe"
+  integrity sha512-MgL3B3GjURQFjjPGqbCANydA5BFNPygv0mYp4Tjfxohh9MWwxxX8Eq2p6ncCt/Vt+RAnaLlDaI7gwrDRD7Pt9A==
+  dependencies:
+    ts-essentials "^7.0.3"
 
 jest-mock@^27.5.1:
   version "27.5.1"
@@ -13461,6 +13482,11 @@ tree-kill@1.2.2:
   version "1.2.2"
   resolved "https://registry.npmjs.org/tree-kill/-/tree-kill-1.2.2.tgz"
   integrity sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==
+
+ts-essentials@^7.0.3:
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/ts-essentials/-/ts-essentials-7.0.3.tgz#686fd155a02133eedcc5362dc8b5056cde3e5a38"
+  integrity sha512-8+gr5+lqO3G84KdiTSMRLtuyJ+nTBVRKuCrK4lidMPdVeEp0uqC875uE5NMcaA7YYMN7XsNiFQuMvasF8HT/xQ==
 
 ts-invariant@^0.9.4:
   version "0.9.4"
