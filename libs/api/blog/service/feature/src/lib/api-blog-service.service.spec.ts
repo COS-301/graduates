@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { BlogService } from './api-blog-service.service';
 import { QueryBus, CommandBus } from '@nestjs/cqrs';
 import {Blog, BlogComment, BlogMedia } from '@graduates/api/blog/api/shared/entities/data-access';
+import {ApiBlogServiceFeatureModuleModule} from './api-blog-service-feature-module.module';
 
 jest.mock('@graduates/api/blog/api/shared/entities/data-access');
 const blogMock: jest.Mocked<Blog> = new Blog() as Blog;
@@ -56,7 +57,7 @@ describe('BlogService', () => {
     it('Should return a updated Blog Title',async () => {
       jest
       .spyOn(service, 'updateBlogTitle')
-      .mockImplementation((): Promise<Blog | null> => Promise.resolve(blogMock));
+      .mockImplementation((): Promise<string> => Promise.resolve(stringMock));
 
       expect(await service.updateBlogTitle('1','New Title')).toMatchObject(
         blogMock
@@ -94,7 +95,7 @@ describe('BlogService', () => {
   it('Should return a deleted Blog',async () => {
     jest
     .spyOn(service, 'deleteBlog')
-    .mockImplementation((): Promise<Blog | null> => Promise.resolve(blogMock));
+    .mockImplementation((): Promise<string> => Promise.resolve(stringMock));
 
     expect(await service.deleteBlog('1')).toMatchObject(
       blogMock
@@ -254,14 +255,15 @@ describe('BlogService', () => {
 })
 
  //Test getCommentByCommentId function
- describe('getCommentByCommentId', () => {
-  const arrayOfComment = [BlogCommentMock];
+ describe('getCommentByCommentId', () => {  
  it('Should return a array of all the comments by commentID',async () => {
    jest
    .spyOn(service, 'getCommentByCommentId')
-   .mockImplementation((): Promise<BlogComment[]> => Promise.resolve(arrayOfComment));
+   .mockImplementation((): Promise<BlogComment> => Promise.resolve(BlogCommentMock));
 
-   expect(await service.getCommentByCommentId('6')).toEqual(expect.arrayContaining(arrayOfComment));
+   expect(await service.getCommentByCommentId('6')).toMatchObject(
+     BlogCommentMock
+   )
  })
 })
 
