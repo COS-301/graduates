@@ -16,6 +16,9 @@ import { LocationComponent } from './location/location.component';
 import { BioComponent } from './bio/bio.component';
 import {MatButtonModule} from '@angular/material/button';
 
+import { HeaderModule } from '../../../../shared/components/header/src/lib/header.module';
+import { FooterModule } from '../../../../shared/components/footer/src/lib/footer.module';
+
 // importing material 
 import { MatDividerModule } from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
@@ -39,6 +42,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatButtonModule,
     MatIconModule,
     HttpClientModule,
+    HeaderModule,
+    FooterModule,
     RouterModule.forChild([
       /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
     ]),
