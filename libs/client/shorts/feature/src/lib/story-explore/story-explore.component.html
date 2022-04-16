@@ -1,6 +1,7 @@
+<!-- header from shared -->
+<div><header-and-footer-header></header-and-footer-header></div>
 
-<div id="wholepage">
-  <div><header-and-footer-header></header-and-footer-header></div>
+<div class="wholepagecontent" id="wholepage">
 
   <!-- Story Explore -->
   <div class="grid-container">
@@ -8,9 +9,9 @@
     <div id="content-wrap">
 
       <!-- page title -->
-      <h1 class = "banner-text text-center pt-3 w-100 auto-col-maker">Student Shorts</h1>
+      <h1 class = "banner-text text-center pt-3 w-100">Student Shorts</h1>
       <!-- search bar -->
-      <div class="auto-col-maker">
+      <div class="">
         <input *ngIf="!upload" (change)="search()" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
         <input *ngIf="upload" disabled="true" (change)="search()" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
       </div>
@@ -42,13 +43,12 @@
     </div> 
 
     <!-- pager buttons -->
-    <div class="m-4 mb-8 pager">
+    <div class="centindiv pager">
         <!-- Page Navigation -->
-        <div class="flex justify-center p-0 m-0">
+        <div>
           <button id ="prevBtn" disabled (click)="btnNaviClick(-1)" class=" px-4 py-2 formbuttonblue rounded">
               Prev
           </button>
-      
           <button id ="curBtn" disabled class="px-4 py-2 rounded bg-gray-300  mx-2">
               1
           </button>
@@ -157,7 +157,7 @@
       <div class="m-3">
         <textarea id="reason" placeholder="Type your reason here..." rows="6" type="text" formControlName="reason" class="w-full drop-shadow-md rounded" [ngClass]="{'is-invalid': submit && uploadfrm.controls['reason'].errors}">this is a test</textarea>
         <div *ngIf="reported && reportfrm.controls['reason'].errors" class="text-right error mt-1">
-          A reason is required is required.
+          {{ reportfrm.controls['reason'].errors!['errormsg']}}
         </div>
       </div>
       <!-- buttons for CANCEL and REPORT -->
@@ -182,6 +182,7 @@
 
   </div>
   
-  <div><header-and-footer-footer></header-and-footer-footer></div>
 </div>
 
+<!-- footer from shared -->
+<div><header-and-footer-footer></header-and-footer-footer></div>
