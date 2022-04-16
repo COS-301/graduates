@@ -20,8 +20,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 //Shared Components
-import { HeaderComponent } from '../../../../shared/components/header-and-footer/ui/header-and-footer/src/app/header/header.component'; 
-import { FooterComponent } from '../../../../shared/components/header-and-footer/ui/header-and-footer/src/app/footer/footer.component'; 
+import { HeaderModule } from '../../../../shared/components/header/src/lib/header.module'; 
+import { FooterModule } from '../../../../shared/components/footer/src/lib/footer.module'; 
 
 //Component Modules
 import { FilterComponent } from './filter/filter.component';
@@ -49,9 +49,11 @@ import { StudentExplorePageComponent } from './student-explore-page/student-expl
     MatInputModule,
     MatCardModule,
     MatFormFieldModule,
-    MatGridListModule
+    MatGridListModule,
+    HeaderModule,
+    FooterModule
   ],
-  declarations: [FilterComponent, StudentCardComponent, SearchBarComponent, MobileStudentCardComponent, StudentExplorePageComponent, HeaderComponent, FooterComponent],
+  declarations: [FilterComponent, StudentCardComponent, SearchBarComponent, MobileStudentCardComponent, StudentExplorePageComponent, /*HeaderComponent, FooterComponent*/],
   exports:[ StudentExplorePageComponent ]
 })
 export class ClientStudentExploreModule {}
