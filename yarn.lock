@@ -10107,6 +10107,13 @@ ng-packagr@^13.0.0:
   optionalDependencies:
     esbuild "^0.14.0"
 
+ngx-cookie-service@^13.2.0:
+  version "13.2.0"
+  resolved "https://registry.yarnpkg.com/ngx-cookie-service/-/ngx-cookie-service-13.2.0.tgz#858e44219dc91f6ff43fc21325894181d3f64957"
+  integrity sha512-WxuLrZROWf59DfPPstPsrS18nxtPvT+uJ4AEjFs57NqtTfYdRQXhVJ02fZ4WP4VPElI8o6qndNL7gi9tkEdg4Q==
+  dependencies:
+    tslib "^2.0.0"
+
 nice-napi@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/nice-napi/-/nice-napi-1.0.2.tgz#dc0ab5a1eac20ce548802fc5686eaa6bc654927b"

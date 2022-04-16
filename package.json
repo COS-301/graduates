@@ -58,6 +58,7 @@
     "graphql-tools": "^8.2.3",
     "graphql-upload": "^13.0.0",
     "graphql-ws": "^5.6.3",
+    "ngx-cookie-service": "^13.2.0",
     "nodemailer": "^6.7.3",
     "nx": "^13.10.1",
     "passport": "^0.5.2",
