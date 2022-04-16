@@ -19,7 +19,7 @@ import { StoryUploadComponent } from './story-upload/story-upload.component';
 
 import { ShortsRoutingModule } from './shorts-routing.module';
 import { FormBuilder, FormsModule, ReactiveFormsModule, } from '@angular/forms';
-
+import {Apollo, gql} from 'apollo-angular';
 @NgModule({
 
   imports: [
@@ -44,7 +44,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, } from '@angular/forms';
     StoryUploadComponent,
   ],
   providers: [
-    FormBuilder
+    FormBuilder, Apollo,
   ],
   exports: [StoryExploreComponent]
 })

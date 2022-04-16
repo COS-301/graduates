@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CompanyExploreMaterialModule } from '../materials/company-explore-material.module';
+import { UiModule } from '@graduates/client/shared/assets/ui';
 import { CompanyExploreBannerComponent } from './company-explore-banner/company-explore-banner.component';
 import { CompanyExploreCardComponent } from './company-explore-content/company-explore-card/company-explore-card.component';
 import { CompanyExploreContentComponent } from './company-explore-content/company-explore-content.component';
@@ -15,7 +15,7 @@ describe('CompanyExploreFeatureComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports:[CompanyExploreMaterialModule],
+      imports:[UiModule],
       declarations: [ CompanyExploreFeatureComponent,
       CompanyExploreBannerComponent,
       CompanyExploreOperationsBarComponent,
