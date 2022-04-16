@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ViewPopUpComponent } from './view-pop-up/view-pop-up.component';
+import { DeletePopupComponent } from './delete-popup/delete-popup.component';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { ViewPopUpComponent } from './view-pop-up/view-pop-up.component';
     ]),
   ],
   declarations: [
-    ViewPopUpComponent
+    ViewPopUpComponent,
+    DeletePopupComponent
   ],
 })
 export class ClientAuthorizationFeatureModule {}
