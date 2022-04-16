@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
+import { RequestAccessRepository } from './RequestAccessRepository.repository';
 
 @Module({
   controllers: [],
-  providers: [],
-  exports: [],
+  providers: [RequestAccessRepository],
+  exports: [RequestAccessRepository],
 })
 export class ApiRequestAccessRepositoryFeatureModule {}
