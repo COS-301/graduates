@@ -14,7 +14,7 @@ prisma = new PrismaClient()
        },
        include: {UserProfile: true }
       });
-    //  console.dir(allUsers, { depth: null })
+     console.dir(allUsers, { depth: null })
       return allUsers;
     }
 
@@ -28,7 +28,7 @@ prisma = new PrismaClient()
       ],
      include: {UserProfile: true }
     });
-   // console.dir(allUsers, { depth: null })
+   console.dir(allUsers, { depth: null })
     return allUsers;
   }
 
