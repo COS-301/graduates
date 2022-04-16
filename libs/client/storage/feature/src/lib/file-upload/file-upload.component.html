@@ -1,1 +1,128 @@
-<p>file-upload works!</p>
+<div class="p-20 select-none">
+
+    <!-- Page Title -->
+    <graduates-page-title></graduates-page-title>
+
+    <!--<div class="text-center">
+        <input class="form-control" type="file" 
+                (change)="onChange($event)">
+      
+        <button (click)="onUpload()" 
+            class="btn btn-success">
+            Upload
+        </button>
+    </div> -->
+      
+    <!-- Shareable short link of  uoloaded file -->
+    <!-- <div class="container text-center jumbotron"
+        *ngIf="shortLink">
+        <h2> Visit Here</h2>
+        <a href="{{shortLink}}">{{shortLink}}</a>
+    </div> -->
+      
+    <!--Flag variable is used here-->
+    <!-- <div class="container" *ngIf="loading">
+        <h3>Loading ...</h3>
+    </div> -->
+
+    <div class="mt-16 flex flex-col justify-center text-center">
+        
+        <div class="flex justify-center">
+            <span class="icon-preview">
+                Icon Preview
+            </span>
+        </div>
+        
+        <div class="flex justify-center mt-8">
+            <span>
+                <img src="{{greyImageSrcGrey}}" alt="{{greyImageAlt}}" class="h-32 w-32 opacity-50" *ngIf="imageStatGrey" />
+                <img src="{{greyImageSrcColor}}" alt="{{greyImageAlt}}" class="h-32 w-32" *ngIf="imageStatColor" />
+            </span>
+        </div>
+
+        <div class="flex justify-center mt-3 h-10" *ngIf="noFileSelected">
+            <span class="p-3">
+                {{cat}}: No file selected
+            </span>
+        </div>
+
+        <div class="h-10 justify-center mt-3" *ngIf="safeToUpload">
+            <span class="py-3">
+                {{cat}}: Safe to Upload <span class="material-icons items-stretch" style="color: #59AF43;">task_alt</span>
+            </span>
+            
+        </div>
+
+        <div class="h-10 justify-center mt-3" *ngIf="invalid">
+            <span class="py-3"> 
+               {{cat}} : Invalid file selected <span class="material-icons items-stretch" style="color: #ED3C5C;">dangerous</span>
+            </span><br>
+            <span>File must be a pdf file</span>
+        </div>
+
+        <div class="h-10 justify-center mt-5" *ngIf="loading">
+            <span class="py-3">
+                {{cat}}
+            </span><br>
+            <span>Uploading...</span>
+        </div>
+
+        <mat-progress-spinner [mode] = "'indeterminate'" *ngIf="loading"></mat-progress-spinner>
+
+        <div class="h-10 justify-center mt-3" *ngIf="success">
+            <span class="py-3">
+                {{cat}}
+            </span><br><br>
+            <span>
+                <span class="material-icons items-stretch" style="color: #59AF43;">task_alt</span>
+            </span><br>
+            <span>
+                Success
+            </span>
+        </div>
+
+        <div class="text-center h-10 flex-col justify-center mt-20">
+
+            <span class="px-10">
+                <input class="form-control" type="file" 
+                    (change)="onChange($event)">
+            </span> <br><br>
+
+            <div>
+
+                <span class="md:w-1/2 p-5 mt-5">
+                    <button class="w-32 p-3 mt-5 rounded-md text-gray-800 bg-slate-200" (click)="goBack()">Back</button>
+                </span>
+                
+                <span class="md:w1/2 p-5 mt-5">
+
+                    <button  
+                    class="w-32 p-3 rounded-md mt-5 text-white cursor-not-allowed" style="background-color: #B8B4B5;" *ngIf="invalid_2">
+                    Upload
+                    </button>
+
+                    <button (click)="onUploadFile()" 
+                    class="w-32 p-3 rounded-md mt-5 text-white" style="background-color: #174372;" *ngIf="safeToUpload">
+                    Upload
+                    </button>
+                    
+                </span>
+
+            </div>
+            
+
+            
+        </div>
+
+        <!-- <div class="h-10 justify-center mt-20">
+            <span class="py-3">
+                Cancel
+            </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="py-3">
+                Upload
+            </span>
+        </div> -->
+        
+    </div>
+
+</div>
