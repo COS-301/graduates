@@ -1,2 +1,2 @@
-export * from './lib/api-companyexplore-service-feature.module';
-export * from './lib/company-explore-api.service';
+export * from './lib/company-explore-service.module';
+export * from './lib/api-company-explore-service';

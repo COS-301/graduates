@@ -1,4 +1,6 @@
+
 <div id="wholepage">
+  <div><header-and-footer-header></header-and-footer-header></div>
 
   <!-- Story Explore -->
   <div class="grid-container">
@@ -25,8 +27,8 @@
                     <div>
                       <mat-card-title id="cardHeader"> 
                         {{card.user.name}}
-                        <button *ngIf="!upload" (click) = "viewStory(1)" class="formbutton rounded py-2 px-5 cardbutton">View</button>
-                        <button *ngIf="upload" disabled="true" (click) = "viewStory(1)" class="formbutton rounded py-2 px-5 cardbutton-nohov">View</button>
+                        <button *ngIf="!upload" (click) = "viewStory(card.id)" class="formbutton rounded py-2 px-5 cardbutton">View</button>
+                        <button *ngIf="upload" disabled="true" (click) = "viewStory(card.id)" class="formbutton rounded py-2 px-5 cardbutton-nohov">View</button>
                       </mat-card-title>  
                     </div>
                     <div id ="tags"><i *ngFor="let tag of card.shortTag" >{{tag.tag}} </i>
@@ -179,6 +181,7 @@
     <div class="flex justify-center"><button class="py-2.5 px-3 mb-3 formbuttonblue rounded" (click)="closeSuccessReport()">Continue</button></div>
 
   </div>
-
+  
+  <div><header-and-footer-footer></header-and-footer-footer></div>
 </div>
 

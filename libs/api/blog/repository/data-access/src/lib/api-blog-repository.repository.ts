@@ -175,21 +175,15 @@ export class BlogRepository {
    * @return {Promise<BlogComment>}
    */
   async createComment(id: string, blogId: string, userId: string, content: string): Promise<BlogComment | null> {
-    // return this.prisma.blogComment.create({
-    //   data: {
-    //     userId: userId,
-    //     id: id,
-    //     blogId: blogId,
-    //     content: content,
-    //      user: {
-    //        connect: {id: userId}
-    //      },
-    //      blog: {
-    //        connect: {id: blogId}
-    //      },
-    //     date: new Date()
-    //   },
-    // });
+    return this.prisma.blogComment.create({
+      data: {
+        userId: userId,
+        id: id,
+        blogId: blogId,
+        content: content,
+        date: new Date()
+      },
+    });
     return null;
   }
 
@@ -262,15 +256,4 @@ export class BlogRepository {
       },
     });
   }
-
-  async updateBlogMedia(blogId: string, mediaId: string): Promise<BlogMedia | null> {
-    // return this.prisma.blogMedia.update({
-    //   where: { blogId: blogId },
-    //   data: {
-    //     media: mediaId
-    //   },
-    // });
-    return null;
-  }
-
 }
