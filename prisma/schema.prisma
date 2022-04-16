@@ -49,6 +49,7 @@ model User {
   notificationFrom  Notification[]    @relation("notificationFrom")
   notificationTo    Notification[]    @relation("notificationTo")
   Blog              Blog[]
+  BlogComment       BlogComment[]
   UserToken         UserToken[]    
   
   @@map("user")
@@ -336,11 +337,13 @@ model Blog {
 // Comments on the blog per blog_id
 model BlogComment {
   id      String   @id @default(cuid())
+  userId  String   @map("user_id")
   blogId  String   @map("blog_id")
   content String
   date    DateTime
 
   blog Blog @relation(fields: [blogId], references: [id])
+  user User @relation(fields: [userId], references: [id])
 
   
   @@map("blog_comment")
