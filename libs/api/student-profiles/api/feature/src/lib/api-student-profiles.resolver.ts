@@ -36,6 +36,7 @@ export class ApiStudentProfileResolver {
     return studentObj;
   }
 
+  @Mutation(returns => ApiStudentProfilesEntity)
   async editStudent(
     @Args('editStudentData') editStudentData: StudentInput
   ) {
