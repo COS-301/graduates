@@ -1,15 +1,16 @@
 import { CompanyRepresentative, CompanyRepresentativeCreate } from '@graduates/api/company-representative/api/shared/data-access';
+import { CompanyRepresentativeRepository } from '@graduates/api/company-representative/repository/data-access';
 import { Injectable } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { User,Prisma, SocialMedia } from '@prisma/client';
 import { CreateCompanyRepresentative } from './commands/impl/createRepresentative.command';
-import { GetAllRepresentatives } from './queries/impl/getAllRepresentatives.query';
-import { GetOneRepresentative } from './queries/impl/getOneRepresentative.query';
+// import { GetAllRepresentatives } from './queries/impl/getAllRepresentatives.query';
+// import { GetOneRepresentative } from './queries/impl/getOneRepresentative.query';
 
 @Injectable()
 export class ApiCompanyRepresentativeService {
 
-  constructor(private readonly queryBus:QueryBus, private readonly commandBus:CommandBus){}
+  constructor(private readonly queryBus:QueryBus, private readonly commandBus:CommandBus, private repo: CompanyRepresentativeRepository){}
 
     async create(
         data: CompanyRepresentative
@@ -46,10 +47,10 @@ export class ApiCompanyRepresentativeService {
    * This function simply returns all representatives without taking an argument
    */
 
-  async getAllReps():Promise<User|null>
-  {
-    return this.queryBus.execute(new GetAllRepresentatives());
-  }
+  // async getAllReps():Promise<User|null>
+  // {
+  //   return this.queryBus.execute(new GetAllRepresentatives());
+  // }
 
   /***
    * @returns User|null
@@ -60,11 +61,11 @@ export class ApiCompanyRepresentativeService {
    * supply dates in the following format:1940-12-10T13:45:00.000Z
    */
 
-  async getOneRep(id:string):Promise<User|null>
+  async getOneRep(id: string):Promise<CompanyRepresentative>
   {
    
     //this.createRep('000','000','000','0000','0000','000','0000','0000',true,false,'0000','000','0000','0000','000','0000')
-    return this.queryBus.execute(new GetOneRepresentative(id));
+    return this.repo.createDefaultRep();
   }
 
   /***

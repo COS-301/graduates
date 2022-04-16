@@ -10,7 +10,7 @@ export class GetAllRepresentativesHandler implements IQueryHandler<GetAllReprese
     constructor(private readonly dataAccess:CompanyRepresentativeRepository){}
 
     async execute(){
-        return this.dataAccess.getAllRepresentativeUsers();
+        return null;;
     }
 
 }

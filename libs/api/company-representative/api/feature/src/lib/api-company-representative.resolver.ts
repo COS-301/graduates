@@ -10,11 +10,8 @@ export class ApiCompanyRepresentativeResolver {
     constructor(private companyrepService: ApiCompanyRepresentativeService) {}
 
   @Query((returns) => CompanyRepresentative)
-  async companyrep(@Args('id') id: string): Promise<CompanyRepresentative> {
-    const resp = await this.companyrepService.findOneById(id);
-    if (!resp) {
-      throw new NotFoundException(id);
-    }
+  async getRep(@Args('id') id: string): Promise<CompanyRepresentative> {
+    const resp = await this.companyrepService.getOneRep(id);
     return resp;
   }
 
