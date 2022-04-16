@@ -1,5 +1,5 @@
 import { Field, InputType, ObjectType } from '@nestjs/graphql';
-import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
+import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 import { ShortTag, ShortTagInput } from './api-shorts-tag-entity.entity';
 import { ShortReport } from './api-shorts-report-entity.entity';
 import { ID } from '@nestjs/graphql';
