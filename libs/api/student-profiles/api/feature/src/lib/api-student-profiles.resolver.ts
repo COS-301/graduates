@@ -9,37 +9,18 @@ export class ApiStudentProfileResolver {
 
   @Query((returns) => ApiStudentProfilesEntity, { name: 'student' })
   async getStudent(@Args('studentNum', { type: () => String }) id: string) {
-    const studentArr = this.studentService.findById(id);
-    const studentObj = new ApiStudentProfilesEntity();
-    studentObj.dateOfBirth = (await studentArr).pop();
-    studentObj.phoneNum = (await studentArr).pop();
-    studentObj.email = (await studentArr).pop();
-    studentObj.firstName = (await studentArr).pop();
-    studentObj.studentNum = (await studentArr).pop();
-    studentObj.lastName = (await studentArr).pop();
-
-    return studentObj;
+  
   }
 
   @Mutation((returns) => ApiStudentProfilesEntity)
   async editStudent(
     @Args('editStudentData') editStudentData: StudentInput
   ) {
-    const studentArr = this.studentService.update(editStudentData);
-    const studentObj = new ApiStudentProfilesEntity();
-    studentObj.dateOfBirth = (await studentArr).pop();
-    studentObj.phoneNum = (await studentArr).pop();
-    studentObj.email = (await studentArr).pop();
-    studentObj.firstName = (await studentArr).pop();
-    studentObj.studentNum = (await studentArr).pop();
-    studentObj.lastName = (await studentArr).pop();
-
-    return studentObj;
+  
   }
 
   @Mutation((returns) => String)
   async deleteStudent(@Args('studentNum', {type: () => String})id: string ) {
-    const res = this.studentService.delete(id);
-    return res;
+    
   }
 }
