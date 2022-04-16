@@ -21,7 +21,7 @@ export class RequestForAccessService {
   }
 
   requestAccess(companyID: string, graduateID: string, item: string): void {
-    const query = `mutation ($compID: ID!, $userID: ID!, $item: String!){requestAccess(compID: $compID, userID: $userID, item: $item){ userID }}`;
+    const query = `mutation ($compId: ID!, $gradId: ID!, $item: String!){requestAccess(compId: $compId, gradId: $gradId, item: $item){ userID }}`;
 
     const options = {
       headers: new HttpHeaders({
@@ -29,6 +29,6 @@ export class RequestForAccessService {
       })
     }
 
-    this.httpClient.post('http://localhost:3333/graphql', JSON.stringify({ query: query, variables: { compID: companyID, userID: graduateID, item: item } }), options);
+    this.httpClient.post('http://localhost:3333/graphql', JSON.stringify({ query: query, variables: { compId: companyID, gradId: graduateID, item: item } }), options);
   }
 }
