@@ -26,6 +26,8 @@ import { ExpansionNotifComponent } from './expansion-notif/expansion-notif.compo
     ExpansionNotifComponent
   ],
   exports: [
+    FooterComponent,
+    HeaderComponent,
     NotifDisplayComponent,
     ExpansionNotifComponent
   ],

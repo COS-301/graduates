@@ -6,7 +6,7 @@ import { ExpansionNotifComponent } from '../expansion-notif/expansion-notif.comp
   templateUrl: './notif-display.component.html',
   styleUrls: ['./notif-display.component.scss']
 })
-export class NotifDisplayComponent{
+export class NotifDisplayComponent implements OnInit{
 
   @ViewChild('placeholder', { read: ViewContainerRef, static: true})
   public placeholder!: ViewContainerRef;
@@ -15,73 +15,34 @@ export class NotifDisplayComponent{
     //
   }
 
-  requestCV() {
+  ngOnInit(): void {
     fetch('http://localhost:3333/graphQL', {
       method: 'POST',
       headers: {'Content-Type' : 'application/json'},
       body: JSON.stringify({ query: `
         query {
           notificationsAll {
-            ID
-            userIDFrom
-            userIDTo
+            id
+            userIdFrom
+            userIdTo
+            data {
+              notificationType
+            }
           }
         }`
       }),
     })
     .then(res =>  res.json())
     .then(res => {
-      const comp = this.placeholder.createComponent(ExpansionNotifComponent);
-      comp.instance.description ='Request for CV.';
-      comp.instance.userFrom = res.data.notificationsAll[0].userIDFrom;
-      comp.instance.userTo = res.data.notificationsAll[0].userIDTo;
-      comp.instance.requestedItem = "CV";
-    });
-  }
-  requestAR() {
-    fetch('http://localhost:3333/graphQL', {
-      method: 'POST',
-      headers: {'Content-Type' : 'application/json'},
-      body: JSON.stringify({ query: `
-        query {
-          notificationsAll {
-            ID
-            userIDFrom
-            userIDTo
-          }
-        }`
-      }),
-    })
-    .then(res =>  res.json())
-    .then(res => {
-      const comp = this.placeholder.createComponent(ExpansionNotifComponent);
-      comp.instance.description ='Request for Academic Record.';
-      comp.instance.userFrom = res.data.notificationsAll[0].userIDFrom;
-      comp.instance.userTo = res.data.notificationsAll[0].userIDTo;
-      comp.instance.requestedItem = "Academic Record";
-    });
-  }
-  requestCD() {
-    fetch('http://localhost:3333/graphQL', {
-      method: 'POST',
-      headers: {'Content-Type' : 'application/json'},
-      body: JSON.stringify({ query: `
-        query {
-          notificationsAll {
-            ID
-            userIDFrom
-            userIDTo
-          }
-        }`
-      }),
-    })
-    .then(res =>  res.json())
-    .then(res => {
-      const comp = this.placeholder.createComponent(ExpansionNotifComponent);
-      comp.instance.description ='Request for Contact Details.';
-      comp.instance.userFrom = res.data.notificationsAll[0].userIDFrom;
-      comp.instance.userTo = res.data.notificationsAll[0].userIDTo;
-      comp.instance.requestedItem = "contact details";
+      console.log(res.data);
+      const notArr = res.data.notificationsAll;
+      for (let i = notArr.length-1; i >= 0 ; i--) {
+        const comp = this.placeholder.createComponent(ExpansionNotifComponent);
+        comp.instance.description = 'Request for '+ res.data.notificationsAll[i].data.notificationType;
+        comp.instance.userFrom = res.data.notificationsAll[i].userIdFrom;
+        comp.instance.userTo = res.data.notificationsAll[i].userIdTo;
+        comp.instance.requestedItem = res.data.notificationsAll[i].data.notificationType;
+      }
     });
   }
 }
