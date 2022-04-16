@@ -244,62 +244,115 @@ export class CompanyRepresentativeRepository {
   }
 
   // Update name
-  async updateRepName(repId: string, newName: string) {
-    return await this.prismaService.user.update({
-      where: {
-        id: repId,
-      },
-      data: {
-        name: newName
+  async updateRepName(repId: string, newName: string): Promise<CompanyRepresentative> {
+    const user = await this.prismaService.user.findUnique({
+      where: {id: repId},
+      include: {
+        userScouted: true,
+        UserRole: true,
+        UserProfile: true,
+        UserTag: true,
+        UserContactNumber: true,
+        UserExperience: true,
+        UserSocialMedia: true,
+        UserLocation: true
+
       }
     })
+    user.name = newName;
+    return this.returnRepObject(user.id, user.name, user.email, user.UserTag.at(0).tag, user.UserProfile.at(0).bio, user.UserTag.at(1).tag, user.UserSocialMedia, user.UserLocation.at(0).location, user.UserContactNumber.at(0).number, user.UserExperience.at(0).experience)
   }
 
   // Update Job Title
-  async updateRepBio(repId: string, newBio: string) {
-    return await this.prismaService.userProfile.update({
-      where: {
-        userId: repId,
-      },
-      data: {
-        bio: newBio
+  async updateRepBio(repId: string, newBio: string): Promise<CompanyRepresentative> {
+    const user = await this.prismaService.user.findUnique({
+      where: {id: repId},
+      include: {
+        userScouted: true,
+        UserRole: true,
+        UserProfile: true,
+        UserTag: true,
+        UserContactNumber: true,
+        UserExperience: true,
+        UserSocialMedia: true,
+        UserLocation: true
       }
+      
     })
+
+    const change = await this.prismaService.userProfile.findUnique({
+      where: {userId: repId}
+    })
+    change.bio = newBio;
+    return this.returnRepObject(change.userId, user.name, user.email, user.UserTag.at(0).tag, change.bio, user.UserTag.at(1).tag, user.UserSocialMedia, user.UserLocation.at(0).location, user.UserContactNumber.at(0).number, user.UserExperience.at(0).experience)
   }
 
   // Update Location
-  async updateRepLocation(repId: string, newLocation: string) {
-    return await this.prismaService.userLocation.update({
-      where: {
-        userId: repId
-      },
-      data: {
-        location: newLocation
+  async updateRepLocation(repId: string, newLocation: string): Promise<CompanyRepresentative> {
+    const user = await this.prismaService.user.findUnique({
+      where: {id: repId},
+      include: {
+        userScouted: true,
+        UserRole: true,
+        UserProfile: true,
+        UserTag: true,
+        UserContactNumber: true,
+        UserExperience: true,
+        UserSocialMedia: true,
+        UserLocation: true
       }
     })
+
+    const change = await this.prismaService.userLocation.findUnique({
+      where: {userId: repId}
+    })
+    change.location = newLocation;
+    return this.returnRepObject(change.userId, user.name, user.email, user.UserTag.at(0).tag, user.UserProfile.at(0).bio, user.UserTag.at(1).tag, user.UserSocialMedia, change.location, user.UserContactNumber.at(0).number, user.UserExperience.at(0).experience)
   }
 
   //  Update Contact Number
-  async updateRepContactNumber(repId: string, newNumber: string) {
-    return await this.prismaService.userContactNumber.update({
-      where: {
-        userId: repId
-      },
-      data: {
-        number: newNumber
+  async updateRepContactNumber(repId: string, newNumber: string): Promise<CompanyRepresentative> {
+    const user = await this.prismaService.user.findUnique({
+      where: {id: repId},
+      include: {
+        userScouted: true,
+        UserRole: true,
+        UserProfile: true,
+        UserTag: true,
+        UserContactNumber: true,
+        UserExperience: true,
+        UserSocialMedia: true,
+        UserLocation: true
       }
     })
+
+    const change = await this.prismaService.userContactNumber.findUnique({
+      where: {userId: repId}
+    })
+    change.number = newNumber;
+    return this.returnRepObject(change.userId, user.name, user.email, user.UserTag.at(0).tag, user.UserProfile.at(0).bio, user.UserTag.at(1).tag, user.UserSocialMedia, user.UserLocation.at(0).location, change.number, user.UserExperience.at(0).experience)
   }
 
   // Update Experience
-  async updateRepExprience(repId: string, newExperience: string) {
-    return await this.prismaService.userExperience.update({
-      where: {
-        userId: repId
-      },
-      data: {
-        experience: newExperience
+  async updateRepExprience(repId: string, newExperience: string): Promise<CompanyRepresentative> {
+    const user = await this.prismaService.user.findUnique({
+      where: {id: repId},
+      include: {
+        userScouted: true,
+        UserRole: true,
+        UserProfile: true,
+        UserTag: true,
+        UserContactNumber: true,
+        UserExperience: true,
+        UserSocialMedia: true,
+        UserLocation: true
       }
     })
+
+    const change = await this.prismaService.userExperience.findUnique({
+      where: {userId: repId}
+    })
+    change.experience = newExperience;
+    return this.returnRepObject(change.userId, user.name, user.email, user.UserTag.at(0).tag, user.UserProfile.at(0).bio, user.UserTag.at(1).tag, user.UserSocialMedia, user.UserLocation.at(0).location, user.UserContactNumber.at(0).number, change.experience)
   }
 }
