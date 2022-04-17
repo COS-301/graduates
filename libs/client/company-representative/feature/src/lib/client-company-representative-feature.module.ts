@@ -7,6 +7,7 @@ import { CompanyRepresentativeMockLoginPageComponent } from './company-represent
 import { CompanyRepresentativeMockStudentExplorePageComponent } from './company-representative-mock-student-explore-page/company-representative-mock-student-explore-page.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CompanyRepresentativeEditPageComponent } from './company-representative-edit-page/company-representative-edit-page.component';
 
 @NgModule({
@@ -15,6 +16,7 @@ import { CompanyRepresentativeEditPageComponent } from './company-representative
     MatCardModule,
     MatButtonModule,
     MatMenuModule,
+    ReactiveFormsModule,
     CompanyRepresentativeRoutingModule
   ],
   declarations: [
