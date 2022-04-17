@@ -4,10 +4,10 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { RequestAccessRepository } from '@graduates/api-request-access-repository-feature';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 
-/*describe('RequestAccessService', () => {
+describe('RequestAccessService', () => {
   let service: RequestAccessService;
 
-  beforeEach(async () => {
+ /* beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [CqrsModule],
       providers: [RequestAccessService, RequestAccessRepository, PrismaService],
@@ -34,5 +34,5 @@ import { PrismaService } from '@graduates/api/shared/services/prisma/data-access
     const call = await service.getAccessEntity("u12345678","42","CV");
     expect(call).toEqual({"companyID": "u12345678", "userID": "42", "item": "CV"});
   });  
-
-});*/
+*/
+});
