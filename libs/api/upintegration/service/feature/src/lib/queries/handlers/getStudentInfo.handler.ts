@@ -1,6 +1,6 @@
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
 import { UpIntegrationRepository  } from "@graduates/libs/api/upintegration/repository/data-access";
-import {getStudentInfoDOBQuery,getStudentInfoEmailsQuery,getStudentInfoPhoneNumberQuery,getStudentInfoNameQuery,getStudentInfoFilesQuery } from "../impl";
+import {getStudentInfoDOBQuery,getStudentInfoEmailsQuery,getStudentInfoNameQuery,getStudentInfoFilesQuery } from "../impl";
 
 @QueryHandler(getStudentInfoNameQuery)
 export class getStudentInfoNameHandler implements IQueryHandler<getStudentInfoNameQuery> {
@@ -8,7 +8,7 @@ export class getStudentInfoNameHandler implements IQueryHandler<getStudentInfoNa
 
     async execute(query: getStudentInfoNameQuery): Promise<any> {
         const {userId} = query;
-        return this.repository.getName(userId);
+        return this.repository.get_name(userId);
     }
 }
 
@@ -28,7 +28,7 @@ export class getStudentInfoEmailsHandler implements IQueryHandler<getStudentInfo
 
     async execute(query: getStudentInfoEmailsQuery): Promise<any> {
         const {userId} = query;
-        return this.repository.getEmails(userId);
+        return this.repository.get_emails(userId);
     }
 }
 
@@ -38,21 +38,12 @@ export class getStudentInfoFilesHandler implements IQueryHandler<getStudentInfoF
 
     async execute(query: getStudentInfoFilesQuery): Promise<any> {
         const {userId} = query;
-        return this.repository.getFiles(userId);
+        return this.repository.get_files(userId);
     }
 }
 
 
 
-// @QueryHandler(getStudentInfoPhoneNumber)
-// export class getStudentInfoPhoneNumberHandler implements IQueryHandler<getStudentInfoPhoneNumber> {
-//     constructor(private readonly repository: UpIntegrationRepository) {}
-
-//     async execute(query: getStudentInfoPhoneNumber): Promise<any> {
-//         const {userId} = query;
-//         return this.repository.getPhoneNumber(userId);
-//     }
-// }
 
 
 
