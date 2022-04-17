@@ -4,8 +4,7 @@ import { ApiCompanyRepresentativeResolver } from './api-company-representative.r
 
 @Module({
   controllers: [],
-  providers: [ApiCompanyRepresentativeResolver],
-  imports: [ApiCompanyRepresentativeServiceFeatureModule],
-  exports: [ApiCompanyRepresentativeResolver],
+  providers: [ApiCompanyRepresentativeResolver, ApiCompanyRepresentativeServiceFeatureModule],
+  imports: [ApiCompanyRepresentativeServiceFeatureModule]
 })
 export class ApiCompanyRepresentativeApiFeatureModule {}

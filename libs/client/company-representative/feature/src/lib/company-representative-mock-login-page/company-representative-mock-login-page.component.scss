@@ -1,7 +1,13 @@
 @import 'libs/client/shared/assets/ui/src/lib/global';
 .login-card{
-  width: 50%;
+  width: 60%;
   justify-content: space-between;
+  justify-content: center;
+  @media (max-width:670px) {
+    width: 95%;
+    justify-content: space-between;
+    justify-content: center;
+  }
 }
 
 .inputCss{
