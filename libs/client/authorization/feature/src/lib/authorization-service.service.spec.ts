@@ -1,4 +1,4 @@
-/*
+
 import { TestBed } from '@angular/core/testing';
 
 import { AuthorizationServiceService } from './authorization-service.service';
@@ -15,4 +15,4 @@ describe('AuthorizationServiceService', () => {
     expect(service).toBeTruthy();
   });
 });
-*/
+
