@@ -1,5 +1,5 @@
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import { Adminauthorization } from '../../../../../../repository/data-access/src/lib/api-authorization-repository-admin';
+import { Adminauthorization } from '../../../../../../repository/data-access/src/lib/api-authorization-repository-admin.repository';
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { GetDeletePermissionQuery } from '../impl/get-delete-permission.query';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
