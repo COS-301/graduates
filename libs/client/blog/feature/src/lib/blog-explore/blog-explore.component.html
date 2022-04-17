@@ -31,7 +31,7 @@
         <button class="createbutton" mat-raised-button color="accent" (click)="createBlog()">Create Blog</button>
         <button class="adminbutton" mat-raised-button color="accent" (click)="changeAdmin()">Admin</button>
     </div>
-
+    <div>{{testing}}</div>
     <mat-grid-list #grid [cols]="cols" rowHeight="350px">
         <div *ngFor="let card of blogs | async">
             <mat-grid-tile>
@@ -65,4 +65,4 @@
 
 <footer>
     <header-and-footer-footer></header-and-footer-footer>
-</footer>
+</footer>st

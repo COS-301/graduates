@@ -4,7 +4,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 import { Location } from '@angular/common';
 
-import {Apollo, gql} from 'apollo-angular';
+import {Apollo, gql } from 'apollo-angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -42,6 +42,7 @@ export class BlogExploreComponent implements OnInit  {
     })
   );
 
+  testing = "";
   constructor(private apollo: Apollo, private breakpointObserver: BreakpointObserver, private location: Location, private router: Router) {
     this.admin = false;
     this.newestFirstSort = true;
@@ -124,26 +125,33 @@ export class BlogExploreComponent implements OnInit  {
 
   //Add to blogs array (Hopefully from API)
   loadBlogs(){
-    const getAllBlogs = "query{ getAllBlogs{ blog{ title, author, content } } }";
-
-    if(!(this.apollo.client===undefined)) this.apollo
-    .watchQuery({
-      query: gql(getAllBlogs),
-    })
-    .valueChanges.subscribe((result: any) => {
-      this.blogs = result.data.getAllBlogs;
-
-      this.blogs = this.breakpointObserver.observe( Breakpoints.Handset).pipe(
-      
-        map(() => {
-  
-        const out = [];
-  
-        for (let index = 0; index < 9; index++) {
-          if(index < this.blogList.length) out.push(this.blogList[index]);
-        }
-        return out;
-      }));
-    });
+    const getAllBlogs = gql`query allBlogs{ 
+      blog{title
+        author
+        content
+      }
+    }
+    `;
+    
+    if(!(this.apollo.client===undefined)){
+        this.blogList.push({"blog": {"title": "test2", "author": "test2", "content": "3"}});
+        this.apollo.watchQuery({query: getAllBlogs}).valueChanges.subscribe((result: any) => {
+        this.testing = result.data.toString();
+        this.blogList.push({"blog": {"title": result.data, "author": "test2", "content": "3"}});
+        this.blogs = result.data.blog;
+        this.blogList.push(result.data.blog);
+        this.blogs = this.breakpointObserver.observe( Breakpoints.Handset).pipe(
+        
+          map(() => {
+    
+          const out = [];
+    
+          for (let index = 0; index < 9; index++) {
+            if(index < this.blogList.length) out.push(this.blogList[index]);
+          }
+          return out;
+        }));
+      });    
+    }
   }
 }
