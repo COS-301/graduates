@@ -20,13 +20,19 @@ import {
 } from '@graduates/api/shorts/service/feature';
 import { NotFoundException } from '@nestjs/common';
 import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
+import {
+  FirebaseFolders,
+  FirebaseService,
+} from '@graduates/api/storage/repository/data-access';
+import uuid from 'uuid';
 
 @Resolver(Short)
 export class ShortsResolver {
   constructor(
     private readonly service: ShortsService,
     private readonly tagsService: ShortsTagsService,
-    private readonly reportsService: ShortsReportsService
+    private readonly reportsService: ShortsReportsService,
+    private readonly fbService: FirebaseService
   ) {}
 
   @ResolveField()
@@ -100,10 +106,21 @@ export class ShortsResolver {
   @Mutation(() => Short)
   async createShort(
     @Args('short') short: ShortCreateInput,
-    @Args('userId') userId: string
+    @Args('userId') userId: string,
+    @Args('file') file: string,
+    @Args('folder') folder: FirebaseFolders
   ): Promise<Short | null> {
-    const res = await this.service.createShort(short, userId);
-    return res;
+    const uploadStat = await this.fbService.uploadAsBase64String(
+      file,
+      uuid.v1(),
+      folder
+    );
+
+    if (uploadStat) {
+      return await this.service.createShort(short, userId);
+    } else {
+      return null;
+    }
   }
 
   /**
