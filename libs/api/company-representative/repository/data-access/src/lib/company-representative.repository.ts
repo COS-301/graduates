@@ -116,7 +116,7 @@ export class CompanyRepresentativeRepository {
                 link: "ishe@facebook.com"
               },{
                 type: "SNAPCHAT",
-                link: "snapchat@ishe.com"
+                link: "ishe@snapchat.com"
               },{
                 type: "GITHUB",
                 link: "zenthon@github.com"
