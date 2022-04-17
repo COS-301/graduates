@@ -201,4 +201,9 @@ export class ApiAdminConsoleResolver{
 // }
   
       
+
+    @Query(() =>String) 
+    pingAdminconsole(){
+        return "on";
+    }
 }
