@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ApiCompanyProfilePage, CompanyReps, UserEmail, UserLocation, UserNumber, UserProfile, UserSocialMedia } from '@graduates/api/companyprofilepage/api/shared/data-access';
 import { QueryBus } from '@nestjs/cqrs';
-import { GetCompanyBioQuery, GetCompanyByIDQuery, GetCompanyEmailQuery, GetCompanyLocationQuery, GetCompanyNumberQuery, GetCompanySocialMediaQuery, GetCompanyRepQuery} from './queries/api-companyprofilepage-service-query';
+import { GetCompanyBioQuery, GetCompanyByIDQuery, GetCompanyEmailQuery, GetCompanyLocationQuery, GetCompanyNumberQuery, GetCompanySocialMediaQuery, GetCompanyRepQuery } from './queries/api-companyprofilepage-service-query';
 
 @Injectable()
 export class ApicompanyprofilepageServiceFeatureModule {
