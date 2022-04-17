@@ -1,7 +1,8 @@
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FileUploadService } from "../services/file-upload.service";
-
+import { Apollo } from "apollo-angular";
+import gql from "graphql-tag";
 @Component({
   selector: 'graduates-file-upload',
   templateUrl: './file-upload.component.html',
@@ -37,7 +38,8 @@ export class FileUploadComponent implements OnInit {
     // Inject service 
     constructor(
       private fileUploadService: FileUploadService, 
-      private route: ActivatedRoute) { }
+      private route: ActivatedRoute,
+      private apollo: Apollo) { }
   
     ngOnInit(): void {
       this.route.paramMap.subscribe((params: any) => {
@@ -45,9 +47,9 @@ export class FileUploadComponent implements OnInit {
         this.userID = params.get('userID');
         this.fileCategory = params.get('fileCategory');
 
-        if (params.get('fileCategory') === "academic-record") {
+        if (params.get('fileCategory') === "Academic Record") {
           this.cat = "Academic Record";
-        }else if (params.get('fileCategory') === "transcript") {
+        }else if (params.get('fileCategory') === "Transcript") {
           this.cat = "Transcript";
         }else{
           this.cat = "CV";
@@ -111,30 +113,100 @@ export class FileUploadComponent implements OnInit {
         );
 
     }
-
+  
+  
     // just a duplicate of the above function 
     onUploadFile() {
+      const file = this.file;
+      let base64data;
+      const fileReaderInstance = new FileReader();
+      fileReaderInstance.readAsDataURL(file); 
+      fileReaderInstance.onload = () => {
+       base64data = fileReaderInstance.result;     
+       console.log(base64data)           
+    
+        // Loading design activation
+      this.loading = !this.loading;
+    
+      console.log(this.file);
+      this.apollo.mutate<any>({
+        mutation: gql`
+          mutation($Filename: String! , $UserId: String! , $FileCategory: String! , $FileExtension: String! , $Files: String!) {
+            upload(filename: $Filename , userId: $UserId , fileCategory:$FileCategory  , fileExtension: $FileExtension , file: $Files)
+          }
+        `,
+        variables: {
+          Filename: this.file.name,
+          UserId: this.userID,
+          FileCategory: this.fileCategory,
+          FileExtension: this.file.type,
+          Files: base64data
+
+        }
+      })
+      .subscribe(({ data}) => {
+        if (data){ 
+
+          console.log(data)}
+
+          this.loading = false; // Flag variable 
+          this.safeToUpload = false;
+          this.invalid_2 = true;
+
+        });
+        const res = {res:"Could not Upload"}
+      }
+      
+     
+    
+   
 
       // Loading design activation
-      this.loading = !this.loading;
+      // this.loading = !this.loading;
+    
+      // console.log(this.file);
+      // this.apollo.mutate<any>({
+      //   mutation: gql`
+      //     mutation($Filename: String! , $UserId: String! , $FileCategory: String! , $FileExtension: String! , $Files:Upload !) {
+      //       upload(filename: $Filename , userId: $UserId , fileCategory:$FileCategory  , fileExtension: $FileExtension , file: $Files)
+      //     }
+      //   `,
+      //   variables: {
+      //     Filename: this.file.name,
+      //     UserId: this.userID,
+      //     FileCategory: this.fileCategory,
+      //     FileExtension: this.file.type,
+      //     Files: this.file
 
-      console.log(this.file);
+      //   }
+      // })
+      // .subscribe(({ data}) => {
+      //   if (data){ 
 
-      this.fileUploadService.uploadFile(this.file.name, this.userID, this.fileCategory, this.file?.type, this.file).subscribe(
-          (event: any) => {
-              if (typeof (event) === 'object') {
+      //     console.log(data)}
+       
+      // });
+      // const res = {res:"Could not Upload"}
+    
+    
+    
 
-                  // Short link via api response
-                  this.success = event.link;
+      // this.fileUploadService.uploadFile(this.file.name, this.userID, this.fileCategory, this.file?.type, this.file).subscribe(
+      //     (event: any) => {
+      //         if (typeof (event) === 'object') {
 
-                  this.loading = false; // Flag variable 
-                  this.safeToUpload = false;
-                  this.invalid_2 = true;
-              }
-          }
-      );
+      //             // Short link via api response
+      //             this.success = event.link;
+
+      //             this.loading = false; // Flag variable 
+      //             this.safeToUpload = false;
+      //             this.invalid_2 = true;
+      //         }
+      //     }
+      // );
 
   }
+  
 
     goBack(){
       window.location.href = "storage/" + this.userID;
