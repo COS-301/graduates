@@ -7,7 +7,7 @@ import { ApiAuthorizationService } from './api-authorization.service';
 import { Adminauthorization } from '../../../../repository/data-access/src/lib/api-authorization-repository-admin.repository';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { PrismaService } from '../../../../../shared/services/prisma/data-access/src/lib/ApiPrismaService.service';
-import { CommandBus, QueryBus } from '@nestjs/cqrs';
+import { QueryBus } from '@nestjs/cqrs';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { ApiAuthorization } from '../../../../api/shared/src/lib/api-authorization.entity';
 
@@ -15,10 +15,9 @@ import { ApiAuthorization } from '../../../../api/shared/src/lib/api-authorizati
   controllers: [],
   imports: [],
   providers: [
+    ApiAuthorization,
     ApiAuthorizationService,
     QueryBus,
-    ApiAuthorization,
-    CommandBus,
     Adminauthorization,
     PrismaService,
     GetDeletePermissionHandler,
