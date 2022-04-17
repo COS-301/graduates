@@ -34,7 +34,19 @@ export class CompanyRepresentativePageComponent {
     ];
    }
 
-  navigateToFirst() {
-    this._router.navigate(['login'])
+  navigateToLogin() {
+    this._router.navigate(['CompanyRepresentativeLogin'])
+  }
+
+  navigateToEdit() {
+    this._router.navigate(['CompanyRepresentativeEdit'])
+  }
+
+  navigateToExplore() {
+    this._router.navigate(['CompanyRepresentativeExplore'])
+  }
+
+  navigateToHome() {
+    this._router.navigate(['CompanyRepresentativeHome'])
   }
 }
