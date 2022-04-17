@@ -1,27 +1,22 @@
 import { AggregateRoot } from "@nestjs/cqrs";
+import { FileCategory } from "@prisma/client";
 
 export class StudentProfile extends AggregateRoot {
     constructor() {
       super();
     }
-
-    id?: string;
-    studentNum?: string;
-    firstName?: string;
-    lastName?: string;
-    title?: string;
-    email?: string;
-    phoneNum?: string;
+    userId?: string;
+    name?: string;
     dateOfBirth?: string;
-    nameOfDegree?: string;
+    profilePicture?;
+    phoneNumber?: string;
     bio?: string;
-    tags?: string[];
-    preferredLocation?: string;
+    tags?: string;
+    link?: string;
+    socialMedia?: string;
+    location?: string;
+    email?: string;
+    files?: FileCategory;
     employmentStatus?: string;
-    notableAchievements?: string;
-    links?: string[];
-    academicRecod?: string;
-    cv?: string;
-    capstoneProject?: string;
-
+    degreeName?: string;
   }
