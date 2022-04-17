@@ -1,7 +1,8 @@
 import { Resolver, Query, Args, Mutation } from "@nestjs/graphql";
-import { Notification, UserNotification } from "@graduates/api/notifications/api/shared";
+import { Notification, UserNotification  } from "@graduates/api/notifications/api/shared";
 import { ApiNotificationsService } from "@graduates/api/notifications/service/feature";
 import { NotFoundException } from '@nestjs/common';
+import { EmailNotification } from "@graduates/api/notifications/api/shared"
 
 @Resolver(() => Notification)
 export class NotificationsResolver {
@@ -80,5 +81,24 @@ export class NotificationsResolver {
     ): Promise<UserNotification | null> {
         const res = await this.notificationService.getUserObject(userId);
         return res;
+    }
+
+    @Mutation(()=>EmailNotification)
+    async sendEmailForNotification(
+        @Args('emailFrom', {type: () => String}) emailFrom: string,
+        @Args('emailTo', {type: () => String}) emailTo: string,
+        @Args('emailHeading', {type: () => String}) emailSubject: string,
+        @Args('emailText', {type: () => String}) emailText: string
+    ): Promise<EmailNotification | null> {
+
+        this.notificationService.sendToMail(emailFrom, emailTo, emailSubject, emailText);
+        const emailNotification = new EmailNotification;
+
+        emailNotification.response = "Sent";
+        emailNotification.emailFrom = emailFrom;
+        emailNotification.emailTo = emailTo;
+        emailNotification.emailSubject = emailSubject;
+        emailNotification.emailText = emailText;
+        return emailNotification;
     }
 }
