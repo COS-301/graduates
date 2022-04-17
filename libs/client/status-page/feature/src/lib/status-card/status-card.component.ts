@@ -13,7 +13,7 @@ export class StatusCardComponent implements OnInit {
   underDevelopmentImage =
     'https://icon-library.com/images/warning-icon-svg/warning-icon-svg-18.jpg';
 
-  image: string = '';
+  image = '';
 
   @Input() status: any;
 
