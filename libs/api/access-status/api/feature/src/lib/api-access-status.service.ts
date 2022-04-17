@@ -10,7 +10,7 @@ export class ApiAccessStatusService {
             accessStatus.item = "CV";
             accessStatus.accessStatus = "Pending";
         } else {
-            accessStatus.item = "Academic Record";
+            accessStatus.item = "ACADEMIC_RECORD";
             accessStatus.accessStatus = "Rejected";
         }
 
