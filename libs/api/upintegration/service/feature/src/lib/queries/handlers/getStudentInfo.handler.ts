@@ -1,6 +1,6 @@
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
-import { UpIntegrationRepository  } from "@graduates";
-import {getStudentInfoDOBQuery,getStudentInfoEmailsQuery,getStudentInfoPhoneNumberQuery,getStudentInfoNameQuery,getStudentInfoFilesQuery,getStudentInfoPFPQuery } from "../impl";
+import { UpIntegrationRepository  } from "@graduates/libs/api/upintegration/repository/data-access";
+import {getStudentInfoDOBQuery,getStudentInfoEmailsQuery,getStudentInfoPhoneNumberQuery,getStudentInfoNameQuery,getStudentInfoFilesQuery } from "../impl";
 
 @QueryHandler(getStudentInfoNameQuery)
 export class getStudentInfoNameHandler implements IQueryHandler<getStudentInfoNameQuery> {
@@ -19,16 +19,6 @@ export class getStudentInfoDOBHandler implements IQueryHandler<getStudentInfoDOB
     async execute(query: getStudentInfoDOBQuery): Promise<any> {
         const {userId} = query;
         return this.repository.getDoB(userId);
-    }
-}
-
-@QueryHandler(getStudentInfoPFPQuery)
-export class getStudentInfoPFPHandler implements IQueryHandler<getStudentInfoPFPQuery> {
-    constructor(private readonly repository: UpIntegrationRepository) {}
-
-    async execute(query: getStudentInfoPFPQuery): Promise<any> {
-        const {userId} = query;
-        return this.repository.getPfp(userId);
     }
 }
 

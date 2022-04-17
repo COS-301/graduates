@@ -1,1 +1,1 @@
-export * from './get-student-profile.query';
+export * from './getStudentInfo.query';
