@@ -16,6 +16,8 @@ import { UnsuspendUserCommand } from './commands/impl/unsuspend-user.command';
 import { RemovePermissionCommand } from './commands/impl/remove-permission.command';
 import { AddRoleCommand } from './commands/impl/add-role.command';
 import { RemoveRoleCommand } from './commands/impl/remove-role.command';
+import { ArchiveStroryCommand } from './commands/impl/archive-strory.command';
+import { UnarchiveStroryCommand } from './commands/impl/unarchive-strory.command';
 
 
 @Injectable()
@@ -83,11 +85,23 @@ export class ApiAdminConsoleServiceFeature {
     async unSuspendUser(userID: string): Promise<void> {
         return this.commandBus.execute(new UnsuspendUserCommand({
             where: {id: userID},
-            data: {
-                suspended: false
-            }
+            data: {suspended: false}
         }));
     }
+
+    async archiveStory(stroryId: string): Promise<void> {
+        return this.commandBus.execute(new ArchiveStroryCommand({
+            where: {id: stroryId},
+            data: {archived: true}
+        }));
+    } 
+
+    async unArchiveStory(stroryId: string): Promise<void> {
+        return this.commandBus.execute(new UnarchiveStroryCommand({
+            where: {id: stroryId},
+            data: {archived: false}
+        }));
+    } 
 
     async getPermissions(userID: string): Promise<UserPermissions[]> {
         return this.queryBus.execute(new GetPermissionsQuery({

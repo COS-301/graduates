@@ -8,7 +8,7 @@ export class SuspendUserHandler implements ICommandHandler<SuspendUserCommand> {
 
     async execute(command: SuspendUserCommand): Promise<unknown> {
         const {data, where} = command.arg;
-        return this.repo.user.update({
+        return await this.repo.user.update({
             data,
             where
         });

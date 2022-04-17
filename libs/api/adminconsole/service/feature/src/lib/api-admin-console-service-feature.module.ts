@@ -1,6 +1,6 @@
 import { UpdateBlogArchivedHandler } from '@graduates/api/blog/service/feature';
-import { Module } from '@nestjs/common';
-import { CqrsModule } from '@nestjs/cqrs';
+import { Module} from '@nestjs/common';
+import {CqrsModule} from '@nestjs/cqrs';
 import { ApiAdminConsoleServiceFeature } from './api-adminconsole-service-feature.service';
 import { AddPermissionHandler } from './commands/handlers/add-permission.handler';
 import { AddRoleHandler } from './commands/handlers/add-role.handler';
@@ -20,7 +20,6 @@ import { GetUsersHandler } from './queries/handlers/get-users.handler';
 @Module({
     imports: [CqrsModule],
     providers: [
-        ApiAdminConsoleServiceFeature,
         UpdateBlogArchivedHandler,
         AddPermissionHandler,
         AddRoleHandler,
@@ -35,6 +34,7 @@ import { GetUsersHandler } from './queries/handlers/get-users.handler';
         GetPermissionsHandler,
         GetRolesHandler,
         GetStoriesHandler
-    ]
+    ],
+    exports: [ApiAdminConsoleServiceFeature]
 })
 export class ApiAdminConsoleServiceFeatureModule {}
