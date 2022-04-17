@@ -26,7 +26,7 @@
 #card{
     height: 95%;
     width: fit-content;
-    box-shadow: 10px 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 10px 10px 50px rgba(0,0,0, 0.15);
 }
 
 .cardbutton {
@@ -71,7 +71,7 @@
 #search{
     border: none;
     padding: 10px;
-    box-shadow: 3px 4px 6px #888888;
+    box-shadow: 10px 10px 50px rgba(0,0,0, 0.15);
     width: 65vw;
     margin-left: auto;
     margin-right: auto;
@@ -109,14 +109,6 @@
     background-color: $card-blue;
 }
 
-.grey {
-    background-color: gray;
-}
-
-.pink {
-    background-color: pink;
-}
-
 #infomessage {
     color: $primary-3;
 }
@@ -137,7 +129,7 @@
 }
 
 .bigblur {
-    box-shadow: 0px 0px 400px 50px rgba(179, 178, 178, 0.75);
+    box-shadow: 20px 20px 50px rgba(0,0,0, 0.25);
 }
 
 .infocolour {
@@ -164,7 +156,7 @@
     outline: none;
     color: $primary-3;
     padding: 8px 8px;
-    max-height: 60vh;
+    max-height: 40vh;
     min-height: 10vh;
 }
 
@@ -204,38 +196,61 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
-.test {
-    height: 150px;
-    width: 150px;
-    background-color: green;
-}
-
 .centindiv {
     display: flex;
     justify-content: center;
 }
 
 .grid-container {
-    width: 100vw;;
-}
-
-
-.pager {
-    position: absolute;
-    bottom: 0;
-    left: 0%;
     width: 100%;
-    transform: translateX(-1.5vw);
 }
 
-
-#wholepage {
-    position: relative;
-    min-height: 100vh;
-    max-width: 100vw;
+.wholepagecontent {
+    position: absolute !important;
+    left: 0%;
     overflow: hidden !important;
+    width: 100vw;
 }
 
-#content-wrap {
-    padding-bottom: 10vh;
+////////////////////////shifter
+//used to make page responsive to the absoluted header
+#wholepage {
+    top: 14%;
 }
+
+@media (max-width: 2250px) {
+    #wholepage {
+        top: 13%;
+    }
+}
+@media (max-width: 1750px) {
+    #wholepage {
+        top: 12%;
+    }
+}
+@media (max-width: 1250px) {
+    #wholepage {
+        top: 8%;
+    }
+}
+@media (max-width: 1000px) {
+    #wholepage {
+        top: 7%;
+    }
+}
+@media (max-width: 750px) {
+    #wholepage {
+        top: 6%;
+    }
+}
+@media (max-width: 500px) {
+    #wholepage {
+        top: 5%;
+    }
+}
+@media (max-width: 400px) {
+    #wholepage {
+        top: 4.5%;
+    }
+}
+////////////////////////shifter

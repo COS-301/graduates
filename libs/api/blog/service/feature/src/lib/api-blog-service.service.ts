@@ -10,7 +10,6 @@ import { CreateBlogCommand,
   DeleteCommentCommand, 
   DeleteCommentsByBlogIdCommand, 
   CreateMediaCommand,
-  UpdateBlogMediaCommand, 
   CreateCommentCommand } from './commands/api-blog-command.command';
 import { 
   GetBlogByIdQuery, 
@@ -41,7 +40,7 @@ export class BlogService {
     );
   }
 
-  async updateBlogTitle(blogId, title): Promise<Blog | null> {
+  async updateBlogTitle(blogId, title): Promise<string> {
     return await this.commandBus.execute(
       new UpdateBlogTitleCommand(blogId, title)
     );
@@ -59,7 +58,7 @@ export class BlogService {
     );
   }
 
-  async deleteBlog(blogId): Promise<Blog | null> {
+  async deleteBlog(blogId): Promise<string> {
     return await this.commandBus.execute(
       new DeleteBlogCommand(blogId)
     );
@@ -92,12 +91,6 @@ export class BlogService {
   async createMedia(blogId, media): Promise<BlogMedia | null> {
     return await this.commandBus.execute(
       new CreateMediaCommand(blogId, media)
-    );
-  }
-
-  async updateBlogMedia(blogId, media): Promise<BlogMedia | null> {
-    return await this.commandBus.execute(
-      new UpdateBlogMediaCommand(blogId, media)
     );
   }
 
@@ -138,7 +131,7 @@ export class BlogService {
     );
   }
 
-  async getCommentByCommentId(commentId): Promise<BlogComment[]> {
+  async getCommentByCommentId(commentId): Promise<BlogComment> {
     return await this.queryBus.execute(
       new GetCommentByCommentIdQuery(commentId)
     );

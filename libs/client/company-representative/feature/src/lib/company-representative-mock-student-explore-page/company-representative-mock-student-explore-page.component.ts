@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'graduates-company-representative-mock-student-explore-page',
   templateUrl: './company-representative-mock-student-explore-page.component.html',
@@ -10,7 +10,7 @@ export class CompanyRepresentativeMockStudentExplorePageComponent {
   mocknames : string[];
   mocktags : string[];
 
-  constructor () {
+  constructor (private _router: Router) {
     this.mocknames = [
     "Ryan Broemer",
     "Regina Mayo",
@@ -35,5 +35,21 @@ export class CompanyRepresentativeMockStudentExplorePageComponent {
       "Tester",
       "Security"
       ];
+  }
+
+  navigateToHome() {
+    this._router.navigate(['CompanyRepresentativeHome'])
+  }
+
+  navigateToLogin() {
+    this._router.navigate(['CompanyRepresentativeLogin'])
+  }
+
+  navigateToEdit() {
+    this._router.navigate(['CompanyRepresentativeEdit'])
+  }
+
+  navigateToExplore() {
+    this._router.navigate(['CompanyRepresentativeExplore'])
   }
 }
