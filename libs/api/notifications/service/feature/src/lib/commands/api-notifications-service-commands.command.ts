@@ -19,3 +19,12 @@ export class UpdateSeenCommand {
         public readonly seen: boolean
     ) {}
 }
+
+export class SendMailCommand {
+    constructor(
+        public readonly emailFrom:string,
+        public readonly emailTo:string,
+        public readonly emailSubject:string,
+        public readonly emailText:string){
+    }
+}

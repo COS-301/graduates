@@ -2,10 +2,12 @@ import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import {
     CreateRequestNotificationCommand,
     UpdateRequestNotificationCommand,
-    UpdateSeenCommand
+    UpdateSeenCommand,
+    SendMailCommand
 } from './api-notifications-service-commands.command';
 import { NotificationsRepository } from '@graduates/api/notifications/repository/data-access';
 import { Notification } from '@prisma/client';
+import * as nodemailer from 'nodemailer';
 
 @CommandHandler(CreateRequestNotificationCommand)
 export class CreateRequestNotificationHandler implements ICommandHandler<CreateRequestNotificationCommand> {
@@ -37,5 +39,40 @@ export class UpdateSeenHandler implements ICommandHandler<UpdateSeenCommand> {
         const {id,seen} = command;
 
         return this.repository.updateSeen(id,seen);
+    }
+}
+
+
+@CommandHandler(SendMailCommand)
+export class SendMailHandler implements ICommandHandler<SendMailCommand>{
+    constructor() {
+        //
+    }
+        async execute(command: SendMailCommand) {
+        // const notification = this.repository.findByUserIdTo("cl1rpkemf0148e7x5zy7087ma")
+        const {emailFrom , emailTo, emailSubject, emailText} = command;
+
+        const transport = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: "upminiproject301@gmail.com",
+                pass: "miniproject301"
+            }
+        });
+        
+        const message = {
+            from: emailFrom,
+            to: emailTo,   //data.email    
+            subject: emailSubject,         //data.notification.data
+            text: emailText
+        }
+        
+        transport.sendMail(message, function(err, info) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(info);
+            }
+        })
     }
 }
