@@ -25,6 +25,11 @@ export class ApiCompanyRepresentativeResolver {
     const resp = await this.apiCompanyRepresentativeService.login(email, password)
     return resp;
   }
+  @Query(() =>String) 
+  pingCompanyRepresentative(){
+    return "on";
+  }
+  
 
   @Mutation(() => CompanyRepresentative)
   async deleteCompanyRepresentative(@Args('id') id: string) {

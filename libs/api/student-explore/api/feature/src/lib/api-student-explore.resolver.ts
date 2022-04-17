@@ -32,5 +32,9 @@ export class ApiStudentExploreResolver {
     return this.StudentExploreService.AllAvailable(availableQuery);
   }
 
+  @Query(() =>String) 
+  pingStudentExplore(){
+    return "on";
+  }
 
 }
