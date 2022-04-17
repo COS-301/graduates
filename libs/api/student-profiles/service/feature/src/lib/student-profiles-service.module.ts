@@ -1,13 +1,11 @@
-import { ApiStudentProfilesRepositoryDataAccessModule } from '@graduates/api/student-profiles/repository/data-access';
 import { Module } from '@nestjs/common';
-import { CqrsModule } from '@nestjs/cqrs';
 import { ApiStudentProfileService } from './api-student-profiles.service';
-import * as QueryHandlers from './queries/handlers';
-import { StudentProfilesRepository } from '@graduates/api/student-profiles/repository/data-access';
+import { CommandsService } from './commands/commands.service';
+
 @Module({
-  imports: [ApiStudentProfilesRepositoryDataAccessModule, CqrsModule],
+  imports: [],
   controllers: [],
-  providers: [ApiStudentProfileService, QueryHandlers.GetStudentProfileNameHandler, StudentProfilesRepository],
+  providers: [ApiStudentProfileService, CommandsService],
   exports: [ApiStudentProfileService],
 })
 export class ApiStudentProfilesServiceModule {}

@@ -1,102 +1,102 @@
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
 import { StudentProfilesRepository } from "@graduates/api/student-profiles/repository/data-access";
-import {GetStudentProfileBioQuery,GetStudentProfileDOBQuery,GetStudentProfileDegreeNameQuery,GetStudentProfileEmailsQuery,GetStudentProfileEmploymentStatusQuery,GetStudentProfileLocationQuery,GetStudentProfileSocialMediaQuery,GetStudentProfilePhoneNumberQuery,GetStudentProfileTagsQuery,GetStudentProfileNameQuery,GetStudentProfileFilesQuery,GetStudentProfilePFPQuery } from "../impl";
+import { GetStudentProfileBio, GetStudentProfileDegreeName, GetStudentProfileDOB, GetStudentProfileEmails, GetStudentProfileEmploymentStatus, GetStudentProfileFiles, GetStudentProfileLocation, GetStudentProfileName, GetStudentProfilePFP, GetStudentProfilePhoneNumber, GetStudentProfileSocialMedia, GetStudentProfileTags } from "../impl";
 
-@QueryHandler(GetStudentProfileNameQuery)
-export class GetStudentProfileNameHandler implements IQueryHandler<GetStudentProfileNameQuery> {
+@QueryHandler(GetStudentProfileName)
+export class GetStudentProfileNameHandler implements IQueryHandler<GetStudentProfileName> {
     constructor(private readonly repository: StudentProfilesRepository) {}
 
-    async execute(query: GetStudentProfileNameQuery): Promise<any> {
+    async execute(query: GetStudentProfileName): Promise<any> {
         const {userId} = query;
         return this.repository.getName(userId);
     }
 }
 
-@QueryHandler(GetStudentProfileDOBQuery)
-export class GetStudentProfileDOBHandler implements IQueryHandler<GetStudentProfileDOBQuery> {
+@QueryHandler(GetStudentProfileDOB)
+export class GetStudentProfileDOBHandler implements IQueryHandler<GetStudentProfileDOB> {
     constructor(private readonly repository: StudentProfilesRepository) {}
 
-    async execute(query: GetStudentProfileDOBQuery): Promise<any> {
+    async execute(query: GetStudentProfileDOB): Promise<any> {
         const {userId} = query;
         return this.repository.getDoB(userId);
     }
 }
 
-@QueryHandler(GetStudentProfilePFPQuery)
-export class GetStudentProfilePFPHandler implements IQueryHandler<GetStudentProfilePFPQuery> {
+@QueryHandler(GetStudentProfilePFP)
+export class GetStudentProfilePFPHandler implements IQueryHandler<GetStudentProfilePFP> {
     constructor(private readonly repository: StudentProfilesRepository) {}
 
-    async execute(query: GetStudentProfilePFPQuery): Promise<any> {
+    async execute(query: GetStudentProfilePFP): Promise<any> {
         const {userId} = query;
         return this.repository.getPfp(userId);
     }
 }
 
-@QueryHandler(GetStudentProfileBioQuery)
-export class GetStudentProfileBioHandler implements IQueryHandler<GetStudentProfileBioQuery> {
+@QueryHandler(GetStudentProfileBio)
+export class GetStudentProfileBioHandler implements IQueryHandler<GetStudentProfileBio> {
     constructor(private readonly repository: StudentProfilesRepository) {}
 
-    async execute(query: GetStudentProfileBioQuery): Promise<any> {
+    async execute(query: GetStudentProfileBio): Promise<any> {
         const {userId} = query;
         return this.repository.getBio(userId);
     }
 }
 
-@QueryHandler(GetStudentProfileTagsQuery)
-export class GetStudentProfileTagsHandler implements IQueryHandler<GetStudentProfileTagsQuery> {
+@QueryHandler(GetStudentProfileTags)
+export class GetStudentProfileTagsHandler implements IQueryHandler<GetStudentProfileTags> {
     constructor(private readonly repository: StudentProfilesRepository) {}
 
-    async execute(query: GetStudentProfileTagsQuery): Promise<any> {
+    async execute(query: GetStudentProfileTags): Promise<any> {
         const {userId} = query;
         return this.repository.getTags(userId);
     }
 }
 
-@QueryHandler(GetStudentProfileSocialMediaQuery)
-export class GetStudentProfileSocialMediaHandler implements IQueryHandler<GetStudentProfileSocialMediaQuery> {
+@QueryHandler(GetStudentProfileSocialMedia)
+export class GetStudentProfileSocialMediaHandler implements IQueryHandler<GetStudentProfileSocialMedia> {
     constructor(private readonly repository: StudentProfilesRepository) {}
 
-    async execute(query: GetStudentProfileSocialMediaQuery): Promise<any> {
+    async execute(query: GetStudentProfileSocialMedia): Promise<any> {
         const {userId} = query;
         return this.repository.getSocialMedia(userId);
     }
 }
 
-@QueryHandler(GetStudentProfileLocationQuery)
-export class GetStudentProfileLocationHandler implements IQueryHandler<GetStudentProfileLocationQuery> {
+@QueryHandler(GetStudentProfileLocation)
+export class GetStudentProfileLocationHandler implements IQueryHandler<GetStudentProfileLocation> {
     constructor(private readonly repository: StudentProfilesRepository) {}
 
-    async execute(query: GetStudentProfileLocationQuery): Promise<any> {
+    async execute(query: GetStudentProfileLocation): Promise<any> {
         const {userId} = query;
         return this.repository.getLocation(userId);
     }
 }
 
-@QueryHandler(GetStudentProfileEmailsQuery)
-export class GetStudentProfileEmailsHandler implements IQueryHandler<GetStudentProfileEmailsQuery> {
+@QueryHandler(GetStudentProfileEmails)
+export class GetStudentProfileEmailsHandler implements IQueryHandler<GetStudentProfileEmails> {
     constructor(private readonly repository: StudentProfilesRepository) {}
 
-    async execute(query: GetStudentProfileEmailsQuery): Promise<any> {
+    async execute(query: GetStudentProfileEmails): Promise<any> {
         const {userId} = query;
         return this.repository.getEmails(userId);
     }
 }
 
-@QueryHandler(GetStudentProfileFilesQuery)
-export class GetStudentProfileFilesHandler implements IQueryHandler<GetStudentProfileFilesQuery> {
+@QueryHandler(GetStudentProfileFiles)
+export class GetStudentProfileFilesHandler implements IQueryHandler<GetStudentProfileFiles> {
     constructor(private readonly repository: StudentProfilesRepository) {}
 
-    async execute(query: GetStudentProfileFilesQuery): Promise<any> {
+    async execute(query: GetStudentProfileFiles): Promise<any> {
         const {userId} = query;
         return this.repository.getFiles(userId);
     }
 }
 
-@QueryHandler(GetStudentProfileEmploymentStatusQuery)
-export class GetStudentProfileEmploymentStatusHandler implements IQueryHandler<GetStudentProfileEmploymentStatusQuery> {
+@QueryHandler(GetStudentProfileEmploymentStatus)
+export class GetStudentProfileEmploymentStatusHandler implements IQueryHandler<GetStudentProfileEmploymentStatus> {
     constructor(private readonly repository: StudentProfilesRepository) {}
 
-    async execute(query: GetStudentProfileEmploymentStatusQuery): Promise<any> {
+    async execute(query: GetStudentProfileEmploymentStatus): Promise<any> {
         const {userId} = query;
         return this.repository.getEmploymentStatus(userId);
     }

@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import{Company}from '../../store/company-model';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'graduates-company-explore-card',
@@ -7,5 +6,4 @@ import{Company}from '../../store/company-model';
   styleUrls: ['./company-explore-card.component.scss']
 })
 export class CompanyExploreCardComponent {
-  @Input() company!:Company;
 }

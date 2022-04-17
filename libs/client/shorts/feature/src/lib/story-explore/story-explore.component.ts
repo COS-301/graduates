@@ -4,7 +4,7 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Location } from '@angular/common';
 
@@ -37,12 +37,6 @@ export class StoryExploreComponent implements OnInit {
   currentlyReporting! : string;
   successfulReport : boolean;
   reported : boolean;
-  apifailure = "";
-
-  //content uploaded:
-  VideoFile! : File;
-  ThumbnailFile! : File;
-  ///////////////////
 
   viewingName = "Ernest Wright";
   viewingTags = "#Design #IMY #COS #software";
@@ -75,47 +69,30 @@ export class StoryExploreComponent implements OnInit {
   ngOnInit(): void {
     this.uploadfrm = this.builder.group({
       file: ['', Validators.required],
-      thumbnail: ['', Validators.required],
       tags: ['', Validators.required]
     });
 
     this.reportfrm = this.builder.group({
-      reason: ['', this.reasonValidator]
+      reason: ['', Validators.required]
     });
 
     this.loadCards();
   }
 
+  // uploadValidater(file : FormControl) : {[valtype: string] : string} | null {
+  //   // return {'errormsg' : 'File is required.'}
+  //   const f = file.value;
+    
+  //   return null;
+  // }
+
+
   //  ==================================================================================== //
   //  Submit Pop-Up Functions ============================================================ //
   
   onFileUpload(event : any) {
-    this.VideoFile = event.target.files[0];
-    this.Base64encode(this.VideoFile).then(resp => {
-      console.log(resp);
-      console.log("here");
-    });
-  }
-
-  onThumbnailUpload(event : any) {
-    this.ThumbnailFile = event.target.files[0];
-  }
-
-  //base 64 encoder:
-  Base64encode(file : File) {
-    return new Promise((resolve, _) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result);
-      reader.readAsDataURL(file);
-    })
-
-  }
-
-  //base 64 decode to BLOB:
-  Base64decode(base : string) {
-    // return new Promise((resolve, _) => {
-    //   resolve(blob.blob)
-    // })
+    this.fileError = "";
+    console.log(event);
   }
 
   uploadStory() {
@@ -157,7 +134,6 @@ export class StoryExploreComponent implements OnInit {
   closeViewing() {
     this.viewing = false;
   }
-
   //  ==================================================================================== //
   //  Report Pop-Up Functions ============================================================ //
 
@@ -167,66 +143,41 @@ export class StoryExploreComponent implements OnInit {
   }
 
   makeReportpopup() {
+    //create report popup:
     this.viewing = false;
     this.reporting = true;
     this.currentlyReporting = this.currentlyViewing;
   }
 
-  //report VALIDATOR
-  reasonValidator(reason : FormControl) : {[valtype : string] : string} | null {
-    const text = reason.value;
-    if (text == null) return null;
-    if (text.length > 256) return {'errormsg' : 'Characters limited to 256.'};
-    if (text.length == 0) return {'errormsg' : 'Report reason is required.'};
-    const spaceCounter = text.split(' ').length - 1;
-    if (spaceCounter < 4) return {'errormsg' : 'At least 5 words are required.'};
-    return null;
-  }
-
   submitReport() {
-
+    // alert("report for " + this.currentlyReporting + " goes to API");
     this.reported = true;
-    //check for any invalid input in the form
+
+
     for (const input in this.reportfrm.controls) {
       if (this.reportfrm.controls[input].invalid) {
         return;
       }
     }
+    alert("To submit to API - '" + this.reportfrm.controls['reason'].value + "'")
 
-    //hard coded report:
-    const shortId = "cl22e308w0208hcvks42s959n";
-    const reason = this.reportfrm.controls['reason'].value;
-    const userId = "cl22alq100086lwvkts9rdiox";
+    //reset for another report:
+    this.reportfrm.reset();
+    this.reported = false;
 
-    // Send reportText to the api:
-      if (!(this.apollo.client === undefined))
-      this.apollo
-        .mutate ({
-          mutation: gql`mutation {
-            reportShort(report: {shortId: "${ shortId }", reason: "${ reason }"}, userId: "${ userId }") {
-              shortId,
-              userId,
-              reason
-            }
-          }
-        `,
-        })
-        .subscribe ((result) => {
-          console.log(result.errors);
-          console.log(result);
-          if (result.errors) {
-              this.apifailure = "Failed to report to the API.";
-          } else {
-            this.reportfrm.reset();
-            this.reported = false;
-            this.reporting = false;
-            this.successfulReport = true;
-          }
-        })
+    //push report to API:
+
+    //check for successful response from API:
+
+    //true case after report (make a case if the API fails...)
+    this.reporting = false;
+    this.successfulReport = true;
+
   }
 
   //  ==================================================================================== //
   //  Story Explore Functions ============================================================ //
+
   
   loadCards(){
     const test = "query{ getAllShorts{ user{  name  },shortTag{ tag },userId,id, thumbnail}}";

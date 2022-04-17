@@ -24,18 +24,13 @@ export class ApiStorageServiceFeatureModule {
       else if(fileCategory==="Academic Record"){
         promise = await this.repo.getUserFile(userID ,FileCategory.ACADEMIC_RECORD );
       }
-      else if(fileCategory=="Profile Picture"){
-        promise = await this.repo.getUserFile(userID ,FileCategory.PROFILE_PHOTO );
-      }
-    
-        //return url;
         //this is printing before the printing is done because of getUserFile
-        /*console.log("promise"+promise);
+        console.log("promise"+promise);
         if(promise)
-        await promise.then((url)=>{
+        promise.then((url)=>{
           console.log("HERE"+url);
           return url;
-        })*/
+        })
 
         return promise;
        

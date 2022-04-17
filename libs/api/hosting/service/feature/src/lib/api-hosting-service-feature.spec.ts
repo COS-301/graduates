@@ -1,5 +1,3 @@
-import { HttpModule } from '@nestjs/axios';
-import { TerminusModule } from '@nestjs/terminus';
 import { Test } from '@nestjs/testing';
 import { ApiHostingServiceFeatureModule } from './api-hosting-service-feature';
 
@@ -8,7 +6,6 @@ describe( 'ApiHostingServiceFeatureModule', () => {
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
-      imports: [HttpModule, TerminusModule],
       providers: [ ApiHostingServiceFeatureModule],
     }).compile();
 

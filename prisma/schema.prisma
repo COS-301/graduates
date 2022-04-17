@@ -376,28 +376,7 @@ model UserToken {
   @@id ([userId])
   @@map("user_token")
 }
-///////////////////////////////////////////////////////////////////////
-// 6. Request for Access
-///////////////////////////////////////////////////////////////////////
 
-
-//Requesting for access to a specific permission
-model Requested {
-  RequestId String @id @default(cuid())
-  StudId String @default(cuid())
-  CompId String  @default(cuid())
-  ItemId Item
-  Accepted Boolean
-}
-
-//Item to request for access
-enum Item {
-  ACADEMIC_RECORD
-  CV
-  TRANSCRIPT
-  CERTFICATE
-  CAPSTONE_PROJECT
-}
 
 ///////////////////////////////////////////////////////////////////////
 // Tests

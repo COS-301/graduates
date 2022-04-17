@@ -1,12 +1,15 @@
 import { EventsHandler, IEventHandler } from "@nestjs/cqrs";
 import { SendMailEvent } from "./send-mail.event";
 import * as nodemailer from 'nodemailer';
+import { NotificationsRepository } from "@graduates/api/notifications/repository/data-access";
 
 @EventsHandler(SendMailHandler)
 export class SendMailHandler implements IEventHandler<SendMailEvent>{
+    constructor(public repository: NotificationsRepository) {}
+
     handle(event: SendMailEvent) {
         // const notification = this.repository.findByUserIdTo("cl1rpkemf0148e7x5zy7087ma")
-        const {emailFrom , emailTo, emailSubject, emailText} = event
+        const notification = this.repository.findNotificationsAll()
 
         const transport = nodemailer.createTransport({
             service: 'gmail',
@@ -17,10 +20,10 @@ export class SendMailHandler implements IEventHandler<SendMailEvent>{
         });
         
         const message = {
-            from: emailFrom,
-            to: emailTo,   //data.email    
-            subject: emailSubject,         //data.notification.data
-            text: emailText
+            from: "upminiproject301@gmail.com",
+            to: "u20430168@tuks.co.za",   //data.email    
+            subject: notification[0].subject,         //data.notification.data
+            text: notification[0].data
         }
         
         transport.sendMail(message, function(err, info) {

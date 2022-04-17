@@ -21,7 +21,6 @@ export class ApiStorageResolver {
     else{
       return res;
     }
-   
   }
   @Query(() =>String)
   async delete(

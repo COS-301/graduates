@@ -114,9 +114,9 @@ export class BlogRepository {
   /**
    * Delete a blog
    * @param {string} blogId The id of the blogs to delete
-   * @return {string>}
+   * @return {Promise<Blog | null>}
    */
-  async deleteBlog(blogId: string): Promise<string> {
+  async deleteBlog(blogId: string): Promise<Blog | null> {
     const deleteBlog = this.prisma.blog.delete({
       where: {
         id: blogId,
@@ -129,16 +129,9 @@ export class BlogRepository {
       },
     });
 
-    const deleteMedia = this.prisma.blogMedia.deleteMany({
-      where: {
-        blogId: blogId,
-      },
-    });
+    await this.prisma.$transaction([deleteBlog, deleteComments]);
 
-    if(await this.prisma.$transaction([deleteBlog, deleteComments, deleteMedia]))
-      return "successful";
-    else
-      return "unsuccessful";
+    return deleteBlog;
   }
 
   // Comments
@@ -147,7 +140,7 @@ export class BlogRepository {
    * Find all comments from database
    * @return {Promise<BlogComment[]>}
    */
-  async findAllComments(): Promise<BlogComment[] | null> {
+  async findAllComments(): Promise<BlogComment[]> {
     return this.prisma.blogComment.findMany();
   }
 
@@ -156,7 +149,7 @@ export class BlogRepository {
   * @param {string} blogId id of blog
   * @return {Promise<Blog[]>}
   */
-  async findAllCommentsByBlogId(blogId: string): Promise<BlogComment[] | null> {
+  async findAllCommentsByBlogId(blogId: string): Promise<BlogComment[]> {
     return this.prisma.blogComment.findMany({
       where: { blogId: blogId }
     });
@@ -168,7 +161,7 @@ export class BlogRepository {
    * @param {string} commentId The id of the comment to find
    * @return {Promise<BlogComment[]>}
    */
-   async findCommentByCommentId(commentId: string): Promise<BlogComment[] | null> {
+   async findCommentByCommentId(commentId: string): Promise<BlogComment[]> {
     return this.prisma.blogComment.findMany({ 
       where: { id : commentId } 
     });
@@ -191,6 +184,7 @@ export class BlogRepository {
         date: new Date()
       },
     });
+    return null;
   }
 
   /**
@@ -208,11 +202,8 @@ export class BlogRepository {
         content: commentContent,
       },
     });
-    if(res){
-      return "success";
-    }else{
-      return "unsuccessful";
-    }
+    return "success";
+
   }
 
   /**
@@ -227,11 +218,7 @@ export class BlogRepository {
       },
     });
 
-    if(res){
-      return "success";
-    }else{
-      return "unsuccessful";
-    }
+    return "success";
   }
 
   /**
@@ -255,7 +242,7 @@ export class BlogRepository {
  
 // Media
 
-  async findMediaByBlogId (blogId: string): Promise<BlogMedia[] | null> {
+  async findMediaByBlogId (blogId: string): Promise<BlogMedia[]> {
     return this.prisma.blogMedia.findMany({ 
       where: { blogId : blogId } 
     });

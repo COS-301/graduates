@@ -156,7 +156,7 @@
     outline: none;
     color: $primary-3;
     padding: 8px 8px;
-    max-height: 40vh;
+    max-height: 60vh;
     min-height: 10vh;
 }
 
@@ -196,61 +196,38 @@
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
+.test {
+    height: 150px;
+    width: 150px;
+    background-color: green;
+}
+
 .centindiv {
     display: flex;
     justify-content: center;
 }
 
 .grid-container {
-    width: 100%;
+    width: 100vw;;
 }
 
-.wholepagecontent {
-    position: absolute !important;
+
+.pager {
+    position: absolute;
+    bottom: 0;
     left: 0%;
-    overflow: hidden !important;
-    width: 100vw;
+    width: 100%;
+    transform: translateX(-1.5vw);
 }
 
-////////////////////////shifter
-//used to make page responsive to the absoluted header
+
 #wholepage {
-    top: 14%;
+    position: relative;
+    min-height: 100vh;
+    max-width: 100vw;
+    overflow: hidden !important;
 }
 
-@media (max-width: 2250px) {
-    #wholepage {
-        top: 13%;
-    }
+#content-wrap {
+    padding-bottom: 10vh;
 }
-@media (max-width: 1750px) {
-    #wholepage {
-        top: 12%;
-    }
-}
-@media (max-width: 1250px) {
-    #wholepage {
-        top: 8%;
-    }
-}
-@media (max-width: 1000px) {
-    #wholepage {
-        top: 7%;
-    }
-}
-@media (max-width: 750px) {
-    #wholepage {
-        top: 6%;
-    }
-}
-@media (max-width: 500px) {
-    #wholepage {
-        top: 5%;
-    }
-}
-@media (max-width: 400px) {
-    #wholepage {
-        top: 4.5%;
-    }
-}
-////////////////////////shifter

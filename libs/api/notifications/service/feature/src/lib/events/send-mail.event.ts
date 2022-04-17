@@ -1,10 +1,10 @@
 import { ApiNotificationsService } from "../api-notifications-service-feature.service";
-// import { NotificationsRepository } from "@graduates/api/notifications/repository/data-access";
 export class SendMailEvent {
-    constructor(
-        public readonly emailFrom:string,
-        public readonly emailTo:string,
-        public readonly emailSubject:string,
-        public readonly emailText:string){
+    constructor(private readonly data:ApiNotificationsService){
+        //we set the data that we will use here waiting for repository(API)
+        //something like
+        // email = userData.email
+        // then we will use email in the handler file
+        // const email= "madunathabo2@gmail.com";
     }
 }

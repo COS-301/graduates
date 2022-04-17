@@ -128,17 +128,16 @@ export class FirebaseService {
     console.log(fileRef.fullPath);
 
     //get the url that will download the file
-
-    return await getDownloadURL(fileRef)
+    getDownloadURL(fileRef)
       .then((url) => {
         console.log("NOW"+url); 
         return url;
       })
       .catch((error) => {
         console.error(error);
-        return null;
       });
 
+    return null;
   }
 
   async deleteByFilename(filename:string, folder:FirebaseFolders):Promise<boolean>{

@@ -41,11 +41,8 @@ export class ApiStudentProfilesEntity {
   @Field((type) => [String])
   notableAchievements: string[];
 
-  @Field((type) => [[String]])
-  links: string[][];
-
-  @Field()
-  profilePhoto: string;
+  @Field((type) => [String])
+  links: string[];
 
   //uploaded documents return if they are uploaded or not
   @Field()

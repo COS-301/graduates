@@ -29,7 +29,7 @@ export class ApiStudentProfilesInputEntity {
   @Field({ nullable: true })
   bio?: string;
 
-  @Field(type => [String],{ nullable: 'itemsAndList' })
+  @Field(type => [String],{ nullable: true })
   tags?: string[];
 
   @Field({ nullable: true })
@@ -38,12 +38,16 @@ export class ApiStudentProfilesInputEntity {
   @Field({ nullable: true })
   employmentStatus?: string;
 
-  @Field(type => [String],{ nullable: 'itemsAndList' })
+  @Field(type => [String],{ nullable: true })
   notableAchievements?: string[];
 
-  @Field(type => [[String]],{ nullable: 'itemsAndList' })
-  links?: string[][];
+  @Field(type => [String],{ nullable: true })
+  links?: string[];
 
-  @Field({nullable: true})
-  profilePhoto?: string;
+  //uploaded documents return if they are uploaded or not
+  @Field({ nullable: true })
+  academicRecord?: boolean;
+
+  @Field({ nullable: true })
+  cv?: boolean;
 }

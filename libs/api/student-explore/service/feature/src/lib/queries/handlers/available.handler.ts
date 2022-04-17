@@ -24,10 +24,6 @@ export class AvailableHandler implements IQueryHandler<AvailableQuery> {
         return this.repository.FindAllEmpStatus();
     }
 
-    if(query.availableQuery === "Tags"){
-      return this.repository.FindAllTag();
-  }
-
 
   }
 
