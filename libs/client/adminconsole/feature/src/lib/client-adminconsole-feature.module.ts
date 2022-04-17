@@ -6,10 +6,12 @@ import { FooterModule } from '../../../../shared/components/footer/src/lib/foote
 // import { DropdownComponent } from '../../../../shared/components/dropdown/ui/src/lib/dropdown/dropdown.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+import { ChangeDetectorRef } from '@angular/core';
 
 @NgModule({
-  imports: [CommonModule, MatMenuModule, MatIconModule, FooterModule,
-    HeaderModule,],
+  imports: [CommonModule, MatMenuModule, MatIconModule, FooterModule, FormsModule,
+    HeaderModule],
   declarations: [
     AdminconsoleComponent,
     

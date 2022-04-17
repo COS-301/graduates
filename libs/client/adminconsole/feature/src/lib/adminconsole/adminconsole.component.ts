@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -25,13 +25,13 @@ export class AdminconsoleComponent{
   userEmail : string
   userNumber : string
   userAddress : string
-  userIDDoc : any
-  userCVDoc : any
+  // IDDoc : any
+  // CVDoc : any
   stagedAddRoles : string[]
   stagedRemoveRoles : string[]
 
 
-  constructor(private http : HttpClient, ) {
+  constructor(private http : HttpClient, private changeDetection : ChangeDetectorRef ) {
     //Populate the sidenav with these options
     this.sidenavOptions = ["Create User", "Users", "Story", "Roles", "Blogs", "Shorts"]
 
@@ -57,100 +57,96 @@ export class AdminconsoleComponent{
   ngOnInit(): void {
     
     //getUsers
-      fetch('http://localhost:3333/graphql', {
-      method: 'POST',
-      headers: {'Content-Type' : 'application/json'},
-      body: JSON.stringify({ query: `
-        query {
-          adminconsole {
-            id
-            email
-            suspended
-            name
-          }
-        }`
-      }),
-    })
-    .then(res => 
-      res.json().then( ress => this.users = ress.data.adminconsole)
-    );
+    //   fetch('http://localhost:3333/graphql', {
+    //   method: 'POST',
+    //   headers: {'Content-Type' : 'application/json'},
+    //   body: JSON.stringify({ query: `
+    //     query {
+    //       adminconsole {
+    //         id
+    //         email
+    //         suspended
+    //         name
+    //       }
+    //     }`
+    //   }),
+    // })
+    // .then(res => 
+    //   res.json().then( ress => this.users = ress.data.adminconsole)
+    // );
 
-    //getBlogs
-    this.users.forEach((u)  =>  {
-      fetch('http://localhost:3333/graphql', {
-      method: 'POST',
-      headers: {'Content-Type' : 'application/json'},
-      body: JSON.stringify({ query: `
-        query {
-          getBlogs {
-            //blogName
-            //userName
-          }
-        }`
-      }),
-    })
-    .then(res => 
-      res.json().then( ress => this.blogs.push(ress.data.adminconsole))
-    );
-    })
+    // //getBlogs
+    // this.users.forEach((u)  =>  {
+    //   fetch('http://localhost:3333/graphql', {
+    //   method: 'POST',
+    //   headers: {'Content-Type' : 'application/json'},
+    //   body: JSON.stringify({ query: `
+    //     query {
+    //       getBlogs {
+    //         //blogName
+    //         //userName
+    //       }
+    //     }`
+    //   }),
+    // })
+    // .then(res => 
+    //   res.json().then( ress => this.blogs.push(ress.data.adminconsole))
+    // );
+    // })
     
-    //getStories
-    this.users.forEach((u)  =>  {
-      fetch('http://localhost:3333/graphql', {
-        method: 'POST',
-        headers: {'Content-Type' : 'application/json'},
-        body: JSON.stringify({ query: `
-          query {
-            getStories {
-              //blogName
-              //userName
-            }
-          }`
-        }),
-      })
-      .then(res => 
-        res.json().then( ress => this.stories.push(ress.data.adminconsole))
-      );
-    })
+    // //getStories
+    // this.users.forEach((u)  =>  {
+    //   fetch('http://localhost:3333/graphql', {
+    //     method: 'POST',
+    //     headers: {'Content-Type' : 'application/json'},
+    //     body: JSON.stringify({ query: `
+    //       query {
+    //         getStories {
+    //           //blogName
+    //           //userName
+    //         }
+    //       }`
+    //     }),
+    //   })
+    //   .then(res => 
+    //     res.json().then( ress => this.stories.push(ress.data.adminconsole))
+    //   );
+    // })
 
-    //getShorts
-    this.users.forEach((u)  =>  {
-      fetch('http://localhost:3333/graphql', {
-        method: 'POST',
-        headers: {'Content-Type' : 'application/json'},
-        body: JSON.stringify({ query: `
-          query {
-            getShorts {
-              //blogName
-              //userName
-            }
-          }`
-        }),
-      })
-      .then(res => 
-        res.json().then( ress => this.shorts.push(ress.data.adminconsole))
-      );
-    })
+    // //getShorts
+    // this.users.forEach((u)  =>  {
+    //   fetch('http://localhost:3333/graphql', {
+    //     method: 'POST',
+    //     headers: {'Content-Type' : 'application/json'},
+    //     body: JSON.stringify({ query: `
+    //       query {
+    //         getShorts {
+    //           //blogName
+    //           //userName
+    //         }
+    //       }`
+    //     }),
+    //   })
+    //   .then(res => 
+    //     res.json().then( ress => this.shorts.push(ress.data.adminconsole))
+    //   );
+    // })
 }
  
-  fetchData() {
-    // switch(this.option) {
-    //   case "Blogs" :
-    //     this.users = [{"name" : "Jack", "archived" : true},  {"name" : "Angela", "archived" : false}, {"name" : "Marceline", "archived" : true},{"name" : "Jonathan", "archived" : false}]
-    //     break
-    //   case "Users" :
-    //     this.users = [{"name" : "Jack", "roles" : ["A", "B"], "permissions" : ["Permission A", "Permission B"]}, {"name" : "Angela", "roles" : ["A", "D"], "permissions" : ["Permission A", "Permission B"]}, {"name" : "Marceline", "roles" : ["A","B", "C"], "permissions" : ["Permission A", "Permission B"]},{"name" : "Jonathan", "roles" : ["D"], "permissions" : ["Permission A", "Permission B"]}]
-    //     this.currentUser = this.users[0]
-    //     break
-    //   case "Roles" :
-    //     this.users = [{"name" : "Jack", "roles" : ["A", "B"]}, {"name" : "Angela", "roles" : ["A", "D"]}, {"name" : "Marceline", "roles" : ["A","B", "C"]},{"name" : "Jonathan", "roles" : ["D"]}]
-    //     this.currentUser = this.users[0]
-    //     break
-    // }
-    // this.currentUser = this.users[0]
+  fetchData() : void {
+    this.users = [{"name" : "John", "suspended" : true, "roles" : ["Role 1", "Role 2"], "permissions" : ["Permission 1", "Permission 2"]}, 
+    {"name" : "John", "suspended" : true, "roles" : ["Role 1", "Role 2"], "permissions" : ["Permission 1", "Permission 2"]},
+    {"name" : "John", "suspended" : true, "roles" : ["Role 1", "Role 2"], "permissions" : ["Permission 1", "Permission 2"]},
+    {"name" : "John", "suspended" : true, "roles" : ["Role 1", "Role 2"], "permissions" : ["Permission 1", "Permission 2"]},
+    {"name" : "John", "suspended" : true, "roles" : ["Role 1", "Role 2"], "permissions" : ["Permission 1", "Permission 2"]},
+    {"name" : "John", "suspended" : true, "roles" : ["Role 1", "Role 2"], "permissions" : ["Permission 1", "Permission 2"]},
+    {"name" : "John", "suspended" : true, "roles" : ["Role 1", "Role 2"], "permissions" : ["Permission 1", "Permission 2"]},
+    {"name" : "John", "suspended" : true, "roles" : ["Role 1", "Role 2"], "permissions" : ["Permission 1", "Permission 2"]},
+    {"name" : "John", "suspended" : true, "roles" : ["Role 1", "Role 2"], "permissions" : ["Permission 1", "Permission 2"]}]
+    this.currentUser = this.users[0]
 
-    // this.allPermissions = ["Permission 1", "Permission 2", "Permission 3", "Permission 4"]
-    // this.allRoles = ["Role 1", "Role 2", "Role 3", "Role 4", "Role 5"]
+    this.allPermissions = ["Permission 1", "Permission 2", "Permission 3", "Permission 4"]
+    this.allRoles = ["Role 1", "Role 2", "Role 3", "Role 4", "Role 5"]
   }
 
   sidenavOption(option : string) {
@@ -183,8 +179,11 @@ export class AdminconsoleComponent{
 
   addRole(role:  string){
     //add role to user object
+    if(this.currentUser.roles.indexOf(role) != -1)
+      return
     this.currentUser.roles.push(role)
     this.stagedAddRoles.push(role)
+    this.changeDetection.detectChanges()
   }
 
   removeRole(role : string) {
@@ -192,6 +191,24 @@ export class AdminconsoleComponent{
     let ind = this.currentUser.roles.indexOf(role)
     this.currentUser.roles.splice(ind,1)
     ind = this.stagedRemoveRoles.push(role)
+    this.changeDetection.detectChanges()
+
+  }
+
+  addPermission(p : string) {
+    if(this.currentUser.permissions.indexOf(p) != -1)
+      return
+    this.currentUser.permissions.push(p)
+    // this.stagedAddRoles.push(role)
+    this.changeDetection.detectChanges()
+  }
+
+  removePermission(p : string) {
+    let ind = this.currentUser.permissions.indexOf(p)
+    this.currentUser.permissions.splice(ind,1)
+    // ind = this.stagedRemoveRoles.push(role)
+    this.changeDetection.detectChanges()
+
   }
 
   changeRoles() : void {
@@ -248,4 +265,15 @@ export class AdminconsoleComponent{
 
   }
 
+  suspend() {
+    this.currentUser.suspended = true
+  }
+
+  unsuspend() {
+    this.currentUser.suspended = false
+  }
+
+  trackItem(index:number) {
+    return index
+  }
 }
