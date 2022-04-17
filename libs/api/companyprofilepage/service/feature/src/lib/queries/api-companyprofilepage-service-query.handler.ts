@@ -1,5 +1,5 @@
 import { UserNumber } from '@graduates/api/companyprofilepage/api/shared/data-access';
-import {CompanyProfilePage} from '@graduates/api/companyprofilepage/repository/data-access'
+import { CompanyProfilePage } from '@graduates/api/companyprofilepage/repository/data-access'
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { User, UserEmail, UserLocation, UserSocialMedia } from '@prisma/client';
 import { GetCompanyByIDQuery , GetCompanyEmailQuery, GetCompanyLocationQuery, GetCompanyNumberQuery, GetCompanySocialMediaQuery} from './api-companyprofilepage-service-query';
