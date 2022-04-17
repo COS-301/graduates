@@ -11,24 +11,21 @@ export class ApiStudentProfileResolver {
   async getStudent(@Args('studentNum', { type: () => String }) id: string) {
     // const studentArr = this.studentService.findById(id);
     const studentObj = new ApiStudentProfilesEntity();
-    studentObj.dateOfBirth = '19/09/1999';
-    studentObj.phoneNum = '0834521355';
-    studentObj.email = 'John.Wick@gmail.com';
-    studentObj.firstName = 'John';
+    studentObj.dateOfBirth = await this.studentService.getDoB(id);
+    // studentObj.phoneNum = await this.studentService.get(id);
+    studentObj.email = await this.studentService.getEmails(id);
+    studentObj.firstName = await this.studentService.getName(id);
     studentObj.studentNum = id;
-    studentObj.lastName = 'Wick';
-    studentObj.title = 'MSc';
-    studentObj.nameOfDegree = 'Computer Science';
-    studentObj.bio =
-      'From a young age John has showed promise, but it was not until age 20 that he got his second MSc...';
-    studentObj.tags = ['Security','Hacking','Error elimination'];
-    studentObj.employmentStatus = 'Unemployed, open to offers';
-    studentObj.preferredLocation = 'Pretoria';
-    studentObj.notableAchievements = ['Part of Facebook','Part of Goldenkey'];
-    studentObj.links = [
-      ['discord', 'http'],
-      ['twitch', 'https'],
-    ];
+    studentObj.lastName = await this.studentService.getName(id);
+    // studentObj.title = await this.studentService.get(id);
+    // studentObj.nameOfDegree = await this.studentService.get(id);
+    studentObj.bio = await this.studentService.getBio(id);
+    studentObj.tags = await this.studentService.getTags(id);
+    studentObj.employmentStatus = await this.studentService.getEmploymentStatus(id);
+    studentObj.preferredLocation = await this.studentService.getLocation(id);
+    // studentObj.notableAchievements = await this.studentService.get(id);
+    studentObj.links = await this.studentService.getSocialMedia(id);
+    studentObj.profilePhoto = await this.studentService.getPfp(id);
     studentObj.academicRecord = false;
     studentObj.cv = true;
     studentObj.capstoneProject = true;
@@ -36,13 +33,11 @@ export class ApiStudentProfileResolver {
     return studentObj;
   }
 
-  @Mutation(returns => ApiStudentProfilesEntity)
-  async editStudent(
-    @Args('editStudentData') editStudentData: StudentInput
-  ) {
+  @Mutation((returns) => ApiStudentProfilesEntity)
+  async editStudent(@Args('editStudentData') editStudentData: StudentInput) {
     //const studentArr = this.studentService.update(editStudentData);
     const studentObj = new ApiStudentProfilesEntity();
-   // studentObj.dateOfBirth = (await studentArr).pop();
+    // studentObj.dateOfBirth = (await studentArr).pop();
     //studentObj.phoneNum = (await studentArr).pop();
     //studentObj.email = (await studentArr).pop();
     //studentObj.firstName = (await studentArr).pop();
@@ -53,10 +48,10 @@ export class ApiStudentProfileResolver {
   }
 
   @Mutation((returns) => String)
-  async deleteStudent(@Args('studentNum', {type: () => String})id: string ) {
+  async deleteStudent(@Args('studentNum', { type: () => String }) id: string) {
     //const res = this.studentService.delete(id);
     //return res;
-    return "test";
+    return 'test';
   }
 
   @Mutation((returns) => ApiStudentProfilesEntity)
