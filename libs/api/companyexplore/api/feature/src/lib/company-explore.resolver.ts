@@ -11,7 +11,7 @@ export class ApiCompanyExploreResolver {
    constructor(private companyService: CompanyExploreService) {}
 
   /*@Query((returns) => ApiCompanyExploreEntity,{ name: 'company' })
-  async getCompanyDec(@Args('companyID', { type: () => String }) id: string) {
+  async getCompany(@Args('companyID', { type: () => String }) id: string) {
     const companyArr = this.companyService.findOneById(id);
     const companyObj = new ApiCompanyExploreEntity();
     companyObj.companyID = (await companyArr).pop();
@@ -20,10 +20,35 @@ export class ApiCompanyExploreResolver {
     return companyObj;
   }*/
 
-  /*@Query((returns) => ApiCompanyExploreEntity)
-  async findOneById(@Args('companyID', { type: () => String }) id: string) {
-    return this.companyService.getCompanyById(id);
-  }*/
+  @Query((returns) => ApiCompanyExploreEntity)
+  async getCompanyById(@Args('companyID', { type: () => String }) id: string) {
+    const companyArr = this.companyService.getCompanyById(id);
+    const companyObj = new ApiCompanyExploreEntity();
+    const UserprofileObj = new ApiCompanyExploreUserprofileEntity;
+    let profile = null;
+
+    companyObj.companyID = (await companyArr).pop();
+    companyObj.name = (await companyArr).pop();
+    companyObj.id = (await companyArr).pop;
+    companyObj.email = (await companyArr).pop;
+    companyObj.password = (await companyArr).pop;
+    companyObj.passwordSalt = (await companyArr).pop;
+    companyObj.name = (await companyArr).pop;
+    companyObj.dateOfBirth = (await companyArr).pop;
+    companyObj.companyID = (await companyArr).pop;
+    companyObj.created = (await companyArr).pop;
+    companyObj.suspended = (await companyArr).pop;
+    companyObj.validated = (await companyArr).pop;
+    
+    profile = (await companyArr).pop;
+    UserprofileObj.userId = profile.pop;
+    UserprofileObj.profilePicture = profile.pop;
+    UserprofileObj.bio = profile.pop;
+
+    companyObj.Userprofile = UserprofileObj;
+
+    return companyObj;
+  }
 
   @Query((returns) => Array<ApiCompanyExploreEntity>())
   async GetListOfComapnies() {
