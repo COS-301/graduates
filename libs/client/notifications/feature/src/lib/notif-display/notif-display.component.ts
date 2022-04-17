@@ -19,7 +19,6 @@ export class NotifDisplayComponent implements OnInit{
   ngOnInit(): void {
     this.notifApi.getNotificationsAll().subscribe({
       next: (res) => {
-        console.log(res.data);
         const notArr = res.data.notificationsAll;
         for (let i = notArr.length-1; i >= 0 ; i--) {
           const comp = this.placeholder.createComponent(ExpansionNotifComponent);
