@@ -5,7 +5,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Location } from '@angular/common';
 
 import {Apollo, gql } from 'apollo-angular';
-import { Router } from '@angular/router';
+// import { Router } from '@angular/router';
 
 @Component({
   selector: 'graduates-blog-explore',
@@ -43,7 +43,7 @@ export class BlogExploreComponent implements OnInit  {
   );
 
   testing = "";
-  constructor(private apollo: Apollo, private breakpointObserver: BreakpointObserver, private location: Location, private router: Router) {
+  constructor(private apollo: Apollo, private breakpointObserver: BreakpointObserver, private location: Location) {
     this.admin = false;
     this.newestFirstSort = true;
     this.loadGrid();
@@ -83,17 +83,17 @@ export class BlogExploreComponent implements OnInit  {
   }
 
   createBlog(){ 
-    this.router.navigate(['blog/create']);
+    // this.router.navigate(['blog/create']);
   }
 
   readBlog(blog: unknown){
     blog;
-    this.router.navigate(['blog/view']); //Change later when ID is added to the URL
+    // this.router.navigate(['blog/view']); //Change later when ID is added to the URL
   }
 
   editBlog(blog: unknown){
     blog;
-    this.router.navigate(['blog/create']); //Change later when ID is added to the URL
+    // this.router.navigate(['blog/create']); //Change later when ID is added to the URL
   }
 
   deleteBlog(blog: unknown){
