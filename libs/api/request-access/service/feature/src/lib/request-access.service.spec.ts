@@ -21,18 +21,18 @@ describe('RequestAccessService', () => {
   });
 
   it('should be not be null', async () => {
-    const call = await service.getAccessEntity("u12345678","42","5");
+    const call = await service.getAccessEntity("u12345678","42","CV");
     expect(call).not.toBeNull();
   });
 
   it('should be not be undefined', async () => {
-    const call = await service.getAccessEntity("u12345678","42","5");
+    const call = await service.getAccessEntity("u12345678","42","CV");
     expect(call).not.toBeUndefined();
   });
 
   it('should be equal to entity', async () => {
-    const call = await service.getAccessEntity("u12345678","42","5");
-    expect(call).toEqual({"companyID": "u12345678", "userID": "42", "item": "5"});
+    const call = await service.getAccessEntity("u12345678","42","CV");
+    expect(call).toEqual({"companyID": "u12345678", "userID": "42", "item": "CV"});
   });  
 
 });

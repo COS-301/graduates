@@ -48,7 +48,7 @@ export class RequestAccessService {
           companyID: (await result).CompId,
   
           userID: (await result).StudId,
-  
+
           item: (await result).ItemId,
   
         };
@@ -90,6 +90,6 @@ export class RequestAccessService {
         };
         return entity;
       }
+      return undefined;
     }
-
 }
