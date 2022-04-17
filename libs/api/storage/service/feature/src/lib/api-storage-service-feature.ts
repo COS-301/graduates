@@ -51,6 +51,7 @@ export class ApiStorageServiceFeatureModule {
       if(fileCategory=="Academic Record"){
         url = await this.repo.deleteFile(userID ,FileCategory.ACADEMIC_RECORD );
       }
+      console.log(url);
         return url;
     }
 
