@@ -1,5 +1,5 @@
 # Base Image
-FROM node
+From node as builder
 
 # Set working directory
 WORKDIR /app
@@ -7,20 +7,26 @@ WORKDIR /app
 # Copy package.json to the working directory
 COPY package*.json ./
 
-# Copy yarn.lock to the working directory
-COPY yarn.lock ./
-
 # Install dependencies using package.json
 RUN yarn install
+
+# Copy yarn.lock to the working directory
+COPY yarn.lock ./
 
 # Copy project files to the working directory
 COPY . .
 
+# Start the client application
+CMD ["yarn", "start:client"]
+
+From nginx
+
+COPY --from=builder /app /usr/share/nginx/html
 # Set environment variable PORT which is the PORT the container will run on
-ENV PORT=3333
+ENV PORT=80
 
 # Expose the PORT
-EXPOSE 3333
+EXPOSE 80
 
-# Start the client application
-CMD ["yarn", "start:api"]
+CMD ["nginx", "-g", "daemon off;"]
+
