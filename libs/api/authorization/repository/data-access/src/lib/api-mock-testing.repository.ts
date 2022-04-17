@@ -1,6 +1,7 @@
 import { Injectable, Param } from '@nestjs/common';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 import { Prisma, UserPermissions } from '@prisma/client';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 @Injectable()
 export class MockTestAuthorizationRepo {
   constructor(private prisma: PrismaService) {}
