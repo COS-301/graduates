@@ -45,7 +45,6 @@ export class CompanyRepresentativeRepository {
   }
 
   async createDefaultRep() : Promise<CompanyRepresentative>{
-    // Logger.log("in here");
     const existing_user = await this.prismaService.user.findUnique({
       where: {
         id: "c1234"
@@ -62,7 +61,6 @@ export class CompanyRepresentativeRepository {
     })
 
     if (!existing_user) {
-      Logger.log("in here");
       const new_user = await this.prismaService.user.create({
         data:{
           id: "c1234",
