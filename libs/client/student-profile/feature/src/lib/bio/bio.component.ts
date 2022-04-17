@@ -15,9 +15,10 @@ export class BioComponent implements OnInit {
     this.htmlstring = "";
   }
 
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   @Input() bio: any;
 
-   // eslint-disable-next-line @typescript-eslint/no-empty-function
+  //eslint-disable-next-line @typescript-eslint/no-empty-function
   ngOnInit(): void { 
    
   }

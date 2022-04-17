@@ -12,6 +12,7 @@ export class UserInfoComponent implements OnInit {
     this.studentInfo = null;
   }
 
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   @Input() studentInfo: any;
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function

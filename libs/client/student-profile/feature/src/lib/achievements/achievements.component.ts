@@ -12,7 +12,9 @@ export class AchievementsComponent implements OnInit {
     this.achievements = null;
   }
 
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   @Input() achievements: any;
+  
     // eslint-disable-next-line @typescript-eslint/no-empty-function
   ngOnInit(): void {
   }

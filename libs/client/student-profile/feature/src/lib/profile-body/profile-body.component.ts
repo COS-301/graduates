@@ -10,6 +10,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class ProfileBodyComponent implements OnInit {
 
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   studentObj: any;
 
   constructor(private apiCaller: ApiStudentProfileService, private route: ActivatedRoute) { 

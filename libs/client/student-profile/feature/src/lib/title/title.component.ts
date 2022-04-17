@@ -12,6 +12,7 @@ export class TitleComponent implements OnInit {
     this.title = null;
    }
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
    @Input() title: any;
    
   // eslint-disable-next-line @typescript-eslint/no-empty-function

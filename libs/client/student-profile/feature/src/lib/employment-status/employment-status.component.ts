@@ -12,7 +12,9 @@ export class EmploymentStatusComponent implements OnInit {
     this.employStatus = null;
    } 
 
+   /* eslint-disable @typescript-eslint/no-explicit-any */
    @Input() employStatus: any;
+   
 // eslint-disable-next-line @typescript-eslint/no-empty-function
   ngOnInit(): void {
     if(this.employStatus.employmentStatus =="Employed, not open to offers"){

@@ -12,7 +12,9 @@ export class DegreeComponent implements OnInit {
     this.degree = null;
   }
 
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   @Input() degree: any;
+  
 // eslint-disable-next-line @typescript-eslint/no-empty-function
   ngOnInit(): void {
 

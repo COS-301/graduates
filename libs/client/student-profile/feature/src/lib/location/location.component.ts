@@ -12,6 +12,7 @@ export class LocationComponent implements OnInit {
     this.location = null;
   }
 
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   @Input() location: any;
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
