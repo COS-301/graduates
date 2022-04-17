@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { ApiAuthorization } from '@graduates/api/authorization/api/shared';
 import { QueryBus } from '@nestjs/cqrs';
-import { GetDeletePermissionQuery } from './queries/impl/get-delete-permission.query';
-import { GetEditPermissionQuery } from './queries/impl/get-Edit-permission.query';
-import { GetViewPermissionQuery } from './queries/impl/get-View-permission.query';
+import { GetDeletePermissionQuery } from '../../../../service/feature/src/lib/queries/impl/get-delete-permission.query';
+import { GetEditPermissionQuery } from '../../../../service/feature/src/lib/queries/impl/get-edit-permission.query';
+import { GetViewPermissionQuery } from '../../../../service/feature/src/lib/queries/impl/get-view-permission.query';
 
 @Injectable()
 export class ApiAuthorizationService {
