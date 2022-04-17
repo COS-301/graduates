@@ -226,6 +226,9 @@
       "@graduates/api/upintegration/api/shared/data-access": [
         "libs/api/upintegration/api/shared/data-access/src/index.ts"
       ],
+      "@graduates/api/upintegration/repository/data-access": [
+        "libs/api/upintegration/repository/data-access/src/index.ts"
+      ],
       "@graduates/api/upintegration/service/feature": [
         "libs/api/upintegration/service/feature/src/index.ts"
       ],
