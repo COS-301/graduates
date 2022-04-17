@@ -72,13 +72,8 @@ export class ApiNotificationsService
     async updateSeen(id:string, seen:boolean) : Promise<Notification> {
         return await this.commandBus.execute(new UpdateSeenCommand(id,seen));
     }
-<<<<<<< HEAD
 
     async getUserObject(userId: string) : Promise<AuthenticationUser> {
-=======
-    
-    async getUserObject(userId: string) : Promise<User> {
->>>>>>> 4f833b2eae0eb1dec6505809cec01b3503f39974
         return await this.queryBus.execute(new GetUserObjectQuery(userId))
     }
     
