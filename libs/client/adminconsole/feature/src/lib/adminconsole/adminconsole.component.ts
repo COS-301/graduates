@@ -55,7 +55,7 @@ export class AdminconsoleComponent{
   }
 
   ngOnInit(): void {
-    
+    return
     //getUsers
     //   fetch('http://localhost:3333/graphql', {
     //   method: 'POST',
@@ -204,7 +204,7 @@ export class AdminconsoleComponent{
   }
 
   removePermission(p : string) {
-    let ind = this.currentUser.permissions.indexOf(p)
+    const ind = this.currentUser.permissions.indexOf(p)
     this.currentUser.permissions.splice(ind,1)
     // ind = this.stagedRemoveRoles.push(role)
     this.changeDetection.detectChanges()
@@ -259,10 +259,10 @@ export class AdminconsoleComponent{
   }
 
   archive() {
-
+    return
   }
   unarchive() {
-
+    return
   }
 
   suspend() {
