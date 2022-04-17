@@ -3,6 +3,9 @@ import { Field, ObjectType } from '@nestjs/graphql';
 @ObjectType()
 export class ApiStudentProfilesEntity {
   @Field()
+  dbId: string;
+
+  @Field()
   studentNum: string;
 
   @Field()

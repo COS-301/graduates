@@ -27,20 +27,28 @@ export class ApiStudentProfileResolver {
     const pos = fullName.indexOf(' ');
     studentObj.firstName = fullName.substring(0, pos);
     studentObj.lastName = fullName.substring(pos + 1, fullName.length);
+    //Get title and degree
     // studentObj.title = await this.studentService.get(dbId);
     // studentObj.nameOfDegree = await this.studentService.get(dbId);
+    //Get bio
     studentObj.bio = (await this.studentService.getBio(dbId)).bio;
+    //Get tags
     studentObj.tags = (await this.studentService.getTags(dbId)).tags;
+    //Get employmentStatus
     studentObj.employmentStatus = (
       await this.studentService.getEmploymentStatus(dbId)
     ).employmentStatus;
-    //return Prefered location
+    //Get Prefered location
     const location = await this.studentService.getLocation(dbId);
     studentObj.preferredLocation =
       location != null ? location.preferredLocation : 'Not specified';
+    //Get notable achievements
     // studentObj.notableAchievements = await this.studentService.get(dbId);
+    //Get links
     studentObj.links = (await this.studentService.getSocialMedia(dbId)).links;
+    //Get profile photo
     studentObj.profilePhoto = (await this.studentService.getPfp(dbId)).pfp;
+    //Check records
     studentObj.academicRecord =
       (await this.studentService.getFiles(dbId)) != null ? true : false;
     studentObj.cv =
@@ -54,7 +62,7 @@ export class ApiStudentProfileResolver {
   pingStudentProfiles() {
     return 'on';
   }
-  
+
   @Mutation((returns) => ApiStudentProfilesEntity)
   async editStudent(@Args('editStudentData') editStudentData: StudentInput) {
     //const studentArr = this.studentService.update(editStudentData);
@@ -88,5 +96,14 @@ export class ApiStudentProfileResolver {
       i++;
     }
     return this.getStudent(id);
+  }
+
+  //Mock Object:
+  async getMock(){
+    const mockStudent = new ApiStudentProfilesEntity();
+    
+
+
+    return mockStudent;
   }
 }
