@@ -278,7 +278,7 @@ export class StoryExploreComponent implements OnInit {
 
       this.alreadyReported = false;
 
-      for( let s of selectedCard.shortReport){
+      for( const s of selectedCard.shortReport){
         if(this.userId == s.userId){
           this.alreadyReported = true;
           break;
