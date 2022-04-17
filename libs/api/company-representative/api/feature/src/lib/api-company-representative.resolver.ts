@@ -2,7 +2,6 @@ import { CompanyRepresentative, CompanyRepresentativeFailedResponse} from '@grad
 import { ApiCompanyRepresentativeService } from '@graduates/api/company-representative/service/feature';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { PubSub } from 'graphql-subscriptions';
-import { User as authenticatedUser} from '@graduates/api/authentication/api/shared/interfaces/data-access';
 
 const pubSub = new PubSub();
 @Resolver(CompanyRepresentative)

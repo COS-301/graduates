@@ -1,16 +1,22 @@
 <mat-card class="card" fxLayout="column">
 
     <div>
-        Blog Summary
+        Blog Summary Blog Summary Blog Summary Blog Summary Blog Summary Blog Summary Blog Summary
     </div>
 
-    <mat-card-header fxFlexAlign="center">
+    <br>
+
+    <mat-card-header fxFlexAlign="center" class="cardTitle">
         <mat-card-title>Title:</mat-card-title>
         <mat-card-subtitle>Author:</mat-card-subtitle>
     </mat-card-header>
 
     <mat-card-content>
-        <button fxFlexAlign="center" class="cardbutton" mat-raised-button color="accent">Read More</button>
+        <div class="buttons">
+            <button class="editbutton" mat-raised-button color="accent">Edit Post</button>
+            <button class="deletebutton" mat-raised-button color="accent">Delete Post</button>
+            <button class="viewbutton" mat-raised-button color="accent">Read More</button>
+        </div>
     </mat-card-content>
 
 </mat-card>
