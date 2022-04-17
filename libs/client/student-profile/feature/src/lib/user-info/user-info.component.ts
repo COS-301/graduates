@@ -8,7 +8,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class UserInfoComponent implements OnInit {
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor() { 
     this.studentInfo = null;
   }

@@ -8,14 +8,12 @@ import { Observable } from 'rxjs';
 })
 export class ApiStudentProfileService {
 
-  
   constructor(private client: HttpClient) {
 
     }
-
     
     getStudentDetails(): Observable<any> {
-      const query = 'query ($studentNum: String!) {student(studentNum: $studentNum) { firstName, lastName, studentNum }}';
+      const query = 'query ($studentNum: String!) {student(studentNum: $studentNum) { studentNum, firstName, lastName, title, email, phoneNum, dateOfBirth, nameOfDegree, bio, tags, preferredLocation, employmentStatus, notableAchievements, links }}';
   
       const options = {
         headers: new HttpHeaders({

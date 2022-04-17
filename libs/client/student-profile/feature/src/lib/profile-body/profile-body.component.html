@@ -7,36 +7,33 @@
 <!--Insert Header component here-->
 <div><header-and-footer-header></header-and-footer-header></div>
 
-<div class="container">
+<div class="container" *ngIf="studentObj">
     <div class="section">
-       <!-- user-info component -->
-       <div *ngIf="studentObj">
-           <graduates-user-info [studentInfo]=studentObj></graduates-user-info>
-       </div> 
-    
-       <div class="dropdowns">
-            <!-- title component -->
-            <graduates-title></graduates-title>
+       
+        <!-- user-info component -->
+        <graduates-user-info [studentInfo]=studentObj></graduates-user-info>
 
-            <!-- degree component -->
-            <graduates-degree></graduates-degree>
+        <!-- title component -->
+        <graduates-title [title]=studentObj></graduates-title>
 
-            <!-- employment-status component -->
-            <graduates-employment-status></graduates-employment-status>
+        <!-- degree component -->
+        <graduates-degree [degree]=studentObj></graduates-degree>
 
-            <!-- location component -->
-            <graduates-location></graduates-location>
-       </div>
+        <!-- employment-status component -->
+        <graduates-employment-status [employStatus]=studentObj></graduates-employment-status>
+
+        <!-- location component -->
+        <graduates-location [location]=studentObj></graduates-location>
        
         <!-- bio component -->
-        <graduates-bio></graduates-bio>
+        <graduates-bio [bio]=studentObj></graduates-bio>
+
     </div>
     <div class="section">
-        <!-- profile-card componenet -->
-        <div *ngIf="studentObj">
-            <graduates-profile-card [name]=studentObj></graduates-profile-card>
-        </div>
         
+        <!-- profile-card componenet -->
+        <graduates-profile-card [name]=studentObj></graduates-profile-card>
+
     </div>
     <div class="section">
         
@@ -44,7 +41,8 @@
         <graduates-request-for-access-feature></graduates-request-for-access-feature>
         
         <!-- Achievements Component -->
-        <graduates-achievements></graduates-achievements>
+        <graduates-achievements [achievements]=studentObj></graduates-achievements>
+
     </div>
 </div>
 
