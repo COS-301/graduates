@@ -9,7 +9,7 @@ import { CompanyRepresentativeServiceService } from '../company-representative-s
   styleUrls: ['./company-representative-page.component.scss']
 })
 export class CompanyRepresentativePageComponent{
-  profilePicture = 'https://s-media-cache-ak0.pinimg.com/236x/c8/e8/cc/c8e8cc83e6eeb60061ba11c9d8ba9a11.jpg';
+  profilePicture = 'assets/thumbnails/profile.png';
   name = "NA";
   jobTitle = "NA";
   experience = "NA";
