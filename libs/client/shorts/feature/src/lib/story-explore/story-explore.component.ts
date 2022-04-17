@@ -211,8 +211,6 @@ export class StoryExploreComponent implements OnInit {
   pageIndex = 1;
   endIndex = 1;
 
-  searchText = "";
-
   cardlist = [{"user": {"name": "Matthew"},"shortTag":[{"tag":"TeamWork"}],"userId":"test","id":"fake","thumbnail":""}];
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
@@ -220,34 +218,19 @@ export class StoryExploreComponent implements OnInit {
     })
   );
 
+  getALLCardsQuery = "query{ getAllShorts{ user{  name  },shortTag{ tag },userId,id, thumbnail}}";
+
   // FUNCS
-  
-  loadAllCards(){
-    const test = "query{ getAllShorts{ user{  name  },shortTag{ tag },userId,id, thumbnail}}";
-    
-    if(!(this.apollo.client===undefined)) this.apollo
-    .watchQuery({
-      query: gql(test),
-    })
-    .valueChanges.subscribe((result: any) => {
-      this.cardlist = result.data.getAllShorts;
-      
-      console.log(result.data);
-
-      this.refreshCards();
-    });
-  }
-
   
   btnNaviClick(i : number){
     
     (<HTMLInputElement>document.getElementById("prevBtn")).disabled = false;
     (<HTMLInputElement>document.getElementById("nextBtn")).disabled = false;
     this.pageIndex += i;
-    if(this.pageIndex ==1){
+    if(this.pageIndex <=1){
       (<HTMLInputElement>document.getElementById("prevBtn")).disabled = true;
     }
-    if(this.endIndex == this.pageIndex){
+    if(this.endIndex <= this.pageIndex){
       (<HTMLInputElement>document.getElementById("nextBtn")).disabled = true;
     }
 
@@ -258,14 +241,51 @@ export class StoryExploreComponent implements OnInit {
 
 
   search(){
-    this.searchText = (<HTMLInputElement>document.getElementById("search")).value;
-    alert('searching for ' + this.searchText);
-    this.searchText = (<HTMLInputElement>document.getElementById("search")).value= "";
     
+    this.pageIndex = 1;
+
+    const searchText = (<HTMLInputElement>document.getElementById("search")).value;
+    alert('searching for ' + searchText);
+    (<HTMLInputElement>document.getElementById("search")).value= "";
+
+    if(searchText === "") this.loadAllCards();
+    else this.loadCardsByUserName(searchText);
+  }
+  loadAllCards(){
+
+    if(!(this.apollo.client===undefined)) this.apollo
+    .watchQuery({
+      query: gql(this.getALLCardsQuery),
+    })
+    .valueChanges.subscribe((result: any) => {
+      this.cardlist = result.data.getAllShorts;
+      
+      console.log(result.data);
+
+      this.endIndex = Math.ceil(this.cardlist.length/this.cardsPerPage);
+      this.btnNaviClick(0);
+    });
   }
 
   loadCardsByUserName(sText: string){
-
+    if(!(this.apollo.client===undefined)) this.apollo
+    .watchQuery({
+      query: gql(this.getALLCardsQuery),
+    })
+    .valueChanges.subscribe((result: any) => {
+      
+      this.cardlist = [];
+      const all = result.data.getAllShorts;
+      
+      for (let index = 0; index < all.length; index++) {
+        if(all[index].user.name === sText) this.cardlist.push(all[index]);
+      }
+      
+      // refresh page
+      
+      this.endIndex = Math.ceil(this.cardlist.length/this.cardsPerPage);
+      this.btnNaviClick(0);
+    });
   }
 
   loadCardsByTag(sText: string){
@@ -273,19 +293,20 @@ export class StoryExploreComponent implements OnInit {
   }
 
   refreshCards(){
-    this.endIndex = Math.ceil(this.cardlist.length/this.cardsPerPage);
+    
 
     this.cards = this.breakpointObserver.observe( Breakpoints.Handset).pipe(
       
       map(() => {
-
+      this.endIndex = Math.ceil(this.cardlist.length/this.cardsPerPage);
       const out = [];
 
       for (let index = 0; index < this.cardsPerPage; index++) {
-        if(index+(this.pageIndex-1)*this.cardsPerPage < this.cardlist.length) out.push(this.cardlist[index+(this.pageIndex-1)*this.cardsPerPage])
+        if(index+(this.pageIndex-1)*this.cardsPerPage < this.cardlist.length) out.push(this.cardlist[index+(this.pageIndex-1)*this.cardsPerPage]);
       }
-  
+      
       return out;
+
       })
     );
   }
