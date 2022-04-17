@@ -1,0 +1,42 @@
+@import "libs/client/shared/assets/ui/src/lib/global";
+
+.card{
+    
+    width: 150px;
+    height: 100px;
+    padding: 0 0 0 0;
+    display:inline-block;
+}
+.card img{
+    width: 150px;
+    height: 100px;
+}
+.icon{
+    font-size:70px !important;
+    color:$background-white;
+}
+
+.icon-button{
+    width: min-content;
+    height: min-content;
+    bottom:35px;
+    left:80px;
+}
+
+.cardheader{
+    font-size: small;
+}
+.cardbutton{
+    min-width:100%;
+    font-size:xx-small;
+    color:$background-white;
+    background-color:$primary-1 ;
+}/*
+
+//overriding mat menu default positions and stylings
+
+    width: 150px !important;
+    height:80px !important;}
+    position:relative!important;
+    
+*/

@@ -19,10 +19,10 @@
     "api-authorization-repository-shared": "libs/api/authorization/repository/shared",
     "api-authorization-service-feature": "libs/api/authorization/service/feature",
     "api-authorization-service-shared": "libs/api/authorization/service/shared",
+    "api-blog-api-feature": "libs/api/blog/api/feature",
     "api-blog-api-shared-entities-data-access": "libs/api/blog/api/shared/entities/data-access",
     "api-blog-repository-data-access": "libs/api/blog/repository/data-access",
     "api-blog-service-feature": "libs/api/blog/service/feature",
-    "api-blog-api-feature": "libs/api/blog/api/feature",
     "api-company-representative-api-feature": "libs/api/company-representative/api/feature",
     "api-company-representative-api-shared--data-access": "libs/api/company-representative/api/shared/data-access",
     "api-company-representative-repository-data-access": "libs/api/company-representative/repository/data-access",
@@ -79,6 +79,7 @@
     "client-blog-feature": "libs/client/blog/feature",
     "client-company-explore-feature": "libs/client/company-explore/feature",
     "client-company-notifications-feature": "libs/client/company-notifications/feature",
+    "client-company-profile-feature": "libs/client/student-profile/feature",
     "client-company-representative-feature": "libs/client/company-representative/feature",
     "client-e2e": "apps/client-e2e",
     "client-example-feature": "libs/client/example/feature",
@@ -97,7 +98,8 @@
     "client-student-explore-feature": "libs/client/student-explore/feature",
     "client-student-profile-feature": "libs/client/student-profile/feature",
     "client-student-requests-feature": "libs/client/student-requests/feature",
+    "client-request-for-access-feature": "libs/client/request-for-access/feature",
     "client-student-responses-feature": "libs/client/student-responses/feature",
-    "client-company-profile-feature": "libs/client/student-profile/feature"
+    "client-upintegration": "libs/client/upintegration"
   }
 }
