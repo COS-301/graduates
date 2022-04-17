@@ -26,25 +26,6 @@ export class NotificationsApi {
         return this.httpClient.post<any>('http://localhost:3333/graphql', JSON.stringify({ query: query}), options);
     }
 
-
-    sendMailNotification(emailFrom : string, emailTo : string, emailSubject : string, emailText : string): Observable<any | null> {
-        const query = `mutation {
-            notificationsGetUser(emailFrom: "${emailFrom}",emailTo: "${emailTo}",emailSubject: "${emailSubject}",emailText: "${emailText}") {
-              emailFrom
-              emailTo
-              emailSubject
-              emailText
-            }
-        }`
-            const options = {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json'
-            })
-        }
-
-        return this.httpClient.post<any>('http://localhost:3333/graphql', JSON.stringify({ query: query}), options);
-    }
-
     getUserEmailAndName(userId : string): Observable<any | null> {
         const query = `query {
             notificationsGetUser(userId: "${userId}") {

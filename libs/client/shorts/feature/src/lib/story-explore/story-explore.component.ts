@@ -9,7 +9,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Location } from '@angular/common';
 
 import {Apollo, gql} from 'apollo-angular';
-import { connectStorageEmulator } from 'firebase/storage';
 
 @Component({
   selector: 'graduates-story-explore',
@@ -25,7 +24,7 @@ export class StoryExploreComponent implements OnInit {
   pageIndex = 1;
   endIndex = 1;
 
-  cardlist = [{"user": {"name": "Matthew"},"shortTag":[{"tag":"TeamWork"}],"userId":"test","id":"fake","thumbnail":""}];
+  cardlist = [{"user": {"name": "Matthew"},"shortTag":[{"tag":"TeamWork"}],"userId":"test","id":"cl22e308w0208hcvks42s959n","thumbnail":""}];
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       return this.cardlist;
@@ -47,7 +46,6 @@ export class StoryExploreComponent implements OnInit {
   counter = 0;
   submit = false;
   return : boolean;
-
 
   test! : any;
 
@@ -73,13 +71,8 @@ export class StoryExploreComponent implements OnInit {
   viewingName = "Ernest Wright";
   viewingTags = "#Design #IMY #COS #software";
 
-
-
   fileError = "File is required.";
   uploadedFile! : any;
-
-
-
 
   constructor(private apollo: Apollo ,private breakpointObserver: BreakpointObserver, f : FormBuilder, private location: Location) {
     this.upload = false;
@@ -92,7 +85,6 @@ export class StoryExploreComponent implements OnInit {
     this.reported = false;
     this.VideoFileBase64 = null;
     this.ThumbnailFileBase64 = null;
-
     this.fileuploadflag= true;
     this.thumbnailuploadflag = true;
   }
@@ -122,7 +114,7 @@ export class StoryExploreComponent implements OnInit {
       this.Base64encode(this.VideoFile).then(resp => {
         this.VideoFileBase64 = resp;
         this.fileuploadflag = false;
-        // console.log(resp);
+        console.log(resp); //this will log the base64 in the terminal on attatch
       })
     }
   }
@@ -136,7 +128,7 @@ export class StoryExploreComponent implements OnInit {
       this.Base64encode(this.ThumbnailFile).then(resp => {
         this.ThumbnailFileBase64 = resp;
         this.thumbnailuploadflag = false;
-        // console.log(resp);
+        console.log(resp); //this will log the base64 in the terminal on attatch
       })
     }
   }
@@ -147,12 +139,42 @@ export class StoryExploreComponent implements OnInit {
     this.submit = true;
 
     if (this.ValidUpload()) {
-      
-      //form is valid here:
-      
+
+      //get Tag array:
+      const tags = this.getTagArray();
+      console.log(tags);
+
+      //form is valid here, upload to the API:
+      this.uploadShortToAPI().then(resp => {
+        console.log(resp);
+
+        //here is for the response from the upload uploadShortToAPI() and to show success and to remove the loading symbol...
+
+        //this.VideoFile = the Video object uploaded
+        //this.ThumbnailFile = the Thumbnail object uploaded
+
+        //this.ThumbnailFileBase64 = Base64 of the Thumbnail
+        //this.VideoFileBase64 = Base64 of the Video
+
+      })
 
     } 
 
+  }
+
+
+  getTagArray() : any {
+    const s = this.uploadfrm.controls['tags'].value;
+    const output = s.split('#');
+    output.shift();
+    return output;
+  }
+
+  uploadShortToAPI() {
+    return new Promise((resolve, _) => {
+      //mutation to the API for creating a short:
+      resolve('after API call sen response here');
+    })
   }
 
   ValidUpload() : boolean {
@@ -163,6 +185,7 @@ export class StoryExploreComponent implements OnInit {
     return true;
   }
 
+  //Drunken code to push a base64 to a video tag on the screen...
   // console.log(resp);
   //     this.d1.nativeElement.insertAdjacentHTML('beforeEnd', `
   //       <video width="320" height="240" controls>
@@ -180,12 +203,10 @@ export class StoryExploreComponent implements OnInit {
       reader.onloadend = () => resolve(reader.result);
       reader.readAsDataURL(file);
     })
-
   }
 
   TagValidator(tags : FormControl) : {[valtype : string] : string} | null {
     const text = tags.value;
-    console.log(text);
     if (text.length == 0) return {'errormsg' : 'A tag is required.'}
     const re = /^(#(([a-z]|[0-9]|[A-Z]|_)+))+$/g;
     if (text.search(re)) return {'errormsg' : 'Please use example tag format.'}
@@ -213,6 +234,8 @@ export class StoryExploreComponent implements OnInit {
   }
 
   viewStory(s : string) {
+    this.viewing = true;
+
     this.viewingName = "";
     this.viewingTags = "";
 
@@ -238,7 +261,7 @@ export class StoryExploreComponent implements OnInit {
       
       this.viewingName = selectedCard.user.name;
       for(const a of selectedCard.shortTag){
-        this.viewingTags += a.tag +" ";
+        this.viewingTags += `#${ a.tag } `;
       }
 
       this.currentlyViewing = s;
