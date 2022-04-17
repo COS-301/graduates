@@ -19,9 +19,7 @@ describe('RequestForAccessService', () => {
 
   it('should be called', () => {
     const spy = jest.spyOn(service, 'getResourceStatuses');
-
     service.getResourceStatuses('34232','3222');
-
     expect(spy).toHaveBeenCalled();
   });
 
