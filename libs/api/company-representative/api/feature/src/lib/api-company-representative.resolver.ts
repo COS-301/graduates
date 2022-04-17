@@ -10,7 +10,7 @@ export class ApiCompanyRepresentativeResolver {
     constructor(private apiCompanyRepresentativeService: ApiCompanyRepresentativeService) {}
 
   @Query((returns) => CompanyRepresentative)
-  async getCompaneyRepresentative(@Args('id') id: string): Promise<CompanyRepresentative|CompanyRepresentativeFailedResponse> {
+  async getCompanyRepresentative(@Args('id') id: string): Promise<CompanyRepresentative|CompanyRepresentativeFailedResponse> {
     const resp = await this.apiCompanyRepresentativeService.getCompanyRepresentative(id);
     if (!resp) {
       const data = new CompanyRepresentativeFailedResponse();
@@ -32,7 +32,7 @@ export class ApiCompanyRepresentativeResolver {
   }
 
   @Query((returns) => CompanyRepresentative)
-  async deleteCompaneyRepresentative(@Args('id') id: string): Promise<CompanyRepresentative|CompanyRepresentativeFailedResponse> {
+  async deleteCompanyRepresentative(@Args('id') id: string): Promise<CompanyRepresentative|CompanyRepresentativeFailedResponse> {
     const resp = await this.apiCompanyRepresentativeService.getCompanyRepresentative(id);
     if (!resp) {
       const data = new CompanyRepresentativeFailedResponse();
