@@ -2,6 +2,7 @@ import { CompanyRepresentative } from '@graduates/api/company-representative/api
 import { Injectable } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { DeleteRepresentativeCommand } from './commands/impl/deleteRepresentative.command';
+import { GetDefaultRepresentativeCommand } from './commands/impl/getDefaultRepresentative.command';
 import { GetCompanyRepresentativeQuery } from './queries/impl/getRepresentative.query';
 import { GetCompanyRepresentativeLoginQuery } from './queries/impl/getRepresentativeLoginID.query';
 
@@ -20,5 +21,9 @@ export class ApiCompanyRepresentativeService {
 
   async deleteRepresentative(repId: string) {
     return this.commandBus.execute(new DeleteRepresentativeCommand(repId));
+  }
+
+  async createDefaultRepresentative() {
+    return this.commandBus.execute(new GetDefaultRepresentativeCommand("c1234"));
   }
 }
