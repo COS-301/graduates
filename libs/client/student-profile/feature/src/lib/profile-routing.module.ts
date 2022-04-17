@@ -8,7 +8,7 @@ const routes: Routes = [
     component: ProfileBodyComponent
   },
   {
-    path: '/:id',
+    path: ':id',
     component: ProfileBodyComponent
   }
 ];

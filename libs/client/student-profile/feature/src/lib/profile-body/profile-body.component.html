@@ -10,11 +10,10 @@
 <div class="container">
     <div class="section">
        <!-- user-info component -->
-       <!-- <div *ngIf="studentObj">
+       <div *ngIf="studentObj">
            <graduates-user-info [studentInfo]=studentObj></graduates-user-info>
-       </div>  -->
-       <graduates-user-info></graduates-user-info>
-
+       </div> 
+    
        <div class="dropdowns">
             <!-- title component -->
             <graduates-title></graduates-title>
@@ -34,23 +33,20 @@
     </div>
     <div class="section">
         <!-- profile-card componenet -->
-        <!-- <div *ngIf="studentObj">
+        <div *ngIf="studentObj">
             <graduates-profile-card [name]=studentObj></graduates-profile-card>
-        </div> -->
-        <graduates-profile-card></graduates-profile-card>
+        </div>
         
     </div>
     <div class="section">
-        <!-- Achievements Component -->
-        <graduates-achievements></graduates-achievements>
         
         <!--Request for Access Component-->
         <graduates-request-for-access-feature></graduates-request-for-access-feature>
         
+        <!-- Achievements Component -->
+        <graduates-achievements></graduates-achievements>
     </div>
 </div>
 
-<div><header-and-footer-footer></header-and-footer-footer></div>
-
-
 <!--Insert Footer component here-->
+<div><header-and-footer-footer></header-and-footer-footer></div>
