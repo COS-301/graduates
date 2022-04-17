@@ -1,6 +1,6 @@
 import { CompanyRepresentative } from '@graduates/api/company-representative/api/shared/data-access';
 import { ApiCompanyRepresentativeService } from '@graduates/api/company-representative/service/feature';
-import { Args, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 
 @Resolver()
 export class ApiCompanyRepresentativeResolver {
@@ -16,4 +16,8 @@ export class ApiCompanyRepresentativeResolver {
     return await this.companyRepresentativeService.login(email, password);
   }
 
+  @Mutation((returns) => CompanyRepresentative)
+  async deleteCompanyRepresentative(@Args('id') id: string): Promise<CompanyRepresentative> {
+    return await this.companyRepresentativeService.deleteRepresentative(id);
+  }
 }
