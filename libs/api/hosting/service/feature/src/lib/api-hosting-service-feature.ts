@@ -225,6 +225,5 @@ export class ApiHostingServiceFeatureModule{
 
     this.hosting.push(unimplemented1);
   }
-  //To-do and the following queries
  
 }
