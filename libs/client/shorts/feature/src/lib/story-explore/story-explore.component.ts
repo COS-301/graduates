@@ -9,7 +9,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Location } from '@angular/common';
 
 import {Apollo, gql} from 'apollo-angular';
-import { connectStorageEmulator } from 'firebase/storage';
 
 @Component({
   selector: 'graduates-story-explore',
@@ -25,7 +24,7 @@ export class StoryExploreComponent implements OnInit {
   pageIndex = 1;
   endIndex = 1;
 
-  cardlist = [{"user": {"name": "Matthew"},"shortTag":[{"tag":"TeamWork"}],"userId":"test","id":"fake","thumbnail":""}];
+  cardlist = [{"user": {"name": "Matthew"},"shortTag":[{"tag":"TeamWork"}],"userId":"test","id":"cl22e308w0208hcvks42s959n","thumbnail":""}];
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       return this.cardlist;
@@ -122,7 +121,7 @@ export class StoryExploreComponent implements OnInit {
       this.Base64encode(this.VideoFile).then(resp => {
         this.VideoFileBase64 = resp;
         this.fileuploadflag = false;
-        // console.log(resp);
+        console.log(resp); //this will log the base64 in the terminal on attatch
       })
     }
   }
@@ -136,7 +135,7 @@ export class StoryExploreComponent implements OnInit {
       this.Base64encode(this.ThumbnailFile).then(resp => {
         this.ThumbnailFileBase64 = resp;
         this.thumbnailuploadflag = false;
-        // console.log(resp);
+        console.log(resp); //this will log the base64 in the terminal on attatch
       })
     }
   }
@@ -145,14 +144,21 @@ export class StoryExploreComponent implements OnInit {
     if (this.fileuploadflag) this.fileuploaderror = "A video file is required.";
     if (this.thumbnailuploadflag) this.thumbnailuploaderror = "An image file is required.";
     this.submit = true;
-
     if (this.ValidUpload()) {
-      
-      //form is valid here:
-      
+      //form is valid here, upload to the API:
+      this.uploadShortToAPI().then(resp => {
+        console.log(resp);
+      })
 
     } 
 
+  }
+
+  uploadShortToAPI() {
+    return new Promise((resolve, _) => {
+      //mutation to the API:
+      resolve('hi');
+    })
   }
 
   ValidUpload() : boolean {
@@ -180,7 +186,6 @@ export class StoryExploreComponent implements OnInit {
       reader.onloadend = () => resolve(reader.result);
       reader.readAsDataURL(file);
     })
-
   }
 
   TagValidator(tags : FormControl) : {[valtype : string] : string} | null {
@@ -213,6 +218,8 @@ export class StoryExploreComponent implements OnInit {
   }
 
   viewStory(s : string) {
+    this.viewing = true;
+
     this.viewingName = "";
     this.viewingTags = "";
 
@@ -238,7 +245,7 @@ export class StoryExploreComponent implements OnInit {
       
       this.viewingName = selectedCard.user.name;
       for(const a of selectedCard.shortTag){
-        this.viewingTags += a.tag +" ";
+        this.viewingTags += `#${ a.tag } `;
       }
 
       this.currentlyViewing = s;
