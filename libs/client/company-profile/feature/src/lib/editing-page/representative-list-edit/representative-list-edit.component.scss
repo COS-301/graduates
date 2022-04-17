@@ -28,6 +28,14 @@ mat-icon {
     overflow: auto;
 }
 
+mat-form-field {
+    width: 100%;
+}
+
+textarea {
+    width: 100%;
+}
+
 a {
     color: black;
 }
@@ -35,4 +43,10 @@ a {
 a:hover {
     color: #174372;
     text-decoration: none;
+}
+
+.btn {
+    position: relative;
+    left: 25%;
+    // right: 50%;
 }

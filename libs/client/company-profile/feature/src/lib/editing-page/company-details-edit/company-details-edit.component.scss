@@ -1,8 +1,12 @@
 @import 'libs/client/shared/assets/ui/src/lib/global';
+
+div {
+    overflow: auto;
+}
+
 h2 {
     color: #174372;
     margin-bottom: 1px;
-    white-space: nowrap;
 }
 
 mat-divider {
@@ -23,16 +27,28 @@ mat-icon {
     margin-top: 2%;
 }
 
-.representatives_list {
-    max-height: 100px;
-    overflow: auto;
+p {
+    white-space: nowrap;
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
-a {
-    color: black;
+mat-form-field {
+    width: 100%;
 }
 
-a:hover {
-    color: #174372;
-    text-decoration: none;
+textarea {
+    width: 90%;
+    resize: none;
+    height: 20px;
+}
+
+.btn {
+    position: relative;
+    left: 25%;
+    // right: 50%;
+}
+
+input {
+    width: 90%;
 }
