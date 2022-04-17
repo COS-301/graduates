@@ -249,6 +249,7 @@ export class StoryExploreComponent implements OnInit {
     (<HTMLInputElement>document.getElementById("search")).value= "";
 
     if(searchText === "") this.loadAllCards();
+    else if(searchText[0] === '#') this.loadCardsByTag(searchText);
     else this.loadCardsByUserName(searchText);
   }
   loadAllCards(){
@@ -262,6 +263,34 @@ export class StoryExploreComponent implements OnInit {
       
       console.log(result.data);
 
+      this.endIndex = Math.ceil(this.cardlist.length/this.cardsPerPage);
+      this.btnNaviClick(0);
+    });
+  }
+
+  loadCardsByTag(sText: string){
+    if(!(this.apollo.client===undefined)) this.apollo
+    .watchQuery({
+      query: gql(this.getALLCardsQuery),
+    })
+    .valueChanges.subscribe((result: any) => {
+      
+      this.cardlist = [];
+      const all = result.data.getAllShorts;
+      
+      for (let index = 0; index < all.length; index++) {
+
+        for(let el of all[index].shortTag){
+          if(el.tag === sText) {
+            this.cardlist.push(all[index]);
+            break;
+          }
+        }
+        
+       }
+      
+      // refresh page
+      
       this.endIndex = Math.ceil(this.cardlist.length/this.cardsPerPage);
       this.btnNaviClick(0);
     });
@@ -286,10 +315,6 @@ export class StoryExploreComponent implements OnInit {
       this.endIndex = Math.ceil(this.cardlist.length/this.cardsPerPage);
       this.btnNaviClick(0);
     });
-  }
-
-  loadCardsByTag(sText: string){
-
   }
 
   refreshCards(){
