@@ -32,7 +32,7 @@ export class ApiCompanyRepresentativeResolver {
 
   @Query((returns) => CompanyRepresentative)
   async deleteCompanyRepresentative(@Args('id') id: string): Promise<CompanyRepresentative|CompanyRepresentativeFailedResponse> {
-    const resp = await this.apiCompanyRepresentativeService.getCompanyRepresentative(id);
+    const resp = await this.apiCompanyRepresentativeService.deleteRepresentative(id);
     if (!resp) {
       const data = new CompanyRepresentativeFailedResponse();
       data.response = "User does not exist";
