@@ -1,14 +1,14 @@
 import { Resolver, Query, Args } from '@nestjs/graphql';
 import { ApiCompanyExploreEntity } from "@graduates/api/companyexplore/api/shared/interfaces/data-access";
 import { ApiCompanyExploreUserprofileEntity } from "@graduates/api/companyexplore/api/shared/interfaces/data-access";
-//import { ApiCompanyExploreService } from '@graduates/api/companyexplore/service/feature';
-import { CompanyExploreRepository } from '@graduates/api/companyexplore/repository/data-access';
+import { CompanyExploreService } from '@graduates/api/companyexplore/service/feature';
+//import { CompanyExploreRepository } from '@graduates/api/companyexplore/repository/data-access';
 import { ApiCompanyExploreUserEntity } from "@graduates/api/companyexplore/api/shared/interfaces/data-access";
 import { ApiCompanyExploreTaggedEntity } from "@graduates/api/companyexplore/api/shared/interfaces/data-access";
 
 @Resolver((of) => ApiCompanyExploreEntity)
 export class ApiCompanyExploreResolver {
-   constructor(private companyRepository: CompanyExploreRepository) {}
+   constructor(private companyService: CompanyExploreService) {}
 
   /*@Query((returns) => ApiCompanyExploreEntity,{ name: 'company' })
   async getCompanyDec(@Args('companyID', { type: () => String }) id: string) {
@@ -21,8 +21,13 @@ export class ApiCompanyExploreResolver {
   }*/
 
   @Query((returns) => ApiCompanyExploreEntity)
+  async findOneById(@Args('companyID', { type: () => String }) id: string) {
+    return this.companyService.getCompanyById(id);
+  }
+
+  @Query((returns) => Array<ApiCompanyExploreEntity>())
   async GetListOfComapnies() {
-    const CompaniesArr = this.companyRepository.getDefaultCompany();
+    const CompaniesArr = this.companyService.getDefaultCompany();
     const arrOfCompanies = new Array<ApiCompanyExploreEntity>();
     let CompaniesObj = new ApiCompanyExploreEntity;
     let UserprofileObj = new ApiCompanyExploreUserprofileEntity;
@@ -58,9 +63,9 @@ export class ApiCompanyExploreResolver {
     return arrOfCompanies;
   }
 
-  @Query((returns) => ApiCompanyExploreEntity)
+  @Query((returns) => Array<ApiCompanyExploreEntity>())
   async GetCompanySearchResult(@Args('company_name', { type: () => String }) company_name: string) {
-    const CompaniesArr = this.companyRepository.getSearchResults(company_name);
+    const CompaniesArr = this.companyService.getSearchResults(company_name);
     const arrOfCompanies = new Array<ApiCompanyExploreEntity>();
     let CompaniesObj = new ApiCompanyExploreEntity;
     let UserprofileObj = new ApiCompanyExploreUserprofileEntity;
@@ -96,9 +101,9 @@ export class ApiCompanyExploreResolver {
     return arrOfCompanies;
   }
 
-  @Query((returns) => ApiCompanyExploreEntity)
+  @Query((returns) => Array<ApiCompanyExploreTaggedEntity>())
   async GetCompanyTagged(@Args('inputTag', { type: () => String }) inputTag: string) {
-    const CompaniesArr = this.companyRepository.getTaggedCompany(inputTag);
+    const CompaniesArr = this.companyService.getTaggedCompany(inputTag);
     const arrOfCompanies = new Array<ApiCompanyExploreTaggedEntity>();
     let TaggedObj = new ApiCompanyExploreTaggedEntity;
     let UserObj = new ApiCompanyExploreUserEntity;
