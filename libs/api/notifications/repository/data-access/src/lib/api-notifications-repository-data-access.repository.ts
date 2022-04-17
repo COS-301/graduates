@@ -1,18 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
-import { Notification, Prisma } from '@prisma/client';
+import { Notification, User, Prisma } from '@prisma/client';
 
 @Injectable()
 export class NotificationsRepository {
   constructor(private prisma: PrismaService) {}
 
   async findNotificationsAll(): Promise<Notification[] | null> {
-    const res = this.prisma.notification.findMany();
-    return (res) ? res : null;
+    return await this.prisma.notification.findMany();
   }
 
   async findNotificationById(id: string): Promise<Notification | null> {
-    return this.prisma.notification.findUnique({
+    return await this.prisma.notification.findUnique({
       where: {
         id : id
       }
@@ -20,7 +19,7 @@ export class NotificationsRepository {
   }
 
   async findNotificationsReceived(userId : string): Promise<Notification[] | null> {
-    return this.prisma.notification.findMany({
+    return await this.prisma.notification.findMany({
       where: {
         userIdTo : userId
       }
@@ -28,7 +27,7 @@ export class NotificationsRepository {
   }
 
   async findNotificationsSent(userId : string): Promise<Notification[] | null> {
-    return this.prisma.notification.findMany({
+    return await this.prisma.notification.findMany({
       where: {
         userIdFrom : userId
       }
@@ -90,5 +89,13 @@ export class NotificationsRepository {
         data : notificationData //this looks confusing but data: {} is a prisma keyword and data is the name of our JSON field
       }
     });
+  }
+
+  async findUserEntity(userId : string) : Promise<User | null> {
+    return await this.prisma.user.findUnique({
+      where: {
+        id: userId
+      }
+    })
   }
 }

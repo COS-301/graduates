@@ -6,7 +6,8 @@ const routes: Routes = [
   {
     path: '',
     component: CompanyExploreFeatureComponent
-  }
+  },
+  {path:'search/:search',component:CompanyExploreFeatureComponent}
 ];
 
 @NgModule({
