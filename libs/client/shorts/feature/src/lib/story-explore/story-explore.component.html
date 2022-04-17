@@ -1,6 +1,7 @@
+<!-- header from shared -->
+<div><header-and-footer-header></header-and-footer-header></div>
 
-<div id="wholepage">
-  <div><header-and-footer-header></header-and-footer-header></div>
+<div class="wholepagecontent" id="wholepage">
 
   <!-- Story Explore -->
   <div class="grid-container">
@@ -8,11 +9,11 @@
     <div id="content-wrap">
 
       <!-- page title -->
-      <h1 class = "banner-text text-center pt-3 w-100 auto-col-maker">Student Shorts</h1>
+      <h1 class = "banner-text text-center pt-3 w-100">Student Shorts</h1>
       <!-- search bar -->
-      <div class="auto-col-maker">
-        <input *ngIf="!upload" (change)="search()" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
-        <input *ngIf="upload" disabled="true" (change)="search()" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
+      <div class="">
+        <input *ngIf="!upload" (keydown.enter)="search()" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
+        <input *ngIf="upload" disabled="true" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." type="text" fxFlex="70%" fxFlexOffset="-10%">
       </div>
 
       <!-- column manager for all cards -->
@@ -42,13 +43,12 @@
     </div> 
 
     <!-- pager buttons -->
-    <div class="m-4 mb-8 pager">
+    <div class="centindiv pager">
         <!-- Page Navigation -->
-        <div class="flex justify-center p-0 m-0">
+        <div>
           <button id ="prevBtn" disabled (click)="btnNaviClick(-1)" class=" px-4 py-2 formbuttonblue rounded">
               Prev
           </button>
-      
           <button id ="curBtn" disabled class="px-4 py-2 rounded bg-gray-300  mx-2">
               1
           </button>
@@ -71,12 +71,17 @@
 
       <!-- file input -->
       <div class="fileupload mr-3 ml-3 mb-3">
-        <!-- <input type="file" class="file:border file:border-solid ..." /> -->
+
+        <div class="text-center my-1 infocolour">Select or Drag and Drop your files</div>
+
         <div class="w-full">
-          <div class="text-center mb-1 infocolour">Select or Drag and Drop a file...</div>
+
+          <div class="my-1 infocolour">Story Video:</div>
+
             <div id="fileupload" class="mt-2 px-8">
               <div class="mt-1">
-                <!-- drag and drop file input -->
+                <!-- drag and drop file input -> video -->
+
                 <input id="file" type="file" class="block w-full text-sm text-slate-600
                   file:py-1 file:px-1
                   file:rounded file:border-0
@@ -84,8 +89,7 @@
                   py-8
                   h-500
                 "
-                  value="hi"
-                  formcontrolname="file"
+                  formControlName="file"
                   [ngClass]="{'is-invalid': submit && uploadfrm.controls['file'].errors}"
                   (change)="onFileUpload($event)"
                 />
@@ -93,8 +97,32 @@
             </div>
             <!-- no file selected error -->
             <div *ngIf="submit" class="text-right error mt-1">
-              {{ fileError }}
+              {{ reportfrm.controls['file'].errors!['errormsg']}}
             </div>
+
+          <div class="mt-2 infocolour">Thumbnail for Video:</div>
+
+            <div id="fileupload" class="mt-2 px-8">
+              <div class="mt-1">
+                <!-- drag and drop file input -> thumbnail -->
+                <input id="file" type="file" class="block w-full text-sm text-slate-600
+                  file:py-1 file:px-1
+                  file:rounded file:border-0
+                  file:text-sm
+                  py-8
+                  h-500
+                "
+                  formControlName="thumbnail"
+                  [ngClass]="{'is-invalid': submit && uploadfrm.controls['thumbnail'].errors}"
+                  (change)="onThumbnailUpload($event)"
+                />
+              </div>
+            </div>
+            <!-- no file selected error -->
+            <div *ngIf="submit" class="text-right error mt-1">
+              {{ reportfrm.controls['thumbnail'].errors!['errormsg']}}
+            </div>
+
         </div>
       </div>
 
@@ -112,7 +140,7 @@
       <div>
         <div class="grid grid-cols-2 place-content-center pb-3">
           <div class="flex justify-center"><button class="py-2.5 px-3 formbuttonblue rounded" (click)="cancelUpload()">Cancel</button></div>
-          <div class="flex justify-center"><button class="py-2.5 px-3 formbuttonblue rounded">Submit</button></div>
+          <div class="flex justify-center"><button class="py-2.5 px-3 formbuttonblue rounded" type="submit">Submit</button></div>
         </div>
       </div>
 
@@ -157,13 +185,16 @@
       <div class="m-3">
         <textarea id="reason" placeholder="Type your reason here..." rows="6" type="text" formControlName="reason" class="w-full drop-shadow-md rounded" [ngClass]="{'is-invalid': submit && uploadfrm.controls['reason'].errors}">this is a test</textarea>
         <div *ngIf="reported && reportfrm.controls['reason'].errors" class="text-right error mt-1">
-          A reason is required is required.
+          {{ reportfrm.controls['reason'].errors!['errormsg']}}
+        </div>
+        <div class="text-right error mt-1">
+          {{ apifailure }}
         </div>
       </div>
       <!-- buttons for CANCEL and REPORT -->
       <div class="grid grid-cols-2 place-content-center pb-3">
         <div class="flex justify-center"><button class="py-2.5 px-3 formbuttonblue rounded" (click)="cancelReport()">Cancel</button></div>
-        <div class="flex justify-center"><button class="py-2.5 px-3 formbuttonred rounded" (click)="submitReport()">Submit</button></div>
+        <div class="flex justify-center"><button class="py-2.5 px-3 formbuttonred rounded" type="submit">Submit</button></div>
       </div>
     </form>
 
@@ -182,6 +213,7 @@
 
   </div>
   
-  <div><header-and-footer-footer></header-and-footer-footer></div>
 </div>
 
+<!-- footer from shared -->
+<header-and-footer-footer></header-and-footer-footer>

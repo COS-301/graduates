@@ -1,11 +1,12 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import { Notification, NotificationData } from '@graduates/api/notifications/api/shared'
-import { 
+import {
     GetAllUserNotificationsQuery,
     GetNotificationByIdQuery,
     GetNotificationsReceivedQuery,
     GetNotificationsSentQuery,
-    GetNotificationsByTypeQuery
+    GetNotificationsByTypeQuery,
+    GetUserObjectQuery
 
 } from './queries/api-notifications-service-queries.query';
 import {
@@ -17,14 +18,27 @@ from './commands/api-notifications-service-commands.command'
 import { SendMailEvent } from './events/send-mail.event';
 import { QueryBus, CommandBus, EventBus } from '@nestjs/cqrs';
 import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
+import { ModuleRef } from '@nestjs/core';
 
 
 @Injectable()
-export class ApiNotificationsService {
+export class ApiNotificationsService 
+// implements OnModuleInit 
+{
+//   private tempQueryBus : QueryBus;
+//   private tempCommaBus : CommandBus;
+//   private tempEventBus : EventBus;
+
+//   async onModuleInit() {
+//         this.tempQueryBus = await this.moduleRef.get(QueryBus);
+//         this.tempCommaBus = await this.moduleRef.get(CommandBus);
+//         this.tempEventBus = await this.moduleRef.get(EventBus);
+//     }
     constructor(
-        private readonly queryBus:QueryBus, 
-        private readonly commandBus:CommandBus, 
-        private readonly eventBus:EventBus
+        private readonly queryBus:QueryBus,
+        private readonly commandBus:CommandBus,
+        private readonly eventBus:EventBus,
+        private moduleRef: ModuleRef
     ){}
 
     sendToMail(emailFrom:string, emailTo:string, emailSubject:string, emailText:string){
@@ -35,7 +49,7 @@ export class ApiNotificationsService {
         return await this.queryBus.execute(new GetAllUserNotificationsQuery())
     }
 
-    async getNotificationsById(id: string) : Promise<Notification> { 
+    async getNotificationsById(id: string) : Promise<Notification> {
         return await this.queryBus.execute(new GetNotificationByIdQuery(id))
     }
 
@@ -54,7 +68,7 @@ export class ApiNotificationsService {
     async createRequestNotification(userIdTo:string, userIdFrom:string, notificationType:string) : Promise<Notification> {
         return await this.commandBus.execute(new CreateRequestNotificationCommand(userIdTo, userIdFrom, notificationType));
     }
-    
+
     async updateRequestNotification(id:string, status:string) : Promise<Notification> {
         return await this.commandBus.execute(new UpdateRequestNotificationCommand(id, status));
     }
@@ -63,11 +77,27 @@ export class ApiNotificationsService {
         return await this.commandBus.execute(new UpdateSeenCommand(id,seen));
     }
 
-    async requestCV(){
-        this.sendToMail("madunathabo2@gmail.com",
-        this.emailToUser()[3],
-        "Maduna TE has requested your CV",
-        "<p>Good day</p>\n <p>please make sure that you send you cv to madunathabo2@gmail.com</p>")
+    async getUserObject(userId: string) : Promise<User> {
+        return await this.queryBus.execute(new GetUserObjectQuery(userId))
+    }
+
+   
+    async requestCV(userEmailFrom:string, userEmailTo:string,){
+        const message =  "Good day " + userEmailTo +"\n" + "Your CV has been requested by" + userEmailFrom +" please forward it as soon as possible"
+        const  subject = "Graduates: Request for your CV"
+        this.sendToMail(userEmailFrom,userEmailTo, subject, message)
+    }
+
+    async requestContactDetails(userEmailFrom:string, userEmailTo:string,){
+        const message =  "Good day " + userEmailTo +"\n" + "Your contact details has been requested by" + userEmailFrom +" please forward it as soon as possible"
+        const  subject = "Graduates: Request for your Contact details"
+        this.sendToMail(userEmailFrom,userEmailTo, subject, message)
+    }
+
+    async requestAcademicRecord(userEmailFrom:string, userEmailTo:string,){
+        const message =  "Good day " + userEmailTo +"\n" + "Your Academic Record has been requested by" + userEmailFrom +" please forward it as soon as possible"
+        const  subject = "Graduates: Request for your Academic Record"
+        this.sendToMail(userEmailFrom,userEmailTo, subject, message)
     }
 
     async currentUser(): Promise<User[]>{
@@ -101,6 +131,5 @@ export class ApiNotificationsService {
         user.email = 'JohnDoe@gmail.com';
         return [ user ];
     }
-
 
 }
