@@ -1,0 +1,27 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+h2 {
+    color: #174372;
+    margin-bottom: 1px;
+}
+
+mat-divider {
+    border-top-color: #174372;
+    // border-top-color: $primary-1;
+    // margin: 0 5%;
+}
+
+.icon {
+    float: right;
+    color: #174372;
+    font-size: xx-large;
+}
+
+mat-form-field {
+    width: 100%;
+}
+
+textarea {
+    width: 100%;
+    margin-bottom: 2%;
+    height: fit-content;
+}

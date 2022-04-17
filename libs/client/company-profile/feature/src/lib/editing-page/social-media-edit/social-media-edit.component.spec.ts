@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BlogExploreCardComponent } from './blog-explore-card.component';
+import { SocialMediaEditComponent } from './social-media-edit.component';
 
-describe('BlogExploreCardComponent', () => {
-  let component: BlogExploreCardComponent;
-  let fixture: ComponentFixture<BlogExploreCardComponent>;
+describe('SocialMediaEditComponent', () => {
+  let component: SocialMediaEditComponent;
+  let fixture: ComponentFixture<SocialMediaEditComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BlogExploreCardComponent ]
+      declarations: [ SocialMediaEditComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BlogExploreCardComponent);
+    fixture = TestBed.createComponent(SocialMediaEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
