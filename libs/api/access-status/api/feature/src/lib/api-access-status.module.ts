@@ -4,6 +4,7 @@ import { ApiAccessStatusService } from './api-access-status.service';
 
 @Module({
   controllers: [],
+  imports: [],
   providers: [ApiAccessStatusResolver, ApiAccessStatusService],
   exports: [],
 })

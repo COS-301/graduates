@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // import { User } from '@graduates/api/adminconsole/repository/data-access'
 // import { ApiAdminConsoleServiceFeature } from '@graduates/api/adminconsole/service/feature'
 // import { Param } from '@nestjs/common'
@@ -137,4 +138,23 @@ export class ApiAdminConsoleResolver{
   //   return this.adminConsoleService.unArchiveBlog(blogId);
   // }
 
+=======
+import { ApiAdminConsoleServiceFeatureModule } from "@graduates/api/adminconsole/service/feature";
+import { Resolver, Query } from "@nestjs/graphql";
+//import { ApiAdminConsole } from "@graduates/api/adminconsole/api/repository/data-access";
+import {ApiAdminConsole} from "@graduates/api/adminconsole/repository/data-access";
+@Resolver(() => ApiAdminConsole)
+export class ApiAdminConsoleResolver{
+    constructor(private adminService: ApiAdminConsoleServiceFeatureModule){}
+
+    @Query(() => [ApiAdminConsole])
+    adminconsole(): Promise<ApiAdminConsole[]>{
+        return this.adminService.getUsers();
+    }
+
+    @Query(() =>String) 
+    pingAdminconsole(){
+        return "on";
+    }
+>>>>>>> 0fcdbe12b909d337c23bdb7173dfe76a091540dd
 }

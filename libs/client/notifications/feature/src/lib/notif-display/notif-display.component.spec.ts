@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
 import { NotifDisplayComponent } from './notif-display.component';
 
 describe('Notification Component Tests', () => {
@@ -8,7 +8,8 @@ describe('Notification Component Tests', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NotifDisplayComponent ]
+      declarations: [ NotifDisplayComponent ],
+      imports: [HttpClientModule]
     })
     .compileComponents();
   });

@@ -1,41 +1,97 @@
 import { ApicompanyprofilepageServiceFeatureModule } from '@graduates/api/companyprofilepage/service/feature';
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { ApiCompanyProfilePage } from '@graduates/api/companyprofilepage/api/shared/data-access';
+import { Args, Query, ResolveField, Resolver, Root } from '@nestjs/graphql';
+import { ApiCompanyProfilePage, UserEmail, UserLocation, UserNumber, UserSocialMedia } from '@graduates/api/companyprofilepage/api/shared/data-access';
 import { NotFoundException } from '@nestjs/common';
 
-@Resolver(of => ApiCompanyProfilePage)
+
+@Resolver(ApiCompanyProfilePage)
 export class ApicompanyprofilepageResolver {
   constructor(
-    private companyprofilepageService: ApicompanyprofilepageServiceFeatureModule
+    private readonly companyprofilepageService: ApicompanyprofilepageServiceFeatureModule
   ) {}
 
-  //return array or all companies
-  // @Query((returns) => [ApiCompanyProfilePage])
-  // async companyprofilepage(): Promise<ApiCompanyProfilePage[]> {
-  //   return this.companyprofilepageService.getAll();
+  
+  // @ResolveField()
+  // async ApiCompanyProfilePage(@Root() apiCompanyProfilePage: ApiCompanyProfilePage): Promise<ApiCompanyProfilePage | null>{
+  //   return this.companyprofilepageService.getCompanyWithID(apiCompanyProfilePage.company_id)
   // }
+
+  // @ResolveField(() => [UserEmail])
+  // async companyEmail(@Root() apiCompanyProfilePage: ApiCompanyProfilePage): Promise<UserEmail[]>{
+  //   return await this.companyprofilepageService.getCompanyEmail(apiCompanyProfilePage.company_id);
+  // }
+
+  // @ResolveField(() => [UserLocation])
+  // async companyLocation(@Root() apiCompanyProfilePage: ApiCompanyProfilePage): Promise<UserLocation[]>{
+  //   return await this.companyprofilepageService.getCompanyLocation(apiCompanyProfilePage.company_id);
+  // }
+
+  // @ResolveField(() => [UserNumber])
+  // async companyNumber(@Root() apiCompanyProfilePage: ApiCompanyProfilePage): Promise<UserNumber[]>{
+  //   return await this.companyprofilepageService.getCompanyNumber(apiCompanyProfilePage.company_id);
+  // }
+
+  // @ResolveField(() => [UserSocialMedia])
+  // async companySocialMedia(@Root() apiCompanyProfilePage: ApiCompanyProfilePage): Promise<UserSocialMedia[]>{
+  //   return await this.companyprofilepageService.getCompanySocialMedia(apiCompanyProfilePage.company_id);
+  //}
   
 
   //fetch a company based on ID
   @Query((returns) => ApiCompanyProfilePage)
-  async getCompanyByID(@Args('company_id') company_id: string): Promise<ApiCompanyProfilePage> {
-    const resp = await this.companyprofilepageService.getCompanyByID(company_id)
+  async getCompanyByID(@Args('company_id') company_id: string): Promise<ApiCompanyProfilePage | null> {
+    const resp = await this.companyprofilepageService.getCompanyWithID(company_id);
+    if(!resp){
+      throw new NotFoundException('Company not found');
+    }
     return resp;
   }
 
 
-  //Update a company with what they enter
-  // @Mutation((returns) => ApiCompanyProfilePage)
-  // async updateCompany(
-  //   @Args("company_ID")company_ID:string,
-  //   @Args("company_name")company_name:string,
-  //   @Args("company_logo")company_logo:string,
-  //   @Args("company_office_location")company_office_location:string,
-  //   @Args("company_contact_details")company_contact_details:string,
-  //   @Args("company_website")company_website:string,
-  //   @Args("company_filter")company_filter:string,
-  //   @Args("company_bio")company_bio:string,
-  // ): Promise<ApiCompanyProfilePage> {
-  //   return this.companyprofilepageService.updateCompany(company_ID, company_name, company_logo, company_office_location, company_contact_details, company_website, company_filter, company_bio);
-  // }
+  //fetch company emails from company id
+  @Query((returns) => [UserEmail])
+  async getCompanyEmail(@Args('company_id') company_id: string): Promise<UserEmail[] | null>{
+    const resp = await this.companyprofilepageService.getCompanyEmail(company_id);
+    if(!resp){
+      throw new NotFoundException('Company not found');
+    }
+    return resp;
+  }
+
+  //fetch company locations from company id
+  @Query((returns) => [UserLocation])
+  async getCompanyLocation(@Args('company_id') company_id: string): Promise<UserLocation[] | null>{
+    const resp = await this.companyprofilepageService.getCompanyLocation(company_id);
+    if(!resp){
+      throw new NotFoundException('Company not found');
+    }
+    return resp;
+  }
+
+
+  //fetch company social media from company id
+  @Query((returns) => [UserSocialMedia])
+  async getCompanySocialMedia(@Args('company_id') company_id: string): Promise<UserSocialMedia[] | null>{
+    const resp = await this.companyprofilepageService.getCompanySocialMedia(company_id);
+    if(!resp){
+      throw new NotFoundException('Company not found');
+    }
+    return resp;
+  }
+
+
+  //fetch company number from company id
+  @Query((returns) => UserNumber)
+  async getCompanyNumber(@Args('company_id') company_id: string): Promise<UserNumber | null>{
+    return await this.companyprofilepageService.getCompanyNumber(company_id);
+
+  }
+
+  @Query(() =>String) 
+  pingCompanyProfile(){
+    return "on";
+  }
+  
+
+  
 }
