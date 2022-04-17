@@ -2,12 +2,12 @@
 //import {authorizationAdmin} from '../../../shared/src/lib/authorization-data-access.entity';
 import { Injectable, Param } from '@nestjs/common';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
-import { Prisma, UserPermissions } from '@prisma/client';
+import { Prisma, RolePermissions, UserPermissions, UserRole } from '@prisma/client';
 @Injectable()
 export class Adminauthorization {
   constructor(private prisma: PrismaService) {}
 
-  async findGeneralPermissions(@Param("id") id:string) {
+  async findGeneralPermissions(@Param("id") id:string):Promise<null|RolePermissions[]> {
     const role = await this.findRole(id);
     if(role != null){
       return this.prisma.rolePermissions.findMany({where: {role:  role.role}});
@@ -16,7 +16,7 @@ export class Adminauthorization {
       return null;
     
   }
-  async findGeneralPermissionsPrisma(id:string) {
+  async findGeneralPermissionsPrisma(id:string):Promise<null|RolePermissions[]> {
     const role = await this.findRole(id);
     if(role != null)
     {
@@ -27,12 +27,15 @@ export class Adminauthorization {
       return null;
     }
   }
-  async findRole(@Param("id") id:string) {
+  async findRole(@Param("id") id:string):Promise<null|UserRole>{
     const obj = this.prisma.userRole.findFirst({where: {userId: id}});
       return obj;
 
   }
-  async findAllPermissionsFilter(@Param("id") id:string, permissiontype:Prisma.EnumPermissionTypeFilter) {
+  async findAllPermissionsFilter(@Param("id") id:string, permissiontype:Prisma.EnumPermissionTypeFilter): Promise<{
+    userPermissions: UserPermissions[];
+    rolePermissions: RolePermissions[];
+}> {
     const role = await this.findRole(id);
     if(role != null)
   {
@@ -43,13 +46,16 @@ export class Adminauthorization {
   return null;
 
   }
-  async findRolePrisma(input:Prisma.UserRoleWhereInput) {
+  async findRolePrisma(input:Prisma.UserRoleWhereInput):Promise<UserRole> {
     return this.prisma.userRole.findFirst({where: {userId: input.userId}});
   }
-  async findUniquePermission(@Param("id") id:string) {
+  async findUniquePermission(@Param("id") id:string): Promise<UserPermissions[]> {
     return this.prisma.userPermissions.findMany({where: {userId: id}});
   }
-  async findAllPermissions(@Param("id") id:string)
+  async findAllPermissions(@Param("id") id:string): Promise<{
+    generalPermissions: RolePermissions[];
+    uniquePermissions: UserPermissions[];
+}>
   {
     const generalPermissions = await this.findGeneralPermissions(id);
     const uniquePermissions = await this.findUniquePermission(id);
@@ -67,7 +73,7 @@ export class Adminauthorization {
   }
   async updateUniquePermission(@Param() askingId:string, 
     params:{where:Prisma.UserPermissionsWhereUniqueInput;
-      data: Prisma.UserPermissionsUncheckedUpdateInput;}){
+      data: Prisma.UserPermissionsUncheckedUpdateInput;}): Promise<UserPermissions|null>{
 
         const {where,data} = params;
         const role = await this.findRole(askingId);
@@ -84,7 +90,7 @@ export class Adminauthorization {
         
       }
       async deleteUniquePermission(@Param() askingId:string, 
-      where:Prisma.UserPermissionsWhereUniqueInput){
+      where:Prisma.UserPermissionsWhereUniqueInput): Promise<UserPermissions|null>{
   
           const role = await this.findRole(askingId);
           if(role != null && role.role == "ADMIN")
@@ -98,7 +104,7 @@ export class Adminauthorization {
           }
           
         }
-  async addUserRole(@Param() askingId:string, data:Prisma.UserRoleUncheckedCreateInput)
+  async addUserRole(@Param() askingId:string, data:Prisma.UserRoleUncheckedCreateInput):Promise<UserRole|null>
   {
     const role = await this.findRole(askingId);
     if(role != null && role.role == "ADMIN")
@@ -111,7 +117,7 @@ export class Adminauthorization {
       return null;
   }
   async updateUserRole(@Param() idasking:string, params: {where: Prisma.UserRoleWhereUniqueInput; 
-    data: Prisma.UserRoleUncheckedUpdateInput;}) {
+    data: Prisma.UserRoleUncheckedUpdateInput;}): Promise<UserRole|null> {
     const role = await this.findRole(idasking);
     const {where, data} = params
     if( role != null && role.role == "ADMIN")
@@ -125,7 +131,7 @@ export class Adminauthorization {
        return null;
     }
   }
-    async deleteUserRole(@Param() idasking:string, where: Prisma.UserRoleWhereUniqueInput) {
+    async deleteUserRole(@Param() idasking:string, where: Prisma.UserRoleWhereUniqueInput): Promise<UserRole|null> {
       const role = await this.findRole(idasking);
       if(role != null && role.role == "ADMIN")
       {
@@ -136,7 +142,7 @@ export class Adminauthorization {
          return null;
       }
     }
-    async addRolePermissions(@Param() idasking:string, data:Prisma.RolePermissionsCreateInput) {
+    async addRolePermissions(@Param() idasking:string, data:Prisma.RolePermissionsCreateInput): Promise<RolePermissions|null> {
       const role = await this.findRole(idasking);
       if(role != null && role.role == "ADMIN")
       {
@@ -146,7 +152,7 @@ export class Adminauthorization {
          return null;
     }
     async updateRolePermissions(@Param() idasking:string, params:{where: Prisma.RolePermissionsWhereUniqueInput;
-      data:Prisma.RolePermissionsUpdateInput;}) {
+      data:Prisma.RolePermissionsUpdateInput;}): Promise<RolePermissions|null> {
         const {where,data} = params;
       const role = await this.findRole(idasking);
       if(role != null && role.role == "ADMIN")
@@ -159,7 +165,7 @@ export class Adminauthorization {
       }
     }
     async deleteRolePermissions(@Param() askingId:string, 
-      where:Prisma.RolePermissionsWhereInput){
+      where:Prisma.RolePermissionsWhereInput):Promise<Prisma.BatchPayload|null>{
   
           const role = await this.findRole(askingId);
           if(role != null && role.role == "ADMIN")
