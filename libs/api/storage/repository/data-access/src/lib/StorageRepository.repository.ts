@@ -56,7 +56,7 @@ export class StorageRepository {
     );
     return ret;
   }
-  //TODO update func, config, delete many
+  //TODO update func, config
 
   //create a file record if the user does not already added this file type
   async createFile(data: ApiStorage) : Promise<UserProfileFile|null> {
@@ -114,6 +114,40 @@ export class StorageRepository {
       size = value.count;
     })
     return size;
+  }
+
+  async deleteUserFiles(u_id: string){
+
+    //delete in firebase
+    await this.prismaService.userProfileFile.findMany({
+      where: {
+          userId: u_id,
+      }
+    }).then(async (value) => {
+      for(let i=0;i<value.length;i++)
+      {
+        if(value[i])
+        await this.firebaseService.deleteByFilePath(value[i].filePath);
+      }
+    }
+    );
+
+    let size = 0;
+    //delete in database
+    await this.prismaService.userProfileFile.deleteMany({
+      where: {
+        userId: u_id,
+      },
+    }).then(async (value) => {
+      if(value)
+      size = value.count;
+    })
+    return size;
+  }
+
+  async updateUserFile(u_id:string,file_category:FileCategory,fileAsBase64:string){
+    this.firebaseService.deleteByFilePath('Files/'+u_id+file_category);
+    this.firebaseService.uploadAsBase64String(fileAsBase64,u_id+file_category,FirebaseFolders.Files);
   }
 
   }
