@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { observable } from 'rxjs';
+import { CompanyRepresentativeServiceService } from '../company-representative-service/company-representative-service.service';
 
 @Component({
   selector: 'graduates-company-representative-edit-page',
@@ -22,16 +24,27 @@ export class CompanyRepresentativeEditPageComponent {
   facebook = "Facebook.com/JohnDoe";
   snapchat = "JohnDoe";
   github = "JohnDoe@github.com";
-  students: string[];
-  constructor(private _router: Router) {
-    this.students = [
-      "Student 1 uXXXXXXXX",
-      "Student 2 uXXXXXXXX",
-      "Student 3 uXXXXXXXX",
-      "Student 4 uXXXXXXXX",
-      "Student 5 uXXXXXXXX",
-      "Student 6 uXXXXXXXX"
-    ];
+  result = <any>observable;
+  constructor(private _router: Router, private API : CompanyRepresentativeServiceService) {
+    this.result = this.API.getDefaultRepresentative("c1234").subscribe({
+      next: (item) => {
+        this.name = item.data.getDefaultRepresentative.repName;
+        this.jobTitle = item.data.getDefaultRepresentative.jobTitle;
+        this.experience = item.data.getDefaultRepresentative.repExperience;
+        this.about = item.data.getDefaultRepresentative.aboutMe;
+        this.number = item.data.getDefaultRepresentative.phoneNumber;
+        this.location = item.data.getDefaultRepresentative.location;
+        this.email = item.data.getDefaultRepresentative.email;
+        this.website = item.data.getDefaultRepresentative.website;
+        this.linkedin = item.data.getDefaultRepresentative.linkedIn;
+        this.twitter = item.data.getDefaultRepresentative.twitter;
+        this.instagram = item.data.getDefaultRepresentative.instagram;
+        this.facebook = item.data.getDefaultRepresentative.facebook;
+        this.snapchat = item.data.getDefaultRepresentative.snapChat;
+        this.github = item.data.getDefaultRepresentative.gitHub;
+      },
+      error: (err) => { console.log(err); }
+    });
   }
 
   navigateToHome() {
