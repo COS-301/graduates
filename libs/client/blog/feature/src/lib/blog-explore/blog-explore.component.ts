@@ -17,7 +17,7 @@ export class BlogExploreComponent implements OnInit  {
   @Input() admin : boolean;
 
   newestFirstSort : boolean;
-
+  temp : any;
   cols : number | undefined;
 
   gridByBreakpoint = {
@@ -126,20 +126,46 @@ export class BlogExploreComponent implements OnInit  {
   //Add to blogs array (Hopefully from API)
   loadBlogs(){
     const getAllBlogs = gql`query allBlogs{ 
-      blog{title
+      blog{
+        title
         author
         content
       }
     }
     `;
-    
     if(!(this.apollo.client===undefined)){
-        this.blogList.push({"blog": {"title": "test2", "author": "test2", "content": "3"}});
-        this.apollo.watchQuery({query: getAllBlogs}).valueChanges.subscribe((result: any) => {
-        this.testing = result.data.toString();
-        this.blogList.push({"blog": {"title": result.data, "author": "test2", "content": "3"}});
-        this.blogs = result.data.blog;
-        this.blogList.push(result.data.blog);
+        this.apollo.mutate({
+          mutation: gql`
+          mutation { 
+            testMutation(userId : "1")
+            {
+              any
+            }
+          }
+          `
+        }).subscribe((result:any) => {
+          console.log(result);
+        })
+        console.log("testing");
+
+
+        this.temp = this.apollo.query({query:getAllBlogs});
+        this.temp.subscribe((result : any) => {
+          console.log(result);
+        });
+        console.log(this.temp);
+
+        this.apollo.watchQuery({query: gql`
+        {
+          allBlogs(){
+            title
+            author
+            content
+          }
+        }
+        `}).valueChanges.subscribe((results: any) => {
+        
+        this.testing = "here";
         this.blogs = this.breakpointObserver.observe( Breakpoints.Handset).pipe(
         
           map(() => {
