@@ -10,4 +10,9 @@ export class ApiAdminConsoleResolver{
     adminconsole(): Promise<ApiAdminConsole[]>{
         return this.adminService.getUsers();
     }
+
+    @Query(() =>String) 
+    pingAdminconsole(){
+        return "on";
+    }
 }
