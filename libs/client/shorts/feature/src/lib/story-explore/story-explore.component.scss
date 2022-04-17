@@ -103,6 +103,7 @@
     transform: translate(-50%, -50%);
     // width: 50vw;
     color: $text-white;
+    z-index: 99 !important;
 }
 
 #uploadbanner {
@@ -140,6 +141,16 @@
     color: #888888;
 }
 
+.size {
+    height: 200px;
+    width: auto;
+    background-color: pink;
+}
+
+.uploadcontainer {
+    z-index: 99 !important;
+}
+
 #greyline {
     border-bottom: 1.8px solid #888888;
     margin-left: 2vh;
@@ -156,7 +167,7 @@
     outline: none;
     color: $primary-3;
     padding: 8px 8px;
-    max-height: 60vh;
+    max-height: 40vh;
     min-height: 10vh;
 }
 
@@ -193,7 +204,7 @@
 
 .auto-col-maker {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
 }
 
 .centindiv {
