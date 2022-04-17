@@ -1,4 +1,3 @@
-/* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,11 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PageTitleComponent implements OnInit {
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  constructor() { }
+  constructor() { 
+    // do something
+  }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   ngOnInit(): void {
+    return
   }
 
 }

@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["filterJson"]
 }
 
 datasource db {
@@ -37,6 +38,7 @@ model User {
   UserProfile       UserProfile[]
   UserTag           UserTag[]
   UserContactNumber UserContactNumber[]
+  UserDegree        UserDegree[]
   UserExperience    UserExperience[]
   UserSocialMedia   UserSocialMedia[]
   UserLocation      UserLocation[]
@@ -47,6 +49,7 @@ model User {
   notificationFrom  Notification[]    @relation("notificationFrom")
   notificationTo    Notification[]    @relation("notificationTo")
   Blog              Blog[]
+  BlogComment       BlogComment[]
   UserToken         UserToken[]    
   
   @@map("user")
@@ -157,6 +160,8 @@ model UserProfile {
   userId         String  @id @map("user_id")
   profilePicture String? @map("profile_picture")
   bio            String?
+  employmentStatus Boolean @map("employment_status") @default(false)
+  openToOffers     Boolean @map("open_to_offers")    @default(false)
 
   user User @relation(fields: [userId], references: [id])
   @@map("user_profile")
@@ -164,9 +169,10 @@ model UserProfile {
 
 // Tag on which to filter users
 model UserTag {
-  userId String @id @map("user_id")
+  userId String @map("user_id")
   tag    String
 
+  @@id([userId, tag])
   user User @relation(fields: [userId], references: [id])
   @@map("user_tag")
 }
@@ -229,18 +235,28 @@ enum FileCategory {
   VIDEO
 }
 
+model UserDegree {
+  userID     String @id @map("user_id")
+  degreeType String @map("degree_type")
+  degreeName String @map("degree_name")
+
+  user User @relation(fields: [userID], references: [id])
+  @@map("user_degree")
+}
+
 ///////////////////////////////////////////////////////////////////////
 // 2. Short
 ///////////////////////////////////////////////////////////////////////
 
 // Shorts of users
 model Short {
-  id         String   @id @default(cuid())
-  userId     String   @map("user_id")
-  media      String?
-  data       String?
-  datePosted DateTime @map("date_posted")
-  archived   Boolean
+  id          String   @id @default(cuid())
+  userId      String   @map("user_id")
+  description String?
+  link        String?
+  thumbnail   String?
+  datePosted  DateTime @map("date_posted")
+  archived    Boolean
 
   user User @relation(fields: [userId], references: [id])
 
@@ -282,7 +298,7 @@ model Notification {
   id         String   @id @default(cuid())
   userIdFrom String?  @map("user_id_from")
   userIdTo   String   @map("user_id_to")
-  data       Json?
+  data       Json
   date       DateTime
   seen       Boolean
 
@@ -317,10 +333,14 @@ model Blog {
 model BlogComment {
   id      String   @id @default(cuid())
   blogId  String   @map("blog_id")
+  userId  String   @map("user_id")
   content String
   date    DateTime
 
   blog Blog @relation(fields: [blogId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+
+  
   @@map("blog_comment")
 }
 

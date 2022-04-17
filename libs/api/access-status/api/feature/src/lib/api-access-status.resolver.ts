@@ -5,9 +5,11 @@ import { ApiAccessStatusService } from "./api-access-status.service";
 @Resolver(of => ApiAccessStatusEntity)
 export class ApiAccessStatusResolver {
     constructor(private accessStatusService: ApiAccessStatusService) {}
+    @Query(returns => [ApiAccessStatusEntity], { nullable: true })
+    async status(@Args('compId', { type: () => ID }) compId: string, @Args('gradId', { type: () => ID }) gradId: string): Promise<ApiAccessStatusEntity[]> {
+        if (compId == "" || gradId == "") // obviously empty elements are not allowed
+            return null;
 
-    @Query(returns => [ApiAccessStatusEntity])
-    async status(@Args('compID', { type: () => ID }) id: string): Promise<ApiAccessStatusEntity[]> {
-        return this.accessStatusService.getAll(id);
+        return this.accessStatusService.getAll(compId, gradId);
     }
 }
