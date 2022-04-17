@@ -6,8 +6,8 @@
         <h3>{{ item }}</h3>
       </div>
       <div fxFlex fxLayoutAlign="end center">
-        <button (click)="onClick(i, item)" fxLayoutAlign="center center" class="mr-5">{{this.buttons[i]}}
-          <mat-icon *ngIf="this.buttons[i] === 'Download'">get_app</mat-icon>
+        <button (click)="onClick(i, item);" [disabled]="this.buttons[i] === 'Pending'" fxLayoutAlign="center center" class="mr-5">{{this.buttons[i]}}
+          <mat-icon *ngIf="this.buttons[i] === 'Download'" class="downloadIcon">get_app</mat-icon>
           <mat-icon *ngIf="this.buttons[i] === 'Pending'" class="pendingIcon">pending</mat-icon>
         </button>
       </div>
