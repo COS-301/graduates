@@ -99,6 +99,8 @@ export class SearchBarComponent {
       this.responseArray.push(new Student("", "Search Request Not Found", "", "", "", "", "", "", "", []));
     }
 
+    console.log(this.responseArray);
+
     return this.responseArray;
   }
 
