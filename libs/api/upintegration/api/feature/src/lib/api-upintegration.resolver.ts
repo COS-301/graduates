@@ -14,4 +14,8 @@ export class ApiUpIntegrationResolver {
 
        return this.upintegrationService.getAcademicRecord();
    }
+   @Query(() =>String) 
+    pingUpintegration(){
+        return "on";
+    }
 } 

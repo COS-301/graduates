@@ -145,10 +145,6 @@ export class ApiHostingServiceFeatureModule{
     }
     this.hosting.push(upintegrationAPI);
 
-    //quick fix (until the urls are updated)
-    this.hosting.forEach(element => {
-      element.status = "Operational";
-    });
     this.AddAllUnimplemented();
     return this.hosting;
   }
@@ -228,49 +224,9 @@ export class ApiHostingServiceFeatureModule{
     this.hosting.push(unimplemented1);
   }
   //To-do and the following queries
-  // @Query 
-  // pingStorage(){
-  //   return "on";
-  // }
-  // @Query 
-  // pingShorts(){
-  //   return "on";
-  // }
-  // @Query 
-  // pingCompanyProfile(){
-  //   return "on";
-  // }
-  // @Query 
-  // pingAccessStatus(){
-  //   return "on";
-  // }
-  // @Query 
-  // pingStudentProfiles(){
-  //   return "on";
-  // }
-  // @Query 
-  // pingCompanyRepresentative(){
-  //   return "on";
-  // }
-  // @Query 
-  // pingRequestAccess(){
-  //   return "on";
-  // }
-  // @Query 
+  // @Query(() =>String) 
   // pingAuthentication(){
   //   return "on";
-  // }
-  // @Query 
-  // pingStudentExplore(){
-  //   return "on";
-  // }
-  // @Query 
-  // pingAdminconsole(){
-  //   return "on";
-  // }
-  // @Query 
-  // pingUpintegration(){
-  //   return "on";
-  // }
-
+  //}
+ 
 }
