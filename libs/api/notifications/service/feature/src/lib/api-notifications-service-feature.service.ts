@@ -77,10 +77,10 @@ export class ApiNotificationsService
         return await this.queryBus.execute(new GetUserObjectQuery(userId))
     }
     
-    sendToMail(emailFrom:string, emailTo:string, emailSubject:string, emailText:string){
+    async sendToMail(emailFrom:string, emailTo:string, emailSubject:string, emailText:string){
         return this.commandBus.execute(new SendMailCommand(emailFrom, emailTo, emailSubject, emailText));
     }
-    
+
     async requestCV(){
         this.sendToMail("madunathabo2@gmail.com",
         this.emailToUser()[3],
