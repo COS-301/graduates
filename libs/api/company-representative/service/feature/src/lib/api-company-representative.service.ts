@@ -7,6 +7,7 @@ import { GetAllRepresentatives } from './queries/impl/getAllRepresentatives.quer
 import { GetCompanyRepresentativeQuery } from './queries/impl/getRepresentative.query';
 import { GetCompanyRepresentativeLoginQuery } from './queries/impl/getRepresentativeLoginID.query';
 import { UpdateRepresentative } from './commands/impl/updateRepresentative.command';
+import { GetDefaultRepresentativeCommand } from './commands/impl/getDefaultRepresentative.command';
 @Injectable()
 export class ApiCompanyRepresentativeService {
 
@@ -42,7 +43,7 @@ export class ApiCompanyRepresentativeService {
    */
 
   async createRepresentative(){
-    return this.commandBus.execute(new CreateRepresentative)
+    return this.commandBus.execute(new CreateRepresentative);
   }
 
   /***
@@ -56,8 +57,11 @@ export class ApiCompanyRepresentativeService {
 
   async UpdateRepresentative(id:string,newData:string,type:string)
   {
-    return this.commandBus.execute(new UpdateRepresentative(id,newData,type))
+    return this.commandBus.execute(new UpdateRepresentative(id,newData,type));
   }
 
+  async createDefaultRepresentative(){
+    return this.commandBus.execute(new GetDefaultRepresentativeCommand("c1234"));
+  }
   
 }
