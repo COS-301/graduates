@@ -103,6 +103,7 @@
     transform: translate(-50%, -50%);
     // width: 50vw;
     color: $text-white;
+    z-index: 99 !important;
 }
 
 #uploadbanner {
@@ -138,6 +139,16 @@
 
 .hint {
     color: #888888;
+}
+
+.size {
+    height: 200px;
+    width: auto;
+    background-color: pink;
+}
+
+.uploadcontainer {
+    z-index: 99 !important;
 }
 
 #greyline {
@@ -193,7 +204,7 @@
 
 .auto-col-maker {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
 }
 
 .centindiv {

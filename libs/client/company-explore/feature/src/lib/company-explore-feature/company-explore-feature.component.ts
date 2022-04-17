@@ -6,7 +6,6 @@ import{Observable} from 'rxjs';
 import { GetCompanyList,SetSearch,SetSelectedCompany } from './store/company-explore.actions';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
-
 @Component({
   selector: 'graduates-company-explore-feature',
   templateUrl: './company-explore-feature.component.html',
@@ -17,9 +16,20 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 export class CompanyExploreFeatureComponent implements OnInit {
 
 @Select(CompanyExploreState.getCompanyList) companies!:Observable<Company[]>;
-  constructor(private store:Store,private route:ActivatedRoute,private router:Router)
-  {}
   
+public isMobile:boolean;
+  constructor(private store:Store,private route:ActivatedRoute,private router:Router)
+  {
+
+    this.isMobile=this.IsViewMobile();
+
+  }
+  IsViewMobile():boolean
+  {
+    if(window.innerWidth<576)
+    { return true;}
+    else{return false;}
+  }
   ngOnInit(): void 
   {
     this.store.dispatch(new GetCompanyList());

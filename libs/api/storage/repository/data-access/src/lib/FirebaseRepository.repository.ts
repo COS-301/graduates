@@ -3,7 +3,6 @@ import { initializeApp } from 'firebase/app';
 import { deleteObject, getDownloadURL, getStorage, ref, uploadBytes, uploadString} from 'firebase/storage';
 import * as fs from 'fs';
 
-
 /*Since Firebase is only a temporary solution I tried making the storage as simple as 
 possible each feature's storage will be stored in the same bucket only under a 
 different folder. Please see below. The firebaseConfig is currently connected to one 
@@ -18,28 +17,26 @@ export enum FirebaseFolders{
   DatabaseDumps = 'DatabaseDumps',
   Videos = 'Videos',
   ProfilePhotos = 'ProfilePhotos',
-  BlogMedia = 'BlogMedia'
+  BlogMedia = 'BlogMedia',
+  Thumbnails = 'Thumbnails'
 }
 
 @Injectable()
 export class FirebaseService {
   
   firebaseConfig = {
-    apiKey: 'AIzaSyD7fH_aHqly7Z7jiyPT-H_gc1J807BTkZQ',
 
-    authDomain: 'practice-23667.firebaseapp.com',
+    apiKey: process.env.API_KEY,
 
-    databaseURL: 'https://practice-23667-default-rtdb.firebaseio.com',
+    projectId: process.env.PROJECT_ID,
 
-    projectId: 'practice-23667',
+    storageBucket: process.env.STORAGE_BUCKET,
 
-    storageBucket: 'practice-23667.appspot.com',
+    messagingSenderId: process.env.MSG_SENDER_ID,
 
-    messagingSenderId: '180246940109',
+    appId: process.env.APP_ID,
 
-    appId: '1:180246940109:web:9ab1846b487e40e32f1c84',
-
-    measurementId: 'G-GC7N8G15QC',
+    measurementId: process.env.MEASUREMENT_ID,
   };
 
   app = initializeApp(this.firebaseConfig);
@@ -47,30 +44,35 @@ export class FirebaseService {
   storage = getStorage();
 
   async uploadFile(file: File | Blob, fileName: string, folder: FirebaseFolders): Promise<boolean>{
+    
     const fileRef = ref(this.storage, folder + '/' + fileName);
 
-    uploadBytes(fileRef, file).then((snapshot) => {
+    let tempBool = false;
+    await uploadBytes(fileRef, file).then( async (snapshot) => {
       console.log('Successful upload');
       console.log(snapshot);
-      return true;
+      tempBool = true;
+    }).catch( (err) =>{
+      console.error(err);
     });
 
-    console.error('Something went wrong during upload to firebase');
-    return false;
+    return tempBool;
   }
 
   async uploadAsBase64String(base64: string, fileName: string, folderName: FirebaseFolders) : Promise<boolean>{
 
     const fileRef = ref(this.storage, folderName + '/' + fileName);
 
-    uploadString(fileRef, base64, 'base64').then((snapshot) => {
+    let tempBool = false;
+    await uploadString(fileRef, base64, 'base64').then( async (snapshot) => {
       console.log('Successful upload');
       console.log(snapshot);
-      return true;
+      tempBool = true;
+    }).catch( (err) =>{
+      console.error(err);
     });
 
-    console.error('Something went wrong during upload to firebase');
-    return false;
+    return tempBool;
   }
 
   async uploadAsBinaryString(binaryFile: string, fileName: string, folderName: FirebaseFolders) : Promise<boolean>{
@@ -78,16 +80,18 @@ export class FirebaseService {
     const fileRef = ref(this.storage, folderName + '/' + fileName);
 
     //convert binary string to base64 encoding
-    const temp = Buffer.from(binaryFile, 'binary').toString('base64');
+    const tempString = Buffer.from(binaryFile, 'binary').toString('base64');
 
-    uploadString(fileRef, temp, 'base64').then((snapshot) => {
+    let tempBool = false;
+    await uploadString(fileRef, tempString, 'base64').then( async (snapshot) => {
       console.log('Successful upload');
       console.log(snapshot);
-      return true;
+      tempBool = true;
+    }).catch( (err) =>{
+      console.error(err);
     });
 
-    console.error('Something went wrong during upload to firebase');
-    return false;
+    return tempBool;
   }
 
   /*NOTE THAT IF THE FILE IS NOT UPLOADED AS BASE64 STRING IT DOESN't DOWNLOAD THE FILE DIRECTLY 
@@ -103,17 +107,17 @@ export class FirebaseService {
     // This is analogous to a file path on disk
     console.log(fileRef.fullPath);
 
+    let url = null;
     //get the url that will download the file
-    getDownloadURL(fileRef)
-      .then((url) => {
-        console.log(url); 
-        return url;
+    await getDownloadURL(fileRef)
+      .then(async(value) => {
+        url = value;
       })
       .catch((error) => {
         console.error(error);
       });
 
-    return null;
+    return url;
   }
 
   async getURLByFilePath(file_path:string) : Promise<string|null>{
@@ -127,17 +131,18 @@ export class FirebaseService {
     // This is analogous to a file path on disk
     console.log(fileRef.fullPath);
 
+    let url = null;
     //get the url that will download the file
-    getDownloadURL(fileRef)
-      .then((url) => {
-        console.log("NOW"+url); 
-        return url;
+    await getDownloadURL(fileRef)
+      .then( async (value) => {
+        url = value;
       })
       .catch((error) => {
         console.error(error);
+        return null;
       });
 
-    return null;
+    return url;
   }
 
   async deleteByFilename(filename:string, folder:FirebaseFolders):Promise<boolean>{
@@ -145,16 +150,17 @@ export class FirebaseService {
     // Create a reference to the file to delete
     const desertRef = ref(this.storage, folder+'/'+filename );
 
+    let tempBool = false;
     // Delete the file
-    deleteObject(desertRef).then(() => {
+    await deleteObject(desertRef).then(async () => {
       console.log('Successfully deleted');
-      return true;
+      tempBool = true;
     }).catch((error) => {
       console.error(error);
-      return false;
+      tempBool = false;
     });
 
-    return false;
+    return tempBool;
   }
 
   //file_path = FirebaseFolder/filename
@@ -163,58 +169,55 @@ export class FirebaseService {
     // Create a reference to the file to delete
     const desertRef = ref(this.storage, file_path );
 
+    let tempBool = false;
     // Delete the file
-    deleteObject(desertRef).then(() => {
+    await deleteObject(desertRef).then(async () => {
       console.log('Successfully deleted');
-      return true;
+      tempBool = true;
     }).catch((error) => {
       console.log(error);
-      return false;
+      tempBool = false;
     });
 
-    return false;
+    return tempBool;
   }
   
   //ex. FirebaseRepository.uploadAllUnderDirectory('@graduates/api/storage/uploads',FirebaseRepository.FirebaseFolders.Files)
   //ex. FirebaseRepository.uploadAllUnderDirectory('@graduates/api/stories/videos',FirebaseRepository.FirebaseFolders.Videos)
   async uploadAllUnderDirectory(dirname:string, folder:FirebaseFolders) : Promise<boolean> {
 
+     let tempBool = false;
      //access the directory provided and get all the filenames
      fs.readdir(dirname, function (err, filenames) {
-      if (err) {
+      if (err) 
         console.log(err);
-        return false;
-      }
-
       //access each file in directory via filename
-      filenames.forEach( (filename) => {
-        fs.readFile(dirname + '/' + filename, 'base64',  (err, data) => {
-          if (err) {
+      filenames.forEach( async (filename) => {
+        fs.readFile(dirname + '/' + filename, 'base64', async (err, data) => {
+          if (err) 
             console.error(err);
-            return false;
-          }
 
-          //get a reference inside firebase on where to upload the files
-          const fileRef = ref(getStorage(), folder + '/' + filename);
+            //get a reference inside firebase on where to upload the files
+            const fileRef = ref(getStorage(), folder + '/' + filename);
 
-          //upload the file in base64 string encryption
-          uploadString(fileRef, data, 'base64').then((snapshot) => {
-            console.log('Successful upload');
-            console.log(snapshot);
-          });
+            //upload the file in base64 string encryption
+            await uploadString(fileRef, data, 'base64').then(async (snapshot) => {
+              console.log('Successful upload');
+              console.log(snapshot);
+              tempBool = true;
+            });
 
-          //clear directory
-          try {
-            fs.unlinkSync(dirname + '/' + filename)
-          } catch(err) {
-            console.error(err)
-            return false;
-          }
-
+            //clear directory
+            try {
+              fs.unlinkSync(dirname + '/' + filename);
+            } catch (err) {
+              console.log('Failed to clear directory!');
+              console.error(err);
+            }
         });
       });
     });
 
-    return true;
+    return tempBool;
   }
 }
