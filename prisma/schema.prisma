@@ -27,7 +27,9 @@ model User {
   created      DateTime
   suspended    Boolean
   validated    Boolean
+
   company User? @relation(name: "company_id", fields: [companyId], references: [id])
+
   User              User[]            @relation("company_id")
   userScout         UserScouted[]     @relation("userScout")
   userScouted       UserScouted[]     @relation("userScouted")
@@ -61,8 +63,10 @@ model UserScouted {
   userIdScout String    @id @map("user_id_scout")
   userId      String    @map("user_id")
   date        DateTime?
+
   userScout User @relation(name: "userScout", fields: [userIdScout], references: [id], onDelete: Cascade, onUpdate: Cascade)
   user      User @relation(name: "userScouted", fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
   @@map("user_scouted")
 }
 
@@ -74,6 +78,7 @@ model UserScouted {
 model UserRole {
   userId String @map("user_id")
   role   Role
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@id([userId, role])
   @@map("user_role")
@@ -85,6 +90,7 @@ model UserPermissions {
   permissionType     PermissionType     @map("permission_type")
   permissionCategory PermissionCategory @map("permission_category")
   permissionTenant   PermissionTenant   @map("permission_tenant")
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@id([userId, permissionType, permissionCategory, permissionTenant])
   @@map("user_permissions")
@@ -96,6 +102,7 @@ model RolePermissions {
   permissionType     PermissionType     @map("permission_type")
   permissionCategory PermissionCategory @map("permission_category")
   permissionTenant   PermissionTenant   @map("permission_tenant")
+
   @@id([role, permissionType, permissionCategory, permissionTenant])
   @@map("role_permissions")
 }
@@ -156,6 +163,7 @@ model UserProfile {
   bio            String?
   employmentStatus Boolean @map("employment_status") @default(false)
   openToOffers     Boolean @map("open_to_offers")    @default(false)
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_profile")
 }
@@ -164,6 +172,7 @@ model UserProfile {
 model UserTag {
   userId String @map("user_id")
   tag    String
+
   @@id([userId, tag])
   user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_tag")
@@ -174,6 +183,7 @@ model UserSocialMedia {
   userId String      @map("user_id")
   type   SocialMedia
   link   String
+
 @@id([userId,type])
   user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_social_media")
@@ -192,6 +202,7 @@ enum SocialMedia {
 model UserLocation {
   userId   String @id @map("user_id")
   location String
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_location")
 }
@@ -200,6 +211,7 @@ model UserLocation {
 model UserEmail {
   userId String @map("user_id")
   email  String
+
   @@id([userId,email])
   user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_email")
@@ -212,6 +224,7 @@ model UserProfileFile {
   filePath      String        @map("file_path")
   fileCategory  FileCategory? @map("file_category")
   fileExtension String?       @map("file_extension")
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_student_profile_file")
 }
@@ -229,6 +242,7 @@ model UserDegree {
   userID     String @map("user_id")
   degreeType String @map("degree_type")
   degreeName String @map("degree_name")
+
   @@id([userID, degreeName])
   user User @relation(fields: [userID], references: [id])
   @@map("user_degree")
@@ -247,7 +261,9 @@ model Short {
   thumbnail   String?
   datePosted  DateTime @map("date_posted")
   archived    Boolean
+
   user User @relation(fields: [userId], references: [id])
+
   shortTag    ShortTag[]
   shortReport ShortReport[]
   @@map("short")
@@ -257,7 +273,9 @@ model Short {
 model ShortTag {
   shortId String @map("short_id")
   tag     String
+
   short Short @relation(fields: [shortId], references: [id])
+
   @@id([shortId, tag])
   @@map("short_tag")
 }
@@ -267,8 +285,10 @@ model ShortReport {
   shortId String @map("short_id")
   userId  String @map("user_id")
   reason  String
+
   user  User  @relation(fields: [userId], references: [id])
   short Short @relation(fields: [shortId], references: [id])
+
   @@id([shortId, userId])
   @@map("short_report")
 }
@@ -285,8 +305,10 @@ model Notification {
   data       Json
   date       DateTime
   seen       Boolean
+
   notificationFrom User? @relation(name: "notificationFrom", fields: [userIdFrom], references: [id])
   notificationTo   User  @relation(name: "notificationTo", fields: [userIdTo], references: [id])
+
   @@map("notification")
 }
 
@@ -302,9 +324,12 @@ model Blog {
   content  String?
   date     DateTime
   archived Boolean
+
   user User @relation(fields: [userId], references: [id])
+
   blogComment BlogComment[]
   blogMedia   BlogMedia[]
+
   @@map("blog")
 }
 
@@ -315,8 +340,10 @@ model BlogComment {
   blogId  String   @map("blog_id")
   content String
   date    DateTime
+
   blog Blog @relation(fields: [blogId], references: [id])
   user User @relation(fields: [userId], references: [id])
+
   
   @@map("blog_comment")
 }
@@ -325,7 +352,9 @@ model BlogComment {
 model BlogMedia {
   blogId String @map("blog_id")
   media  String
+
   blog Blog @relation(fields: [blogId], references: [id])
+
   @@id([blogId, media])
   @@map("blog_media")
 }
@@ -340,7 +369,9 @@ model UserToken {
   userToken           String  @map("user_token")
   userTokenType       Int     @map("user_token_type")
   userTokenExpiration Int     @map("user_token_expiration")
+
   user User @relation(fields: [userId], references: [id])
+
   @@id ([userId])
   @@map("user_token")
 }
@@ -381,6 +412,7 @@ model Test {
 model UserContactNumber {
   userId    String  @id  @map("user_id")
   number    String  @db.VarChar(10)
+
   user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_contact_number")
 }
@@ -388,6 +420,7 @@ model UserContactNumber {
 model UserExperience {
   userId      String @id  @map("user_id")
   experience  String
+  
   user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_experience")
 }
