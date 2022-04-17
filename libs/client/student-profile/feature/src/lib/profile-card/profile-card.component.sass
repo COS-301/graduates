@@ -8,9 +8,8 @@
     border-radius: 10px
     margin-left: 15%
     display: flex
-    margin-top: 25%
+    margin-top: 10%
         
-
 img 
     width: 52%
     height: 32%
@@ -21,21 +20,24 @@ img
 p
     color: white
     font-size: 25px
-    margin-left: 35%
-    margin-top: 15px
+    margin-top: 5%
+    justify-content: center
+    text-align: center
+    margin-left: 20%
 
 .mat-raised-button
     background-color: $card-red
-    margin-left: 12%
-    width: 20em
+    margin-left: 15%
+    width: 18em
     padding: 3px
     color: white
-    margin-top: 15px
+    margin-top: 20px
+    font-size: 15px
 
 #btnUploadDocs
     background-color: $card-gold
     width: 20em
-    margin-left: 22%
+    margin-left: 21%
 
 .section
     margin-top: 10%
@@ -59,7 +61,6 @@ a
     display: inline
 
 svg 
-    // align-items: center
     width: 10%
     display: inline-flex
     margin-left: 20%
@@ -69,41 +70,46 @@ svg
     color: #174372
     font-size: xx-large
 
-// @media (max-width: $tablet-width) 
-//     .profile-section
-//         justify-content: center
-//         width: 95%
-//         left: 2%
-//         margin-top: 50%
-
-//     img 
-//         transform: scale(0.8)
-
-//     .mat-raised-button
-//         transform: scale(0.8)
+@media (max-width: 428px) 
+    .profile-section
+        width: 75%
+        height: 33em
+        margin-left: 15%
+        margin-top: 10%
     
-//     .section
-//         transform: scale(0.8)
+    #btnUploadDocs
+        transform: scale(0.85)
+        margin-left: 60%
+        justify-content: center
 
-//     #btnUploadDocs
-//         transform: scale(0.8)
+@media (max-width: $tablet-width) 
+    .links
+        transform: scale(0.8)
 
-// @media (max-width: 428px) 
-//     .profile-section
-//         justify-content: center
-//         width: 130%
-//         height: 20%
-//         left: 2%
-//         margin-top: 50%
+@media (max-width: $desktop-width) 
+    .profile-section
+        width: 75%
+        height: 33em
+        margin-left: 15%
+        margin-top: 10%
 
-//     img 
-//         transform: scale(0.7)
+    img 
+        width: 50%
+        height: 31%
+        margin-left: 36%
+        margin-right: auto
 
-//     .mat-raised-button
-//         transform: scale(0.7)
+    .mat-raised-button
+        transform: scale(0.85)
+        margin-left: 13%
+
+    #btnUploadDocs
+        transform: scale(0.85)
+        margin-left: 9%
+        justify-content: center
+
+    p
+       transform: scale(0.85)
     
-//     .section
-//         transform: scale(0.7)
-
-//     #btnUploadDocs
-//         transform: scale(0.7)
+    .mat-button
+        margin-left: 12%
