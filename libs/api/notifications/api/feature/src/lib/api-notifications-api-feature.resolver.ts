@@ -1,5 +1,5 @@
 import { Resolver, Query, Args, Mutation } from "@nestjs/graphql";
-import { Notification } from "@graduates/api/notifications/api/shared";
+import { Notification, UserNotification } from "@graduates/api/notifications/api/shared";
 import { ApiNotificationsService } from "@graduates/api/notifications/service/feature";
 import { NotFoundException } from '@nestjs/common';
 
@@ -72,5 +72,13 @@ export class NotificationsResolver {
     ) : Promise<Notification | null> {
         const res = await this.notificationService.updateSeen(id, seen);
         return (res) ? res : null;
+    }
+
+    @Query(() => UserNotification)
+    async notificationsGetUser(
+        @Args('userId', {type: () => String}) userId: string
+    ): Promise<UserNotification | null> {
+        const res = await this.notificationService.getUserObject(userId);
+        return res;
     }
 }

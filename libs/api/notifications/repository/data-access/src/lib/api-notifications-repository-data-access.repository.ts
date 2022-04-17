@@ -91,12 +91,11 @@ export class NotificationsRepository {
     });
   }
 
-  async getUserEntity(userId : string) : Promise<User | null> {
-    // return await this.prisma.userEmail.findUnique({
-    //   where: {
-    //     userId: userId
-    //   }
-    // })
-    return null;
+  async findUserEntity(userId : string) : Promise<User | null> {
+    return await this.prisma.user.findUnique({
+      where: {
+        id: userId
+      }
+    })
   }
 }
