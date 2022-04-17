@@ -10,19 +10,23 @@ import { CompanyRepresentativeMockStudentExplorePageComponent } from './company-
   imports: [
     RouterModule.forChild([
       {
-        path: 'login',
+        path: '',
         component: CompanyRepresentativeMockLoginPageComponent,
       },
       {
-        path: 'home-page',
+        path: 'CompanyRepresentativeLogin',
+        component: CompanyRepresentativeMockLoginPageComponent,
+      },
+      {
+        path: 'CompanyRepresentativeHome',
         component: CompanyRepresentativePageComponent,
       },
       {
-        path: 'edit-page',
+        path: 'CompanyRepresentativeEdit',
         component: CompanyRepresentativeEditPageComponent,
       },
       {
-        path: 'student-explore',
+        path: 'CompanyRepresentativeExplore',
         component: CompanyRepresentativeMockStudentExplorePageComponent,
       },
     ]),
