@@ -1,9 +1,4 @@
 @import 'libs/client/shared/assets/ui/src/lib/global';
-
-div {
-    overflow: auto;
-}
-
 h2 {
     color: #174372;
     margin-bottom: 1px;
@@ -12,7 +7,7 @@ h2 {
 mat-divider {
     border-top-color: #174372;
     // border-top-color: $primary-1;
-    // margin: 0 5%;
+    // margin-bottom: 5%;
 }
 
 .icon {
@@ -21,14 +16,11 @@ mat-divider {
     font-size: xx-large;
 }
 
-mat-icon {
-    color: #174372;
-    font-size: large;
-    margin-top: 2%;
+mat-form-field {
+    width: 100%;
 }
 
-p {
-    white-space: nowrap;
-    margin-top: 0;
-    margin-bottom: 0;
+textarea {
+    width: 100%;
+    margin-bottom: 2%;
 }
