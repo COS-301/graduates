@@ -1,4 +1,5 @@
-import {CompanyProfilePage} from '@graduates/api/companyprofilepage/repository/data-access'
+import { UserNumber } from '@graduates/api/companyprofilepage/api/shared/data-access';
+import { CompanyProfilePage } from '@graduates/api/companyprofilepage/repository/data-access'
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { User, UserEmail, UserLocation, UserSocialMedia } from '@prisma/client';
 import { GetCompanyByIDQuery , GetCompanyEmailQuery, GetCompanyLocationQuery, GetCompanyNumberQuery, GetCompanySocialMediaQuery} from './api-companyprofilepage-service-query';
@@ -18,9 +19,9 @@ export class GetCompanyByIDHander implements IQueryHandler<GetCompanyByIDQuery> 
 export class GetCompanyNumberHander implements IQueryHandler<GetCompanyNumberQuery> {
   constructor(private readonly repository: CompanyProfilePage) {}
 
-  async execute(query: GetCompanyNumberQuery): Promise<UserLocation[] | null> {
+  async execute(query: GetCompanyNumberQuery): Promise<UserNumber | null> {
     const { id }  = query;
-    return this.repository.getCompanyLocations(id);
+    return this.repository.getCompanyContactNumber(id);
   }
 }
 

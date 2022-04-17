@@ -49,8 +49,8 @@ export class ApicompanyprofilepageResolver {
 
 
   //fetch company emails from company id
-  @Query((returns) => UserEmail)
-  async getCompanyEmail(@Args('company_id') company_id: string): Promise<UserEmail | null>{
+  @Query((returns) => [UserEmail])
+  async getCompanyEmail(@Args('company_id') company_id: string): Promise<UserEmail[] | null>{
     const resp = await this.companyprofilepageService.getCompanyEmail(company_id);
     if(!resp){
       throw new NotFoundException('Company not found');
@@ -59,7 +59,7 @@ export class ApicompanyprofilepageResolver {
   }
 
   //fetch company locations from company id
-  @Query((returns) => UserLocation)
+  @Query((returns) => [UserLocation])
   async getCompanyLocation(@Args('company_id') company_id: string): Promise<UserLocation[] | null>{
     const resp = await this.companyprofilepageService.getCompanyLocation(company_id);
     if(!resp){
@@ -70,7 +70,7 @@ export class ApicompanyprofilepageResolver {
 
 
   //fetch company social media from company id
-  @Query((returns) => UserSocialMedia)
+  @Query((returns) => [UserSocialMedia])
   async getCompanySocialMedia(@Args('company_id') company_id: string): Promise<UserSocialMedia[] | null>{
     const resp = await this.companyprofilepageService.getCompanySocialMedia(company_id);
     if(!resp){
@@ -81,8 +81,8 @@ export class ApicompanyprofilepageResolver {
 
 
   //fetch company number from company id
-  @Query((returns) => [UserNumber])
-  async getCompanyNumber(@Args('company_id') company_id: string): Promise<UserNumber[] | null>{
+  @Query((returns) => UserNumber)
+  async getCompanyNumber(@Args('company_id') company_id: string): Promise<UserNumber | null>{
     return await this.companyprofilepageService.getCompanyNumber(company_id);
 
   }
