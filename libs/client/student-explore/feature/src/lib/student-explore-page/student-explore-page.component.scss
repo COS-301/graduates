@@ -2,22 +2,18 @@
 
 div#content
 {
-    margin-top: 6%;
+    margin-top: 3%;
     padding-top: 2.5%;
     width: 100%;
 }
 
-div#TitleLine
-{
-    width: 100%;
-    /*background-color: rgba(255, 255, 0, 0.7);*/
-}
-
 @include phone
 {
-    div#TitleLine
+    div#content
     {
-        margin-top: 6%;
+        margin-top: 2.5%;
+        padding-top: 2.5%;
+        width: 100%;
     }
 
     h1#pageTitle
@@ -28,9 +24,11 @@ div#TitleLine
 
 @include tablet
 {
-    div#TitleLine
+    div#content
     {
-        margin-top: 3%;
+        margin-top: 1.5%;
+        padding-top: 2.5%;
+        width: 100%;
     }
 
     h1#pageTitle
@@ -41,9 +39,11 @@ div#TitleLine
 
 @include desktop
 {
-    div#TitleLine
+    div#content
     {
-        margin-top: 1.5%;
+        margin-top: 0.5%;
+        padding-top: 2.5%;
+        width: 100%;
     }
 
     h1#pageTitle
@@ -52,17 +52,8 @@ div#TitleLine
     }
 }
 
-#filtIcon
-{
-    width: 10%;
-    float: left;
-    vertical-align: middle;
-    /*background-color: rgb(255, 0, 0);*/
-}
-
 h1#pageTitle
 {
-    width: 90%;
     color: $text-blue;
     font-weight: bold;
     text-align: center;
@@ -74,9 +65,4 @@ section{
     margin-top: 2rem;
     margin-left: auto;
     margin-right: auto;
-}
-
-graduates-search-bar
-{
-    width: 60%;
 }

@@ -1,4 +1,7 @@
-@import "libs/client/shared/assets/ui/src/lib/global";
+@import "../../../../../shared/assets/ui/src/lib/global.scss";
+
+/*=============================================FONTS=============================================*/
+$Segoe: 'Segoe UI';
 
 .card-grid{
   display: grid;
@@ -99,4 +102,50 @@ div.banner img {
   object-fit: cover;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+}
+
+
+/*============================================SEARCH BAR STYLING============================================*/
+
+div#searchBar
+{
+  /*background-color: red;*/
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 60%;
+
+  font-family: $Segoe;
+  font-size: 18px;
+  color: #7D7D7D;
+  font-style: normal;
+  font-weight: 400;
+}
+
+div#searchBar mat-form-field
+{
+  /*background-color: blue;*/
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 100%;
+}
+
+div#searchBar mat-form-field input
+{
+  line-height: 24px;
+
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+
+  background-color: $text-white;
+}
+
+/*============================================FILTER ICON STYLING===========================================*/
+
+div#filter
+{
+  position: absolute;
+  left: 2%;
+  top: 12.5%;
 }
