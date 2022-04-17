@@ -1,3 +1,10 @@
-<div fxLayoutAlign="center">
-    <input type="text" fxFlex="70%" fxFlexOffset="-10%">
-</div>
+
+    <form  fxLayoutAlign="center" class="search-form" #form="ngForm" (ngSubmit)="onSubmit(form)" >
+    <input 
+        type="text" 
+        fxFlex="70%" 
+        fxFlexOffset="-10%"
+        ngModel
+        name="search"
+        value="{{search}}">
+    </form>
