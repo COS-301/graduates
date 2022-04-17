@@ -56,7 +56,6 @@ export class StorageRepository {
     );
     return ret;
   }
-  //TODO update func, config
 
   //create a file record if the user does not already added this file type
   async createFile(data: ApiStorage) : Promise<UserProfileFile|null> {
