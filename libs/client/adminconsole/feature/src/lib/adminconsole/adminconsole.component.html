@@ -1,18 +1,10 @@
-<!-- <div class="header"><div class="info"><img id = "logo" src="https://db3pap005files.storage.live.com/y4mJWXeGlcq2q-_LBJ9-BDZTPujTus_oIMoNV0gC2wAnkCASuTKP5DSViLJmu3EILatPUCCYrMH0Sh_Hnt60Zwr9aoidttEMDD9TYH_Eh6hRSweXaDyiIWsjqnaRt4O2B9JLFRZ9fXpYvQKlthLNdJSKakRb2qrvneHWM-IF1--SAbt7Y0D2yKFOkxrAfMyoTdM?width=78&height=90&cropmode=none"><p>University of Pretoria</p></div> <div class ="title"><img id = "graduateHat" src="https://db3pap005files.storage.live.com/y4m9-IoEhWBrqqH_TRDxtgZZBGBRJmbmslmpMMMztnJICx-qhNq4j88VI7QDhemZ9jW-GtoFYtsC8-hi5zqwxH55MLsnfFzTZrntO5VmadTJPjXrwgjYewWTtYrpP_HjjE7ijEIkdY45jdY--tCB7tMJiPiBAjEdPhEZN-0ihJbpG_NHyu5LoeKVxlOTMkfa2p1?width=145&height=126&cropmode=none"><b>Admin</b>Portal</div> -->
-<!-- <header-and-footer-header></header-and-footer-header> -->
+<header-and-footer-header></header-and-footer-header>
 <button id = "mobileMenu" mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vert</mat-icon></button>
 <mat-menu #menu="matMenu">
   <button mat-menu-item *ngFor="let o of sidenavOptions;" (click)="sidenavOption(o)">{{o}}</button>
 </mat-menu>
 <!-- </div> -->
 <div class="subheader"> <div class="logout">Logout<img src="" alt=""></div></div>
-<div *ngIf="burger === true">
-    <div class="mobileSidenav">
-        <ul>
-            <li *ngFor="let o of sidenavOptions;" (click)="sidenavOption(o)" [ngStyle]="{'border-left' : (option === o) ? '4px solid #184475' : 'none'}">{{o}}</li>
-        </ul>
-    </div>
-</div>
 <div class="sidenav">
     <ul>
         <li *ngFor="let o of sidenavOptions;" (click)="sidenavOption(o)" [ngStyle]="{'border-left' : (option === o) ? '4px solid #184475' : 'none'}">{{o}}</li>
@@ -25,39 +17,40 @@
         <div class="users">
             <div class="formElement">
                 <img src="https://db3pap005files.storage.live.com/y4mBx6TQL2VYWXjt255fRDkY3K0FUfYRp_SaArmmt3-RxO0R669X4hq0XXu8TnDGLbaPCHi8u1Zl00uDLR__2DHBxgRTXhke9Avben8K8xypPNwRMBCr9Vnn0BhYbCjqzBOizbY0v1fENqNP7ZFHJxu0_zBViW_R7UIp2t9A3hpS4_h5tL8-DyVCEtMnFu5lhbU?width=36&height=38&cropmode=none" alt="userIcon">
-                <input class = "formInput" type="text" onfocus="this.value=''" value="Name">
+                <input [ngModel]="userName" id="Name" class = "formInput" type="text" onfocus="this.value=''" value="Name" required>
             </div>
             <div class="formElement">
                 <img src="https://db3pap005files.storage.live.com/y4mBx6TQL2VYWXjt255fRDkY3K0FUfYRp_SaArmmt3-RxO0R669X4hq0XXu8TnDGLbaPCHi8u1Zl00uDLR__2DHBxgRTXhke9Avben8K8xypPNwRMBCr9Vnn0BhYbCjqzBOizbY0v1fENqNP7ZFHJxu0_zBViW_R7UIp2t9A3hpS4_h5tL8-DyVCEtMnFu5lhbU?width=36&height=38&cropmode=none" alt="userIcon">
-                <input class = "formInput" type="text" onfocus="this.value=''" value="Surame">
+                <input [ngModel]="userSurname" id="Surname" class = "formInput" type="text" onfocus="this.value=''" value="Surame" required>
             </div>
             <div class="formElement">
                 <img src="https://db3pap005files.storage.live.com/y4mR5wpNeI5dkI4cU_NKlZJGAtL1n3Icy3Z6gvnVkIhaJgD2j11DZrx04gEDUEodnYiOoWBNhtKpLWOjPGXfznCnmTYiRF6EENYGX_3EOaWPOlPHXvpkCI5P-ciBwBqc4tIMXxE-byLK8ICRGsl_A0HkFLII-UKt8jEop20jCfyFAYMURryHoNNlQDxDumSBpln?width=35&height=47&cropmode=none" alt="emailIcon">
-                <input class = "formInput" type="text" onfocus="this.value=''" value="Email Address">
+                <input [ngModel]="userEmail" id="Email" class = "formInput" type="email" onfocus="this.value=''" value="Email Address" required>
             </div>
             <div class="formElement">
                 <img src="https://db3pap005files.storage.live.com/y4m1HiXif7DmcpCTZms7q-yBptlhGl8ue--mUvXOA6tmm9Sf7ij-ik6KEHeB45UzXY-KE0_HH3AnsLjqI5o30U7tyc6s_kgrPZxy-wz8RiJxdTfjrUdziaELduzmtOGhUu93x6DayRiPU58EfY35ew9Snx5-KhdeuYW4exVLYVTnIlwy247Xy7Ee0PXAj2YU-q4?width=47&height=50&cropmode=none" alt="contactDetailsIcon">
-                <input class = "formInput" type="text" onfocus="this.value=''" value="Contact Details">
+                <input [ngModel]="userNumber" id="Number" class = "formInput" type="number" onfocus="this.value=''" value="Contact Details" required>
             </div>
             <div class="formElement">
                 <img src="https://db3pap005files.storage.live.com/y4miFvdeTqzQoEoMoaoJ-HeXZNolyLiXXIpRXbTPnoLyaRfwKvhvywcVSVSILB7PIvgjle2Du3hGwLHbWV7bM9ahpr-NKDIDYW-hPBApzBsFQAUXskIiIn_x5PYS7290LGQwqBISQ9Ab1EcP7yH0gt6zm10isI20-xxue7Fg8zkKZZZ2H01S8x8xVY8JeRnYRNo?width=46&height=59&cropmode=none" alt="addressIcon">
-                <input class = "formInput" type="text" onfocus="this.value=''" value="Physical Address">
+                <input [ngModel]="userAddress" id="Address" class = "formInput" type="text" onfocus="this.value=''" value="Physical Address" required>
             </div>
             <div class="formElement">
                 <img src="https://db3pap005files.storage.live.com/y4megHfJvkSpTElRvFh-PFPHqWDL9_tALuMIB5MdD1ueJRa0mHN1bOU1kJGcAiial6Ym2kQvLE4-iRWtF1Zdx1jB9sPsLEft7fNXIpzDJDXN6cSQ5qAeRXRVdzbSZeNMogOuvqULrJZCdVKHv2-UH1PrqyqEIltPBXXgMLTV97CEEb6LBP4Gs7NbIitN-EhK1Sl?width=56&height=37&cropmode=none" alt="idDocIcon">
-                <input class = "formInput" type="text" onfocus="this.value=''" value="ID Document">
+                <input [ngModel]="userIDDoc" id="ID" class = "formInput" type="file" onfocus="this.value=''" value="ID Document" required>
                 <img src="https://db3pap005files.storage.live.com/y4mIiFghjfyBvpnuQJDOmVQg383oiD24TeOLzaqVAIp-Qm7CjCy9RSxuA5btCgdDOLZfsTnzJJ2p_7Zki_TYROa5YrXDHcnY2WGmi15uhx5dBnN2LDO7qRjM7-AzI8exWFTkGj-0can8KNgthbTvD_ErLZUp2h0miec21IGJ76p4HxkvhmdoQkUqUvDA4YCFN3h?width=41&height=44&cropmode=none" alt="uploadIcon" class= "uploadImage">
 
             </div>
             <div class="formElement">
                 <img src="https://db3pap005files.storage.live.com/y4mR5wpNeI5dkI4cU_NKlZJGAtL1n3Icy3Z6gvnVkIhaJgD2j11DZrx04gEDUEodnYiOoWBNhtKpLWOjPGXfznCnmTYiRF6EENYGX_3EOaWPOlPHXvpkCI5P-ciBwBqc4tIMXxE-byLK8ICRGsl_A0HkFLII-UKt8jEop20jCfyFAYMURryHoNNlQDxDumSBpln?width=35&height=47&cropmode=none" alt="cvDocIcon" >
-                <input class = "formInput" type="text" onfocus="this.value=''" value="CV">
+                <input [ngModel]="CVDoc" id="CV" class = "formInput" type="file" onfocus="this.value=''" value="CV" required>
                 <img src="https://db3pap005files.storage.live.com/y4mIiFghjfyBvpnuQJDOmVQg383oiD24TeOLzaqVAIp-Qm7CjCy9RSxuA5btCgdDOLZfsTnzJJ2p_7Zki_TYROa5YrXDHcnY2WGmi15uhx5dBnN2LDO7qRjM7-AzI8exWFTkGj-0can8KNgthbTvD_ErLZUp2h0miec21IGJ76p4HxkvhmdoQkUqUvDA4YCFN3h?width=41&height=44&cropmode=none" alt="uploadIcon" class= "uploadImage">
 
             </div>
 
-        <!-- <button id = "saveButton">Save</button> -->
         </div>
+        <button id = "usersSaveButton" (click) = "createUser()">Save</button>
+
     </div>
 
     <div class="mid" *ngSwitchCase="'Users'">
@@ -100,7 +93,6 @@
     </div>
 
     <div class="mid" *ngSwitchCase="'Story'">
-        <input class = "searchbar" value="SEARCH">
         <input class = "searchbar" onfocus="this.value=''" value="SEARCH">
         <div class="users">
             <div class="user" *ngFor="let u of users;">
@@ -146,7 +138,7 @@
                     <button mat-menu-item *ngFor="let aR of allRoles" (click)="addRole(aR)">{{aR}}</button>
                 </mat-menu>
         </div>    
-        <button id = "usersSaveButton">Save</button>
+        <button (click) = "changeRoles()" id = "usersSaveButton">Save</button>
     </div>
 
     <div class="mid" *ngSwitchCase="'Blogs'">
@@ -165,7 +157,7 @@
             </div>
         </div>
         <div class = "archive">
-            <button class="archiveButton">Archive</button>
+            <button archiveclass="archiveButton">Archive</button>
             <button class="archiveButton">Unarchive</button>
         </div>
         <button id = "usersSaveButton">Save</button>
@@ -188,10 +180,13 @@
         </div>
         
         <div class = "archive">
-            <button class="archiveButton">Archive</button>
-            <button class="archiveButton">Un-Archive</button>
+            <button (click) = "archive()" class="archiveButton">Archive</button>
+            <button (click) = "unarchive()"" class="archiveButton">Un-Archive</button>
         </div>
+        <button id = "usersSaveButton">Save</button>
     </div>
-    <button id = "usersSaveButton">Save</button>
 </div>
-<!-- <header-and-footer-footer></header-and-footer-footer> -->
+<footer>
+    <header-and-footer-footer></header-and-footer-footer>
+</footer>
+
