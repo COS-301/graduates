@@ -1,8 +1,8 @@
-import { UserNumber } from '@graduates/api/companyprofilepage/api/shared/data-access';
+import { CompanyReps, UserNumber, UserProfile } from '@graduates/api/companyprofilepage/api/shared/data-access';
 import { CompanyProfilePage } from '@graduates/api/companyprofilepage/repository/data-access'
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { User, UserEmail, UserLocation, UserSocialMedia } from '@prisma/client';
-import { GetCompanyByIDQuery , GetCompanyEmailQuery, GetCompanyLocationQuery, GetCompanyNumberQuery, GetCompanySocialMediaQuery} from './api-companyprofilepage-service-query';
+import { GetCompanyByIDQuery , GetCompanyEmailQuery, GetCompanyLocationQuery, GetCompanyNumberQuery, GetCompanySocialMediaQuery, GetCompanyBioQuery, GetCompanyRepQuery } from './api-companyprofilepage-service-query';
 
 
 @QueryHandler(GetCompanyByIDQuery)
@@ -53,6 +53,26 @@ export class GetCompanySocialMediaHandler implements IQueryHandler<GetCompanySoc
   async execute(query: GetCompanySocialMediaQuery): Promise<UserSocialMedia[] | null> {
     const { id }  = query;
     return this.repository.getCompanySocialMedia(id);
+  }
+}
+
+@QueryHandler(GetCompanyBioQuery)
+export class GetCompanyBioHandler implements IQueryHandler<GetCompanyBioQuery> {
+  constructor(private readonly repository: CompanyProfilePage) {}
+
+  async execute(query: GetCompanyBioQuery): Promise<UserProfile | null> {
+    const { id }  = query;
+    return this.repository.getCompanyProfile(id);
+  }
+}
+
+@QueryHandler(GetCompanyRepQuery)
+export class GetCompanyRepHandler implements IQueryHandler<GetCompanyRepQuery> {
+  constructor(private readonly repository: CompanyProfilePage) {}
+
+  async execute(query: GetCompanyRepQuery): Promise<User[] | null> {
+    const { id }  = query;
+    return this.repository.getCompanyRepById(id);
   }
 }
 
