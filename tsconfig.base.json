@@ -78,6 +78,9 @@
       "@graduates/api/blog/repository/data-access": [
         "libs/api/blog/repository/data-access/src/index.ts"
       ],
+      "@graduates/api/blog/service/feature": [
+        "libs/api/blog/service/feature/src/index.ts"
+      ],
       "@graduates/api/company-representative/api/feature": [
         "libs/api/company-representative/api/feature/src/index.ts"
       ],
@@ -181,9 +184,6 @@
       "@graduates/api/shorts/service/feature": [
         "libs/api/shorts/service/feature/src/index.ts"
       ],
-      "@graduates/api/blog/service/feature": [
-        "libs/api/blog/service/feature/src/index.ts"
-      ],      
       "@graduates/api/storage/api/feature": [
         "libs/api/storage/api/feature/src/index.ts"
       ],
@@ -250,6 +250,9 @@
       "@graduates/client/company-notifications/feature": [
         "libs/client/company-notifications/feature/src/index.ts"
       ],
+      "@graduates/client/company-profile/feature": [
+        "libs/client/company-profile/feature/src/index.ts"
+      ],
       "@graduates/client/company-representative/feature": [
         "libs/client/company-representative/feature/src/index.ts"
       ],
@@ -304,11 +307,8 @@
       "@graduates/client/student-responses/feature": [
         "libs/client/student-responses/feature/src/index.ts"
       ],
-      "@graduates/client/status-page/feature": [
-        "libs/client/status-page/feature/src/index.ts"
-      ],
-      "@graduates/client/company-profile/feature": [
-        "libs/client/company-profile/feature/src/index.ts"
+      "@graduates/client/upintegration": [
+        "libs/client/upintegration/src/index.ts"
       ]
     }
   },

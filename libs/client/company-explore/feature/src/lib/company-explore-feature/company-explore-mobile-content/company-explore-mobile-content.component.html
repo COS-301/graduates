@@ -1,0 +1,10 @@
+
+<div class="content" fxLaout="row" fxLayoutAlign="center">
+        <div class="layout" fxLayout="row wrap" fxLayoutGap="5% grid" >
+            <div 
+                *ngFor="let company of companies|async">
+                <graduates-company-explore-mobile-card class="card" [company]="company"></graduates-company-explore-mobile-card>  
+            </div>
+        </div>
+</div>
+           
