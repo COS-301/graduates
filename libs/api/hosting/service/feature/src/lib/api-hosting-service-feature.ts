@@ -1,6 +1,6 @@
 import { ApiHosting } from '@graduates/api/hosting/api/shared/data-access';
 import { HttpService } from '@nestjs/axios';
-import { Injectable } from '@nestjs/common';
+import { Injectable, Query } from '@nestjs/common';
 import { HealthCheck, HealthCheckService, HttpHealthIndicator } from '@nestjs/terminus';
 
 @Injectable()
@@ -156,68 +156,68 @@ export class ApiHostingServiceFeatureModule{
   @HealthCheck()
   checkStorageAPI(){
     return this.health.check([
-      () => this.http.pingCheck('Storage API', 'http://localhost:3333/graphql/api-storage-feature')
+      () => this.http.pingCheck('Storage API', 'http://localhost:3333/graphql?query=%7BpingStorage%7D')
     ]);
   }
   @HealthCheck()
   checkShortsAPI(){
     return this.health.check([
-      () => this.http.pingCheck('Shorts API', 'http://localhost:3333/graphql/api-shorts-feature')
+      () => this.http.pingCheck('Shorts API', 'http://localhost:3333/graphql?query=%7BpingShorts%7D')
     ]);
   }
   @HealthCheck()
   checkCompanyProfileAPI(){
     return this.health.check([
-      () => this.http.pingCheck('Company Profile API', 'http://localhost:3333/graphql/api-companyprofilepage-feature')
+      () => this.http.pingCheck('Company Profile API', 'http://localhost:3333/graphql?query=%7BpingCompanyProfile%7D')
     ]);
   }
   @HealthCheck()
   checkAccessStatusAPI(){
     return this.health.check([
-      () => this.http.pingCheck('Access Status API', 'http://localhost:3333/graphql/api-access-status-feature')
+      () => this.http.pingCheck('Access Status API', 'http://localhost:3333/graphql?query=%7BpingAccessStatus%7D')
     ]);
   }
   @HealthCheck()
   checkStudentProfilesAPI(){
     return this.health.check([
-      () => this.http.pingCheck('Student Profiles API', 'http://localhost:3333/graphql/api-student-profiles-feature')
+      () => this.http.pingCheck('Student Profiles API', 'http://localhost:3333/graphql?query=%7BpingStudentProfiles%7D')
     ]);
   }
   @HealthCheck()
   checkCompanyRepresentativeAPI(){
     return this.health.check([
-      () => this.http.pingCheck('Company Representative API', 'http://localhost:3333/graphql/api-company-representative-feature')
+      () => this.http.pingCheck('Company Representative API', 'http://localhost:3333/graphql?query=%7BpingCompanyRepresentative%7D')
     ]);
   }
   @HealthCheck()
   checkRequestAccessAPI(){
     return this.health.check([
-      () => this.http.pingCheck('Request Access API', 'http://localhost:3333/graphql/api-request-access-feature')
+      () => this.http.pingCheck('Request Access API', 'http://localhost:3333/graphql?query=%7BpingRequestAccess%7D')
     ]);
   }
   @HealthCheck()
   checkAuthenticationAPI(){
     return this.health.check([
-      () => this.http.pingCheck('Authentication API', 'http://localhost:3333/graphql/api-authentication-feature')
+      () => this.http.pingCheck('Authentication API', 'http://localhost:3333/graphql?query=%7BpingAuthentication%7D')
     ]);
   }
 
   @HealthCheck()
   checkStudentExploreAPI(){
     return this.health.check([
-      () => this.http.pingCheck('Authentication API', 'http://localhost:3333/graphql/api-student-explore-feature')
+      () => this.http.pingCheck('Authentication API', 'http://localhost:3333/graphql?query=%7BpingStudentExplore%7D')
     ]);
   }
   @HealthCheck()
   checkAdminconsoleAPI(){
     return this.health.check([
-      () => this.http.pingCheck('Authentication API', 'http://localhost:3333/graphql/api-adminconsole-feature')
+      () => this.http.pingCheck('Authentication API', 'http://localhost:3333/graphql?query=%7BpingAdminconsole%7D')
     ]);
   }
   @HealthCheck()
   checkUpintegrationAPI(){
     return this.health.check([
-      () => this.http.pingCheck('Authentication API', 'http://localhost:3333/graphql/api-upintergration-feature')
+      () => this.http.pingCheck('Authentication API', 'http://localhost:3333/graphql?query=%7BpingUpintegration%7D')
     ]);
   }
   AddAllUnimplemented(){
@@ -227,4 +227,50 @@ export class ApiHostingServiceFeatureModule{
 
     this.hosting.push(unimplemented1);
   }
+  //To-do and the following queries
+  // @Query 
+  // pingStorage(){
+  //   return "on";
+  // }
+  // @Query 
+  // pingShorts(){
+  //   return "on";
+  // }
+  // @Query 
+  // pingCompanyProfile(){
+  //   return "on";
+  // }
+  // @Query 
+  // pingAccessStatus(){
+  //   return "on";
+  // }
+  // @Query 
+  // pingStudentProfiles(){
+  //   return "on";
+  // }
+  // @Query 
+  // pingCompanyRepresentative(){
+  //   return "on";
+  // }
+  // @Query 
+  // pingRequestAccess(){
+  //   return "on";
+  // }
+  // @Query 
+  // pingAuthentication(){
+  //   return "on";
+  // }
+  // @Query 
+  // pingStudentExplore(){
+  //   return "on";
+  // }
+  // @Query 
+  // pingAdminconsole(){
+  //   return "on";
+  // }
+  // @Query 
+  // pingUpintegration(){
+  //   return "on";
+  // }
+
 }
