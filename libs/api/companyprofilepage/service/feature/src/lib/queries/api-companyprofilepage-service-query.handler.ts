@@ -2,7 +2,7 @@ import { CompanyReps, UserNumber, UserProfile } from '@graduates/api/companyprof
 import { CompanyProfilePage } from '@graduates/api/companyprofilepage/repository/data-access'
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { User, UserEmail, UserLocation, UserSocialMedia } from '@prisma/client';
-import { GetCompanyByIDQuery , GetCompanyEmailQuery, GetCompanyLocationQuery, GetCompanyNumberQuery, GetCompanySocialMediaQuery, GetCompanyBioQuery, GetCompanyRepQuery} from './api-companyprofilepage-service-query';
+import { GetCompanyByIDQuery , GetCompanyEmailQuery, GetCompanyLocationQuery, GetCompanyNumberQuery, GetCompanySocialMediaQuery, GetCompanyBioQuery, GetCompanyRepQuery } from './api-companyprofilepage-service-query';
 
 
 @QueryHandler(GetCompanyByIDQuery)
