@@ -13,9 +13,10 @@ export class AuthenticationUser{
     username: string;
 
     @Field()
-    password: string;
+    email: string;
 
     @Field()
-    dummy: string;
+    password: string;
+
 
 }

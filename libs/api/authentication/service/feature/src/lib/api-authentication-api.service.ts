@@ -27,11 +27,13 @@ export class UsersService {
   {
     id: 1,
     username:'John',
+    email:'JohnDoe@gmail.com',
     password: 'admin1'
   },
   {
     id: 2,
     username:'Jake',
+    email: 'JakeDoe@gmail.com',
     password: 'admin2'
   },
 
@@ -39,12 +41,12 @@ export class UsersService {
 
   create(createUserInput: CreateUserInput){
     return 'New user is added'; //Add logic
-    const user= {
-        ...createUserInput,
-        id: this.users.length+1,
-    };
+    // const user= {
+    //     ...createUserInput,
+    //     id: this.users.length+1,
+    // };
     
-    this.users.push(user);
+    // this.users.push(user);
   }
 
   findAll(){
