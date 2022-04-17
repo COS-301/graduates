@@ -6,7 +6,7 @@
             <h1>{{companyName}}</h1>
         </mat-card>
         <div id="outer">
-            <mat-card class="outer" fxFlexAlign="center" fxLayout="row" fxLayout.xs="column-reverse">
+            <mat-card class="outer" fxFlexAlign="center" fxLayout="row" fxLayout.lt-md ="column-reverse">
                 <mat-card class="child-1" fxFlex.gt-sm="25">
                     <graduates-company-details></graduates-company-details>
                     <br/>
@@ -23,11 +23,11 @@
             </mat-card>
         </div>    
         <div id="outer-edit">
-            <mat-card class="outer-edit" fxFlexAlign="center" fxLayout="row" fxLayout.xs="column-reverse">
+            <mat-card class="outer-edit" fxFlexAlign="center" fxLayout="row" fxLayout.lt-sm="column-reverse">
                 <mat-card class="child-1" fxFlex.gt-sm="25">
                     <graduates-company-details-edit></graduates-company-details-edit>
                     <br/>
-                    <graduates-representative-list-edit></graduates-representative-list-edit>
+                    <graduates-representative-list></graduates-representative-list>
                     <br/>
                     <graduates-social-media-edit></graduates-social-media-edit>
                 </mat-card> 
