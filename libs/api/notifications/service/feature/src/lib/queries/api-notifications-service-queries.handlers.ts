@@ -2,7 +2,7 @@
 import { NotificationsRepository } from "@graduates/api/notifications/repository/data-access";
 import { Notification } from "@prisma/client"
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
-import { 
+import {
   GetAllUserNotificationsQuery,
   GetNotificationByIdQuery,
   GetNotificationsReceivedQuery,

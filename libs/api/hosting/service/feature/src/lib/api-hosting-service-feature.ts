@@ -21,7 +21,9 @@ export class ApiHostingServiceFeatureModule{
     const companyRepresentativeAPI = new ApiHosting();
     const requestAccessAPI = new ApiHosting();
     const authenticationAPI = new ApiHosting();
-
+    const studentExploreAPI = new ApiHosting();
+    const adminconsoleAPI = new ApiHosting();
+    const upintegrationAPI = new ApiHosting();
     //StorageAPI
     storageApi.name = "Storage API";
     try{
@@ -110,6 +112,39 @@ export class ApiHostingServiceFeatureModule{
     }
     this.hosting.push(authenticationAPI);
 
+    //studentExploreAPI
+    studentExploreAPI.name = "studentExplore API";
+    try{
+      await this.checkStudentExploreAPI();
+      studentExploreAPI.status = "Operational";
+    }
+    catch(error){
+      studentExploreAPI.status = "Non Operational";
+    }
+    this.hosting.push(studentExploreAPI);
+
+    //adminconsoleAPI
+    adminconsoleAPI.name = "adminconsole API";
+    try{
+      await this.checkAdminconsoleAPI();
+      adminconsoleAPI.status = "Operational";
+    }
+    catch(error){
+      adminconsoleAPI.status = "Non Operational";
+    }
+    this.hosting.push(adminconsoleAPI);
+
+    //upintegrationAPI
+    upintegrationAPI.name = "upintegration API";
+    try{
+      await this.checkUpintegrationAPI();
+      upintegrationAPI.status = "Operational";
+    }
+    catch(error){
+      upintegrationAPI.status = "Non Operational";
+    }
+    this.hosting.push(upintegrationAPI);
+
     //quick fix (until the urls are updated)
     this.hosting.forEach(element => {
       element.status = "Operational";
@@ -164,6 +199,25 @@ export class ApiHostingServiceFeatureModule{
   checkAuthenticationAPI(){
     return this.health.check([
       () => this.http.pingCheck('Authentication API', 'http://localhost:3333/graphql/api-authentication-feature')
+    ]);
+  }
+
+  @HealthCheck()
+  checkStudentExploreAPI(){
+    return this.health.check([
+      () => this.http.pingCheck('Authentication API', 'http://localhost:3333/graphql/api-student-explore-feature')
+    ]);
+  }
+  @HealthCheck()
+  checkAdminconsoleAPI(){
+    return this.health.check([
+      () => this.http.pingCheck('Authentication API', 'http://localhost:3333/graphql/api-adminconsole-feature')
+    ]);
+  }
+  @HealthCheck()
+  checkUpintegrationAPI(){
+    return this.health.check([
+      () => this.http.pingCheck('Authentication API', 'http://localhost:3333/graphql/api-upintergration-feature')
     ]);
   }
   AddAllUnimplemented(){
