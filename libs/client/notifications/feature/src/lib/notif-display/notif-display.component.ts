@@ -23,7 +23,21 @@ export class NotifDisplayComponent implements OnInit{
         for (let i = notArr.length-1; i >= 0 ; i--) {
           const comp = this.placeholder.createComponent(ExpansionNotifComponent);
           comp.instance.description = 'Request for '+ res.data.notificationsAll[i].data.notificationType;
-          comp.instance.userFrom = res.data.notificationsAll[i].userIdFrom;
+          const idFrom = res.data.notificationsAll[i].userIdFrom;
+          this.notifApi.getUserEmailAndName(idFrom).subscribe({
+            next: (result) => {
+              comp.instance.userFrom = result.data.notificationsGetUser.name;
+              comp.instance.userEmailFrom = result.data.notificationsGetUser.email;
+            }
+          });
+
+          const idTo = res.data.notificationsAll[i].userIdTo;
+          this.notifApi.getUserEmailAndName(idTo).subscribe({
+            next: (result) => {
+              comp.instance.userTo = result.data.notificationsGetUser.name;
+            }
+          });
+          
           comp.instance.userTo = res.data.notificationsAll[i].userIdTo;
           comp.instance.requestedItem = res.data.notificationsAll[i].data.notificationType;
         }

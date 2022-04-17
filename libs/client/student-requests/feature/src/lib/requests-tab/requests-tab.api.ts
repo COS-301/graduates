@@ -11,8 +11,8 @@ export class RequestTabApi {
     requestCV():Observable<any | null> {
         const query = `mutation { 
             createRequestNotification (
-                userIDTo: "cl20wx4ka0061boun3qhcpkzq",
-                userIDFrom: "cl20wxms80114bounbcjvfui4",
+                userIdTo: "cl20wx4ka0061boun3qhcpkzq",
+                userIdFrom: "cl2374vfa0253i8unx7r7eeb5",
                 notificationType: "CV"
             ) {
             data {
@@ -32,8 +32,8 @@ export class RequestTabApi {
     requestCD():Observable<any | null> {
         const query = `mutation { 
             createRequestNotification (
-                userIDTo: "cl20wx4ka0061boun3qhcpkzq",
-                userIDFrom: "cl20wxms80114bounbcjvfui4",
+                userIdTo: "cl20wx4ka0061boun3qhcpkzq",
+                userIdFrom: "cl20wxms80114bounbcjvfui4",
                 notificationType: "Contact Details"
             ) {
             data {
@@ -53,8 +53,8 @@ export class RequestTabApi {
     requestAR():Observable<any | null> {
         const query = `mutation { 
             createRequestNotification (
-                userIDTo: "cl20wx4ka0061boun3qhcpkzq",
-                userIDFrom: "cl20wxms80114bounbcjvfui4",
+                userIdTo: "cl20wx4ka0061boun3qhcpkzq",
+                userIdFrom: "cl2378g130404i8unncj003ay",
                 notificationType: "Academic Record"
             ) {
             data {
