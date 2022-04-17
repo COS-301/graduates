@@ -19,6 +19,21 @@ import {Apollo, gql} from 'apollo-angular';
 
 export class StoryExploreComponent implements OnInit {
 
+
+  cardsPerPage = 6;
+  pageIndex = 1;
+  endIndex = 1;
+
+  cardlist = [{"user": {"name": "Matthew"},"shortTag":[{"tag":"TeamWork"}],"userId":"test","id":"fake","thumbnail":""}];
+  cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
+    map(({ matches }) => {
+      return this.cardlist;
+    })
+  );
+
+  getALLCardsQuery = "query{ getAllShorts{ user{  name  },shortTag{ tag },userId,id, thumbnail}}";
+
+  
   @Input() upload : boolean;
   @Input() report : boolean;
 
@@ -166,7 +181,7 @@ export class StoryExploreComponent implements OnInit {
       const selectedCard = result.data.getShortById;
       
       this.viewingName = selectedCard.user.name;
-      for(let a of selectedCard.shortTag){
+      for(const a of selectedCard.shortTag){
         this.viewingTags += a.tag +" ";
       }
 
@@ -255,18 +270,6 @@ export class StoryExploreComponent implements OnInit {
 
   // VARS
 
-  cardsPerPage = 6;
-  pageIndex = 1;
-  endIndex = 1;
-
-  cardlist = [{"user": {"name": "Matthew"},"shortTag":[{"tag":"TeamWork"}],"userId":"test","id":"fake","thumbnail":""}];
-  cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    map(({ matches }) => {
-      return this.cardlist;
-    })
-  );
-
-  getALLCardsQuery = "query{ getAllShorts{ user{  name  },shortTag{ tag },userId,id, thumbnail}}";
 
   // FUNCS
   
@@ -328,7 +331,7 @@ export class StoryExploreComponent implements OnInit {
       
       for (let index = 0; index < all.length; index++) {
 
-        for(let el of all[index].shortTag){
+        for(const el of all[index].shortTag){
           if(el.tag === sText) {
             this.cardlist.push(all[index]);
             break;
@@ -336,8 +339,6 @@ export class StoryExploreComponent implements OnInit {
         }
         
        }
-      
-      // refresh page
       
       this.endIndex = Math.ceil(this.cardlist.length/this.cardsPerPage);
       this.btnNaviClick(0);
