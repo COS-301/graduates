@@ -3,7 +3,7 @@ import { Field, ID, ObjectType} from "@nestjs/graphql";
 @ObjectType()
 export class UserSocialMedia {
     @Field(type => ID)
-    userID!: string;
+    userId!: string;
 
     @Field()
     type: string;
@@ -16,7 +16,7 @@ export class UserSocialMedia {
 @ObjectType()
 export class UserEmail{
     @Field(type => ID)
-    userID!: string;
+    userId!: string;
 
     @Field()
     email: string;
@@ -25,7 +25,7 @@ export class UserEmail{
 @ObjectType()
 export class UserNumber{
     @Field(type => ID)
-    userID!: string;
+    userId!: string;
 
     @Field()
     number: string;
@@ -34,7 +34,7 @@ export class UserNumber{
 @ObjectType()
 export class UserLocation{
     @Field(type => ID)
-    userID!: string;
+    userId!: string;
 
     @Field()
     location: string;
