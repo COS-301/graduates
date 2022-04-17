@@ -380,12 +380,19 @@ export class StoryExploreComponent implements OnInit {
     
     (<HTMLButtonElement>document.getElementById("prevBtn")).disabled = false;
     (<HTMLButtonElement>document.getElementById("nextBtn")).disabled = false;
+
+    
+    (<HTMLButtonElement>document.getElementById("prevBtn")).className = "px-4 py-2 formbuttonblue rounded";
+    (<HTMLButtonElement>document.getElementById("nextBtn")).className = "px-4 py-2 formbuttonblue rounded";
+
     this.pageIndex += i;
     if(this.pageIndex <=1){
       (<HTMLButtonElement>document.getElementById("prevBtn")).disabled = true;
+      (<HTMLButtonElement>document.getElementById("prevBtn")).className = "px-4 py-2 formbuttonBlueDisabled rounded";
     }
     if(this.endIndex <= this.pageIndex){
       (<HTMLButtonElement>document.getElementById("nextBtn")).disabled = true;
+      (<HTMLButtonElement>document.getElementById("nextBtn")).className = "px-4 py-2 formbuttonBlueDisabled rounded";
     }
 
     (<HTMLButtonElement>document.getElementById("curBtn")).innerHTML = (this.pageIndex).toString();

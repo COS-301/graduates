@@ -53,6 +53,8 @@ header-and-footer-footer {
     
 }
 
+
+
 .cardbutton-nohov {
     font-size: medium;
     color: $text-white;
@@ -202,10 +204,32 @@ header-and-footer-footer {
     border-width: 1px;
     border-color: $card-red;
     &:hover{
-        color: $primary-1;
+        color: $card-red;
         background-color: $background-white;
 
     }   
+}
+
+.formbuttonDisabled {
+    border-style: solid;
+    border-width: 1px;
+    border-color: $card-red;
+
+    color: $card-red;
+    background-color: $background-white;
+
+ 
+}
+
+.formbuttonBlueDisabled {
+    border-style: solid;
+    border-width: 1px;
+    border-color: $primary-1;
+
+    color: $primary-1;
+    background-color: $background-white;
+
+ 
 }
 
 .auto-col-maker {

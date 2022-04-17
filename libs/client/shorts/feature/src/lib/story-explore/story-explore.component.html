@@ -173,7 +173,7 @@
       <!-- buttons -->
       <div class="text-right my-auto">
         <button *ngIf="!alreadyReported" class="py-2.5 px-3 mr-2 formbuttonred rounded" (click)="makeReportpopup()">Report</button>
-        <button *ngIf="alreadyReported" disabled class="py-2.5 px-3 mr-2 formbuttonred rounded">Reported!</button>
+        <button *ngIf="alreadyReported" disabled class="py-2.5 px-3 mr-2 formbuttonDisabled rounded">Reported!</button>
         <button class="py-2.5 px-3 mr-2 formbuttonblue rounded" (click)="closeViewing()">Close</button>
       </div>
     </div>
