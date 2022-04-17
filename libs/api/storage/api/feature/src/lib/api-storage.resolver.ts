@@ -54,7 +54,7 @@ export class ApiStorageResolver {
       const storage = new ApiStorage();
       storage.fileAsString = file.substring(file.indexOf(',')+1,file.length);
 
-      let ret:boolean|ApiStorageInput|string = false;
+      let ret = false;
 
       if(fileCategory==="CV"){
         storage.fileCategory = FileCategory.CV 
@@ -74,10 +74,9 @@ export class ApiStorageResolver {
       
       await this.storageService.create(storage).then( async (value) => {
         if(value)
-        ret = value;
+        ret = true;
       })
 
-      console.log(ret);
       return ret;
 }
 }
