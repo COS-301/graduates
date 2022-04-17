@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+// import { Router } from '@angular/router';
 
 @Component({
   selector: 'graduates-blog-create',
@@ -11,4 +12,7 @@ export class BlogCreateComponent {
     //CODE
   }
 
+  cancel() {
+    // this.router.navigate(['blog']);
+  }
 }
