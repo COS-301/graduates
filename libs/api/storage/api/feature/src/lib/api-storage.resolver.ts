@@ -61,7 +61,11 @@ export class ApiStorageResolver {
       storage.userId = userID;
       storage.fileExtension = fileExtension;
       return await this.storageService.create(storage);
-}
+  }
+  @Query(() =>String)
+  pingStorage(){
+    return "on";
+  }
 }
 
 
