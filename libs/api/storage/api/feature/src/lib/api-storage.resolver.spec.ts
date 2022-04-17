@@ -17,7 +17,7 @@ describe('ApStorageResolver', () => {
     expect(resolver).toBeDefined();
   });
 });
-const record = {fileCategory:"CV" , userID:"u20469366"}
+/*const record = {fileCategory:"CV" , userID:"u20469366"}
 class ApiStorageServiceMock {
   deleteFile(userID: string, fileCategory: string) {
     if(fileCategory.match(record.fileCategory)&&userID.match(record.userID)){
@@ -78,4 +78,4 @@ describe('StudentService', () => {
       expect(numexp).toEqual(num);
     });
   });
- });
+ });*/
