@@ -17,13 +17,8 @@ export class CompanyRepresentativeRepository {
     companyRep.aboutMe = aboutMe;
 
     for (let i=0;   i< SocialMedia.length;  i++) {
-<<<<<<< HEAD
-      if (SocialMedia.at(i).type == "FACEBOOK") {
-        companyRep.facebook = SocialMedia.at(i).link;
-=======
       if (SocialMedia[i].type == "FACEBOOK") {
         companyRep.twitter = SocialMedia[i].link;
->>>>>>> e90085efcc9561d801ddc926163b82bb2d308f09
       }
       else if (SocialMedia[i].type == "GITHUB") {
         companyRep.gitHub = SocialMedia[i].link;
@@ -174,7 +169,6 @@ export class CompanyRepresentativeRepository {
         UserLocation: true
       }
     })
-    const user = users[0];
 
     if (users) {
       const user = users[0];
