@@ -4,7 +4,6 @@ import { Injectable } from '@nestjs/common';
 
 import { QueryBus } from '@nestjs/cqrs';
 import { Item } from '@prisma/client';
-import { GetAccessEntitiesQuery } from './queries/impl/get-access-entities.query';
 
 import { RequestAccessRepository } from '@graduates/api-request-access-repository-feature';
 
