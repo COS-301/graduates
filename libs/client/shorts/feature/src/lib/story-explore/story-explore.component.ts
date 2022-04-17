@@ -119,10 +119,41 @@ export class StoryExploreComponent implements OnInit {
   }
 
   viewStory(s : string) {
-    this.currentlyViewing = s;
-    this.viewing = true;
-    this.reporting = false;
-    this.successfulReport = false;
+    this.viewingName = "";
+    this.viewingTags = "";
+
+    if(!(this.apollo.client===undefined)) this.apollo
+    .watchQuery({
+      query: gql`query {
+        getShortById(id: "${s}"){
+          user{ 
+            name 
+          },
+          shortTag{
+            tag
+          },
+          userId,
+          id,
+          thumbnail,
+          link,
+        } 
+      }`
+    })
+    .valueChanges.subscribe((result: any) => {
+      const selectedCard = result.data.getShortById;
+      
+      this.viewingName = selectedCard.user.name;
+      for(let a of selectedCard.shortTag){
+        this.viewingTags += a.tag +" ";
+      }
+
+      this.currentlyViewing = s;
+      this.viewing = true;
+      this.reporting = false;
+      this.successfulReport = false;
+    });
+
+
   }
 
   closeViewing() {
