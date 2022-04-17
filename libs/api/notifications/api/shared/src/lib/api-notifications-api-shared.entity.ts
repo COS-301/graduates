@@ -4,6 +4,9 @@ import { Field, ID, ObjectType } from "@nestjs/graphql";
 export class NotificationData {
     @Field()
     notificationType!: string;
+
+    @Field()
+    status: string;
 }
 
 @ObjectType()

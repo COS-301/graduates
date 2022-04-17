@@ -1,85 +1,161 @@
-import {
-  Resolver,
-  Query,
-  Args,
-  Mutation,
-  ResolveField,
-  Root,
-} from '@nestjs/graphql';
-import {
-  Blog
-} from '@graduates/api/blog/api/shared/entities/data-access';
+import { Resolver, Query, Args, Mutation, ResolveField, Root } from '@nestjs/graphql';
+import { Blog, BlogComment, BlogMedia } from '@graduates/api/blog/api/shared/entities/data-access';
 import { BlogService } from '@graduates/api/blog/service/feature';
 import { NotFoundException } from '@nestjs/common';
 
-@Resolver(() => Notification)
-export class NotificationsResolver {
+@Resolver(() => Blog)
+export class BlogResolver {
     constructor(
-        private notificationService: ApiNotificationsService
+        private blogService: BlogService
     ) {}
 
-    @Query(returns => [Notification])
-    async notificationsAll(): Promise<Notification[] | null> {
-        const res = await this.notificationService.getAllNoifications();
-        return (res) ? res : null;
+    // Queries
+
+    @Query(returns => Blog)
+    async blogById(@Args('blogId', {type: () => String}) blogId: string): Promise<Blog | null> {
+        return this.blogService.getBlogById(blogId);
     }
 
-    @Query(returns => Notification)
-    async notificationByID(@Args('ID', {type: () => String}) id: string): Promise<Notification | null> {
-        const res = await this.notificationService.getNotificationsById(id);
-        return (res) ? res : null;
-        
+    @Query(returns => [Blog])
+    async allBlogs(): Promise<Blog[] | null> {
+        return this.blogService.getAllBlogs();
     }
 
-    @Query(returns => [Notification])
-    async notificationsReceived(@Args('userID', {type: () => String}) userId: string): Promise<Notification[] | null> {
-        const res = await this.notificationService.getNotificationsReceived(userId);
-        if (!res) throw new NotFoundException("Notifications Not Found")
-        else return res;
+    @Query(returns => [Blog])
+    async allArchivedBlogs(): Promise<Blog[] | null> {
+        return this.blogService.getAllArchivedBlogs();
     }
 
-    @Query(returns => [Notification])
-    async notificationsSent(@Args('userID', {type: () => String}) userId: string): Promise<Notification[] | null> {
-        const res = await this.notificationService.getNotificationsSent(userId);
-        if (!res) throw new NotFoundException("Notifications Not Found")
-        else return res;
+    @Query(returns => [Blog])
+    async blogByUserId(@Args('userId', {type: () => String}) userId: string): Promise<Blog[] | null> {
+        return this.blogService.getBlogByUserId(userId);
     }
 
-    @Query(returns => [Notification])
-    async notificationsByType(
-        @Args('userID', {type: () => String}) userId: string, 
-        @Args('notificationType', {type: () => String}) notificationType: string
-    ): Promise<Notification[] | null> {
-        const res = await this.notificationService.getNotificationsByType(userId, notificationType);
-        if (!res) throw new NotFoundException("Notifications Not Found")
-        else return res;
+    @Query(returns => null)
+    async testQuery(): Promise<null> {
+        return null;
     }
 
-    @Mutation(()=>Notification)
-    async createRequestNotification(
-        @Args('userIDTo', {type: () => String}) userIdTo : string,
-        @Args('userIDFrom', {type: () => String}) userIdFrom : string,
-        @Args('notificationType', {type: () => String}) notificationType : string
-    ) : Promise<Notification | null> {
-        const res = await this.notificationService.createRequestNotification(userIdTo, userIdFrom, notificationType)
-        return (res) ? res : null;
+    // Mutations 
+
+    @Mutation(returns => null)
+    async testMutation(@Args('userId', {type: () => String}) userId : string): Promise<null> {
+        return null;
     }
 
-    @Mutation(()=>Notification)
-    async updateRequestNotification(
-        @Args('ID', {type: () => String}) id : string,
-        @Args('status', {type: () => String}) status : string
-    ) : Promise<Notification | null> {
-        const res = await this.notificationService.updateRequestNotification(id, status);
-        return (res) ? res : null;
+    @Mutation(returns => Blog)
+    async createBlog( 
+        @Args('title', {type: () => String}) title : string, 
+        @Args('content', {type: () => String}) content : string, 
+        @Args('archived', {type: () => Boolean}) archived : boolean, 
+        @Args('userId', {type: () => String}) userId : string
+    ) : Promise<Blog> {
+        return this.blogService.createBlog(title, content, archived, userId);
     }
 
-    @Mutation(()=>Notification)
-    async updateSeen(
-        @Args('ID', {type: () => String}) id : string,
-        @Args('seen', {type: () => Boolean}) seen : boolean
-    ) : Promise<Notification | null> {
-        const res = await this.notificationService.updateSeen(id, seen);
-        return (res) ? res : null;
+    @Mutation(returns => Blog)
+    async updateBlogTitle( 
+        @Args('blogId', {type: () => String}) blogId : string, 
+        @Args('title', {type: () => String}) title : string
+    ) : Promise<string> {
+        return this.blogService.updateBlogTitle(blogId, title);
+    }
+
+    @Mutation(returns => Blog)
+    async updateBlogContent( 
+        @Args('blogId', {type: () => String}) blogId : string, 
+        @Args('content', {type: () => String}) content : string
+    ) : Promise<Blog | null> {
+        return this.blogService.updateBlogContent(blogId, content);
+    }
+
+    @Mutation(returns => Blog)
+    async updateBlogArchived( 
+        @Args('blogId', {type: () => String}) blogId : string, 
+        @Args('archived', {type: () => Boolean}) archived : boolean
+    ) : Promise<Blog | null> {
+        return this.blogService.updateBlogArchived(blogId, archived);
+    }
+
+    @Mutation(returns => String)
+    async deleteBlog(@Args('blogId', {type: () => String}) blogId : string) : Promise<string> {
+        return this.blogService.deleteBlog(blogId);
+    }
+}
+
+@Resolver(() => BlogComment)
+export class BlogCommentResolver {
+    constructor(
+        private blogService: BlogService
+    ) {}
+
+    // Queries
+
+    @Query(returns => [BlogComment])
+    async allComments(): Promise<BlogComment[] | null> {
+        return this.blogService.getAllComments();
+    }
+
+    @Query(returns => [BlogComment])
+    async commentsByBlogId(@Args('blogId', {type: () => String}) blogId: string): Promise<BlogComment[] | null> {
+        return this.blogService.getCommentsByBlogId(blogId);
+    }
+
+    @Query(returns => [BlogComment])
+    async commentsByCommentId(@Args('commentId', {type: () => String}) commentId: string): Promise<BlogComment | null> {
+        return this.blogService.getCommentByCommentId(commentId);
+    }
+
+    // Mutations
+
+    @Mutation(returns => BlogComment)
+    async createComment( 
+        @Args('id', {type: () => String}) id : string, 
+        @Args('blogId', {type: () => String}) blogId : string, 
+        @Args('userId', {type: () => String}) userId : string, 
+        @Args('content', {type: () => String}) content : string
+    ) : Promise<BlogComment | null> {
+        return this.blogService.createComment(id, blogId, userId, content);
+    }
+
+    @Mutation(returns => String)
+    async updateComment( 
+        @Args('titcommentIdle', {type: () => String}) commentId : string, 
+        @Args('commentContent', {type: () => String}) commentContent : string
+    ) : Promise<string> {
+        return this.blogService.updateComment(commentId, commentContent);
+    }
+
+    @Mutation(returns => String)
+    async deleteComment(@Args('commentId', {type: () => String}) commentId : string) : Promise<string> {
+        return this.blogService.deleteComment(commentId);
+    }
+
+    @Mutation(returns => String)
+    async deleteCommentsByBlogId(@Args('blogId', {type: () => String}) blogId : string) : Promise<string> {
+        return this.blogService.deleteCommentsByBlogId(blogId);
+    }
+}
+@Resolver(() => BlogMedia)
+export class BlogMediaResolver {
+    constructor(
+        private blogService: BlogService
+    ) {}
+
+    // Queries
+
+    @Query(returns => [BlogMedia])
+    async mediaByBlogId(@Args('blogId', {type: () => String}) blogId: string): Promise<BlogMedia[] | null> {
+        return this.blogService.getMediaByBlogId(blogId);
+    }
+
+    // Mutations
+
+    @Mutation(returns => BlogMedia)
+    async createMedia( 
+        @Args('blogId', {type: () => String}) blogId : string, 
+        @Args('media', {type: () => String}) media : string
+    ) : Promise<BlogMedia | null> {
+        return this.blogService.createMedia(blogId, media);
     }
 }
