@@ -10,26 +10,42 @@ export class ApiStudentProfileResolver {
 
   @Query((returns) => ApiStudentProfilesEntity, { name: 'student' })
   async getStudent(@Args('studentNum', { type: () => String }) id: string) {
-    // return new UserInputError('User does not exist');
+    const dbId = '1';
+    if (dbId == null) return new UserInputError('User does not exist');
     const studentObj = new ApiStudentProfilesEntity();
-    studentObj.dateOfBirth = await this.studentService.getDoB(id);
-    // studentObj.phoneNum = await this.studentService.get(id);
-    // studentObj.email = await this.studentService.getEmails(id);
-    studentObj.firstName = await this.studentService.getName(id);
     studentObj.studentNum = id;
-    // studentObj.lastName = await this.studentService.getName(id);
-    // studentObj.title = await this.studentService.get(id);
-    // studentObj.nameOfDegree = await this.studentService.get(id);
-    // studentObj.bio = await this.studentService.getBio(id);
-    // studentObj.tags = await this.studentService.getTags(id);
-    // studentObj.employmentStatus = await this.studentService.getEmploymentStatus(id);
-    // studentObj.preferredLocation = await this.studentService.getLocation(id);
-    // studentObj.notableAchievements = await this.studentService.get(id);
-    // studentObj.links = await this.studentService.getSocialMedia(id);
-    // studentObj.profilePhoto = await this.studentService.getPfp(id);
-    // studentObj.academicRecord = false;
-    // studentObj.cv = true;
-    // studentObj.capstoneProject = true;
+    // Get date of birth
+    const DoB = new Date((await this.studentService.getDoB(dbId)).dateOfBirth);
+    studentObj.dateOfBirth =
+      DoB.getDay() + '/' + DoB.getMonth() + '/' + DoB.getFullYear();
+    // Get phone number
+    // studentObj.phoneNum = await this.studentService.get(dbId);
+    // Get email
+    studentObj.email = (await this.studentService.getEmails(dbId)).emails;
+    //Get firstname and lastname:
+    const fullName = (await this.studentService.getName(dbId)).name;
+    const pos = fullName.indexOf(' ');
+    studentObj.firstName = fullName.substring(0, pos);
+    studentObj.lastName = fullName.substring(pos + 1, fullName.length);
+    // studentObj.title = await this.studentService.get(dbId);
+    // studentObj.nameOfDegree = await this.studentService.get(dbId);
+    studentObj.bio = (await this.studentService.getBio(dbId)).bio;
+    studentObj.tags = (await this.studentService.getTags(dbId)).tags;
+    studentObj.employmentStatus = (
+      await this.studentService.getEmploymentStatus(dbId)
+    ).employmentStatus;
+    //return Prefered location
+    const location = await this.studentService.getLocation(dbId);
+    studentObj.preferredLocation =
+      location != null ? location.preferredLocation : 'Not specified';
+    // studentObj.notableAchievements = await this.studentService.get(dbId);
+    studentObj.links = (await this.studentService.getSocialMedia(dbId)).links;
+    studentObj.profilePhoto = (await this.studentService.getPfp(dbId)).pfp;
+    studentObj.academicRecord =
+      (await this.studentService.getFiles(dbId)) != null ? true : false;
+    studentObj.cv =
+      (await this.studentService.getFiles(dbId)) != null ? true : false;
+    studentObj.capstoneProject = true;
 
     return studentObj;
   }
@@ -40,12 +56,11 @@ export class ApiStudentProfileResolver {
     const studentObj = new ApiStudentProfilesEntity();
     // studentObj.dateOfBirth = (await studentArr).pop();
     //studentObj.phoneNum = (await studentArr).pop();
-    studentObj.firstName = await this.studentService.setName(
-      editStudentData.studentNum,
-      editStudentData.firstName
-    );
+    studentObj.firstName = (
+      await this.studentService.setName('1', editStudentData.firstName)
+    ).name;
     //studentObj.firstName = (await studentArr).pop();
-    //studentObj.studentNum = (await studentArr).pop();
+    studentObj.studentNum = editStudentData.studentNum;
     //studentObj.lastName = (await studentArr).pop();
 
     return studentObj;
