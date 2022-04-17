@@ -18,8 +18,8 @@ export class RequestForAccessComponent implements OnInit {
   constructor(private store: Store, private apiService: RequestForAccessService) {
     //make API call to check if the current login token is a company rep, then get the company ID of the company rep.
     this.isFeatureVisible = true;
-    this.companyID = "";
-    this.graduateID = "";
+    this.companyID = "10";
+    this.graduateID = "7";
   }
 
   ngOnInit(): void {
@@ -58,7 +58,7 @@ export class RequestForAccessComponent implements OnInit {
       next: (status) => {
         this.buttons[idx] = status;
         if (status != "Download" && status != "Pending") {
-          this.apiService.requestAccess(this.companyID, this.graduateID, item);
+          this.apiService.requestAccess(this.companyID, this.graduateID, item.toUpperCase().replace(" ", "_"));
           this.store.dispatch(new SetAccessStatus(item, "Pending", idx));
         }
         else {
