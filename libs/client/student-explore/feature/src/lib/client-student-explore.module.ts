@@ -20,7 +20,6 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 //Component Modules
-import { FilterComponent } from './filter/filter.component';
 import { StudentCardComponent } from './student-card/student-card.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MobileStudentCardComponent } from './mobile-student-card/mobile-student-card.component';
@@ -47,7 +46,12 @@ import { StudentExplorePageComponent } from './student-explore-page/student-expl
     MatFormFieldModule,
     MatGridListModule,
   ],
-  declarations: [FilterComponent, StudentCardComponent, SearchBarComponent, MobileStudentCardComponent, StudentExplorePageComponent],
-  exports:[ StudentExplorePageComponent ]
+  declarations: [StudentCardComponent, SearchBarComponent, MobileStudentCardComponent, StudentExplorePageComponent],
+  exports:[
+    StudentCardComponent,
+    SearchBarComponent,
+    MobileStudentCardComponent,
+    StudentExplorePageComponent
+  ]
 })
 export class ClientStudentExploreModule {}
