@@ -1,4 +1,4 @@
-import { UsersService } from '../api-authentication-api.service';
+import { UsersService } from "@graduates/api/authentication/service/feature";
 import { Module } from '@nestjs/common';
 import { UsersResolver } from './users.resolver';
 

@@ -39,14 +39,8 @@
       "@graduates/api/authentication/api/feature": [
         "libs/api/authentication/api/feature/src/index.ts"
       ],
-      "@graduates/api/authentication_copy/api/feature": [
-        "libs/api/authentication_copy/api/feature/src/index.ts"
-      ],
       "@graduates/api/authentication/api/shared/interfaces/data-access": [
         "libs/api/authentication/api/shared/interfaces/data-access/src/index.ts"
-      ],
-      "@graduates/api/authentication_copy/api/shared/interfaces/data-access": [
-        "libs/api/authentication_copy/api/shared/interfaces/data-access/src/index.ts"
       ],
       "@graduates/api/authentication/repository/data-access": [
         "libs/api/authentication/repository/data-access/src/index.ts"
@@ -59,6 +53,9 @@
       ],
       "@graduates/api/authentication/api/feature/src/lib/users": [
         "libs/api/authentication/api/feature/src/lib/users/index.ts"
+      ],
+      "@graduates/api/authentication/api/feature/src": [
+        "libs/api/authentication/api/feature/src/index.ts"
       ],
       "@graduates/api/authorization/api/feature": [
         "libs/api/authorization/api/feature/src/index.ts"

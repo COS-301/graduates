@@ -1,4 +1,4 @@
-import { UsersService } from "./api-authentication-api.service";
+import { UsersService } from "@graduates/api/authentication/service/feature";
 import { Query, Resolver } from "@nestjs/graphql";
 import { AuthenticationUser } from "@graduates/api/authentication/api/shared/interfaces/data-access";
 
