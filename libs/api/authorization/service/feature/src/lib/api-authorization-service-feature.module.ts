@@ -8,7 +8,8 @@ import { Adminauthorization } from '../../../../repository/data-access/src/lib/a
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { PrismaService } from '../../../../../shared/services/prisma/data-access/src/lib/ApiPrismaService.service';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { ApiAuthorization } from '@graduates/api/authorization/api/shared';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { ApiAuthorization } from '../../../../api/shared/src/lib/api-authorization.entity';
 
 @Module({
   controllers: [],

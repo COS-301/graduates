@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { ApiAuthorization } from '@graduates/api/authorization/api/shared';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { ApiAuthorization } from '../../../../api/shared/src/lib/api-authorization.entity';
 import { QueryBus } from '@nestjs/cqrs';
 import { GetDeletePermissionQuery } from '../../../../service/feature/src/lib/queries/impl/get-delete-permission.query';
 import { GetEditPermissionQuery } from '../../../../service/feature/src/lib/queries/impl/get-edit-permission.query';
