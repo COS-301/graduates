@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { MainStoragePageComponent } from './main-storage-page.component';
 import { RouterTestingModule } from '@angular/router/testing'; 
-import { FileUploadService } from "../services/file-upload.service";
+import { ApolloModule } from "apollo-angular";
 import { HttpClientModule } from '@angular/common/http';
 
 describe('MainStoragePageComponent', () => {
@@ -16,7 +16,7 @@ describe('MainStoragePageComponent', () => {
         RouterTestingModule,
         HttpClientModule
     ],
-    providers: [FileUploadService]
+    providers: [ApolloModule]
     })
     .compileComponents();
   }));
@@ -32,16 +32,16 @@ describe('MainStoragePageComponent', () => {
   });
 });
 
-describe('FileUploadService', () => {
+describe('ApolloModule', () => {
 
   beforeEach(() =>{
     TestBed.configureTestingModule({
       imports: [ HttpClientModule ],
-      providers: [FileUploadService]
+      providers: [ApolloModule]
     });
   });
   
-  it('should be created', inject([FileUploadService], (service: FileUploadService) => {
+  it('should be created', inject([ApolloModule], (service: ApolloModule) => {
     expect(service).toBeTruthy();
   }));
 
