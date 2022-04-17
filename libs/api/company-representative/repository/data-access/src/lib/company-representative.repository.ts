@@ -18,7 +18,7 @@ export class CompanyRepresentativeRepository {
 
     for (let i=0;   i< SocialMedia.length;  i++) {
       if (SocialMedia.at(i).type == "FACEBOOK") {
-        companyRep.twitter = SocialMedia.at(i).link;
+        companyRep.facebook = SocialMedia.at(i).link;
       }
       else if (SocialMedia.at(i).type == "GITHUB") {
         companyRep.gitHub = SocialMedia.at(i).link;
