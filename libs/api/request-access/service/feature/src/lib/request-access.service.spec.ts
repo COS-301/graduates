@@ -1,6 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { RequestAccessService } from './request-access.service';
 import { CqrsModule } from '@nestjs/cqrs';
+import { RequestAccessRepository } from '@graduates/api-request-access-repository-feature';
+import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 
 describe('RequestAccessService', () => {
   let service: RequestAccessService;
@@ -8,7 +10,7 @@ describe('RequestAccessService', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [CqrsModule],
-      providers: [RequestAccessService],
+      providers: [RequestAccessService, RequestAccessRepository, PrismaService],
     }).compile();
 
     service = module.get<RequestAccessService>(RequestAccessService);
@@ -21,6 +23,11 @@ describe('RequestAccessService', () => {
   it('should be not be null', async () => {
     const call = await service.getAccessEntity("u12345678","42","5");
     expect(call).not.toBeNull();
+  });
+
+  it('should be not be undefined', async () => {
+    const call = await service.getAccessEntity("u12345678","42","5");
+    expect(call).not.toBeUndefined();
   });
 
   it('should be equal to entity', async () => {
