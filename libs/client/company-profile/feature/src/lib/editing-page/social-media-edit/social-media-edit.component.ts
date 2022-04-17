@@ -7,15 +7,15 @@ import {Component} from '@angular/core';
   styleUrls: ['./social-media-edit.component.scss'],
 })
 export class SocialMediaEditComponent {
-  facebook: string | undefined = "facebook";
+  facebook: string | undefined = "www.facebook.com";
   gitLab: string | undefined = ""
   twitter: string | undefined = "";
   gitHub: string | undefined = "https://github.com/";
   youtube: string | undefined = "https://www.youtube.com/";
-  discord: string | undefined = "discord";
-  linkedIn: string | undefined = "";
-  tiktok: string | undefined = "tiktok";
-  instagram: string | undefined = "insta";
+  discord: string | undefined = "www.discord.com";
+  linkedIn: string | undefined = "http://www.linkedin.com/";
+  tiktok: string | undefined = "";
+  instagram: string | undefined = "www.instagram.com";
   constructor() {
     //do something
   }
