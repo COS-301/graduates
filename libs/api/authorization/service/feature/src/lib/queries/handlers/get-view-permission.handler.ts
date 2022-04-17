@@ -2,7 +2,7 @@
 import { Adminauthorization } from '../../../../../../repository/data-access/src/lib/api-authorization-repository-admin.repository';
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { User } from '@prisma/client';
-import { GetViewPermissionQuery } from '../impl/get-View-permission.query';
+import { GetViewPermissionQuery } from '../impl/get-view-permission.query';
 
 /*
 create-user.handler.ts
