@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { observable } from 'rxjs';
 import { CompanyRepresentativeServiceService } from '../company-representative-service/company-representative-service.service';
@@ -10,38 +10,40 @@ import { CompanyRepresentativeServiceService } from '../company-representative-s
 })
 export class CompanyRepresentativePageComponent{
   profilePicture = 'https://s-media-cache-ak0.pinimg.com/236x/c8/e8/cc/c8e8cc83e6eeb60061ba11c9d8ba9a11.jpg';
-  name = "John Doe";
-  jobTitle = "Job Title and area of expertise.";
-  experience = "Some quick example text to build on the card title and make up the bulk of the card's content";
-  about = "Some quick example text to build on the card title and make up the bulk of the card's content";
-  number = "0814941334"
-  location = "Pretoria, SA";
-  email = "johndoe@example.com";
-  website = "www.JohnDoe.com";
-  linkedin = "@Johndoe";
-  twitter = "@johnDoe";
-  instagram = "@JohnDoe";
-  facebook = "Facebook.com/JohnDoe";
-  snapchat = "JohnDoe";
-  github = "JohnDoe@github.com";
+  name = "NA";
+  jobTitle = "NA";
+  experience = "NA";
+  about = "NA";
+  number = "NA"
+  location = "NA";
+  email = "NA";
+  website = "NA";
+  linkedin = "NA";
+  twitter = "NA";
+  instagram = "NA";
+  facebook = "NA";
+  snapchat = "NA";
+  github = "NA";
   result = <any>observable;
   constructor(private _router: Router, private API : CompanyRepresentativeServiceService) { 
-    this.result = this.API.getDefaultRepresentative("c1234").subscribe({
+    this.result = this.API.getCompanyRepresentative("c1234").subscribe({
       next: (item) => {
-        this.name = item.data.getDefaultRepresentative.repName;
-        this.jobTitle = item.data.getDefaultRepresentative.jobTitle;
-        this.experience = item.data.getDefaultRepresentative.repExperience;
-        this.about = item.data.getDefaultRepresentative.aboutMe;
-        this.number = item.data.getDefaultRepresentative.phoneNumber;
-        this.location = item.data.getDefaultRepresentative.location;
-        this.email = item.data.getDefaultRepresentative.email;
-        this.website = item.data.getDefaultRepresentative.website;
-        this.linkedin = item.data.getDefaultRepresentative.linkedIn;
-        this.twitter = item.data.getDefaultRepresentative.twitter;
-        this.instagram = item.data.getDefaultRepresentative.instagram;
-        this.facebook = item.data.getDefaultRepresentative.facebook;
-        this.snapchat = item.data.getDefaultRepresentative.snapChat;
-        this.github = item.data.getDefaultRepresentative.gitHub;
+        if (item){
+          this.name = item.data.getCompanyRepresentative.repName;
+          this.jobTitle = item.data.getCompanyRepresentative.jobTitle;
+          this.experience = item.data.getCompanyRepresentative.repExperience;
+          this.about = item.data.getCompanyRepresentative.aboutMe;
+          this.number = item.data.getCompanyRepresentative.phoneNumber;
+          this.location = item.data.getCompanyRepresentative.location;
+          this.email = item.data.getCompanyRepresentative.email;
+          this.website = item.data.getCompanyRepresentative.website;
+          this.linkedin = item.data.getCompanyRepresentative.linkedIn;
+          this.twitter = item.data.getCompanyRepresentative.twitter;
+          this.instagram = item.data.getCompanyRepresentative.instagram;
+          this.facebook = item.data.getCompanyRepresentative.facebook;
+          this.snapchat = item.data.getCompanyRepresentative.snapChat;
+          this.github = item.data.getCompanyRepresentative.gitHub;
+        }
       },
       error: (err) => { console.log(err); }
     });
