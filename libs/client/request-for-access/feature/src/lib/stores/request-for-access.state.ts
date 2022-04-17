@@ -17,10 +17,16 @@ export class AccessState {
   @Action(SetAccessStatus)
   requestAccess(ctx: StateContext<AccessStateModel>, action: SetAccessStatus) {
     const state = ctx.getState();
-    state.accessGranted[action.idx] = action.status;
+
+    const arr = [];
+    state.accessGranted.forEach((x) => {
+      arr.push(x);
+    })
+    arr[action.idx] = action.status;
+
     ctx.setState({
       ...state,
-      accessGranted: state.accessGranted
+      accessGranted: arr
     });
   }
 }

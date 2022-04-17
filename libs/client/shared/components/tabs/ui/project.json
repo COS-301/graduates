@@ -1,0 +1,43 @@
+{
+  "projectType": "library",
+  "root": "libs/ui-component/navbar",
+  "sourceRoot": "libs/ui-component/navbar/src",
+  "prefix": "navbar-tabs",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/ui-component/navbar"],
+      "options": {
+        "project": "libs/ui-component/navbar/ng-package.json",
+        "tailwindConfig": "libs/ui-component/navbar/tailwind.config.js"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/ui-component/navbar/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/ui-component/navbar/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/ui-component/navbar"],
+      "options": {
+        "jestConfig": "libs/ui-component/navbar/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ui-component/navbar/src/**/*.ts",
+          "libs/ui-component/navbar/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

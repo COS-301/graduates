@@ -9,51 +9,35 @@ export class ApiCompanyRepresentativeResolver {
     constructor(private apiCompanyRepresentativeService: ApiCompanyRepresentativeService) {}
 
   @Query(() => CompanyRepresentative)
-  async getCompanyRepresentative(@Args('id') id: string): Promise<CompanyRepresentative|CompanyRepresentativeFailedResponse> {
+  async getCompanyRepresentative(@Args('id') id: string) {
     const resp = await this.apiCompanyRepresentativeService.getCompanyRepresentative(id);
-    if (!resp) {
-      const data = new CompanyRepresentativeFailedResponse();
-      data.response = "User does not exist";
-      return data;
-    }
     return resp; 
   }
 
   @Query(() => CompanyRepresentative)
-  async getAllCompanyRepresentatives(): Promise<CompanyRepresentative|CompanyRepresentativeFailedResponse> {
+  async getAllCompanyRepresentatives() {
     const resp = await this.apiCompanyRepresentativeService.getAllRepresentatives();
-    if (!resp) {
-      const data = new CompanyRepresentativeFailedResponse();
-      data.response = "User does not exist";
-      return data;
-    }
     return resp;
   }
 
   @Query(() => CompanyRepresentative)
-  async login(@Args("email") email:string, @Args("password") password:string): Promise<CompanyRepresentative | CompanyRepresentativeFailedResponse> {
+  async login(@Args("email") email:string, @Args("password") password:string){
     const resp = await this.apiCompanyRepresentativeService.login(email, password)
-    if (!resp) {
-      const data = new CompanyRepresentativeFailedResponse();
-      data.response = "Invalid login";
-      return data;
-    }
     return resp;
+  }
+  @Query(() =>String) 
+  pingCompanyRepresentative(){
+    return "on";
+  }
+  
+
+  @Mutation(() => CompanyRepresentative)
+  async deleteCompanyRepresentative(@Args('id') id: string) {
+    return await this.apiCompanyRepresentativeService.deleteRepresentative(id);
   }
 
   @Mutation(() => CompanyRepresentative)
-  async deleteCompanyRepresentative(@Args('id') id: string): Promise<CompanyRepresentative|CompanyRepresentativeFailedResponse> {
-    const resp = await this.apiCompanyRepresentativeService.deleteRepresentative(id);
-    if (!resp) {
-      const data = new CompanyRepresentativeFailedResponse();
-      data.response = "User does not exist";
-      return data;
-    }
-    return resp;
-  }
-
-  @Mutation(() => CompanyRepresentative)
-  async createCompanyRepresentative(@Args('newCompanyrepresentativeData') newCompanyrepresentativeData: CompanyRepresentativeCreate): Promise<CompanyRepresentative | any> {
+  async createCompanyRepresentative(@Args('newCompanyrepresentativeData') newCompanyrepresentativeData: CompanyRepresentativeCreate) {
     const resp = await this.apiCompanyRepresentativeService.createRepresentative();
     pubSub.publish('companyRepresentativeAdded', { companyRepresentativeAdded: resp });
     return resp;
