@@ -7,7 +7,7 @@ import { StudentProfilesRepository } from '@graduates/api/student-profiles/repos
 @Module({
   imports: [ApiStudentProfilesRepositoryDataAccessModule, CqrsModule],
   controllers: [],
-  providers: [ApiStudentProfileService, QueryHandlers.GetStudentProfileNameHandler, StudentProfilesRepository],
+  providers: [ApiStudentProfileService, QueryHandlers.GetStudentProfileNameHandler, QueryHandlers.GetStudentProfileDOBHandler, StudentProfilesRepository],
   exports: [ApiStudentProfileService],
 })
 export class ApiStudentProfilesServiceModule {}
