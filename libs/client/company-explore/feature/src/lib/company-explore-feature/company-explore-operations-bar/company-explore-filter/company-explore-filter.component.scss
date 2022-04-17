@@ -1,0 +1,8 @@
+@import "libs/client/shared/assets/ui/src/lib/global";
+@media (max-width:576px)
+{
+    .menu{
+        color: $background-white;
+        background-color:$primary-1 ;
+    }
+}
