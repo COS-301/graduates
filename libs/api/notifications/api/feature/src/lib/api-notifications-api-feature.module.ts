@@ -7,9 +7,11 @@ import {
   GetNotificationsReceivedHandler,
   GetNotificationsSentHandler,
   GetNotificationsByTypeHandler,
+  GetUserObjectHandler,
   CreateRequestNotificationHandler,
   UpdateRequestNotificationHandler,
-  UpdateSeenHandler
+  UpdateSeenHandler,
+  SendMailHandler
 } from "@graduates/api/notifications/service/feature"
 import { CqrsModule } from '@nestjs/cqrs';
 import { NotificationsRepository } from '@graduates/api/notifications/repository/data-access';
@@ -27,9 +29,11 @@ import { PrismaService } from '@graduates/api/shared/services/prisma/data-access
     GetNotificationsReceivedHandler,
     GetNotificationsSentHandler,
     GetNotificationsByTypeHandler,
+    GetUserObjectHandler,
     CreateRequestNotificationHandler,
     UpdateRequestNotificationHandler,
-    UpdateSeenHandler
+    UpdateSeenHandler,
+    SendMailHandler
   ],
   exports: [],
 })

@@ -1,1 +1,1 @@
-export * from './lib/api-request-accesss-repository-feature.module';
+export * from './lib/api-request-access-repository-feature.module';
