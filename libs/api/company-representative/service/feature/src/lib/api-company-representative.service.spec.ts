@@ -64,7 +64,7 @@ const mockDataBase = {
     }).compile();
 
     service = module.get<ApiCompanyRepresentativeService>(ApiCompanyRepresentativeService);
-    prisma=module.get<PrismaService>(PrismaService);
+    prisma = module.get<PrismaService>(PrismaService);
     
 
   });
