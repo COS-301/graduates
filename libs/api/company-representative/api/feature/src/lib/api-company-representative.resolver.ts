@@ -6,14 +6,19 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 export class ApiCompanyRepresentativeResolver {
     constructor(private companyRepresentativeService: ApiCompanyRepresentativeService) {}
 
-  @Query((returns) => CompanyRepresentative)
+  @Query(() => CompanyRepresentative)
   async getCompanyRepresentative(@Args('id') id: string): Promise<CompanyRepresentative> {
     return await this.companyRepresentativeService.getCompanyRepresentative(id);
   }
 
-  @Query((returns) => CompanyRepresentative) 
+  @Query(() => CompanyRepresentative) 
   async login(@Args("email") email: string, @Args("password") password: string) : Promise<CompanyRepresentative> {
     return await this.companyRepresentativeService.login(email, password);
+  }
+
+  @Query((returns)=>CompanyRepresentative)
+  async getAllRepresentatives():Promise<CompanyRepresentative>{
+    return await this.companyRepresentativeService.getAllRepresentatives();
   }
 
   @Mutation((returns) => CompanyRepresentative)
