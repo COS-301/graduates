@@ -7,7 +7,16 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./profile-card.component.sass']
 })
 export class ProfileCardComponent implements OnInit {
-
+    facebook = "facebook";
+    gitLab = ""
+    twitter = "";
+    gitHub = "https://github.com/";
+    youtube = "https://www.youtube.com/";
+    discord = "discord";
+    linkedIn = "";
+    tiktok = "tiktok";
+    instagram = "insta";
+    
    // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor() { 
     this.name = null;

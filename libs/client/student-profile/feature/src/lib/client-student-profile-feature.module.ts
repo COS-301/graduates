@@ -19,6 +19,9 @@ import {MatButtonModule} from '@angular/material/button';
 
 import { HeaderModule } from '../../../../shared/components/header/src/lib/header.module';
 import { FooterModule } from '../../../../shared/components/footer/src/lib/footer.module';
+import { ClientSharedComponentsDropdownUiModule } from '@graduates/client/shared/components/dropdown/ui';
+
+
 
 // importing material 
 import { MatDividerModule } from '@angular/material/divider';
@@ -44,6 +47,7 @@ import {MatIconModule} from '@angular/material/icon';
     HttpClientModule,
     HeaderModule,
     FooterModule,
+    ClientSharedComponentsDropdownUiModule,
     FlexLayoutModule,
     RouterModule.forChild([
       /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
@@ -58,7 +62,7 @@ import {MatIconModule} from '@angular/material/icon';
     LocationComponent,
     BioComponent,
     AchievementsComponent,
-    ProfileCardComponent,
+    ProfileCardComponent
   ],
    exports: [ProfileBodyComponent]
 })
