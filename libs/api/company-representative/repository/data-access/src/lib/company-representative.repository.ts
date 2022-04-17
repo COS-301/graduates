@@ -52,7 +52,6 @@ export class CompanyRepresentativeRepository {
       include: {
         userScouted: true,
         UserRole: true,
-        UserProfile: true,
         UserTag: true,
         UserContactNumber: true,
         UserExperience: true,
@@ -86,17 +85,13 @@ export class CompanyRepresentativeRepository {
             }
           },
   
-          UserProfile: {
-            create: {
-              bio: "A well-presented, highly-focused, and intelligent computer science student passionate about data engineering & machine learning."
-            }
-          },
-  
           UserTag: {
             create: [{
                 tag: "Data Engineer at Consnet"
               },{
                 tag: "www.ishe.dzingi.com"
+              },{
+                tag: "A well-presented, highly-focused, and intelligent computer science student passionate about data engineering & machine learning."
               }
             ]
           },
@@ -116,7 +111,7 @@ export class CompanyRepresentativeRepository {
                 link: "ishe@facebook.com"
               },{
                 type: "SNAPCHAT",
-                link: "snapchat@ishe.com"
+                link: "ishe@snapchat.com"
               },{
                 type: "GITHUB",
                 link: "zenthon@github.com"
@@ -145,7 +140,6 @@ export class CompanyRepresentativeRepository {
         include: {
           userScouted: true,
           UserRole: true,
-          UserProfile: true,
           UserTag: true,
           UserContactNumber: true,
           UserExperience: true,
@@ -153,9 +147,9 @@ export class CompanyRepresentativeRepository {
           UserLocation: true
         }
       })
-      return this.returnRepObject(new_user.id, new_user.name, new_user.email, new_user.UserTag.at(0).tag, new_user.UserProfile.at(0).bio, new_user.UserTag.at(1).tag, new_user.UserSocialMedia, new_user.UserLocation.at(0).location, new_user.UserContactNumber.at(0).number, new_user.UserExperience.at(0).experience)
+      return this.returnRepObject(new_user.id, new_user.name, new_user.email, new_user.UserTag.at(0).tag, new_user.UserTag.at(2).tag, new_user.UserTag.at(1).tag, new_user.UserSocialMedia, new_user.UserLocation.at(0).location, new_user.UserContactNumber.at(0).number, new_user.UserExperience.at(0).experience)
     }
-    return this.returnRepObject(existing_user.id, existing_user.name, existing_user.email, existing_user.UserTag.at(0).tag, existing_user.UserProfile.at(0).bio, existing_user.UserTag.at(1).tag, existing_user.UserSocialMedia, existing_user.UserLocation.at(0).location,existing_user.UserContactNumber.at(0).number, existing_user.UserExperience.at(0).experience)
+    return this.returnRepObject(existing_user.id, existing_user.name, existing_user.email, existing_user.UserTag.at(0).tag, existing_user.UserTag.at(2).tag, existing_user.UserTag.at(1).tag, existing_user.UserSocialMedia, existing_user.UserLocation.at(0).location,existing_user.UserContactNumber.at(0).number, existing_user.UserExperience.at(0).experience)
   }
 
   // Login
@@ -168,7 +162,6 @@ export class CompanyRepresentativeRepository {
       include: {
         userScouted: true,
         UserRole: true,
-        UserProfile: true,
         UserTag: true,
         UserContactNumber: true,
         UserExperience: true,
@@ -176,8 +169,12 @@ export class CompanyRepresentativeRepository {
         UserLocation: true
       }
     })
-    const user = users[0];
-    return this.returnRepObject(user.id, user.name, user.email, user.UserTag.at(0).tag, user.UserProfile.at(0).bio, user.UserTag.at(1).tag, user.UserSocialMedia, user.UserLocation.at(0).location, user.UserContactNumber.at(0).number, user.UserExperience.at(0).experience)
+
+    if (users) {
+      const user = users[0];
+      return this.returnRepObject(user.id, user.name, user.email, user.UserTag.at(0).tag, user.UserTag.at(2).tag, user.UserTag.at(1).tag, user.UserSocialMedia, user.UserLocation.at(0).location, user.UserContactNumber.at(0).number, user.UserExperience.at(0).experience)
+    }
+    return null;
   }
 
   //  Delete Representative
@@ -189,7 +186,6 @@ export class CompanyRepresentativeRepository {
       include: {
         userScouted: true,
         UserRole: true,
-        UserProfile: true,
         UserTag: true,
         UserContactNumber: true,
         UserExperience: true,
@@ -197,7 +193,10 @@ export class CompanyRepresentativeRepository {
         UserLocation: true
       }
     })
-    return this.returnRepObject(user.id, user.name, user.email, user.UserTag.at(0).tag, user.UserProfile.at(0).bio, user.UserTag.at(1).tag, user.UserSocialMedia, user.UserLocation.at(0).location, user.UserContactNumber.at(0).number, user.UserExperience.at(0).experience)
+    
+    if (!user)
+      return null;
+    return this.returnRepObject(user.id, user.name, user.email, user.UserTag.at(0).tag, user.UserTag.at(2).tag, user.UserTag.at(1).tag, user.UserSocialMedia, user.UserLocation.at(0).location, user.UserContactNumber.at(0).number, user.UserExperience.at(0).experience)
   }
 
   //  Get All Representatives
@@ -206,7 +205,6 @@ export class CompanyRepresentativeRepository {
       include: {
         userScouted: true,
         UserRole: true,
-        UserProfile: true,
         UserTag: true,
         UserContactNumber: true,
         UserExperience: true,
@@ -215,11 +213,14 @@ export class CompanyRepresentativeRepository {
       }
     })
 
-    const representatives = [];
-    for (let i=0;   i<users.length;   i++) {
-      representatives.push(this.returnRepObject(users[i].id, users[i].name, users[i].email, users[i].UserTag.at(0).tag, users[i].UserProfile.at(0).bio, users[i].UserTag.at(1).tag, users[i].UserSocialMedia, users[i].UserLocation.at(0).location, users[i].UserContactNumber.at(0).number, users[i].UserExperience.at(0).experience))
+    if (users) {
+      const representatives = [];
+      for (let i=0;   i<users.length;   i++) {
+        representatives.push(this.returnRepObject(users[i].id, users[i].name, users[i].email, users[i].UserTag.at(0).tag, users[i].UserTag.at(2).tag, users[i].UserTag.at(1).tag, users[i].UserSocialMedia, users[i].UserLocation.at(0).location, users[i].UserContactNumber.at(0).number, users[i].UserExperience.at(0).experience))
+      }
+      return representatives;
     }
-    return representatives;
+    return null;
   }
     
   //  Get a representative of a company
@@ -231,16 +232,16 @@ export class CompanyRepresentativeRepository {
       include: {
         userScouted: true,
         UserRole: true,
-        UserProfile: true,
         UserTag: true,
         UserContactNumber: true,
         UserExperience: true,
         UserSocialMedia: true,
         UserLocation: true
-
       }
     })
-    return this.returnRepObject(user.id, user.name, user.email, user.UserTag.at(0).tag, user.UserProfile.at(0).bio, user.UserTag.at(1).tag, user.UserSocialMedia, user.UserLocation.at(0).location, user.UserContactNumber.at(0).number, user.UserExperience.at(0).experience)
+    if (user)
+      return this.returnRepObject(user.id, user.name, user.email, user.UserTag.at(0).tag, user.UserTag.at(2).tag, user.UserTag.at(1).tag, user.UserSocialMedia, user.UserLocation.at(0).location, user.UserContactNumber.at(0).number, user.UserExperience.at(0).experience)
+    return null;
   }
 
   // Update name

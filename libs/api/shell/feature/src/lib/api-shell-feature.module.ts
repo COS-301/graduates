@@ -28,7 +28,7 @@ import { ApiBlogApiFeatureModule } from '@graduates/api/blog/api/feature';
     ApiStorageFeatureModule,
     ApiHostingFeatureModule,
     ApiShortsFeatureModule,
-    // ApiNotificationsApiFeatureModule,
+   // ApiNotificationsApiFeatureModule,
     ApiAccessStatusFeatureModule,
     // ApiCompanyProfilePageFeatureModule,
     ApiStudentProfilesModule,
@@ -36,7 +36,7 @@ import { ApiBlogApiFeatureModule } from '@graduates/api/blog/api/feature';
     ApiRequestAccessFeatureModule,
     ApiAuthenticationApiFeatureModule,
     ApiAuthorizationFeatureModule,
-    // ApiStudentExploreApiFeatureModule,
+    ApiStudentExploreApiFeatureModule,
     ApiAdminconsoleApiFeatureModule,
     ApiUpintegrationFeatureModule,
     ApiBlogApiFeatureModule
