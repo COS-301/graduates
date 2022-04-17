@@ -1,9 +1,6 @@
 import { Resolver, Query, Args } from '@nestjs/graphql';
 import { ApiAuthorization } from '@graduates/api/authorization/api/shared';
-import {
-  ApiAuthorizationService,
-  ApiAuthorizationServiceFeatureModule,
-} from '@graduates/api/authorization/service/feature';
+import { ApiAuthorizationService } from '@graduates/api/authorization/service/feature';
 import { NotFoundException } from '@nestjs/common';
 
 @Resolver(() => ApiAuthorization)
