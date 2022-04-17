@@ -8,8 +8,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class CompanyRepresentativeServiceService {
   constructor(private httpClient: HttpClient) { }
 
-  getDefaultRepresentative(companyID: string): Observable<any> {
-    const query = 'mutation{getDefaultRepresentative(id:"'+companyID+'"){repName,jobTitle,repExperience,aboutMe,phoneNumber,location,email,website,linkedIn,twitter,instagram,facebook,snapChat,gitHub}}';
+  getCompanyRepresentative(companyID: string): Observable<any> {
+    const query = 'query{getCompanyRepresentative(id:"'+companyID+'"){repName,jobTitle,repExperience,aboutMe,phoneNumber,location,email,website,linkedIn,twitter,instagram,facebook,snapChat,gitHub}}';
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
