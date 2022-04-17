@@ -1,4 +1,4 @@
-import { Module, Query } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { GetDeletePermissionHandler } from '../../../../service/feature/src/lib/queries/handlers/get-delete-permission.handler';
 import { GetEditPermissionHandler } from '../../../../service/feature/src/lib/queries/handlers/get-edit-permission.handler';
 import { GetViewPermissionHandler } from '../../../../service/feature/src/lib/queries/handlers/get-view-permission.handler';
