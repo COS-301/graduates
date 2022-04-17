@@ -16,6 +16,11 @@ export class ApiCompanyRepresentativeResolver {
     return await this.companyRepresentativeService.login(email, password);
   }
 
+  @Query((returns)=>CompanyRepresentative)
+  async getAllRepresentatives():Promise<CompanyRepresentative>{
+    return await this.companyRepresentativeService.getAllRepresentatives();
+  }
+
   @Mutation((returns) => CompanyRepresentative)
   async deleteCompanyRepresentative(@Args('id') id: string): Promise<CompanyRepresentative> {
     return await this.companyRepresentativeService.deleteRepresentative(id);
