@@ -5,7 +5,8 @@ import {
     GetNotificationByIdQuery,
     GetNotificationsReceivedQuery,
     GetNotificationsSentQuery,
-    GetNotificationsByTypeQuery
+    GetNotificationsByTypeQuery,
+    GetUserObjectQuery
 
 } from './queries/api-notifications-service-queries.query';
 import {
@@ -21,7 +22,9 @@ import { ModuleRef } from '@nestjs/core';
 
 
 @Injectable()
-export class ApiNotificationsService /*implements OnModuleInit*/ {
+export class ApiNotificationsService 
+// implements OnModuleInit 
+{
 //   private tempQueryBus : QueryBus;
 //   private tempCommaBus : CommandBus;
 //   private tempEventBus : EventBus;
@@ -72,6 +75,10 @@ export class ApiNotificationsService /*implements OnModuleInit*/ {
 
     async updateSeen(id:string, seen:boolean) : Promise<Notification> {
         return await this.commandBus.execute(new UpdateSeenCommand(id,seen));
+    }
+
+    async getUserObject(userId: string) : Promise<User> {
+        return await this.queryBus.execute(new GetUserObjectQuery(userId))
     }
 
     async requestCV(){
