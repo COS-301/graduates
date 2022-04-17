@@ -1,13 +1,16 @@
 import { RequestAccessService } from "@graduates/api/request-access/service/feature";
 import { UseGuards } from "@nestjs/common";
-import { Args, ID, Mutation, Resolver } from "@nestjs/graphql";
+import { Args, ID, Mutation, Resolver, Query } from "@nestjs/graphql";
 import { ApiRequestAccessEntity } from "./api-request-access.entity";
 // import { JwtAuthGuard } from "@graduates/api/auth"
 
 @Resolver(of => ApiRequestAccessEntity)
 export class ApiRequestAccessResolver {
     constructor(private requestAccessService: RequestAccessService) {}
-
+    @Query(() =>String) 
+    pingRequestAccess(){
+      return "on";
+    }
     @Mutation(returns => ApiRequestAccessEntity, { nullable: true })
     // @UseGuards(JwtAuthGuard)
     // must add paramters to request
