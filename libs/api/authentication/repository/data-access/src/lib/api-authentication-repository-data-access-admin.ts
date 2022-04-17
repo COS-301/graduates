@@ -2,12 +2,23 @@
 
 //add where you wish to use the code
 import {PrismaClient} from '@prisma/client';
+import { Role } from '@prisma/client';
 
 export class AuthenticationRepository
 {
     prisma = new PrismaClient();
     bcrypt = require('bcrypt');
 
+    /**
+     * 
+     * @param password users password
+     * @param email users email
+     * @param created if user is created
+     * @param suspended if user is suspended
+     * @param validated if user is validated
+     * @returns completion status
+     * @description creates a user in the user relation
+     */
     async createUser(password:string, email:string, created, suspended:boolean, validated:boolean)
     {
         if(!password)
@@ -34,8 +45,16 @@ export class AuthenticationRepository
                 validated: validated
             }
         });
+
+        return "user_created";
     }
 
+    /**
+     * 
+     * @param userId user whose password should be verified
+     * @param password to validate
+     * @returns 
+     */
     async verifyPassword(userId:string, password:string)
     {
         const salt = await this.bcrypt.genSalt(6);
@@ -56,6 +75,44 @@ export class AuthenticationRepository
             return true;
         else
             return false;
+    }
+
+    /**
+     * 
+     * @param userId user whose role we should create
+     * @param role of user to be created
+     * @returns completion status
+     */
+    async createRole(userId:string, role:Role)
+    {
+        await this.prisma.userRole.create({
+            data:
+            {
+                userId : userId,
+                role : role
+            }
+        });
+
+        return "user_role_created";
+    }
+
+    /**
+     * 
+     * @param userId user whose role we should create
+     * @param email of user to be created
+     * @returns 
+     */
+    async createEmail(userId:string, email:string)
+    {
+        await this.prisma.userEmail.create({
+            data:
+            {
+                userId : userId,
+                email : email
+            }
+        });
+
+        return "user_email_created";
     }
 
     /**
@@ -96,7 +153,7 @@ export class AuthenticationRepository
             }
         })
 
-        return "Created";
+        return "user_token_created";
     }
 
     /**
@@ -104,7 +161,7 @@ export class AuthenticationRepository
      * @param email used to get id for token model
      * @returns a users token
      */
-    async getToken(email : string)
+    async getTokenOnly(email : string)
     {
         const id = await this.getIdFromEmail(email); 
         
@@ -123,10 +180,26 @@ export class AuthenticationRepository
         });
     }
 
+    async getToken(email : string)
+    {
+        const id = await this.getIdFromEmail(email); 
+        
+        if(!id)
+            throw Error("user_does_not_exist");
+        
+        return await this.prisma.userToken.findFirst({
+            where:
+            {
+                userId: id
+            }
+        });
+    }
+
     /**
      * 
      * @param email used to get id for token model
      * @param time to set token expiration to
+     * @returns completion status
      */
     async setTokenExpiration(email : string, time : number)
     {
@@ -145,6 +218,8 @@ export class AuthenticationRepository
                 userTokenExpiration: time
             }
         });
+
+        return "user_token_expiration_set";
     }
 
     /**
@@ -167,7 +242,7 @@ export class AuthenticationRepository
             {
                 userTokenExpiration: true
             }
-        })
+        })        
     }
 
     /**
@@ -189,9 +264,11 @@ export class AuthenticationRepository
             },
             data:
             {
-                userTokenExpiration: token_type
+                userTokenType: token_type
             }
         })
+
+        return "user_token_type_set";
     }
 
     /**
@@ -215,7 +292,7 @@ export class AuthenticationRepository
             {
                 userTokenType: true
             }
-        })
+        })       
     }
 
     /**
@@ -265,7 +342,7 @@ export class AuthenticationRepository
      */
     async getIdFromEmail(email: string)
     {
-        const id = await this.prisma.user.findFirst({
+        const id = await this.prisma.userEmail.findFirst({
             where:
             {
                 email: email
@@ -273,7 +350,7 @@ export class AuthenticationRepository
         });
 
         if(id)
-            return id.id;
+            return id.userId;
         else
             return null;
     }
