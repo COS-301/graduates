@@ -20,10 +20,10 @@ export class ApiCompanyExploreResolver {
     return companyObj;
   }*/
 
-  @Query((returns) => ApiCompanyExploreEntity)
+  /*@Query((returns) => ApiCompanyExploreEntity)
   async findOneById(@Args('companyID', { type: () => String }) id: string) {
     return this.companyService.getCompanyById(id);
-  }
+  }*/
 
   @Query((returns) => Array<ApiCompanyExploreEntity>())
   async GetListOfComapnies() {
