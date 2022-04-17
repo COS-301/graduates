@@ -50,6 +50,11 @@ export class ApiStudentProfileResolver {
     return studentObj;
   }
 
+  @Query(() => String)
+  pingStudentProfiles() {
+    return 'on';
+  }
+  
   @Mutation((returns) => ApiStudentProfilesEntity)
   async editStudent(@Args('editStudentData') editStudentData: StudentInput) {
     //const studentArr = this.studentService.update(editStudentData);
