@@ -11,14 +11,7 @@ export class ApiAccessStatusResolver {
         if (compId == "" || gradId == "") // obviously empty elements are not allowed
             return null;
 
-        const enum Items { // if new items become available add here
-            CV = "CV",
-            Transcript = "Transcript",
-            Academic = "Academic Record",
-            Certificates = "Certificates",
-            Capstone = "Capstone Project"
-        };
-        const items = [Items.CV.valueOf(), Items.Transcript.valueOf(), Items.Academic.valueOf(), Items.Certificates.valueOf(), Items.Capstone.valueOf()];
+        const items = ["CV", "Transcript", "Academic Record", "Certificates", "Capstone Project"];
 
         const entities = await this.accessStatusService.getAll(compId, gradId);
 
@@ -38,4 +31,8 @@ export class ApiAccessStatusResolver {
 
         return entities;
     }
+}
+
+function enumKeys<O extends object, K extends keyof O = keyof O>(obj: O): K[] {
+    return Object.keys(obj).filter(k => Number.isNaN(+k)) as K[];
 }
