@@ -1,5 +1,4 @@
 <!-- header from shared -->
-<div><header-and-footer-header></header-and-footer-header></div>
 
 <div class="wholepagecontent" id="wholepage">
 
@@ -7,6 +6,7 @@
   <div class="grid-container">
     
     <div id="content-wrap">
+      <header-and-footer-header></header-and-footer-header>
 
       <!-- page title -->
       <h1 class = "banner-text text-center pt-3 w-100">Student Shorts</h1>
@@ -28,8 +28,8 @@
                     <div>
                       <mat-card-title id="cardHeader"> 
                         {{card.user.name}}
-                        <button *ngIf="!upload" (click) = "viewStory(card.id)" class="formbutton rounded py-2 px-5 cardbutton">View</button>
-                        <button *ngIf="upload" disabled="true" (click) = "viewStory(card.id)" class="formbutton rounded py-2 px-5 cardbutton-nohov">View</button>
+                        <button *ngIf="!upload" (click)="viewStory(card.id)" class="formbutton rounded py-2 px-5 cardbutton">View</button>
+                        <button *ngIf="upload" disabled="true" class="formbutton rounded py-2 px-5 cardbutton-nohov">View</button>
                       </mat-card-title>  
                     </div>
                     <div id ="tags"><i *ngFor="let tag of card.shortTag" >{{tag.tag}} </i>
@@ -43,7 +43,7 @@
     </div> 
 
     <!-- pager buttons -->
-    <div class="centindiv pager">
+    <div class="centindiv pager mt-5">
         <!-- Page Navigation -->
         <div>
           <button id ="prevBtn" disabled (click)="btnNaviClick(-1)" class=" px-4 py-2 formbuttonblue rounded">
@@ -57,6 +57,8 @@
           </button>
         </div>
     </div>
+
+    <header-and-footer-footer></header-and-footer-footer>
 
   </div>
 
@@ -216,7 +218,7 @@
 
   </div>
   
+  
 </div>
 
-<!-- footer from shared -->
-<header-and-footer-footer></header-and-footer-footer>
+  <!-- footer from shared -->
