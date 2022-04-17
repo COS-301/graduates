@@ -44,6 +44,8 @@ export class RequestForAccessService {
         variables: { compId: companyID, gradId: graduateID, item: item },
       }),
       options
-    );
+    ).subscribe((x) => {
+      console.log(x);
+    });
   }
 }
