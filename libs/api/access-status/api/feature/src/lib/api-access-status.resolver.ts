@@ -31,4 +31,8 @@ export class ApiAccessStatusResolver {
 
         return entities;
     }
+    @Query(() =>String) 
+    pingAccessStatus(){
+      return "on";
+    }
 }

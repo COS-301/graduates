@@ -9,6 +9,8 @@ import { NgxsModule } from '@ngxs/store';
 import {NgxsReduxDevtoolsPluginModule} from '@ngxs/devtools-plugin';
 import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderModule } from '../../../../shared/components/header/src/lib/header.module';
+import{FooterModule} from '../../../../shared/components/footer/src/lib/footer.module';
 
 import { CompanyExploreBannerComponent } from './company-explore-feature/company-explore-banner/company-explore-banner.component';
 import { CompanyExploreContentComponent } from './company-explore-feature/company-explore-content/company-explore-content.component';
@@ -17,9 +19,12 @@ import { CompanyExploreOperationsBarComponent } from './company-explore-feature/
 import { CompanyExploreSearchbarComponent } from './company-explore-feature/company-explore-operations-bar/company-explore-searchbar/company-explore-searchbar.component';
 import { CompanyExploreFilterComponent } from './company-explore-feature/company-explore-operations-bar/company-explore-filter/company-explore-filter.component';
 import{CompanyExploreState} from './company-explore-feature/store/company-explore.state';
+import { CompanyExploreMobileContentComponent } from './company-explore-feature/company-explore-mobile-content/company-explore-mobile-content.component';
+import { CompanyExploreMobileCardComponent } from './company-explore-feature/company-explore-mobile-content/company-explore-mobile-card/company-explore-mobile-card.component';
 @NgModule({
   imports: [CommonModule,
     CompanyExploreRoutingModule,
+    HeaderModule,FooterModule,
     UiModule,
     FlexLayoutModule,
     FormsModule,
@@ -34,7 +39,9 @@ import{CompanyExploreState} from './company-explore-feature/store/company-explor
     CompanyExploreCardComponent,
     CompanyExploreOperationsBarComponent,
     CompanyExploreSearchbarComponent,
-    CompanyExploreFilterComponent
+    CompanyExploreFilterComponent,
+    CompanyExploreMobileContentComponent,
+    CompanyExploreMobileCardComponent
   ],
   exports: [
     CompanyExploreFeatureComponent

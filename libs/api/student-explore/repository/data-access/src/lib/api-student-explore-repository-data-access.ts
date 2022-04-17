@@ -11,6 +11,8 @@ export class StudentExploreRepository {
 
     const students = await this.prisma.user.findMany();
 
+    //console.log(students);
+
     const studentArr = [];
 
     let tempStudentObj;
@@ -50,7 +52,7 @@ export class StudentExploreRepository {
       studentTags = [];
 
       //Student Bio
-      studentObjProfile = await this.prisma.userProfile.findUnique({
+      studentObjProfile = await this.prisma.userProfile.findFirst({
         where: { userId : students[i].id, },
       });
 
@@ -158,12 +160,12 @@ export class StudentExploreRepository {
 
         studentTags = [];
 
-        //Student Bio
+        /*//Student Bio
         studentObjProfile = await this.prisma.userProfile.findUnique({
           where: { userId : students[i].id, },
-        });
+        });*/
 
-        tempStudentObj.StudentBio = studentObjProfile.bio;
+        //tempStudentObj.StudentBio = studentObjProfile.bio;
 
         //Student Email
         studentObjProfile = await this.prisma.userEmail.findMany({
