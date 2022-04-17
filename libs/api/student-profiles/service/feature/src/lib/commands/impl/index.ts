@@ -1,6 +1,2 @@
-import { CreateStudentProfileCommand } from "./createStudentProfile.command";
-import { UpdateStudentProfileCommand } from "./update-student-profile.command";
-import { DeleteStudentProfileCommand } from "./delete-student-profile.command";
-import { FindStudentProfileCommand } from "./find-student-profile.command";
-
-export {CreateStudentProfileCommand, FindStudentProfileCommand, UpdateStudentProfileCommand, DeleteStudentProfileCommand};
+export * from './delete-student-profile.command';
+export * from './set-student-profile.command';
