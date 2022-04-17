@@ -7,6 +7,7 @@ import {
   GetNotificationsReceivedHandler,
   GetNotificationsSentHandler,
   GetNotificationsByTypeHandler,
+  GetUserObjectHandler,
   CreateRequestNotificationHandler,
   UpdateRequestNotificationHandler,
   UpdateSeenHandler
@@ -27,6 +28,7 @@ import { PrismaService } from '@graduates/api/shared/services/prisma/data-access
     GetNotificationsReceivedHandler,
     GetNotificationsSentHandler,
     GetNotificationsByTypeHandler,
+    GetUserObjectHandler,
     CreateRequestNotificationHandler,
     UpdateRequestNotificationHandler,
     UpdateSeenHandler
