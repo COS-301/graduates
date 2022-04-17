@@ -15,10 +15,11 @@ export class ApiHostingServiceFeatureModule{
     private health: HealthCheckService,
     private http: HttpHealthIndicator, 
   ){}
-  private hosting: ApiHosting[] = [];
+  // private hosting: ApiHosting[] = [];
   async get_all(): Promise<ApiHosting[]>{
+    const hosting: ApiHosting[] = [];
     //clear the hosting object
-    this.hosting = [];
+    // this.hosting = [];
     const commonPath = 'http://localhost:3333/graphql';
     const checks: HealthCheckParameters[] = [
       {title: 'Storage API', path: commonPath,  query: '{pingStorage}'},
@@ -44,11 +45,12 @@ export class ApiHostingServiceFeatureModule{
       } catch {
         hostingObj.status = "Non Operational";
       }
-      this.hosting.push(hostingObj);
+      // this.hosting.push(hostingObj);
+      hosting.push(hostingObj);
     });
 
-    this.AddAllUnimplemented();
-    return this.hosting;
+    hosting.push(this.AddAllUnimplemented());
+    return hosting;
   }
 
   @HealthCheck()
@@ -63,7 +65,8 @@ export class ApiHostingServiceFeatureModule{
     unimplemented1.name = "Block Chain";
     unimplemented1.status = "Under Development";
 
-    this.hosting.push(unimplemented1);
+    // this.hosting.push(unimplemented1);
+    return unimplemented1;
   }
  
 }
