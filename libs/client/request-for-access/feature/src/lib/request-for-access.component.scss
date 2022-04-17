@@ -31,10 +31,8 @@ button {
   background-color: #174372;
   border-width: medium;
   border-color: #174372;
-  // margin-top: 2em;
-  // margin-left: 5em;
-  outline: none !important;
-  box-shadow: none !important;
+  outline: none;
+  box-shadow: none;
 
   border-radius: 5px;
   height: 5vh;
@@ -48,8 +46,8 @@ button:hover {
   color: #174372;
   border-color: #174372;
   background-color: #FFFFFF;
-  outline: none !important;
-  box-shadow: none !important;
+  outline: none;
+  box-shadow: none;
 }
 button:disabled {
   background-color: #577697;
@@ -57,10 +55,10 @@ button:disabled {
   color: #CFD7DE;
 }
 button:focus {
-  background-color: #174372 !important;
-  outline: none !important;
-  box-shadow: none !important;
-  color: #fff !important;
+  background-color: #174372;
+  outline: none;
+  box-shadow: none;
+  color: #fff;
 }
 
 h3 {
