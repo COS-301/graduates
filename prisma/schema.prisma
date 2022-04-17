@@ -212,6 +212,7 @@ model UserEmail {
   userId String @map("user_id")
   email  String
 
+
   @@id([userId,email])
   user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_email")
