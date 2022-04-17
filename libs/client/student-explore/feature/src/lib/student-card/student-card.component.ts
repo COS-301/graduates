@@ -84,6 +84,9 @@ export class StudentCardComponent implements OnInit
       }
       stud_tags += stud_details.StudentTags[i];
 
+      // console.log("Student tags:", stud_tags);
+      
+
       //Pushing new student onto the array
       const student = new Student(stud_details.StudentID, stud_details.StudentName, stud_details.StudentBio,
           stud_details.StudentEmail, stud_details.StudentNumber, stud_tags, stud_details.StudentDegreeType, 
@@ -154,6 +157,8 @@ export class StudentCardComponent implements OnInit
             initial_students = data
         );
     console.log("INITIAL STUDENTS: ", initial_students);
+
+  
 
     //Return the JSON object of all relevant students
     return JSON.stringify(initial_students);

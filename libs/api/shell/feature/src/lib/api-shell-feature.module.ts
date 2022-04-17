@@ -36,7 +36,7 @@ import { ApiBlogApiFeatureModule } from '@graduates/api/blog/api/feature';
     // ApiRequestAccessFeatureModule,
     // ApiAuthenticationApiFeatureModule,
     // ApiAuthorizationFeatureModule,
-    // ApiStudentExploreApiFeatureModule,
+    ApiStudentExploreApiFeatureModule,
     // ApiAdminconsoleApiFeatureModule,
     // ApiUpintegrationFeatureModule,
     // ApiBlogApiFeatureModule
