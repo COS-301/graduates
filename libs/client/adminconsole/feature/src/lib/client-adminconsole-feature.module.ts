@@ -14,7 +14,6 @@ import { ChangeDetectorRef } from '@angular/core';
     HeaderModule],
   declarations: [
     AdminconsoleComponent,
-    
     // DropdownComponent,
   ],
   exports: [
