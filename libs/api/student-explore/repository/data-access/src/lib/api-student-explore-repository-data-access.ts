@@ -187,8 +187,6 @@ export class StudentExploreRepository {
 
         tempStudentObj.StudentNumber = studentObjProfile.number;
 
-        tempStudentObj.StudentNumber = studentObjProfile.number;
-
         //Student Degree Type and Name
         studentObjProfile = await this.prisma.userDegree.findMany({
           where: { userID : students[i].id, },

@@ -24,7 +24,7 @@ export enum FirebaseFolders{
 @Injectable()
 export class FirebaseService {
   
-  firebaseConfig = {
+  /*firebaseConfig = {
     apiKey: 'AIzaSyD7fH_aHqly7Z7jiyPT-H_gc1J807BTkZQ',
 
     authDomain: 'practice-23667.firebaseapp.com',
@@ -40,7 +40,18 @@ export class FirebaseService {
     appId: '1:180246940109:web:9ab1846b487e40e32f1c84',
 
     measurementId: 'G-GC7N8G15QC',
+  };*/
+
+  firebaseConfig = {
+    apiKey: "AIzaSyCJDoT3fRnol23upGcl4O2q90Hsmq0aQ-s",
+    authDomain: "cos301-storage-test.firebaseapp.com",
+    projectId: "cos301-storage-test",
+    storageBucket: "cos301-storage-test.appspot.com",
+    messagingSenderId: "994861102315",
+    appId: "1:994861102315:web:6a4b736d15abc7915cbaae"
+    //measurementId: "MEASUREMENT_ID",
   };
+
 
   app = initializeApp(this.firebaseConfig);
   //analytics = getAnalytics(this.app);
