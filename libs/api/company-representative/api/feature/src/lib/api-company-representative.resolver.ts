@@ -7,7 +7,7 @@ import { User as authenticatedUser} from '@graduates/api/authentication/api/shar
 const pubSub = new PubSub();
 @Resolver(CompanyRepresentative)
 export class ApiCompanyRepresentativeResolver {
-    constructor(private companyrepService: ApiCompanyRepresentativeService) {}
+    constructor(private companyRepresentativeService: ApiCompanyRepresentativeService) {}
 
   @Query((returns) => CompanyRepresentative)
   async companeyRepresentative(@Args('id') id: string): Promise<CompanyRepresentative|any> {
