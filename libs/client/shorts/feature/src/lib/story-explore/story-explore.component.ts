@@ -58,6 +58,8 @@ export class StoryExploreComponent implements OnInit {
   reported : boolean;
   apifailure = "";
 
+  shortId = "cl22e308w0208hcvks42s959n";
+
   //content uploaded:
   VideoFile! : File;
   ThumbnailFile! : File;
@@ -211,12 +213,6 @@ export class StoryExploreComponent implements OnInit {
   //  ====================================================================================== //
   //  Selected Pop-Up Functions ============================================================ //
 
-  closeSuccessReport() {
-    this.reporting = false;
-    this.viewing = false;
-    this.successfulReport = false;
-  }
-
   viewStory(s : string) {
     this.viewing = true;
 
@@ -252,6 +248,8 @@ export class StoryExploreComponent implements OnInit {
       this.viewing = true;
       this.reporting = false;
       this.successfulReport = false;
+
+      this.shortId = selectedCard.id;
     });
 
 
@@ -263,6 +261,12 @@ export class StoryExploreComponent implements OnInit {
 
   //  ==================================================================================== //
   //  Report Pop-Up Functions ============================================================ //
+
+  closeSuccessReport() {
+    this.reporting = false;
+    this.viewing = false;
+    this.successfulReport = false;
+  }
 
   cancelReport() {
     this.reporting = false;
@@ -297,16 +301,16 @@ export class StoryExploreComponent implements OnInit {
     }
 
     //hard coded report:
-    const shortId = "cl22e308w0208hcvks42s959n";
+
     const reason = this.reportfrm.controls['reason'].value;
-    const userId = "cl22alq100086lwvkts9rdiox";
+    const userId = "1234";
 
     // Send reportText to the api:
       if (!(this.apollo.client === undefined))
       this.apollo
         .mutate ({
           mutation: gql`mutation {
-            reportShort(report: {shortId: "${ shortId }", reason: "${ reason }"}, userId: "${ userId }") {
+            reportShort(report: {shortId: "${ this.shortId }", reason: "${ reason }"}, userId: "${ userId }") {
               shortId,
               userId,
               reason
