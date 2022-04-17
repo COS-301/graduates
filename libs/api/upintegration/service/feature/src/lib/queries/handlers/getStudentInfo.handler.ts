@@ -1,6 +1,6 @@
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
 import { UpIntegrationRepository  } from "@graduates/api/upintegration/repository/data-access";
-import {getStudentInfoDOBQuery,getStudentInfoEmailsQuery,getStudentInfoNameQuery,getStudentInfoFilesQuery } from "../impl";
+import {getStudentInfoEmailsQuery,getStudentInfoNameQuery,getStudentInfoFilesQuery } from "../impl";
 
 @QueryHandler(getStudentInfoNameQuery)
 export class getStudentInfoNameHandler implements IQueryHandler<getStudentInfoNameQuery> {
