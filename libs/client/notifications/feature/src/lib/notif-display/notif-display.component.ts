@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { NotificationsApi } from './notif-display.api';
 
 @Component({
   selector: 'graduates-notif-display',
@@ -8,12 +7,6 @@ import { NotificationsApi } from './notif-display.api';
 })
 export class NotifDisplayComponent{
 
-  constructor( private notifApi : NotificationsApi) {
-
-    this.notifApi.getNotificationsAll().subscribe({
-      next: (res) => {
-        console.log(res.data.notificationsAll[0]);
-      }
-    });
+  constructor() {
   }
 }
