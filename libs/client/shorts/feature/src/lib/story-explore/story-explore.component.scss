@@ -156,7 +156,7 @@
     outline: none;
     color: $primary-3;
     padding: 8px 8px;
-    max-height: 60vh;
+    max-height: 40vh;
     min-height: 10vh;
 }
 
@@ -193,7 +193,7 @@
 
 .auto-col-maker {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
 }
 
 .centindiv {
