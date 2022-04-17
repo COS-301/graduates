@@ -42,6 +42,7 @@ export class StorageRepository {
 
   //get a link to a specific user file
   async getUserFile(u_id: string, file_type:FileCategory): Promise<string|null> {
+    
     const arr : Promise<UserProfileFile[] | null> = this.prismaService.userProfileFile.findMany({
       where: {
           userId: u_id,
@@ -52,14 +53,28 @@ export class StorageRepository {
       arr.then((value) => {
         if(value)
         {
-        return this.firebaseService.getURLByFilePath(value[0].filePath);
+          if(value.length>0){
+            return this.firebaseService.getURLByFilePath(value[0].filePath);
+          }
+          else{
+            return null;
+          }
         }
         else
         return null;
       }
       )
 
-      return null;
+      return await arr.then(async (value) => {
+        if(value){
+          return await this.firebaseService.getURLByFilePath(value[0].filePath);
+        }
+        else{
+          return null;
+        }
+      });
+
+      //return null;
 
   }
   //TODO update func, config
@@ -98,7 +113,10 @@ export class StorageRepository {
         userId: u_id,
         fileCategory: file_category,
       },
-    })
+    }).then((value) => {
+      return value.count;
+    }
+    )
   }
 
   }

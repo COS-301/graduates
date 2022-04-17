@@ -2,6 +2,9 @@
 // body {
 //     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 // }
+h1 {
+    color: #174372;
+}
 h2 {
     color: #174372;
 }
@@ -14,7 +17,7 @@ mat-divider {
 
 .icon {
     float: right;
-    // font-size: xx-large;
+    font-size: xx-large;
 }
 
 mat-icon {
@@ -22,3 +25,22 @@ mat-icon {
     font-size: large;
 }
 
+.outer {
+    padding: 0;
+}
+.outer-edit {
+    padding: 0;
+}
+
+#outer {
+    display: block;
+}
+
+#outer-edit {
+    display: none;
+}
+
+mat-card img {
+    margin-left: 0;
+    margin-top: 0;
+}
