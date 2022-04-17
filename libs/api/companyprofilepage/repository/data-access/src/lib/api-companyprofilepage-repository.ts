@@ -1,6 +1,7 @@
 import { Injectable, Param } from '@nestjs/common';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 import { SocialMedia, UserSocialMedia } from '@prisma/client';
+import { runInThisContext } from 'vm';
 
 @Injectable()
 export class CompanyProfilePage {
@@ -95,5 +96,10 @@ export class CompanyProfilePage {
         })
     }
 
+    async getCompanyRepById(@Param() id:string) {
+        return await this.prisma.user.findMany({
+            where: {companyId: id}
+        })
+    }
 }
 
