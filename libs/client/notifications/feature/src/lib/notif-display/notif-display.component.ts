@@ -8,5 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class NotifDisplayComponent{
 
   constructor() {
+    //do here
   }
 }
