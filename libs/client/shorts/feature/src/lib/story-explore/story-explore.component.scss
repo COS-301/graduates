@@ -103,6 +103,7 @@
     transform: translate(-50%, -50%);
     // width: 50vw;
     color: $text-white;
+    z-index: 99 !important;
 }
 
 #uploadbanner {
@@ -138,6 +139,16 @@
 
 .hint {
     color: #888888;
+}
+
+.size {
+    height: 200px;
+    width: auto;
+    background-color: pink;
+}
+
+.uploadcontainer {
+    z-index: 99 !important;
 }
 
 #greyline {
