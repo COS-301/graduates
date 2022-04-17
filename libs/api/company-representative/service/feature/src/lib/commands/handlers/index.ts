@@ -1,5 +1,5 @@
 import { DeleteRepresentativeHandler } from "./deleteRepresentative.handler";
-import { GetDefaultRepresentativeHandler } from "./getDefaultRepresentative.handler";
+import { CreateRepresentativeHandler } from "./createRepresentativeHandler.handler";
+import { UpdateRepresentativeHandler } from "./updateCompanyRepresentativeHandler.handler";
 
-
-export const CommandHandlers = [DeleteRepresentativeHandler, GetDefaultRepresentativeHandler];
+export const CommandHandlers = [UpdateRepresentativeHandler,DeleteRepresentativeHandler,CreateRepresentativeHandler];
