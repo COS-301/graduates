@@ -12,10 +12,10 @@ import {
 import {
     CreateRequestNotificationCommand,
     UpdateRequestNotificationCommand,
-    UpdateSeenCommand
+    UpdateSeenCommand,
+    SendMailCommand
 }
 from './commands/api-notifications-service-commands.command'
-import { SendMailEvent } from './events/send-mail.event';
 import { QueryBus, CommandBus, EventBus } from '@nestjs/cqrs';
 import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 import { ModuleRef } from '@nestjs/core';
@@ -37,48 +37,53 @@ export class ApiNotificationsService
     constructor(
         private readonly queryBus:QueryBus,
         private readonly commandBus:CommandBus,
-        private readonly eventBus:EventBus,
         private moduleRef: ModuleRef
     ){}
 
-    sendToMail(emailFrom:string, emailTo:string, emailSubject:string, emailText:string){
-        return this.eventBus.publish(new SendMailEvent(emailFrom, emailTo, emailSubject, emailText));
-    }
-
+    
     async getAllNoifications() : Promise<Notification[]>{
         return await this.queryBus.execute(new GetAllUserNotificationsQuery())
     }
-
+    
     async getNotificationsById(id: string) : Promise<Notification> {
         return await this.queryBus.execute(new GetNotificationByIdQuery(id))
     }
-
+    
     async getNotificationsReceived(userId: string) : Promise<Notification[]> {
         return await this.queryBus.execute(new GetNotificationsReceivedQuery(userId))
     }
-
+    
     async getNotificationsSent(userId: string) : Promise<Notification[]> {
         return await this.queryBus.execute(new GetNotificationsSentQuery(userId))
     }
-
+    
     async getNotificationsByType(userId: string, notificationType: string) : Promise<Notification[]> {
         return await this.queryBus.execute(new GetNotificationsByTypeQuery(userId, notificationType));
     }
-
+    
     async createRequestNotification(userIdTo:string, userIdFrom:string, notificationType:string) : Promise<Notification> {
         return await this.commandBus.execute(new CreateRequestNotificationCommand(userIdTo, userIdFrom, notificationType));
     }
-
+    
     async updateRequestNotification(id:string, status:string) : Promise<Notification> {
         return await this.commandBus.execute(new UpdateRequestNotificationCommand(id, status));
     }
-
+    
     async updateSeen(id:string, seen:boolean) : Promise<Notification> {
         return await this.commandBus.execute(new UpdateSeenCommand(id,seen));
     }
+<<<<<<< HEAD
 
     async getUserObject(userId: string) : Promise<AuthenticationUser> {
+=======
+    
+    async getUserObject(userId: string) : Promise<User> {
+>>>>>>> 4f833b2eae0eb1dec6505809cec01b3503f39974
         return await this.queryBus.execute(new GetUserObjectQuery(userId))
+    }
+    
+    async sendToMail(emailFrom:string, emailTo:string, emailSubject:string, emailText:string){
+        return this.commandBus.execute(new SendMailCommand(emailFrom, emailTo, emailSubject, emailText));
     }
 
    
