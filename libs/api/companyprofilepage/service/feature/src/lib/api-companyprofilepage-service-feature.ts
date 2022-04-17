@@ -11,7 +11,7 @@ export class ApicompanyprofilepageServiceFeatureModule {
     return await this.queryBus.execute(new GetCompanyByIDQuery(id));
   }
 
-  async getCompanyEmail(id: string): Promise<UserEmail>{
+  async getCompanyEmail(id: string): Promise<UserEmail[]>{
     return await this.queryBus.execute(new GetCompanyEmailQuery(id));
   }
 
@@ -23,7 +23,7 @@ export class ApicompanyprofilepageServiceFeatureModule {
     return await this.queryBus.execute(new GetCompanySocialMediaQuery(id));
   }
 
-  async getCompanyNumber(id: string): Promise<UserNumber[]>{
+  async getCompanyNumber(id: string): Promise<UserNumber>{
     return await this.queryBus.execute(new GetCompanyNumberQuery(id));
   }
 
