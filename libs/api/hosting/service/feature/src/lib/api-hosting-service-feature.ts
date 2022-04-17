@@ -145,10 +145,6 @@ export class ApiHostingServiceFeatureModule{
     }
     this.hosting.push(upintegrationAPI);
 
-    //quick fix (until the urls are updated)
-    this.hosting.forEach(element => {
-      element.status = "Operational";
-    });
     this.AddAllUnimplemented();
     return this.hosting;
   }
