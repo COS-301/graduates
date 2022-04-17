@@ -16,6 +16,11 @@ export class ApiAuthenticationResolver{
     findAll(){
         return this.apiauthenticationService.findAll();
     }
+
+    @Query(() =>String) 
+    pingAuthentication(){
+      return "on";
+    }
 }
 
 
