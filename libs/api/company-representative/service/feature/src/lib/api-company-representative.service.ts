@@ -15,5 +15,9 @@ export class ApiCompanyRepresentativeService {
 
   async login(email: string, password: string) : Promise<CompanyRepresentative> {
     return this.queryBus.execute(new GetCompanyRepresentativeLoginQuery(email, password));
-  }  
+  }
+  
+  async deleteCompanyRepresentative(id: string) : Promise<CompanyRepresentative> {
+    return null;
+  }
 }

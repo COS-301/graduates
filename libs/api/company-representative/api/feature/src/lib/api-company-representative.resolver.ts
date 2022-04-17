@@ -1,4 +1,4 @@
-import { CompanyRepresentative, CompanyRepresentativeCreate, LoggerInformation} from '@graduates/api/company-representative/api/shared/data-access';
+import { CompanyRepresentative, CompanyRepresentativeFailedResponse} from '@graduates/api/company-representative/api/shared/data-access';
 import { ApiCompanyRepresentativeService } from '@graduates/api/company-representative/service/feature';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { PubSub } from 'graphql-subscriptions';
@@ -7,45 +7,38 @@ import { User as authenticatedUser} from '@graduates/api/authentication/api/shar
 const pubSub = new PubSub();
 @Resolver(CompanyRepresentative)
 export class ApiCompanyRepresentativeResolver {
-    constructor(private companyRepresentativeService: ApiCompanyRepresentativeService) {}
+    constructor(private apiCompanyRepresentativeService: ApiCompanyRepresentativeService) {}
 
   @Query((returns) => CompanyRepresentative)
-  async companeyRepresentative(@Args('id') id: string): Promise<CompanyRepresentative|any> {
-    const resp = await this.companyrepService.findOneById(id);
+  async getCompaneyRepresentative(@Args('id') id: string): Promise<CompanyRepresentative|CompanyRepresentativeFailedResponse> {
+    const resp = await this.apiCompanyRepresentativeService.getCompanyRepresentative(id);
     if (!resp) {
-      const data = {
-        "id" :id,
-        "response" : "User does not exist"
-      };
+      const data = new CompanyRepresentativeFailedResponse();
+      data.response = "User does not exist";
       return data;
     }
     return resp;
   }
 
   @Query((returns) => CompanyRepresentative)
-  async companeyRepresentatives(): Promise<CompanyRepresentative|any> {
-    const resp = await this.companyrepService.getAllReps();
+  async login(@Args("email") email:string, @Args("password") password:string): Promise<CompanyRepresentative | CompanyRepresentativeFailedResponse> {
+    const resp = await this.apiCompanyRepresentativeService.login(email, password)
     if (!resp) {
-      const data = {
-        "response" : "fatal error, could not get users"
-      };
+      const data = new CompanyRepresentativeFailedResponse();
+      data.response = "Invalid login";
       return data;
     }
     return resp;
   }
 
-  @Mutation((returns) => CompanyRepresentative)
-  async createCompanyrep(@Args('newCompanyrepresentativeData') newCompanyrepresentativeData: CompanyRepresentativeCreate): Promise<CompanyRepresentative | any> {
-    const resp = await this.companyrepService.createRep(null);
-    pubSub.publish('companyrepAdded', { companyrepAdded: resp });
+  @Query((returns) => CompanyRepresentative)
+  async deleteCompaneyRepresentative(@Args('id') id: string): Promise<CompanyRepresentative|CompanyRepresentativeFailedResponse> {
+    const resp = await this.apiCompanyRepresentativeService.getCompanyRepresentative(id);
+    if (!resp) {
+      const data = new CompanyRepresentativeFailedResponse();
+      data.response = "User does not exist";
+      return data;
+    }
     return resp;
-  }
-
-  @Mutation((returns) => String)
-  async login(@Args('loggerInformation') loggerInformation : LoggerInformation): Promise<string> {
-    
-    //use the service function
-
-    return "";
   }
 }
