@@ -1,17 +1,21 @@
 import { async, TestBed } from '@angular/core/testing';
 import { ClientCompanyRepresentativeFeatureModule } from './client-company-representative-feature.module';
+import { CompanyRepresentativePageComponent } from './company-representative-page/company-representative-page.component';
+import { CompanyRepresentativeEditPageComponent } from './company-representative-edit-page/company-representative-edit-page.component';
+import { CompanyRepresentativeMockLoginPageComponent } from './company-representative-mock-login-page/company-representative-mock-login-page.component';
+import { CompanyRepresentativeMockStudentExplorePageComponent } from './company-representative-mock-student-explore-page/company-representative-mock-student-explore-page.component';
 
 describe('ClientCompanyRepresentativeFeatureModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [ClientCompanyRepresentativeFeatureModule],
+      declarations:[CompanyRepresentativePageComponent,
+                    CompanyRepresentativeEditPageComponent,
+                    CompanyRepresentativeMockLoginPageComponent,
+                    CompanyRepresentativeMockStudentExplorePageComponent],
     }).compileComponents();
   }));
-
   // TODO: Add real tests here.
-  //
-  // NB: This particular test does not do anything useful.
-  //     It does NOT check for correct instantiation of the module.
   it('should have a module definition', () => {
     expect(ClientCompanyRepresentativeFeatureModule).toBeDefined();
   });
