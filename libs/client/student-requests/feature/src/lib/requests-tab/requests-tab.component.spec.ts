@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
 import { RequestsTabComponent } from './requests-tab.component';
 
 describe('RequestsTabComponent', () => {
@@ -8,7 +8,8 @@ describe('RequestsTabComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RequestsTabComponent ]
+      declarations: [ RequestsTabComponent ],
+      imports: [HttpClientModule]
     })
     .compileComponents();
   });

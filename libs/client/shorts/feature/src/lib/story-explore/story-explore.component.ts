@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Renderer2, RendererFactory2, ViewChild } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 
@@ -9,6 +9,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Location } from '@angular/common';
 
 import {Apollo, gql} from 'apollo-angular';
+import { connectStorageEmulator } from 'firebase/storage';
 
 @Component({
   selector: 'graduates-story-explore',
@@ -37,6 +38,8 @@ export class StoryExploreComponent implements OnInit {
   @Input() upload : boolean;
   @Input() report : boolean;
 
+  @ViewChild('one') d1! : ElementRef;
+
   uploadfrm! : FormGroup;
   reportfrm! : FormGroup;
   builder! : FormBuilder; 
@@ -45,6 +48,8 @@ export class StoryExploreComponent implements OnInit {
   submit = false;
   return : boolean;
 
+
+  test! : any;
 
   viewing : boolean;
   reporting: boolean;
@@ -57,6 +62,12 @@ export class StoryExploreComponent implements OnInit {
   //content uploaded:
   VideoFile! : File;
   ThumbnailFile! : File;
+  fileuploaderror = "";
+  fileuploadflag! : boolean;
+  VideoFileBase64! : any;
+  ThumbnailFileBase64! : any;
+  thumbnailuploaderror = "";
+  thumbnailuploadflag! :boolean;
   ///////////////////
 
   viewingName = "Ernest Wright";
@@ -79,13 +90,18 @@ export class StoryExploreComponent implements OnInit {
     this.reporting = false;
     this.successfulReport = false;
     this.reported = false;
+    this.VideoFileBase64 = null;
+    this.ThumbnailFileBase64 = null;
+
+    this.fileuploadflag= true;
+    this.thumbnailuploadflag = true;
   }
 
   ngOnInit(): void {
     this.uploadfrm = this.builder.group({
       file: ['', Validators.required],
       thumbnail: ['', Validators.required],
-      tags: ['', Validators.required]
+      tags: ['', this.TagValidator]
     });
 
     this.reportfrm = this.builder.group({
@@ -100,15 +116,62 @@ export class StoryExploreComponent implements OnInit {
   
   onFileUpload(event : any) {
     this.VideoFile = event.target.files[0];
-    this.Base64encode(this.VideoFile).then(resp => {
-      console.log(resp);
-      console.log("here");
-    });
+    this.fileuploadflag = true; 
+    const re = /^video*/;
+    if (this.VideoFile.type.match(re)) {
+      this.Base64encode(this.VideoFile).then(resp => {
+        this.VideoFileBase64 = resp;
+        this.fileuploadflag = false;
+        // console.log(resp);
+      })
+    }
   }
 
   onThumbnailUpload(event : any) {
     this.ThumbnailFile = event.target.files[0];
+    console.log(event.target.files[0].type);
+    this.thumbnailuploadflag = true; 
+    const re = /^image*/;
+    if (this.ThumbnailFile.type.match(re)) {
+      this.Base64encode(this.ThumbnailFile).then(resp => {
+        this.ThumbnailFileBase64 = resp;
+        this.thumbnailuploadflag = false;
+        // console.log(resp);
+      })
+    }
   }
+
+  uploadStory() {
+    if (this.fileuploadflag) this.fileuploaderror = "A video file is required.";
+    if (this.thumbnailuploadflag) this.thumbnailuploaderror = "An image file is required.";
+    this.submit = true;
+
+    if (this.ValidUpload()) {
+      
+      //form is valid here:
+      
+
+    } 
+
+  }
+
+  ValidUpload() : boolean {
+    if (this.uploadfrm.controls['tags'].errors)
+      return false;
+    if (this.fileuploadflag || this.thumbnailuploadflag)
+      return false;
+    return true;
+  }
+
+  // console.log(resp);
+  //     this.d1.nativeElement.insertAdjacentHTML('beforeEnd', `
+  //       <video width="320" height="240" controls>
+  //         <source src="${ resp }" type="video/mp4">
+  //         Your browser does not support the video tag.
+  //       </video>
+  //     `);
+
+
 
   //base 64 encoder:
   Base64encode(file : File) {
@@ -120,20 +183,13 @@ export class StoryExploreComponent implements OnInit {
 
   }
 
-  //base 64 decode to BLOB:
-  Base64decode(base : string) {
-    // return new Promise((resolve, _) => {
-    //   resolve(blob.blob)
-    // })
-  }
-
-  uploadStory() {
-    if (this.return) 
-      return;
-    
-    this.submit = true;
-      //validate form here:
-      //upload form here:
+  TagValidator(tags : FormControl) : {[valtype : string] : string} | null {
+    const text = tags.value;
+    console.log(text);
+    if (text.length == 0) return {'errormsg' : 'A tag is required.'}
+    const re = /^(#(([a-z]|[0-9]|[A-Z]|_)+))+$/g;
+    if (text.search(re)) return {'errormsg' : 'Please use example tag format.'}
+    return null;
   }
 
   cancelUpload() {

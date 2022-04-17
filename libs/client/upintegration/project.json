@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/client/upintegration/feature",
+  "sourceRoot": "libs/client/upintegration/feature/src",
+  "prefix": "graduates",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/upintegration/feature"],
+      "options": {
+        "jestConfig": "libs/client/upintegration/feature/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/upintegration/feature/src/**/*.ts",
+          "libs/client/upintegration/feature/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

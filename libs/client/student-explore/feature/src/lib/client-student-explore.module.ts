@@ -24,7 +24,6 @@ import { HeaderModule } from '../../../../shared/components/header/src/lib/heade
 import { FooterModule } from '../../../../shared/components/footer/src/lib/footer.module'; 
 
 //Component Modules
-import { FilterComponent } from './filter/filter.component';
 import { StudentCardComponent } from './student-card/student-card.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { MobileStudentCardComponent } from './mobile-student-card/mobile-student-card.component';
@@ -53,7 +52,12 @@ import { StudentExplorePageComponent } from './student-explore-page/student-expl
     HeaderModule,
     FooterModule
   ],
-  declarations: [FilterComponent, StudentCardComponent, SearchBarComponent, MobileStudentCardComponent, StudentExplorePageComponent, /*HeaderComponent, FooterComponent*/],
-  exports:[ StudentExplorePageComponent ]
+  declarations: [StudentCardComponent, SearchBarComponent, MobileStudentCardComponent, StudentExplorePageComponent],
+  exports:[
+    StudentCardComponent,
+    SearchBarComponent,
+    MobileStudentCardComponent,
+    StudentExplorePageComponent
+  ]
 })
 export class ClientStudentExploreModule {}
