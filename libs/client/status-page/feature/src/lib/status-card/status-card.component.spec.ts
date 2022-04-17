@@ -6,7 +6,7 @@ describe('StatusCardComponent', () => {
   let component: StatusCardComponent;
   let fixture: ComponentFixture<StatusCardComponent>;
 
-  let mockStatus = {
+  const mockStatus = {
     name: 'Storage API',
     status: 'Operational',
   };
