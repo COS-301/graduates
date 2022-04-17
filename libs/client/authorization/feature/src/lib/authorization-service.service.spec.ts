@@ -16,3 +16,10 @@ describe('AuthorizationServiceService', () => {
   });
 });
 */
+describe('ApiAuthorizationService',()=>
+{
+  it('generic test',async()=>{
+  expect(true).toBeTruthy();
+  });
+
+});
