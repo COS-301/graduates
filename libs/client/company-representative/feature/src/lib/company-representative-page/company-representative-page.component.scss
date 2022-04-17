@@ -1,5 +1,19 @@
 @import 'libs/client/shared/assets/ui/src/lib/global';
 
+.nav {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: white;
+  font-family: 'Segoe UI',sans-serif;
+  font-weight: 505;
+  font-style: normal;
+  background-color: #174372;
+  width: 100% ;
+  height: 100%;
+  overflow: hidden !important;
+  text-align: right;
+}
+
 .title {
   background-color: rgb(233, 233, 233);
 }
@@ -123,7 +137,6 @@
   width: 100% ;
   height: 100%;
   overflow: hidden !important;
-  
 }
 h1{
   padding-left: 2px;
