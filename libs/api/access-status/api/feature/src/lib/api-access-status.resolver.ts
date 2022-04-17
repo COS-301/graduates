@@ -11,6 +11,24 @@ export class ApiAccessStatusResolver {
         if (compId == "" || gradId == "") // obviously empty elements are not allowed
             return null;
 
-        return this.accessStatusService.getAll(compId, gradId);
+        const items = ["CV", "Transcript", "Academic Record", "Certificates", "Capstone Project"];
+
+        const entities = await this.accessStatusService.getAll(compId, gradId);
+
+        for (const e of entities) {
+            const i = items.indexOf(e.item);
+
+            if (i > -1)
+                items.splice(i, 1);
+        }
+
+        for (const i of items) {
+            const e = new ApiAccessStatusEntity();
+            e.accessStatus = "Private";
+            e.item = i;
+            entities.push(e);
+        }
+
+        return entities;
     }
 }
