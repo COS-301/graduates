@@ -37,15 +37,13 @@ export class RequestForAccessService {
       }),
     };
 
-    return this.httpClient.post(
+    return this.httpClient.post<any>(
       "http://localhost:3333/graphql",
       JSON.stringify({
         query: query,
         variables: { compId: companyID, gradId: graduateID, item: item },
       }),
       options
-    ).subscribe((x) => {
-      console.log(x);
-    });
+    );
   }
 }
