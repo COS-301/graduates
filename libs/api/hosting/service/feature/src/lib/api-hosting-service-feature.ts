@@ -12,6 +12,8 @@ export class ApiHostingServiceFeatureModule{
   ){}
   private hosting: ApiHosting[] = [];
   async get_all(): Promise<ApiHosting[]>{
+    //clear the hosting object
+    this.hosting = [];
     //Perform health Checks
     const storageApi = new ApiHosting();
     const shortsAPI = new ApiHosting();
@@ -223,10 +225,5 @@ export class ApiHostingServiceFeatureModule{
 
     this.hosting.push(unimplemented1);
   }
-  //To-do and the following queries
-  // @Query(() =>String) 
-  // pingAuthentication(){
-  //   return "on";
-  //}
  
 }
