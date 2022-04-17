@@ -53,7 +53,7 @@ export class RequestAccessService {
         };
         return entity;
       }else if(itemID === 'CERTIFICATE'){
-        const result =this.repository.insertRequest(userID, companyID, Item.CERTFICATE, false);
+        const result =this.repository.insertRequest(userID, companyID, Item.CERTIFICATE, false);
         const entity = {
 
           companyID: (await result).CompId,
