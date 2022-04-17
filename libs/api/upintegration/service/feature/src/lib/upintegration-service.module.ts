@@ -1,4 +1,4 @@
-import { ApiUpintegrationRepositoryDataAccessModule } from '@graduates/api/upintegration';
+import { ApiUpintegrationRepositoryDataAccessModule } from '@graduates/api/upintegration/repository/data-access';
 import { Module } from '@nestjs/common';
 import { CommandBus, CqrsModule, QueryBus } from '@nestjs/cqrs';
 import { ApiupintegrationService } from './api-upintegration.service';

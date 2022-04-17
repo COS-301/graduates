@@ -8,7 +8,7 @@ export class ApiupintegrationService {
 
   constructor(private commandBus: CommandBus) {}
 
-  async getName(userid : string) {
+  async get_name(userid : string) {
     return await this.commandBus.execute( new getStudentInfoNameQuery(userid))
   }
 
@@ -16,11 +16,11 @@ export class ApiupintegrationService {
     return await this.commandBus.execute( new getStudentInfoDOBQuery(userid))
   }
   
-  async getEmails(userid : string) {
+  async get_emails(userid : string) {
     return await this.commandBus.execute( new getStudentInfoEmailsQuery(userid))
   }
   
-  async getFiles(userid : string) {
+  async get_files(userid : string) {
     return await this.commandBus.execute( new getStudentInfoFilesQuery(userid))
   }
 }
