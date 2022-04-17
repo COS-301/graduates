@@ -8,7 +8,7 @@ export class BlogComment {
    * The id of the blog that the comment belongs to
    */
   @Field()
-  Id!: string;
+  id!: string;
 
   /**
    * The id of the blog the comment is on

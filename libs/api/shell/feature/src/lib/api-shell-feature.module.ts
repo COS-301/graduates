@@ -38,7 +38,8 @@ import { ApiBlogApiFeatureModule } from '@graduates/api/blog/api/feature';
     ApiAuthorizationFeatureModule,
     ApiStudentExploreApiFeatureModule,
     ApiAdminconsoleApiFeatureModule,
-    ApiUpintegrationFeatureModule
+    ApiUpintegrationFeatureModule,
+    ApiBlogApiFeatureModule
   ],
 })
 export class ApiShellFeatureModule {}
