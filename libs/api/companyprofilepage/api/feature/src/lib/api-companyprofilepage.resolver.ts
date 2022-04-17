@@ -22,7 +22,11 @@ export class ApicompanyprofilepageResolver {
     const resp = await this.companyprofilepageService.getCompanyByID(company_id)
     return resp;
   }
-
+  
+  @Query(() =>String) 
+  pingCompanyProfile(){
+    return "on";
+  }
 
   //Update a company with what they enter
   // @Mutation((returns) => ApiCompanyProfilePage)
