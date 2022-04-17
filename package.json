@@ -53,7 +53,7 @@
     "@ngxs/schematics": "^0.0.1-alpha.5",
     "@ngxs/storage-plugin": "^3.7.3",
     "@ngxs/store": "^3.7.3",
-    "@prisma/client": "^3.11.0",
+    "@prisma/client": "^3.12.0",
     "apollo-angular": "^3.0.1",
     "apollo-server-express": "^3.6.5",
     "docker": "^1.0.0",
