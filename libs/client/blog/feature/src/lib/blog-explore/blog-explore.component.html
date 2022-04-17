@@ -3,9 +3,7 @@
     <meta name="component" content="Blog-Explore" />
 </head>
 
-<header>
-    <header-and-footer-header></header-and-footer-header>
-</header>
+<header-and-footer-header></header-and-footer-header>
 
 <div class="page">
     <h1>UP Student Blog</h1><br><br><br>
@@ -31,30 +29,26 @@
         <button class="createbutton" mat-raised-button color="accent" (click)="createBlog()">Create Blog</button>
         <button class="adminbutton" mat-raised-button color="accent" (click)="changeAdmin()">Admin</button>
     </div>
-    <div>test</div>
-    <div>{{testing}}</div>
-    <div>test</div>
     <mat-grid-list #grid [cols]="cols" rowHeight="350px">
         <div *ngFor="let card of blogs | async">
             <mat-grid-tile>
                 <mat-card class="card" fxLayout="column">
 
-                    <div>
-                        Blog Summary Blog Summary Blog Summary Blog Summary Blog Summary Blog Summary Blog Summary
-                    </div>
+                    <div>{{card.content}}</div>
 
                     <br>
 
                     <mat-card-header fxFlexAlign="center" class="cardTitle">
-                        <mat-card-title>{{card.blog.title}}</mat-card-title>
-                        <mat-card-subtitle>{{card.blog.author}}</mat-card-subtitle>
+                        <mat-card-title>{{card.title}}</mat-card-title>
+                        <mat-card-subtitle>Author ID: {{card.userId}}</mat-card-subtitle>
+                        <!--Change to Author-->
                     </mat-card-header>
 
                     <mat-card-content>
                         <div class="buttons">
                             <button *ngIf="admin" class="editbutton" mat-raised-button color="accent" (click)="editBlog(card)">Edit Post</button>
-                            <button *ngIf="admin" class="deletebutton" mat-raised-button color="accent" (click)="deleteBlog(card)">Delete Post</button>
-                            <button class="viewbutton" mat-raised-button color="accent" (click)="readBlog(card)">Read More</button>
+                            <button *ngIf="admin" class="deletebutton" mat-raised-button color="accent" (click)="deleteBlog(card.id)">Delete Post</button>
+                            <button class="viewbutton" mat-raised-button color="accent" (click)="readBlog(card.id)">Read More</button>
                         </div>
                     </mat-card-content>
 
@@ -67,4 +61,4 @@
 
 <footer>
     <header-and-footer-footer></header-and-footer-footer>
-</footer>st
+</footer>
