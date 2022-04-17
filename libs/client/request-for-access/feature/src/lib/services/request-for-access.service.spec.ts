@@ -17,27 +17,61 @@ describe('RequestForAccessService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should be called', () => {
+  it('should call getResourceStatuses method', () => {
     const spy = jest.spyOn(service, 'getResourceStatuses');
-    service.getResourceStatuses('34232','3222');
+    service.getResourceStatuses('34232', '3222');
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should fetch resource statuses from API', () => {
-    const result = service.getResourceStatuses('4', '2');
-    expect(result).toMatchObject(new Observable<any>());
-
-    result.subscribe({
-      next: (data) => {
-        expect(data).toBeDefined();
-      }
-    });
-  });
-
-  it('should request access from the API', () => {
+  it('should call requestAccess method', () => {
     const spy = jest.spyOn(service, 'requestAccess');
-    expect(service.requestAccess('','','')).toBeUndefined();
+    service.requestAccess('10', '7', 'Transcript');
     expect(spy).toHaveBeenCalled();
+  });
+
+  it('should return an Observable', done => {
+    try {
+      expect(service.getResourceStatuses('34232', '3222'))
+        .toBeInstanceOf(Observable);
+    } catch (err) {
+      done(err);
+    }
+
+    try {
+      expect(service.requestAccess('10', '7', 'Transcript'))
+        .toBeInstanceOf(Observable);
+    } catch (err) {
+      done(err);
+    }
+    done();
+  });
+
+  it('should fetch resource statuses from the API', done => {
+    service.getResourceStatuses('4', '2')
+      .subscribe({
+        next: (data) => {
+          try {
+            expect(data).toBeDefined();
+            done();
+          } catch (err) {
+            done(err);
+          }
+        }
+      });
+  });
+
+  it('should request access from the API', done => {
+    expect(service.requestAccess('10', '7', 'Transcript')
+      .subscribe({
+        next: (res) => {
+          try {
+            expect(res).toBeDefined();
+            done();
+          } catch (err) {
+            done(err);
+          }
+        }
+      }));
   });
 
 });

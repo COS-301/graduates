@@ -33,26 +33,38 @@ describe("RequestForAccessComponent", () => {
     expect(component).toBeTruthy();
   });
 
-  it("should initialize resource state", () => {
+  it("should initialize resource state", done => {
     store
-      .select((state) => state.accessState.accessGranted[0])
-      .subscribe({
-        next: (status) => {
-          expect(status).toBe("Rejected");
-        },
+      .select((state) => state.accessState.accessGranted)
+      .subscribe((arr) => {
+        arr.forEach((item: string) => {
+          try {
+            expect(item).toBe("Private");
+          } catch (err) {
+            done(err);
+          }
+        });
+        done();
       });
   });
 
-  it('should change state to "Pending"', () => {
+  it('should have been called', () => {
     const spy = jest.spyOn(component, "onClick");
     component.onClick(0, "Academic Record");
     expect(spy).toHaveBeenCalled();
+  });
+
+  it('should change state to "Pending"', done => {
+    component.onClick(0, "Academic Record");
     store
       .select((state) => state.accessState.accessGranted[0])
-      .subscribe({
-        next: (status) => {
+      .subscribe((status) => {
+        try {
           expect(status).toBe("Pending");
-        },
-      });
+          done();
+        } catch (err) {
+          done(err);
+        }
+      })
   });
 });
