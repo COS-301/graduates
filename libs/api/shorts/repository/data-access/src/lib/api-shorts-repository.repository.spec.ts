@@ -482,18 +482,6 @@ describe("DB Integration Tests", () => {
     });
   });
 
-  // describe("createTag", () => {
-  //   it('should create a tag', async () => {
-  //     const testShort = await prisma.short.findFirst({where: {description: "Test Create Description"}});
-  //     const tagIn: ShortCreateTagInput = {
-  //       tag: "#TestTag",
-  //       shortId: testShort?.id ?? "1",
-  //     };
-
-  //     const tag = await repository.createTag(tagIn);
-  //     expect(tag).toMatchObject(new ShortTag());
-  //   });
-  // });
   describe('updateShort', () => {
     it('should return a short', async () => {
 
@@ -671,29 +659,6 @@ describe("DB Integration Tests", () => {
       });
     });
 
-    // describe("deleteReport", () => {
-    //   it("should return a report", async () => {
-    //     const shorts = await repository.findByUser("TestUser");
-    //     const result = await repository.deleteReport("TestUser", shorts[0].id);
-    //     expect(result).toMatchObject(new ShortReport());
-    //   });
-    // });
-
-    // describe("deleteTagByShortTag", () => {
-    //   it("should return a tag", async () => {
-    //     const shorts = await repository.findByUser("TestUser");
-    //     const result = await repository.deleteTagByShortTag(shorts[0].id, "#TestTag");
-    //     expect(result).toMatchObject(new ShortTag());
-    //   });
-    // });
-
-    // describe("deleteTags", () => {
-    //   it("should return an array", async () => {
-    //     const result = await repository.deleteTags("#TestTag");
-    //     expect(result).toBeDefined();
-    //   });
-    // });
-
     // TODO
     // tests for mutators (delete, update, create)
     // mutators for: short, shortTag
@@ -714,9 +679,11 @@ describe("DB Integration Tests", () => {
     // });
 
     afterAll(async () => {
-      await prisma.shortReport.deleteMany({where: {userId: "TestUser"} });
-      await prisma.shortTag.deleteMany({ where: { tag: "#TestTag" } });
-      await prisma.short.deleteMany({where:  {description: "Test Update Description"}});
-      await prisma.user.delete({where: {id: "TestUser"}});
+      prisma.$transaction([
+        prisma.shortReport.deleteMany({where: {userId: "TestUser"} }),
+        prisma.shortTag.deleteMany({ where: { tag: "#TestTag" } }),
+        prisma.short.deleteMany({where:  {description: "Test Update Description"}}),
+        prisma.user.delete({where: {id: "TestUser"}}),
+      ]);
     });
 });
