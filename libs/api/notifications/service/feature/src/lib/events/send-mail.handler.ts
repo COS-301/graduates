@@ -5,7 +5,6 @@ import * as nodemailer from 'nodemailer';
 @EventsHandler(SendMailHandler)
 export class SendMailHandler implements IEventHandler<SendMailEvent>{
     handle(event: SendMailEvent) {
-        // const notification = this.repository.findByUserIdTo("cl1rpkemf0148e7x5zy7087ma")
         const {emailFrom , emailTo, emailSubject, emailText} = event
 
         const transport = nodemailer.createTransport({
@@ -18,8 +17,8 @@ export class SendMailHandler implements IEventHandler<SendMailEvent>{
         
         const message = {
             from: emailFrom,
-            to: emailTo,   //data.email    
-            subject: emailSubject,         //data.notification.data
+            to: emailTo,   
+            subject: emailSubject,
             text: emailText
         }
         
