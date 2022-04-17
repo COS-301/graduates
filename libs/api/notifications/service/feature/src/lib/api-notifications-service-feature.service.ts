@@ -81,11 +81,23 @@ export class ApiNotificationsService
         return await this.queryBus.execute(new GetUserObjectQuery(userId))
     }
 
-    async requestCV(){
-        this.sendToMail("madunathabo2@gmail.com",
-        this.emailToUser()[3],
-        "Maduna TE has requested your CV",
-        "<p>Good day</p>\n <p>please make sure that you send you cv to madunathabo2@gmail.com</p>")
+   
+    async requestCV(userEmailFrom:string, userEmailTo:string,){
+        const message =  "Good day " + userEmailTo +"\n" + "Your CV has been requested by" + userEmailFrom +" please forward it as soon as possible"
+        const  subject = "Graduates: Request for your CV"
+        this.sendToMail(userEmailFrom,userEmailTo, subject, message)
+    }
+
+    async requestContactDetails(userEmailFrom:string, userEmailTo:string,){
+        const message =  "Good day " + userEmailTo +"\n" + "Your contact details has been requested by" + userEmailFrom +" please forward it as soon as possible"
+        const  subject = "Graduates: Request for your Contact details"
+        this.sendToMail(userEmailFrom,userEmailTo, subject, message)
+    }
+
+    async requestAcademicRecord(userEmailFrom:string, userEmailTo:string,){
+        const message =  "Good day " + userEmailTo +"\n" + "Your Academic Record has been requested by" + userEmailFrom +" please forward it as soon as possible"
+        const  subject = "Graduates: Request for your Academic Record"
+        this.sendToMail(userEmailFrom,userEmailTo, subject, message)
     }
 
     async currentUser(): Promise<User[]>{
@@ -119,6 +131,5 @@ export class ApiNotificationsService
         user.email = 'JohnDoe@gmail.com';
         return [ user ];
     }
-
 
 }
