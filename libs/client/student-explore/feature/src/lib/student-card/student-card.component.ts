@@ -198,22 +198,22 @@ export class StudentCardComponent implements OnInit
       }).then(r => r.json()).then(data => locaQuery = JSON.stringify(data));
 
     //Tags
-    const tagsQuery = this.available_tags; //make let tagsQuery = ""; and uncomment the lines below when API call works
-    // query = `query{
-    //   AllAvailable(availableQuery: "Tags"){
-    //     Available
-    //   }
-    //   }`;
-    // await fetch('http://localhost:3333/graphql', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       'Accept': 'application/json',
-    //     },
-    //     body: JSON.stringify({
-    //       query
-    //     })
-    //   }).then(r => r.json()).then(data => tagsQuery = JSON.stringify(data));
+    let tagsQuery = "";
+    query = `query{
+      AllAvailable(availableQuery: "Tags"){
+        Available
+      }
+      }`;
+    await fetch('http://localhost:3333/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          query
+        })
+      }).then(r => r.json()).then(data => tagsQuery = JSON.stringify(data));
 
     const emp = JSON.parse(empQuery);
     const loca = JSON.parse(locaQuery);
