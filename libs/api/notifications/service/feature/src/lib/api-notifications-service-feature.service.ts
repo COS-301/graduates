@@ -1,6 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import { Notification, NotificationData } from '@graduates/api/notifications/api/shared'
-import { 
+import {
     GetAllUserNotificationsQuery,
     GetNotificationByIdQuery,
     GetNotificationsReceivedQuery,
@@ -17,14 +17,25 @@ from './commands/api-notifications-service-commands.command'
 import { SendMailEvent } from './events/send-mail.event';
 import { QueryBus, CommandBus, EventBus } from '@nestjs/cqrs';
 import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
+import { ModuleRef } from '@nestjs/core';
 
 
 @Injectable()
-export class ApiNotificationsService {
+export class ApiNotificationsService implements OnModuleInit {
+  private tempQueryBus : QueryBus;
+  private tempCommaBus : CommandBus;
+  private tempEventBus : EventBus;
+
+  async onModuleInit() {
+        this.tempQueryBus = await this.moduleRef.get(QueryBus);
+        this.tempCommaBus = await this.moduleRef.get(CommandBus);
+        this.tempEventBus = await this.moduleRef.get(EventBus);
+    }
     constructor(
-        private readonly queryBus:QueryBus, 
-        private readonly commandBus:CommandBus, 
-        private readonly eventBus:EventBus
+        private readonly queryBus:QueryBus,
+        private readonly commandBus:CommandBus,
+        private readonly eventBus:EventBus,
+        private moduleRef: ModuleRef
     ){}
 
     sendToMail(emailFrom:string, emailTo:string, emailSubject:string, emailText:string){
@@ -35,7 +46,7 @@ export class ApiNotificationsService {
         return await this.queryBus.execute(new GetAllUserNotificationsQuery())
     }
 
-    async getNotificationsById(id: string) : Promise<Notification> { 
+    async getNotificationsById(id: string) : Promise<Notification> {
         return await this.queryBus.execute(new GetNotificationByIdQuery(id))
     }
 
@@ -54,7 +65,7 @@ export class ApiNotificationsService {
     async createRequestNotification(userIdTo:string, userIdFrom:string, notificationType:string) : Promise<Notification> {
         return await this.commandBus.execute(new CreateRequestNotificationCommand(userIdTo, userIdFrom, notificationType));
     }
-    
+
     async updateRequestNotification(id:string, status:string) : Promise<Notification> {
         return await this.commandBus.execute(new UpdateRequestNotificationCommand(id, status));
     }
