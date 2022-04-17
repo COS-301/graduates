@@ -1,0 +1,102 @@
+@import "libs/client/shared/assets/ui/src/lib/global";
+
+.card-grid{
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+
+  width: min(95%, 70rem);
+  margin-inline: auto;
+  padding-bottom: 5em;
+}
+
+//Media queries to adjust grid
+@include desktop{
+  .card-grid{
+    display: grid;
+    gap: 5rem;
+    grid-template-columns: repeat(3, 1fr);
+  
+    width: min(95%, 70rem);
+    margin-inline: auto;
+  }
+}
+
+@include tablet{
+  .card-grid{
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: repeat(2, 1fr);
+  
+    width: min(95%, 70rem);
+    margin-inline: auto;
+  }
+}
+
+@include phone{
+  .card-grid{
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: repeat(1, 1fr);
+  
+    width: min(95%, 70rem);
+    margin-inline: auto;
+  }
+}
+
+mat-card {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 340px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+div.banner {
+  height: 45%;
+  width: 100%;
+}
+
+div.content {
+  width: 90%;
+  height: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+}
+
+div.content mat-card-title {
+  text-align: center;
+}
+
+div.content mat-card-content {
+  width: 100%;
+  margin-top: 4%;
+  margin-bottom: 2%;
+}
+
+div.content mat-card-actions {
+  margin: 0;
+}
+
+div.content mat-card-actions button {
+  color: #fff;
+  background-color: #174372;
+  transition: color 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}
+
+div.content mat-card-actions button:hover {
+  background-color: #fff;
+  color: $primary-1;
+}
+
+div.banner img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
