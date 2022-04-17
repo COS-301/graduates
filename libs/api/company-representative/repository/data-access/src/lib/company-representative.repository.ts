@@ -169,7 +169,6 @@ export class CompanyRepresentativeRepository {
         UserLocation: true
       }
     })
-    const user = users[0];
 
     if (users) {
       const user = users[0];
