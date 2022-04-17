@@ -451,10 +451,6 @@ describe('ApiAuthorizationRepository', () => {
   });
 
   it('filter all permissions', async () => {
-    const call = await data.findAllPermissionsFilter('9', { equals: 'CREATE' });
-    expect(call).toBeDefined();
-  });
-  it('filter all permissions', async () => {
     jest
       .spyOn(data, 'findAllPermissionsFilter')
       .mockImplementation(
