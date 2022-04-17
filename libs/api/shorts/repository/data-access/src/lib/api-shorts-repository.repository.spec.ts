@@ -597,7 +597,8 @@ describe("DB Integration Tests", () => {
 
     describe("findTagByShortId", () => {
       it("should return an array", async () => {
-        const result = await repository.findTagByShortId("ShortIdTest");
+        const short = await repository.findByUser('TestUser');
+        const result = await repository.findTagByShortId(short[0].id);
         if (result.length > 0) {
           expect.arrayContaining(result);
         }
@@ -609,7 +610,8 @@ describe("DB Integration Tests", () => {
 
     describe("findById", () => {
       it("should return a short", async () => {
-        const result = await repository.findById("1");
+        const short = await repository.findByUser('TestUser');
+        const result = await repository.findById(short[0].id);
         if (result !== null) {
           expect(result).toMatchObject(new Short());
         }
@@ -669,9 +671,32 @@ describe("DB Integration Tests", () => {
       });
     });
 
+    // describe("deleteReport", () => {
+    //   it("should return a report", async () => {
+    //     const shorts = await repository.findByUser("TestUser");
+    //     const result = await repository.deleteReport("TestUser", shorts[0].id);
+    //     expect(result).toMatchObject(new ShortReport());
+    //   });
+    // });
+
+    // describe("deleteTagByShortTag", () => {
+    //   it("should return a tag", async () => {
+    //     const shorts = await repository.findByUser("TestUser");
+    //     const result = await repository.deleteTagByShortTag(shorts[0].id, "#TestTag");
+    //     expect(result).toMatchObject(new ShortTag());
+    //   });
+    // });
+
+    // describe("deleteTags", () => {
+    //   it("should return an array", async () => {
+    //     const result = await repository.deleteTags("#TestTag");
+    //     expect(result).toBeDefined();
+    //   });
+    // });
+
     // TODO
     // tests for mutators (delete, update, create)
-    // mutators for: short, shortTag, report
+    // mutators for: short, shortTag
 
     
 
