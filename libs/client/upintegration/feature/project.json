@@ -1,31 +1,14 @@
 {
   "projectType": "library",
-  "root": "libs/client/upintegration",
-  "sourceRoot": "libs/client/upintegration/src",
+  "root": "libs/client/upintegration/feature",
+  "sourceRoot": "libs/client/upintegration/feature/src",
   "prefix": "graduates",
   "targets": {
-    "build": {
-      "executor": "@nrwl/angular:ng-packagr-lite",
-      "outputs": ["dist/libs/client/upintegration"],
-      "options": {
-        "project": "libs/client/upintegration/ng-package.json",
-        "tailwindConfig": "libs/client/upintegration/tailwind.config.js"
-      },
-      "configurations": {
-        "production": {
-          "tsConfig": "libs/client/upintegration/tsconfig.lib.prod.json"
-        },
-        "development": {
-          "tsConfig": "libs/client/upintegration/tsconfig.lib.json"
-        }
-      },
-      "defaultConfiguration": "production"
-    },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/client/upintegration"],
+      "outputs": ["coverage/libs/client/upintegration/feature"],
       "options": {
-        "jestConfig": "libs/client/upintegration/jest.config.js",
+        "jestConfig": "libs/client/upintegration/feature/jest.config.js",
         "passWithNoTests": true
       }
     },
@@ -33,8 +16,8 @@
       "executor": "@nrwl/linter:eslint",
       "options": {
         "lintFilePatterns": [
-          "libs/client/upintegration/src/**/*.ts",
-          "libs/client/upintegration/src/**/*.html"
+          "libs/client/upintegration/feature/src/**/*.ts",
+          "libs/client/upintegration/feature/src/**/*.html"
         ]
       }
     }
