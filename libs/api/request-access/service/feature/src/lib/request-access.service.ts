@@ -16,67 +16,67 @@ export class RequestAccessService {
   async getAccessEntity(companyID: string, userID: string, itemID: string): Promise<ApiRequestAccessEntity> {
       // create item strings based on the itemID
 
-      // if(itemID === 'ACADEMIC_RECORD'){
-      //   const result =this.repository.insertRequest(userID, companyID, Item.ACADEMIC_RECORD, false);
-      //   const entity = {
+      if(itemID === 'ACADEMIC_RECORD'){
+        const result =this.repository.insertRequest(userID, companyID, Item.ACADEMIC_RECORD, false);
+        const entity = {
 
-      //     companyID: (await result).CompId,
+          companyID: (await result).CompId,
   
-      //     userID: (await result).StudId,
+          userID: (await result).StudId,
   
-      //     item: (await result).ItemId,
+          item: (await result).ItemId,
   
-      //   };
-      //   return entity;
-      // }else if(itemID === 'CV'){
-      //   const result =this.repository.insertRequest(userID, companyID, Item.CV, false);
-      //   const entity = {
+        };
+        return entity;
+      }else if(itemID === 'CV'){
+        const result =this.repository.insertRequest(userID, companyID, Item.CV, false);
+        const entity = {
 
-      //     companyID: (await result).CompId,
+          companyID: (await result).CompId,
   
-      //     userID: (await result).StudId,
+          userID: (await result).StudId,
 
-      //     item: (await result).ItemId,
+          item: (await result).ItemId,
   
-      //   };
-      //   return entity;
-      // }else if(itemID === 'CAPSTONE_PROJECT'){
-      //   const result =this.repository.insertRequest(userID, companyID, Item.CAPSTONE_PROJECT, false);
-      //   const entity = {
+        };
+        return entity;
+      }else if(itemID === 'CAPSTONE_PROJECT'){
+        const result =this.repository.insertRequest(userID, companyID, Item.CAPSTONE_PROJECT, false);
+        const entity = {
 
-      //     companyID: (await result).CompId,
+          companyID: (await result).CompId,
   
-      //     userID: (await result).StudId,
+          userID: (await result).StudId,
   
-      //     item: (await result).ItemId,
+          item: (await result).ItemId,
   
-      //   };
-      //   return entity;
-      // }else if(itemID === 'CERTFICATE'){
-      //   const result =this.repository.insertRequest(userID, companyID, Item.CERTFICATE, false);
-      //   const entity = {
+        };
+        return entity;
+      }else if(itemID === 'CERTFICATE'){
+        const result =this.repository.insertRequest(userID, companyID, Item.CERTFICATE, false);
+        const entity = {
 
-      //     companyID: (await result).CompId,
+          companyID: (await result).CompId,
   
-      //     userID: (await result).StudId,
+          userID: (await result).StudId,
   
-      //     item: (await result).ItemId,
+          item: (await result).ItemId,
   
-      //   };
-      //   return entity;
-      // }else if(itemID === 'TRANSCRIPT'){
-      //   const result =this.repository.insertRequest(userID, companyID, Item.TRANSCRIPT, false);
-      //   const entity = {
+        };
+        return entity;
+      }else if(itemID === 'TRANSCRIPT'){
+        const result =this.repository.insertRequest(userID, companyID, Item.TRANSCRIPT, false);
+        const entity = {
 
-      //     companyID: (await result).CompId,
+          companyID: (await result).CompId,
   
-      //     userID: (await result).StudId,
+          userID: (await result).StudId,
   
-      //     item: (await result).ItemId,
+          item: (await result).ItemId,
   
-      //   };
-      //   return entity;
-      // }
+        };
+        return entity;
+      }
       return undefined;
     }
 }
