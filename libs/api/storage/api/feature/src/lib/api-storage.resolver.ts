@@ -28,6 +28,7 @@ export class ApiStorageResolver {
     @Args("fileCategory")fileCategory:string
   ): Promise<number| boolean> {
     const res = await this.storageService.deleteFile(userID , fileCategory);
+    
     if(res == null){
       return false
     }
@@ -35,36 +36,17 @@ export class ApiStorageResolver {
       return res;
     }
   }
-  @Mutation(returns => Boolean , { name: 'File' })
+  @Mutation(returns => String)
   async upload(
     @Args("filename")fileName:string,
     @Args("userId")userID:string,
      @Args("fileCategory")fileCategory:string,
     @Args("fileExtension")fileExtension:string,
-    @Args('file', { type: () => GraphQLUpload }) file: FileUpload
+    @Args('file') file:string
   ): Promise<boolean|ApiStorageInput> {
-    try {
-      const { createReadStream } = file;
-      const stream = createReadStream();
-      const chunks = [];
-      const buff = await new Promise<Buffer>((resolve, reject) => {
-        let buff: Buffer;
-        stream.on('data', function (chunk) {
-          chunks.push(chunk);
-        });
-        stream.on('end', function () {
-          buff = Buffer.concat(chunks);
-          resolve(buffer);
-        });
-        stream.on('error', reject);
-      });
-      const buffer = Buffer.concat(chunks);
-      const base64 = buffer.toString('base64');
-      if(base64.length==0) {
-        return false;
-      }
       const storage = new ApiStorage();
-      storage.fileAsString = base64;
+      console.log(fileCategory)
+      storage.fileAsString = file;
       if(fileCategory=="CV"){
         storage.fileCategory = FileCategory.CV 
       }
@@ -78,10 +60,7 @@ export class ApiStorageResolver {
       storage.userId = userID;
       storage.fileExtension = fileExtension;
       return await this.storageService.create(storage);
-    } catch (err) {
-      return false;
-    }
+}
 }
 
-}
 
