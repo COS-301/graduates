@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ActivatedRoute } from '@angular/router'
+import { Apollo } from "apollo-angular";
+import gql from "graphql-tag";
 @Component({
   selector: 'graduates-main-storage-page',
   templateUrl: './main-storage-page.component.html',
@@ -7,36 +9,107 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainStoragePageComponent implements OnInit {
 
-  constructor() {
+  userID = ""
+  fileCategory = ""
+
+  constructor(private route: ActivatedRoute,
+    private apollo: Apollo ) {
     // do something here
    }
 
   ngOnInit(): void {
-    return
+    this.route.paramMap.subscribe((params: any) => {
+
+      this.userID = params.get('userID');
+
+      console.log("U: " + this.userID);      
+    })
   }
 
-  acadUp(){
-    alert("Click to Upload: Academic Record Works!!!");
+  down(val: number){
+
+    if (val == 1) {
+      console.log("userID: " + this.userID);
+      console.log("File to download: Academic Record");
+
+      this.fileCategory = "Academic Record";
+    } else if(val == 2){
+      console.log("userID: " + this.userID);
+      console.log("File to download: Transcript");
+
+      this.fileCategory = "Transcript";
+    }else{
+      console.log("userID: " + this.userID);
+      console.log("File to download: CV");
+
+      this.fileCategory = "CV";
+    }
+    this.apollo.query<any>({
+      query: gql`
+        query( $UserId: String! , $FileCategory: String!) {
+          download( userId: $UserId , fileCategory:$FileCategory )
+        }
+      `,
+      variables: {
+        UserId: this.userID,
+        FileCategory: this.fileCategory,
+      }
+    })
+    .subscribe(({ data}) => {
+      if (data){ 
+
+        console.log(data)}
+
+
+      });
+
+    // Based on the fileCategory you can you know what file of userID to download
+    // Your code comes here....
+
   }
 
-  transUp(){
-    alert("Click to Upload: Transcript Works!!!");
-  }
+  del(val: number){
+    
+    if (val == 1) {
+      console.log("userID: " + this.userID);
+      console.log("File to delete: Academic Record");
 
-  cvUp(){
-    alert("Click to Upload: CV Works!!!");
-  }
+      this.fileCategory = "Academic Record";
+    } else if(val == 2){
+      console.log("userID: " + this.userID);
+      console.log("File to delete: Transcript");
 
-  del(){
-    alert("Delete Button Works!!!"); 
-  }
+      this.fileCategory = "Transcript";
+    }else{
+      console.log("userID: " + this.userID);
+      console.log("File to delete: CV");
 
-  down(){
-    alert("Download Button Works!!!");
-  }
+      this.fileCategory = "CV";
+    }
+    this.apollo.query<any>({
+      query: gql`
+        query( $UserId: String! , $FileCategory: String!) {
+          delete( userId: $UserId , fileCategory:$FileCategory )
+        }
+      `,
+      variables: {
+        UserId: this.userID,
+        FileCategory: this.fileCategory,
+      }
+    })
+    .subscribe(({ data}) => {
+      if (data){ 
 
-  up(){
-    alert("Upload Button Works!!!");
-  }
+        console.log(data)}
 
-}
+
+      });
+    }
+
+
+    // Based on the fileCategory you can you know what file of userID to delete
+    // Your code comes here....
+
+
+
+  }

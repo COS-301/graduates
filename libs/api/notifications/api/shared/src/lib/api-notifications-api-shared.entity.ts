@@ -4,18 +4,21 @@ import { Field, ID, ObjectType } from "@nestjs/graphql";
 export class NotificationData {
     @Field()
     notificationType!: string;
+
+    @Field()
+    status: string;
 }
 
 @ObjectType()
 export class Notification {
     @Field(() => ID)
-    ID!: string;
+    id!: string;
 
     @Field(() => ID)
-    userIDFrom?: string;
+    userIdFrom?: string;
 
     @Field(() => ID)
-    userIDTo!: string;
+    userIdTo!: string;
 
     @Field()
     data: NotificationData;

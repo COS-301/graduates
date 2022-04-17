@@ -64,8 +64,8 @@ model UserScouted {
   userId      String    @map("user_id")
   date        DateTime?
 
-  userScout User @relation(name: "userScout", fields: [userIdScout], references: [id])
-  user      User @relation(name: "userScouted", fields: [userId], references: [id])
+  userScout User @relation(name: "userScout", fields: [userIdScout], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  user      User @relation(name: "userScouted", fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@map("user_scouted")
 }
@@ -79,7 +79,7 @@ model UserRole {
   userId String @map("user_id")
   role   Role
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@id([userId, role])
   @@map("user_role")
 }
@@ -91,7 +91,7 @@ model UserPermissions {
   permissionCategory PermissionCategory @map("permission_category")
   permissionTenant   PermissionTenant   @map("permission_tenant")
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@id([userId, permissionType, permissionCategory, permissionTenant])
   @@map("user_permissions")
 }
@@ -158,12 +158,13 @@ enum PermissionTenant {
 // Profile information for a user
 model UserProfile {
   userId         String  @id @map("user_id")
+  studentNumber  String? @map("student_number")
   profilePicture String? @map("profile_picture")
   bio            String?
   employmentStatus Boolean @map("employment_status") @default(false)
   openToOffers     Boolean @map("open_to_offers")    @default(false)
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_profile")
 }
 
@@ -173,17 +174,18 @@ model UserTag {
   tag    String
 
   @@id([userId, tag])
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_tag")
 }
 
 // Social Media links for users
 model UserSocialMedia {
-  userId String      @id @map("user_id")
+  userId String      @map("user_id")
   type   SocialMedia
   link   String
 
-  user User @relation(fields: [userId], references: [id])
+@@id([userId,type])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_social_media")
 }
 
@@ -201,16 +203,18 @@ model UserLocation {
   userId   String @id @map("user_id")
   location String
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_location")
 }
 
 // Emails of users
 model UserEmail {
-  userId String @id @map("user_id")
+  userId String @map("user_id")
   email  String
 
-  user User @relation(fields: [userId], references: [id])
+
+  @@id([userId,email])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_email")
 }
 
@@ -222,7 +226,7 @@ model UserProfileFile {
   fileCategory  FileCategory? @map("file_category")
   fileExtension String?       @map("file_extension")
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_student_profile_file")
 }
 
@@ -236,10 +240,11 @@ enum FileCategory {
 }
 
 model UserDegree {
-  userID     String @id @map("user_id")
+  userID     String @map("user_id")
   degreeType String @map("degree_type")
   degreeName String @map("degree_name")
 
+  @@id([userID, degreeName])
   user User @relation(fields: [userID], references: [id])
   @@map("user_degree")
 }
@@ -332,8 +337,8 @@ model Blog {
 // Comments on the blog per blog_id
 model BlogComment {
   id      String   @id @default(cuid())
-  blogId  String   @map("blog_id")
   userId  String   @map("user_id")
+  blogId  String   @map("blog_id")
   content String
   date    DateTime
 
@@ -371,7 +376,28 @@ model UserToken {
   @@id ([userId])
   @@map("user_token")
 }
+///////////////////////////////////////////////////////////////////////
+// 6. Request for Access
+///////////////////////////////////////////////////////////////////////
 
+
+//Requesting for access to a specific permission
+model Requested {
+  RequestId String @id @default(cuid())
+  StudId String @default(cuid())
+  CompId String  @default(cuid())
+  ItemId Item
+  Accepted Boolean
+}
+
+//Item to request for access
+enum Item {
+  ACADEMIC_RECORD
+  CV
+  TRANSCRIPT
+  CERTFICATE
+  CAPSTONE_PROJECT
+}
 
 ///////////////////////////////////////////////////////////////////////
 // Tests
@@ -388,7 +414,7 @@ model UserContactNumber {
   userId    String  @id  @map("user_id")
   number    String  @db.VarChar(10)
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_contact_number")
 }
 
@@ -396,7 +422,7 @@ model UserExperience {
   userId      String @id  @map("user_id")
   experience  String
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_experience")
 }
 

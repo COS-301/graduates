@@ -3,4 +3,12 @@ input {
     padding: 10px;
     box-shadow: 3px 4px 6px #888888;
   }
-  
+  @media (max-width:576px)
+{
+  input {
+    height:25px;
+    border: none;
+    padding: 10px;
+    box-shadow: 3px 4px 6px #888888;
+    }
+}

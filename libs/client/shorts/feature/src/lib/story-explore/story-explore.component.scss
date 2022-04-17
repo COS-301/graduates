@@ -13,17 +13,20 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: xx-large;
     font-weight: bold;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
+    // text-align: center;
+    // margin-left: auto;
+    // margin-right: auto;
+    // display: block;
 }
+
 #cardHeader{
     padding-top: 2px;
 }
+
 #card{
     height: 95%;
     width: fit-content;
+    box-shadow: 10px 10px 50px rgba(0,0,0, 0.15);
 }
 
 .cardbutton {
@@ -68,8 +71,8 @@
 #search{
     border: none;
     padding: 10px;
-    box-shadow: 3px 4px 6px #888888;
-    width: 70vw;
+    box-shadow: 10px 10px 50px rgba(0,0,0, 0.15);
+    width: 65vw;
     margin-left: auto;
     margin-right: auto;
     display: block;
@@ -100,6 +103,7 @@
     transform: translate(-50%, -50%);
     // width: 50vw;
     color: $text-white;
+    z-index: 99 !important;
 }
 
 #uploadbanner {
@@ -126,7 +130,7 @@
 }
 
 .bigblur {
-    box-shadow: 0px 0px 400px 50px rgba(179, 178, 178, 0.75);
+    box-shadow: 20px 20px 50px rgba(0,0,0, 0.25);
 }
 
 .infocolour {
@@ -135,6 +139,16 @@
 
 .hint {
     color: #888888;
+}
+
+.size {
+    height: 200px;
+    width: auto;
+    background-color: pink;
+}
+
+.uploadcontainer {
+    z-index: 99 !important;
 }
 
 #greyline {
@@ -153,7 +167,7 @@
     outline: none;
     color: $primary-3;
     padding: 8px 8px;
-    max-height: 60vh;
+    max-height: 40vh;
     min-height: 10vh;
 }
 
@@ -187,3 +201,67 @@
 
     }   
 }
+
+.auto-col-maker {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+}
+
+.centindiv {
+    display: flex;
+    justify-content: center;
+}
+
+.grid-container {
+    width: 100%;
+}
+
+.wholepagecontent {
+    position: absolute !important;
+    left: 0%;
+    overflow: hidden !important;
+    width: 100vw;
+}
+
+////////////////////////shifter
+//used to make page responsive to the absoluted header
+#wholepage {
+    top: 14%;
+}
+
+@media (max-width: 2250px) {
+    #wholepage {
+        top: 13%;
+    }
+}
+@media (max-width: 1750px) {
+    #wholepage {
+        top: 12%;
+    }
+}
+@media (max-width: 1250px) {
+    #wholepage {
+        top: 8%;
+    }
+}
+@media (max-width: 1000px) {
+    #wholepage {
+        top: 7%;
+    }
+}
+@media (max-width: 750px) {
+    #wholepage {
+        top: 6%;
+    }
+}
+@media (max-width: 500px) {
+    #wholepage {
+        top: 5%;
+    }
+}
+@media (max-width: 400px) {
+    #wholepage {
+        top: 4.5%;
+    }
+}
+////////////////////////shifter

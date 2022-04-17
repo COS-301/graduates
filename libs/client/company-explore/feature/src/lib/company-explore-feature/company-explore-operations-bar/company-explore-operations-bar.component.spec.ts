@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CompanyExploreMaterialModule } from '../../materials/company-explore-material.module';
+import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { UiModule } from '@graduates/client/shared/assets/ui';
 import { CompanyExploreFilterComponent } from './company-explore-filter/company-explore-filter.component';
 
 import { CompanyExploreOperationsBarComponent } from './company-explore-operations-bar.component';
@@ -11,7 +13,7 @@ describe('CompanyExploreOperationsBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports:[CompanyExploreMaterialModule],
+      imports:[UiModule, RouterTestingModule,FormsModule],
       declarations: [ CompanyExploreOperationsBarComponent,
         CompanyExploreSearchbarComponent,
         CompanyExploreFilterComponent ]

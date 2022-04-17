@@ -1,29 +1,78 @@
 //TODO: create Student model on service layer
 import { Injectable } from '@nestjs/common';
-import { ApiStudentProfilesInputEntity as StudentInput } from '@graduates/api/student-profiles/api/shared/data-access';
-
+import { CommandBus } from '@nestjs/cqrs';
+import { FileCategory, SocialMedia } from '@prisma/client';
+import { DeleteStudentProfileFilesCommand, DeleteStudentProfileSocialMediaCommand, DeleteStudentProfileTagsCommand } from './commands/impl/delete-student-profile.command';
+import { SetStudentProfileBioCommand, SetStudentProfileEmailCommand, SetStudentProfileFilesCommand, SetStudentProfileLocationCommand, SetStudentProfileNameCommand, SetStudentProfileProfilePictureCommand, SetStudentProfileSocialMediaCommand, SetStudentProfileTagsCommand } from './commands/impl/set-student-profile.command';
+import { GetStudentProfileBioQuery, GetStudentProfileDOBQuery, GetStudentProfileEmailsQuery, GetStudentProfileEmploymentStatusQuery, GetStudentProfileFilesQuery, GetStudentProfileLocationQuery, GetStudentProfileNameQuery, GetStudentProfilePFPQuery, GetStudentProfileSocialMediaQuery, GetStudentProfileTagsQuery } from './queries/impl';
+  
 @Injectable()
 export class ApiStudentProfileService {
-  public async findOneById(studentNum: string): Promise<any[]> {
-    const student = [];
-    if (studentNum == 'u19001836') student.push('Cena');
-    else student.push('Wick');
-    student.push('u19001836');
-    student.push('John');
-    student.push('John' + student[0] + '@gmail.com');
-    student.push('+27791506145');
-    student.push('1 January 2000');
 
-    return student;
+  constructor(private commandBus: CommandBus) {}
+
+  async getName(userid : string) {
+    return await this.commandBus.execute( new GetStudentProfileNameQuery(userid))
+  }
+  async setName(userid : string, name: string) {
+    return await this.commandBus.execute( new SetStudentProfileNameCommand(userid, name))
+  }
+  async getDoB(userid : string) {
+    return await this.commandBus.execute( new GetStudentProfileDOBQuery(userid))
+  }
+  async getPfp(userid : string) {
+    return await this.commandBus.execute( new GetStudentProfilePFPQuery(userid))
+  }
+  async setPfp(userid : string, pfp) {
+    return await this.commandBus.execute( new SetStudentProfileProfilePictureCommand(userid, pfp))
+  }
+  async getBio(userid : string) {
+    return await this.commandBus.execute( new GetStudentProfileBioQuery(userid))
+  }
+  async setBio(userid : string, bio: string) {
+    return await this.commandBus.execute( new SetStudentProfileBioCommand(userid, bio))
+  }
+  async getTags(userid : string) {
+    return await this.commandBus.execute( new GetStudentProfileTagsQuery(userid))
+  }
+  async addTag(userid : string, tag: string) {
+    return await this.commandBus.execute( new SetStudentProfileTagsCommand(userid, tag))
+  }
+  async removeTag(userid : string, tag: string) {
+    return await this.commandBus.execute( new DeleteStudentProfileTagsCommand(userid, tag))
+  }
+  async getSocialMedia(userid : string) {
+    return await this.commandBus.execute( new GetStudentProfileSocialMediaQuery(userid))
+  }
+  async addSocialMedia(userid : string, type: SocialMedia, link:string) {
+    return await this.commandBus.execute( new SetStudentProfileSocialMediaCommand(userid, type, link))
+  }
+  async removeSocialMedia(userid : string) {
+    return await this.commandBus.execute( new DeleteStudentProfileSocialMediaCommand(userid))
+  }
+  async getLocation(userid : string) {
+    return await this.commandBus.execute( new GetStudentProfileLocationQuery(userid))
+  }
+  async setLocation(userid : string, location: string) {
+    return await this.commandBus.execute( new SetStudentProfileLocationCommand(userid, location))
+  }
+  async getEmails(userid : string) {
+    return await this.commandBus.execute( new GetStudentProfileEmailsQuery(userid))
+  }
+  async setEmails(userid : string, emails: string) {
+    return await this.commandBus.execute( new SetStudentProfileEmailCommand(userid, emails))
+  }
+  async getFiles(userid : string) {
+    return await this.commandBus.execute( new GetStudentProfileFilesQuery(userid))
+  }
+  async addFiles(userid : string, fileCategory : FileCategory, filePath : string, fileExtension : string) {
+    return await this.commandBus.execute( new SetStudentProfileFilesCommand(userid, fileCategory, filePath, fileExtension))
+  }
+  async removeFiles(userid : string, fileCategory : FileCategory) {
+    return await this.commandBus.execute( new DeleteStudentProfileFilesCommand(userid,fileCategory))
+  }
+  async getEmploymentStatus(userId: string) {
+    return await this.commandBus.execute( new GetStudentProfileEmploymentStatusQuery(userId))
   }
 
-  public async editStudentProfiles(studentData: StudentInput): Promise<any[]> {
-    //edit data here
-    return this.findOneById(studentData.studentNum);
-  }
-
-  public async deleteStudentProfiles(studentNum: string): Promise<string> {
-    //delete student data here
-    return 'Delete not implemented yet';
-  }
 }

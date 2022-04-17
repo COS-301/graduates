@@ -14,7 +14,9 @@ import { ApiAuthenticationApiFeatureModule } from '@graduates/api/authentication
 import { ApiNotificationsApiFeatureModule } from '@graduates/api/notifications/api/feature'
 import { ApiAuthorizationApiFeatureModule as ApiAuthorizationFeatureModule } from '@graduates/api/authorization/api/feature';
 import { ApiStudentExploreApiFeatureModule as ApiStudentExploreApiFeatureModule } from '@graduates/api/student-explore/api/feature';
-import { ApiAdminConsoleApiFeatureModule  as ApiAdminconsoleApiFeatureModule } from '@graduates/api/adminconsole/api/feature';  
+import { ApiAdminConsoleApiFeatureModule  as ApiAdminconsoleApiFeatureModule } from '@graduates/api/adminconsole/api/feature';
+import { ApiUpintegrationApiFeatureModule as ApiUpintegrationFeatureModule } from '@graduates/api/upintegration/api/feature';
+import { ApiBlogApiFeatureModule } from '@graduates/api/blog/api/feature';
 
 @Module({
   imports: [
@@ -25,8 +27,8 @@ import { ApiAdminConsoleApiFeatureModule  as ApiAdminconsoleApiFeatureModule } f
     }),
     ApiStorageFeatureModule,
     ApiHostingFeatureModule,
-    // ApiShortsFeatureModule,
-    // ApiNotificationsApiFeatureModule,
+    ApiShortsFeatureModule,
+    ApiNotificationsApiFeatureModule,
     ApiAccessStatusFeatureModule,
     ApiCompanyProfilePageFeatureModule,
     ApiStudentProfilesModule,
@@ -34,8 +36,10 @@ import { ApiAdminConsoleApiFeatureModule  as ApiAdminconsoleApiFeatureModule } f
     ApiRequestAccessFeatureModule,
     ApiAuthenticationApiFeatureModule,
     ApiAuthorizationFeatureModule,
-    // ApiStudentExploreApiFeatureModule,
-    ApiAdminconsoleApiFeatureModule
+    ApiStudentExploreApiFeatureModule,
+    ApiAdminconsoleApiFeatureModule,
+    ApiUpintegrationFeatureModule,
+    ApiBlogApiFeatureModule
   ],
 })
 export class ApiShellFeatureModule {}

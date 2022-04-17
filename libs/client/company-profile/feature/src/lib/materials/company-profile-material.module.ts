@@ -8,6 +8,11 @@ import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDividerModule} from '@angular/material/divider';
+import {FlexLayoutModule} from '@angular/flex-layout';
+// import {MatDialog} from '@angular/material/dialog';
+// , MatDialogRef, MAT_DIALOG_DATA
 
 const MaterialComponents=[
   MatButtonModule,
@@ -18,7 +23,11 @@ const MaterialComponents=[
   MatGridListModule,
   MatMenuModule,
   MatIconModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatSidenavModule,
+  MatDividerModule,
+  FlexLayoutModule
+  // MatDialog
 ]
 ;
 @NgModule({
