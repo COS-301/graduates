@@ -4,7 +4,7 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { Location } from '@angular/common';
 
@@ -33,10 +33,16 @@ export class StoryExploreComponent implements OnInit {
 
   viewing : boolean;
   reporting: boolean;
-  currentlyViewing! : number;
-  currentlyReporting! : number;
+  currentlyViewing! : string;
+  currentlyReporting! : string;
   successfulReport : boolean;
   reported : boolean;
+  apifailure = "";
+
+  //content uploaded:
+  VideoFile! : File;
+  ThumbnailFile! : File;
+  ///////////////////
 
   viewingName = "Ernest Wright";
   viewingTags = "#Design #IMY #COS #software";
@@ -47,20 +53,7 @@ export class StoryExploreComponent implements OnInit {
   fileError = "File is required.";
   uploadedFile! : any;
 
-  cardlist = [{
-        
-    "user": {
-      "name": "Matthew"
-    },
-    "shortTag": [
-       {
-          "tag": "TeamWork"
-       }
-    ],
-    "thumbnail": ""
-  }];
-  
-  /** Based on the screen size, switch from standard to one column per row */
+  cardlist = [{"user": {"name": "Matthew"},"shortTag":[{"tag":"TeamWork"}],"userId":"test","id":"fake","thumbnail":""}];
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       return this.cardlist;
@@ -82,43 +75,47 @@ export class StoryExploreComponent implements OnInit {
   ngOnInit(): void {
     this.uploadfrm = this.builder.group({
       file: ['', Validators.required],
+      thumbnail: ['', Validators.required],
       tags: ['', Validators.required]
     });
 
     this.reportfrm = this.builder.group({
-      reason: ['', Validators.required]
+      reason: ['', this.reasonValidator]
     });
 
     this.loadCards();
   }
 
-  // uploadValidater(file : FormControl) : {[valtype: string] : string} | null {
-  //   // return {'errormsg' : 'File is required.'}
-  //   const f = file.value;
-    
-  //   return null;
-  // }
-
-  btnNaviClick(i : number){
-    
-    (<HTMLInputElement>document.getElementById("prevBtn")).disabled = false;
-    (<HTMLInputElement>document.getElementById("nextBtn")).disabled = false;
-    this.pageIndex += i;
-    if(this.pageIndex ==1){
-      (<HTMLInputElement>document.getElementById("prevBtn")).disabled = true;
-    }
-    if(this.endIndex == this.pageIndex){
-      (<HTMLInputElement>document.getElementById("nextBtn")).disabled = true;
-    }
-
-    (<HTMLInputElement>document.getElementById("curBtn")).innerHTML = (this.pageIndex).toString();
-
-    this.loadCards();
+  //  ==================================================================================== //
+  //  Submit Pop-Up Functions ============================================================ //
+  
+  onFileUpload(event : any) {
+    this.VideoFile = event.target.files[0];
+    this.Base64encode(this.VideoFile).then(resp => {
+      console.log(resp);
+      console.log("here");
+    });
   }
 
-  onFileUpload(event : any) {
-    this.fileError = "";
-    console.log(event);
+  onThumbnailUpload(event : any) {
+    this.ThumbnailFile = event.target.files[0];
+  }
+
+  //base 64 encoder:
+  Base64encode(file : File) {
+    return new Promise((resolve, _) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result);
+      reader.readAsDataURL(file);
+    })
+
+  }
+
+  //base 64 decode to BLOB:
+  Base64decode(base : string) {
+    // return new Promise((resolve, _) => {
+    //   resolve(blob.blob)
+    // })
   }
 
   uploadStory() {
@@ -141,13 +138,8 @@ export class StoryExploreComponent implements OnInit {
     this.reporting = false;
     this.successfulReport = false;
   }
-
-  search(){
-    this.searchText = (<HTMLInputElement>document.getElementById("search")).value;
-    alert('searching for ' + this.searchText);
-    this.searchText = (<HTMLInputElement>document.getElementById("search")).value= "";
-    
-  }
+  //  ====================================================================================== //
+  //  Selected Pop-Up Functions ============================================================ //
 
   closeSuccessReport() {
     this.reporting = false;
@@ -155,8 +147,8 @@ export class StoryExploreComponent implements OnInit {
     this.successfulReport = false;
   }
 
-  viewStory(n : number) {
-    this.currentlyViewing = n;
+  viewStory(s : string) {
+    this.currentlyViewing = s;
     this.viewing = true;
     this.reporting = false;
     this.successfulReport = false;
@@ -166,61 +158,82 @@ export class StoryExploreComponent implements OnInit {
     this.viewing = false;
   }
 
+  //  ==================================================================================== //
+  //  Report Pop-Up Functions ============================================================ //
+
   cancelReport() {
     this.reporting = false;
     this.viewing = true;
   }
 
   makeReportpopup() {
-    //create report popup:
     this.viewing = false;
     this.reporting = true;
     this.currentlyReporting = this.currentlyViewing;
   }
 
+  //report VALIDATOR
+  reasonValidator(reason : FormControl) : {[valtype : string] : string} | null {
+    const text = reason.value;
+    if (text == null) return null;
+    if (text.length > 256) return {'errormsg' : 'Characters limited to 256.'};
+    if (text.length == 0) return {'errormsg' : 'Report reason is required.'};
+    const spaceCounter = text.split(' ').length - 1;
+    if (spaceCounter < 4) return {'errormsg' : 'At least 5 words are required.'};
+    return null;
+  }
+
   submitReport() {
-    // alert("report for " + this.currentlyReporting + " goes to API");
+
     this.reported = true;
-
-
+    //check for any invalid input in the form
     for (const input in this.reportfrm.controls) {
       if (this.reportfrm.controls[input].invalid) {
         return;
       }
     }
-    alert("To submit to API - '" + this.reportfrm.controls['reason'].value + "'")
 
-    //reset for another report:
-    this.reportfrm.reset();
-    this.reported = false;
+    //hard coded report:
+    const shortId = "cl22e308w0208hcvks42s959n";
+    const reason = this.reportfrm.controls['reason'].value;
+    const userId = "cl22alq100086lwvkts9rdiox";
 
-    //push report to API:
-
-    //check for successful response from API:
-
-    //true case after report (make a case if the API fails...)
-    this.reporting = false;
-    this.successfulReport = true;
-
+    // Send reportText to the api:
+      if (!(this.apollo.client === undefined))
+      this.apollo
+        .mutate ({
+          mutation: gql`mutation {
+            reportShort(report: {shortId: "${ shortId }", reason: "${ reason }"}, userId: "${ userId }") {
+              shortId,
+              userId,
+              reason
+            }
+          }
+        `,
+        })
+        .subscribe ((result) => {
+          console.log(result.errors);
+          console.log(result);
+          if (result.errors) {
+              this.apifailure = "Failed to report to the API.";
+          } else {
+            this.reportfrm.reset();
+            this.reported = false;
+            this.reporting = false;
+            this.successfulReport = true;
+          }
+        })
   }
 
+  //  ==================================================================================== //
+  //  Story Explore Functions ============================================================ //
+  
   loadCards(){
-
+    const test = "query{ getAllShorts{ user{  name  },shortTag{ tag },userId,id, thumbnail}}";
     
     if(!(this.apollo.client===undefined)) this.apollo
     .watchQuery({
-      query: gql`
-      query{
-        getAllShorts{
-          user{ 
-            name 
-          },
-          shortTag{
-            tag
-          },
-          thumbnail
-        }
-      }`,
+      query: gql(test),
     })
     .valueChanges.subscribe((result: any) => {
       this.cardlist = result.data.getAllShorts;
@@ -242,9 +255,33 @@ export class StoryExploreComponent implements OnInit {
         })
       );
     });
-
-
-
   }
 
+  
+  btnNaviClick(i : number){
+    
+    (<HTMLInputElement>document.getElementById("prevBtn")).disabled = false;
+    (<HTMLInputElement>document.getElementById("nextBtn")).disabled = false;
+    this.pageIndex += i;
+    if(this.pageIndex ==1){
+      (<HTMLInputElement>document.getElementById("prevBtn")).disabled = true;
+    }
+    if(this.endIndex == this.pageIndex){
+      (<HTMLInputElement>document.getElementById("nextBtn")).disabled = true;
+    }
+
+    (<HTMLInputElement>document.getElementById("curBtn")).innerHTML = (this.pageIndex).toString();
+
+    this.loadCards();
+  }
+
+
+  search(){
+    this.searchText = (<HTMLInputElement>document.getElementById("search")).value;
+    alert('searching for ' + this.searchText);
+    this.searchText = (<HTMLInputElement>document.getElementById("search")).value= "";
+    
+  }
 }
+
+

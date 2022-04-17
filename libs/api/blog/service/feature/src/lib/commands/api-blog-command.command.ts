@@ -74,10 +74,3 @@ export class CreateMediaCommand {
     public readonly media
   ) {}
 }
-
-export class UpdateBlogMediaCommand {
-  constructor(
-    public readonly blogId, 
-    public readonly media
-  ) {}
-}
