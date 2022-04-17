@@ -31,7 +31,17 @@ export class BlogResolver {
         return this.blogService.getBlogByUserId(userId);
     }
 
+    @Query(returns => null)
+    async testQuery(): Promise<null> {
+        return null;
+    }
+
     // Mutations 
+
+    @Mutation(returns => null)
+    async testMutation(@Args('userId', {type: () => String}) userId : string): Promise<null> {
+        return null;
+    }
 
     @Mutation(returns => Blog)
     async createBlog( 
