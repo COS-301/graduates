@@ -10,15 +10,15 @@
 </header>
 <div class="login-div">
 <mat-card class="login-card">
-  <form action="">
+  <form action="" method="post">
     <label for="email"> Email: </label>
-    <input type="email" class="inputCss"/> <br> <br>
+    <input type="email" class="inputCss required" placeholder="Enter email..."/> <br> <br>
     <label for="password">Password: </label>
-    <input type="password" class="inputCss"/> <br> <br>
+    <input type="password" class="inputCss" required placeholder="Enter password..."/> <br> <br>
     <a>Forgot Password?</a>
+    <br>
+    <button class="btn btn-primary" (click)="navigateToFirst()" type="submit">Login</button>
   </form>
-  <br>
-  <button class="btn btn-primary" (click)="navigateToFirst()">Login</button>
 </mat-card>
 </div>
 <footer>
