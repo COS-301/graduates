@@ -634,6 +634,18 @@ describe("DB Integration Tests", () => {
       });
     });
 
+    describe("getAllReports", () => {
+      it("should return an array", async () => {
+        const result = await repository.getAllReports();
+        if (result.length > 0) {
+          expect.arrayContaining(result);
+        }
+        else {
+          expect(result).toMatchObject([]);
+        }
+      });
+    });
+
     describe("getReportsByUser", () => {
       it("should return an array", async () => {
         const result = await repository.getReportsByUser("TestUser");
@@ -658,12 +670,6 @@ describe("DB Integration Tests", () => {
         }
       });
     });
-
-    // TODO
-    // tests for mutators (delete, update, create)
-    // mutators for: short, shortTag
-
-    
 
     // describe.only('Manual Test Call', () => {
     //   it('should return an array', async () => {
