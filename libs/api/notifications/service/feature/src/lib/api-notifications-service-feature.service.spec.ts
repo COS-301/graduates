@@ -32,7 +32,7 @@ describe('ApiNotificationsService', () => {
 
   it('should be defined', async () => {
     const creator = jest.spyOn(service,'requestCV');
-    const result = await service.requestCV();
+    const result = await service.requestCV("emailFrom","emailTo");
     expect(creator).toBeCalled();
     expect(result).toBeUndefined();
   });
