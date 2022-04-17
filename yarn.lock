@@ -14818,4 +14818,8 @@ zone.js@~0.11.4:
   resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.11.5.tgz#ab0b449e91fadb5ebb2db189ffe1b7b6048dc8b1"
   integrity sha512-D1/7VxEuQ7xk6z/kAROe4SUbd9CzxY4zOwVGnGHerd/SgLIVU5f4esDzQUsOCeArn933BZfWMKydH7l7dPEp0g==
   dependencies:
+<<<<<<< HEAD
     tslib "^2.3.0"
+=======
+    tslib "^2.0.0"
+>>>>>>> cd6ba4a1f540f3f4bf21fcbc308711ec6f9953db

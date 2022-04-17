@@ -9,12 +9,12 @@ import{ StudentDetails } from '@graduates/api/upintegration/api/shared/data-acce
 export class ApiUpIntegrationResolver {
    constructor(private upintegrationService:ApiUpIntegrationServiceFeatureModule ){}
 
-   @Query(()=>[StudentDetails])
-   upintegration():Promise<StudentDetails[]>{
+    @Query(()=>[StudentDetails])
+    upintegration():Promise<StudentDetails[]>{
+        return this.upintegrationService.getAcademicRecord();
+    }
 
-       return this.upintegrationService.getAcademicRecord();
-   }
-   @Query(() =>String) 
+    @Query(() =>String) 
     pingUpintegration(){
         return "on";
     }
