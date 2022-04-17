@@ -1,9 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import {Router } from '@angular/router';
-import { Apollo } from 'apollo-angular';
-import gql from 'graphql-tag';
+import { observable } from 'rxjs';
+import { CompanyRepresentativeServiceService } from '../company-representative-service/company-representative-service.service';
 
 @Component({
   selector: 'graduates-company-representative-mock-login-page',
@@ -12,8 +11,8 @@ import gql from 'graphql-tag';
 })
 export class CompanyRepresentativeMockLoginPageComponent implements OnInit{
   formdata!: FormGroup;
-  flag = false;
-  constructor(private _router: Router, private apollo: Apollo, private httpClient: HttpClient) {
+  result = <any>observable;
+  constructor(private _router: Router, private API : CompanyRepresentativeServiceService) {
   }
 
   ngOnInit() {
@@ -23,44 +22,25 @@ export class CompanyRepresentativeMockLoginPageComponent implements OnInit{
     });
   }
 
-
   navigateToFirst() {
     this._router.navigate(['CompanyRepresentativeHome'])
   }
 
   alertBox(){
-    alert("incorrect Login Details!");
+    alert("Incorrect Details, Try Again!");
   }
 
-  async submit(data: { email: string; password: string; }){
-    const newEmail = data.email, newPassword = data.password;
-    alert("email: " + data.email + "Passie: " + data.password);
-    const query = 'query {login(email: "'+ newEmail +'", password: "'+ newPassword +'") {id}}';
-    const options = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    }
-    this.httpClient.post<any>('http://localhost:3333/graphql', JSON.stringify({query: query}), options)
-    // this.apollo.mutate<any>({
-    //   mutation: gql`
-    //   query {
-    //       login($email: String!, $password: String! ) {
-    //         id
-    //     }
-    //   }`,
-    //   variables: {
-    //     email: newEmail,
-    //     password: newPassword
-    //   }
-    // }).subscribe(({data}) => {
-    //   if (data){
-    //     const id = data.user.id;
-    //     this.navigateToFirst();
-    //   }
-    //   else{
-    //     this.alertBox();
-    //   }
-    // })
+  submit(formdata: { email: string; password: string; }){
+    this.result = this.API.login(formdata.email, formdata.password).subscribe({
+      next: (item) => {
+        if (item.data != null){
+          console.log(item);
+          this.navigateToFirst();
+        }else{
+          this.alertBox();
+        }
+      },
+     error: (err) => { console.log(err); }
+    });
   }
 }
