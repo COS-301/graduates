@@ -1,49 +1,17 @@
-<!-- Header start -->
-<header>
-  <div class="head">
-    <meta name="header for graduates portal" author="Unaizah Mahomed u20426799">
-      <div class="logo">
-        <img src="assets/desktop-up-logo.png" class="uplogo" alt="up logo">
-        <img src="assets/desktop-gradsportal-logo.png" class="hat" alt="hat">
-        <img src="assets/mobileheader.png" class="logoandhat" alt="landg">
-      </div>
-  </div>
-  <!-- Navbar start -->
-  <div class="nav">
-    <button mat-button (click)="navigateToHome()">Home</button>
-    <button mat-button [matMenuTriggerFor]="menu">Options</button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="navigateToEdit()">Edit Profile</button>
-      <button mat-menu-item (click)="navigateToExplore()">Student Explore</button>
-    </mat-menu>
-    <button mat-button (click)="navigateToLogin()">Logout</button>
-  </div>
-<!-- Navbar end -->
-</header>
-<!-- Header end -->
-<!-- Form submit to API -->
-<div class="page">
-  <form>
-    <!-- Inputs start -->
-    <!-- Title start -->
-    <mat-card class="title">
-      <div class="block">
-        <div class="image" style="background-image: url({{profilePicture}})">
-        </div>
-        <div class="content">
-          <div class="boxes">
-            <div class="box">
-              <h2><b><input type="text" id="fname" name="fname" value="{{name}}"></b></h2>
-            </div>
-          </div>
-          <div class="description">
-            <h2><b><input type="text" id="title" name="title" value="{{jobTitle}}"></b></h2>
-          </div>
-        </div>
-      </div>
-    </mat-card>
-    <!-- Title end -->
+<mat-card>
+    <!-- action to API! -->
+    <form>
+    <graduates-company-representative-edit-title></graduates-company-representative-edit-title>
+    <graduates-company-representative-edit-experience></graduates-company-representative-edit-experience>
+    <graduates-company-representative-edit-about></graduates-company-representative-edit-about>
+    <graduates-company-representative-edit-contact></graduates-company-representative-edit-contact>
     <mat-card>
+<<<<<<< HEAD
+        <!-- Both buttons should redirect back to homepage with updated data! -->
+        <button class="return">Return</button>
+        <input type="submit">
+    </mat-card>
+=======
       <!-- Experience start -->
       <div>
         <mat-card class="experience">
@@ -143,14 +111,6 @@
         <!-- Buttons end -->
       </mat-card>
       <!-- Inputs end -->
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
     </form>
-  </div>
-  <!-- Footer start -->
-  <footer>
-    <meta name="footer for graduates portal" author="Unaizah Mahomed u20426799">
-    <div class = "footer"  style="display: flex; align-items: center; justify-content: center;">
-        <img src="assets/footer.png" alt="uplogo" class="icon"/> 
-    </div>
-  </footer>
-  <!-- Footer end -->
-  
+</mat-card>

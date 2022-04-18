@@ -16,6 +16,16 @@ export class ApiStorageResolver {
   async download(
     @Args("userId")userID:string,
     @Args("fileCategory")fileCategory:string
+<<<<<<< HEAD
+  ): Promise<string| boolean> {
+    const res = await this.storageService.getFile(userID , fileCategory);
+    if(res == null){
+      return false
+    }
+    else{
+      return res;
+    }
+=======
   ): Promise<string | boolean> {
 
     let url :string|boolean = false;
@@ -25,6 +35,7 @@ export class ApiStorageResolver {
     });
     return url;
 
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
   }
 
   @Mutation(() =>String)

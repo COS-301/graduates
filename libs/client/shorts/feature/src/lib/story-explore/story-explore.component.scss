@@ -182,7 +182,7 @@ header-and-footer-footer {
     outline: none;
     color: $primary-3;
     padding: 8px 8px;
-    max-height: 40vh;
+    max-height: 60vh;
     min-height: 10vh;
 }
 
@@ -251,6 +251,12 @@ header-and-footer-footer {
     }
 }
 
+.test {
+    height: 150px;
+    width: 150px;
+    background-color: green;
+}
+
 .centindiv {
     display: flex;
     justify-content: center;
@@ -258,16 +264,36 @@ header-and-footer-footer {
 }
 
 .grid-container {
+<<<<<<< HEAD
+    width: 100vw;;
+=======
     width: 100%;
     min-height: 100vh;
     padding-bottom: 20vh;
 
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
 }
 
-.wholepagecontent {
-    position: absolute !important;
+
+.pager {
+    position: absolute;
+    bottom: 0;
     left: 0%;
-    overflow: hidden !important;
-    width: 100vw;
+    width: 100%;
+    transform: translateX(-1.5vw);
 }
 
+<<<<<<< HEAD
+
+#wholepage {
+    position: relative;
+    min-height: 100vh;
+    max-width: 100vw;
+    overflow: hidden !important;
+}
+
+#content-wrap {
+    padding-bottom: 10vh;
+}
+=======
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef

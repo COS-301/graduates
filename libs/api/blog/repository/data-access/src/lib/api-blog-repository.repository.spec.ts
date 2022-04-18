@@ -1,14 +1,21 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { BlogRepository } from './api-blog-repository.repository';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
+<<<<<<< HEAD
+import { Blog } from '@graduates/api/blog/api/shared/entities/data-access';
+=======
 import { Blog, BlogComment, BlogMedia } from '@graduates/api/blog/api/shared/entities/data-access';
+>>>>>>> 6e6948a99aa5266ce8bf87d411ce50c25d42683e
 
 jest.mock('@graduates/api/blog/api/shared/entities/data-access');
 
 const blogMock: jest.Mocked<Blog> = new Blog() as Blog;
+<<<<<<< HEAD
+=======
 const blogCommentMock: jest.Mocked<BlogComment> = new BlogComment() as BlogComment;
 const blogMediaMock: jest.Mocked<BlogMedia> = new BlogMedia() as BlogMedia;
 const stringMock: jest.Mocked<string> = new String() as string;
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
 
 // Run `yarn test api-blog-repository-data-access`
 describe('BlogRepository', () => {
@@ -23,35 +30,13 @@ describe('BlogRepository', () => {
     prisma = module.get<PrismaService>(PrismaService);
     repository = module.get<BlogRepository>(BlogRepository);
   });
-
-  //Test findAll function
-  describe('findAll', () => {
-    const arrayOfBlog = [blogMock];
-    it('should return an array of blogs in descending order of date', async () => {
-      jest
-        .spyOn(repository, 'findAll')
-        .mockImplementation((): Promise<Blog[]> => Promise.resolve(arrayOfBlog));
-
-      expect(await repository.findAll()).toEqual(
-        expect.arrayContaining(arrayOfBlog)
-      );
-    });
-  });
-  
-  //Test findAllArchivedBlogs function
-  describe('findAllArchivedBlogs', () => {
-    const arrayOfBlog = [blogMock];
-    it('should return an array of blogs that are archived', async () => {
-      jest
-        .spyOn(repository, 'findAllArchivedBlogs')
-        .mockImplementation((): Promise<Blog[]> => Promise.resolve(arrayOfBlog));
-
-      expect(await repository.findAllArchivedBlogs()).toEqual(
-        expect.arrayContaining(arrayOfBlog)
-      );
-    });
+  it('should be defined', () => {
+    expect(prisma).toBeDefined();
+    expect(repository).toBeDefined();
   });
 
+<<<<<<< HEAD
+=======
   //Test findByBlogId function
   describe('findByBlogId', () => {    
     it('should return the blog with the blogID', async () => {
@@ -311,5 +296,6 @@ describe('BlogRepository', () => {
       expect(await repository.createMedia('NULL','filename.')).toEqual(null);
     });
   });
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
   
 });

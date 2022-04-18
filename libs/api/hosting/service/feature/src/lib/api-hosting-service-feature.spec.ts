@@ -1,6 +1,9 @@
+<<<<<<< HEAD
+=======
 import { ApiHosting } from '@graduates/api/hosting/api/shared/data-access';
 import { HttpModule } from '@nestjs/axios';
 import { TerminusModule } from '@nestjs/terminus';
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
 import { Test } from '@nestjs/testing';
 import { exec } from 'child_process';
 import exp = require('constants');
@@ -11,7 +14,6 @@ describe( 'ApiHostingServiceFeatureModule', () => {
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
-      imports: [HttpModule, TerminusModule],
       providers: [ ApiHostingServiceFeatureModule],
     }).compile();
 

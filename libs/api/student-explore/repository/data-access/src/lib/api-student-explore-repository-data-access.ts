@@ -1,11 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { ApiStudentExplore } from '@graduates/api/student-explore/api/shared/data-access';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
-import { ApiStorageServiceFeatureModule } from '@graduates/api/storage/service/feature'; //
 
 @Injectable()
 export class StudentExploreRepository {
-  constructor(private prisma: PrismaService, private storage: ApiStorageServiceFeatureModule) {}
+  constructor(private prisma: PrismaService) {}
 
   async initStudents() {
 
@@ -21,9 +20,6 @@ export class StudentExploreRepository {
     let studentObjProfile;
 
     let studentTags = [];
-    let StudentEmail = [];
-    let studentDegreeName = [];
-    let studentDegreeType = [];
 
 
     for (let i = 0; i < students.length; i++) {
@@ -59,19 +55,11 @@ export class StudentExploreRepository {
       tempStudentObj.StudentBio = studentObjProfile.bio;
 
       //Student Email
-      studentObjProfile = await this.prisma.userEmail.findMany({
+      studentObjProfile = await this.prisma.userEmail.findUnique({
         where: { userId : students[i].id, },
       });
 
-      for(let j = 0; j < studentObjProfile.length; j++){
-
-        StudentEmail.push(studentObjProfile[j].email)
-
-      }
-
-      tempStudentObj.StudentEmail = StudentEmail;
-
-      StudentEmail = [];
+      tempStudentObj.StudentEmail = studentObjProfile.email;
 
       //Student Number
       studentObjProfile = await this.prisma.userContactNumber.findUnique({
@@ -81,22 +69,12 @@ export class StudentExploreRepository {
       tempStudentObj.StudentNumber = studentObjProfile.number;
 
       //Student Degree Type and Name
-      studentObjProfile = await this.prisma.userDegree.findMany({
+      studentObjProfile = await this.prisma.userDegree.findUnique({
         where: { userID : students[i].id, },
       });
 
-      for(let j = 0; j < studentObjProfile.length; j++){
-
-        studentDegreeName.push(studentObjProfile[j].degreeName);
-        studentDegreeType.push(studentObjProfile[j].degreeType);
-
-      }
-
-      tempStudentObj.StudentDegreeType = studentDegreeType;
-      tempStudentObj.StudentDegreeName = studentDegreeName;
-
-      studentDegreeName = [];
-      studentDegreeType = [];
+      tempStudentObj.StudentDegreeType = studentObjProfile.degreeType;
+      tempStudentObj.StudentDegreeName = studentObjProfile.degreeName;
 
       //Student Location
       studentObjProfile = await this.prisma.userLocation.findUnique({
@@ -107,8 +85,11 @@ export class StudentExploreRepository {
 
       //StudentProfilePicture
 
+<<<<<<< HEAD
+=======
       tempStudentObj.StudentPic = this.storage.getFile(students[i].id, "Academic Record");
 
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
       studentArr.push(tempStudentObj);
     }
 
@@ -128,9 +109,6 @@ export class StudentExploreRepository {
     let studentObjProfile;
 
     let studentTags = [];
-    let studentDegreeName = [];
-    let studentDegreeType = [];
-    let StudentEmail = [];
 
 
     for (let i = 0; i < students.length; i++) {
@@ -168,19 +146,11 @@ export class StudentExploreRepository {
         tempStudentObj.StudentBio = studentObjProfile.bio;
 
         //Student Email
-        studentObjProfile = await this.prisma.userEmail.findMany({
+        studentObjProfile = await this.prisma.userEmail.findUnique({
           where: { userId : students[i].id, },
         });
-  
-        for(let j = 0; j < studentObjProfile.length; j++){
-  
-          StudentEmail.push(studentObjProfile[j].email)
-  
-        }
-  
-        tempStudentObj.StudentEmail = StudentEmail;
-  
-        StudentEmail = [];
+
+        tempStudentObj.StudentEmail = studentObjProfile.email;
 
         //Student Number
         studentObjProfile = await this.prisma.userContactNumber.findUnique({
@@ -190,22 +160,12 @@ export class StudentExploreRepository {
         tempStudentObj.StudentNumber = studentObjProfile.number;
 
         //Student Degree Type and Name
-        studentObjProfile = await this.prisma.userDegree.findMany({
-          where: { userID : students[i].id, },
+        studentObjProfile = await this.prisma.userDegree.findUnique({
+         where: { userID : students[i].id, },
         });
 
-        for(let j = 0; j < studentObjProfile.length; j++){
-
-          studentDegreeName.push(studentObjProfile[j].degreeName);
-          studentDegreeType.push(studentObjProfile[j].degreeType);
-
-        }
-
-        tempStudentObj.StudentDegreeType = studentDegreeType;
-        tempStudentObj.StudentDegreeName = studentDegreeName;
-
-        studentDegreeName = [];
-        studentDegreeType = [];
+        tempStudentObj.StudentDegreeType = studentObjProfile.degreeType;
+        tempStudentObj.StudentDegreeName = studentObjProfile.degreeName;
 
         //Student Location
         studentObjProfile = await this.prisma.userLocation.findUnique({
@@ -216,9 +176,13 @@ export class StudentExploreRepository {
 
         //StudentProfilePicture
 
+<<<<<<< HEAD
+        tempStudentObj;
+=======
         tempStudentObj.StudentPic = this.storage.getFile(students[i].id, "Academic Record");
 
         //tempStudentObj;
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
 
         return tempStudentObj;
 
@@ -535,44 +499,6 @@ export class StudentExploreRepository {
     const tempStudentObj = new ApiStudentExplore();
 
     tempStudentObj.Available = foundDegreeName;
-
-    const returnArr = []
-
-    returnArr.push(tempStudentObj)
-
-    return returnArr;
-
-  }
-
-  async FindAllTag(){
-
-    const tags = await this.prisma.userTag.findMany();
-
-    const foundTag = []
-
-    let found = false;
-
-    for (let i = 0; i < tags.length; i++) {
-
-      found = false;
-
-      for(let j=0; j< foundTag.length; j++){
-
-        if(foundTag[j] === tags[i].tag){
-          found = true;
-        }
-
-      }
-
-      if( found == false){
-        foundTag.push(tags[i].tag);
-      }
-
-    }
-
-    const tempStudentObj = new ApiStudentExplore();
-
-    tempStudentObj.Available = foundTag;
 
     const returnArr = []
 

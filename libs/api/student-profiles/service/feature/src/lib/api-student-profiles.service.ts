@@ -1,16 +1,46 @@
 //TODO: create Student model on service layer
+<<<<<<< HEAD
+import { Injectable } from '@nestjs/common';
+import { CommandBus } from '@nestjs/cqrs';
+import { CreateStudentProfileCommand, DeleteStudentProfileCommand, FindStudentProfileCommand, UpdateStudentProfileCommand } from './commands/impl';
+=======
 import { Get, Injectable } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { FileCategory, SocialMedia } from '@prisma/client';
 import { DeleteStudentProfileFilesCommand, DeleteStudentProfileSocialMediaCommand, DeleteStudentProfileTagsCommand } from './commands/impl/delete-student-profile.command';
 import { SetStudentProfileBioCommand, SetStudentProfileEmailCommand, SetStudentProfileFilesCommand, SetStudentProfileLocationCommand, SetStudentProfileNameCommand, SetStudentProfileProfilePictureCommand, SetStudentProfileSocialMediaCommand, SetStudentProfileTagsCommand } from './commands/impl/set-student-profile.command';
 import { GetStudentProfileBioQuery, GetStudentProfileDOBQuery, GetStudentProfileEmailsQuery, GetStudentProfileEmploymentStatusQuery, GetStudentProfileFilesQuery, GetStudentProfileLocationQuery, GetStudentProfileNameQuery, GetStudentProfilePFPQuery, GetStudentProfileSocialMediaQuery, GetStudentProfileTagsQuery } from './queries/impl';
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
 
 @Injectable()
 export class ApiStudentProfileService {
 
   constructor(private commandBus: CommandBus, private queryBus: QueryBus) {}
 
+<<<<<<< HEAD
+  //returns all 
+  async find(entity) {
+    return this.commandBus.execute(new FindStudentProfileCommand(
+      entity.id,
+      entity.studentNum,
+      entity.firstName,
+      entity.lastName,
+      entity.title,
+      entity.email,
+      entity.phoneNum,
+      entity.dateOfBirth,
+      entity.nameOfDegree,
+      entity.bio,
+      entity.tags,
+      entity.preferredLocation,
+      entity.employmentStatus,
+      entity.notableAchievements,
+      entity.links,
+      entity.academicRecod,
+      entity.cv,
+      entity.capstoneProject,
+    ))
+=======
   async getName(userid : string) {
     return await this.queryBus.execute( new GetStudentProfileNameQuery(userid))
   }
@@ -73,6 +103,67 @@ export class ApiStudentProfileService {
   }
   async getEmploymentStatus(userId: string) {
     return await this.queryBus.execute( new GetStudentProfileEmploymentStatusQuery(userId))
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
   }
 
+  // returns single instance
+  async findById(id: string) {
+    return this.commandBus.execute(new FindStudentProfileCommand(id))
+  }
+
+  async update(entity) {
+    return this.commandBus.execute(
+      new UpdateStudentProfileCommand(
+        entity.id,
+        entity.studentNum,
+        entity.firstName,
+        entity.lastName,
+        entity.title,
+        entity.email,
+        entity.phoneNum,
+        entity.dateOfBirth,
+        entity.nameOfDegree,
+        entity.bio,
+        entity.tags,
+        entity.preferredLocation,
+        entity.employmentStatus,
+        entity.notableAchievements,
+        entity.links,
+        entity.academicRecod,
+        entity.cv,
+        entity.capstoneProject,)
+    ); // link to repository
+  }
+
+  async delete(id: string) {
+    return this.commandBus.execute(
+      new DeleteStudentProfileCommand(id)
+    ); 
+  }
+
+  async create(entity) {
+    return this.commandBus.execute(
+      new CreateStudentProfileCommand(
+        entity.id,
+        entity.studentNum,
+        entity.firstName,
+        entity.lastName,
+        entity.title,
+        entity.email,
+        entity.phoneNum,
+        entity.dateOfBirth,
+        entity.nameOfDegree,
+        entity.bio,
+        entity.tags,
+        entity.preferredLocation,
+        entity.employmentStatus,
+        entity.notableAchievements,
+        entity.links,
+        entity.academicRecod,
+        entity.cv,
+        entity.capstoneProject,
+      )
+    );
+  }
+  
 }

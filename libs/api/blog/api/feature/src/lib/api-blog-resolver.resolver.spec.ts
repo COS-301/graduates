@@ -1,17 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { Blog, BlogComment, BlogMedia } from '@graduates/api/blog/api/shared/entities/data-access';
+import { Blog } from '@graduates/api/blog/api/shared/entities/data-access';
 import { BlogResolver } from './api-blog-resolver.resolver';
-import {BlogCommentResolver} from './api-blog-resolver.resolver';
-import {BlogMediaResolver} from './api-blog-resolver.resolver';
 import { BlogService } from '@graduates/api/blog/service/feature';
 import { QueryBus, CommandBus } from '@nestjs/cqrs';
 import { NotFoundException } from '@nestjs/common';
 
 jest.mock('@graduates/api/blog/api/shared/entities/data-access');
 const blogMock: jest.Mocked<Blog> = new Blog() as Blog;
-const BlogCommentMock: jest.Mocked<BlogComment> = new BlogComment() as BlogComment;
-const BlogMediaMock: jest.Mocked<BlogMedia> = new BlogMedia() as BlogMedia;
-const stringMock: jest.Mocked<string> = new String() as string;
 // Run `yarn test api-blog-api-feature`
 describe('BlogResolver', () => {
   let resolver: BlogResolver;
@@ -38,24 +33,20 @@ describe('BlogResolver', () => {
     expect(commandBus).toBeDefined();
   });
 
-  //test blogById function
-  describe('blogById', () => {    
-    it('should return a blog', async () => {
-      jest
-        .spyOn(resolver, 'blogById')
-        .mockImplementation((): Promise<Blog> => Promise.resolve(blogMock));
-
-      expect(await resolver.blogById('blogID')).toMatchObject(
-        blogMock
-      )
-    });
-    it('should return null', async () => {
-      jest.spyOn(resolver, 'blogById').mockResolvedValue(null);
   
-      expect(await resolver.blogById("blogID")).toEqual(null);
-    });
-  });
+  // describe('createBlog', () => {
+  //   it('should return a blog', async () => {
+  //     jest
+  //       .spyOn(resolver, 'createBlog')
+  //       .mockImplementation((): Promise<Blog> => Promise.resolve(blogMock));
 
+<<<<<<< HEAD
+  //     expect(await resolver.createBlog(blogMock, [], '1')).toMatchObject(
+  //       blogMock
+  //     );
+  //   });
+  // });
+=======
   //test allBlogs function  
   describe('allBlogs', () => {    
     const arrayOfBlogs = [blogMock];
@@ -185,8 +176,11 @@ describe('BlogResolver', () => {
       )
     });    
   });
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
 
 });
+<<<<<<< HEAD
+=======
 
 describe('BlogCommentResolver', () => {
   let resolver: BlogCommentResolver;
@@ -390,3 +384,4 @@ describe('BlogMediaResolver', () => {
   });
 
 });
+>>>>>>> 6e6948a99aa5266ce8bf87d411ce50c25d42683e

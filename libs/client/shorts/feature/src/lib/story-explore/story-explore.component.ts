@@ -4,7 +4,7 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Location } from '@angular/common';
 
@@ -55,6 +55,8 @@ export class StoryExploreComponent implements OnInit {
   currentlyReporting! : string;
   successfulReport : boolean;
   reported : boolean;
+<<<<<<< HEAD
+=======
   apifailure = "";
 
   shortId = "cl22e308w0208hcvks42s959n";
@@ -72,6 +74,7 @@ export class StoryExploreComponent implements OnInit {
   thumbnailuploaderror = "";
   thumbnailuploadflag! :boolean;
   ///////////////////
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
 
   viewingName = "Ernest Wright";
   viewingTags = "#Design #IMY #COS #software";
@@ -98,12 +101,16 @@ export class StoryExploreComponent implements OnInit {
   ngOnInit(): void {
     this.uploadfrm = this.builder.group({
       file: ['', Validators.required],
+<<<<<<< HEAD
+      tags: ['', Validators.required]
+=======
       thumbnail: ['', Validators.required],
       tags: ['', this.TagValidator]
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
     });
 
     this.reportfrm = this.builder.group({
-      reason: ['', this.reasonValidator]
+      reason: ['', Validators.required]
     });
 
     this.loadAllCards();
@@ -112,10 +119,31 @@ export class StoryExploreComponent implements OnInit {
     }, 2000);
   }
 
+  // uploadValidater(file : FormControl) : {[valtype: string] : string} | null {
+  //   // return {'errormsg' : 'File is required.'}
+  //   const f = file.value;
+    
+  //   return null;
+  // }
+
+
   //  ==================================================================================== //
   //  Submit Pop-Up Functions ============================================================ //
   
   onFileUpload(event : any) {
+<<<<<<< HEAD
+    this.fileError = "";
+    console.log(event);
+  }
+
+  uploadStory() {
+    if (this.return) 
+      return;
+    
+    this.submit = true;
+      //validate form here:
+      //upload form here:
+=======
     this.VideoFile = event.target.files[0];
     this.fileuploadflag = true; 
     const re = /^video*/;
@@ -228,6 +256,7 @@ export class StoryExploreComponent implements OnInit {
     const re = /^(#(([a-z]|[0-9]|[A-Z]|_)+))+$/g;
     if (text.search(re)) return {'errormsg' : 'Please use example tag format.'}
     return null;
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
   }
 
   cancelUpload() {
@@ -310,7 +339,6 @@ export class StoryExploreComponent implements OnInit {
   closeViewing() {
     this.viewing = false;
   }
-
   //  ==================================================================================== //
   //  Report Pop-Up Functions ============================================================ //
 
@@ -328,32 +356,38 @@ export class StoryExploreComponent implements OnInit {
   }
 
   makeReportpopup() {
+    //create report popup:
     this.viewing = false;
     this.reporting = true;
     this.currentlyReporting = this.currentlyViewing;
   }
 
-  //report VALIDATOR
-  reasonValidator(reason : FormControl) : {[valtype : string] : string} | null {
-    const text = reason.value;
-    if (text == null) return null;
-    if (text.length > 256) return {'errormsg' : 'Characters limited to 256.'};
-    if (text.length == 0) return {'errormsg' : 'Report reason is required.'};
-    const spaceCounter = text.split(' ').length - 1;
-    if (spaceCounter < 4) return {'errormsg' : 'At least 5 words are required.'};
-    return null;
-  }
-
   submitReport() {
-
+    // alert("report for " + this.currentlyReporting + " goes to API");
     this.reported = true;
-    //check for any invalid input in the form
+
+
     for (const input in this.reportfrm.controls) {
       if (this.reportfrm.controls[input].invalid) {
         return;
       }
     }
+    alert("To submit to API - '" + this.reportfrm.controls['reason'].value + "'")
 
+<<<<<<< HEAD
+    //reset for another report:
+    this.reportfrm.reset();
+    this.reported = false;
+
+    //push report to API:
+
+    //check for successful response from API:
+
+    //true case after report (make a case if the API fails...)
+    this.reporting = false;
+    this.successfulReport = true;
+
+=======
     const reason = this.reportfrm.controls['reason'].value;
     
 
@@ -384,15 +418,19 @@ export class StoryExploreComponent implements OnInit {
         });
 
 
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
   }
 
   //  ==================================================================================== //
   //  Story Explore Functions ============================================================ //
 
+<<<<<<< HEAD
+=======
   // VARS
 
 
   // FUNCS
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
   
   btnNaviClick(i : number){
     

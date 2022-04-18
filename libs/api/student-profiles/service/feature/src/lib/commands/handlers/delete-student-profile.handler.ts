@@ -1,9 +1,22 @@
-import { StudentProfilesRepository } from "@graduates/api/student-profiles/repository/data-access";
 import { CommandHandler, EventPublisher, ICommandHandler } from "@nestjs/cqrs";
 import { StudentProfile } from "../../models/studentProfile.model";
-import { DeleteStudentProfileFilesEvent, DeleteStudentProfileSocialMediaEvent, DeleteStudentProfileTagsEvent } from "../events/delete-student-profile.event";
-import { DeleteStudentProfileFilesCommand, DeleteStudentProfileSocialMediaCommand, DeleteStudentProfileTagsCommand } from "../impl/delete-student-profile.command";
+import { DeleteStudentProfileEvent } from "../events";
+import { DeleteStudentProfileCommand } from "../impl";
 
+<<<<<<< HEAD
+@CommandHandler(DeleteStudentProfileCommand)
+export class DeleteUserHandler implements ICommandHandler<DeleteStudentProfileCommand> {
+  constructor(private repository: StudentProfileRepository, private publisher: EventPublisher) {} 
+
+  async execute({id}: DeleteStudentProfileCommand) { 
+
+    const studentProfile = new StudentProfile();
+    studentProfile.id = id;
+ 
+    const profile = this.publisher.mergeObjectContext(await this.repository.delete(studentProfile));
+    profile.apply(new DeleteStudentProfileEvent(
+        studentProfile.id,
+=======
 // @CommandHandler(DeleteStudentProfileNameCommand)
 // export class DeleteStudentProfileNameHandler implements ICommandHandler<DeleteStudentProfileNameCommand> {
 //   constructor(private repository: StudentProfilesRepository, private publisher: EventPublisher) {}
@@ -61,11 +74,15 @@ export class DeleteStudentProfileTagsHandler implements ICommandHandler<DeleteSt
     profile.apply(new DeleteStudentProfileTagsEvent(
         id,
         tags
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
     ));
 
     profile.commit();
-    return {id, tags} as Partial<StudentProfile>;
+    return studentProfile;
   }
+<<<<<<< HEAD
+}
+=======
 }
 
 
@@ -187,3 +204,4 @@ export class DeleteStudentProfileFilesHandler implements ICommandHandler<DeleteS
 }
 
 
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef

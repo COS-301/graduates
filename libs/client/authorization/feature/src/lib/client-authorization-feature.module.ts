@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+<<<<<<< HEAD
+=======
 import { AuthorizationServiceService } from './authorization-service.service';
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
 
 
 
@@ -13,12 +16,10 @@ import { AuthorizationServiceService } from './authorization-service.service';
       /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
     ]),
   ],
+<<<<<<< HEAD
+=======
   declarations: [
   ],
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
 })
-export class ClientAuthorizationFeatureModule {
-  constructor(public serve:AuthorizationServiceService)
-  {
-    console.log(serve.getRole());
-  }
-}
+export class ClientAuthorizationFeatureModule {}

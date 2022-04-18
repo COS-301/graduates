@@ -136,10 +136,15 @@ export class BlogRepository {
 
   /**
    * Delete a blog
+<<<<<<< HEAD
+   * @param {string} blogId The id of the blogs to delete
+   * @return {Promise<Blog | null>}
+=======
    * @param {string} blogId The id of the blog to delete
    * @return {Promise<string>} 
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
    */
-  async deleteBlog(blogId: string): Promise<string> {
+  async deleteBlog(blogId: string): Promise<Blog | null> {
     const deleteBlog = this.prisma.blog.delete({
       where: {
         id: blogId,
@@ -152,16 +157,9 @@ export class BlogRepository {
       },
     });
 
-    const deleteMedia = this.prisma.blogMedia.deleteMany({
-      where: {
-        blogId: blogId,
-      },
-    });
+    await this.prisma.$transaction([deleteBlog, deleteComments]);
 
-    if(await this.prisma.$transaction([deleteBlog, deleteComments, deleteMedia]))
-      return "successful";
-    else
-      return "unsuccessful";
+    return deleteBlog;
   }
 
   // Comments
@@ -170,16 +168,24 @@ export class BlogRepository {
    * Find all comments currently in the database
    * @return {Promise<BlogComment[]>} 
    */
-  async findAllComments(): Promise<BlogComment[] | null> {
+  async findAllComments(): Promise<BlogComment[]> {
     return this.prisma.blogComment.findMany();
   }
 
   /**
+<<<<<<< HEAD
+  * Find all comments from database by blogid
+  * @param {string} blogId id of blog
+  * @return {Promise<Blog[]>}
+  */
+  async findAllCommentsByBlogId(blogId: string): Promise<BlogComment[]> {
+=======
    * Find all comments posted on a blog with a given blogId
    * @param {string} blogId The id of the blog to find comments on
    * @return {Promise<BlogComment[]>} 
    */
   async findAllCommentsByBlogId(blogId: string): Promise<BlogComment[] | null> {
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
     return this.prisma.blogComment.findMany({
       where: { blogId: blogId }
     });
@@ -191,7 +197,11 @@ export class BlogRepository {
    * @param {string} commentId The id of the comment to find
    * @return {Promise<BlogComment>} 
    */
+<<<<<<< HEAD
+   async findCommentByCommentId(commentId: string): Promise<BlogComment[]> {
+=======
   async findCommentByCommentId(commentId: string): Promise<BlogComment[] | null> {
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
     return this.prisma.blogComment.findMany({ 
       where: { id : commentId } 
     });
@@ -213,6 +223,7 @@ export class BlogRepository {
         date: new Date()
       },
     });
+    return null;
   }
 
   /**
@@ -230,11 +241,8 @@ export class BlogRepository {
         content: commentContent,
       },
     });
-    if(res){
-      return "success";
-    }else{
-      return "unsuccessful";
-    }
+    return "success";
+
   }
 
   /**
@@ -249,11 +257,7 @@ export class BlogRepository {
       },
     });
 
-    if(res){
-      return "success";
-    }else{
-      return "unsuccessful";
-    }
+    return "success";
   }
 
   /**
@@ -277,12 +281,16 @@ export class BlogRepository {
  
 // Media
 
+<<<<<<< HEAD
+  async findMediaByBlogId (blogId: string): Promise<BlogMedia[]> {
+=======
   /**
    * Find all media used on a blog with a given blogId
    * @param {string} blogId The id of the blog
    * @return {Promise<BlogMedia[]>} 
    */
   async findMediaByBlogId (blogId: string): Promise<BlogMedia[] | null> {
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
     return this.prisma.blogMedia.findMany({ 
       where: { blogId : blogId } 
     });

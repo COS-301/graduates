@@ -37,15 +37,26 @@ export class StorageRepository {
 
   //get a link to a specific user file
   async getUserFile(u_id: string, file_type:FileCategory): Promise<string|null> {
+<<<<<<< HEAD
+    const arr : Promise<UserProfileFile[] | null> = this.prismaService.userProfileFile.findMany({
+=======
 
     let ret = null;
     await this.prismaService.userProfileFile.findMany({
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
       where: {
           userId: u_id,
           fileCategory: file_type
       }
+<<<<<<< HEAD
+    });
+      //only the first element of array since it will be unique
+      arr.then((value) => {
+        if(value)
+=======
     }).then(async (value) => {
         if(value.length>0)
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
         {
         await this.firebaseService.getURLByFilePath(value[0].filePath).then(async (value)=> {
           ret = value;
@@ -53,8 +64,15 @@ export class StorageRepository {
         
         }
       }
+<<<<<<< HEAD
+      )
+
+      return null;
+
+=======
     );
     return ret;
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
   }
 
   //create a file record if the user does not already added this file type

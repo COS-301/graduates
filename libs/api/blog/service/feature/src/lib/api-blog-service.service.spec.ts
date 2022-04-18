@@ -1,20 +1,12 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { BlogService } from './api-blog-service.service';
 import { QueryBus, CommandBus } from '@nestjs/cqrs';
-import {Blog, BlogComment, BlogMedia } from '@graduates/api/blog/api/shared/entities/data-access';
-import {ApiBlogServiceFeatureModuleModule} from './api-blog-service-feature-module.module';
+import { Blog } from '@graduates/api/blog/api/shared/entities/data-access';
 
 jest.mock('@graduates/api/blog/api/shared/entities/data-access');
+
 const blogMock: jest.Mocked<Blog> = new Blog() as Blog;
 
-jest.mock('@graduates/api/blog/api/shared/entities/data-access');
-const BlogCommentMock: jest.Mocked<BlogComment> = new BlogComment() as BlogComment;
-
-jest.mock('@graduates/api/blog/api/shared/entities/data-access');
-const stringMock: jest.Mocked<string> = new String() as string;
-
-jest.mock('@graduates/api/blog/api/shared/entities/data-access');
-const BlogMediaMock: jest.Mocked<BlogMedia> = new BlogMedia() as BlogMedia;
 // Run `yarn test api-blog-service-feature` to execute the unit tests
 describe('BlogService', () => {
   let service: BlogService;
@@ -38,6 +30,9 @@ describe('BlogService', () => {
     expect(service).toBeDefined();
   });
 
+<<<<<<< HEAD
+  
+=======
   //Test createBlog function
   describe('createBlog', () =>{
     it('Should return a blog',async () => {
@@ -309,4 +304,5 @@ describe('BlogService', () => {
  })
 })
 
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
 });

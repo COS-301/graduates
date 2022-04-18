@@ -150,16 +150,26 @@ export class FirebaseService {
 
     let url = null;
     //get the url that will download the file
+<<<<<<< HEAD
+    getDownloadURL(fileRef)
+      .then((url) => {
+        console.log("NOW"+url); 
+        return url;
+=======
     await getDownloadURL(fileRef)
       .then( async (value) => {
         url = value;
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
       })
       .catch((error) => {
         console.error(error);
-        return null;
       });
 
+<<<<<<< HEAD
+    return null;
+=======
     return url;
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
   }
 
   async deleteByFilename(filename:string, folder:FirebaseFolders):Promise<boolean>{

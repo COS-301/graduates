@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
+<<<<<<< HEAD
+=======
 import { Router } from '@angular/router';
 import { observable } from 'rxjs';
 import { CompanyRepresentativeService } from '../company-representative-service/company-representative-service.service';
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
 
 @Component({
   selector: 'graduates-company-representative-edit-page',
   templateUrl: './company-representative-edit-page.component.html',
   styleUrls: ['./company-representative-edit-page.component.scss']
 })
+<<<<<<< HEAD
+export class CompanyRepresentativeEditPageComponent {}
+=======
 export class CompanyRepresentativeEditPageComponent {
   profilePicture = 'https://s-media-cache-ak0.pinimg.com/236x/c8/e8/cc/c8e8cc83e6eeb60061ba11c9d8ba9a11.jpg';
   name = "NA";
@@ -69,3 +75,4 @@ export class CompanyRepresentativeEditPageComponent {
     this._router.navigate(['CompanyRepresentativeExplore'])
   }
 }
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef

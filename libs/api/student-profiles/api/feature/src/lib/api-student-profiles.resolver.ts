@@ -10,6 +10,16 @@ export class ApiStudentProfileResolver {
 
   @Query((returns) => ApiStudentProfilesEntity, { name: 'student' })
   async getStudent(@Args('studentNum', { type: () => String }) id: string) {
+<<<<<<< HEAD
+    const studentArr = this.studentService.findById(id);
+    const studentObj = new ApiStudentProfilesEntity();
+    studentObj.dateOfBirth = (await studentArr).pop();
+    studentObj.phoneNum = (await studentArr).pop();
+    studentObj.email = (await studentArr).pop();
+    studentObj.firstName = (await studentArr).pop();
+    studentObj.studentNum = (await studentArr).pop();
+    studentObj.lastName = (await studentArr).pop();
+=======
     let dbId;
     if (id == 'u12345678') dbId = '1';
     else dbId = null;
@@ -79,10 +89,25 @@ export class ApiStudentProfileResolver {
     studentObj.academicRecord = files != null ? true : false;
     studentObj.cv = files != null ? true : false;
     studentObj.capstoneProject = true;
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
 
     return studentObj;
   }
 
+<<<<<<< HEAD
+  @Mutation((returns) => ApiStudentProfilesEntity)
+  async editStudent(
+    @Args('editStudentData') editStudentData: StudentInput
+  ) {
+    const studentArr = this.studentService.update(editStudentData);
+    const studentObj = new ApiStudentProfilesEntity();
+    studentObj.dateOfBirth = (await studentArr).pop();
+    studentObj.phoneNum = (await studentArr).pop();
+    studentObj.email = (await studentArr).pop();
+    studentObj.firstName = (await studentArr).pop();
+    studentObj.studentNum = (await studentArr).pop();
+    studentObj.lastName = (await studentArr).pop();
+=======
   @Query(() => String)
   pingStudentProfiles() {
     return 'on';
@@ -100,11 +125,17 @@ export class ApiStudentProfileResolver {
     //studentObj.firstName = (await studentArr).pop();
     studentObj.studentNum = editStudentData.studentNum;
     //studentObj.lastName = (await studentArr).pop();
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
 
     return studentObj;
   }
 
   @Mutation((returns) => String)
+<<<<<<< HEAD
+  async deleteStudent(@Args('studentNum', {type: () => String})id: string ) {
+    const res = this.studentService.delete(id);
+    return res;
+=======
   async deleteStudent(@Args('studentNum', { type: () => String }) id: string) {
     return 'Not Implemented';
   }
@@ -151,5 +182,6 @@ export class ApiStudentProfileResolver {
     mockStudent.cv = true;
     mockStudent.capstoneProject = true;
     return mockStudent;
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
   }
 }

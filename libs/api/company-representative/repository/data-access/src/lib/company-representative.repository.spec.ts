@@ -1,8 +1,10 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { CompanyRepresentativeRepository } from './company-representative.repository';
 import { PrismaService } from "@graduates/api/shared/services/prisma/data-access";
-import { UserSocialMedia } from '@prisma/client';
+import { Test, TestingModule } from '@nestjs/testing';
+import { Prisma } from "@prisma/client";
 
+import { CompanyRepresentativeRepository } from './company-representative.repository';
+
+import { prismaMock } from './singleton';
 
 describe('CompanyRepresentativeRepository', () => {
 
@@ -10,29 +12,23 @@ describe('CompanyRepresentativeRepository', () => {
 
     beforeAll(async () => {
         const module: TestingModule = await Test.createTestingModule({
-            providers: [CompanyRepresentativeRepository, PrismaService]
+            providers: [CompanyRepresentativeRepository,
+                { provide: PrismaService, useValue: prismaMock},
+            ],
         }).compile();
 
         repository = module.get<CompanyRepresentativeRepository>(CompanyRepresentativeRepository);
     });
 
-
     it('Should be defined', async () => {
       expect(repository).toBeDefined();
     });
 
-    describe('@returnRepObject', () => {
-        
-        const id = '1';
-        const repName = 'Tester';
-        const email = 'tester@gmail.com';
-        const jobTitle = 'Tester';
-        const aboutMe = 'Software Tester';
-        const website = 'tester.up.ac.za';
-        const location = 'Hatfield, Pretoria';
-        const phoneNumber = '0812345678';
-        const repExperience = 'Beginner';
+    //Write Tests Below
 
+<<<<<<< HEAD
+});
+=======
         const SocialMedia: UserSocialMedia[] = [
              {
                 userId: id,
@@ -212,3 +208,4 @@ describe('CompanyRepresentativeRepository', () => {
     });
 
 });
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef

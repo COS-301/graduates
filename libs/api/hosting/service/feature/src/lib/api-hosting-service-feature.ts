@@ -1,7 +1,13 @@
 import { ApiHosting } from '@graduates/api/hosting/api/shared/data-access';
+<<<<<<< HEAD
+import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
+import { Injectable } from '@nestjs/common';
+import { HealthIndicator, HealthIndicatorResult } from '@nestjs/terminus';
+=======
 import { HttpService } from '@nestjs/axios';
 import { Injectable, Query } from '@nestjs/common';
 import { HealthCheck, HealthCheckResult, HealthCheckService, HttpHealthIndicator } from '@nestjs/terminus';
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
 
 type HealthCheckParameters = {
   title: string,
@@ -9,6 +15,27 @@ type HealthCheckParameters = {
   query: string,
 };
 @Injectable()
+<<<<<<< HEAD
+export class ApiHostingServiceFeatureModule extends HealthIndicator {
+  
+  private readonly prismaService: PrismaService;
+  private hosting: ApiHosting[] = [
+   {name: 'Storage API' , status: 'Operational'},
+   {name: 'Shorts API', status: 'Operational'},
+   {name: 'Company Profile API', status: 'Operational'},
+   {name: 'Shorts API', status: 'Operational'},
+   {name: 'Access Status API', status: 'Operational'},
+   {name: 'Student Profiles API', status: 'Operational'},
+   {name: 'Company Representative API', status: 'Operational'},
+   {name: 'Request Access API', status: 'Operational'},
+   {name: 'authentication API', status: 'Operational'},
+   {name: 'Block Chain', status: 'Under Development'}
+  ];
+  async get_all(): Promise<ApiHosting[]>{
+    //heatlth checks
+    this.checkDatabase();
+    return this.hosting;
+=======
 export class ApiHostingServiceFeatureModule{
   private commonPath = 'http://localhost:3333/graphql';
   private checks: HealthCheckParameters[] = [
@@ -55,8 +82,26 @@ export class ApiHostingServiceFeatureModule{
     }
     hosting = hosting.concat(this.AddAllUnimplemented());
     return hosting;
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
   }
+  async checkDatabase(): Promise<HealthIndicatorResult>{
+    const prisma = new ApiHosting();
+    try{
+      await this.prismaService.$queryRaw;   
+      prisma.name = "Database";
+      prisma.status = "Operational";
+      this.hosting.push(prisma);
+      return this.getStatus("Database", true);
 
+<<<<<<< HEAD
+    }
+    catch(error){
+      prisma.name = "Database";
+      prisma.status = "Non Operational";
+      this.hosting.push(prisma);
+      return this.getStatus("Database", false);
+    }
+=======
   @HealthCheck()
   checkApiHealth(params: HealthCheckParameters): Promise<HealthCheckResult> {
     return this.health.check([
@@ -68,9 +113,16 @@ export class ApiHostingServiceFeatureModule{
     const unimplemented1 = new ApiHosting();
     unimplemented1.name = "Block Chain";
     unimplemented1.status = "Under Development";
+<<<<<<< HEAD
+
+    // this.hosting.push(unimplemented1);
+    return unimplemented1;
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
+=======
     const retArr: ApiHosting[] = []; 
     retArr.push(unimplemented1)
     return retArr;
+>>>>>>> 6e6948a99aa5266ce8bf87d411ce50c25d42683e
   }
  
   getChecksLength(): number {

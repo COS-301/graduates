@@ -14,8 +14,12 @@ export class GetNotificationsSentQuery {
 
 export class GetNotificationsByTypeQuery {
     constructor(public readonly userId: string, public readonly notificationType: string) {}
+<<<<<<< HEAD
+}
+=======
 }
 
 export class GetUserObjectQuery {
     constructor(public readonly userId: string) {}
 }
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef

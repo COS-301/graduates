@@ -51,6 +51,9 @@ export class BlogService {
     );
   }
 
+<<<<<<< HEAD
+  async updateBlogTitle(blogId, title): Promise<Blog | null> {
+=======
   /**
    * Update the title of a blog
    * @param {string} blogId The id of the blog to update
@@ -58,6 +61,7 @@ export class BlogService {
    * @return {Promise<Blog | null>} 
    */
   async updateBlogTitle(blogId: string, title: string): Promise<Blog | null> {
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
     return await this.commandBus.execute(
       new UpdateBlogTitleCommand(blogId, title)
     );
@@ -87,12 +91,16 @@ export class BlogService {
     );
   }
 
+<<<<<<< HEAD
+  async deleteBlog(blogId): Promise<Blog | null> {
+=======
   /**
    * Delete a blog
    * @param {string} blogId The id of the blog to delete
    * @return {Promise<string>} 
    */
   async deleteBlog(blogId: string): Promise<string> {
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
     return await this.commandBus.execute(
       new DeleteBlogCommand(blogId)
     );
@@ -233,12 +241,16 @@ export class BlogService {
     );
   }
 
+<<<<<<< HEAD
+  async getCommentByCommentId(commentId): Promise<BlogComment[]> {
+=======
   /**
    * Find a comment by id
    * @param {string} commentId The id of the comment to find
    * @return {Promise<BlogComment>} 
    */
   async getCommentByCommentId(commentId: string): Promise<BlogComment> {
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
     return await this.queryBus.execute(
       new GetCommentByCommentIdQuery(commentId)
     );

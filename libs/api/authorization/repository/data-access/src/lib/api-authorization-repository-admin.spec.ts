@@ -2,17 +2,22 @@ import { Adminauthorization } from './api-authorization-repository-admin.reposit
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 import { Test, TestingModule } from '@nestjs/testing';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import {user_permissions,User_role,role_permissions,} from '../../../shared/src/lib/authorization-data-access.entity';
+import {
+  user_permissions,
+  User_role,
+  role_permissions,
+} from '../../../shared/src/lib/authorization-data-access.entity';
 //import {} from '@graduates/api/authorization/repository/shared';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import {ApiAuthorization} from '../../../../api/shared/src/lib/api-authorization.entity';
+import { ApiAuthorization } from '../../../../api/shared/src/lib/api-authorization.entity';
 import {
   UserPermissions,
   UserRole,
   RolePermissions,
   Prisma,
 } from '@prisma/client';
-const MockApiImpl : jest.Mocked<ApiAuthorization> = new ApiAuthorization() as ApiAuthorization;
+const MockApiImpl: jest.Mocked<ApiAuthorization> =
+  new ApiAuthorization() as ApiAuthorization;
 const UserPermissionsMock: jest.Mocked<UserPermissions> =
   new user_permissions();
 const UserroleMock: jest.Mocked<UserRole> = new User_role();
@@ -48,14 +53,9 @@ describe('ApiAuthorizationRepository', () => {
   it('should find companyId return string', async () => {
     jest
       .spyOn(data, 'findCompanyid')
-      .mockImplementation(
-        (): Promise<string> =>
-          Promise.resolve(stringMock)
-      );
+      .mockImplementation((): Promise<string> => Promise.resolve(stringMock));
 
-    expect(
-      await data.findCompanyid('9')
-    ).toStrictEqual(stringMock);
+    expect(await data.findCompanyid('9')).toStrictEqual(stringMock);
   });
   it('should add permission return UserPermissions', async () => {
     jest
@@ -464,8 +464,7 @@ describe('ApiAuthorizationRepository', () => {
     jest
       .spyOn(data, 'findAllPermissionsFilter')
       .mockImplementation(
-        (): Promise<ApiAuthorization> =>
-          Promise.resolve(MockApiImpl)
+        (): Promise<ApiAuthorization> => Promise.resolve(MockApiImpl)
       );
 
     expect(

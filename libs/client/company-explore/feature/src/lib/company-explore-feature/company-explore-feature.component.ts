@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+import { Component} from '@angular/core';
+=======
 import { Component,OnInit} from '@angular/core';
 import{Company} from './store/company-model';
 import{Select,Store} from '@ngxs/store';
@@ -5,12 +8,16 @@ import { CompanyExploreState } from './store/company-explore.state';
 import{Observable} from 'rxjs';
 import { GetCompanyList,SetSearch,SetSelectedCompany } from './store/company-explore.actions';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
 
 @Component({
   selector: 'graduates-company-explore-feature',
   templateUrl: './company-explore-feature.component.html',
   styleUrls: ['./company-explore-feature.component.scss']
 })
+<<<<<<< HEAD
+export class CompanyExploreFeatureComponent {}
+=======
 
 
 export class CompanyExploreFeatureComponent implements OnInit {
@@ -47,3 +54,4 @@ public isMobile:boolean;
     });
   }
 }
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef

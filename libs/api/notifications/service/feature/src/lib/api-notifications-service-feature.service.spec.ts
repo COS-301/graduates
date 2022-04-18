@@ -1,6 +1,8 @@
 import { Test } from '@nestjs/testing';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { ApiNotificationsService } from './api-notifications-service-feature.service';
+<<<<<<< HEAD
+=======
 import { 
   GetAllUserNotificationsHandler,
   GetNotificationsByIdHandler,
@@ -16,6 +18,7 @@ import {
 } from './commands/api-notifications-service-commands.handlers';
 
 import { ModuleRef } from '@nestjs/core';
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
 
 describe('ApiNotificationsService', () => {
   let service: ApiNotificationsService;
@@ -38,6 +41,8 @@ describe('ApiNotificationsService', () => {
   it('should be defined', () => {
     expect(service).toBeTruthy();
   });
+<<<<<<< HEAD
+=======
 
   // Start of Manually added testing
   it('should be defined', () => {
@@ -87,4 +92,5 @@ describe('ApiNotificationsService', () => {
     expect(creator).toBeCalled();
     expect(result).toBeInstanceOf(Array);
   });
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
 });

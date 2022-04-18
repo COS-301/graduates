@@ -3,7 +3,6 @@ import { PrismaService } from '@graduates/api/shared/services/prisma/data-access
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { ApiCompanyRepresentativeService } from './api-company-representative.service';
-import { CommandHandlers } from './commands/handlers';
 import { QueryHandlers } from './queries/handlers';
 
 @Module({
@@ -11,7 +10,6 @@ import { QueryHandlers } from './queries/handlers';
   controllers:[],
   providers: [
     ...QueryHandlers,
-    ...CommandHandlers,
     ApiCompanyRepresentativeService,
     PrismaService,
     CompanyRepresentativeRepository,

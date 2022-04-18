@@ -8,8 +8,6 @@ import { StudentExploreRepository } from '@graduates/api/student-explore/reposit
 
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 
-import { ApiStorageServiceFeatureModule } from '@graduates/api/storage/service/feature'; //
-
 
 @Module({
   imports: [CqrsModule],
@@ -18,10 +16,8 @@ import { ApiStorageServiceFeatureModule } from '@graduates/api/storage/service/f
     ...QueryHandlers,
     StudentExploreService,
     StudentExploreRepository,
-    PrismaService,
-    ApiStorageServiceFeatureModule
-  
+    PrismaService
   ],
-  exports: [StudentExploreService, PrismaService, ApiStorageServiceFeatureModule]
+  exports: [StudentExploreService, PrismaService]
 })
 export class StudentExploreServiceModule {}

@@ -1,6 +1,6 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Notification, NotificationData } from '@graduates/api/notifications/api/shared'
-import {
+import { 
     GetAllUserNotificationsQuery,
     GetNotificationByIdQuery,
     GetNotificationsReceivedQuery,
@@ -17,11 +17,31 @@ import {
 }
 from './commands/api-notifications-service-commands.command'
 import { QueryBus, CommandBus, EventBus } from '@nestjs/cqrs';
+<<<<<<< HEAD
+=======
 import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 import { ModuleRef } from '@nestjs/core';
+>>>>>>> 6e6948a99aa5266ce8bf87d411ce50c25d42683e
 
 
 @Injectable()
+<<<<<<< HEAD
+export class ApiNotificationsService {
+    constructor(
+        private readonly queryBus:QueryBus, 
+        private readonly commandBus:CommandBus, 
+        private readonly eventBus:EventBus
+    ){}
+    sendToMail(){
+        return this.eventBus.publish(new SendMailEvent(this));
+    }
+
+    async getAllNoifications() : Promise<Notification[]>{
+        return await this.queryBus.execute(new GetAllUserNotificationsQuery())
+    }
+
+    async getNotificationsById(id: string) : Promise<Notification> { 
+=======
 export class ApiNotificationsService 
 {
 
@@ -38,6 +58,7 @@ export class ApiNotificationsService
     }
     
     async getNotificationsById(id: string) : Promise<Notification> {
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
         return await this.queryBus.execute(new GetNotificationByIdQuery(id))
     }
     
@@ -64,8 +85,15 @@ export class ApiNotificationsService
     async updateSeen(id:string, seen:boolean) : Promise<Notification> {
         return await this.commandBus.execute(new UpdateSeenCommand(id,seen));
     }
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    
+    async getUserObject(userId: string) : Promise<User> {
+=======
 
     async getUserObject(userId: string) : Promise<AuthenticationUser> {
+>>>>>>> 6e6948a99aa5266ce8bf87d411ce50c25d42683e
         return await this.queryBus.execute(new GetUserObjectQuery(userId))
     }
     
@@ -124,4 +152,5 @@ export class ApiNotificationsService
         return [ user ];
     }
 
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
 }
