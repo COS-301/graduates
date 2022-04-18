@@ -1,26 +1,38 @@
 //TODO: create Student model on service layer
 import { Injectable } from '@nestjs/common';
-import { CommandBus } from '@nestjs/cqrs';
-import { getStudentInfoDOBQuery, getStudentInfoEmailsQuery, getStudentInfoFilesQuery, getStudentInfoNameQuery } from './queries/impl';
+import { QueryBus } from '@nestjs/cqrs';
+import { 
+  GetStudentInfoNameQuery, 
+  GetStudentInfoEmailQuery, 
+  GetStudentInfoPhoneNumberQuery, 
+  GetStudentInfoDegreeQuery,
+  GetStudentInfoIDQuery,
+} from './queries/api-upintegration-getStudentInfo.query';
   
 @Injectable()
-export class ApiupintegrationService {
+export class ApiUpIntegrationService {
 
-  constructor(private commandBus: CommandBus) {}
+  constructor(
+    private readonly queryBus: QueryBus,
+  ) {}
 
-  async get_name(userid : string) {
-    return await this.commandBus.execute( new getStudentInfoNameQuery(userid))
+  async get_name(userid : string): Promise<string | null> {
+    return await this.queryBus.execute( new GetStudentInfoNameQuery(userid))
   }
 
-  async getDoB(userid : string) {
-    return await this.commandBus.execute( new getStudentInfoDOBQuery(userid))
-  }
-  
-  async get_emails(userid : string) {
-    return await this.commandBus.execute( new getStudentInfoEmailsQuery(userid))
+  async get_ID(studentNum : string): Promise<string | null> {
+    return await this.queryBus.execute( new GetStudentInfoIDQuery(studentNum))
   }
   
-  async get_files(userid : string) {
-    return await this.commandBus.execute( new getStudentInfoFilesQuery(userid))
+  async get_email(userid : string): Promise<string | null> {
+    return await this.queryBus.execute( new GetStudentInfoEmailQuery(userid))
+  }
+  
+  async get_Degree(userid : string): Promise<string | null> {
+    return await this.queryBus.execute( new GetStudentInfoDegreeQuery(userid))
+  }
+
+  async get_PhoneNumber(userid : string): Promise<string | null> {
+    return await this.queryBus.execute( new GetStudentInfoPhoneNumberQuery(userid))
   }
 }

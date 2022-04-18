@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 
-import { ApiUpIntegrationServiceFeatureModule} from '@graduates/api/upintegration/service/feature'
+import { ApiUpIntegrationService} from '@graduates/api/upintegration/service/feature'
 import { ApiUpIntegrationResolver } from './api-upintegration.resolver';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 
@@ -9,7 +9,7 @@ import { PrismaService } from '@graduates/api/shared/services/prisma/data-access
   imports: [CqrsModule],
   providers: [
     ApiUpIntegrationResolver,
-    ApiUpIntegrationServiceFeatureModule,
+    ApiUpIntegrationService,
     PrismaService,
   ],
   exports: [],
