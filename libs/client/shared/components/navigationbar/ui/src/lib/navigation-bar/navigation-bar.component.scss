@@ -1,5 +1,7 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+
 #nav{
-    background-color: #174372;
+    background-color: $primary-1;
     opacity: 90%;
 }
 .text{
@@ -43,3 +45,13 @@
         margin-left: 55%;
     }
   }
+
+  #count{
+    position: absolute;
+    margin-left: 3em;
+    margin-top: 0em;
+    font-size: 0.8em;
+}
+.bell{
+    color: #ffffff !important;
+}

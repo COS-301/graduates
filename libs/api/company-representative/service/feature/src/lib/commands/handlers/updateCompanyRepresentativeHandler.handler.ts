@@ -8,18 +8,17 @@ export class UpdateRepresentativeHandler implements ICommandHandler<UpdateRepres
     constructor(private repository:CompanyRepresentativeRepository){}
 
     execute(command: UpdateRepresentative){
-
-        if(command.type=="bio")
-            return this.repository.updateRepBio(command.id,command.newData);
-        else if(command.type=="number")
-            return this.repository.updateRepContactNumber(command.id,command.newData);
-        else if(command.type=="expirience")
-            return this.repository.updateRepExprience(command.id,command.newData);
-        else if(command.type=="location")
-            return this.repository.updateRepLocation(command.id,command.newData); 
-        else if(command.type=="name")
-            return this.repository.updateRepName(command.id,command.newData);
-        else 
-            return null;
+        this.repository.updateRepName(command.representative.id, command.representative.repName);
+        this.repository.updateRepExprience(command.representative.id, command.representative.repExperience);
+        this.repository.updateRepContactNumber(command.representative.id, command.representative.phoneNumber);
+        this.repository.updateRepLocation(command.representative.id, command.representative.location);
+        this.repository.updateRepEmail(command.representative.id, command.representative.email);
+        this.repository.updateSocial(command.representative.id, "LINKEDIN", command.representative.linkedIn);
+        this.repository.updateSocial(command.representative.id, "TWITTER", command.representative.twitter);
+        this.repository.updateSocial(command.representative.id, "INSTAGRAM", command.representative.instagram);
+        this.repository.updateSocial(command.representative.id, "FACEBOOK", command.representative.facebook);
+        this.repository.updateSocial(command.representative.id, "SNAPCHAT", command.representative.snapChat);
+        this.repository.updateSocial(command.representative.id, "GITHUB", command.representative.gitHub);
+        return this.repository.getRepresentativeUser(command.representative.id);
     }   
 }
