@@ -234,8 +234,6 @@ describe('Visit student-profile', () => {
 
     //testing navigation
   });
-  
-});
 
 // Commented out Tests need API and DB to run in Environment to pass
 describe('client-shorts-feature e2e test', () => {
