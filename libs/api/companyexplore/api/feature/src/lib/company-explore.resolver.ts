@@ -7,7 +7,8 @@ import { ApiCompanyExploreTaggedEntity } from "@graduates/api/companyexplore/api
 
 @Resolver((of) => ApiCompanyExploreEntity)
 export class ApiCompanyExploreResolver {
-   constructor(private companyService: CompanyExploreService) {}
+   constructor(private companyService: CompanyExploreService) {
+   }
 
   /*@Query((returns) => ApiCompanyExploreEntity,{ name: 'company' })
   async getCompany(@Args('companyID', { type: () => String }) id: string) {
@@ -138,8 +139,34 @@ export class ApiCompanyExploreResolver {
       
       return arrOfCompanies;
     }
+//REMOVE IF API IS RUNNING
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    const dummy = new Array<ApiCompanyExploreEntity>();
+    for(let i=0;i<20;i++)
+    {
+      const companyObj = new ApiCompanyExploreEntity();
+      const UserprofileObj = new ApiCompanyExploreUserprofileEntity();
+      companyObj.Userprofile = UserprofileObj;
 
-    return null;
+
+      companyObj.id = "dsadcvvnmnadasd";
+      companyObj.email = "notimportant";
+      companyObj.password = "dsfdsf";
+      companyObj.passwordSalt = "dsfdsf";
+      companyObj.name = "company "+i;
+      companyObj.dateOfBirth = null;
+      companyObj.companyID ="dsadcvvnmnadasd";
+      companyObj.created = null;
+      companyObj.suspended = true;
+      companyObj.validated = false;
+      companyObj.Userprofile.userId = "Company";
+      companyObj.Userprofile.profilePicture ="https://cdn.pixabay.com/photo/2022/02/09/20/52/labrador-retriever-7004193_960_720.jpg";
+      companyObj.Userprofile.bio = "issa nice,very nice";
+      
+      dummy.push(companyObj)
+    }
+    return dummy;
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!return null    
   }
 
   @Query((returns) => [ApiCompanyExploreEntity], { nullable: true })
@@ -210,8 +237,34 @@ export class ApiCompanyExploreResolver {
       
       return arrOfCompanies;
     }
+//REMOVE IF API IS RUNNING
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    const dummy = new Array<ApiCompanyExploreEntity>();
+    for(let i=0;i<20;i++)
+    {
+      const companyObj = new ApiCompanyExploreEntity();
+      const UserprofileObj = new ApiCompanyExploreUserprofileEntity();
+      companyObj.Userprofile = UserprofileObj;
 
-    return null;
+
+      companyObj.id = "dsadcvvnmnadasd";
+      companyObj.email = "notimportant";
+      companyObj.password = "dsfdsf";
+      companyObj.passwordSalt = "dsfdsf";
+      companyObj.name = "search "+i;
+      companyObj.dateOfBirth = null;
+      companyObj.companyID ="dsadcvvnmnadasd";
+      companyObj.created = null;
+      companyObj.suspended = true;
+      companyObj.validated = false;
+      companyObj.Userprofile.userId = "Company";
+      companyObj.Userprofile.profilePicture ="https://cdn.pixabay.com/photo/2014/04/05/12/24/kitten-316995_960_720.jpg";
+      companyObj.Userprofile.bio = "issa nice,very nice";
+      
+      dummy.push(companyObj)
+    }
+    return dummy;
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!return null
   }
 
   @Query((returns) =>  [ApiCompanyExploreEntity], { nullable: true })
@@ -280,8 +333,34 @@ export class ApiCompanyExploreResolver {
       
       return arrOfCompanies;
     }
+//REMOVE IF API IS RUNNING
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    const dummy = new Array<ApiCompanyExploreEntity>();
+    for(let i=0;i<20;i++)
+    {
+      const companyObj = new ApiCompanyExploreEntity();
+      const UserprofileObj = new ApiCompanyExploreUserprofileEntity();
+      companyObj.Userprofile = UserprofileObj;
 
-    return null;
+
+      companyObj.id = "dsadcvvnmnadasd";
+      companyObj.email = "notimportant";
+      companyObj.password = "dsfdsf";
+      companyObj.passwordSalt = "dsfdsf";
+      companyObj.name = "filter "+i;
+      companyObj.dateOfBirth = null;
+      companyObj.companyID ="dsadcvvnmnadasd";
+      companyObj.created = null;
+      companyObj.suspended = true;
+      companyObj.validated = false;
+      companyObj.Userprofile.userId = "Company";
+      companyObj.Userprofile.profilePicture ="https://cdn.pixabay.com/photo/2016/10/31/14/55/rottweiler-1785760_960_720.jpg";
+      companyObj.Userprofile.bio = "issa nice,very nice";
+      
+      dummy.push(companyObj)
+    }
+    return dummy;
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!return null
   }
   @Query(()=> String)
   pingCompanyExplore(){

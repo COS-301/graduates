@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngxs/store';
+// import { Store } from '@ngxs/store';
 import { CompanyProfileService } from '../services/company-profile.service';
 
 @Component({
@@ -11,7 +11,7 @@ export class RepresentativeListComponent implements OnInit {
   representativeData: CompanyReps[] = [];
   representatives: Rep[] = []; 
 
-  constructor(private store: Store, private apiService: CompanyProfileService) {
+  constructor(private apiService: CompanyProfileService) {
     
   }
 
