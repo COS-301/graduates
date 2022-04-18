@@ -1,5 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { Blog, Prisma, Short, User, UserPermissions, UserRole } from '@prisma/client';
+//import { Blog, Prisma, Short, User, UserPermissions, UserRole } from '@prisma/client';
+import { Blog } from '@graduates/api/blog/api/shared/entities/data-access';
+import { Short } from '@graduates/api/shorts/api/shared/entities/data-access';
+import { user_permissions } from '@graduates/api/authorization/repository/shared';
+import { role_permissions } from '@graduates/api/authorization/repository/shared';
+import { User } from '@graduates/api/adminconsole/api/shared/data-access';
+import { Prisma } from '@prisma/client';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { CreateUserCommand } from './commands/impl/create-user.command';
 import { GetUsersQuery } from './queries/impl/get-users.query';
@@ -103,7 +109,7 @@ export class ApiAdminConsoleServiceFeature {
         }));
     } 
 
-    async getPermissions(userID: string): Promise<UserPermissions[]> {
+    async getPermissions(userID: string): Promise<user_permissions[]> {
         return this.queryBus.execute(new GetPermissionsQuery(userID));
     }
 
@@ -111,7 +117,7 @@ export class ApiAdminConsoleServiceFeature {
         return this.queryBus.execute(new GetStoriesQuery(userID));
     }
 
-    async getRoles(userID: string): Promise<UserRole[]> {
+    async getRoles(userID: string): Promise<role_permissions[]> {
         return this.queryBus.execute(new GetRolesQuery(userID));
     }
 

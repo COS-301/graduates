@@ -1,8 +1,1 @@
-import { Module } from '@nestjs/common';
-
-@Module({
-  controllers: [],
-  providers: [],
-  exports: [],
-})
-export class ApiAuthorizationRepositorySharedModule {}
+export * from './authorization-data-access.entity'
