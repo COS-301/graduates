@@ -1,5 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
+import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 import { BlogComment } from './api-blog-comment-entity.entity';
 import { BlogMedia } from './api-blog-media-entity.entity';
 import { ID } from '@nestjs/graphql';
@@ -48,8 +48,8 @@ export class Blog {
   /**
    * The user who uploaded the Blog
    */
-  @Field(() => User)
-  user!: User;
+  @Field(() => AuthenticationUser)
+  user!: AuthenticationUser;
 
   /**
    * The media of the Blog
