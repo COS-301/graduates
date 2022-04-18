@@ -56,12 +56,12 @@ describe('ApiCompanyExploreResolver', () => {
         .spyOn(resolver, 'GetListOfComapnies')
         .mockImplementation((): Promise<ApiCompanyExploreEntity[]> => Promise.resolve(result));
   
-        expect(await resolver.GetListOfComapnies()).toMatchObject(CompanyExploreMock);
+        expect(await resolver.GetListOfComapnies).toMatchObject(CompanyExploreMock);
     });
     it('should return null', async () => {
       jest.spyOn(resolver, 'GetListOfComapnies').mockResolvedValue(null);
   
-      expect(await resolver.GetListOfComapnies()).toEqual(null);
+      expect(await resolver.GetListOfComapnies).toEqual(null);
     });
   });
 
