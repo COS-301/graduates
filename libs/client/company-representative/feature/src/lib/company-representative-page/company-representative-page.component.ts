@@ -2,7 +2,7 @@ import { Component, HostListener } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { NavigationStart, Router } from '@angular/router';
 import { observable } from 'rxjs';
-import { CompanyRepresentativeServiceService } from '../company-representative-service/company-representative-service.service';
+import { CompanyRepresentativeService } from '../company-representative-service/company-representative-service.service';
 
 @Component({
   selector: 'graduates-company-representative-page',
@@ -28,7 +28,7 @@ export class CompanyRepresentativePageComponent {
   github = "";
   result = <unknown> observable;
 
-  constructor(private _router: Router, private API : CompanyRepresentativeServiceService) {
+  constructor(private _router: Router, private API : CompanyRepresentativeService) {
     if (localStorage.getItem("id") != null) {
       this.id = localStorage.getItem("id") as string;
     }
@@ -58,11 +58,27 @@ export class CompanyRepresentativePageComponent {
     });
    }
 
-
   uploadImage(event: any) {
     const fileType = event.target.files[0].type;
     console.log(event.target.files[0]);
 
+  }
+
+  deleteRepresentativeProfile() {
+    this.API.deleteRepresentative(this.id).subscribe({
+      next: (item) => {
+        if (item) {
+          localStorage.clear();
+          this.navigateToLogin();
+        }
+      },
+      error: (err) => { console.log(err); }
+    });
+  }
+
+  logout() {
+    localStorage.clear();
+    this.navigateToLogin();
   }
 
   navigateToLogin() {
