@@ -23,7 +23,7 @@ describe('ApiRequestAccessRepository', () => {
   
       expect(
         await data.findRequestByStudIdCompId("1322","1322")
-      ).toStrictEqual(RequstedMock);
+      ).toStrictEqual([RequstedMock]);
     });
    
   });
