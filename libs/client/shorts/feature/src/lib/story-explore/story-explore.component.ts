@@ -119,6 +119,7 @@ export class StoryExploreComponent implements OnInit {
   
   closeSuccessUpload() {
     //route user to the student profile page or to /shorts...
+    this.location.back();
   }
 
   onFileUpload(event : any) {
@@ -163,16 +164,22 @@ export class StoryExploreComponent implements OnInit {
       const tags = this.getTagArray();
 
       this.loadwheel = true;
+
       //form is valid here, upload to the API:
       this.uploadShortToAPI(tags).then(resp => {
+
         console.log(resp);
         
-        //here is for the response (resp) from the upload uploadShortToAPI() and hide load wheele
+        //here is for the response (resp) from the upload uploadShortToAPI() and hide load wheel
         this.loadwheel = false;
-        this.successfulUpload = true;
 
         //it is a promise so this code will run after the query is complete and will return the query response here.
+        //if (success with the API) {
+          this.successfulUpload = true;
+        //}
+        //else {
 
+        //}
       })
 
     } 
