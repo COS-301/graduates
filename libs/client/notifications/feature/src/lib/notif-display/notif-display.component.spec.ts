@@ -24,6 +24,10 @@ describe('Notification Component Tests', () => {
     expect(component).toBeTruthy();
   });
 
-  //End of default nx generated tests. Need to add unit tests here
-  //As soon as program logic is implemented
+  it('should be called and return the right type', () => {
+    const findById = jest.spyOn(component,'ngOnInit');
+    const found = component.ngOnInit();
+    expect(findById).toBeCalled();
+    expect(found).toBeUndefined;
+  })
 });

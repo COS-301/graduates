@@ -1,12 +1,12 @@
-import { Field, ID, ObjectType } from "@nestjs/graphql";
+import { Field, ID, Int, ObjectType } from "@nestjs/graphql";
 
 @ObjectType()
 export class UserNotification {
-    @Field(() => ID)
-    id!: string;
+    @Field(type => ID)
+    id!: string
 
     @Field()
-    name: string;
+    username: string;
 
     @Field()
     email: string;

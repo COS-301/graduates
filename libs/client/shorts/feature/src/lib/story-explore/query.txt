@@ -1,0 +1,27 @@
+mutation {
+    createShort(
+        short: { description: "My short", archived: false, shortTag: [{tag: "testtag"}]},
+        userId: "", 
+        vidString: "", 
+        vidCat: Videos, 
+        thumbString: "", 
+        thumbCat:: Files
+        ) {
+            id,
+            userId,
+            description,
+            link,
+            thumbnail,
+            datePosted,
+            archive,
+            user {
+                id,
+                email,
+                name,
+            },
+            shortTag {
+                shortId,
+                tag
+            }
+        }
+}

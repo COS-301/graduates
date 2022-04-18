@@ -1,5 +1,5 @@
 import { Field, ObjectType, InputType } from '@nestjs/graphql';
-import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
+import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 import { Short } from './api-shorts-entity.entity';
 
 @ObjectType()
@@ -25,8 +25,8 @@ export class ShortReport {
   /**
    * The user who created the report
    */
-  @Field(() => User)
-  user!: User;
+  @Field(() => AuthenticationUser)
+  user!: AuthenticationUser;
 
   /**
    * The short that the report belongs to

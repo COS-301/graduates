@@ -1,1 +1,5 @@
-export * from './lib/api-authentication-service-feature.module';
+// export * from './lib/api-authentication-api.service'
+export * from './lib/strategy/google.strategy'
+//export * from './lib/api-authentication-api-service.module'
+export * from './lib/commands/RgisterCommand'
+export * from './lib/queries/LoginQuery'
