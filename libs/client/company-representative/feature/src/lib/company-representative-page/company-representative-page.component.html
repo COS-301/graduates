@@ -10,23 +10,33 @@
   </div>
   <!-- Navbar start -->
   <div class="nav">
-    <button mat-button (click)="navigateToHome()">Home</button>
-    <button mat-button [matMenuTriggerFor]="menu">Options</button>
+    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon>Menu</button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="navigateToEdit()">Edit Profile</button>
-      <button mat-menu-item (click)="navigateToExplore()">Student Explore</button>
-    </mat-menu>
-    <button mat-button (click)="navigateToLogin()">Logout</button>
+      <button mat-menu-item (click)="navigateToEdit()"><mat-icon style="background-color: white;">perm_identity</mat-icon><span>Edit Profile</span></button>
+      <button mat-menu-item (click)="navigateToExplore()"><mat-icon style="background-color: white;">search</mat-icon><span>Find Graduates</span></button>
+      <button mat-menu-item (click)="deleteRepresentativeProfile()"><mat-icon style="background-color: white;">delete</mat-icon><span>Delete Profile</span></button>
+      <button mat-menu-item (click)="logout()"><mat-icon  style="background-color: white;">exit_to_app</mat-icon><span>Logout</span></button>
+    </mat-menu> 
   </div>
-<!-- Navbar end -->
+  <!-- Navbar end -->
 </header>
 <!-- Header end -->
 <section>
+  <div class="form-container mat-elevation-z5 text-center">
+    <div class="profile-image">
+      <img [src]="profilePicture" alt="Profile Picture" width="120" height="120">
+      <button mat-mini-fab (click)="inputField.click()">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+    <input #inputField type="file" hidden (change)="uploadImage($event)"/>
+  </div>
+
   <!-- Title start -->
+  <!-- <img src={{profilePicture}} alt="Profile Picture" (click)="inputField.click()"/>
+  <input #inputField type="file" hidden /> -->
   <mat-card class="title">
     <div class="block">
-      <div class="image" style="background-image: url({{profilePicture}})">
-      </div>
         <div class="content">
           <div class="boxes">
             <div class="box box1">
@@ -140,6 +150,7 @@
   <!-- Contact end -->
   </mat-card>
 </section>
+  
 <!-- Footer start -->
 <footer>
   <meta name="footer for graduates portal" author="Unaizah Mahomed u20426799">
