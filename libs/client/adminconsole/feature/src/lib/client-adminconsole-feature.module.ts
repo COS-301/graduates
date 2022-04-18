@@ -7,7 +7,6 @@ import { FooterModule } from '../../../../shared/components/footer/src/lib/foote
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
-import { ChangeDetectorRef } from '@angular/core';
 import { AdminconsoleRoutingModule } from './adminconsole-routing.module';
 
 @NgModule({
