@@ -10,7 +10,7 @@ import { Apollo, gql } from 'apollo-angular';
 export class BlogCreateComponent {
   loggedInUser = 'cl22973yc0037zsuu4yz7ah5g';
   title: string | undefined;
-  content: string | undefined;
+  content!: string;
 
   constructor(private apollo: Apollo) {
     //CODE
@@ -22,7 +22,7 @@ export class BlogCreateComponent {
 
   post() {
     console.log(this.content);
-    this.content?.replace(/\r?\n|\r/g, " ");
+    //Fix NewLine Error ERROR GraphQLError: Syntax Error: Unterminated string.
     console.log(this.content);
     if (
       this.title === undefined ||
