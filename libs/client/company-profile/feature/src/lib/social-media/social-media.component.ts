@@ -26,7 +26,7 @@ export class SocialMediaComponent implements OnInit {
 
   ngOnInit(): void {
     //make API call to access status of resources for particular company
-    this.apiService.getSocials('1').subscribe({
+    this.apiService.getSocials().subscribe({
       next: (_res) => {
         this.socials = _res.data.getCompanySocialMedia;
 
