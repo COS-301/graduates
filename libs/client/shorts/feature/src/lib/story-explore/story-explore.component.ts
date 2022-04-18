@@ -238,25 +238,28 @@ export class StoryExploreComponent implements OnInit {
     this.viewingName = "";
     this.viewingTags = "";
 
+    const getSelectedQ =gql`query {
+      getShortById(id: "${s}"){
+        user{ 
+          name 
+        },
+        shortTag{
+          tag
+        },
+        userId,
+        id,
+        thumbnail,
+        link,
+        shortReport{
+          userId
+        }
+      } 
+    }`
+
     if(!(this.apollo.client===undefined)) this.apollo
     .watchQuery({
-      query: gql`query {
-        getShortById(id: "${s}"){
-          user{ 
-            name 
-          },
-          shortTag{
-            tag
-          },
-          userId,
-          id,
-          thumbnail,
-          link,
-          shortReport{
-            userId
-          }
-        } 
-      }`
+      query: getSelectedQ,
+      fetchPolicy: "no-cache" 
     })
     .valueChanges.subscribe((result: any) => {
       const selectedCard = result.data.getShortById;
@@ -365,7 +368,9 @@ export class StoryExploreComponent implements OnInit {
             this.reporting = false;
             this.successfulReport = true;
           }
-        })
+        });
+
+
   }
 
   //  ==================================================================================== //
