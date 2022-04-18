@@ -1,8 +1,3 @@
-:root {
-  --sidebar : #005ca9;
-  --header  : #184475;
-  --subheader : #2e5580;
-}
 #permissionsButton { 
   margin-top: 2vh;
   background-color:#184475;
@@ -11,7 +6,6 @@
   padding: 1vh;
   align-self: center;
 }
-
 #mobileMenu {
   display: none;
   mat-icon {
@@ -30,7 +24,6 @@
       top: -5vh;
   }
 }
-
 .subheader {
   @media screen 
   and (max-device-width : 428px) 
@@ -45,16 +38,13 @@
   height: 5%;
   line-height: 5vh;
 }
-
 .logout {
   height: 100%;
   width: 20%;
   margin-left: auto;
   order : 2;
 }
-
 .sidenav {
-  
   @media screen 
   and (max-device-width : 428px) 
   {
@@ -85,12 +75,10 @@
   background: #005ca9;
   width: 110px;
 }
-
 .mid {
   width: 100%;
   display : flex;
 }
-
 .users {
   position: absolute;
   left: 20%;
@@ -104,7 +92,6 @@
           left: 0%;
       }
 }
-
 .mobileHeader{
   display: none;
   @media screen 
@@ -124,21 +111,10 @@
       font-weight: bolder;
   }
 }
-
-label {
-  display : none;
-  @media screen 
-  and (max-device-width : 428px) 
-  {
-      display : inline;
-  }
-
-}
 .user {
   width: 80%;
   display: flex;
   padding-top: 8vh;
-
   .sampleImage {
       width: 100px;
       height: 70px;
@@ -147,9 +123,6 @@ label {
       @media screen 
       and (max-device-width : 428px) 
       {
-        // margin-top: 2vh;
-        // width:40px;
-        // height:35px;
         display: none;
       }
     }
@@ -158,28 +131,16 @@ label {
       width: 18px;
       height: 20px;
       margin-top: 2vh;
-
       @media screen 
       and (max-device-width : 428px) 
       {
           width: 20px;
           height: 24px;
       }
-      
   }
-
-  .archiveDiv {
-    @media screen 
-      and (max-device-width : 428px) 
-      {
-
-      }
-  }
-
   p{
     margin-top: 2vh;
   }
-
   .userName{
       width: 40%;
       padding-left: 1vw;
@@ -204,9 +165,7 @@ label {
       padding-top: 0%;
       margin-bottom: 5%;        
   }
-  
 }
-
 #usersSaveButton {
   background: #184475; 
   color: white;
@@ -219,7 +178,6 @@ label {
   right : 2%;
   height: 4vh;
   width: 8vw;
-
   @media screen 
   and (max-device-width : 428px) 
   {
@@ -258,14 +216,11 @@ label {
   display: flex;
   font-size: 10px;
   display: flex;
-
   img { 
-
       margin-left: 20%;
       width: 18px;
       height: 20px;
       margin-top: 4.5vh;
-
       @media screen 
       and (max-device-width : 428px) 
       {
@@ -274,13 +229,10 @@ label {
           height: 24px;
           margin-top: 5vh;
       }
-      
   }
-
   .uploadImage {
       margin-left: 2vw;
   }
-
   .formInput{
       padding-left: 1vw;
       padding-right: 1vw;
@@ -291,7 +243,6 @@ label {
       margin-left: 4vw;
       height: 5vh;
       border: 1px solid black;
-
       @media screen 
       and (max-device-width : 428px) 
       {
@@ -300,7 +251,6 @@ label {
       }
   }
 }
-
 .searchbar  {
   position: absolute;
   right: 0;
@@ -319,7 +269,6 @@ label {
       width: 25%;
   }
 }
-
 .roles {
   max-width:150px;
   position: absolute;
@@ -333,7 +282,6 @@ label {
   background: white;
   display: inline-flex;
   flex-flow: column;
-
   @media screen 
   and (max-device-width : 428px) 
   {
@@ -341,16 +289,13 @@ label {
       width: 35%;
   }
 }
-
 #roleHeader {
   text-align: center;
   border: 2px solid #005ca9;
   background-color: white;;
 }
-
 .userRole {
   max-width:150px;
-
   display: flex;
   justify-content: space-between;
   border-bottom: 2px solid #005ca9;
@@ -372,9 +317,7 @@ label {
   .removeRole:hover {
       cursor: pointer;
   }
-
 }
-
 .suspensionBar {
   position: absolute;
   right: 0;
@@ -390,7 +333,6 @@ label {
   border: 1px solid grey;
   display:  flex;
   justify-content: space-between;
-
   @media screen 
   and (max-device-width : 428px) 
   {
@@ -400,12 +342,10 @@ label {
       padding-left: 0.5vw;
       padding-right: 0.5vw;
   }
-
   div:hover {
       cursor : pointer;
   }
 }
-
 .usersSuspension {
   position: absolute;
   right: 0;
