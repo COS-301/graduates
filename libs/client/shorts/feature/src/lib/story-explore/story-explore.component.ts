@@ -517,7 +517,7 @@ export class StoryExploreComponent implements OnInit {
       // search each item and call respective load functions(Tag || Username)
       for(const a of splitSearch){
         // search tags
-        if(a[0] === '#') this.loadCardsByTag(a);
+        if(a[0] === '#') this.loadCardsByTag(a.substring(1));
         // seatch usernames
         else this.loadCardsByUserName(a);
 
@@ -566,6 +566,8 @@ export class StoryExploreComponent implements OnInit {
       for (let index = 0; index < all.length; index++) {
         for(const el of all[index].shortTag){
           if(el.tag.toUpperCase() === sText.toUpperCase()) {
+            console.log(el.tag.toUpperCase());
+            console.log(sText.toUpperCase())
             this.cardlist.push(all[index]);
             break;
           }
