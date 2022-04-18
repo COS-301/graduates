@@ -1,6 +1,8 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+
 .navbar {
     justify-content: space-between;
-    background-color: #f8f9fa;
+    background-color: $background-white;
   }
     
   .span {
@@ -9,7 +11,7 @@
     
   .mat-toolbar.mat-primary {
     background: #005baa;
-    color: #fff;
+    color: $background-white;
   }
   
   .mat-card-content{
@@ -46,9 +48,9 @@
   }
   
   .matCardHeader {
-    background: #174372 ;
+    background: $primary-1 ;
     padding: 7px;
-    color:white;
+    color: $background-white;
     justify-content: center;
   }
   
@@ -56,13 +58,13 @@
     justify-content: center;
     width: 70%;
     margin-top: 2%;
-    background: #ECECEC;
+    background: $background-white;
     height: flex;
     display: block;
     margin-left:auto;
     margin-right:auto;  
     vertical-align:middle;
-    color: white;
+    color: $background-white;
   }
   
   @media (max-width: 428px) {
@@ -118,5 +120,5 @@
   }
   
   a {
-    color: #dc3545;
+    color: $text-red;
   }

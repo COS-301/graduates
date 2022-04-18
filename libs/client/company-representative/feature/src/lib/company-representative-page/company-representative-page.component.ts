@@ -35,10 +35,12 @@ export class CompanyRepresentativePageComponent {
     else if (this._router.getCurrentNavigation() != null) {
       this.id = this._router.getCurrentNavigation()?.extras?.state?.['id'];
     }
+  
+      this.displayImage();
+
     this.result = this.API.getCompanyRepresentative(this.id).subscribe({
       next: (item) => {
         if (item){
-          this.displayImage();
           this.name = item.data.getCompanyRepresentative.repName;
           this.jobTitle = item.data.getCompanyRepresentative.jobTitle;
           this.experience = item.data.getCompanyRepresentative.repExperience;
@@ -60,7 +62,11 @@ export class CompanyRepresentativePageComponent {
    }
 
   uploadImage(event: any) {
-    this.API.delete(this.id, "Image");
+    console.log("In uploadImage");
+    if (this.API.download(this.id, "Image") === null ) {
+      console.log("Unfortunately, an image already works");
+      this.API.delete(this.id, "Image");
+    }
     this.API.upload(event.target.files[0], this.id);
     this.displayImage();
   }
@@ -69,6 +75,7 @@ export class CompanyRepresentativePageComponent {
     this.API.download(this.id, "Image").subscribe({
       next: (item) => {
         if (item) {
+          console.log("In displayImage");
           this.profilePicture = item.data.download;
         }
       }

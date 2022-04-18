@@ -10,7 +10,7 @@ export class AuthenticationUser{
     // id!: number
     
     @Field()
-    username!: string;
+    name!: string;
 
     @Field()
     email!: string;

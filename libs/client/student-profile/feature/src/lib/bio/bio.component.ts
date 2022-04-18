@@ -4,7 +4,7 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'graduates-bio',
   templateUrl: './bio.component.html',
-  styleUrls: ['./bio.component.sass']
+  styleUrls: ['./bio.component.scss']
 })
 export class BioComponent implements OnInit {
 

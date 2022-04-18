@@ -93,7 +93,7 @@ export class BlogViewComponent implements OnInit {
     }
   }
 
-  // Go back to clog-explore
+  // Go back to blog-explore
   return(){
     window.open('/blog', '_self');
   }

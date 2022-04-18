@@ -32,8 +32,6 @@ export class DeleteStudentProfileSocialMediaCommand {
     constructor(
       public readonly id: string,
       public readonly type?: SocialMedia,
-      public readonly link?: string
-
     ) {}
 }
 

@@ -24,7 +24,7 @@ export class StoryExploreComponent implements OnInit {
   pageIndex = 1;
   endIndex = 1;
 
-  cardlist = [{"user": {"name": "Matthew"},"shortTag":[{"tag":"TeamWork"}],"userId":"test","id":"cl22e308w0208hcvks42s959n","thumbnail":""}];
+  cardlist = [{"user": {"name": "Error"},"shortTag":[{"tag":"Error"}],"userId":"Error","id":"Error","thumbnail":""}];
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       return this.cardlist;
@@ -114,8 +114,8 @@ export class StoryExploreComponent implements OnInit {
     this.loadAllCards();
   }
 
-  //  ==================================================================================== //
-  //  Submit Pop-Up Functions ============================================================ //
+  //  ======================================================================================================================================================= //
+  //  Submit Story Pop-Up Functions ========================================================================================================================= //
   
   closeSuccessUpload() {
     //route user to the student profile page or to /shorts...
@@ -152,7 +152,10 @@ export class StoryExploreComponent implements OnInit {
       }
     }
   }
-
+  //==============================================================================================================================//
+  // - onclick event to upload story
+  // - converts content to base 64
+  //==============================================================================================================================//
   uploadStory() {
     if (this.fileuploadflag) this.fileuploaderror = "A video file less than 40mb required.";
     if (this.thumbnailuploadflag) this.thumbnailuploaderror = "An image file less than 6mb required.";
@@ -297,11 +300,19 @@ export class StoryExploreComponent implements OnInit {
     this.reporting = false;
     this.successfulReport = false;
   }
-  //  ====================================================================================== //
-  //  Selected Pop-Up Functions ============================================================ //
 
+  //  =================================================================================================================================================== //
+  //  Selected Pop-Up Functions ========================================================================================================================= //
+
+
+  //==============================================================================================================================//
+  // - onclick event to view story
+  // - makes a API call to get the selected shorts details and MP4 data
+  //==============================================================================================================================//
   viewStory(s : string) {
 
+
+    // Reset elements
     this.viewingName = "";
     this.viewingTags = "";
 
@@ -323,28 +334,35 @@ export class StoryExploreComponent implements OnInit {
       } 
     }`
 
-    if(!(this.apollo.client===undefined)) this.apollo
+    if(!(this.apollo.client===undefined)) this.apollo // check if API exists
     .watchQuery({
       query: getSelectedQ,
-      fetchPolicy: "no-cache" 
+      fetchPolicy: "no-cache"           // clear the cache of the API !- this has to do with disabling the report btn once a user has reported a short
     })
     .valueChanges.subscribe((result: any) => {
-      const selectedCard = result.data.getShortById;
-      
+      // store api output
+      const selectedCard = result.data.getShortById;  
+
+      // change username on selected card
       this.viewingName = selectedCard.user.name;
+
+      // add tags to selected card
       for(const a of selectedCard.shortTag){
         this.viewingTags += `#${ a.tag } `;
       }
-      this.viewingThumbnailSorce = selectedCard.thumbnail;
 
-      //Change this line to be result.<correct_name> to embed to the card:
-      //this.embedVideoToCard(result.video);
 
+      this.embedVideoToCard(selectedCard.link);;
+
+      // add video to selected card
+
+      // display card and hide other pop-ups
       this.currentlyViewing = s;
       this.viewing = true;
       this.reporting = false;
       this.successfulReport = false;
 
+      // set active short
       this.shortId = selectedCard.id;
 
       // hide report button if user has all ready reported this story
@@ -363,13 +381,21 @@ export class StoryExploreComponent implements OnInit {
 
 
   }
+  //==========================================================================================================================//
+  // - onclick event to close story
+  //==========================================================================================================================//
 
   closeViewing() {
     this.viewing = false;
   }
 
-  //  ==================================================================================== //
-  //  Report Pop-Up Functions ============================================================ //
+  //  ================================================================================================================================================= //
+  //  Report Pop-Up Functions ========================================================================================================================= //
+
+
+  //==========================================================================================================================//
+  // - onclick event for closing succesful report pop-up
+  //==========================================================================================================================//
 
   closeSuccessReport() {
     this.reporting = false;
@@ -377,6 +403,10 @@ export class StoryExploreComponent implements OnInit {
     this.successfulReport = false;
   }
 
+
+  //==========================================================================================================================//
+  // - onclick event for closing report pop-up
+  //==========================================================================================================================//
   cancelReport() {
     this.reporting = false;
     this.viewing = true;
@@ -384,13 +414,21 @@ export class StoryExploreComponent implements OnInit {
     this.reportfrm.reset();
   }
 
+
+  //==========================================================================================================================//
+  // - display pop up menu
+  //==========================================================================================================================//
+
   makeReportpopup() {
     this.viewing = false;
     this.reporting = true;
     this.currentlyReporting = this.currentlyViewing;
   }
 
-  //report VALIDATOR
+  //==========================================================================================================================//
+  // - Reason Validator 
+  //==========================================================================================================================//
+
   reasonValidator(reason : FormControl) : {[valtype : string] : string} | null {
     const text = reason.value;
     if (text == null) return null;
@@ -400,6 +438,10 @@ export class StoryExploreComponent implements OnInit {
     if (spaceCounter < 4) return {'errormsg' : 'At least 5 words are required.'};
     return null;
   }
+
+  //==========================================================================================================================//
+  // - onclick event for submit report btn
+  //==========================================================================================================================//
 
   submitReport() {
 
@@ -443,117 +485,118 @@ export class StoryExploreComponent implements OnInit {
 
   }
 
-  //  ==================================================================================== //
-  //  Story Explore Functions ============================================================ //
+  //  ================================================================================================================================================= //
+  //  Story Explore Functions ========================================================================================================================= //
 
-  // VARS
-
-
-  // FUNCS
-  
-  btnNaviClick(i : number){
-    
-    (<HTMLButtonElement>document.getElementById("prevBtn")).disabled = false;
-    (<HTMLButtonElement>document.getElementById("nextBtn")).disabled = false;
-
-    
-    (<HTMLButtonElement>document.getElementById("prevBtn")).className = "px-4 py-2 formbuttonblue rounded";
-    (<HTMLButtonElement>document.getElementById("nextBtn")).className = "px-4 py-2 formbuttonblue rounded";
-
-    this.pageIndex += i;
-    if(this.pageIndex <=1){
-      (<HTMLButtonElement>document.getElementById("prevBtn")).disabled = true;
-      (<HTMLButtonElement>document.getElementById("prevBtn")).className = "px-4 py-2 formbuttonBlueDisabled rounded";
-    }
-    if(this.endIndex <= this.pageIndex){
-      (<HTMLButtonElement>document.getElementById("nextBtn")).disabled = true;
-      (<HTMLButtonElement>document.getElementById("nextBtn")).className = "px-4 py-2 formbuttonBlueDisabled rounded";
-    }
-
-    (<HTMLButtonElement>document.getElementById("curBtn")).innerHTML = (this.pageIndex).toString();
-
-    this.refreshCards();
-  }
-
+  //==========================================================================================================================//
+  // - onclick event for the search bar
+  // - breaks search bar up using .split(regex) 
+  //==========================================================================================================================//
 
   search(){
     
+    // resest page index
     this.pageIndex = 1;
 
+    // get user input
     const searchText = (<HTMLInputElement>document.getElementById("search")).value;
-    alert('searching for ' + searchText);
+
+    // clear search bar
     (<HTMLInputElement>document.getElementById("search")).value= "";
 
-    if(searchText === "") this.loadAllCards();
-    else if(searchText[0] === '#') this.loadCardsByTag(searchText);
-    else this.loadCardsByUserName(searchText);
+    
+    if(searchText === "") {this.loadAllCards()}
+    else{
+      // parse search into array
+      const splitSearch = searchText.split(/[ ,]+/);
+
+      // clear the list of cards 
+      this.cardlist = [];
+
+      // search each item and call respective load functions(Tag || Username)
+      for(const a of splitSearch){
+        // search tags
+        if(a[0] === '#') this.loadCardsByTag(a.substring(1));
+        // seatch usernames
+        else this.loadCardsByUserName(a);
+
+      }
+
+      //reset end index and reload the cards on screen
+      this.endIndex = Math.ceil(this.cardlist.length/this.cardsPerPage);
+      this.btnNaviClick(0);
+    }
   }
+
+  //==========================================================================================================================//
+  // - loads all the shorts with an api call
+  //==========================================================================================================================//
+
   loadAllCards(){
 
-    if(!(this.apollo.client===undefined)) this.apollo
+    if(!(this.apollo.client===undefined)) this.apollo  // check if api exists
     .watchQuery({
-      query: gql(this.getALLCardsQuery),
+      query: gql(this.getALLCardsQuery), // apollo query
     })
     .valueChanges.subscribe((result: any) => {
-      this.cardlist = result.data.getAllShorts;
-      
-      console.log(result.data);
 
+      // assign api output to cardlist
+      this.cardlist = result.data.getAllShorts;
+
+      //reset end index and reload the cards on screen
       this.endIndex = Math.ceil(this.cardlist.length/this.cardsPerPage);
       this.btnNaviClick(0);
     });
   }
 
+  //==========================================================================================================================//
+  // - loads cards by tags 
+  // - only outputs once search string is completey searched
+  //==========================================================================================================================//
+  
   loadCardsByTag(sText: string){
-    if(!(this.apollo.client===undefined)) this.apollo
+    if(!(this.apollo.client===undefined)) this.apollo // check if api exists
     .watchQuery({
-      query: gql(this.getALLCardsQuery),
+      query: gql(this.getALLCardsQuery),  // apollo query
     })
     .valueChanges.subscribe((result: any) => {
-      
-      this.cardlist = [];
       const all = result.data.getAllShorts;
       
       for (let index = 0; index < all.length; index++) {
-
         for(const el of all[index].shortTag){
-          if(el.tag === sText) {
+          if(el.tag.toUpperCase() === sText.toUpperCase()) {
+            console.log(el.tag.toUpperCase());
+            console.log(sText.toUpperCase())
             this.cardlist.push(all[index]);
             break;
           }
         }
-        
        }
-      
-      this.endIndex = Math.ceil(this.cardlist.length/this.cardsPerPage);
-      this.btnNaviClick(0);
     });
   }
 
+  //==========================================================================================================================//
+  // - loads cards by Username 
+  // - only outputs once search string is completey searched
+  //==========================================================================================================================//
+
   loadCardsByUserName(sText: string){
-    if(!(this.apollo.client===undefined)) this.apollo
+    if(!(this.apollo.client===undefined)) this.apollo // check if api exists
     .watchQuery({
       query: gql(this.getALLCardsQuery),
     })
     .valueChanges.subscribe((result: any) => {
-      
-      this.cardlist = [];
       const all = result.data.getAllShorts;
-      
       for (let index = 0; index < all.length; index++) {
         if(all[index].user.name === sText) this.cardlist.push(all[index]);
-      }
-      
-      // refresh page
-      
-      this.endIndex = Math.ceil(this.cardlist.length/this.cardsPerPage);
-      this.btnNaviClick(0);
+      } 
     });
   }
-
+  
+  //==========================================================================================================================//
+  // - reload the cardlist on the user screen 
+  //==========================================================================================================================//
   refreshCards(){
-    
-
     this.cards = this.breakpointObserver.observe( Breakpoints.Handset).pipe(
       
       map(() => {
@@ -562,12 +605,47 @@ export class StoryExploreComponent implements OnInit {
 
       for (let index = 0; index < this.cardsPerPage; index++) {
         if(index+(this.pageIndex-1)*this.cardsPerPage < this.cardlist.length) out.push(this.cardlist[index+(this.pageIndex-1)*this.cardsPerPage]);
-      }
-      
-      return out;
+      }  
 
+      return out;
       })
     );
+  }
+
+  //==========================================================================================================================//
+  // - onlclick event for the pages bottom navigation buttons
+  // - disables buttons when the page edgepoints are reached
+  // - loads in next set of cards
+  //==========================================================================================================================//
+  btnNaviClick(i : number){
+    
+    // default to disabled
+
+    (<HTMLButtonElement>document.getElementById("prevBtn")).disabled = false;
+    (<HTMLButtonElement>document.getElementById("nextBtn")).disabled = false;
+
+    // add :onhover css
+    (<HTMLButtonElement>document.getElementById("prevBtn")).className = "px-4 py-2 formbuttonblue rounded";
+    (<HTMLButtonElement>document.getElementById("nextBtn")).className = "px-4 py-2 formbuttonblue rounded";
+
+    // get current page index
+    this.pageIndex += i;
+
+    
+    if(this.pageIndex <=1){ // left button check
+      (<HTMLButtonElement>document.getElementById("prevBtn")).disabled = true;
+      (<HTMLButtonElement>document.getElementById("prevBtn")).className = "px-4 py-2 formbuttonBlueDisabled rounded";
+    }
+    if(this.endIndex <= this.pageIndex){  // right button check
+      (<HTMLButtonElement>document.getElementById("nextBtn")).disabled = true;
+      (<HTMLButtonElement>document.getElementById("nextBtn")).className = "px-4 py-2 formbuttonBlueDisabled rounded";
+    }
+
+    // update index number on screen
+    (<HTMLButtonElement>document.getElementById("curBtn")).innerHTML = (this.pageIndex).toString();
+
+    // reload new cards from the next page
+    this.refreshCards();
   }
 }
 
