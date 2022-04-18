@@ -58,7 +58,7 @@ export class StoryExploreComponent implements OnInit {
   apifailure = "";
 
   shortId = "cl22e308w0208hcvks42s959n";
-  userId = "1234";
+  userId = "69";
 
   alreadyReported = false;
 
@@ -312,6 +312,8 @@ export class StoryExploreComponent implements OnInit {
   cancelReport() {
     this.reporting = false;
     this.viewing = true;
+    
+    this.reportfrm.reset();
   }
 
   makeReportpopup() {
