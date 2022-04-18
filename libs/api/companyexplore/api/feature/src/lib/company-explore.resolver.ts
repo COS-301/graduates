@@ -22,11 +22,8 @@ export class ApiCompanyExploreResolver {
   @Query((returns) => ApiCompanyExploreEntity)
   async getCompanyById(@Args('companyID', { type: () => String }) id: string) {
     const companyArr = await this.companyService.getCompanyById(id);
-    const companyObj = new ApiCompanyExploreEntity();
-    const UserprofileObj = new ApiCompanyExploreUserprofileEntity();
-    let profile = null;
 
-    if (companyArr.length > 0) {
+    /*if (companyArr.length > 0) {
       companyObj.companyID = (await companyArr).pop();
       companyObj.name = (await companyArr).pop();
       companyObj.id = (await companyArr).pop;
@@ -46,52 +43,108 @@ export class ApiCompanyExploreResolver {
       UserprofileObj.bio = (await profile).pop;
 
       companyObj.Userprofile = UserprofileObj;
+    }*/
+
+    if (companyArr.length > 0) {
+      const companyObj = new ApiCompanyExploreEntity();
+      const UserprofileObj = new ApiCompanyExploreUserprofileEntity();
+      companyObj.Userprofile = UserprofileObj;
+
+      companyObj.id = companyArr.id;
+      companyObj.email = companyArr.email;
+      companyObj.password = companyArr.password;
+      companyObj.passwordSalt = companyArr.passwordSalt;
+      companyObj.name = companyArr.name;
+      companyObj.dateOfBirth = companyArr.dateOfBirth;
+      companyObj.companyID = companyArr.companyID;
+      companyObj.created = companyArr.created;
+      companyObj.suspended = companyArr.suspended;
+      companyObj.validated = companyArr.validated;
+      companyObj.Userprofile.userId = companyArr.Userprofile.userId;
+      companyObj.Userprofile.profilePicture = companyArr.Userprofile.profilePicture;
+      companyObj.Userprofile.bio = companyArr.Userprofile.bio;
+      
+      return companyObj;
     }
 
-    return companyObj;
+    return null;
   }
 
-  @Query((returns) => Array<ApiCompanyExploreEntity>())
-  async GetListOfComapnies() {
+  @Query((returns) => [ApiCompanyExploreEntity], { nullable: true })
+  async GetListOfCompanies() {
+    /*const CompaniesArr = await this.companyService.getDefaultCompany();
+    const arrOfCompanies = new Array<ApiCompanyExploreEntity>();
+    let CompaniesObj = new ApiCompanyExploreEntity();
+    let UserprofileObj = new ApiCompanyExploreUserprofileEntity();
+    let company = null;
+    let profile = null;
+    
+    while ((await CompaniesArr).length > 0) {
+      company = (await CompaniesArr).pop;
+      CompaniesObj = new ApiCompanyExploreEntity();
+      UserprofileObj = new ApiCompanyExploreUserprofileEntity();
+      //id, email, password, passwordSalt, name, dateOfBirth, companyID, created, suspended, validated, Userprofile ()
+      CompaniesObj.id = (await company).pop;
+      CompaniesObj.email = (await company).pop;
+      CompaniesObj.password = (await company).pop;
+      CompaniesObj.passwordSalt = (await company).pop;
+      CompaniesObj.name = (await company).pop;
+      CompaniesObj.dateOfBirth = (await company).pop;
+      CompaniesObj.companyID = (await company).pop;
+      CompaniesObj.created = (await company).pop;
+      CompaniesObj.suspended = (await company).pop;
+      CompaniesObj.validated = (await company).pop;
+      //userId, profilePicture, bio
+      profile = (await company).pop;
+      UserprofileObj.userId = (await profile).pop;
+      UserprofileObj.profilePicture = (await profile).pop;
+      UserprofileObj.bio = (await profile).pop;
+      //add userprofile
+      CompaniesObj.Userprofile = UserprofileObj;
+      //add to array
+      arrOfCompanies.push(CompaniesObj);
+    }
+
+    return arrOfCompanies;*/
+
     const CompaniesArr = await this.companyService.getDefaultCompany();
-    const arrOfCompanies = new Array<ApiCompanyExploreEntity>();
-    let CompaniesObj = new ApiCompanyExploreEntity();
-    let UserprofileObj = new ApiCompanyExploreUserprofileEntity();
-    let company = null;
-    let profile = null;
-    
-    while ((await CompaniesArr).length > 0) {
-      company = (await CompaniesArr).pop;
-      CompaniesObj = new ApiCompanyExploreEntity();
-      UserprofileObj = new ApiCompanyExploreUserprofileEntity();
-      //id, email, password, passwordSalt, name, dateOfBirth, companyID, created, suspended, validated, Userprofile ()
-      CompaniesObj.id = (await company).pop;
-      CompaniesObj.email = (await company).pop;
-      CompaniesObj.password = (await company).pop;
-      CompaniesObj.passwordSalt = (await company).pop;
-      CompaniesObj.name = (await company).pop;
-      CompaniesObj.dateOfBirth = (await company).pop;
-      CompaniesObj.companyID = (await company).pop;
-      CompaniesObj.created = (await company).pop;
-      CompaniesObj.suspended = (await company).pop;
-      CompaniesObj.validated = (await company).pop;
-      //userId, profilePicture, bio
-      profile = (await company).pop;
-      UserprofileObj.userId = (await profile).pop;
-      UserprofileObj.profilePicture = (await profile).pop;
-      UserprofileObj.bio = (await profile).pop;
-      //add userprofile
-      CompaniesObj.Userprofile = UserprofileObj;
-      //add to array
-      arrOfCompanies.push(CompaniesObj);
+
+    if (CompaniesArr.length > 0) {
+      const arrOfCompanies = new Array<ApiCompanyExploreEntity>();
+
+      for (let index = 0; index < CompaniesArr.length; index++) {
+        const company = CompaniesArr[index];
+
+        const CompaniesObj = new ApiCompanyExploreEntity();
+        CompaniesObj.Userprofile = new ApiCompanyExploreUserprofileEntity();
+  
+        CompaniesObj.id = company.id;
+        CompaniesObj.email = company.email;
+        CompaniesObj.password = company.password;
+        CompaniesObj.passwordSalt = company.passwordSalt;
+        CompaniesObj.name = company.name;
+        CompaniesObj.dateOfBirth = company.dateOfBirth;
+        CompaniesObj.companyID = company.companyID;
+        CompaniesObj.created = company.created;
+        CompaniesObj.suspended = company.suspended;
+        CompaniesObj.validated = company.validated;
+        
+        CompaniesObj.Userprofile.userId = company.Userprofile.userId;
+        CompaniesObj.Userprofile.profilePicture = company.Userprofile.profilePicture;
+        CompaniesObj.Userprofile.bio = company.Userprofile.bio;
+
+        arrOfCompanies.push(CompaniesObj);
+      }
+      
+      return arrOfCompanies;
     }
 
-    return arrOfCompanies;
+    return null;
   }
 
-  @Query((returns) => Array<ApiCompanyExploreEntity>())
+  @Query((returns) => [ApiCompanyExploreEntity], { nullable: true })
   async GetCompanySearchResult(@Args('company_name', { type: () => String }) company_name: string) {
-    const CompaniesArr = await this.companyService.getSearchResults(company_name);
+    /*const CompaniesArr = await this.companyService.getSearchResults(company_name);
     const arrOfCompanies = new Array<ApiCompanyExploreEntity>();
     let CompaniesObj = new ApiCompanyExploreEntity();
     let UserprofileObj = new ApiCompanyExploreUserprofileEntity();
@@ -124,12 +177,46 @@ export class ApiCompanyExploreResolver {
       arrOfCompanies.push(CompaniesObj);
     }
 
-    return arrOfCompanies;
+    return arrOfCompanies;*/
+
+    const CompaniesArr = await this.companyService.getSearchResults(company_name);
+
+    if (CompaniesArr.length > 0) {
+      const arrOfCompanies = new Array<ApiCompanyExploreEntity>();
+
+      for (let index = 0; index < CompaniesArr.length; index++) {
+        const company = CompaniesArr[index];
+
+        const CompaniesObj = new ApiCompanyExploreEntity();
+        CompaniesObj.Userprofile = new ApiCompanyExploreUserprofileEntity();
+  
+        CompaniesObj.id = company.id;
+        CompaniesObj.email = company.email;
+        CompaniesObj.password = company.password;
+        CompaniesObj.passwordSalt = company.passwordSalt;
+        CompaniesObj.name = company.name;
+        CompaniesObj.dateOfBirth = company.dateOfBirth;
+        CompaniesObj.companyID = company.companyID;
+        CompaniesObj.created = company.created;
+        CompaniesObj.suspended = company.suspended;
+        CompaniesObj.validated = company.validated;
+
+        CompaniesObj.Userprofile.userId = company.Userprofile.userId;
+        CompaniesObj.Userprofile.profilePicture = company.Userprofile.profilePicture;
+        CompaniesObj.Userprofile.bio = company.Userprofile.bio;
+
+        arrOfCompanies.push(CompaniesObj);
+      }
+      
+      return arrOfCompanies;
+    }
+
+    return null;
   }
 
-  @Query((returns) => Array<ApiCompanyExploreTaggedEntity>())
+  @Query((returns) =>  [ApiCompanyExploreEntity], { nullable: true })
   async GetCompanyTagged(@Args('inputTag', { type: () => String }) inputTag: string) {
-    const CompaniesArr = await this.companyService.getTaggedCompany(inputTag);
+    /*const CompaniesArr = await this.companyService.getTaggedCompany(inputTag);
     const arrOfCompanies = new Array<ApiCompanyExploreTaggedEntity>();
     let TaggedObj = new ApiCompanyExploreTaggedEntity();
     let UserObj = new ApiCompanyExploreUserEntity();
@@ -161,7 +248,40 @@ export class ApiCompanyExploreResolver {
       arrOfCompanies.push(TaggedObj);
     }
 
-    return arrOfCompanies;
+    return arrOfCompanies;*/
+
+    const CompaniesArr = await this.companyService.getTaggedCompany(inputTag);
+
+    if (CompaniesArr.length > 0) {
+      const arrOfCompanies = new Array<ApiCompanyExploreTaggedEntity>();
+
+      for (let index = 0; index < CompaniesArr.length; index++) {
+        const tagged = CompaniesArr[index];
+
+        const TaggedObj = new ApiCompanyExploreTaggedEntity();
+        TaggedObj.user = new ApiCompanyExploreUserEntity();
+
+        TaggedObj.userId = tagged.userId;
+        TaggedObj.tag = tagged.tag;
+
+        TaggedObj.user.id = tagged.user.id;
+        TaggedObj.user.email = tagged.user.email;
+        TaggedObj.user.password = tagged.user.password;
+        TaggedObj.user.passwordSalt = tagged.user.passwordSalt;
+        TaggedObj.user.name = tagged.user.name;
+        TaggedObj.user.dateOfBirth = tagged.user.dateOfBirth;
+        TaggedObj.user.companyID = tagged.user.companyID;
+        TaggedObj.user.created = tagged.user.created;
+        TaggedObj.user.suspended = tagged.user.suspended;
+        TaggedObj.user.validated = tagged.user.validated;
+        
+        arrOfCompanies.push(TaggedObj);
+      }
+      
+      return arrOfCompanies;
+    }
+
+    return null;
   }
 
 }

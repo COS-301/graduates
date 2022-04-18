@@ -23,17 +23,25 @@ export class ApiUpIntegrationResolver {
      * @returns Student details aquired from the database
      */
     @Query(()=>StudentDetails)
-    async getStudentDetails(
+    async getStudentDetailsUP(
         @Args('studentNum') studentNum: string
     ):Promise<StudentDetails>{
         const details = new StudentDetails();
+        details.studentNumber = studentNum;
         const id = await this.Service.get_ID(studentNum);
+        details.userID = id;
+        if (id=="User was not found"){
+            details.name = null;
+            details.surname =  null; 
+            details.course = null;
+            details.contactNumber = null;
+            details.email = null;
+            return details;
+        }
         const fullname = await this.Service.get_name(id);
         const names = fullname.split(" ");
         details.name = names[0];
-        details.surname =  names[1];
-        details.studentNumber = studentNum;
-        details.userID = id;
+        details.surname =  names[1]; 
         details.course = await this.Service.get_Degree(id);
         details.contactNumber = await this.Service.get_PhoneNumber(id);
         details.email = await this.Service.get_email(id);
@@ -53,6 +61,11 @@ export class ApiUpIntegrationResolver {
         return details;
     }
 
+    /**
+     * API call to get the Degree
+     * Reimplement or expand for future years, when acces to UP API is aquired
+     * @returns Degree entity that is a stub
+     */
     @Query(()=>Degree)
     async getDegree():Promise<Degree>{
         const details = new Degree();        

@@ -19,7 +19,7 @@ import {
   ShortsReportsService,
 } from '@graduates/api/shorts/service/feature';
 import { NotFoundException } from '@nestjs/common';
-import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
+import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 
 @Resolver(Short)
 export class ShortsResolver {
@@ -30,7 +30,7 @@ export class ShortsResolver {
   ) {}
 
   @ResolveField()
-  user(@Root() short: Short): Promise<User> {
+  user(@Root() short: Short): Promise<AuthenticationUser> {
     return this.service.findUserById(short.userId);
   }
 

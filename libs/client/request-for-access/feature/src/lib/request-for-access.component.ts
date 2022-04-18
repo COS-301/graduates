@@ -39,7 +39,7 @@ export class RequestForAccessComponent implements OnInit {
           this.store.select(state => state.accessState.accessGranted).subscribe((status) => {
             const arr = status.toString().split(',');
             for (const item of arr) {
-              if (item === 'Private') {
+              if (item === 'Private' || item === 'Rejected') {
                 this.buttons.push('Request');
               }
               else {
