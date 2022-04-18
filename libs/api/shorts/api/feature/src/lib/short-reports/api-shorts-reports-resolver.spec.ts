@@ -10,7 +10,7 @@ import {
   ShortsService,
 } from '@graduates/api/shorts/service/feature';
 import { QueryBus, CommandBus } from '@nestjs/cqrs';
-import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
+import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 
 jest.mock('@graduates/api/shorts/api/shared/entities/data-access');
 const reportsMock: jest.Mocked<ShortReport> = new ShortReport() as ShortReport;
@@ -23,7 +23,7 @@ jest.mock('@graduates/api/shorts/api/shared/entities/data-access');
 const shortMock: jest.Mocked<Short> = new Short() as Short;
 
 jest.mock('@graduates/api/authentication/api/shared/interfaces/data-access');
-const userMock: jest.Mocked<User> = new User() as User;
+const userMock: jest.Mocked<AuthenticationUser> = new AuthenticationUser() as AuthenticationUser;
 
 // Run `yarn test api-shorts-api-feature`
 describe('ShortsReportsResolver', () => {
@@ -67,7 +67,7 @@ describe('ShortsReportsResolver', () => {
     it('should return a user', async () => {
       jest
         .spyOn(resolver, 'user')
-        .mockImplementation((): Promise<User> => Promise.resolve(userMock));
+        .mockImplementation((): Promise<AuthenticationUser> => Promise.resolve(userMock));
 
       expect(await resolver.user(reportsMock)).toMatchObject(userMock);
     });
