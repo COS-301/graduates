@@ -12,8 +12,10 @@ export class SearchStudentsHandler implements IQueryHandler<SearchStudentsQuery>
     const students = await this.repository.SearchStudent();
 
     const relStudents = []
+    const relStudentsTags = []
 
     let count = 0;
+    const FoundTag = [];
 
     //The more letters in a name that matches the query the higher the count
 
@@ -29,10 +31,29 @@ export class SearchStudentsHandler implements IQueryHandler<SearchStudentsQuery>
 
       }
 
-      if(count > 0){
+      for(let k = 0; k < students[i].StudentTags.length; k++){
+
+        FoundTag.push(false);
+          
+        if(query.searchQuery == students[i].StudentTags[k]){
+
+          FoundTag[i] = true;
+
+        }
+
+    }
+
+      if(count > 0 && FoundTag[i] == false){
         students[i].StudentRel = count;
 
         relStudents.push(students[i]);
+      }
+      else if(FoundTag[i] == true){
+
+        students[i].StudentRel = 10;
+
+        relStudents.push(students[i]);
+
       }
 
     }

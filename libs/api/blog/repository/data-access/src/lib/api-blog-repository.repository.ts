@@ -1,17 +1,17 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
-import { Blog, BlogComment, BlogMedia } from '@prisma/client';
+import { Blog, BlogComment, BlogMedia, User } from '@prisma/client';
 
 @Injectable()
 export class BlogRepository {
   constructor(private prisma: PrismaService) {}
-  /**
-   * Find all blogs from database
-   * @return {Promise<Blog[]>}
-   */
 
   //Blogs
   
+  /**
+   * Find all blogs currently in the database
+   * @return {Promise<Blog[]>} 
+   */
   async findAll(): Promise<Blog[]> {
     return this.prisma.blog.findMany({
       where: {
@@ -24,31 +24,30 @@ export class BlogRepository {
   }
 
   /**
-   * Find all blogs from database, that are archived
-   * @param {boolean} archived The page number used to offset the query
-   * @return {Promise<Blog[]>}
+   * Find all archived blogs currently in the database
+   * @return {Promise<Blog[]>} 
    */
-     async findAllArchivedBlogs(): Promise<Blog[]> {
-      return this.prisma.blog.findMany({
-        where: {
-          archived: true,
-        },
-      });
-    }
+  async findAllArchivedBlogs(): Promise<Blog[]> {
+    return this.prisma.blog.findMany({
+      where: {
+        archived: true,
+      },
+    });
+  }
 
   /**
    * Find a blog by id
-   * @param {string} id The id of the blog to find
-   * @return {Promise<Blog | null>}
+   * @param {string} blogId The id of the blog to find
+   * @return {Promise<Blog | null>} 
    */
   async findByBlogId(blogId: string): Promise<Blog | null> {
     return this.prisma.blog.findUnique({ where: { id: blogId } });
   }
 
   /**
-   * Find all blogs by user id
-   * @param {string} userId The id of the user to find the blogs for
-   * @return {Promise<Blog[]>}
+   * Find all blogs posted by the user with the given id
+   * @param {string} userId The id of the user
+   * @return {Promise<Blog[]>} 
    */
   async findByUserId(userId: string): Promise<Blog[]> {
     return this.prisma.blog.findMany({
@@ -60,10 +59,21 @@ export class BlogRepository {
   }
 
   /**
+   * Find the name of the user with the given id
+   * @param {string} userId The id of the user
+   * @return {Promise<User | null>} 
+   */
+  async findNameByUserId(userId: string): Promise<User | null> {
+    return this.prisma.user.findUnique({ where: { id: userId } });
+  }
+
+  /**
    * Create a new blog
-   * @param {Blog} blog The blog to create
-   * @param {string} userId The id of the user to create the blog for
-   * @return {Promise<Blog | null>}
+   * @param {string} title The title of the blog to create
+   * @param {string} content The content of the blog to create
+   * @param {boolean} archived Whether the blog is archived or not
+   * @param {string} userId The id of the user who posted the blog
+   * @return {Promise<Blog>} 
    */
   async createBlog(title: string, content: string, archived: boolean, userId: string ): Promise<Blog> {
     return this.prisma.blog.create({
@@ -80,9 +90,10 @@ export class BlogRepository {
   }
 
   /**
-   * Update a Blog
-   * @param {BlogUpdateInput} Blog The Blog to update along with updated data
-   * @return {Promise<Blog | null>}
+   * Update the title of a blog
+   * @param {string} blogId The id of the blog to update
+   * @param {string} title The new title for the blog
+   * @return {Promise<Blog | null>} 
    */
   async updateBlogTitle(blogId: string, title: string): Promise<Blog | null> {
     return this.prisma.blog.update({
@@ -93,6 +104,12 @@ export class BlogRepository {
     });
   }
 
+  /**
+   * Update the content of a blog
+   * @param {string} blogId The id of the blog to update
+   * @param {string} content The new content for the blog
+   * @return {Promise<Blog | null>} 
+   */
   async updateBlogContent(blogId: string, content: string): Promise<Blog | null> {
     return this.prisma.blog.update({
       where: { id: blogId, },
@@ -102,6 +119,12 @@ export class BlogRepository {
     });
   }
 
+  /**
+   * Update the archived status of a blog
+   * @param {string} blogId The id of the blog to update
+   * @param {boolean} archived The new archived status for the blog
+   * @return {Promise<Blog | null>} 
+   */
   async updateBlogArchived(blogId: string, archived: boolean): Promise<Blog | null> {
     return this.prisma.blog.update({
       where: { id: blogId, },
@@ -113,8 +136,8 @@ export class BlogRepository {
 
   /**
    * Delete a blog
-   * @param {string} blogId The id of the blogs to delete
-   * @return {string>}
+   * @param {string} blogId The id of the blog to delete
+   * @return {Promise<string>} 
    */
   async deleteBlog(blogId: string): Promise<string> {
     const deleteBlog = this.prisma.blog.delete({
@@ -144,18 +167,18 @@ export class BlogRepository {
   // Comments
 
   /**
-   * Find all comments from database
-   * @return {Promise<BlogComment[]>}
+   * Find all comments currently in the database
+   * @return {Promise<BlogComment[]>} 
    */
   async findAllComments(): Promise<BlogComment[] | null> {
     return this.prisma.blogComment.findMany();
   }
 
   /**
-  * Find all comments from database by blogid
-  * @param {string} blogId id of blog
-  * @return {Promise<Blog[]>}
-  */
+   * Find all comments posted on a blog with a given blogId
+   * @param {string} blogId The id of the blog to find comments on
+   * @return {Promise<BlogComment[]>} 
+   */
   async findAllCommentsByBlogId(blogId: string): Promise<BlogComment[] | null> {
     return this.prisma.blogComment.findMany({
       where: { blogId: blogId }
@@ -164,11 +187,11 @@ export class BlogRepository {
 
 
   /**
-   * Find comment by id
+   * Find a comment by id
    * @param {string} commentId The id of the comment to find
-   * @return {Promise<BlogComment[]>}
+   * @return {Promise<BlogComment>} 
    */
-   async findCommentByCommentId(commentId: string): Promise<BlogComment[] | null> {
+  async findCommentByCommentId(commentId: string): Promise<BlogComment[] | null> {
     return this.prisma.blogComment.findMany({ 
       where: { id : commentId } 
     });
@@ -176,16 +199,15 @@ export class BlogRepository {
 
   /**
    * Create a comment
-   * @param {BlogCommentCreateInput} comment The comment to create
-   * @param {string} userId Id of user creating blog
-   * @param {string} blogId Id of blog comment is created from 
-   * @return {Promise<BlogComment>}
+   * @param {string} blogId The id of the blog the comment is made on
+   * @param {string} userId The id of the user who posted the comment
+   * @param {string} content The  content of the comment
+   * @return {Promise<BlogComment | null>} 
    */
-  async createComment(id: string, blogId: string, userId: string, content: string): Promise<BlogComment | null> {
+  async createComment(blogId: string, userId: string, content: string): Promise<BlogComment | null> {
     return this.prisma.blogComment.create({
       data: {
         userId: userId,
-        id: id,
         blogId: blogId,
         content: content,
         date: new Date()
@@ -194,10 +216,10 @@ export class BlogRepository {
   }
 
   /**
-   * Update comment by id
-   * @param {string} commentId The id for the comment being updated
-   * @param {string} commentContent The new content
-   * @return {Promise<string>}
+   * Update the content of a comment
+   * @param {string} commentId The id of the comment to update
+   * @param {string} content The new content of the comment
+   * @return {Promise<string>} 
    */
   async updateComment(commentId: string, commentContent: string): Promise<string> {
     const res = await this.prisma.blogComment.update({
@@ -216,9 +238,9 @@ export class BlogRepository {
   }
 
   /**
-   * Delete a tag
-   * @param {string} tag The tag to delete
-   * @return {Promise<string>}
+   * Delete a comment
+   * @param {string} commentId The id of the comment to delete
+   * @return {Promise<string>} 
    */
   async deleteComment(commentId: string): Promise<string> {
     const res = await this.prisma.blogComment.delete({
@@ -235,9 +257,9 @@ export class BlogRepository {
   }
 
   /**
-   * Delete comments of a blog
-   * @param {string} blogId The id of the blog
-   * @return {Promise<string>}
+   * Delete all comments on a blog
+   * @param {string} blogId The id of the blog to have comments deleted
+   * @return {Promise<string>} 
    */
   async deleteCommentsByBlogId(blogId: string): Promise<string> {
     const res = await this.prisma.blogComment.deleteMany({
@@ -255,12 +277,23 @@ export class BlogRepository {
  
 // Media
 
+  /**
+   * Find all media used on a blog with a given blogId
+   * @param {string} blogId The id of the blog
+   * @return {Promise<BlogMedia[]>} 
+   */
   async findMediaByBlogId (blogId: string): Promise<BlogMedia[] | null> {
     return this.prisma.blogMedia.findMany({ 
       where: { blogId : blogId } 
     });
   }
 
+  /**
+   * Create a blog media
+   * @param {string} blogId The id of the blog the media is used on
+   * @param {string} media The url of media
+   * @return {Promise<BlogMedia | null>} 
+   */
   async createMedia(blogId: string, media: string): Promise<BlogMedia | null> {
     return this.prisma.blogMedia.create({
       data: {

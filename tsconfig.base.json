@@ -21,6 +21,9 @@
       "@graduates/api/access-status/api/feature": [
         "libs/api/access-status/api/feature/src/index.ts"
       ],
+      "@graduates/api/access-status/api/shared": [
+        "libs/api/access-status/api/shared/src/index.ts"
+      ],
       "@graduates/api/access-status/repository/feature": [
         "libs/api/access-status/repository/feature/src/index.ts"
       ],
@@ -50,6 +53,12 @@
       ],
       "@graduates/api/authentication/service/feature": [
         "libs/api/authentication/service/feature/src/index.ts"
+      ],
+      "@graduates/api/authentication/api/feature/src/lib/users": [
+        "libs/api/authentication/api/feature/src/lib/users/index.ts"
+      ],
+      "@graduates/api/authentication/api/feature/src": [
+        "libs/api/authentication/api/feature/src/index.ts"
       ],
       "@graduates/api/authorization/api/feature": [
         "libs/api/authorization/api/feature/src/index.ts"
