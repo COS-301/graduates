@@ -48,7 +48,7 @@ describe('ApiCompanyExploreResolver', () => {
 
   /**
    * Test the GetListOfCompanies method
-   */
+   
   describe('GetListOfCompanies', () => {
     const result = [CompanyExploreMock];
     it('should return a list of Companies', async () => {
@@ -64,7 +64,7 @@ describe('ApiCompanyExploreResolver', () => {
       expect(await resolver.GetListOfCompanies).toEqual(null);
     });
   });
-
+*/
   /**
    * Test the GetCompanySearchResult method
    */
