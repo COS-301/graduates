@@ -18,7 +18,7 @@ export class CompanyBioComponent implements OnInit {
     //make API call to access status of resources for particular company
     this.apiService.getBio('1').subscribe({
       next: (_res) => {
-        this.companyBio = _res.data.getCompanyByID.bio;
+        this.companyBio = _res.data.getCompanyBio.bio;
       },
       error: (err) => { console.log(err); }
     });
