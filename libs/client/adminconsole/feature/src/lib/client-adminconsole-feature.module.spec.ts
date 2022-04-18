@@ -1,10 +1,11 @@
 import { async, TestBed } from '@angular/core/testing';
+import { MatMenuModule } from '@angular/material/menu';
 import { ClientAdminconsoleFeatureModule } from './client-adminconsole-feature.module';
 
 describe('ClientAdminconsoleFeatureModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ClientAdminconsoleFeatureModule],
+      imports: [MatMenuModule, ClientAdminconsoleFeatureModule],
     }).compileComponents();
   }));
 
