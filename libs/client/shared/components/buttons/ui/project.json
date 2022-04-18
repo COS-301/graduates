@@ -1,0 +1,26 @@
+{
+  "projectType": "library",
+  "root": "libs/client/shared/components/buttons/ui",
+  "sourceRoot": "libs/client/shared/components/buttons/ui/src",
+  "prefix": "graduates",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/client/shared/components/buttons/ui"],
+      "options": {
+        "jestConfig": "libs/client/shared/components/buttons/ui/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/client/shared/components/buttons/ui/src/**/*.ts",
+          "libs/client/shared/components/buttons/ui/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

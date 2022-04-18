@@ -3,6 +3,9 @@ import { Field, ObjectType } from '@nestjs/graphql';
 @ObjectType()
 export class ApiStudentProfilesEntity {
   @Field()
+  dbId: string;
+
+  @Field()
   studentNum: string;
 
   @Field()
@@ -14,11 +17,11 @@ export class ApiStudentProfilesEntity {
   @Field()
   title: string;
 
-  @Field()
-  email: string;
+  @Field((type) => [String])
+  email: string[];
 
-  @Field()
-  phoneNum: string;
+  @Field((type) => [String])
+  phoneNum: string[];
 
   @Field()
   dateOfBirth: string;
@@ -29,8 +32,8 @@ export class ApiStudentProfilesEntity {
   @Field()
   bio: string;
 
-  @Field()
-  tags: string[];
+  @Field((type) => [String], { nullable: 'itemsAndList' })
+  tags?: string[];
 
   @Field()
   preferredLocation: string;
@@ -38,19 +41,22 @@ export class ApiStudentProfilesEntity {
   @Field()
   employmentStatus: string;
 
-  @Field()
+  @Field((type) => [String])
   notableAchievements: string[];
 
+  @Field((type) => [[String]], { nullable: 'itemsAndList' })
+  links?: string[][];
+
   @Field()
-  links: string[];
+  profilePhoto: string;
 
   //uploaded documents return if they are uploaded or not
-  @Field(type => Boolean)
+  @Field()
   academicRecord: boolean;
 
-  @Field(type => Boolean)
+  @Field()
   cv: boolean;
 
-  @Field(type => Boolean)
+  @Field()
   capstoneProject: boolean;
 }

@@ -13,11 +13,16 @@ import { MatGridListModule } from '@angular/material/grid-list';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { ReportMenuComponent } from './report-menu/report-menu.component';
-import { StorySelectedComponent } from './story-selected/story-selected.component';
+
 import { StoryExploreComponent } from './story-explore/story-explore.component';
 import { StoryUploadComponent } from './story-upload/story-upload.component';
+
+import { ShortsRoutingModule } from './shorts-routing.module';
+import { FormBuilder, FormsModule, ReactiveFormsModule, } from '@angular/forms';
+import {Apollo, gql} from 'apollo-angular';
+
+import { HeaderModule } from '../../../../shared/components/header/src/lib/header.module';
+import { FooterModule } from '../../../../shared/components/footer/src/lib/footer.module';
 
 @NgModule({
 
@@ -34,15 +39,19 @@ import { StoryUploadComponent } from './story-upload/story-upload.component';
     MatCardModule,
     MatFormFieldModule,
     MatGridListModule,
-    RouterModule.forChild([
-      /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
-    ]),
+    ShortsRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    
+    FooterModule,
+    HeaderModule,
   ],
   declarations: [
-    ReportMenuComponent,
-    StorySelectedComponent,
     StoryExploreComponent,
-    StoryUploadComponent
+    StoryUploadComponent,
+  ],
+  providers: [
+    FormBuilder, Apollo,
   ],
   exports: [StoryExploreComponent]
 })

@@ -1,18 +1,23 @@
-import { Test } from '@nestjs/testing';
-import { ApiAdminconsoleServiceFeatureService } from './api-adminconsole-service-feature.service';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
+import { Test, TestingModule } from '@nestjs/testing';
+import { ApiAdminConsoleServiceFeature } from './api-adminconsole-service-feature.service';
 
-describe('ApiAdminconsoleServiceFeatureService', () => {
-  let service: ApiAdminconsoleServiceFeatureService;
+describe('ApiAdminConsoleServiceFeature', () => {
+  let service: ApiAdminConsoleServiceFeature;
 
   beforeEach(async () => {
-    const module = await Test.createTestingModule({
-      providers: [ApiAdminconsoleServiceFeatureService],
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [ApiAdminConsoleServiceFeature, QueryBus, CommandBus],
     }).compile();
 
-    service = module.get(ApiAdminconsoleServiceFeatureService);
+    const commandBus = module.get<CommandBus>(CommandBus);
+    const queryBus = module.get<QueryBus>(QueryBus);
+    service = module.get<ApiAdminConsoleServiceFeature>(
+      ApiAdminConsoleServiceFeature
+    );
   });
 
   it('should be defined', () => {
-    expect(service).toBeTruthy();
+    expect(service).toBeDefined();
   });
 });

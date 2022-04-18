@@ -1,0 +1,14 @@
+<div class="company_details">
+    <!-- <mat-form-field class="company_details"> -->
+        <h2>Company Details</h2>
+        <mat-divider [inset]="true"></mat-divider>
+        <!-- <mat-divider [vertical]="true"></mat-divider> -->
+        <br/>
+        <mat-icon>public</mat-icon><textarea matInput id="website">{{website}}</textarea><br/>
+        <mat-icon> location_on</mat-icon><textarea matInput id="location">{{location}}</textarea><br/>
+        <mat-icon> phone</mat-icon><textarea matInput id="phone">{{phone}}</textarea><br/>
+        <mat-icon> email</mat-icon><textarea matInput id="email">{{email}}</textarea><br/>
+        <br/>
+        <button mat-button type="submit" class="btn" (click)="save()">Save</button>
+    <!-- </mat-form-field> -->
+</div>

@@ -1,32 +1,64 @@
-@import 'libs/client/shared/assets/ui/src/lib/global';
+@import 'libs/client/shared/assets/ui/src/lib/global.scss';
+
+@mixin minHeight {
+  @media (max-height: 500px) {
+    @content;
+  }
+}
 
 #rfa-container {
-  //style rules which apply regardless of screen size
-
   height: 40vh;
-  min-width: fit-content;
-  border: 1px solid green;
-  transition: width 0.1s ease-out;
+  width: 90vw;
+  margin: 10px;
 
   @include desktop {
     width: 25vw;
   }
 
   @include tablet {
-    //style rules which only apply to tablet displays
-    width: 90vw;
     margin: auto;
   }
 
   @include phone {
-    //style rules which only apply to phone displays
-    width: 90vw;
     margin: auto;
   }
 }
 
-.button {
-  float: right;
+button {
+  color: #FFFFFF;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: lighter;
+  background-color: #174372;
+  border-width: medium;
+  border-color: #174372;
+  outline: none;
+  box-shadow: none;
+
+  border-radius: 5px;
+  height: 5vh;
+  width: 112px;
+
+  @include minHeight {
+    height: 30px;
+  }
+}
+button:hover {
+  color: #174372;
+  border-color: #174372;
+  background-color: #FFFFFF;
+  outline: none;
+  box-shadow: none;
+}
+button:disabled {
+  background-color: #577697;
+  border-color: #577697;
+  color: #CFD7DE;
+}
+button:focus {
+  background-color: #174372;
+  outline: none;
+  box-shadow: none;
+  color: #fff;
 }
 
 h3 {
@@ -36,8 +68,20 @@ h3 {
 
 .row {
   height: 7.8vh;
+  @include minHeight {
+    height: 40px;
+  }
 }
 
 .item {
   width: 150px;
+}
+
+.pendingIcon {
+  margin-left: 3px;
+  color: $text-gold;
+}
+
+.downloadIcon {
+  color: $notification-green;
 }

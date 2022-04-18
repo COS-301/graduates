@@ -1,58 +1,90 @@
 import { ApiStorageServiceFeatureModule } from '@graduates/api/storage/service/feature';
 import { Mutation, Query, Int, Resolver , ID, Args } from '@nestjs/graphql';
 import { GraphQLUpload, FileUpload } from 'graphql-upload';
-import { FirebaseService } from '@graduates/api/storage/repository/data-access';
-import { ApiStorage , ApiStorageInput } from '@graduates/api/storage/api/shared/data-access';
+import { ApiStorage , ApiStorageInput} from '@graduates/api/storage/api/shared/data-access';
+import { FileCategory } from '@prisma/client';
 import { createWriteStream } from 'fs';
 import * as fs from 'fs/promises';
+
 @Resolver(() => ApiStorage)
 export class ApiStorageResolver {
+
   constructor(private storageService: ApiStorageServiceFeatureModule,
-              private Firebaseservice: FirebaseService) {}
-  @Query(() => ApiStorage)
-  storage(): Promise<ApiStorage> {
-    return this.storageService.getAll();
-  }
-  @Mutation(returns=>ApiStorage)
-  async setAll(@Args('CreateApiStorage')apiStorage: ApiStorageInput)
-    :Promise<ApiStorageInput>{
-      return await this.storageService.create(apiStorage);
-    }
-    //this partially fills the ApiStorage schema using the arguments userID , fileCategory and fileExtension
-  @Mutation(returns=>ApiStorage) async setPartial
-  (@Args("userId")userID:string,
-   @Args("fileCategory")fileCategory:string,
-   @Args("fileExtension")fileExtension:string,
-   @Args("filePath")filePath:string){
-     return this.storageService.partialAdd(userID, fileCategory, fileExtension, filePath);
+              ) {}
+  @Query(() =>String)
+
+  async download(
+    @Args("userId")userID:string,
+    @Args("fileCategory")fileCategory:string
+  ): Promise<string | boolean> {
+
+    let url :string|boolean = false;
+    await this.storageService.getFile(userID , fileCategory).then(async(value) => {
+      if(value)
+      url = value;
+    });
+    return url;
+
   }
 
-  @Mutation(() => Int, { name: 'File' })
-  async upload(@Args("filename")filename:string,
-    @Args('file', { type: () => GraphQLUpload }) file: FileUpload,
+  @Query(() =>String)
+  async delete(
+    @Args("userId")userID:string,
+    @Args("fileCategory")fileCategory:string
   ): Promise<number> {
-    try {
-      const { createReadStream } = file;
-      const stream = createReadStream();
-      const chunks = [];
-      const buff = await new Promise<Buffer>((resolve, reject) => {
-        let buff: Buffer;
-        stream.on('data', function (chunk) {
-          chunks.push(chunk);
-        });
-        stream.on('end', function () {
-          buff = Buffer.concat(chunks);
-          resolve(buffer);
-        });
-        stream.on('error', reject);
-      });
-      const buffer = Buffer.concat(chunks);
-      const base64 = buffer.toString('base64');
-      this.Firebaseservice.uploadFileAsString(base64,filename)
-      return base64.length
-    } catch (err) {
-      return 0;
-    }
+    
+    let num = 0;
+    await this.storageService.deleteFile(userID , fileCategory).then(async(value) => {
+      num = value;
+    });
+
+    return num;
+  }
+
+  //TODO fix return type
+  @Mutation(returns => String)
+  async upload(
+    @Args("filename")fileName:string,
+    @Args("userId")userID:string,
+    @Args("fileCategory")fileCategory:string,
+    @Args("fileExtension")fileExtension:string,
+    @Args('file') file:string
+  ): Promise<boolean|ApiStorageInput|string> {
+
+      const storage = new ApiStorage();
+      storage.fileAsString = file.substring(file.indexOf(',')+1,file.length);
+
+      let ret = false;
+
+      if(fileCategory==="CV"){
+        storage.fileCategory = FileCategory.CV 
+      }
+
+      else if(fileCategory==="Transcript"){
+        storage.fileCategory = FileCategory.DEGREE
+  
+      }
+
+      else if(fileCategory==="Academic Record"){
+        storage.fileCategory = FileCategory.ACADEMIC_RECORD
+      }
+
+      storage.userId = userID;
+      storage.fileExtension = fileExtension;
+      
+      await this.storageService.create(storage).then( async (value) => {
+        if(value)
+        ret = true;
+      })
+
+      return ret;
 }
+@Query(() =>String)
+  pingStorage(){
+    return "on";
+  }
+
+
 }
+
 

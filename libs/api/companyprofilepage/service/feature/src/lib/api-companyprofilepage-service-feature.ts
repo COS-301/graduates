@@ -1,23 +1,39 @@
-import { ApiCompanyProfilePage } from '@graduates/api/companyprofilepage/api/shared/data-access';
 import { Injectable } from '@nestjs/common';
-
+import { ApiCompanyProfilePage, CompanyReps, UserEmail, UserLocation, UserNumber, UserProfile, UserSocialMedia } from '@graduates/api/companyprofilepage/api/shared/data-access';
+import { QueryBus } from '@nestjs/cqrs';
+import { GetCompanyBioQuery, GetCompanyByIDQuery, GetCompanyEmailQuery, GetCompanyLocationQuery, GetCompanyNumberQuery, GetCompanySocialMediaQuery, GetCompanyRepQuery } from './queries/api-companyprofilepage-service-query';
 
 @Injectable()
 export class ApicompanyprofilepageServiceFeatureModule {
-  async getAll(): Promise<ApiCompanyProfilePage[]>{
-    const companyprofilepage = new ApiCompanyProfilePage();
-    companyprofilepage.id = '1'
-    companyprofilepage.name = 'Google';
-    companyprofilepage.logo = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7_XptDKwX5MbOjDs5YDFBIqOAq9Lt50PBW87ZwvsaJeBizLQ_2g6ilEjU4fpCV95ID30&usqp=CAU";
-    companyprofilepage.address = "1600 Amphitheatre Parkway Mountain View, CA 94043, USA";
-    companyprofilepage.phoneNumber = "(650) 253-0000";
-    companyprofilepage.emailAddress = "jobs@google.com";
-    companyprofilepage.websiteLink = "https://about.google/intl/ALL_us/";
-    companyprofilepage.companyBio = "Google LLC is an American multinational technology company that specializes in Internet-related services and products, which include a search engine, online advertising technologies, cloud computing, software, and hardware. It is considered one of the Big Five American information technology companies, alongside Amazon, Apple, Meta and Microsoft.";
-    companyprofilepage.industryAndServices = "";
-    return[companyprofilepage];
+  constructor(private readonly queryBus: QueryBus) {}
+
+  async getCompanyWithID(id: string): Promise<ApiCompanyProfilePage> {
+    return await this.queryBus.execute(new GetCompanyByIDQuery(id));
+  }
+
+  async getCompanyEmail(id: string): Promise<UserEmail[]>{
+    return await this.queryBus.execute(new GetCompanyEmailQuery(id));
+  }
+
+  async getCompanyLocation(id: string): Promise<UserLocation[]>{
+    return await this.queryBus.execute(new GetCompanyLocationQuery(id));
+  }
+
+  async getCompanySocialMedia(id: string): Promise<UserSocialMedia[]>{
+    return await this.queryBus.execute(new GetCompanySocialMediaQuery(id));
+  }
+
+  async getCompanyNumber(id: string): Promise<UserNumber>{
+    return await this.queryBus.execute(new GetCompanyNumberQuery(id));
+  }
+
+  async getCompanyBio(id: string): Promise<UserProfile>{
+    return await this.queryBus.execute(new GetCompanyBioQuery(id));
+  }
+
+  async getCompanyReps(id: string): Promise<CompanyReps[]>{
+    return await this.queryBus.execute(new GetCompanyRepQuery(id));
+  }
+
 
 }
-
-}
-

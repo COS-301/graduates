@@ -1,87 +1,119 @@
 .navbar {
-    justify-content: space-between;
-    background-color: #f8f9fa;
-  }
+  justify-content: space-between;
+  background-color: #f8f9fa;
+}
   
-  .span {
-    padding-right: 1rem;
-  }
+.span {
+  padding-right: 1rem;
+}
   
-  .matActionRow {
-    float: left;
-    width: 100%;
-    justify-content: flex-start;
+.mat-toolbar.mat-primary {
+  background: #005baa;
+  color: #fff;
+}
+
+.mat-card-content{
+  padding: 10px;
+}
+
+.mat-expansion-indicator {
+  border-color: black;
+}
+
+.mat-card{
+  padding:0;
+}
+
+button {
+  background: #005baa;
+  border-radius: 5px;
+  padding: 0.4%;
+  color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
+}
+
+.matActionRow {
+  float: left;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.matCardTitle {
+  text-align: center;
+  padding-top: 3.5%;
+  font-size: large;
+  color: white;
+}
+
+.matCardHeader {
+  background: #174372 ;
+  padding: 7px;
+  color:white;
+  justify-content: center;
+}
+
+.notification-card {
+  justify-content: center;
+  width: 70%;
+  left: 15%;
+  margin-top: 5%;
+  background: #ECECEC;
+  color: white;
+}
+
+@media (max-width: 428px) {
+  .notification-card {
+    justify-content: center;
+    width: 95%;
+    top: 7%;
+    left: 2%;
   }
-  
+
+  .mat-icon {
+    transform: scale(0.8);
+  }
+
   .matCardTitle {
     text-align: center;
     padding-top: 3.5%;
-    font-size: large;
+    font-size: small;
   }
-  
+
   .matCardHeader {
     justify-content: center;
   }
-  
-  .notification-card {
-    justify-content: center;
-    width: 70%;
-    margin-top: 2%;
+
+  .mat-expansion-panel-header-description {
+    font-size: 11px;
   }
-  
-  @media (max-width: 414px) {
-    .notification-card {
-      justify-content: center;
-      width: 95%;
-      margin-top: 2%;
-    }
-  
-    .mat-icon {
-      transform: scale(0.8);
-    }
-  
-    .matCardTitle {
-      text-align: center;
-      padding-top: 3.5%;
-      font-size: small;
-    }
-  
-    .matCardHeader {
-      justify-content: center;
-    }
-  
-    .mat-expansion-panel-header-description {
-      font-size: 11px;
-    }
-  
-    .mat-expansion-panel-header-title {
-      font-size: 11px;
-    }
-  
-    .matActionRow {
-      font-size: 10px;
-    }
-  
-    .mat-list-item {
-      font-size: smaller;
-    }
-  
-    button {
-      transform: scale(0.8);
-    }
+
+  .mat-expansion-panel-header-title {
+    font-size: 11px;
   }
-  
-  .example-headers-align .mat-expansion-panel-header-title,
-  .example-headers-align .mat-expansion-panel-header-description {
-    flex-basis: 0;
+
+  .matActionRow {
+    font-size: 10px;
   }
-  
-  .example-headers-align .mat-expansion-panel-header-description {
-    justify-content: space-between;
-    align-items: center;
+
+  .mat-list-item {
+    font-size: smaller;
   }
-  
-  a {
-    color: #dc3545;
+
+  button {
+    transform: scale(0.8);
   }
-  
+}
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+a {
+  color: #dc3545;
+}

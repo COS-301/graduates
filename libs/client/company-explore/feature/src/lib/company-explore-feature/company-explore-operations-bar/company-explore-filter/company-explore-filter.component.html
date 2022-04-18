@@ -1,17 +1,17 @@
 
 <div fxLayout="row" >
     
-    <button fxFlexAlign="center" mat-icon-button [matMenuTriggerFor]="menu">
+    <button class="menu-button" fxFlexAlign="center" mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon >menu</mat-icon>  
     </button>
-    <mat-menu #menu="matMenu">
-    <button mat-menu-item>
+    <mat-menu class="menu" #menu="matMenu">
+    <button class="menu" mat-menu-item>
         <span>filter1</span>
     </button>
-    <button mat-menu-item>
+    <button class="menu" mat-menu-item>
         <span>filter2</span>
     </button>
-    <button mat-menu-item>
+    <button class="menu" mat-menu-item>
         <span>filter3</span>
     </button>  
     </mat-menu>

@@ -1,10 +1,17 @@
 import { Module } from '@nestjs/common';
+import { CqrsModule } from '@nestjs/cqrs';
+
+import { ApiUpIntegrationService} from '@graduates/api/upintegration/service/feature'
 import { ApiUpIntegrationResolver } from './api-upintegration.resolver';
-import { ApiUpIntegrationServiceFeatureModule} from '@graduates/api/upintegration/service/feature'
+import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 
 @Module({
-  controllers: [],
-  providers: [ApiUpIntegrationResolver,ApiUpIntegrationServiceFeatureModule],
+  imports: [CqrsModule],
+  providers: [
+    ApiUpIntegrationResolver,
+    ApiUpIntegrationService,
+    PrismaService,
+  ],
   exports: [],
 })
 export class ApiUpintegrationApiFeatureModule {}

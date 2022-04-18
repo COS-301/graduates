@@ -1,7 +1,56 @@
 import { Field, ID, ObjectType} from "@nestjs/graphql";
 
 @ObjectType()
-export class ApiCompanyProfilePage{
+export class UserSocialMedia {
+    @Field(type => ID)
+    userId!: string;
+
+    @Field()
+    type: string;
+
+    @Field()
+    link: string;
+
+}
+
+@ObjectType()
+export class UserEmail{
+    @Field(type => ID)
+    userId!: string;
+
+    @Field()
+    email: string;
+}
+
+@ObjectType()
+export class UserNumber{
+    @Field(type => ID)
+    userId!: string;
+
+    @Field()
+    number: string;
+}
+
+@ObjectType()
+export class UserLocation{
+    @Field(type => ID)
+    userId!: string;
+
+    @Field()
+    location: string;
+}
+
+@ObjectType()
+export class UserProfile{
+    @Field(type => ID)
+    userId!: string;
+    
+    @Field()
+    bio: string
+}
+
+@ObjectType()
+export class CompanyReps{
     @Field(type => ID)
     id!: string;
 
@@ -9,26 +58,36 @@ export class ApiCompanyProfilePage{
     name: string;
 
     @Field()
-    logo: string;
+    companyId: string
+}
+
+
+
+@ObjectType()
+export class ApiCompanyProfilePage{
+    @Field(type => ID)
+    id!: string;
 
     @Field()
-    address: string;
+    name?: string | null;
 
     @Field()
-    phoneNumber: string;
+    company_office_location: UserLocation;
 
     @Field()
-    emailAddress: string;
+    company_filter: string | null;
 
     @Field()
-    websiteLink: string;
+    company_contact_details: UserNumber;
 
     @Field()
-    companyBio: string;
+    company_email: UserEmail;
 
     @Field()
-    industryAndServices: string;
+    company_bio: UserProfile;
 
+    @Field()
+    company_social_media: UserSocialMedia;
 
 
 }

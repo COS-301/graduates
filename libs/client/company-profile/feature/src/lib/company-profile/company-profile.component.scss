@@ -1,0 +1,46 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+// body {
+//     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+// }
+h1 {
+    color: #174372;
+}
+h2 {
+    color: #174372;
+}
+
+mat-divider {
+    border-top-color: #174372;
+    // border-top-color: $primary-1;
+    // margin: 0;
+}
+
+.icon {
+    float: right;
+    font-size: xx-large;
+}
+
+mat-icon {
+    color: #174372;
+    font-size: large;
+}
+
+.outer {
+    padding: 0;
+}
+.outer-edit {
+    padding: 0;
+}
+
+#outer {
+    display: block;
+}
+
+#outer-edit {
+    display: none;
+}
+
+mat-card img {
+    margin-left: 0;
+    margin-top: 0;
+}

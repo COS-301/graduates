@@ -5,10 +5,15 @@ import { ApiStudentProfileResolver } from './api-student-profiles.resolver';
 describe('ApiStudentProfileResolver', () => {
   let resolver: ApiStudentProfileResolver;
 
+  const MockStudentService = {};
+
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ApiStudentProfileResolver,ApiStudentProfileService],
-    }).compile();
+      providers: [ApiStudentProfileResolver, ApiStudentProfileService],
+    })
+      .overrideProvider(ApiStudentProfileService)
+      .useValue(MockStudentService)
+      .compile();
 
     resolver = module.get<ApiStudentProfileResolver>(ApiStudentProfileResolver);
   });

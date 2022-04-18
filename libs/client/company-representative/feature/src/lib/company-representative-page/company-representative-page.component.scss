@@ -1,0 +1,255 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+
+.profile-image > img {
+  min-width: 12%;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: cover;
+  object-position: center;
+  clip-path: circle();
+}
+
+.profile-image {
+  padding-top: 1%;
+  padding-bottom: 1%;
+  position: relative;
+}
+
+.profile-image > button {
+  position: absolute;
+  background-color: #174372;
+  top: 70%;
+  left: 53%;
+}
+
+.mat-icon {
+  background-color: #174372;
+}
+
+.nav {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: white;
+  font-family: 'Segoe UI',sans-serif;
+  font-weight: 505;
+  font-style: normal;
+  background-color: #174372;
+  width: 100% ;
+  height: 100%;
+  overflow: hidden !important;
+  text-align: right;
+}
+
+.title {
+  background-color: rgb(233, 233, 233);
+}
+
+.block {
+  display: flex;
+}
+
+.image {
+  flex: 0 1 20%;
+  min-width: 25%;
+  clip-path: circle();
+  background-position: 50% 50%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.boxes {
+  display: flex;
+  flex: 1;
+}
+
+.box1 {
+  flex: 1;
+  text-align: center;
+}
+
+.box2 {
+  flex: 1;
+}
+
+.description {
+  flex: 1;
+  text-align: center;
+}
+
+.experience {
+  text-align: center;
+  margin-top: 0.25%;
+  margin-bottom: 0.25%;
+  border-width: 0.5px;
+  border-color: silver;
+  background-color: white;
+}
+
+.about {
+  text-align: center;
+  margin-top: 0.25%;
+  margin-bottom: 0.25%;
+  border-width: 0.5px;
+  border-color: silver;
+  background-color: white;
+}
+
+.contact {
+  margin-top: 0.25%;
+  margin-bottom: 0.25%;
+  border-width: 0.5px;
+  border-color: silver;
+  overflow: hidden;
+}
+
+.contacttitle {
+  text-align: center;
+}
+
+.left {
+  float: left;
+  text-align: left;
+  width: 33%;
+}
+
+.right {
+  float: left;
+  text-align:right;
+  width: 66%;
+}
+
+.explore {
+  text-align: center;
+  margin-top: 0.25%;
+  margin-bottom: 0.25%;
+  border-width: 0.5px;
+  border-color: silver;
+}
+// header scss start
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+.uplogo{
+  display: block ;
+  float: left;
+  width: inherit !important;
+  overflow: hidden !important;
+  padding-left: 45px;
+  padding-top: 5px;
+  width: 25% !important;
+}
+.logoandhat{
+  display: none;
+}
+.hat{
+  display: block;
+  float: right;
+  padding-right: 45px;
+  padding-top: 3px;
+  width: 22%;
+}
+.head{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: white;
+  font-family: 'Segoe UI',sans-serif;
+  font-weight: 505;
+  font-style: normal;
+  background-color: #174372;
+  width: 100% ;
+  height: 100%;
+  overflow: hidden !important;
+}
+h1{
+  padding-left: 2px;
+}
+header{
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  position: static;
+}
+@media (max-width:428px) {
+  .uplogo{
+      display: none !important;
+  }
+  .logoandhat{
+      display: block !important;
+      width: inherit !important;
+  }
+  .hat{
+      display: none !important;
+  }
+  .head{
+      margin-right: 0 !important;
+      margin: 0px !important;
+      padding-top: 3px !important;
+      background-color: #174372 !important;   
+      right: 0 !important;
+      left: 0 !important;
+      top: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      overflow: hidden !important;
+      padding-bottom: 0% !important;
+  }
+  .heading{
+      padding: 0% !important;
+      padding-left: 0% !important;
+      padding-bottom: 0% !important;
+      display: none !important;
+  }
+      header{
+          width: 100% !important;
+          position: static !important;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+      }
+}
+// header scss end
+// footer scss start
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+footer{
+  text-align: center;
+  background-color: #f8f9fa;
+  bottom: 0;
+  width: 100% !important;
+  overflow: hidden !important;
+  width: 100% !important;
+  position: static;
+  left: 0 !important;
+}
+.icon{
+  float: inline-start;
+  position: relative;
+  transform: scale(0.6);
+}
+@media (max-width: 428px) {
+  .icon{
+      transform: scale(0.3) !important;
+  }
+  .hat{
+      width: 24px !important;
+      height: auto;
+  }
+  p{
+      font-size: 10px !important;
+  }
+  footer{
+      margin-left: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: 100% ;
+      position:static;
+  }
+}
+// footer scss end
