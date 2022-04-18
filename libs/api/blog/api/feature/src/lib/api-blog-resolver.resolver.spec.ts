@@ -130,7 +130,7 @@ describe('BlogResolver', () => {
     it('should return a string', async () => {
       jest
         .spyOn(resolver, 'updateBlogTitle')
-        .mockImplementation((): Promise<string> => Promise.resolve(stringMock));
+        .mockImplementation((): Promise<Blog> => Promise.resolve(blogMock));
 
       expect(await resolver.updateBlogTitle('43H','Title')).toMatchObject(
         stringMock
