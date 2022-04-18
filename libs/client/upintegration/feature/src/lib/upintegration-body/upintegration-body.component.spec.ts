@@ -8,9 +8,8 @@ describe('UpintegrationBodyComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UpintegrationBodyComponent ]
-    })
-    .compileComponents();
+      declarations: [UpintegrationBodyComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('UpintegrationBodyComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should compile', () => {
     expect(component).toBeTruthy();
   });
 });

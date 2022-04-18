@@ -21,7 +21,10 @@ CMD ["yarn", "start:client"]
 
 From nginx
 
-COPY --from=builder /app /usr/share/nginx/html
+RUN rm -rf /usr/share/nginx/html/
+
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /app /usr/share/nginx/html/
 # Set environment variable PORT which is the PORT the container will run on
 ENV PORT=80
 
@@ -29,4 +32,3 @@ ENV PORT=80
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]
-

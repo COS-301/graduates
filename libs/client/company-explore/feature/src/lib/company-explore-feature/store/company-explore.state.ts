@@ -1,22 +1,23 @@
 import {State, Action, StateContext, Selector} from '@ngxs/store';
 import {Company} from './company-model';
-import {GetCompanyList,SetSelectedCompany,SetSearch} from './company-explore.actions';
+import {GetCompanyList,SearchCompanyList,FilterCompanyList} from './company-explore.actions';
 import {CompanyExploreService} from './company-explore.service';
 import {tap} from 'rxjs/operators';
 import { Injectable } from '@angular/core';
+import { Item } from '@prisma/client';
 
 export class CompanyExploreStateModel {
     companies!: Company[];
-    selectedCompany!: Company;
     search!:string;
+    filter!:string;
 }
 
 @State<CompanyExploreStateModel>({
     name: 'companies',
     defaults: {
         companies: [],
-        selectedCompany:{name:"",img:""},    
         search:"",
+        filter:""
     }
 })
 @Injectable()
@@ -26,41 +27,41 @@ export class CompanyExploreState {
     }
     @Selector()
     static getCompanyList(state: CompanyExploreStateModel) {
-        return state.companies.filter(
-            p => p.name.toUpperCase().includes(state.search.toUpperCase() )   
-        );
-    }
-    
-    @Selector()
-    static getSelectedCompany(state: CompanyExploreStateModel) {
-        return state.selectedCompany;
+        return state.companies
     }
 
     @Action(GetCompanyList)
-    getCompanyList({getState, setState}: StateContext<CompanyExploreStateModel>) {
+    getListOfCompany({getState, setState}: StateContext<CompanyExploreStateModel>,state:CompanyExploreStateModel) {
         return this.companyExploreService.fetchCompanies().pipe(tap((result) => {
+            console.log()
             const state = getState();
             setState({
                 ...state,
-                companies: result,
+            companies:result.data.GetListOfCompanies
             });
-        }));
+        }));   
     }
-
-    @Action(SetSelectedCompany)
-    setSelectedCompanyId({getState, setState}: StateContext<CompanyExploreStateModel>, {payload}: SetSelectedCompany) {
-        const state = getState();
-        setState({
-            ...state,
-            selectedCompany: payload
-        });
+    @Action(SearchCompanyList)
+    searchCompanyList({getState, setState}: StateContext<CompanyExploreStateModel>, {payload}: SearchCompanyList) {
+        return this.companyExploreService.searchCompanies(payload).pipe(tap((result) => {
+            console.log()
+            const state = getState();
+            setState({
+                ...state,
+            companies:result.data.GetCompanySearchResult
+            });
+        }));   
     }
-    @Action(SetSearch)
-    setSearch({getState, setState}: StateContext<CompanyExploreStateModel>, {payload}: SetSearch) {
-        const state=getState();
-        setState({
-            ...state,
-            search:payload
-        });
-    };
+    @Action(FilterCompanyList)
+    filterCompanyList({getState, setState}: StateContext<CompanyExploreStateModel>, {payload}: SearchCompanyList) {
+        return this.companyExploreService.filterCompanies(payload).pipe(tap((result) => {
+            console.log()
+            const state = getState();
+            setState({
+                ...state,
+            companies:result.data.GetCompanyTagged
+            });
+        }));   
+    }
+     
 }

@@ -46,7 +46,15 @@ self.addEventListener('fetch', async (event) => {
 });
 
 importScripts('./ngsw-worker.js');
-
+/** 
+ *  @brief Function to implement the StaleWhileRevalidate caching strategy
+ *  @details This implementation handles caching of POST requests by implementing the StaleWhileRevalidate strategy
+ *  @pre   the event must be a post request 
+ *  @param {Object} event - the api call to be handled 
+ *  @var   {Object} cacheDBfield - The cached response for the request
+ *  @var   {Object} getPromise - the promise for the async function
+ *  @result {Object} the promise for the async function
+ */
 const staleWhileRevalidate = async (event) => {
 
   let cacheDBfield= await getCachedIndexedDB(event.request.clone());
@@ -66,7 +74,13 @@ const staleWhileRevalidate = async (event) => {
     return getPromise;
   }
 }
-
+/** 
+   * @brief An asynchronous function that takes in a response from IndexedDB and serilaizes the headers received
+   * @param {Object} response - JSON Object containing field data
+   * @var {Array} seriHeaders - An array of headers
+   * @var {Object} serialized - JSON Object of serialized headers
+   * @returns {Object} JSON Object of serialized headers
+  */
 const serResp = async (response) => {
 
   let seriHeaders = {};
@@ -82,7 +96,14 @@ const serResp = async (response) => {
   serialized.body = await response.json();
   return serialized;
 }
-
+/**
+ * @brief Function stores and hashes the responses of the POST requests
+ * @param {Object} request 
+ * @param {Object} response 
+ * @var {Object} body
+ * @var {Object} entry
+ * @return Void 
+ */
 const insertIndexedDB = async (request, response) => {
   let body = await request.json();
   let id = CryptoJS.SHA256(body.query).toString();
@@ -94,7 +115,16 @@ const insertIndexedDB = async (request, response) => {
   };
   idbKeyval.set(id, entry, store);
 }
-
+/** 
+ * @brief retrieves the responses of the POST requests from IndexDB and checks if the cache is expired.
+ * @param {Object} request 
+ * @var {Object} cacheddata
+ * @var {String} id
+ * @var {Object} body
+ * @var {Object} cacheControl
+ * @var {Number} cacheTime 
+ * @returns POST requests stored in IndexDB or null if the cache is expired or if it fails to fetch from IndexDB
+ */ 
 const getCachedIndexedDB = async (request) => { 
   let cacheddata;
   try {
