@@ -44,16 +44,16 @@ export class FileUploadComponent implements OnInit {
     ngOnInit(): void {
       this.route.paramMap.subscribe((params: any) => {
 
-        this.userID = params.get('userID');
-        this.fileCategory = params.get('fileCategory');
+      this.userID = params.get('userID');
+      this.fileCategory = params.get('fileCategory');
 
-        if (params.get('fileCategory') === "Academic Record") {
-          this.cat = "Academic Record";
-        }else if (params.get('fileCategory') === "Transcript") {
-          this.cat = "Transcript";
-        }else{
-          this.cat = "CV";
-        }
+      if (params.get('fileCategory') === "Academic Record") {
+        this.cat = "Academic Record";
+      }else if (params.get('fileCategory') === "Transcript") {
+        this.cat = "Transcript";
+      }else{
+        this.cat = "CV";
+      }
   
         console.log("U: " + this.userID + " Cat: " + this.fileCategory);      
       })
@@ -127,6 +127,17 @@ export class FileUploadComponent implements OnInit {
     
         // Loading design activation
       this.loading = !this.loading;
+
+      if (this.invalid == true) {
+        // do nothign
+      }else{
+        this.success = "true";
+      }
+      
+
+      this.loading = false; // Flag variable 
+          this.safeToUpload = false;
+          this.invalid_2 = true;
     
       console.log(this.file);
       this.apollo.mutate<any>({
@@ -149,9 +160,9 @@ export class FileUploadComponent implements OnInit {
 
           console.log(data)}
 
-          this.loading = false; // Flag variable 
-          this.safeToUpload = false;
-          this.invalid_2 = true;
+          // this.loading = false; // Flag variable 
+          // this.safeToUpload = false;
+          // this.invalid_2 = true;
 
         });
         const res = {res:"Could not Upload"}

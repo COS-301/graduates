@@ -46,7 +46,15 @@ self.addEventListener('fetch', async (event) => {
 });
 
 importScripts('./ngsw-worker.js');
-
+/** 
+ *  @brief Function to implement the StaleWhileRevalidate caching strategy
+ *  @details This implementation handles caching of POST requests by implementing the StaleWhileRevalidate strategy
+ *  @pre   the event must be a post request 
+ *  @param {Object} event - the api call to be handled 
+ *  @var   {Object} cacheDBfield - The cached response for the request
+ *  @var   {Object} getPromise - the promise for the async function
+ *  @result {Object} the promise for the async function
+ */
 const staleWhileRevalidate = async (event) => {
 
   let cacheDBfield= await getCachedIndexedDB(event.request.clone());

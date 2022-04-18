@@ -60,8 +60,9 @@ export class MainStoragePageComponent implements OnInit {
           window.location.href = data.download;
         console.log(data.download)}
         else{
-          alert("No Files To Download");
+          alert("No " + this.fileCategory + " uploaded.");
           //window.location.href ="storage/"+this.userID;
+          // console.log("No " + this.fileCategory + " uploaded.")}
         }
 
 
@@ -109,6 +110,9 @@ export class MainStoragePageComponent implements OnInit {
 
 
       });
+
+      alert(this.fileCategory + " deleted successfully.")
+      // "No " + this.fileCategory + " uploaded."
       window.location.href ="storage/"+this.userID;
     }
 
