@@ -25,6 +25,12 @@ header-and-footer-footer {
     width: 100%;
 }
 
+#pageNavi {
+    position: absolute;
+    bottom: 15vh;
+    width: 100%;
+}
+
 #cardHeader{
     padding-top: 2px;
 }
@@ -52,6 +58,8 @@ header-and-footer-footer {
     }   
     
 }
+
+
 
 .cardbutton-nohov {
     font-size: medium;
@@ -202,10 +210,32 @@ header-and-footer-footer {
     border-width: 1px;
     border-color: $card-red;
     &:hover{
-        color: $primary-1;
+        color: $card-red;
         background-color: $background-white;
 
     }   
+}
+
+.formbuttonDisabled {
+    border-style: solid;
+    border-width: 1px;
+    border-color: $card-red;
+
+    color: $card-red;
+    background-color: $background-white;
+
+ 
+}
+
+.formbuttonBlueDisabled {
+    border-style: solid;
+    border-width: 1px;
+    border-color: $primary-1;
+
+    color: $primary-1;
+    background-color: $background-white;
+
+ 
 }
 
 .auto-col-maker {
@@ -229,6 +259,8 @@ header-and-footer-footer {
 .grid-container {
     width: 100%;
     min-height: 100vh;
+    padding-bottom: 20vh;
+
 }
 
 .wholepagecontent {
@@ -237,3 +269,4 @@ header-and-footer-footer {
     overflow: hidden !important;
     width: 100vw;
 }
+
