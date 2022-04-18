@@ -62,7 +62,7 @@ describe('BlogService', () => {
     it('Should return a updated Blog Title',async () => {
       jest
       .spyOn(service, 'updateBlogTitle')
-      .mockImplementation((): Promise<string> => Promise.resolve(stringMock));
+      .mockImplementation((): Promise<Blog> => Promise.resolve(blogMock));
 
       expect(await service.updateBlogTitle('1','New Title')).toMatchObject(
         blogMock
