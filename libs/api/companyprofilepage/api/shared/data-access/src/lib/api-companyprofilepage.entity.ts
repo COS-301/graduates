@@ -1,4 +1,4 @@
-import { Field, ID, ObjectType} from "@nestjs/graphql";
+import { Field, ID, InputType, ObjectType} from "@nestjs/graphql";
 
 @ObjectType()
 export class UserSocialMedia {
@@ -89,5 +89,15 @@ export class ApiCompanyProfilePage{
     @Field()
     company_social_media: UserSocialMedia;
 
+
+}
+
+@InputType()
+export class UpdateBioInput{
+    @Field(type => ID)
+    id!: string
+
+    @Field()
+    bio: string
 
 }
