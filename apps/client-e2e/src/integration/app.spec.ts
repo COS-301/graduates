@@ -1,6 +1,7 @@
 // e2e testing to go here please seee below for example
 
 //To run the cypress test suite use the command: "yarn nx run-many --target=e2e --all"
+import { before } from 'cypress/types/lodash';
 import { getGreeting } from '../support/app.po';
 
 //Example Test
@@ -29,8 +30,11 @@ describe('client notifications testing', () => {
 
 /* Request for access */
 describe('Visit student-profile', () => {
+  before(() => {
+    cy.log("Load Student Page URL");
+    cy.visit('http://localhost:4200/student-profile');
+  })
   
-  cy.visit('http://localhost:4200/student-profile')
 
   it('has the request for access buttons initialized', ()=> {
 4
