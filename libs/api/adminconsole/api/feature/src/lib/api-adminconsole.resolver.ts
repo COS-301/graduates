@@ -13,7 +13,6 @@ import { User } from '@graduates/api/adminconsole/api/shared/data-access'
 export class ApiAdminConsoleResolver{
     constructor(private adminConsoleService: ApiAdminConsoleServiceFeature){}
 
-
     @Mutation(() => User)
     async createUser(
       @Args('user') user: Prisma.UserCreateInput,
@@ -134,6 +133,11 @@ export class ApiAdminConsoleResolver{
   @Query(() => Blog)
   async unArchiveBlog(@Args('blogId') blogId: string): Promise<void> {
     return this.adminConsoleService.unArchiveBlog(blogId);
+  }
+
+  @Query(()=>String)
+  pingAdminConsole(){
+    return "on";
   }
 
 }

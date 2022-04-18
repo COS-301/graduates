@@ -5,17 +5,28 @@
         <mat-icon >menu</mat-icon>  
     </button>
     <mat-menu class="menu" #menu="matMenu">
-    <button class="menu" mat-menu-item>
-        <span>filter1</span>
+    <button class="menu" mat-menu-item (click)="onClick('Web Development company')" >
+        <span>Web Development company</span>
     </button>
-    <button class="menu" mat-menu-item>
-        <span>filter2</span>
+    <button class="menu" (click)="onClick('Networking Company')" mat-menu-item>
+        <span>Networking Company</span>
     </button>
-    <button class="menu" mat-menu-item>
-        <span>filter3</span>
-    </button>  
+    <button class="menu" (click)="onClick('IT Security company')" mat-menu-item>
+        <span>IT Security company</span>
+    </button> 
+    <button class="menu"(click)="onClick('Cloud Services')" mat-menu-item>
+        <span>Cloud Services</span>
+    </button> 
+    <button class="menu" (click)="onClick('Other')" mat-menu-item>
+        <span>Other</span>
+    </button> 
+  
     </mat-menu>
 <div fxLayout="column">
     <p fxFlexOffset="15px" fxFlexAlign="center"  fxShow="true" fxHide.lt-sm="true" fxHide.sm="true"> FILTER</p> 
 </div>
 </div>
+
+
+
+
