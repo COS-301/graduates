@@ -1,9 +1,53 @@
-$blue-colour: #174372
+@import 'libs/client/shared/assets/ui/src/lib/global.scss'
 
 .info 
-    color: $blue-colour
+    color: $text-blue
 
-.mat-list
-    width: 50%    
-    margin-left: 2%
+h2
+    color: $text-blue
+    margin-bottom: 1px
+    margin-top: 2%
+    margin-left: 4%
 
+.heading
+    border-top-color: $card-blue
+    margin-left: 3%
+
+.mat-divider
+    width: auto
+
+@media (max-width: 428px) 
+    .mat-list
+        width: 75%    
+        margin-left: 5%
+        margin-top: 2%
+
+    .mat-divider
+        width: auto
+
+    .mat-list-item 
+        font-size: x-small
+  
+@media (max-width: $tablet-width) 
+    .mat-list
+        width: 85%    
+        margin-left: 5%
+        margin-top: 2%
+
+    .mat-divider
+        width: auto
+
+    .mat-list-item 
+        font-size: medium 
+
+@media (max-width: $desktop-width) 
+    .mat-list
+        width: 95%    
+        margin-left: 5%
+        margin-top: 2%
+
+    .mat-divider
+        width: auto
+
+    .mat-list-item 
+        font-size: large 
