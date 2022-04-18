@@ -36,8 +36,8 @@ export class Short {
   /**
    * The url of the thumbnail of the short
    */
-   @Field({ nullable: true })
-   thumbnail!: string;
+  @Field({ nullable: true })
+  thumbnail!: string;
 
   /**
    * The date the short was created
@@ -91,7 +91,7 @@ export class ShortCreateInput {
    * The url of the thumbnail of the short
    */
   @Field({ nullable: true })
-  thumbnail!: string; 
+  thumbnail!: string;
 
   /**
    * Whether the short is archived or not
