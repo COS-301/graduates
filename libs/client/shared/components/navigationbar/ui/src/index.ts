@@ -1,2 +1,3 @@
-/*export * from './lib/ui-component-navbar.module';*/
-export * from './lib/navigation-bar/navigation-bar.component';
+export * from './lib/ui-component-navbar.module';
+
+/*export * from './lib/tabs/tabs.component';*/
