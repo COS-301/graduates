@@ -70,8 +70,8 @@ export class CreateCommentHandler implements ICommandHandler<CreateCommentComman
   constructor(private readonly repository: BlogRepository) {}
 
   async execute(command: CreateCommentCommand) {
-    const { id, blogId, userId, content } = command; 
-    return this.repository.createComment(id, blogId, userId, content);
+    const { blogId, userId, content } = command; 
+    return this.repository.createComment(blogId, userId, content);
   }
 }
 
