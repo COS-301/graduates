@@ -6,9 +6,6 @@ export class CompanyRepresentative {
   id!: string;
 
   @Field()
-  profilePic!: string | null;
-
-  @Field()
   repName!: string;
 
   @Field()

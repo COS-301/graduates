@@ -3,6 +3,9 @@ import { Field, ObjectType } from '@nestjs/graphql';
 @ObjectType()
 export class ApiStudentProfilesEntity {
   @Field()
+  dbId: string;
+
+  @Field()
   studentNum: string;
 
   @Field()
@@ -14,11 +17,11 @@ export class ApiStudentProfilesEntity {
   @Field()
   title: string;
 
-  @Field()
-  email: string;
+  @Field((type) => [String])
+  email: string[];
 
-  @Field()
-  phoneNum: string;
+  @Field((type) => [String])
+  phoneNum: string[];
 
   @Field()
   dateOfBirth: string;
@@ -29,8 +32,8 @@ export class ApiStudentProfilesEntity {
   @Field()
   bio: string;
 
-  @Field((type) => [String])
-  tags: string[];
+  @Field((type) => [String], { nullable: 'itemsAndList' })
+  tags?: string[];
 
   @Field()
   preferredLocation: string;
@@ -41,8 +44,8 @@ export class ApiStudentProfilesEntity {
   @Field((type) => [String])
   notableAchievements: string[];
 
-  @Field((type) => [[String]])
-  links: string[][];
+  @Field((type) => [[String]], { nullable: 'itemsAndList' })
+  links?: string[][];
 
   @Field()
   profilePhoto: string;

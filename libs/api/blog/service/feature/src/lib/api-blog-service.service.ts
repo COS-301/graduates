@@ -19,12 +19,14 @@ import {
   GetAllCommentsQuery, 
   GetCommentsByBlogIdQuery, 
   GetCommentByCommentIdQuery, 
-  GetMediaByBlogIdQuery } from './queries/api-blog-query.query';
+  GetMediaByBlogIdQuery,
+  GetNameByUserIdQuery } from './queries/api-blog-query.query';
+import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 
 @Injectable()
 export class BlogService {
   /**
-   * Constructor - injects QueryBus and CommandBus
+   * Constructor - injects the CommandBus and the QueryBus
    * @param {QueryBus} queryBus The query bus
    * @param {CommandBus} commandBus The command bus
    */
@@ -34,110 +36,220 @@ export class BlogService {
   ) {}
 
   // Commands
-  async createBlog(title, content, archived, userId): Promise<Blog> {
+
+  /**
+   * Create a new blog
+   * @param {string} title The title of the blog to create
+   * @param {string} content The content of the blog to create
+   * @param {boolean} archived Whether the blog is archived or not
+   * @param {string} userId The id of the user who posted the blog
+   * @return {Promise<Blog>} 
+   */
+  async createBlog(title: string, content: string, archived: boolean, userId: string): Promise<Blog> {
     return await this.commandBus.execute(
       new CreateBlogCommand(title, content, archived, userId)
     );
   }
 
-  async updateBlogTitle(blogId, title): Promise<string> {
+  /**
+   * Update the title of a blog
+   * @param {string} blogId The id of the blog to update
+   * @param {string} title The new title for the blog
+   * @return {Promise<Blog | null>} 
+   */
+  async updateBlogTitle(blogId: string, title: string): Promise<Blog | null> {
     return await this.commandBus.execute(
       new UpdateBlogTitleCommand(blogId, title)
     );
   }
 
-  async updateBlogContent(blogId, content): Promise<Blog | null> {
+  /**
+   * Update the content of a blog
+   * @param {string} blogId The id of the blog to update
+   * @param {string} content The new content for the blog
+   * @return {Promise<Blog | null>} 
+   */
+  async updateBlogContent(blogId: string, content: string): Promise<Blog | null> {
     return await this.commandBus.execute(
       new UpdateBlogContentCommand(blogId, content)
     );
   }
 
-  async updateBlogArchived(blogId, archived): Promise<Blog | null> {
+  /**
+   * Update the archived status of a blog
+   * @param {string} blogId The id of the blog to update
+   * @param {boolean} archived The new archived status for the blog
+   * @return {Promise<Blog | null>} 
+   */
+  async updateBlogArchived(blogId: string, archived: boolean): Promise<Blog | null> {
     return await this.commandBus.execute(
       new UpdateBlogArchivedCommand(blogId, archived)
     );
   }
 
-  async deleteBlog(blogId): Promise<string> {
+  /**
+   * Delete a blog
+   * @param {string} blogId The id of the blog to delete
+   * @return {Promise<string>} 
+   */
+  async deleteBlog(blogId: string): Promise<string> {
     return await this.commandBus.execute(
       new DeleteBlogCommand(blogId)
     );
   }
 
-  async createComment(id, blogId, userId, content): Promise<BlogComment | null> {
+  /**
+   * Create a comment
+   * @param {string} blogId The id of the blog the comment is made on
+   * @param {string} userId The id of the user who posted the comment
+   * @param {string} content The  content of the comment
+   * @return {Promise<BlogComment | null>} 
+   */
+  async createComment(blogId: string, userId: string, content: string): Promise<BlogComment | null> {
     return await this.commandBus.execute(
-      new CreateCommentCommand(id, blogId, userId, content)
+      new CreateCommentCommand(blogId, userId, content)
     );
   }
 
-  async updateComment(commentId, commentContent): Promise<string> {
+  /**
+   * Update the content of a comment
+   * @param {string} commentId The id of the comment to update
+   * @param {string} content The new content of the comment
+   * @return {Promise<string>} 
+   */
+  async updateComment(commentId: string, commentContent): Promise<string> {
     return await this.commandBus.execute(
       new UpdateCommentCommand(commentId, commentContent)
     );
   }
 
-  async deleteComment(commentId): Promise<string> {
+  /**
+   * Delete a comment
+   * @param {string} commentId The id of the comment to delete
+   * @return {Promise<string>} 
+   */
+  async deleteComment(commentId: string): Promise<string> {
     return await this.commandBus.execute(
       new DeleteCommentCommand(commentId)
     );
   }
 
-  async deleteCommentsByBlogId(blogId): Promise<string> {
+  /**
+   * Delete all comments on a blog
+   * @param {string} blogId The id of the blog to have comments deleted
+   * @return {Promise<string>} 
+   */
+  async deleteCommentsByBlogId(blogId: string): Promise<string> {
     return await this.commandBus.execute(
       new DeleteCommentsByBlogIdCommand(blogId)
     );
   }
 
-  async createMedia(blogId, media): Promise<BlogMedia | null> {
+  /**
+   * Create a blog media
+   * @param {string} blogId The id of the blog the media is used on
+   * @param {string} media The url of media
+   * @return {Promise<BlogMedia | null>} 
+   */
+  async createMedia(blogId: string, media: string): Promise<BlogMedia | null> {
     return await this.commandBus.execute(
       new CreateMediaCommand(blogId, media)
     );
   }
 
   // Queries
-  async getBlogById(blogId): Promise<Blog | null> {
+
+  /**
+   * Find a blog by id
+   * @param {string} blogId The id of the blog to find
+   * @return {Promise<Blog | null>} 
+   */
+  async getBlogById(blogId: string): Promise<Blog | null> {
     return await this.queryBus.execute(
       new GetBlogByIdQuery(blogId)
     );
   }
 
+  /**
+   * Find all blogs currently in the database
+   * @return {Promise<Blog[]>} 
+   */
   async getAllBlogs(): Promise<Blog[]> {
     return await this.queryBus.execute(
       new GetAllBlogsQuery()
     );
   }
 
+  /**
+   * Find all archived blogs currently in the database
+   * @return {Promise<Blog[]>} 
+   */
   async getAllArchivedBlogs(): Promise<Blog[]> {
     return await this.queryBus.execute(
       new GetAllArchivedBlogsQuery()
     );
   }
 
-  async getBlogByUserId(userId): Promise<Blog[]> {
+  /**
+   * Find all blogs posted by the user with the given id
+   * @param {string} userId The id of the user
+   * @return {Promise<Blog[]>} 
+   */
+  async getBlogByUserId(userId: string): Promise<Blog[]> {
     return await this.queryBus.execute(
       new GetBlogByUserIdQuery(userId)
     );
   }
 
+  /**
+   * Find the name of the user with the given id
+   * @param {string} userId The id of the user
+   * @return {Promise<AuthenticationUser | null>} 
+   */
+   async getNameByUserId(userId: string): Promise<AuthenticationUser | null> {
+    return await this.queryBus.execute(
+      new GetNameByUserIdQuery(userId)
+    );
+  }
+
+  /**
+   * Find all comments currently in the database
+   * @return {Promise<BlogComment[]>} 
+   */
   async getAllComments(): Promise<BlogComment[]> {
     return await this.queryBus.execute(
       new GetAllCommentsQuery()
     );
   }
 
-  async getCommentsByBlogId(blogId): Promise<BlogComment[]> {
+  /**
+   * Find all comments posted on a blog with a given blogId
+   * @param {string} blogId The id of the blog to find comments on
+   * @return {Promise<BlogComment[]>} 
+   */
+  async getCommentsByBlogId(blogId: string): Promise<BlogComment[]> {
     return await this.queryBus.execute(
       new GetCommentsByBlogIdQuery(blogId)
     );
   }
 
-  async getCommentByCommentId(commentId): Promise<BlogComment> {
+  /**
+   * Find a comment by id
+   * @param {string} commentId The id of the comment to find
+   * @return {Promise<BlogComment>} 
+   */
+  async getCommentByCommentId(commentId: string): Promise<BlogComment> {
     return await this.queryBus.execute(
       new GetCommentByCommentIdQuery(commentId)
     );
   }
 
-  async getMediaByBlogId(blogId): Promise<BlogMedia[]> {
+  /**
+   * Find all media used on a blog with a given blogId
+   * @param {string} blogId The id of the blog
+   * @return {Promise<BlogMedia[]>} 
+   */
+  async getMediaByBlogId(blogId: string): Promise<BlogMedia[]> {
     return await this.queryBus.execute(
       new GetMediaByBlogIdQuery(blogId)
     );
