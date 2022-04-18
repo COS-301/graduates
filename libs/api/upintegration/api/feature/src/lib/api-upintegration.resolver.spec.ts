@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ApiUpIntegrationResolver } from './api-upintegration.resolver';
-import { ApiUpIntegrationServiceFeatureModule } from '@graduates/api/upintegration/service/feature';
+import { ApiUpIntegrationService } from '@graduates/api/upintegration/service/feature';
 
 describe('ApiUpIntegrationResolver', () => {
   let resolver:ApiUpIntegrationResolver;
@@ -9,7 +9,7 @@ describe('ApiUpIntegrationResolver', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
         ApiUpIntegrationResolver, 
-        ApiUpIntegrationServiceFeatureModule
+        ApiUpIntegrationService
       ],
     }).compile();
 
