@@ -1,5 +1,20 @@
 /* eslint-disable no-undef */
-
+/**
+ * Team: Javascript
+ * @todo: open a database (indexedDB)
+ *          *create and then open the database if it doesn't exist.
+ *        create an objectstore (this will behave like a collection in the database)
+ *        
+ *        IndexedDB operations are asynchronous (account for that in the function calls)
+ *        
+ *        
+ * Specs: Offline requirements
+ *      -ngsw cannot handle 'POST' requests
+ *      - A secondary service worker was created to handle POST requests specifically from '/graphql(/)?'
+ *      - An indexedDB database is used to store the POST request responses
+ *          * using the original process for indexedDB gave us a lot of problems so we used a library instead
+ * 
+ */
 
 importScripts('./ngsw-worker.js');
 
@@ -19,7 +34,7 @@ var OBJStore= 'PostResponses';
 
 
 const serResp = async (response) => {
-  console.log("DEBUG8:in serial response");
+  console.log("DEBUG1:in serial response");
 
   let seriHeaders = {};
   for (var entry of response.headers.entries()) {
@@ -31,7 +46,7 @@ const serResp = async (response) => {
     status: response.status,
     statusText: response.statusText
   };
-  console.log("DEBUG9:get serial response in json");
+  console.log("DEBUG2:get serial response in json");
 
   serialized.body = await response.json();
   return serialized;
