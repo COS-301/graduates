@@ -1,6 +1,7 @@
 import { Resolver, Query, Args, Mutation, ResolveField, Root } from '@nestjs/graphql';
 import { Blog, BlogComment, BlogMedia } from '@graduates/api/blog/api/shared/entities/data-access';
 import { BlogService } from '@graduates/api/blog/service/feature';
+import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 
 @Resolver(() => Blog)
 export class BlogResolver {
@@ -53,8 +54,8 @@ export class BlogResolver {
      * @param {string} userId The id of the user
      * @return {Promise<string | null>} 
      */
-    @Query(returns => String)
-    async nameByUserId(@Args('userId', {type: () => String}) userId: string): Promise<string | null> {
+    @Query(returns => User)
+    async nameByUserId(@Args('userId', {type: () => String}) userId: string): Promise<User | null> {
         return this.blogService.getNameByUserId(userId);
     }
 
@@ -172,7 +173,6 @@ export class BlogCommentResolver {
 
     /**
      * Create a comment
-     * @param {string} id The id of the comment
      * @param {string} blogId The id of the blog the comment is made on
      * @param {string} userId The id of the user who posted the comment
      * @param {string} content The  content of the comment
@@ -180,12 +180,11 @@ export class BlogCommentResolver {
      */
     @Mutation(returns => BlogComment)
     async createComment( 
-        @Args('id', {type: () => String}) id : string, 
         @Args('blogId', {type: () => String}) blogId : string, 
         @Args('userId', {type: () => String}) userId : string, 
         @Args('content', {type: () => String}) content : string
     ) : Promise<BlogComment | null> {
-        return this.blogService.createComment(id, blogId, userId, content);
+        return this.blogService.createComment(blogId, userId, content);
     }
 
     /**
