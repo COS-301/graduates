@@ -2,7 +2,7 @@ import { ApicompanyprofilepageServiceFeatureModule } from '@graduates/api/compan
 import { Args, Mutation, Query, ResolveField, Resolver, Root } from '@nestjs/graphql';
 import { ApiCompanyProfilePage, UserEmail, UserLocation, UserNumber, UserSocialMedia, UserProfile, CompanyReps, UpdateBioInput } from '@graduates/api/companyprofilepage/api/shared/data-access';
 import { NotFoundException } from '@nestjs/common';
-import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
+import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 
 
 @Resolver(ApiCompanyProfilePage)
