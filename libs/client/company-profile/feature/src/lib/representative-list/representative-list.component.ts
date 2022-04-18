@@ -17,7 +17,7 @@ export class RepresentativeListComponent implements OnInit {
 
   ngOnInit(): void {
     //make API call to access status of resources for particular company
-    this.apiService.getRepresentatives('1').subscribe({
+    this.apiService.getRepresentatives().subscribe({
       next: (_res) => {
         this.representativeData = _res.data.getCompanyReps;
         for(let i = 0; i< this.representativeData.length;i++){
@@ -25,7 +25,6 @@ export class RepresentativeListComponent implements OnInit {
           this.representatives[i].name = "@"+this.representativeData[i].name;
           this.representatives[i].link = "localhost:4200/company-representative/"+this.representativeData[i].id;
         }
-        console.log(_res.data);
       },
       error: (err) => { console.log(err); }
     });
