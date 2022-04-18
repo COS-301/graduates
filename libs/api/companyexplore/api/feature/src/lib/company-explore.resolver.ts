@@ -283,5 +283,9 @@ export class ApiCompanyExploreResolver {
 
     return null;
   }
+  @Query(()=> String)
+  pingCompanyExplore(){
+      return "on";
+  }
 
 }

@@ -58,6 +58,10 @@ export class BlogResolver {
         return this.blogService.getNameByUserId(userId);
     }
 
+    @Query(()=> String)
+    pingBlog(){
+        return "on";
+    }
     // Mutations 
 
     /**
