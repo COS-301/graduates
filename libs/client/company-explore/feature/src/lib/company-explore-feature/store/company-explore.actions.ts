@@ -4,16 +4,11 @@ export class GetCompanyList {
     static readonly type = '[Company] Get';
 }
 export class SearchCompanyList {
-    static readonly type = '[Company] Get';
+    static readonly type = '[Search] Get';
+    constructor(public payload:string){}
 }
-export class SetSearch{
-    static readonly type = '[Search] Set';
-    constructor(public payload: string) {
-    }
-}
-export class SetSelectedCompany {
-    static readonly type = '[Company] Set';
 
-    constructor(public payload: Company) {
-    }
+export class FilterCompanyList {
+    static readonly type = '[Filter] Get';
+    constructor(public payload: string) {}
 }
