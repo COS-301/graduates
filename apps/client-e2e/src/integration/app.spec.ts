@@ -226,7 +226,7 @@ describe('client-shorts-feature e2e test', () => {
         cy.visit('/shorts/upload');
       });
 
-      //! Test File Upload after feature is pushed
+      // Fix upload feature before test
         it.skip('should upload a video and thumbnail', () => {
           cy.get('#uploadbanner').contains('Upload');
           cy.get('input[type="file"]:first').selectFile('src/fixtures/client-shorts-test-video.mp4');
@@ -234,7 +234,7 @@ describe('client-shorts-feature e2e test', () => {
           cy.get('#taginput').type('#cats#test');
           cy.get('.formbuttonblue').contains('Submit').click();
           expect(cy.intercept("/graphql"));
-          // TODO get confirmation of upload once implemented
+          // TODO get confirmation of upload once fixed
         });
     });
   });
