@@ -1,0 +1,35 @@
+---
+name: Deploy
+
+on:
+  push:
+    branches: [ release ]
+
+jobs:
+  build-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Docker Hub login
+        env:
+          DOCKER_USER: ${{secrets.DOCKER_USER}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+
+      - name: Build the API Docker image
+        run: |
+          docker build . --file apps/api/Dockerfile --tag graduates:releaseApi
+          docker tag graduates:releaseApi ${{secrets.DOCKER_USER}}/graduates:releaseApi
+
+      - name: Build the Client Docker image
+        run: |
+          docker build . --file apps/client/Dockerfile --tag graduates:releaseClient
+          docker tag graduates:releaseClient ${{secrets.DOCKER_USER}}/graduates:releaseClient
+
+      - name: Push API Docker
+        run: docker push ${{secrets.DOCKER_USER}}/graduates:releaseApi
+
+      - name: Push Client Docker 
+        run: docker push ${{secrets.DOCKER_USER}}/graduates:releaseClient
