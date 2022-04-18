@@ -62,7 +62,7 @@ describe('BlogService', () => {
     it('Should return a updated Blog Title',async () => {
       jest
       .spyOn(service, 'updateBlogTitle')
-      .mockImplementation((): Promise<string> => Promise.resolve(stringMock));
+      .mockImplementation((): Promise<Blog> => Promise.resolve(blogMock));
 
       expect(await service.updateBlogTitle('1','New Title')).toMatchObject(
         blogMock
@@ -124,14 +124,14 @@ describe('BlogService', () => {
     .spyOn(service, 'createComment')
     .mockImplementation((): Promise<BlogComment> => Promise.resolve(BlogCommentMock));
 
-    expect(await service.createComment('1','2A4','38GB23J','This is a new Comment')).toMatchObject(
+    expect(await service.createComment('2A4','38GB23J','This is a new Comment')).toMatchObject(
       BlogCommentMock
     )
   });
   it('should return null', async () => {
     jest.spyOn(service, 'createComment').mockResolvedValue(null);
 
-    expect(await service.createComment('NULL','NULL','NULL','This is a new Comment')).toEqual(null);
+    expect(await service.createComment('NULL','NULL','This is a new Comment')).toEqual(null);
   });
 })
 

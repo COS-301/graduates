@@ -13,6 +13,6 @@ export const uiComponentNavbarRoutes: Route[] = [
 @NgModule({
   imports: [CommonModule, RouterModule],
   declarations: [NavigationBarComponent],
-  exports: [],
+  exports: [NavigationBarComponent],
 })
 export class UiComponentNavbarModule {}

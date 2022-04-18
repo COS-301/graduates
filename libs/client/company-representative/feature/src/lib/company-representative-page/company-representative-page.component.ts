@@ -1,34 +1,44 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { observable } from 'rxjs';
-import { CompanyRepresentativeServiceService } from '../company-representative-service/company-representative-service.service';
+import { CompanyRepresentativeService } from '../company-representative-service/company-representative-service.service';
+
 
 @Component({
   selector: 'graduates-company-representative-page',
   templateUrl: './company-representative-page.component.html',
   styleUrls: ['./company-representative-page.component.scss']
 })
-export class CompanyRepresentativePageComponent{
-  profilePicture = 'https://s-media-cache-ak0.pinimg.com/236x/c8/e8/cc/c8e8cc83e6eeb60061ba11c9d8ba9a11.jpg';
-  name = "NA";
-  jobTitle = "NA";
-  experience = "NA";
-  about = "NA";
-  number = "NA"
-  location = "NA";
-  email = "NA";
-  website = "NA";
-  linkedin = "NA";
-  twitter = "NA";
-  instagram = "NA";
-  facebook = "NA";
-  snapchat = "NA";
-  github = "NA";
-  result = <any>observable;
-  constructor(private _router: Router, private API : CompanyRepresentativeServiceService) { 
-    this.result = this.API.getCompanyRepresentative("c1234").subscribe({
+export class CompanyRepresentativePageComponent {
+  id = "";
+  profilePicture = 'assets/thumbnails/profile.png';
+  name = "";
+  jobTitle = "";
+  experience = "";
+  about = "";
+  number = ""
+  location = "";
+  email = "";
+  website = "";
+  linkedin = "";
+  twitter = "";
+  instagram = "";
+  facebook = "";
+  snapchat = "";
+  github = "";
+  result = <unknown> observable;
+
+  constructor(private _router: Router, private API : CompanyRepresentativeService) {
+    if (localStorage.getItem("id") != null) {
+      this.id = localStorage.getItem("id") as string;
+    }
+    else if (this._router.getCurrentNavigation() != null) {
+      this.id = this._router.getCurrentNavigation()?.extras?.state?.['id'];
+    }
+    this.result = this.API.getCompanyRepresentative(this.id).subscribe({
       next: (item) => {
         if (item){
+          this.displayImage();
           this.name = item.data.getCompanyRepresentative.repName;
           this.jobTitle = item.data.getCompanyRepresentative.jobTitle;
           this.experience = item.data.getCompanyRepresentative.repExperience;
@@ -49,6 +59,39 @@ export class CompanyRepresentativePageComponent{
     });
    }
 
+  uploadImage(event: any) {
+    this.API.delete(this.id, "Image");
+    this.API.upload(event.target.files[0], this.id);
+    this.displayImage();
+  }
+
+  displayImage() {
+    this.API.download(this.id, "Image").subscribe({
+      next: (item) => {
+        if (item) {
+          this.profilePicture = item.data.download;
+        }
+      }
+    })
+  }
+
+  deleteRepresentativeProfile() {
+    this.API.deleteRepresentative(this.id).subscribe({
+      next: (item) => {
+        if (item) {
+          localStorage.clear();
+          this.navigateToLogin();
+        }
+      },
+      error: (err) => { console.log(err); }
+    });
+  }
+
+  logout() {
+    localStorage.clear();
+    this.navigateToLogin();
+  }
+
   navigateToLogin() {
     this._router.navigate(['CompanyRepresentativeLogin'])
   }
@@ -58,7 +101,7 @@ export class CompanyRepresentativePageComponent{
   }
 
   navigateToExplore() {
-    this._router.navigate(['CompanyRepresentativeExplore'])
+    this._router.navigate(['StudentExplore'])
   }
 
   navigateToHome() {

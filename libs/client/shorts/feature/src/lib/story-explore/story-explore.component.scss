@@ -19,6 +19,18 @@
     // display: block;
 }
 
+header-and-footer-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+#pageNavi {
+    position: absolute;
+    bottom: 15vh;
+    width: 100%;
+}
+
 #cardHeader{
     padding-top: 2px;
 }
@@ -46,6 +58,8 @@
     }   
     
 }
+
+
 
 .cardbutton-nohov {
     font-size: medium;
@@ -101,7 +115,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    // width: 50vw;
+    width: 90vh;
+    max-width: 90vw;
     color: $text-white;
     z-index: 99 !important;
 }
@@ -141,9 +156,9 @@
     color: #888888;
 }
 
-.size {
-    height: 200px;
-    width: auto;
+#wholepage > div.rounded.popupcard.p-2.bigblur > div.videosize > video {
+    height: auto;
+    width : 80vw;
     background-color: pink;
 }
 
@@ -196,10 +211,32 @@
     border-width: 1px;
     border-color: $card-red;
     &:hover{
-        color: $primary-1;
+        color: $card-red;
         background-color: $background-white;
 
     }   
+}
+
+.formbuttonDisabled {
+    border-style: solid;
+    border-width: 1px;
+    border-color: $card-red;
+
+    color: $card-red;
+    background-color: $background-white;
+
+ 
+}
+
+.formbuttonBlueDisabled {
+    border-style: solid;
+    border-width: 1px;
+    border-color: $primary-1;
+
+    color: $primary-1;
+    background-color: $background-white;
+
+ 
 }
 
 .auto-col-maker {
@@ -207,13 +244,24 @@
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
 }
 
+@media (max-width: 500px) {
+    .auto-col-maker {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
 .centindiv {
     display: flex;
     justify-content: center;
+
 }
 
 .grid-container {
     width: 100%;
+    min-height: 100vh;
+    padding-bottom: 20vh;
+
 }
 
 .wholepagecontent {
@@ -223,45 +271,31 @@
     width: 100vw;
 }
 
-////////////////////////shifter
-//used to make page responsive to the absoluted header
-#wholepage {
-    top: 14%;
+.loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid $primary-1; /* Blue */
+    border-radius: 50%;
+    width: 4vh;
+    height: 4vh;
+    animation: spin 2s infinite;
+    margin-right: 5%;
 }
 
-@media (max-width: 2250px) {
-    #wholepage {
-        top: 13%;
+@media (max-width: 300px) {
+    .loader {
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid $primary-1; /* Blue */
+        border-radius: 50%;
+        width: 3vh;
+        height: 3vh;
+        animation: spin 2s infinite;
+        margin-right: 5%;
     }
 }
-@media (max-width: 1750px) {
-    #wholepage {
-        top: 12%;
-    }
+
+
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
-@media (max-width: 1250px) {
-    #wholepage {
-        top: 8%;
-    }
-}
-@media (max-width: 1000px) {
-    #wholepage {
-        top: 7%;
-    }
-}
-@media (max-width: 750px) {
-    #wholepage {
-        top: 6%;
-    }
-}
-@media (max-width: 500px) {
-    #wholepage {
-        top: 5%;
-    }
-}
-@media (max-width: 400px) {
-    #wholepage {
-        top: 4.5%;
-    }
-}
-////////////////////////shifter

@@ -1,2 +1,2 @@
 export * from './lib/api-companyprofilepage.module';
-export * from './lib/api-companyprofilepage.resolver'
+export * from './lib/api-companyprofilepage.resolver';

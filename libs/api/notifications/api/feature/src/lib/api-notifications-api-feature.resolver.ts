@@ -1,8 +1,7 @@
 import { Resolver, Query, Args, Mutation } from "@nestjs/graphql";
-import { Notification, UserNotification  } from "@graduates/api/notifications/api/shared";
+import { Notification, UserNotification, EmailNotification } from "@graduates/api/notifications/api/shared";
 import { ApiNotificationsService } from "@graduates/api/notifications/service/feature";
-import { NotFoundException } from '@nestjs/common';
-import { EmailNotification } from "@graduates/api/notifications/api/shared"
+import { ErrorNotification } from "@graduates/api/notifications/api/shared"
 
 @Resolver(() => Notification)
 export class NotificationsResolver {
@@ -11,40 +10,52 @@ export class NotificationsResolver {
     ) {}
 
     @Query(() => [Notification])
-    async notificationsAll(): Promise<Notification[] | null> {
+    async notificationsAll(): Promise<Notification[] | ErrorNotification> {
         const res = await this.notificationService.getAllNoifications();
-        return (res) ? res : null;
+        const error = new ErrorNotification;
+        error.response = "Could not resolve request";
+        return (res) ? res : error;
     }
 
     @Query(() => Notification)
-    async notificationById(@Args('Id', {type: () => String}) id: string): Promise<Notification | null> {
+    async notificationById(@Args('Id', {type: () => String}) id: string): Promise<Notification | ErrorNotification> {
         const res = await this.notificationService.getNotificationsById(id);
-        return (res) ? res : null;
+        const error = new ErrorNotification;
+        error.response = "Could not resolve request";
+        return (res) ? res : error;
         
     }
 
     @Query(() => [Notification])
-    async notificationsReceived(@Args('userId', {type: () => String}) userId: string): Promise<Notification[] | null> {
+    async notificationsReceived(@Args('userId', {type: () => String}) userId: string): Promise<Notification[] | ErrorNotification> {
         const res = await this.notificationService.getNotificationsReceived(userId);
-        if (!res) throw new NotFoundException("Notifications Not Found")
-        else return res;
+        const error = new ErrorNotification;
+        error.response = "Could not resolve request";
+        return (res) ? res : error;
     }
 
     @Query(() => [Notification])
-    async notificationsSent(@Args('userId', {type: () => String}) userId: string): Promise<Notification[] | null> {
+    async notificationsSent(@Args('userId', {type: () => String}) userId: string): Promise<Notification[] | ErrorNotification> {
         const res = await this.notificationService.getNotificationsSent(userId);
-        if (!res) throw new NotFoundException("Notifications Not Found")
-        else return res;
+        const error = new ErrorNotification;
+        error.response = "Could not resolve request";
+        return (res) ? res : error;
     }
 
     @Query(() => [Notification])
     async notificationsByType(
         @Args('userId', {type: () => String}) userId: string, 
         @Args('notificationType', {type: () => String}) notificationType: string
-    ): Promise<Notification[] | null> {
+    ): Promise<Notification[] | ErrorNotification> {
         const res = await this.notificationService.getNotificationsByType(userId, notificationType);
-        if (!res) throw new NotFoundException("Notifications Not Found")
-        else return res;
+        const error = new ErrorNotification;
+        error.response = "Could not resolve request";
+        return (res) ? res : error;
+    }
+
+    @Query(()=> String)
+    pingNotification(){
+        return 'on';
     }
 
     @Mutation(()=>Notification)
@@ -52,35 +63,43 @@ export class NotificationsResolver {
         @Args('userIdTo', {type: () => String}) userIdTo : string,
         @Args('userIdFrom', {type: () => String}) userIdFrom : string,
         @Args('notificationType', {type: () => String}) notificationType : string
-    ) : Promise<Notification> {
+    ) : Promise<Notification | ErrorNotification> {
         const res = await this.notificationService.createRequestNotification(userIdTo, userIdFrom, notificationType)
-        return (res) ? res : null;
+        const error = new ErrorNotification;
+        error.response = "Could not apply mutation";
+        return (res) ? res : error;
     }
 
     @Mutation(()=>Notification)
     async updateRequestNotification(
         @Args('id', {type: () => String}) id : string,
         @Args('status', {type: () => String}) status : string
-    ) : Promise<Notification | null> {
+    ) : Promise<Notification | ErrorNotification> {
         const res = await this.notificationService.updateRequestNotification(id, status);
-        return (res) ? res : null;
+        const error = new ErrorNotification;
+        error.response = "Could not apply mutation";
+        return (res) ? res : error;
     }
 
     @Mutation(()=>Notification)
     async updateSeen(
         @Args('id', {type: () => String}) id : string,
         @Args('seen', {type: () => Boolean}) seen : boolean
-    ) : Promise<Notification | null> {
+    ) : Promise<Notification | ErrorNotification> {
         const res = await this.notificationService.updateSeen(id, seen);
-        return (res) ? res : null;
+        const error = new ErrorNotification;
+        error.response = "Could not apply mutation";
+        return (res) ? res : error;
     }
 
     @Query(() => UserNotification)
     async notificationsGetUser(
         @Args('userId', {type: () => String}) userId: string
-    ): Promise<UserNotification | null> {
+    ): Promise<UserNotification | ErrorNotification> {
         const res = await this.notificationService.getUserObject(userId);
-        return res;
+        const error = new ErrorNotification;
+        error.response = "Could not resolve request";
+        return (res) ? res : error;
     }
 
     @Mutation(()=>EmailNotification)
@@ -89,7 +108,7 @@ export class NotificationsResolver {
         @Args('emailTo', {type: () => String}) emailTo: string,
         @Args('emailHeading', {type: () => String}) emailSubject: string,
         @Args('emailText', {type: () => String}) emailText: string
-    ): Promise<EmailNotification | null> {
+    ): Promise<EmailNotification> {
 
         this.notificationService.sendToMail(emailFrom, emailTo, emailSubject, emailText);
         const emailNotification = new EmailNotification;

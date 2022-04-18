@@ -5,7 +5,7 @@ import { ApiCompanyExploreUserEntity } from "../";
 export class ApiCompanyExploreTaggedEntity{
   //UserId, tag, user
   @Field()
-  UserId: string
+  userId: string
 
   @Field()
   tag: string
