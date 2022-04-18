@@ -17,3 +17,11 @@ export class GetCompanySocialMediaQuery {
 export class GetCompanyNumberQuery {
     constructor(public readonly id: string) {}
 }
+
+export class GetCompanyBioQuery {
+    constructor(public readonly id: string) {}
+}
+
+export class GetCompanyRepQuery {
+    constructor(public readonly id: string) {}
+}
