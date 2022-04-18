@@ -316,7 +316,7 @@ export class StoryExploreComponent implements OnInit {
     this.viewingName = "";
     this.viewingTags = "";
 
-    const getSelectedQ =gql`query { // API query
+    const getSelectedQ =gql`query {
       getShortById(id: "${s}"){
         user{ 
           name 
@@ -352,10 +352,9 @@ export class StoryExploreComponent implements OnInit {
       }
 
 
-      //this.viewingThumbnailSorce = selectedCard.thumbnail;
+      this.embedVideoToCard(selectedCard.link);;
 
       // add video to selected card
-      this.embedVideoToCard(selectedCard.link);
 
       // display card and hide other pop-ups
       this.currentlyViewing = s;
