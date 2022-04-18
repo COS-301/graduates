@@ -276,14 +276,14 @@ describe('BlogCommentResolver', () => {
         .spyOn(resolver, 'createComment')
         .mockImplementation((): Promise<BlogComment> => Promise.resolve(BlogCommentMock));
 
-      expect(await resolver.createComment('H36','347','Q23','This is a test Comment')).toMatchObject(
+      expect(await resolver.createComment('347','Q23','This is a test Comment')).toMatchObject(
         BlogCommentMock
       )
     });
     it('should return null', async () => {
       jest.spyOn(resolver, 'createComment').mockResolvedValue(null);
   
-      expect(await resolver.createComment('NULL','NULL','NULL','This is a test Comment')).toEqual(null);
+      expect(await resolver.createComment('NULL','NULL','This is a test Comment')).toEqual(null);
     });
   });
 

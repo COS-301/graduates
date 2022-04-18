@@ -1,8 +1,8 @@
 import { ApicompanyprofilepageServiceFeatureModule } from '@graduates/api/companyprofilepage/service/feature';
-import { Args, Query, ResolveField, Resolver, Root } from '@nestjs/graphql';
-import { ApiCompanyProfilePage, UserEmail, UserLocation, UserNumber, UserSocialMedia, UserProfile, CompanyReps } from '@graduates/api/companyprofilepage/api/shared/data-access';
+import { Args, Mutation, Query, ResolveField, Resolver, Root } from '@nestjs/graphql';
+import { ApiCompanyProfilePage, UserEmail, UserLocation, UserNumber, UserSocialMedia, UserProfile, CompanyReps, UpdateBioInput } from '@graduates/api/companyprofilepage/api/shared/data-access';
 import { NotFoundException } from '@nestjs/common';
-import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
+import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 
 
 @Resolver(ApiCompanyProfilePage)
@@ -74,6 +74,12 @@ export class ApicompanyprofilepageResolver {
   @Query((returns) => [CompanyReps])
   async getCompanyReps(@Args('company_id') company_id: string): Promise<CompanyReps[] | null>{
     return await this.companyprofilepageService.getCompanyReps(company_id);
+  }
+
+  //update company bio
+  @Mutation(() => UserProfile)
+  async updateCompanyBio(@Args('bio') companyBio: UpdateBioInput): Promise<UserProfile | null> {
+    return await this.companyprofilepageService.updateCompanyBio(companyBio);
   }
 
   @Query(() =>String) 

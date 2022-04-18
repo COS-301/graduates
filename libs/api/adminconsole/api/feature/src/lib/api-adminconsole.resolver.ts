@@ -11,8 +11,8 @@ export class ApiAdminConsoleResolver{
     //     return this.adminService.getUsers();
     // }
 
-    // @Query(() =>String) 
-    // pingAdminconsole(){
-    //     return "on";
-    // }
+    @Query(() =>String) 
+    pingAdminconsole(){
+        return "on";
+    }
 }

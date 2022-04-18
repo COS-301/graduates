@@ -40,7 +40,6 @@ export class DeleteBlogCommand {
 
 export class CreateCommentCommand {
   constructor(
-    public readonly id, 
     public readonly blogId, 
     public readonly userId, 
     public readonly content
