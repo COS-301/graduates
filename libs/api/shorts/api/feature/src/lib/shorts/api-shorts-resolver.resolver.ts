@@ -21,11 +21,11 @@ import {
 } from '@graduates/api/shorts/service/feature';
 import { NotFoundException } from '@nestjs/common';
 import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
-import {
-  FirebaseFolders,
-  FirebaseService,
-} from '@graduates/api/storage/repository/data-access';
 import uuid from 'uuid';
+import {
+  FirebaseService,
+  FirebaseFolders,
+} from '@graduates/api/storage/repository/data-access';
 
 @Resolver(Short)
 export class ShortsResolver {
@@ -101,6 +101,7 @@ export class ShortsResolver {
   pingShorts() {
     return 'on';
   }
+
   /**
    * Mutation to create a short
    * @param {ShortCreateInput} short The short to create

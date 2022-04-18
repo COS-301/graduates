@@ -17,7 +17,6 @@ export class CreateShortCommand {
     public readonly thumbRef: string
   ) {}
 }
-
 /**
  * Class representing a DeleteShortCommand command
  * @param {string} id The id of the short to delete
