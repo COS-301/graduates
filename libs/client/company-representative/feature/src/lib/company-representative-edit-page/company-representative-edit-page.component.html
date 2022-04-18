@@ -10,34 +10,41 @@
   </div>
   <!-- Navbar start -->
   <div class="nav">
-    <button mat-button (click)="navigateToHome()">Home</button>
-    <button mat-button [matMenuTriggerFor]="menu">Options</button>
+    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon>Menu</button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="navigateToEdit()">Edit Profile</button>
-      <button mat-menu-item (click)="navigateToExplore()">Student Explore</button>
-    </mat-menu>
-    <button mat-button (click)="navigateToLogin()">Logout</button>
+      <button mat-menu-item (click)="navigateToHome()"><mat-icon style="background-color: white;">home</mat-icon><span>My Profile</span></button>
+      <button mat-menu-item (click)="navigateToExplore()"><mat-icon style="background-color: white;">search</mat-icon><span>Find Graduates</span></button>
+      <button mat-menu-item (click)="deleteRepresentativeProfile()"><mat-icon style="background-color: white;">delete</mat-icon><span>Delete Profile</span></button>
+      <button mat-menu-item (click)="logout()"><mat-icon  style="background-color: white;">exit_to_app</mat-icon><span>Logout</span></button>
+    </mat-menu> 
   </div>
-<!-- Navbar end -->
+  <!-- Navbar end -->
 </header>
 <!-- Header end -->
 <!-- Form submit to API -->
 <div class="page">
-  <form>
+  <form [formGroup]="formdata" (ngSubmit)="submit(formdata.value)">
     <!-- Inputs start -->
     <!-- Title start -->
+    <div class="form-container mat-elevation-z5 text-center">
+      <div class="profile-image">
+        <img [src]="profilePicture" alt="Profile Picture" width="120" height="120">
+        <button mat-mini-fab (click)="inputField.click()">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+      <input #inputField type="file" hidden (change)="uploadImage($event)"/>
+    </div>
     <mat-card class="title">
       <div class="block">
-        <div class="image" style="background-image: url({{profilePicture}})">
-        </div>
         <div class="content">
           <div class="boxes">
             <div class="box">
-              <h2><b><input type="text" id="fname" name="fname" value="{{name}}"></b></h2>
+              <h2><b><input formControlName="name" type="text" id="fname" name="fname" value="{{name}}"></b></h2>
             </div>
           </div>
           <div class="description">
-            <h2><b><input type="text" id="title" name="title" value="{{jobTitle}}"></b></h2>
+            <h2><b><input formControlName="jobTitle" type="text" id="title" name="title" value="{{jobTitle}}"></b></h2>
           </div>
         </div>
       </div>
@@ -51,7 +58,7 @@
             <h1><b>Experience</b></h1>
           </div>
             <div>
-              <h2><b><textarea name="experience">{{experience}}</textarea></b></h2>
+              <h2><b><textarea formControlName="experience" name="experience" value="{{experience}}"></textarea></b></h2>
             </div>
           </mat-card>
         </div>
@@ -63,7 +70,7 @@
               <h1><b>About Me</b></h1>
             </div>
             <div>
-              <h2><b><textarea name="about">{{about}}</textarea></b></h2>
+              <h2><b><textarea formControlName="about" name="about" value="{{about}}"></textarea></b></h2>
             </div>
           </mat-card>
         </div>
@@ -78,68 +85,68 @@
               <h2><b>Number</b></h2>
             </div>
             <div class="right">
-              <h2><input type="text" id="number" name="number" value="{{number}}"></h2>
+              <h2><input formControlName="number" type="text" id="number" name="number" value="{{number}}"></h2>
             </div>
             <div class="left">
               <h2><b>Location</b></h2>
             </div>
             <div class="right">
-              <h2><input type="text" id="location" name="location" value="{{location}}"></h2>
+              <h2><input formControlName="location" type="text" id="location" name="location" value="{{location}}"></h2>
             </div>
             <div class="left">
               <h2><b>Email</b></h2>
             </div>
             <div class="right">
-              <h2><input type="text" id="email" name="email" value="{{email}}"></h2>
+              <h2><input formControlName="email" type="text" id="email" name="email" value="{{email}}"></h2>
             </div>
             <div class="left">
               <h2><b>Website</b></h2>
             </div>
             <div class="right">
-              <h2><input type="text" id="website" name="website" value="{{website}}"></h2>
+              <h2><input formControlName="website" type="text" id="website" name="website" value="{{website}}"></h2>
             </div>
             <div class="left">
               <h2><b>LinkedIn</b></h2>
             </div>
             <div class="right">
-              <h2><input type="text" id="linkedin" name="linkedin" value="{{linkedin}}"></h2>
+              <h2><input formControlName="linkedin" type="text" id="linkedin" name="linkedin" value="{{linkedin}}"></h2>
             </div>
             <div class="left">
               <h2><b>Twitter</b></h2>
             </div>
             <div class="right">
-              <h2><input type="text" id="twitter" name="twitter" value="{{twitter}}"></h2>
+              <h2><input formControlName="twitter" type="text" id="twitter" name="twitter" value="{{twitter}}"></h2>
             </div>
             <div class="left">
               <h2><b>Instagram</b></h2>
             </div>
             <div class="right">
-              <h2><input type="text" id="instagram" name="instagram" value="{{instagram}}"></h2>
+              <h2><input formControlName="instagram" type="text" id="instagram" name="instagram" value="{{instagram}}"></h2>
             </div>
             <div class="left">
               <h2><b>Facebook</b></h2>
             </div>
             <div class="right">
-              <h2><input type="text" id="facebook" name="facebook" value="{{facebook}}"></h2>
+              <h2><input formControlName="facebook" type="text" id="facebook" name="facebook" value="{{facebook}}"></h2>
             </div>
             <div class="left">
               <h2><b>Snapchat</b></h2>
             </div>
             <div class="right">
-              <h2><input type="text" id="snapchat" name="snapchat" value="{{snapchat}}"></h2>
+              <h2><input formControlName="snapchat" type="text" id="snapchat" name="snapchat" value="{{snapchat}}"></h2>
             </div>
             <div class="left">
               <h2><b>github</b></h2>
             </div>
             <div class="right">
-              <h2><input type="text" id="github" name="github" value="{{github}}"></h2>
+              <h2><input formControlName="github" type="text" id="github" name="github" value="{{github}}"></h2>
             </div>
           </mat-card>
         </div>
         <!-- Contact end -->
         <!-- Buttons start -->
         <button class="return" (click)="navigateToHome()">Return</button>
-        <input id="submit" class="submit" type="submit">
+        <button [disabled]="!formdata.valid" class="submit" type="submit">Submit</button>
         <!-- Buttons end -->
       </mat-card>
       <!-- Inputs end -->

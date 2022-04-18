@@ -1,201 +1,496 @@
-<div class="header"><div class="info"><img id = "logo" src="https://db3pap005files.storage.live.com/y4mJWXeGlcq2q-_LBJ9-BDZTPujTus_oIMoNV0gC2wAnkCASuTKP5DSViLJmu3EILatPUCCYrMH0Sh_Hnt60Zwr9aoidttEMDD9TYH_Eh6hRSweXaDyiIWsjqnaRt4O2B9JLFRZ9fXpYvQKlthLNdJSKakRb2qrvneHWM-IF1--SAbt7Y0D2yKFOkxrAfMyoTdM?width=78&height=90&cropmode=none"><p>University of Pretoria</p></div> <div class ="title"><img id = "graduateHat" src="https://db3pap005files.storage.live.com/y4m9-IoEhWBrqqH_TRDxtgZZBGBRJmbmslmpMMMztnJICx-qhNq4j88VI7QDhemZ9jW-GtoFYtsC8-hi5zqwxH55MLsnfFzTZrntO5VmadTJPjXrwgjYewWTtYrpP_HjjE7ijEIkdY45jdY--tCB7tMJiPiBAjEdPhEZN-0ihJbpG_NHyu5LoeKVxlOTMkfa2p1?width=145&height=126&cropmode=none"><b>Admin</b>Portal</div>
-<label>
-<input type="checkbox">
-<span class="menu"> <span class="hamburger"></span> </span>
-<ul>
-  <li *ngFor="let o of sidenavOptions;" (click)="sidenavOption(o)"> <a>{{o}}</a></li>
-</ul>
-</label></div>
-<div class="subheader"> <div class="logout">Logout<img src="" alt=""></div></div>
-<div *ngIf="burger === true">
-    <div class="mobileSidenav">
-        <ul>
-            <li *ngFor="let o of sidenavOptions;" (click)="sidenavOption(o)" [ngStyle]="{'border-left' : (option === o) ? '4px solid #184475' : 'none'}">{{o}}</li>
-        </ul>
-    </div>
-</div>
-<div class="sidenav">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  <style>
+      .logout {
+        height: 100%;
+        width: 20%;
+        margin-left: auto;
+        order: 2;
+        }
+        .mid {
+            width: 100%;
+            display: flex;
+        }
+        .searchbar {
+  position: absolute;
+  right: 0;
+  top: 18%;
+  margin-top: 3vh;
+  margin-right: 2vh;
+  font-size: 1.5vh;
+  padding-left: 0.5vw;
+  width: 20%;
+  background: #e0e0e0;
+  border: 1px solid grey;
+  z-index: 99;
+}
+.archive {
+  position: absolute;
+  right: 0;
+  top: 24%;
+  margin-top: 3vh;
+  margin-right: 2vh;
+  font-size: 1.5vh;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  width: 30%;
+  max-width: 150px;
+  background: #e0e0e0;
+  border: 1px solid grey;
+  display: inline-flex;
+  flex-flow: column;
+}
+.archiveButton {
+  padding-left: 1vw;
+  padding-right: 1vw;
+  border: 1px solid grey;
+  margin: auto;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+}
+.roles {
+  max-width: 150px;
+  position: absolute;
+  right: 0;
+  top: 30%;
+  margin-top: 3vh;
+  margin-right: 2vh;
+  font-size: 1.5vh;
+  padding: 0;
+  width: 35%;
+  background: white;
+  display: inline-flex;
+  flex-flow: column;  
+}
+.suspensionBar {
+position: absolute;
+  right: 0;
+  top: 22%;
+  margin-top: 3vh;
+  margin-right: 2vh;
+  font-size: 1.5vh;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  width: 30%;
+  max-width: 150px;
+  background: white;
+  border: 1px solid grey;
+  display: flex;
+  justify-content: space-between;
+}
+
+</style>
+</head>
+<body>
+  <header-and-footer-header></header-and-footer-header>
+  <button id="mobileMenu" mat-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button
+      mat-menu-item
+      *ngFor="let o of sidenavOptions"
+      (click)="sidenavOption(o)"
+    >
+      {{ o }}
+    </button>
+  </mat-menu>
+  <!-- </div> -->
+  <div class="subheader">
+    <div class="logout">Logout<img src="" alt="" /></div>
+  </div>
+  <div class="sidenav">
     <ul>
-        <li *ngFor="let o of sidenavOptions;" (click)="sidenavOption(o)" [ngStyle]="{'border-left' : (option === o) ? '4px solid #184475' : 'none'}">{{o}}</li>
+      <li
+        *ngFor="let o of sidenavOptions"
+        (click)="sidenavOption(o)"
+        [ngStyle]="{
+          'border-left': option === o ? '4px solid #184475' : 'none'
+        }"
+      >
+        {{ o }}
+      </li>
     </ul>
-</div>
-<div class="mobileHeader">{{option}}</div>
-<div class="container" [ngSwitch]="option">
+  </div>
+  <div class="mobileHeader">{{ option }}</div>
+  <div class="container" [ngSwitch]="option">
     <div class="mid" *ngSwitchCase="'Create User'">
-        <!-- <input class = "searchbar" value="SEARCH"> -->
-        <div class="users">
-            <div class="formElement">
-                <img src="https://db3pap005files.storage.live.com/y4mBx6TQL2VYWXjt255fRDkY3K0FUfYRp_SaArmmt3-RxO0R669X4hq0XXu8TnDGLbaPCHi8u1Zl00uDLR__2DHBxgRTXhke9Avben8K8xypPNwRMBCr9Vnn0BhYbCjqzBOizbY0v1fENqNP7ZFHJxu0_zBViW_R7UIp2t9A3hpS4_h5tL8-DyVCEtMnFu5lhbU?width=36&height=38&cropmode=none" alt="">
-                <input class = "formInput" type="text" onfocus="this.value=''" value="Name">
-            </div>
-            <div class="formElement">
-                <img src="https://db3pap005files.storage.live.com/y4mBx6TQL2VYWXjt255fRDkY3K0FUfYRp_SaArmmt3-RxO0R669X4hq0XXu8TnDGLbaPCHi8u1Zl00uDLR__2DHBxgRTXhke9Avben8K8xypPNwRMBCr9Vnn0BhYbCjqzBOizbY0v1fENqNP7ZFHJxu0_zBViW_R7UIp2t9A3hpS4_h5tL8-DyVCEtMnFu5lhbU?width=36&height=38&cropmode=none" alt="">
-                <input class = "formInput" type="text" onfocus="this.value=''" value="Surame">
-            </div>
-            <div class="formElement">
-                <img src="https://db3pap005files.storage.live.com/y4mR5wpNeI5dkI4cU_NKlZJGAtL1n3Icy3Z6gvnVkIhaJgD2j11DZrx04gEDUEodnYiOoWBNhtKpLWOjPGXfznCnmTYiRF6EENYGX_3EOaWPOlPHXvpkCI5P-ciBwBqc4tIMXxE-byLK8ICRGsl_A0HkFLII-UKt8jEop20jCfyFAYMURryHoNNlQDxDumSBpln?width=35&height=47&cropmode=none" alt="">
-                <input class = "formInput" type="text" onfocus="this.value=''" value="Email Address">
-            </div>
-            <div class="formElement">
-                <img src="https://db3pap005files.storage.live.com/y4m1HiXif7DmcpCTZms7q-yBptlhGl8ue--mUvXOA6tmm9Sf7ij-ik6KEHeB45UzXY-KE0_HH3AnsLjqI5o30U7tyc6s_kgrPZxy-wz8RiJxdTfjrUdziaELduzmtOGhUu93x6DayRiPU58EfY35ew9Snx5-KhdeuYW4exVLYVTnIlwy247Xy7Ee0PXAj2YU-q4?width=47&height=50&cropmode=none" alt="">
-                <input class = "formInput" type="text" onfocus="this.value=''" value="Contact Details">
-            </div>
-            <div class="formElement">
-                <img src="https://db3pap005files.storage.live.com/y4miFvdeTqzQoEoMoaoJ-HeXZNolyLiXXIpRXbTPnoLyaRfwKvhvywcVSVSILB7PIvgjle2Du3hGwLHbWV7bM9ahpr-NKDIDYW-hPBApzBsFQAUXskIiIn_x5PYS7290LGQwqBISQ9Ab1EcP7yH0gt6zm10isI20-xxue7Fg8zkKZZZ2H01S8x8xVY8JeRnYRNo?width=46&height=59&cropmode=none" alt="">
-                <input class = "formInput" type="text" onfocus="this.value=''" value="Physical Address">
-            </div>
-            <div class="formElement">
-                <img src="https://db3pap005files.storage.live.com/y4megHfJvkSpTElRvFh-PFPHqWDL9_tALuMIB5MdD1ueJRa0mHN1bOU1kJGcAiial6Ym2kQvLE4-iRWtF1Zdx1jB9sPsLEft7fNXIpzDJDXN6cSQ5qAeRXRVdzbSZeNMogOuvqULrJZCdVKHv2-UH1PrqyqEIltPBXXgMLTV97CEEb6LBP4Gs7NbIitN-EhK1Sl?width=56&height=37&cropmode=none" alt="">
-                <input class = "formInput" type="text" onfocus="this.value=''" value="ID Document">
-                <img src="https://db3pap005files.storage.live.com/y4mIiFghjfyBvpnuQJDOmVQg383oiD24TeOLzaqVAIp-Qm7CjCy9RSxuA5btCgdDOLZfsTnzJJ2p_7Zki_TYROa5YrXDHcnY2WGmi15uhx5dBnN2LDO7qRjM7-AzI8exWFTkGj-0can8KNgthbTvD_ErLZUp2h0miec21IGJ76p4HxkvhmdoQkUqUvDA4YCFN3h?width=41&height=44&cropmode=none" alt="" class= "uploadImage">
-
-            </div>
-            <div class="formElement">
-                <img src="https://db3pap005files.storage.live.com/y4mR5wpNeI5dkI4cU_NKlZJGAtL1n3Icy3Z6gvnVkIhaJgD2j11DZrx04gEDUEodnYiOoWBNhtKpLWOjPGXfznCnmTYiRF6EENYGX_3EOaWPOlPHXvpkCI5P-ciBwBqc4tIMXxE-byLK8ICRGsl_A0HkFLII-UKt8jEop20jCfyFAYMURryHoNNlQDxDumSBpln?width=35&height=47&cropmode=none" alt="" >
-                <input class = "formInput" type="text" onfocus="this.value=''" value="CV">
-                <img src="https://db3pap005files.storage.live.com/y4mIiFghjfyBvpnuQJDOmVQg383oiD24TeOLzaqVAIp-Qm7CjCy9RSxuA5btCgdDOLZfsTnzJJ2p_7Zki_TYROa5YrXDHcnY2WGmi15uhx5dBnN2LDO7qRjM7-AzI8exWFTkGj-0can8KNgthbTvD_ErLZUp2h0miec21IGJ76p4HxkvhmdoQkUqUvDA4YCFN3h?width=41&height=44&cropmode=none" alt="" class= "uploadImage">
-
-            </div>
-
-        <!-- <button id = "saveButton">Save</button> -->
+      <!-- <input class = "searchbar" value="SEARCH"> -->
+      <div class="users">
+        <div class="formElement">
+          <img
+            src="https://db3pap005files.storage.live.com/y4mBx6TQL2VYWXjt255fRDkY3K0FUfYRp_SaArmmt3-RxO0R669X4hq0XXu8TnDGLbaPCHi8u1Zl00uDLR__2DHBxgRTXhke9Avben8K8xypPNwRMBCr9Vnn0BhYbCjqzBOizbY0v1fENqNP7ZFHJxu0_zBViW_R7UIp2t9A3hpS4_h5tL8-DyVCEtMnFu5lhbU?width=36&height=38&cropmode=none"
+            alt="userIcon"
+          />
+          <input
+            [(ngModel)]="userName"
+            id="Name"
+            class="formInput"
+            type="text"
+            onfocus="this.value=''"
+            value="Name"
+            required
+          />
         </div>
+        <div class="formElement">
+          <img
+            src="https://db3pap005files.storage.live.com/y4mBx6TQL2VYWXjt255fRDkY3K0FUfYRp_SaArmmt3-RxO0R669X4hq0XXu8TnDGLbaPCHi8u1Zl00uDLR__2DHBxgRTXhke9Avben8K8xypPNwRMBCr9Vnn0BhYbCjqzBOizbY0v1fENqNP7ZFHJxu0_zBViW_R7UIp2t9A3hpS4_h5tL8-DyVCEtMnFu5lhbU?width=36&height=38&cropmode=none"
+            alt="userIcon"
+          />
+          <input
+            [(ngModel)]="userSurname"
+            id="Surname"
+            class="formInput"
+            type="text"
+            onfocus="this.value=''"
+            value="Surame"
+            required
+          />
+        </div>
+        <div class="formElement">
+          <img
+            src="https://db3pap005files.storage.live.com/y4mR5wpNeI5dkI4cU_NKlZJGAtL1n3Icy3Z6gvnVkIhaJgD2j11DZrx04gEDUEodnYiOoWBNhtKpLWOjPGXfznCnmTYiRF6EENYGX_3EOaWPOlPHXvpkCI5P-ciBwBqc4tIMXxE-byLK8ICRGsl_A0HkFLII-UKt8jEop20jCfyFAYMURryHoNNlQDxDumSBpln?width=35&height=47&cropmode=none"
+            alt="emailIcon"
+          />
+          <input
+            [(ngModel)]="userEmail"
+            id="Email"
+            class="formInput"
+            type="email"
+            onfocus="this.value=''"
+            value="Email Address"
+            required
+          />
+        </div>
+        <div class="formElement">
+          <img
+            src="https://db3pap005files.storage.live.com/y4m1HiXif7DmcpCTZms7q-yBptlhGl8ue--mUvXOA6tmm9Sf7ij-ik6KEHeB45UzXY-KE0_HH3AnsLjqI5o30U7tyc6s_kgrPZxy-wz8RiJxdTfjrUdziaELduzmtOGhUu93x6DayRiPU58EfY35ew9Snx5-KhdeuYW4exVLYVTnIlwy247Xy7Ee0PXAj2YU-q4?width=47&height=50&cropmode=none"
+            alt="contactDetailsIcon"
+          />
+          <input
+            [(ngModel)]="userNumber"
+            id="Number"
+            class="formInput"
+            type="text"
+            onfocus="this.value=''"
+            value="Contact Details"
+            required
+          />
+        </div>
+        <div class="formElement">
+          <img
+            src="https://db3pap005files.storage.live.com/y4miFvdeTqzQoEoMoaoJ-HeXZNolyLiXXIpRXbTPnoLyaRfwKvhvywcVSVSILB7PIvgjle2Du3hGwLHbWV7bM9ahpr-NKDIDYW-hPBApzBsFQAUXskIiIn_x5PYS7290LGQwqBISQ9Ab1EcP7yH0gt6zm10isI20-xxue7Fg8zkKZZZ2H01S8x8xVY8JeRnYRNo?width=46&height=59&cropmode=none"
+            alt="addressIcon"
+          />
+          <input
+            [(ngModel)]="userAddress"
+            id="Address"
+            class="formInput"
+            type="text"
+            onfocus="this.value=''"
+            value="Physical Address"
+            required
+          />
+        </div>
+        <div class="formElement">
+          <img
+            src="https://db3pap005files.storage.live.com/y4megHfJvkSpTElRvFh-PFPHqWDL9_tALuMIB5MdD1ueJRa0mHN1bOU1kJGcAiial6Ym2kQvLE4-iRWtF1Zdx1jB9sPsLEft7fNXIpzDJDXN6cSQ5qAeRXRVdzbSZeNMogOuvqULrJZCdVKHv2-UH1PrqyqEIltPBXXgMLTV97CEEb6LBP4Gs7NbIitN-EhK1Sl?width=56&height=37&cropmode=none"
+            alt="idDocIcon"
+          />
+          <input
+            id="ID"
+            class="formInput"
+            type="file"
+            onfocus="this.value=''"
+            value="ID Document"
+            required
+          />
+          <img
+            src="https://db3pap005files.storage.live.com/y4mIiFghjfyBvpnuQJDOmVQg383oiD24TeOLzaqVAIp-Qm7CjCy9RSxuA5btCgdDOLZfsTnzJJ2p_7Zki_TYROa5YrXDHcnY2WGmi15uhx5dBnN2LDO7qRjM7-AzI8exWFTkGj-0can8KNgthbTvD_ErLZUp2h0miec21IGJ76p4HxkvhmdoQkUqUvDA4YCFN3h?width=41&height=44&cropmode=none"
+            alt="uploadIcon"
+            class="uploadImage"
+          />
+        </div>
+        <div class="formElement">
+          <img
+            src="https://db3pap005files.storage.live.com/y4mR5wpNeI5dkI4cU_NKlZJGAtL1n3Icy3Z6gvnVkIhaJgD2j11DZrx04gEDUEodnYiOoWBNhtKpLWOjPGXfznCnmTYiRF6EENYGX_3EOaWPOlPHXvpkCI5P-ciBwBqc4tIMXxE-byLK8ICRGsl_A0HkFLII-UKt8jEop20jCfyFAYMURryHoNNlQDxDumSBpln?width=35&height=47&cropmode=none"
+            alt="cvDocIcon"
+          />
+          <input
+            id="CV"
+            class="formInput"
+            type="file"
+            onfocus="this.value=''"
+            value="CV"
+            required
+          />
+          <img
+            src="https://db3pap005files.storage.live.com/y4mIiFghjfyBvpnuQJDOmVQg383oiD24TeOLzaqVAIp-Qm7CjCy9RSxuA5btCgdDOLZfsTnzJJ2p_7Zki_TYROa5YrXDHcnY2WGmi15uhx5dBnN2LDO7qRjM7-AzI8exWFTkGj-0can8KNgthbTvD_ErLZUp2h0miec21IGJ76p4HxkvhmdoQkUqUvDA4YCFN3h?width=41&height=44&cropmode=none"
+            alt="uploadIcon"
+            class="uploadImage"
+          />
+        </div>
+      </div>
+      <button id="usersSaveButton" (click)="createUser()">Save</button>
     </div>
 
     <div class="mid" *ngSwitchCase="'Users'">
-        <input class = "searchbar" onfocus="this.value=''" value="SEARCH">
-        <div class="users">
-            <div class="user" *ngFor="let u of users;" (click)="selectUser(u)">
-                <img src="https://db3pap005files.storage.live.com/y4mBx6TQL2VYWXjt255fRDkY3K0FUfYRp_SaArmmt3-RxO0R669X4hq0XXu8TnDGLbaPCHi8u1Zl00uDLR__2DHBxgRTXhke9Avben8K8xypPNwRMBCr9Vnn0BhYbCjqzBOizbY0v1fENqNP7ZFHJxu0_zBViW_R7UIp2t9A3hpS4_h5tL8-DyVCEtMnFu5lhbU?width=36&height=38&cropmode=none" alt="">
-                <p class = "userName"  [ngStyle]="{'background-color' : (currentUser === u) ? '#e0e0e0' : '#FFFFFF'}">{{u.name}}</p>
-            </div>
+      <input class="searchbar" onfocus="this.value=''" value="SEARCH" />
+      <div class="users">
+        <div class="user" *ngFor="let u of users" (click)="selectUser(u)">
+          <img
+            src="https://db3pap005files.storage.live.com/y4mBx6TQL2VYWXjt255fRDkY3K0FUfYRp_SaArmmt3-RxO0R669X4hq0XXu8TnDGLbaPCHi8u1Zl00uDLR__2DHBxgRTXhke9Avben8K8xypPNwRMBCr9Vnn0BhYbCjqzBOizbY0v1fENqNP7ZFHJxu0_zBViW_R7UIp2t9A3hpS4_h5tL8-DyVCEtMnFu5lhbU?width=36&height=38&cropmode=none"
+            alt=""
+          />
+          <p
+            class="userName"
+            [ngStyle]="{
+              'background-color': currentUser === u ? '#e0e0e0' : '#FFFFFF'
+            }"
+          >
+            {{ u.name }}
+          </p>
+          <div class="archiveDiv" *ngIf="u.suspended; else elseBlock">
+            <p>Suspended</p>
+          </div>
+          <ng-template #elseBlock>
+            <p class="archiveDiv">Unsuspended</p>
+          </ng-template>
         </div>
-        <div class="suspensionBar">
-            <div (click)="setPORS('Permission')" [ngStyle]="{'border-bottom' : (usersPORS === 'Permission') ? '3px solid #184475' : 'none'}">Permission</div>
-            <div (click)="setPORS('Suspension')" [ngStyle]="{'border-bottom' : (usersPORS === 'Suspension') ? '3px solid #184475' : 'none'}">Suspension</div>
+      </div>
+      <div class="suspensionBar">
+        <div
+          (click)="setPORS('Permission')"
+          [ngStyle]="{
+            'border-bottom':
+              usersPORS === 'Permission' ? '3px solid #184475' : 'none'
+          }"
+        >
+          Permission
         </div>
-        <div class="permissionOrSuspension" *ngIf="usersPORS === 'Permission'; else suspensionBlock">
-            <div class = "roles">
-                <div class="userRoles">
-                    <div id ="roleHeader">
-                        User Permissions:
-                    </div>
-                    <div class = "userRole" *ngFor="let p of currentUser.permissions">
-                        <p class="roleName">{{p}}</p><p (click)="removeRole(p)" class="removeRole">Remove</p>
-                    </div>
-                </div>
-                <div class="dropdown">
-                    <button class="dropbtn">Add Permission</button>
-                    <div class="dropdown-content">
-                    <a *ngFor="let aR of allPermissions" (click)="addRole(aR)">{{aR}}</a>
-                    </div>
-                </div>
-            </div>  
-            <button id = "usersSaveButton">Save</button>
-        </div>  
-        <ng-template #suspensionBlock>
-            <div class = "usersSuspension">
-                <button class="archiveButton">Suspend</button>
-                <button class="archiveButton">Un-Suspend</button>
+        <div
+          (click)="setPORS('Suspension')"
+          [ngStyle]="{
+            'border-bottom':
+              usersPORS === 'Suspension' ? '3px solid #184475' : 'none'
+          }"
+        >
+          Suspension
+        </div>
+      </div>
+      <div
+        class="permissionOrSuspension"
+        *ngIf="usersPORS === 'Permission'; else suspensionBlock"
+      >
+        <div class="roles">
+          <div class="userRoles">
+            <div id="roleHeader">User Permissions:</div>
+            <div
+              class="userRole"
+              *ngFor="let p of currentUser.permissions; trackBy: trackItem"
+            >
+              <p class="roleName">{{ p }}</p>
+              <p (click)="removePermission(p)" class="removeRole">Remove</p>
             </div>
-            <button id = "usersSaveButton">Save</button>
-
-        </ng-template>
+          </div>
+          <button
+            id="permissionsButton"
+            mat-button
+            [matMenuTriggerFor]="permissions"
+          >
+            Add Permissions
+          </button>
+          <mat-menu #permissions="matMenu">
+            <button
+              mat-menu-item
+              *ngFor="let aR of allPermissions"
+              (click)="addPermission(aR)"
+            >
+              {{ aR }}
+            </button>
+          </mat-menu>
+        </div>
+        <button id="usersSaveButton">Save</button>
+      </div>
+      <ng-template #suspensionBlock>
+        <div class="usersSuspension">
+          <button class="archiveButton" (click)="suspend()">Suspend</button>
+          <button class="archiveButton" (click)="unsuspend()">
+            Un-Suspend
+          </button>
+        </div>
+        <button id="usersSaveButton">Save</button>
+      </ng-template>
     </div>
 
     <div class="mid" *ngSwitchCase="'Story'">
-        <input class = "searchbar" value="SEARCH">
-        <input class = "searchbar" onfocus="this.value=''" value="SEARCH">
-        <div class="users">
-            <div class="user" *ngFor="let u of users;">
-                <img src="https://db3pap005files.storage.live.com/y4mBx6TQL2VYWXjt255fRDkY3K0FUfYRp_SaArmmt3-RxO0R669X4hq0XXu8TnDGLbaPCHi8u1Zl00uDLR__2DHBxgRTXhke9Avben8K8xypPNwRMBCr9Vnn0BhYbCjqzBOizbY0v1fENqNP7ZFHJxu0_zBViW_R7UIp2t9A3hpS4_h5tL8-DyVCEtMnFu5lhbU?width=36&height=38&cropmode=none" alt="">
-                <p class = "userName" (click)="selectUser(u)" [ngStyle]="{'background-color' : (currentUser === u) ? '#e0e0e0' : '#FFFFFF'}">{{u.name}}</p>
-                <img class = "sampleImage" src="https://db3pap005files.storage.live.com/y4mjuivMprD4Z6vEHTYT50n4X8QtR-yJ2suWmSobZfLi55r3jiQC-d-PVCXcGBSXRlNc7uIUsexGWDIQfrROQboHaRIlUuu9eTgMZZyTpypIYo0TqGmPcx0Ej9pLHafETqVEu6MODeA2kp04e0lE-b5_UvCks2LFUuYqYQaqI30gz7er-1iqYCQ2z65ypyt1XDy?width=310&height=182&cropmode=none" alt="">
-                <div *ngIf="u.archived; else elseBlock">
-                    <p>Archived</p>
-                </div>
-                <ng-template #elseBlock>
-                    <p>Unarchived</p>
-                </ng-template>
-            </div>
+      <input class="searchbar" onfocus="this.value=''" value="SEARCH" />
+      <div class="users">
+        <div class="user" *ngFor="let u of stories">
+          <img
+            src="https://db3pap005files.storage.live.com/y4mBx6TQL2VYWXjt255fRDkY3K0FUfYRp_SaArmmt3-RxO0R669X4hq0XXu8TnDGLbaPCHi8u1Zl00uDLR__2DHBxgRTXhke9Avben8K8xypPNwRMBCr9Vnn0BhYbCjqzBOizbY0v1fENqNP7ZFHJxu0_zBViW_R7UIp2t9A3hpS4_h5tL8-DyVCEtMnFu5lhbU?width=36&height=38&cropmode=none"
+            alt=""
+          />
+          <p
+            class="userName"
+            (click)="selectStory(u)"
+            [ngStyle]="{
+              'background-color': currentStory === u ? '#e0e0e0' : '#FFFFFF'
+            }"
+          >
+            {{ u.name }}
+          </p>
+          <img
+            class="sampleImage"
+            src="https://db3pap005files.storage.live.com/y4mjuivMprD4Z6vEHTYT50n4X8QtR-yJ2suWmSobZfLi55r3jiQC-d-PVCXcGBSXRlNc7uIUsexGWDIQfrROQboHaRIlUuu9eTgMZZyTpypIYo0TqGmPcx0Ej9pLHafETqVEu6MODeA2kp04e0lE-b5_UvCks2LFUuYqYQaqI30gz7er-1iqYCQ2z65ypyt1XDy?width=310&height=182&cropmode=none"
+            alt=""
+          />
+          <div class="archiveDiv" *ngIf="u.archived; else elseBlock">
+            <p>Archived</p>
+          </div>
+          <ng-template #elseBlock>
+            <p class="archiveDiv">Unarchived</p>
+          </ng-template>
         </div>
-        <div class = "archive">
-            <button class="archiveButton">Archive</button>
-            <button class="archiveButton">Unarchive</button>
-        </div>
-        <button id = "usersSaveButton">Save</button>
-
+      </div>
+      <div class="archive">
+        <button (click)="archiveStory()" class="archiveButton">Archive</button>
+        <button (click)="unarchiveStory()" class="archiveButton">
+          Unarchive
+        </button>
+      </div>
+      <button id="usersSaveButton">Save</button>
     </div>
 
     <div class="mid" *ngSwitchCase="'Roles'">
-        <input class = "searchbar" onfocus="this.value=''" value="SEARCH">
-        <div class="users">
-            <div class="user" *ngFor="let u of users;">
-                <img src="https://db3pap005files.storage.live.com/y4mBx6TQL2VYWXjt255fRDkY3K0FUfYRp_SaArmmt3-RxO0R669X4hq0XXu8TnDGLbaPCHi8u1Zl00uDLR__2DHBxgRTXhke9Avben8K8xypPNwRMBCr9Vnn0BhYbCjqzBOizbY0v1fENqNP7ZFHJxu0_zBViW_R7UIp2t9A3hpS4_h5tL8-DyVCEtMnFu5lhbU?width=36&height=38&cropmode=none" alt="">
-                <p class = "userName" (click)="selectUser(u)" [ngStyle]="{'background-color' : (currentUser === u) ? '#e0e0e0' : '#FFFFFF'}">{{u.name}}</p>
-            </div>
-            <!-- <button id = "saveButton">Save</button> -->
+      <input class="searchbar" onfocus="this.value=''" value="SEARCH" />
+      <div class="users">
+        <div class="user" *ngFor="let u of users">
+          <img
+            src="https://db3pap005files.storage.live.com/y4mBx6TQL2VYWXjt255fRDkY3K0FUfYRp_SaArmmt3-RxO0R669X4hq0XXu8TnDGLbaPCHi8u1Zl00uDLR__2DHBxgRTXhke9Avben8K8xypPNwRMBCr9Vnn0BhYbCjqzBOizbY0v1fENqNP7ZFHJxu0_zBViW_R7UIp2t9A3hpS4_h5tL8-DyVCEtMnFu5lhbU?width=36&height=38&cropmode=none"
+            alt=""
+          />
+          <p
+            class="userName"
+            (click)="selectUser(u)"
+            [ngStyle]="{
+              'background-color': currentUser === u ? '#e0e0e0' : '#FFFFFF'
+            }"
+          >
+            {{ u.name }}
+          </p>
         </div>
-        <div class = "roles">
-            <div class="userRoles">
-                <div id ="roleHeader">
-                    User Roles:
-                </div>
-                <div class = "userRole" *ngFor="let r of currentUser.roles">
-                    <p class="roleName">{{r}}</p><p (click)="removeRole(r)" class="removeRole">Remove</p>
-                </div>
-            </div>
-            <div class="dropdown">
-                <button class="dropbtn">Add Role</button>
-                <div class="dropdown-content">
-                  <a *ngFor="let aR of allRoles" (click)="addRole(aR)">{{aR}}</a>
-                </div>
-            </div>
-        </div>    
-        <button id = "usersSaveButton">Save</button>
+      </div>
+      <div class="roles">
+        <div class="userRoles">
+          <div id="roleHeader">User Roles:</div>
+          <div class="userRole" *ngFor="let r of currentUser.roles">
+            <p class="roleName">{{ r }}</p>
+            <p (click)="removeRole(r)" class="removeRole">Remove</p>
+          </div>
+        </div>
+        <button
+          id="permissionsButton"
+          mat-button
+          [matMenuTriggerFor]="permissions"
+        >
+          Add Role
+        </button>
+        <mat-menu #permissions="matMenu">
+          <button
+            mat-menu-item
+            *ngFor="let aR of allRoles"
+            (click)="addRole(aR)"
+          >
+            {{ aR }}
+          </button>
+        </mat-menu>
+      </div>
+      <button (click)="changeRoles()" id="usersSaveButton">Save</button>
     </div>
 
     <div class="mid" *ngSwitchCase="'Blogs'">
-        <input class = "searchbar" onfocus="this.value=''" value="SEARCH">
-        <div class="users">
-            <div class="user" *ngFor="let u of users;">
-                <img src="https://db3pap005files.storage.live.com/y4mBx6TQL2VYWXjt255fRDkY3K0FUfYRp_SaArmmt3-RxO0R669X4hq0XXu8TnDGLbaPCHi8u1Zl00uDLR__2DHBxgRTXhke9Avben8K8xypPNwRMBCr9Vnn0BhYbCjqzBOizbY0v1fENqNP7ZFHJxu0_zBViW_R7UIp2t9A3hpS4_h5tL8-DyVCEtMnFu5lhbU?width=36&height=38&cropmode=none" alt="">
-                <p class = "userName" (click)="selectUser(u)" [ngStyle]="{'background-color' : (currentUser === u) ? '#e0e0e0' : '#FFFFFF'}">{{u.name}}</p>
-                <img class="sampleImage" src="https://db3pap005files.storage.live.com/y4mjuivMprD4Z6vEHTYT50n4X8QtR-yJ2suWmSobZfLi55r3jiQC-d-PVCXcGBSXRlNc7uIUsexGWDIQfrROQboHaRIlUuu9eTgMZZyTpypIYo0TqGmPcx0Ej9pLHafETqVEu6MODeA2kp04e0lE-b5_UvCks2LFUuYqYQaqI30gz7er-1iqYCQ2z65ypyt1XDy?width=310&height=182&cropmode=none" alt="">
-                <div *ngIf="u.archived; else elseBlock">
-                    <p>Archived</p>
-                </div>
-                <ng-template #elseBlock>
-                    <p>Unarchived</p>
-                </ng-template>
-            </div>
+      <input class="searchbar" onfocus="this.value=''" value="SEARCH" />
+      <div class="users">
+        <div class="user" *ngFor="let u of blogs">
+          <img
+            src="https://db3pap005files.storage.live.com/y4mBx6TQL2VYWXjt255fRDkY3K0FUfYRp_SaArmmt3-RxO0R669X4hq0XXu8TnDGLbaPCHi8u1Zl00uDLR__2DHBxgRTXhke9Avben8K8xypPNwRMBCr9Vnn0BhYbCjqzBOizbY0v1fENqNP7ZFHJxu0_zBViW_R7UIp2t9A3hpS4_h5tL8-DyVCEtMnFu5lhbU?width=36&height=38&cropmode=none"
+            alt=""
+          />
+          <p
+            class="userName"
+            (click)="selectBlog(u)"
+            [ngStyle]="{
+              'background-color': currentBlog === u ? '#e0e0e0' : '#FFFFFF'
+            }"
+          >
+            {{ u.name }}
+          </p>
+          <img
+            class="sampleImage"
+            src="https://db3pap005files.storage.live.com/y4mjuivMprD4Z6vEHTYT50n4X8QtR-yJ2suWmSobZfLi55r3jiQC-d-PVCXcGBSXRlNc7uIUsexGWDIQfrROQboHaRIlUuu9eTgMZZyTpypIYo0TqGmPcx0Ej9pLHafETqVEu6MODeA2kp04e0lE-b5_UvCks2LFUuYqYQaqI30gz7er-1iqYCQ2z65ypyt1XDy?width=310&height=182&cropmode=none"
+            alt=""
+          />
+          <div class="archiveDiv" *ngIf="u.archived; else elseBlock">
+            <p>Archived</p>
+          </div>
+          <ng-template #elseBlock>
+            <p class="archiveDiv">Unarchived</p>
+          </ng-template>
         </div>
-        <div class = "archive">
-            <button class="archiveButton">Archive</button>
-            <button class="archiveButton">Unarchive</button>
-        </div>
-        <button id = "usersSaveButton">Save</button>
+      </div>
+      <div class="archive">
+        <button (click)="archiveBlog()" class="archiveButton">Archive</button>
+        <button (click)="unarchiveBlog()" class="archiveButton">
+          Unarchive
+        </button>
+      </div>
+      <button id="usersSaveButton">Save</button>
     </div>
 
     <div class="mid" *ngSwitchCase="'Shorts'">
-        <input class = "searchbar" onfocus="this.value=''" value="SEARCH">
-        <div class="users">
-            <div class="user" *ngFor="let u of users;">
-                <img src="https://db3pap005files.storage.live.com/y4mBx6TQL2VYWXjt255fRDkY3K0FUfYRp_SaArmmt3-RxO0R669X4hq0XXu8TnDGLbaPCHi8u1Zl00uDLR__2DHBxgRTXhke9Avben8K8xypPNwRMBCr9Vnn0BhYbCjqzBOizbY0v1fENqNP7ZFHJxu0_zBViW_R7UIp2t9A3hpS4_h5tL8-DyVCEtMnFu5lhbU?width=36&height=38&cropmode=none" alt="">
-                <p class = "userName" (click)="selectUser(u)" [ngStyle]="{'background-color' : (currentUser === u) ? '#e0e0e0' : '#FFFFFF'}">{{u.name}}</p>
-                <img class = "sampleImage"src="https://db3pap005files.storage.live.com/y4mjuivMprD4Z6vEHTYT50n4X8QtR-yJ2suWmSobZfLi55r3jiQC-d-PVCXcGBSXRlNc7uIUsexGWDIQfrROQboHaRIlUuu9eTgMZZyTpypIYo0TqGmPcx0Ej9pLHafETqVEu6MODeA2kp04e0lE-b5_UvCks2LFUuYqYQaqI30gz7er-1iqYCQ2z65ypyt1XDy?width=310&height=182&cropmode=none" alt="">
-                <div *ngIf="u.archived; else elseBlock">
-                    <p>Archived</p>
-                </div>
-                <ng-template #elseBlock>
-                    <p>Unarchived</p>
-                </ng-template>
-            </div>
+      <input class="searchbar" onfocus="this.value=''" value="SEARCH" />
+      <div class="users">
+        <div class="user" *ngFor="let u of users">
+          <img
+            src="https://db3pap005files.storage.live.com/y4mBx6TQL2VYWXjt255fRDkY3K0FUfYRp_SaArmmt3-RxO0R669X4hq0XXu8TnDGLbaPCHi8u1Zl00uDLR__2DHBxgRTXhke9Avben8K8xypPNwRMBCr9Vnn0BhYbCjqzBOizbY0v1fENqNP7ZFHJxu0_zBViW_R7UIp2t9A3hpS4_h5tL8-DyVCEtMnFu5lhbU?width=36&height=38&cropmode=none"
+            alt=""
+          />
+          <p
+            class="userName"
+            (click)="selectUser(u)"
+            [ngStyle]="{
+              'background-color': currentUser === u ? '#e0e0e0' : '#FFFFFF'
+            }"
+          >
+            {{ u.name }}
+          </p>
+          <img
+            class="sampleImage"
+            src="https://db3pap005files.storage.live.com/y4mjuivMprD4Z6vEHTYT50n4X8QtR-yJ2suWmSobZfLi55r3jiQC-d-PVCXcGBSXRlNc7uIUsexGWDIQfrROQboHaRIlUuu9eTgMZZyTpypIYo0TqGmPcx0Ej9pLHafETqVEu6MODeA2kp04e0lE-b5_UvCks2LFUuYqYQaqI30gz7er-1iqYCQ2z65ypyt1XDy?width=310&height=182&cropmode=none"
+            alt=""
+          />
+          <div class="archiveDiv" *ngIf="u.archived; else elseBlock">
+            <p>Archived</p>
+          </div>
+          <ng-template #elseBlock>
+            <p class="archiveDiv">Unarchived</p>
+          </ng-template>
         </div>
-        
-        <div class = "archive">
-            <button class="archiveButton">Archive</button>
-            <button class="archiveButton">Un-Archive</button>
-        </div>
+      </div>
+
+      <div class="archive">
+        <button (click)="archive()" class="archiveButton">Archive</button>
+        <button (click)="unarchive()" class="archiveButton">Un-Archive</button>
+      </div>
+      <button id="usersSaveButton">Save</button>
     </div>
-    <button id = "usersSaveButton">Save</button>
-</div>
+  </div>
+  <!-- <header-and-footer-footer></header-and-footer-footer> -->
+</body>
+</html>
