@@ -189,3 +189,16 @@ footer{
     width: 100%;
   }
 }
+
+button:disabled,
+button[disabled]{
+  background-color: #cccccc;
+  color: #666666;
+}
+
+button:disabled:hover,
+button[disabled]:hover {
+  background-color: #cccccc;
+  color: #666666;
+  cursor:default;
+}
