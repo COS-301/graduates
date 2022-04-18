@@ -3,40 +3,40 @@
   <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Filter Menu">
     <mat-icon>filter_list</mat-icon>
   </button>
-  <mat-menu #menu="matMenu" yPosition="below" xPosition="after">
-  
-    <h2>Emplyment status</h2>
+  <mat-menu class="filter_menu"#menu="matMenu" yPosition="below" xPosition="after">
+    <mat-card-actions>
+      <button mat-button (click)="filter_students()" id="filter_submit">Filter students</button>
+    </mat-card-actions>
+    <h2 class="filter_headings">Employment status</h2>
     <button *ngFor="let emp of empArray" mat-menu-item role="menuitemcheckbox">
-      <mat-checkbox id="{{emp.filter_name}}" (click)="$event.stopPropagation(); filter_students(emp)" >{{emp.filter_name}}</mat-checkbox>
+      <mat-checkbox id="{{emp.filter_name}}" (click)="$event.stopPropagation(); process_filter(emp)" >{{emp.filter_name}}</mat-checkbox>
     </button>
   
-    <h2>Location</h2>
+    <h2 class="filter_headings">Location</h2>
     <button *ngFor="let loca of locationArray" mat-menu-item role="menuitemcheckbox">
-      <mat-checkbox id="{{loca.filter_name}}" (click)="$event.stopPropagation(); filter_students(loca)">{{loca.filter_name}}</mat-checkbox>
+      <mat-checkbox id="{{loca.filter_name}}" (click)="$event.stopPropagation(); process_filter(loca)">{{loca.filter_name}}</mat-checkbox>
     </button>
   
-    <h2>Tags</h2>
+    <h2 class="filter_headings">Tags</h2>
     <button *ngFor="let tags of tagsArray" mat-menu-item role="menuitemcheckbox">
-      <mat-checkbox id="{{tags.filter_name}}" (click)="$event.stopPropagation(); filter_students(tags)" >{{tags.filter_name}}</mat-checkbox>
+      <mat-checkbox id="{{tags.filter_name}}" (click)="$event.stopPropagation(); process_filter(tags)" >{{tags.filter_name}}</mat-checkbox>
     </button>
   </mat-menu>
 </div>
 <!-- Filters -->
 
 <!--Search Bar-->
-
 <div id="searchBar">
   <mat-form-field>
       <mat-label>Search for a student</mat-label>
 
-      <input matInput type="search" id="search" name="searchbar" placeholder="Search for a student" [(ngModel)]="qry" />
+      <input matInput type="search" id="search" name="searchbar" placeholder="Search for a student" (keyup.enter)="query()" [(ngModel)]="qry" />
 
       <button mat-icon-button matSuffix (click)="query()" aria-label="SearchButton">
           <mat-icon>search</mat-icon>
       </button>
   </mat-form-field>
 </div>
-
 <!--Search Bar-->
 
 <!-- Making a grid for the student cards -->
@@ -44,9 +44,9 @@
   <mat-card *ngFor="let student of studentArray" id = "{{student.id}}">
     <div class="banner">
       <!-- Image will be replaces by URL path from student -->
-      <img
+      <img aria-placeholder="https://image.shutterstock.com/image-illustration/picture-icon-no-image-symbol-600w-1572613234.jpg"
         src={{student.StudentPic}}
-        alt="Profile Photo"
+        alt="Profile not found"
       />
     </div>
   
