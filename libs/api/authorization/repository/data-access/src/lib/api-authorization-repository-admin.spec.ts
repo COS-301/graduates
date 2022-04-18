@@ -1,15 +1,9 @@
 import { Adminauthorization } from './api-authorization-repository-admin.repository';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-//import {,role_permission,user_permissions, PermissionCategory, PermissionTenant} from '../../../shared/src/lib/authorization-data-access.entity';
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-
 import { Test, TestingModule } from '@nestjs/testing';
-//import { Prisma } from '@prisma/client';
-//import { ApiAuthorizationResolver } from './api-authorization.resolver';
-//import { ApiAuthorizationService } from '@graduates/api/authorization/service/feature';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import {user_permissions,User_role,role_permissions,} from '../../../shared/src/lib/authorization-data-access.entity';
+//import {} from '@graduates/api/authorization/repository/shared';
 import {
   UserPermissions,
   UserRole,

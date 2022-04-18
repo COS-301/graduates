@@ -34,11 +34,6 @@ export class role_permissions{
     permissionTenant!:PermissionTenant;
 }
 
-
-
-
-
-
 @ObjectType()
 export class role_permission{
     @Field()
