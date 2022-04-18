@@ -91,8 +91,8 @@ const routes: Routes = [
   },
   {
     path: '',
-    loadChildren: () =>
-      import('@graduates/client/shell/feature').then((x) => x.FeatureModule),
+          loadChildren: () => import('@graduates/client/company-representative/feature').then(x => x.ClientCompanyRepresentativeFeatureModule),
+
   },
   {
     path: 'storage',
