@@ -8,7 +8,7 @@ export class UpIntegrationRepository
         private prisma : PrismaService
     ){}
 
-    async get_UserID(studentnum : string): Promise<string | null>{
+    async get_UserID(studentnum : string): Promise<string>{
         const item = await this.prisma.userProfile.findFirst({
             where: {
                 studentNumber: studentnum 
@@ -20,7 +20,7 @@ export class UpIntegrationRepository
         if(item){
             return item.userId
         }
-        return null;
+        return "User was not found";
     }
 
     async get_name(userid : string): Promise<string | null>{
