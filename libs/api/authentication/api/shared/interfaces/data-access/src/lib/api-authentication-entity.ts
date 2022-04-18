@@ -7,16 +7,16 @@ export class AuthenticationUser{
     // id!: string
 
     @Field(() => Int)
-    id: number
+    id!: number
     
     @Field()
-    username: string;
+    username!: string;
 
     @Field()
-    email: string;
+    email!: string;
 
     @Field()
-    password: string;
+    password!: string;
 
 
 }
