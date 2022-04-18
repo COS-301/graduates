@@ -144,7 +144,7 @@
       <div>
         <div class="grid grid-cols-2 place-content-center pb-3">
           <div class="flex justify-center"><button class="py-2.5 px-3 formbuttonblue rounded" (click)="cancelUpload()">Cancel</button></div>
-          <div class="flex justify-center"><button class="py-2.5 px-3 formbuttonblue rounded" type="submit">Submit</button></div>
+          <div class="flex justify-center"><div *ngIf="loadwheel" class="loader"></div><button class="py-2.5 px-3 formbuttonblue rounded" type="submit">Submit</button></div>
         </div>
       </div>
 
@@ -221,5 +221,6 @@
 
   </div>
 </div>
+
 
   <!-- footer from shared -->

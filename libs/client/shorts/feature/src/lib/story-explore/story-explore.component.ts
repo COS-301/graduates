@@ -47,6 +47,8 @@ export class StoryExploreComponent implements OnInit {
   submit = false;
   return : boolean;
 
+  loadwheel : boolean;
+
   test! : any;
 
   viewing : boolean;
@@ -93,6 +95,7 @@ export class StoryExploreComponent implements OnInit {
     this.ThumbnailFileBase64 = null;
     this.fileuploadflag= true;
     this.thumbnailuploadflag = true;
+    this.loadwheel = false;
   }
 
   ngOnInit(): void {
@@ -153,10 +156,11 @@ export class StoryExploreComponent implements OnInit {
       //get Tag array:
       const tags = this.getTagArray();
 
+      this.loadwheel = true;
       //form is valid here, upload to the API:
       this.uploadShortToAPI(tags).then(resp => {
         console.log(resp);
-
+        this.loadwheel = false;
         //here is for the response (resp) from the upload uploadShortToAPI()
         //it is a promise so this code will run after the query is complete and will return the query response here.
 
