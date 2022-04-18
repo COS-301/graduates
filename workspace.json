@@ -99,12 +99,8 @@
     "client-student-explore-feature": "libs/client/student-explore/feature",
     "client-student-profile-feature": "libs/client/student-profile/feature",
     "client-student-requests-feature": "libs/client/student-requests/feature",
-<<<<<<< HEAD
-    "client-student-responses-feature": "libs/client/student-responses/feature"
-=======
     "client-request-for-access-feature": "libs/client/request-for-access/feature",
     "client-student-responses-feature": "libs/client/student-responses/feature",
     "client-upintegration": "libs/client/upintegration"
->>>>>>> 0fcdbe12b909d337c23bdb7173dfe76a091540dd
   }
 }
