@@ -1,4 +1,6 @@
 /* eslint-disable no-undef */
+
+
 importScripts('./ngsw-worker.js');
 
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.6.1/workbox-sw.js');
@@ -11,6 +13,29 @@ importScripts('https://cdn.jsdelivr.net/npm/idb-keyval@3/dist/idb-keyval-iife.mi
 var DBName= 'GraphQL-Cache';
 var OBJStore= 'PostResponses';
 
+
+
+
+
+
+const serResp = async (response) => {
+  console.log("DEBUG8:in serial response");
+
+  let seriHeaders = {};
+  for (var entry of response.headers.entries()) {
+    //new data will be entered at the top 
+    seriHeaders[entry[0]] = entry[1];
+  }
+  let serialized = {
+    headers: seriHeaders,
+    status: response.status,
+    statusText: response.statusText
+  };
+  console.log("DEBUG9:get serial response in json");
+
+  serialized.body = await response.json();
+  return serialized;
+}
 
 /*
   var DB=null;
@@ -47,11 +72,18 @@ const insertIndexedDB = async (request, response) => {
   
     var entry = {
       query: body.query,
-      response: "function to be implemented",
+      response: await serResp(response),
       timestamp: Date.now()
     };
     idbKeyval.set(id, entry, store);
   }
 
-
+  const getCachedIndexedDB = async (request) => { 
+    //insert the code
+      return null;
+  }
   
+  const getPostKey = async (request) => {
+    let body = await request.json();
+    return JSON.stringify(body);
+  }
