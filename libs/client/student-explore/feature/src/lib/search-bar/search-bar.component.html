@@ -1,6 +1,11 @@
 <div>
     <mat-form-field>
-        <input matInput type="text" id="search" name="searchbar" placeholder="Search for a student" [(ngModel)]="qry" />
-        <button id="sbmt">Search</button>
+        <mat-label>Search for a student</mat-label>
+
+        <input matInput type="search" id="search" name="searchbar" placeholder="Search for a student" [(ngModel)]="qry" />
+
+        <button mat-icon-button matSuffix (click)="query" aria-label="SearchButton">
+            <mat-icon>search</mat-icon>
+        </button>
     </mat-form-field>
 </div>

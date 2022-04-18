@@ -26,7 +26,7 @@ export class RequestForAccessComponent implements OnInit {
     const actionsArr: SetAccessStatus[] = [];
 
     //make API call to access status of resources for particular company
-    this.apiService.getResourceStatuses('42', '2').subscribe({
+    this.apiService.getResourceStatuses('10', '7').subscribe({
       next: (_res) => {
         for (let i = 0; i < 5; i++) {
           if (_res.data.status[i] != undefined) {

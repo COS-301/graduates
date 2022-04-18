@@ -17,7 +17,8 @@ import { GetBlogByIdHandler,
   GetAllCommentsHandler, 
   GetCommentsByBlogIdHandler, 
   GetCommentByCommentIdHandler, 
-  GetMediaByBlogIdHandler } from './queries/api-blog-query-handler.handler';
+  GetMediaByBlogIdHandler,
+  GetNameByUserIdHandler } from './queries/api-blog-query-handler.handler';
 import { BlogService } from './api-blog-service.service';
 
 @Module({
@@ -41,7 +42,8 @@ import { BlogService } from './api-blog-service.service';
         GetAllCommentsHandler, 
         GetCommentsByBlogIdHandler, 
         GetCommentByCommentIdHandler, 
-        GetMediaByBlogIdHandler
+        GetMediaByBlogIdHandler,
+        GetNameByUserIdHandler
       ],
 })
 export class ApiBlogServiceFeatureModuleModule {}
