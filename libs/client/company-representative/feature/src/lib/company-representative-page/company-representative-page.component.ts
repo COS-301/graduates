@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, HostListener } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { NavigationStart, Router } from '@angular/router';
+import { observable } from 'rxjs';
+import { CompanyRepresentativeService } from '../company-representative-service/company-representative-service.service';
 
 @Component({
   selector: 'graduates-company-representative-page',
@@ -7,32 +10,76 @@ import { Router } from '@angular/router';
   styleUrls: ['./company-representative-page.component.scss']
 })
 export class CompanyRepresentativePageComponent {
-  profilePicture = 'https://s-media-cache-ak0.pinimg.com/236x/c8/e8/cc/c8e8cc83e6eeb60061ba11c9d8ba9a11.jpg';
-  name = "John Doe";
-  jobTitle = "Job Title and area of expertise.";
-  experience = "Some quick example text to build on the card title and make up the bulk of the card's content";
-  about = "Some quick example text to build on the card title and make up the bulk of the card's content";
-  number = "0814941334"
-  location = "Pretoria, SA";
-  email = "johndoe@example.com";
-  website = "www.JohnDoe.com";
-  linkedin = "@Johndoe";
-  twitter = "@johnDoe";
-  instagram = "@JohnDoe";
-  facebook = "Facebook.com/JohnDoe";
-  snapchat = "JohnDoe";
-  github = "JohnDoe@github.com";
-  students: string[];
-  constructor(private _router: Router) { 
-    this.students = [
-      "Student 1 uXXXXXXXX",
-      "Student 2 uXXXXXXXX",
-      "Student 3 uXXXXXXXX",
-      "Student 4 uXXXXXXXX",
-      "Student 5 uXXXXXXXX",
-      "Student 6 uXXXXXXXX"
-    ];
+  id = "";
+  profilePicture = 'assets/thumbnails/profile.png';
+  name = "";
+  jobTitle = "";
+  experience = "";
+  about = "";
+  number = ""
+  location = "";
+  email = "";
+  website = "";
+  linkedin = "";
+  twitter = "";
+  instagram = "";
+  facebook = "";
+  snapchat = "";
+  github = "";
+  result = <unknown> observable;
+
+  constructor(private _router: Router, private API : CompanyRepresentativeService) {
+    if (localStorage.getItem("id") != null) {
+      this.id = localStorage.getItem("id") as string;
+    }
+    else if (this._router.getCurrentNavigation() != null) {
+      this.id = this._router.getCurrentNavigation()?.extras?.state?.['id'];
+    }
+    this.result = this.API.getCompanyRepresentative(this.id).subscribe({
+      next: (item) => {
+        if (item){
+          this.name = item.data.getCompanyRepresentative.repName;
+          this.jobTitle = item.data.getCompanyRepresentative.jobTitle;
+          this.experience = item.data.getCompanyRepresentative.repExperience;
+          this.about = item.data.getCompanyRepresentative.aboutMe;
+          this.number = item.data.getCompanyRepresentative.phoneNumber;
+          this.location = item.data.getCompanyRepresentative.location;
+          this.email = item.data.getCompanyRepresentative.email;
+          this.website = item.data.getCompanyRepresentative.website;
+          this.linkedin = item.data.getCompanyRepresentative.linkedIn;
+          this.twitter = item.data.getCompanyRepresentative.twitter;
+          this.instagram = item.data.getCompanyRepresentative.instagram;
+          this.facebook = item.data.getCompanyRepresentative.facebook;
+          this.snapchat = item.data.getCompanyRepresentative.snapChat;
+          this.github = item.data.getCompanyRepresentative.gitHub;
+        }
+      },
+      error: (err) => { console.log(err); }
+    });
    }
+
+  uploadImage(event: any) {
+    const fileType = event.target.files[0].type;
+    console.log(event.target.files[0]);
+
+  }
+
+  deleteRepresentativeProfile() {
+    this.API.deleteRepresentative(this.id).subscribe({
+      next: (item) => {
+        if (item) {
+          localStorage.clear();
+          this.navigateToLogin();
+        }
+      },
+      error: (err) => { console.log(err); }
+    });
+  }
+
+  logout() {
+    localStorage.clear();
+    this.navigateToLogin();
+  }
 
   navigateToLogin() {
     this._router.navigate(['CompanyRepresentativeLogin'])

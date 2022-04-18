@@ -21,6 +21,9 @@
       "@graduates/api/access-status/api/feature": [
         "libs/api/access-status/api/feature/src/index.ts"
       ],
+      "@graduates/api/access-status/api/shared": [
+        "libs/api/access-status/api/shared/src/index.ts"
+      ],
       "@graduates/api/access-status/repository/feature": [
         "libs/api/access-status/repository/feature/src/index.ts"
       ],
@@ -225,6 +228,9 @@
       ],
       "@graduates/api/upintegration/api/shared/data-access": [
         "libs/api/upintegration/api/shared/data-access/src/index.ts"
+      ],
+      "@graduates/api/upintegration/repository/data-access": [
+        "libs/api/upintegration/repository/data-access/src/index.ts"
       ],
       "@graduates/api/upintegration/service/feature": [
         "libs/api/upintegration/service/feature/src/index.ts"

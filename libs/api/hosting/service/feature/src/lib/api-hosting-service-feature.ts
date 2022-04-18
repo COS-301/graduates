@@ -1,8 +1,13 @@
 import { ApiHosting } from '@graduates/api/hosting/api/shared/data-access';
 import { HttpService } from '@nestjs/axios';
-import { Injectable } from '@nestjs/common';
-import { HealthCheck, HealthCheckService, HttpHealthIndicator } from '@nestjs/terminus';
+import { Injectable, Query } from '@nestjs/common';
+import { HealthCheck, HealthCheckResult, HealthCheckService, HttpHealthIndicator } from '@nestjs/terminus';
 
+type HealthCheckParameters = {
+  title: string,
+  path: string,
+  query: string,
+};
 @Injectable()
 export class ApiHostingServiceFeatureModule{
   constructor(
@@ -10,221 +15,58 @@ export class ApiHostingServiceFeatureModule{
     private health: HealthCheckService,
     private http: HttpHealthIndicator, 
   ){}
-  private hosting: ApiHosting[] = [];
+  // private hosting: ApiHosting[] = [];
   async get_all(): Promise<ApiHosting[]>{
-    //Perform health Checks
-    const storageApi = new ApiHosting();
-    const shortsAPI = new ApiHosting();
-    const companyProfileAPI = new ApiHosting();
-    const accessStatusAPI = new ApiHosting();
-    const studentProfilesAPI = new ApiHosting();
-    const companyRepresentativeAPI = new ApiHosting();
-    const requestAccessAPI = new ApiHosting();
-    const authenticationAPI = new ApiHosting();
-    const studentExploreAPI = new ApiHosting();
-    const adminconsoleAPI = new ApiHosting();
-    const upintegrationAPI = new ApiHosting();
-    //StorageAPI
-    storageApi.name = "Storage API";
-    try{
-      await this.checkStorageAPI();
-      storageApi.status = "Operational";
-    }
-    catch(error){
-      storageApi.status = "Non Operational";
-    }
-    this.hosting.push(storageApi);
+    const hosting: ApiHosting[] = [];
+    //clear the hosting object
+    // this.hosting = [];
+    const commonPath = 'http://localhost:3333/graphql';
+    const checks: HealthCheckParameters[] = [
+      {title: 'Storage API', path: commonPath,  query: '{pingStorage}'},
+      {title: 'Shorts API', path: commonPath,  query: '{pingShorts}'},
+      {title: 'Company Profile API', path: commonPath,  query: '{pingCompanyProfile}'},
+      {title: 'Access Status API', path: commonPath,  query: '{pingAccessStatus}'},
+      {title: 'Studen Profiles API', path: commonPath,  query: '{pingStudentProfile}'},
+      {title: 'Company Representative API', path: commonPath,  query: '{pingCompanyRepresentative}'},
+      {title: 'Request Access API', path: commonPath,  query: '{pingRequestAccess}'},
+      {title: 'Authentication API', path: commonPath,  query: '{pingAuthentication}'},
+      {title: 'Student Explore API', path: commonPath,  query: '{pingStudentExplore}'},
+      {title: 'Adminconsole API', path: commonPath,  query: '{pingAdminconsole}'},
+      {title: 'UP Integration API', path: commonPath,  query: '{pingUpintegration}'},
+    ]
 
-    //shorts Api
-    shortsAPI.name = "shorts API";
-    try{
-      await this.checkShortsAPI();
-      shortsAPI .status = "Operational";
-    }
-    catch(error){
-      shortsAPI .status = "Non Operational";
-    }
-    this.hosting.push(shortsAPI);
-
-    //companyProfileAPI
-    companyProfileAPI.name = "Company Profile API";
-    try{
-      await this.checkCompanyProfileAPI();
-      companyProfileAPI.status = "Operational";
-    }
-    catch(error){
-      companyProfileAPI.status = "Non Operational";
-    }
-    this.hosting.push(companyProfileAPI);
-
-    //accessStatusAPI
-    accessStatusAPI.name = "access StatusAPI";
-    try{
-      await this.checkAccessStatusAPI();
-      accessStatusAPI.status = "Operational";
-    }
-    catch(error){
-      accessStatusAPI.status = "Non Operational";
-    }
-    this.hosting.push(accessStatusAPI);
-
-    //studentProfilesAPI
-    studentProfilesAPI.name = "student Profiles API";
-    try{
-      await this.checkStudentProfilesAPI();
-      studentProfilesAPI.status = "Operational";
-    }
-    catch(error){
-      studentProfilesAPI.status = "Non Operational";
-    }
-    this.hosting.push(studentProfilesAPI);
-
-    //companyRepresentativeAPI
-    companyRepresentativeAPI.name = "company Representative API";
-    try{
-      await this.checkCompanyRepresentativeAPI();
-      companyRepresentativeAPI.status = "Operational";
-    }
-    catch(error){
-      companyRepresentativeAPI.status = "Non Operational";
-    }
-    this.hosting.push(companyRepresentativeAPI);
-
-    //requestAccessAPI
-    requestAccessAPI.name = "request Access API";
-    try{
-      await this.checkRequestAccessAPI();
-      requestAccessAPI.status = "Operational";
-    }
-    catch(error){
-      requestAccessAPI.status = "Non Operational";
-    }
-    this.hosting.push(requestAccessAPI);
-
-    //authenticationAPI
-    authenticationAPI.name = "authentication API";
-    try{
-      await this.checkAuthenticationAPI();
-      authenticationAPI.status = "Operational";
-    }
-    catch(error){
-      authenticationAPI.status = "Non Operational";
-    }
-    this.hosting.push(authenticationAPI);
-
-    //studentExploreAPI
-    studentExploreAPI.name = "studentExplore API";
-    try{
-      await this.checkStudentExploreAPI();
-      studentExploreAPI.status = "Operational";
-    }
-    catch(error){
-      studentExploreAPI.status = "Non Operational";
-    }
-    this.hosting.push(studentExploreAPI);
-
-    //adminconsoleAPI
-    adminconsoleAPI.name = "adminconsole API";
-    try{
-      await this.checkAdminconsoleAPI();
-      adminconsoleAPI.status = "Operational";
-    }
-    catch(error){
-      adminconsoleAPI.status = "Non Operational";
-    }
-    this.hosting.push(adminconsoleAPI);
-
-    //upintegrationAPI
-    upintegrationAPI.name = "upintegration API";
-    try{
-      await this.checkUpintegrationAPI();
-      upintegrationAPI.status = "Operational";
-    }
-    catch(error){
-      upintegrationAPI.status = "Non Operational";
-    }
-    this.hosting.push(upintegrationAPI);
-
-    //quick fix (until the urls are updated)
-    this.hosting.forEach(element => {
-      element.status = "Operational";
+    // in future, explore use of Promise.all([...]) for efficiency and concurrent checks
+    checks.forEach( async (check) => {
+      const hostingObj = new ApiHosting();
+      hostingObj.name = check.title
+      try {
+        await this.checkApiHealth(check);
+        hostingObj.status = "Operational";
+      } catch {
+        hostingObj.status = "Non Operational";
+      }
+      // this.hosting.push(hostingObj);
+      hosting.push(hostingObj);
     });
-    this.AddAllUnimplemented();
-    return this.hosting;
+
+    hosting.push(this.AddAllUnimplemented());
+    return hosting;
   }
 
   @HealthCheck()
-  checkStorageAPI(){
+  checkApiHealth(params: HealthCheckParameters): Promise<HealthCheckResult> {
     return this.health.check([
-      () => this.http.pingCheck('Storage API', 'http://localhost:3333/graphql/api-storage-feature')
-    ]);
-  }
-  @HealthCheck()
-  checkShortsAPI(){
-    return this.health.check([
-      () => this.http.pingCheck('Shorts API', 'http://localhost:3333/graphql/api-shorts-feature')
-    ]);
-  }
-  @HealthCheck()
-  checkCompanyProfileAPI(){
-    return this.health.check([
-      () => this.http.pingCheck('Company Profile API', 'http://localhost:3333/graphql/api-companyprofilepage-feature')
-    ]);
-  }
-  @HealthCheck()
-  checkAccessStatusAPI(){
-    return this.health.check([
-      () => this.http.pingCheck('Access Status API', 'http://localhost:3333/graphql/api-access-status-feature')
-    ]);
-  }
-  @HealthCheck()
-  checkStudentProfilesAPI(){
-    return this.health.check([
-      () => this.http.pingCheck('Student Profiles API', 'http://localhost:3333/graphql/api-student-profiles-feature')
-    ]);
-  }
-  @HealthCheck()
-  checkCompanyRepresentativeAPI(){
-    return this.health.check([
-      () => this.http.pingCheck('Company Representative API', 'http://localhost:3333/graphql/api-company-representative-feature')
-    ]);
-  }
-  @HealthCheck()
-  checkRequestAccessAPI(){
-    return this.health.check([
-      () => this.http.pingCheck('Request Access API', 'http://localhost:3333/graphql/api-request-access-feature')
-    ]);
-  }
-  @HealthCheck()
-  checkAuthenticationAPI(){
-    return this.health.check([
-      () => this.http.pingCheck('Authentication API', 'http://localhost:3333/graphql/api-authentication-feature')
-    ]);
+      () => this.http.pingCheck(params.title, `${params.path}?query=${encodeURI(params.query)}`) // encode URI automatically
+    ])
   }
 
-  @HealthCheck()
-  checkStudentExploreAPI(){
-    return this.health.check([
-      () => this.http.pingCheck('Authentication API', 'http://localhost:3333/graphql/api-student-explore-feature')
-    ]);
-  }
-  @HealthCheck()
-  checkAdminconsoleAPI(){
-    return this.health.check([
-      () => this.http.pingCheck('Authentication API', 'http://localhost:3333/graphql/api-adminconsole-feature')
-    ]);
-  }
-  @HealthCheck()
-  checkUpintegrationAPI(){
-    return this.health.check([
-      () => this.http.pingCheck('Authentication API', 'http://localhost:3333/graphql/api-upintergration-feature')
-    ]);
-  }
   AddAllUnimplemented(){
     const unimplemented1 = new ApiHosting();
     unimplemented1.name = "Block Chain";
     unimplemented1.status = "Under Development";
 
-    this.hosting.push(unimplemented1);
+    // this.hosting.push(unimplemented1);
+    return unimplemented1;
   }
+ 
 }
