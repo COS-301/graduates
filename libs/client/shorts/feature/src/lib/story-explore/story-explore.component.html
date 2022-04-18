@@ -13,7 +13,7 @@
       <!-- search bar -->
       <div class="">
         <input *ngIf="!upload" (keydown.enter)="search()" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
-        <input *ngIf="upload" disabled="true" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." type="text" fxFlex="70%" fxFlexOffset="-10%">
+        <!-- <input *ngIf="upload" disabled="true" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." type="text" fxFlex="70%" fxFlexOffset="-10%"> -->
       </div>
 
       <!-- column manager for all cards -->
@@ -144,7 +144,7 @@
       <div>
         <div class="grid grid-cols-2 place-content-center pb-3">
           <div class="flex justify-center"><button class="py-2.5 px-3 formbuttonblue rounded" (click)="cancelUpload()">Cancel</button></div>
-          <div class="flex justify-center"><button class="py-2.5 px-3 formbuttonblue rounded" type="submit">Submit</button></div>
+          <div class="flex justify-center"><div *ngIf="loadwheel" class="loader"></div><button class="py-2.5 px-3 formbuttonblue rounded" type="submit">Submit</button></div>
         </div>
       </div>
 
@@ -220,6 +220,19 @@
     <div class="flex justify-center"><button class="py-2.5 px-3 mb-3 formbuttonblue rounded" (click)="closeSuccessReport()">Continue</button></div>
 
   </div>
+
+  <!-- pop up -> for REPORT SUCCESSFUL -->
+  <div *ngIf="successfulUpload" class="popupcard bigblur">
+
+    <!-- banner heading for report -->
+    <div class="text-center p-6" id="uploadbanner">Successful</div>
+    <!-- info message -->
+    <div class="text-center pt-3 mx-4 mt-1 mb-3" id="infomessage">Your short has been uploaded.</div>
+    <div class="flex justify-center"><button class="py-2.5 px-3 mb-3 formbuttonblue rounded" (click)="closeSuccessUpload()">Continue</button></div>
+
+  </div>
+
 </div>
+
 
   <!-- footer from shared -->

@@ -3,6 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
+    path: 'admin-console',
+    loadChildren: () => import('@graduates/client/adminconsole/feature').then(x => x.ClientAdminconsoleFeatureModule)
+  },
+  {
+    
     path: 'example',
     loadChildren: () =>
       import('@graduates/client/example/feature').then((x) => x.FeatureModule),

@@ -47,6 +47,8 @@ export class StoryExploreComponent implements OnInit {
   submit = false;
   return : boolean;
 
+  loadwheel : boolean;
+
   test! : any;
 
   viewing : boolean;
@@ -54,6 +56,7 @@ export class StoryExploreComponent implements OnInit {
   currentlyViewing! : string;
   currentlyReporting! : string;
   successfulReport : boolean;
+  successfulUpload : boolean;
   reported : boolean;
   apifailure = "";
 
@@ -93,6 +96,8 @@ export class StoryExploreComponent implements OnInit {
     this.ThumbnailFileBase64 = null;
     this.fileuploadflag= true;
     this.thumbnailuploadflag = true;
+    this.loadwheel = false;
+    this.successfulUpload = false;
   }
 
   ngOnInit(): void {
@@ -112,6 +117,11 @@ export class StoryExploreComponent implements OnInit {
   //  ==================================================================================== //
   //  Submit Pop-Up Functions ============================================================ //
   
+  closeSuccessUpload() {
+    //route user to the student profile page or to /shorts...
+    this.location.back();
+  }
+
   onFileUpload(event : any) {
     this.VideoFile = event.target.files[0];
     this.fileuploadflag = true; 
@@ -153,13 +163,23 @@ export class StoryExploreComponent implements OnInit {
       //get Tag array:
       const tags = this.getTagArray();
 
+      this.loadwheel = true;
+
       //form is valid here, upload to the API:
       this.uploadShortToAPI(tags).then(resp => {
+
         console.log(resp);
+        
+        //here is for the response (resp) from the upload uploadShortToAPI() and hide load wheel
+        this.loadwheel = false;
 
-        //here is for the response (resp) from the upload uploadShortToAPI()
         //it is a promise so this code will run after the query is complete and will return the query response here.
+        //if (success with the API) {
+          this.successfulUpload = true;
+        //}
+        //else {
 
+        //}
       })
 
     } 
@@ -221,9 +241,6 @@ export class StoryExploreComponent implements OnInit {
           //resolve the promise from the query:
           resolve(result);
         });
-
-
-      resolve('after API call sen response here');
     })
   }
 
