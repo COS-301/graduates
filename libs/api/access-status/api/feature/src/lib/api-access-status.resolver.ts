@@ -1,10 +1,10 @@
 import { Resolver, Query, ID, Args } from "@nestjs/graphql";
-import { ApiAccessStatusEntity } from "./api-access-status.entity";
-import { ApiAccessStatusService } from "./api-access-status.service";
+import { ApiAccessStatusEntity } from "@graduates/api/access-status/api/shared";
+import { AccessStatusService } from "@graduates/api/access-status/service/feature";
 
 @Resolver(of => ApiAccessStatusEntity)
 export class ApiAccessStatusResolver {
-    constructor(private accessStatusService: ApiAccessStatusService) {}
+    constructor(private accessStatusService: AccessStatusService) {}
 
     @Query(returns => [ApiAccessStatusEntity], { nullable: true })
     async status(@Args('compId', { type: () => ID }) compId: string, @Args('gradId', { type: () => ID }) gradId: string): Promise<ApiAccessStatusEntity[]> {
@@ -12,14 +12,16 @@ export class ApiAccessStatusResolver {
             return null;
 
         const items = ["CV", "Transcript", "Academic Record", "Certificates", "Capstone Project"];
+        const enumItems = items.map((x) => x.toUpperCase().replace(" ", "_"));
 
-        const entities = await this.accessStatusService.getAll(compId, gradId);
-
+        const entities = await this.accessStatusService.getAccessStatus(compId, gradId);
+        
         for (const e of entities) {
-            const i = items.indexOf(e.item);
+            const i = enumItems.indexOf(e.item);
 
-            if (i > -1)
-                items.splice(i, 1);
+            e.item = items[i];
+            items.splice(i, 1);
+            enumItems.splice(i, 1);
         }
 
         for (const i of items) {
