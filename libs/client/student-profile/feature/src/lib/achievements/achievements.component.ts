@@ -4,7 +4,7 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'graduates-achievements',
   templateUrl: './achievements.component.html',
-  styleUrls: ['./achievements.component.sass']
+  styleUrls: ['./achievements.component.scss']
 })
 export class AchievementsComponent implements OnInit {
 

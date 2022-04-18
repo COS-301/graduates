@@ -1,8 +1,10 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+
 #tab{
-    background-color: #174372;
+    background-color: $primary-1;
 }
 .text{
-    color:#ffffff;
+    color:$text-white;
 }
 
 .selected{

@@ -3,14 +3,14 @@
 //     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 // }
 h1 {
-    color: #174372;
+    color: $primary-1;
 }
 h2 {
-    color: #174372;
+    color: $primary-1;
 }
 
 mat-divider {
-    border-top-color: #174372;
+    border-top-color: $primary-1;
     // border-top-color: $primary-1;
     // margin: 0;
 }
@@ -21,7 +21,7 @@ mat-divider {
 }
 
 mat-icon {
-    color: #174372;
+    color: $primary-1;
     font-size: large;
 }
 
