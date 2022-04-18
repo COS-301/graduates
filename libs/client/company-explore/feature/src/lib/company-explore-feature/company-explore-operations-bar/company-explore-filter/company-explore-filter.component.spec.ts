@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { UiModule } from '@graduates/client/shared/assets/ui';
 import { CompanyExploreFilterComponent } from './company-explore-filter.component';
 
@@ -8,7 +9,7 @@ describe('CompanyExploreFilterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports:[UiModule],
+      imports:[UiModule,RouterTestingModule],
       declarations: [ CompanyExploreFilterComponent ]
     })
     .compileComponents();
