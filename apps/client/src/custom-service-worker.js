@@ -94,8 +94,36 @@ const insertIndexedDB = async (request, response) => {
   }
 
   const getCachedIndexedDB = async (request) => { 
-    //insert the code
+    let cacheddata;
+    try {
+      let body = await request.json();
+
+      let id = CryptoJS.SHA256(body.query).toString();
+
+      cacheddata = await idbKeyval.get(id, store);
+      if (!cacheddata) return null;
+
+      // Check cache max age.
+      let cacheControl = request.headers.get('Cache-Control');
+
+      let cacheTime = 0;
+      
+      if (cacheControl) {
+        cacheTime=parseInt(cacheControl.split('=')[1]);
+      } else {
+        cacheTime=5000;
+      }
+
+      if (Date.now() - cacheddata.timestamp > cacheTime * 1000) {
+      
+        return null;
+      }
+
+      return new Response(JSON.stringify(cacheddata.response.body), cacheddata.response);
+    } catch (err) {
+
       return null;
+    }
   }
   
   const getPostKey = async (request) => {

@@ -60,6 +60,7 @@ export class CompanyRepresentativePageComponent {
    }
 
   uploadImage(event: any) {
+    this.API.delete(this.id, "Image");
     this.API.upload(event.target.files[0], this.id);
     this.displayImage();
   }
