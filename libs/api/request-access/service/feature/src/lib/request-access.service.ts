@@ -52,7 +52,7 @@ export class RequestAccessService {
   
         };
         return entity;
-      }else if(itemID === 'CERTIFICATE'){
+      }else if(itemID === 'CERTIFICATES'){
         const result =this.repository.insertRequest(userID, companyID, Item.CERTIFICATE, false);
         const entity = {
 
