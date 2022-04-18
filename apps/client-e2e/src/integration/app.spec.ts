@@ -63,116 +63,120 @@ describe('client notifications testing', () => {
 
 /* Request for access */
 
-describe('Visit student-profile', () => {
+// describe('Visit student-profile', () => {
 
-  beforeEach(() => {
+//   beforeEach(() => {
 
-    cy.log("Load Student Page URL");
+//     cy.log("Load Student Page URL");
 
-    cy.visit('localhost:4200/student-profile');
+//     cy.visit('localhost:4200/student-profile');
 
-  })
+//   })
+
 
 
 
   it('Should load the page because the pipeline does not implement an API to actually run these tests', () => {
 
-    cy.contains('BIO')
-
-  })
+//   it('Should load the page because the pipeline does not implement an API to actually run these tests', ()=> {
 
 
+//     cy.contains('BIO')
 
-  /*it('has the request for access buttons initialized', ()=> {
-
-4
-
-    cy.get("button[id='RA:2']").contains("Request");
-
-    cy.get("button[id='RA:3']").contains("Request");
-
-    cy.get("button[id='RA:4']").contains("Request");
-
-    //test api
+//   })
 
 
 
-    //test db
+//   /*it('has the request for access buttons initialized', ()=> {
 
-  });
+// 4
 
+//     cy.get("button[id='RA:2']").contains("Request");
 
+//     cy.get("button[id='RA:3']").contains("Request");
 
-  /*it('changes to pending once clicked', () => {
+//     cy.get("button[id='RA:4']").contains("Request");
 
-    cy.get("button[id='RA:0']").click();
-
-    cy.get("button[id='RA:0']").contains('Pending');
-
-  });
+//     //test api
 
 
 
-  it('requests access using the API', () => {
+//     //test db
 
-    cy.get("button[id='RA:1']").click();
-
-
-
-    cy.intercept({
-
-      url: 'localhost:3333/graphql',
-
-      method: 'POST'
-
-    }).as('requestAccess');
-
-  });
+//   });
 
 
 
-  it('should return all pending entities', () => {
+//   /*it('changes to pending once clicked', () => {
+
+//     cy.get("button[id='RA:0']").click();
+
+//     cy.get("button[id='RA:0']").contains('Pending');
+
+//   });
 
 
 
-    const getRequestForAccess = `query ($compID: ID!, $gradID: ID!) {status(compId: $compID, gradId: $gradID) { accessStatus, item }}`;
+//   it('requests access using the API', () => {
+
+//     cy.get("button[id='RA:1']").click();
 
 
 
-    cy.request({
+//     cy.intercept({
 
-      url:"localhost:3333/graphql",
+//       url: 'localhost:3333/graphql',
 
-      method: "POST",
+//       method: 'POST'
 
-      body: {
+//     }).as('requestAccess');
 
-        query: getRequestForAccess,
-
-        variables : {
-
-          compID: '8',
-
-          gradID:'5'
-
-        }
-
-      },
-
-      failOnStatusCode:false
-
-    }).as('response');
+//   });
 
 
 
-     cy.get('@response').should((response) => {
+//   it('should return all pending entities', () => {
 
-      expect(response).to.have.property('headers')
 
-    })
 
-  });*/
-});
+//     const getRequestForAccess = `query ($compID: ID!, $gradID: ID!) {status(compId: $compID, gradId: $gradID) { accessStatus, item }}`;
+
+
+
+//     cy.request({
+
+//       url:"localhost:3333/graphql",
+
+//       method: "POST",
+
+//       body: {
+
+//         query: getRequestForAccess,
+
+//         variables : {
+
+//           compID: '8',
+
+//           gradID:'5'
+
+//         }
+
+//       },
+
+//       failOnStatusCode:false
+
+//     }).as('response');
+
+
+
+//      cy.get('@response').should((response) => {
+
+//       expect(response).to.have.property('headers')
+
+//     })
+
+//   });*/
+// });
 
 // Commented out Tests need API and DB to run in Environment to pass
 describe('client-shorts-feature e2e test', () => {
