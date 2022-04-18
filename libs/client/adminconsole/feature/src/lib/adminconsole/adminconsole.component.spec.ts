@@ -12,8 +12,8 @@ describe('AdminconsoleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminconsoleComponent ],
-      imports: [MatMenu, MatIcon, HeaderModule, FooterModule]
+      declarations: [ MatMenu, MatIcon, AdminconsoleComponent ],
+      imports: [HeaderModule, FooterModule]
     })
     .compileComponents();
   });
