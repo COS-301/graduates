@@ -1,0 +1,8 @@
+{
+  "id": "abcd1234",
+  "userIdFrom": "userIdFrom",
+  "userIdTo": "userIdTo",
+  "data": "NotificationData",
+  "date": "DateTime",
+  "seen": false
+}

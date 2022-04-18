@@ -101,7 +101,7 @@ export class CompanyRepresentativePageComponent {
   }
 
   navigateToExplore() {
-    this._router.navigate(['StudentExplore'])
+    this._router.navigate(['student-explore'])
   }
 
   navigateToHome() {
