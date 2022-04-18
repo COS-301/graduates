@@ -1,5 +1,4 @@
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-//import {authorizationAdmin} from '../../../shared/src/lib/authorization-data-access.entity';
+
 import { Injectable, Param } from '@nestjs/common';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 import {
