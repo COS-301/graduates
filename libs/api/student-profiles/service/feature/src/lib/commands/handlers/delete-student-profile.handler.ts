@@ -6,9 +6,9 @@ import { DeleteStudentProfileFilesCommand, DeleteStudentProfileSocialMediaComman
 
 // @CommandHandler(DeleteStudentProfileNameCommand)
 // export class DeleteStudentProfileNameHandler implements ICommandHandler<DeleteStudentProfileNameCommand> {
-//   constructor(private repository: StudentProfilesRepository, private publisher: EventPublisher) {} 
+//   constructor(private repository: StudentProfilesRepository, private publisher: EventPublisher) {}
 
-//   async execute({id, name}: DeleteStudentProfileNameCommand) { 
+//   async execute({id, name}: DeleteStudentProfileNameCommand) {
 //     const profile = this.publisher.mergeObjectContext(await this.repository.removeName(id, name) as any);
 //     profile.apply(new DeleteStudentProfileNameEvent(
 //         id,
@@ -22,9 +22,9 @@ import { DeleteStudentProfileFilesCommand, DeleteStudentProfileSocialMediaComman
 
 // @CommandHandler(DeleteStudentProfileProfilePictureCommand)
 // export class DeleteStudentProfileProfilePictureHandler implements ICommandHandler<DeleteStudentProfileProfilePictureCommand> {
-//   constructor(private repository: StudentProfilesRepository, private publisher: EventPublisher) {} 
+//   constructor(private repository: StudentProfilesRepository, private publisher: EventPublisher) {}
 
-//   async execute({id, pfp}: DeleteStudentProfileProfilePictureCommand) { 
+//   async execute({id, pfp}: DeleteStudentProfileProfilePictureCommand) {
 //     const profile = this.publisher.mergeObjectContext(await this.repository.removePfp(id, pfp) as any);
 //     profile.apply(new DeleteStudentProfileProfilePictureEvent(
 //         id,
@@ -38,9 +38,9 @@ import { DeleteStudentProfileFilesCommand, DeleteStudentProfileSocialMediaComman
 
 // @CommandHandler(DeleteStudentProfileBioCommand)
 // export class DeleteStudentProfileBioHandler implements ICommandHandler<DeleteStudentProfileBioCommand> {
-//   constructor(private repository: StudentProfilesRepository, private publisher: EventPublisher) {} 
+//   constructor(private repository: StudentProfilesRepository, private publisher: EventPublisher) {}
 
-//   async execute({id, bio}: DeleteStudentProfileBioCommand) { 
+//   async execute({id, bio}: DeleteStudentProfileBioCommand) {
 //     const profile = this.publisher.mergeObjectContext(await this.repository.removeBio(id, bio) as any);
 //     profile.apply(new DeleteStudentProfileBioEvent(
 //         id,
@@ -54,9 +54,9 @@ import { DeleteStudentProfileFilesCommand, DeleteStudentProfileSocialMediaComman
 
 @CommandHandler(DeleteStudentProfileTagsCommand)
 export class DeleteStudentProfileTagsHandler implements ICommandHandler<DeleteStudentProfileTagsCommand> {
-  constructor(private repository: StudentProfilesRepository, private publisher: EventPublisher) {} 
+  constructor(private repository: StudentProfilesRepository, private publisher: EventPublisher) {}
 
-  async execute({id, tags}: DeleteStudentProfileTagsCommand) { 
+  async execute({id, tags}: DeleteStudentProfileTagsCommand) {
     const profile = this.publisher.mergeObjectContext(await this.repository.removeTag(id, tags) as any);
     profile.apply(new DeleteStudentProfileTagsEvent(
         id,
@@ -71,10 +71,10 @@ export class DeleteStudentProfileTagsHandler implements ICommandHandler<DeleteSt
 
 @CommandHandler(DeleteStudentProfileSocialMediaCommand)
 export class DeleteStudentProfileSocialMediaHandler implements ICommandHandler<DeleteStudentProfileSocialMediaCommand> {
-  constructor(private repository: StudentProfilesRepository, private publisher: EventPublisher) {} 
+  constructor(private repository: StudentProfilesRepository, private publisher: EventPublisher) {}
 
-  async execute({id, type, link}: DeleteStudentProfileSocialMediaCommand) { 
-    const profile = this.publisher.mergeObjectContext(await this.repository.removeSocialMedia(id) as any);
+  async execute({id, type, link}: DeleteStudentProfileSocialMediaCommand) {
+    const profile = this.publisher.mergeObjectContext(await this.repository.removeSocialMedia(id,type) as any);
     profile.apply(new DeleteStudentProfileSocialMediaEvent(
         id,
         type,
@@ -88,9 +88,9 @@ export class DeleteStudentProfileSocialMediaHandler implements ICommandHandler<D
 
 // @CommandHandler(DeleteStudentProfileLocationCommand)
 // export class DeleteStudentProfileLocationHandler implements ICommandHandler<DeleteStudentProfileLocationCommand> {
-//   constructor(private repository: StudentProfilesRepository, private publisher: EventPublisher) {} 
+//   constructor(private repository: StudentProfilesRepository, private publisher: EventPublisher) {}
 
-//   async execute({id, location}: DeleteStudentProfileLocationCommand) { 
+//   async execute({id, location}: DeleteStudentProfileLocationCommand) {
 //     const profile = this.publisher.mergeObjectContext(await this.repository.removeLocation(id, location) as any);
 //     profile.apply(new DeleteStudentProfileLocationEvent(
 //         id,
@@ -104,9 +104,9 @@ export class DeleteStudentProfileSocialMediaHandler implements ICommandHandler<D
 
 // @CommandHandler(DeleteStudentProfileEmailCommand)
 // export class DeleteStudentProfileEmailHandler implements ICommandHandler<DeleteStudentProfileEmailCommand> {
-//   constructor(private repository: StudentProfilesRepository, private publisher: EventPublisher) {} 
+//   constructor(private repository: StudentProfilesRepository, private publisher: EventPublisher) {}
 
-//   async execute({id, email}: DeleteStudentProfileEmailCommand) { 
+//   async execute({id, email}: DeleteStudentProfileEmailCommand) {
 //     const profile = this.publisher.mergeObjectContext(await this.repository.removeEmails(id, email) as any);
 //     profile.apply(new DeleteStudentProfileEmailsEvent(
 //         id,
@@ -120,9 +120,9 @@ export class DeleteStudentProfileSocialMediaHandler implements ICommandHandler<D
 
 // @CommandHandler(DeleteStudentProfileEmploymentStatusCommand)
 // export class DeleteStudentProfileEmploymentStatusHandler implements ICommandHandler<DeleteStudentProfileEmploymentStatusCommand> {
-//   constructor(private repository: StudentProfilesRepository, private publisher: EventPublisher) {} 
+//   constructor(private repository: StudentProfilesRepository, private publisher: EventPublisher) {}
 
-//   async execute({id, status}: DeleteStudentProfileEmploymentStatusCommand) { 
+//   async execute({id, status}: DeleteStudentProfileEmploymentStatusCommand) {
 //     const profile = this.publisher.mergeObjectContext(await this.repository.removeEmploymentStatus(id, status) as any);
 //     profile.apply(new DeleteStudentProfileEmploymentStatusEvent(
 //         id,
@@ -136,9 +136,9 @@ export class DeleteStudentProfileSocialMediaHandler implements ICommandHandler<D
 
 // @CommandHandler(DeleteStudentProfilePhoneNumberCommand)
 // export class DeleteStudentProfilePhoneNumberHandler implements ICommandHandler<DeleteStudentProfilePhoneNumberCommand> {
-//   constructor(private repository: StudentProfilesRepository, private publisher: EventPublisher) {} 
+//   constructor(private repository: StudentProfilesRepository, private publisher: EventPublisher) {}
 
-//   async execute({id, phoneNumber}: DeleteStudentProfilePhoneNumberCommand) { 
+//   async execute({id, phoneNumber}: DeleteStudentProfilePhoneNumberCommand) {
 //     const profile = this.publisher.mergeObjectContext(await this.repository.removePhoneNumber(id, phoneNumber) as any);
 //     profile.apply(new DeleteStudentProfilePhoneNumberEvent(
 //         id,
@@ -152,9 +152,9 @@ export class DeleteStudentProfileSocialMediaHandler implements ICommandHandler<D
 
 // @CommandHandler(DeleteStudentProfileDegreeNameCommand)
 // export class DeleteStudentProfileDegreeNameHandler implements ICommandHandler<DeleteStudentProfileDegreeNameCommand> {
-//   constructor(private repository: StudentProfilerepository, private publisher: EventPublisher) {} 
+//   constructor(private repository: StudentProfilerepository, private publisher: EventPublisher) {}
 
-//   async execute({id, degreeName}: DeleteStudentProfileDegreeNameCommand) { 
+//   async execute({id, degreeName}: DeleteStudentProfileDegreeNameCommand) {
 //     const profile = this.publisher.mergeObjectContext(await this.repository.removeDegreeName(id, degreeName) as any);
 //     profile.apply(new DeleteStudentProfileDegreeNameEvent(
 //         id,
@@ -170,9 +170,9 @@ export class DeleteStudentProfileSocialMediaHandler implements ICommandHandler<D
 
 @CommandHandler(DeleteStudentProfileFilesCommand)
 export class DeleteStudentProfileFilesHandler implements ICommandHandler<DeleteStudentProfileFilesCommand> {
-  constructor(private repository: StudentProfilesRepository, private publisher: EventPublisher) {} 
+  constructor(private repository: StudentProfilesRepository, private publisher: EventPublisher) {}
 
-  async execute({id, fileCategory, filePath, fileExtension}: DeleteStudentProfileFilesCommand) { 
+  async execute({id, fileCategory, filePath, fileExtension}: DeleteStudentProfileFilesCommand) {
     const profile = this.publisher.mergeObjectContext(await this.repository.removeFiles(id, fileCategory) as any);
     profile.apply(new DeleteStudentProfileFilesEvent(
         id,
