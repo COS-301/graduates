@@ -43,8 +43,8 @@ export class GetStudentInfoIDHandler implements IQueryHandler<GetStudentInfoIDQu
     constructor(private readonly repository: UpIntegrationRepository) {}
 
     async execute(query: GetStudentInfoIDQuery): Promise<string | null> {
-        const {studentNum} = query;
-        return this.repository.get_UserID(studentNum);
+        const {userId} = query;
+        return this.repository.get_UserID(userId);
     }
 }
 
