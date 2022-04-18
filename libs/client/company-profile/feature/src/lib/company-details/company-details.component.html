@@ -4,7 +4,7 @@
     <!-- <mat-divider [vertical]="true"></mat-divider> -->
     <br/>
     <p id="company_details_website"><mat-icon>public</mat-icon> www.website.com</p>
-    <p id="company_details_location"><mat-icon> location_on</mat-icon> example street, pretoria</p>
-    <p id="company_details_phone"><mat-icon> phone</mat-icon> 0123456789</p>
-    <p id="company_details_email"><mat-icon> email</mat-icon> extraextralonguser@example.com</p>
+    <p id="company_details_location"><mat-icon> location_on</mat-icon> {{location}}</p>
+    <p id="company_details_phone"><mat-icon> phone</mat-icon> {{number}}</p>
+    <p id="company_details_email" *ngFor = "let email of emails"><mat-icon> email</mat-icon> {{email}}</p>
 </div>
