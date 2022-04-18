@@ -10,15 +10,13 @@
   </div>
   <!-- Navbar start -->
   <div class="nav">
-    <button mat-button (click)="navigateToHome()">Home</button>
-    <button mat-button [matMenuTriggerFor]="menu">Options</button>
+    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon>Menu</button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="navigateToEdit()">Edit Profile</button>
-      <button mat-menu-item (click)="navigateToExplore()">Student Explore</button>
-    </mat-menu>
-    <button mat-button (click)="navigateToLogin()">Logout</button>
+      <button mat-menu-item (click)="navigateToHome()"><mat-icon style="background-color: white;">home</mat-icon><span>My Profile</span></button>
+      <button mat-menu-item (click)="logout()"><mat-icon  style="background-color: white;">exit_to_app</mat-icon><span>Logout</span></button>
+    </mat-menu> 
   </div>
-<!-- Navbar end -->
+  <!-- Navbar end -->
 </header>
 <!-- Header end -->
 <div>
