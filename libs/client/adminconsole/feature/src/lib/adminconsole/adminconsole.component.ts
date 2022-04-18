@@ -29,13 +29,17 @@ export class AdminconsoleComponent{
   // CVDoc : any
   stagedAddRoles : string[]
   stagedRemoveRoles : string[]
-
+  currentStory : any
+  currentBlog : any
 
   constructor(private http : HttpClient, private changeDetection : ChangeDetectorRef ) {
     //Populate the sidenav with these options
     this.sidenavOptions = ["Create User", "Users", "Story", "Roles", "Blogs", "Shorts"]
 
     //Set default option
+    this.shorts = []
+    this.blogs = []
+    this.stories = []
     this.stagedAddRoles = []
     this.stagedRemoveRoles = []
     this.userName = "Name"
@@ -145,6 +149,20 @@ export class AdminconsoleComponent{
     {"name" : "John", "suspended" : true, "roles" : ["Role 1", "Role 2"], "permissions" : ["Permission 1", "Permission 2"]}]
     this.currentUser = this.users[0]
 
+    this.stories = [{"name" : "Story 1", "archived" : true},
+    {"name" : "Story 1", "archived" : true},
+    {"name" : "Story 1", "archived" : true},
+    {"name" : "Story 1", "archived" : true},
+    {"name" : "Story 1", "archived" : true}]
+
+    this.blogs = [{"name" : "Blog 1", "archived" : true},
+    {"name" : "Blog 1", "archived" : true},
+    {"name" : "Blog 1", "archived" : true},
+    {"name" : "Blog 1", "archived" : true},
+    {"name" : "Blog 1", "archived" : true}]
+    
+    this.currentBlog = this.blogs[0]
+    this.currentStory = this.stories[0]
     this.allPermissions = ["Permission 1", "Permission 2", "Permission 3", "Permission 4"]
     this.allRoles = ["Role 1", "Role 2", "Role 3", "Role 4", "Role 5"]
   }
@@ -258,11 +276,35 @@ export class AdminconsoleComponent{
     this.usersPORS = opt
   }
 
+  archiveStory() {
+    this.currentStory.archived = true
+  }
+
+  unarchiveStory() {
+    this.currentStory.archived = false
+  }
+
+  selectStory(u : any) {
+    this.currentStory = u
+  }
+
+  selectBlog(u : any) {
+    this.currentBlog = u
+  }
+
+  archiveBlog() {
+    this.currentBlog.archived = true
+  }
+
+  unarchiveBlog() {
+    this.currentBlog.archived = false
+  }
+
   archive() {
-    return
+    this.currentUser.archived = true
   }
   unarchive() {
-    return
+    this.currentUser.archived = false
   }
 
   suspend() {

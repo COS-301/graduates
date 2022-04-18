@@ -9,6 +9,7 @@
   color: white;
   width: 80%;
   padding: 1vh;
+  align-self: center;
 }
 
 #mobileMenu {
@@ -146,9 +147,10 @@ label {
       @media screen 
       and (max-device-width : 428px) 
       {
-        margin-top: 2vh;
-        width:40px;
-        height:35px;
+        // margin-top: 2vh;
+        // width:40px;
+        // height:35px;
+        display: none;
       }
     }
   img { 
@@ -170,7 +172,7 @@ label {
     @media screen 
       and (max-device-width : 428px) 
       {
-        display:none;
+
       }
   }
 
@@ -392,7 +394,7 @@ label {
   @media screen 
   and (max-device-width : 428px) 
   {
-      width: 40%;
+      width: 30%;
   }
   div {
       padding-left: 0.5vw;

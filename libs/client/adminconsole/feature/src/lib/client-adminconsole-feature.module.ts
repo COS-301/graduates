@@ -8,10 +8,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { ChangeDetectorRef } from '@angular/core';
+import { AdminconsoleRoutingModule } from './adminconsole-routing.module';
 
 @NgModule({
   imports: [CommonModule, MatMenuModule, MatIconModule, FooterModule, FormsModule,
-    HeaderModule],
+    HeaderModule, AdminconsoleRoutingModule],
   declarations: [
     AdminconsoleComponent,
     // DropdownComponent,
