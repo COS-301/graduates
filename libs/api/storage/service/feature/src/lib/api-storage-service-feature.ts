@@ -23,7 +23,7 @@ export class ApiStorageServiceFeatureModule {
             url = value;
         });
       }
-      else if(fileCategory==="Degree"){
+      else if(fileCategory==="Transcript"){
         await this.repo.getUserFile(userID ,FileCategory.DEGREE).then(async (value)=> {
           url = value;
         });
