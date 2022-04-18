@@ -47,4 +47,9 @@ export class ApiCompanyRepresentativeResolver {
   async getDefaultRepresentative(@Args('id') id : string){
     return this.apiCompanyRepresentativeService.createDefaultRepresentative();
   }
+
+  @Mutation(() => CompanyRepresentative)
+  async updateCompanyRepresentative(@Args("id") id: string, @Args("newData") data: string, @Args("type") type: string){
+    return this.apiCompanyRepresentativeService.UpdateRepresentative(id, data, type);
+  }
 }

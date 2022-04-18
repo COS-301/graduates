@@ -58,7 +58,7 @@ describe('ApiCompanyRepresentativeResolver', () => {
             ]
           )),
           getCompanyRepresentative: jest.fn((id: string) =>({
-            id: "c1234",
+            id: id,
             repName: "Isheanesu Joseph Dzingirai",
             jobTitle: "Data Engineer at Consnet",
             aboutMe: "A well-presented, highly-focused, and intelligent computer science student passionate about data engineering & machine learning.",
@@ -75,7 +75,7 @@ describe('ApiCompanyRepresentativeResolver', () => {
             website: "www.ishe.dzingi.com"
           })),
           getDefaultRepresentative: jest.fn((id: string) =>({
-            id: "c1234",
+            id: id,
             repName: "Isheanesu Joseph Dzingirai",
             jobTitle: "Data Engineer at Consnet",
             aboutMe: "A well-presented, highly-focused, and intelligent computer science student passionate about data engineering & machine learning.",
@@ -120,8 +120,9 @@ describe('ApiCompanyRepresentativeResolver', () => {
   });
 
   describe("@getCompanyRepresentative", () => {
+    const id = "c1234";
     it("should return a company representative profile", async () =>{
-      const rep = await resolver.getCompanyRepresentative("c1234523456d");
+      const rep = await resolver.getCompanyRepresentative(id);
       expect(rep).toEqual({
         id: "c1234",
         repName: "Isheanesu Joseph Dzingirai",
@@ -142,7 +143,7 @@ describe('ApiCompanyRepresentativeResolver', () => {
     })
   });
 
-  describe("@getDefaultRepresentative", () =>{
+  describe("@login", () =>{
     const pass = "IamACSStudent@1";
     const email = "ishe.dzingirai@gmail.com"; 
     it("should return the logged in company profile", async () => {
@@ -168,5 +169,32 @@ describe('ApiCompanyRepresentativeResolver', () => {
       )
     })
   });
+
+  // describe("@deleteCompanyRepresentative", () => {
+  //   const id = "c1234";
+  //   it("should delete a rep profile and return it", async () => {
+  //     const resp = await resolver.deleteCompanyRepresentative(id);
+  //     expect(resp).toEqual(
+  //       {
+  //         id: "c1234",
+  //         repName: "Isheanesu Joseph Dzingirai",
+  //         jobTitle: "Data Engineer at Consnet",
+  //         aboutMe: "A well-presented, highly-focused, and intelligent computer science student passionate about data engineering & machine learning.",
+  //         repExperience: "Worked for Universtity of Pretoria as a Teaching Assistant.",
+  //         location: "Hatfield, Gauteng, 0028",
+  //         email: "ishe.dzingirai@gmail.com",
+  //         linkedIn: "linkedin.com/in/isheanesu-dzingirai-2952b9180",
+  //         twitter: "ishe@twitter.com",
+  //         instagram: "ishe@instagram.com",
+  //         snapChat: "ishe@snapchat.com",
+  //         gitHub: "zenthon@github.com",
+  //         facebook: "ishe@facebook.com",
+  //         phoneNumber: "0724545654",
+  //         website: "www.ishe.dzingi.com"
+  //       }
+  //     )
+
+  //   })
+  // })
  
 });
