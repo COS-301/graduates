@@ -56,6 +56,7 @@ export class StoryExploreComponent implements OnInit {
   currentlyViewing! : string;
   currentlyReporting! : string;
   successfulReport : boolean;
+  successfulUpload : boolean;
   reported : boolean;
   apifailure = "";
 
@@ -96,6 +97,7 @@ export class StoryExploreComponent implements OnInit {
     this.fileuploadflag= true;
     this.thumbnailuploadflag = true;
     this.loadwheel = false;
+    this.successfulUpload = false;
   }
 
   ngOnInit(): void {
@@ -115,6 +117,10 @@ export class StoryExploreComponent implements OnInit {
   //  ==================================================================================== //
   //  Submit Pop-Up Functions ============================================================ //
   
+  closeSuccessUpload() {
+    //route user to the student profile page or to /shorts...
+  }
+
   onFileUpload(event : any) {
     this.VideoFile = event.target.files[0];
     this.fileuploadflag = true; 
@@ -160,8 +166,11 @@ export class StoryExploreComponent implements OnInit {
       //form is valid here, upload to the API:
       this.uploadShortToAPI(tags).then(resp => {
         console.log(resp);
+        
+        //here is for the response (resp) from the upload uploadShortToAPI() and hide load wheele
         this.loadwheel = false;
-        //here is for the response (resp) from the upload uploadShortToAPI()
+        this.successfulUpload = true;
+
         //it is a promise so this code will run after the query is complete and will return the query response here.
 
       })
