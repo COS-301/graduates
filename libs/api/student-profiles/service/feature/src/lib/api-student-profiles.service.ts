@@ -23,7 +23,7 @@ export class ApiStudentProfileService {
   async getPfp(userid : string) {
     return await this.queryBus.execute( new GetStudentProfilePFPQuery(userid))
   }
-  async setPfp(userid : string, pfp) {
+  async setPfp(userid : string, pfp: string) {
     return await this.commandBus.execute( new SetStudentProfileProfilePictureCommand(userid, pfp))
   }
   async getBio(userid : string) {

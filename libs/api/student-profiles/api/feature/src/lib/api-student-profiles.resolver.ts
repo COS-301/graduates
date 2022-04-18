@@ -11,6 +11,7 @@ export class ApiStudentProfileResolver {
   @Query((returns) => ApiStudentProfilesEntity, { name: 'student' })
   async getStudent(@Args('studentNum', { type: () => String }) id: string) {
     let dbId;
+    // let dbId = this.studentService.GetUserIDFromStudentNumber(id);
     if (id == 'u12345678') dbId = '1';
     else dbId = null;
 
@@ -28,13 +29,16 @@ export class ApiStudentProfileResolver {
     studentObj.dateOfBirth =
       DoB.getDay() + '/' + DoB.getMonth() + '/' + DoB.getFullYear();
     // Get phone number
-    const cell = { cellNumber: ['implement me!'] }; //await this.studentService.get(dbId);
+    const cell = { cellNumber: ['0824466845'] }; //await this.studentService.get(dbId);
     studentObj.phoneNum = cell != null ? cell.cellNumber : ['not provided'];
     // Get email
     const e = await this.studentService.getEmails(dbId);
-    studentObj.email = e != null && e != '' ? e : ['not provided'];
+    studentObj.email = [];
+    console.log(e);
+    for (let i=0; i<e.length; i++)
+      studentObj.email.push(e[i].email);
     //Get title and degree
-    const t = { title: 'well..this', nameOfDegree: 'should not display' }; //await this.studentService.get(dbId);
+    const t = { title: 'PhD', nameOfDegree: 'Computer Science' }; //await this.studentService.get(dbId);
     studentObj.title = t != null ? t.title : 'not provided';
     studentObj.nameOfDegree = t != null ? t.nameOfDegree : 'not provided';
     // studentObj.nameOfDegree = await this.studentService.get(dbId);
@@ -42,7 +46,10 @@ export class ApiStudentProfileResolver {
     const b = await this.studentService.getBio(dbId);
     studentObj.bio = b != null ? b.bio : 'not provided';
     //Get tags: nullable
-    studentObj.tags = (await this.studentService.getTags(dbId)).tags;
+    const allTags = (await this.studentService.getTags(dbId));
+    studentObj.tags = []
+    for (let i=0; i<allTags.length; i++)
+      studentObj.tags.push((await allTags[i]).tag);
     //Get employmentStatus
     const emplStatus = await this.studentService.getEmploymentStatus(dbId);
     let res = '';
@@ -58,20 +65,24 @@ export class ApiStudentProfileResolver {
     studentObj.employmentStatus = res;
     //Get Prefered location
     const location = await this.studentService.getLocation(dbId);
-    studentObj.preferredLocation =
-      location != null ? location.preferredLocation : 'Any';
+    studentObj.preferredLocation = location.location != null ? location.location : 'Any';
     //Get notable achievements
     const notableAch = {
-      notableAchievements: ['None', 'Tell Xander to link function'],
+      notableAchievements: ['Golden Key Honours Society', 'Did internship at google'],
     }; //await this.studentService.get(dbId)
     studentObj.notableAchievements =
-      notableAch != null ? notableAch.notableAchievements : ['None'];
+      notableAch.notableAchievements != null
+        ? notableAch.notableAchievements
+        : ['None'];
     //Get links: nullable
-    studentObj.links = (await this.studentService.getSocialMedia(dbId)).links;
+    const social = await this.studentService.getSocialMedia(dbId);
+    studentObj.links = [];
+    for (let i=0; i< social.length; i++)
+     studentObj.links.push([social[i].type,social[i].link]);
     //Get profile photo
     const pp = await this.studentService.getPfp(dbId);
     studentObj.profilePhoto =
-      pp.profilePhoto != null
+      pp.profilePicture != null
         ? pp.profilePicture
         : 'https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png';
     //Check records --> Check for specefic files not implemented
@@ -105,7 +116,8 @@ export class ApiStudentProfileResolver {
     }
 
     if (editStudentData.email != null && editStudentData.email[0] != '') {
-      for (let i = 0; i < editStudentData.email.length; i++) {
+      for (let i = 0; i < editStudentData.email.length - 1; i++) {
+        if (studentObj.email == null) studentObj.email = [];
         studentObj.email.push(
           await this.addEmail(studentObj.dbId, editStudentData.email[i])
         );
@@ -113,10 +125,21 @@ export class ApiStudentProfileResolver {
     }
 
     if (editStudentData.phoneNum != null && editStudentData.phoneNum[0] != '') {
-      for (let i = 0; i < editStudentData.phoneNum.length; i++) {
+      for (let i = 0; i < editStudentData.phoneNum.length - 1; i++) {
+        if (studentObj.phoneNum == null) studentObj.phoneNum = [];
         studentObj.phoneNum.push(
           await this.addPhoneNum(studentObj.dbId, editStudentData.phoneNum[i])
         );
+      }
+    }
+
+    if (editStudentData.tags != null && editStudentData.tags[0] != '') {
+      for (let i = 0; i < editStudentData.tags.length; i++) {
+        if (studentObj.tags == null) studentObj.tags = [];
+        if (studentObj.tags.indexOf(editStudentData.tags[i]) == -1)
+          studentObj.tags.push(
+            await this.addTag(studentObj.dbId, editStudentData.tags[i])
+          );
       }
     }
 
@@ -132,7 +155,7 @@ export class ApiStudentProfileResolver {
           studentObj.dbId,
           editStudentData.profilePhoto
         )
-      ).profilePicture;
+      ).pfp;
     }
 
     if (editStudentData.preferredLocation != null) {
@@ -141,7 +164,7 @@ export class ApiStudentProfileResolver {
           studentObj.dbId,
           editStudentData.preferredLocation
         )
-      ).preferredLocation;
+      ).location;
     }
 
     // @Field({ nullable: true })
@@ -180,24 +203,26 @@ export class ApiStudentProfileResolver {
     //   ).name;
     // }
 
-    if (editStudentData.links[0] != null && editStudentData.links[0][0] != '') {
-      for (let i = 0; i < editStudentData.links.length; i++) {
-        studentObj.links.push(
-          await this.addLink(
-            studentObj.dbId,
-            editStudentData.links[i][0],
-            editStudentData.links[i][1]
-          )
-        );
-      }
-    }
+    // if (editStudentData.links[0] != null && editStudentData.links[0][0] != '') {
+    //   for (let i = 0; i < editStudentData.links.length - 1; i++) {
+    //     if (studentObj.links == null)
+    //       studentObj.links = [];
+    //     studentObj.links.push(
+    //       await this.addLink(
+    //         studentObj.dbId,
+    //         editStudentData.links[i][0],
+    //         editStudentData.links[i][1]
+    //       )
+    //     );
+    //   }
+    // }
 
     return studentObj;
   }
 
-  @Mutation((returns) => String)
+  @Mutation((returns) => ApiStudentProfilesEntity)
   async deleteStudent(@Args('studentNum', { type: () => String }) id: string) {
-    return new UserInputError('Not implemented', { debug: false });
+    return new UserInputError('Not implemented');
   }
 
   @Mutation((returns) => ApiStudentProfilesEntity)
@@ -214,39 +239,33 @@ export class ApiStudentProfileResolver {
   }
 
   @Mutation((returns) => String)
-  async addTag(
-    @Args('tag') tag: string,
-    @Args('dbId') dbId: string
-  ) {
+  async addTag(@Args('dbId') dbId: string, @Args('tag') tag: string) {
     this.studentService.addTag(dbId, tag);
     return tag;
   }
 
   @Mutation((returns) => ApiStudentProfilesEntity)
-  async removeTag(
-    @Args('tag') tag: string,
-    @Args('dbId') dbId: string
-  ) {
+  async removeTag(@Args('dbId') dbId: string, @Args('tag') tag: string) {
     this.studentService.removeTag(dbId, tag);
     return this.getStudent(dbId);
   }
 
   @Mutation((returns) => String)
-  async addEmail(@Args('email') email: string, @Args('dbId') dbId: string) {
+  async addEmail(@Args('dbId') dbId: string, @Args('email') email: string) {
     this.studentService.setEmails(dbId, email);
     return email;
   }
 
   @Mutation((returns) => ApiStudentProfilesEntity)
-  async removeEmail(@Args('email') email: string, @Args('dbId') dbId: string) {
+  async removeEmail(@Args('dbId') dbId: string, @Args('email') email: string) {
     // this.studentService.(dbId, email);
     return this.getStudent(dbId);
   }
 
   @Mutation((returns) => String)
   async addPhoneNum(
-    @Args('phoneNum') phoneNum: string,
-    @Args('dbId') dbId: string
+    @Args('dbId') dbId: string,
+    @Args('phoneNum') phoneNum: string
   ) {
     // this.studentService.(dbId, phoneNum);
     return phoneNum;
@@ -254,8 +273,8 @@ export class ApiStudentProfileResolver {
 
   @Mutation((returns) => ApiStudentProfilesEntity)
   async removePhoneNum(
-    @Args('phoneNum') phoneNum: string,
-    @Args('dbId') dbId: string
+    @Args('dbId') dbId: string,
+    @Args('phoneNum') phoneNum: string
   ) {
     // this.studentService.(dbId, phoneNum);
     return this.getStudent(dbId);
@@ -263,9 +282,9 @@ export class ApiStudentProfileResolver {
 
   @Mutation((returns) => [String])
   async addLink(
+    @Args('dbId') dbId: string,
     @Args('linkType') linkType: string,
-    @Args('link') link: string,
-    @Args('dbId') dbId: string
+    @Args('link') link: string
   ) {
     this.studentService.addSocialMedia(dbId, linkType, link);
     return [linkType, link];
@@ -273,8 +292,8 @@ export class ApiStudentProfileResolver {
 
   @Mutation((returns) => ApiStudentProfilesEntity)
   async removeLink(
-    @Args('linkType') linkType: string,
-    @Args('dbId') dbId: string
+    @Args('dbId') dbId: string,
+    @Args('linkType') linkType: string
   ) {
     this.studentService.removeSocialMedia(dbId, linkType);
     return this.getStudent(dbId);
