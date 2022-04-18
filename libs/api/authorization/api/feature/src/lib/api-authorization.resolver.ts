@@ -24,4 +24,8 @@ export class ApiAuthorizationResolver {
   //   }
   //   return respond;
   //}
+  @Query(() => String)
+  pingAuthorization(){
+    return "on";
+  }
 }

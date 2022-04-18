@@ -1,5 +1,5 @@
 export class GetStudentInfoIDQuery {
-    constructor(public readonly studentNum: string) {}
+    constructor(public readonly userId: string) {}
 }
 
 export class GetStudentInfoNameQuery {

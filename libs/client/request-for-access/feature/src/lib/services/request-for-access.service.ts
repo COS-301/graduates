@@ -28,7 +28,7 @@ export class RequestForAccessService {
     );
   }
 
-  requestAccess(companyID: string, graduateID: string, item: string): void {
+  requestAccess(companyID: string, graduateID: string, item: string): Observable<any> {
     const query = `mutation ($compId: ID!, $gradId: ID!, $item: String!){requestAccess(compId: $compId, gradId: $gradId, item: $item){ userID }}`;
 
     const options = {
@@ -37,15 +37,13 @@ export class RequestForAccessService {
       }),
     };
 
-    this.httpClient.post(
+    return this.httpClient.post<any>(
       "http://localhost:3333/graphql",
       JSON.stringify({
         query: query,
         variables: { compId: companyID, gradId: graduateID, item: item },
       }),
       options
-    ).subscribe((x) => {
-      console.log(x);
-    });
+    );
   }
 }
