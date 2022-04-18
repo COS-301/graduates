@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule, QueryBus } from '@nestjs/cqrs';
 import { ApicompanyprofilepageServiceFeatureModule } from './api-companyprofilepage-service-feature';
-import { GetCompanyByIDHander } from './queries/api-companyprofilepage-service-query.handler';
+import { GetCompanyBioHandler, GetCompanyByIDHander, GetCompanyEmailHandler, GetCompanyLocationHandler, GetCompanyNumberHander, GetCompanyRepHandler, GetCompanySocialMediaHandler } from './queries/api-companyprofilepage-service-query.handler';
 
 @Module({
   imports: [CqrsModule],
   controllers: [],
   providers: [
     ApicompanyprofilepageServiceFeatureModule , QueryBus,
-    GetCompanyByIDHander,
+    GetCompanyByIDHander, GetCompanyBioHandler, GetCompanyEmailHandler, GetCompanyLocationHandler, GetCompanyNumberHander, GetCompanySocialMediaHandler, GetCompanyBioHandler, GetCompanyRepHandler
   ],
   exports: [ApicompanyprofilepageServiceFeatureModule],
 })
