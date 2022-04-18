@@ -2,8 +2,11 @@ import { ObjectType, Field, ID} from '@nestjs/graphql';
 
 @ObjectType({ description: 'company representative profile' })
 export class CompanyRepresentative {
-  @Field(type => ID)
+  @Field(() => ID)
   id!: string;
+
+  @Field()
+  profilePic!: string | null;
 
   @Field()
   repName!: string;
@@ -37,6 +40,9 @@ export class CompanyRepresentative {
 
   @Field()
   gitHub?: string
+  
+  @Field()
+  facebook?: string
 
   @Field()
   phoneNumber!: string;

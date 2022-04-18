@@ -9,42 +9,42 @@ export class StudentDetails{
      * Student number of student
      */
     @Field()
-    studentNumber!: string;
+    userID!: string;
+
+    /**
+     * The student number
+     */
+     @Field()
+     studentNumber!: string;
 
     /**
      * Name of student
      */
-    @Field()
+    @Field({ nullable: true })
     name!: string;
 
     /**
      * Surname of student
      */
-    @Field()
+    @Field({ nullable: true })
     surname!: string;
 
     /**
      * Course of student
      */
-    @Field()
+    @Field({ nullable: true })
     course!: string;
 
     /**
      * Contact number of student
      */
-    @Field()
-    contactNumber!: string
+    @Field({ nullable: true })
+    contactNumber!: string;
 
     /**
-     * Academic Record of student
+     * Email of student
      */
-     @Field()
-     record!: string;
-
-    /**
-     * Degree of student
-     */
-     @Field()
-     degree!: string;
+    @Field({ nullable: true })
+    email!: string;
 
 }

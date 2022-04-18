@@ -6,7 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./company-bio.component.scss'],
 })
 export class CompanyBioComponent {
+  bio = "A space for companies to outline their history and their values";
   constructor() {
     //do something
+  }
+
+  setBio (b : string) {
+    this.bio = b;
   }
 }
