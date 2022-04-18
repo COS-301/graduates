@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { observable } from 'rxjs';
-import { CompanyRepresentativeServiceService } from '../company-representative-service/company-representative-service.service';
+import { CompanyRepresentativeService } from '../company-representative-service/company-representative-service.service';
 
 @Component({
   selector: 'graduates-company-representative-edit-page',
@@ -25,7 +25,7 @@ export class CompanyRepresentativeEditPageComponent {
   snapchat = "NA";
   github = "NA";
   result = <any>observable;
-  constructor(private _router: Router, private API : CompanyRepresentativeServiceService) {
+  constructor(private _router: Router, private API : CompanyRepresentativeService) {
     this.result = this.API.getCompanyRepresentative("c1234").subscribe({
       next: (item) => {
         if (item){
