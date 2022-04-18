@@ -28,7 +28,7 @@ export class ApiNotificationsService
     constructor(
         private readonly queryBus:QueryBus,
         private readonly commandBus:CommandBus,
-        private readonly eventBus:EventBus,
+        // private readonly eventBus:EventBus,
         private moduleRef: ModuleRef
     ){}
 
