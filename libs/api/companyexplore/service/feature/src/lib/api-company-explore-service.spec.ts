@@ -51,24 +51,22 @@ describe('CompanyExploreService', () => {
           }
         );
         const result: Promise<ApiCompanyExploreUserEntity[]> = await service.getDefaultCompany();
-        console.log(result);
         expect(result).toEqual(expect.arrayContaining(arrayCompanyUser));
     })
   });
 
   describe('getCompanyById', () => {
-    const arrayCompanyUser = [ApiCompanyExploreUserEntityMock];
+    const arrayCompanyUser = ApiCompanyExploreUserEntityMock;
     it('should return a JSON company with a given ID', async () => {
       jest
         .spyOn(service, 'getCompanyById')
         .mockImplementation(
-          (): Promise<ApiCompanyExploreUserEntity[]> => {
+          (): Promise<ApiCompanyExploreUserEntity> => {
             return Promise.resolve(arrayCompanyUser);
           }
         );
         const result: Promise<ApiCompanyExploreUserEntity[]> = await service.getCompanyById("234567891");
-        console.log(result);
-        expect(result).toEqual(expect.arrayContaining(arrayCompanyUser));
+        expect(result).toEqual(arrayCompanyUser);
     })
   });
 
@@ -83,7 +81,6 @@ describe('CompanyExploreService', () => {
           }
         );
         const result: Promise<ApiCompanyExploreUserEntity[]> = await service.getSearchResults("null2");
-        console.log(result);
         expect(result).toEqual(expect.arrayContaining(arrayCompanyUser));
     })
   });
@@ -99,7 +96,6 @@ describe('CompanyExploreService', () => {
           }
         );
         const result: Promise<ApiCompanyExploreUserEntity[]> = await service.getTaggedCompany("trending");
-        console.log(result);
         expect(result).toEqual(expect.arrayContaining(arrayCompanyUser));
     })
   });
