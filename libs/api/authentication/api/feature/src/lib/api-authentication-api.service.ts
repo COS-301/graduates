@@ -1,18 +1,15 @@
 import { forwardRef, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 import { create } from 'domain';
-import { CreateUserInput } from './dto/create-user.input';
+import { CreateUserInput } from './auth/dto/create-user.input';
 // import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
-import { RegisterCommand } from './commands/RgisterCommand';
-import { LoginQuery } from './queries/LoginQuery';
-import { ApiAuthenticationApiSharedInterfacesDataAccessModule } from './api-authentication-api-service.module';
+import { RegisterCommand } from "@graduates/api/authentication/service/feature";
+import { LoginQuery } from "@graduates/api/authentication/service/feature";
+// import { ApiAuthenticationApiSharedInterfacesDataAccessModule } from '../../../../service/feature/src/lib/api-authentication-api-service.module';
 
 @Injectable()
 export class UsersService {
-  constructor(
-    @Inject(forwardRef(() => ApiAuthenticationApiSharedInterfacesDataAccessModule))
-    private apiAuthenticationApiSharedInterfacesDataAccessModule: ApiAuthenticationApiSharedInterfacesDataAccessModule,
-  ) {}
+  
   // async getAll(): Promise<AuthenticationUser[]>{
   //   const authenticationuser = new AuthenticationUser();
 

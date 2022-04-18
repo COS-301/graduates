@@ -60,6 +60,7 @@ export class CompanyRepresentativePageComponent {
    }
 
   uploadImage(event: any) {
+    this.API.delete(this.id, "Image");
     this.API.upload(event.target.files[0], this.id);
     this.displayImage();
   }
@@ -100,7 +101,7 @@ export class CompanyRepresentativePageComponent {
   }
 
   navigateToExplore() {
-    this._router.navigate(['StudentExplore'])
+    this._router.navigate(['student-explore'])
   }
 
   navigateToHome() {

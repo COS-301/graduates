@@ -45,111 +45,19 @@ export class CompanyRepresentativeRepository {
   }
 
   async createDefaultRep() : Promise<CompanyRepresentative>{
-    const existing_user = await this.prismaService.user.findUnique({
-      where: {
-        id: "c1234"
-      },
-      include: {
-        userScouted: true,
-        UserRole: true,
-        UserTag: true,
-        UserContactNumber: true,
-        UserExperience: true,
-        UserSocialMedia: true,
-        UserLocation: true
-      }
-    })
+    const def_users = []
+    const ishe_tags = ["Data Engineer at Consnet", "www.ishe.dzingi.com", "A well-presented, highly-focused, and intelligent computer science student passionate about data engineering & machine learning."];
+    const ishe_socials = ["ishe@twitter.com", "ishe@instagram.com", "linkedin.com/in/isheanesu-dzingirai-2952b9180", "ishe@facebook.com", "ishe@snapchat.com", "zenthon@github.com"]
+    def_users.push(this.user("c1234", "ishe.dzingirai@gmail.com", "IamACSStudent@1", "Isheanesu Joseph Dzingirai", ishe_tags, ishe_socials, "Hatfield, Gauteng, 0028", "0724545654", "Worked for Universtity of Pretoria as a Teaching Assistant."))
+  
+    const agape_tags = ["Services Engineer and Manager at Derived", "www.agape.m.com", "A well-presented, highly-focused, and intelligent computer science student passionate about data engineering & machine learning."];
+    const agape_socials = ["agape@twitter.com", "agape@instagram.com", "linkedin.com/in/agape", "agape@facebook.com", "agape@snapchat.com", "theman299@github.com"]
+    def_users.push(this.user("c0000", "agape.m@gmail.com", "Password@1", "Agape Mamphasa", agape_tags, agape_socials, "Hatfield, Gauteng, 0028", "0747779990", "Worked as a Machine Learning Engineer at EPI-USE"));
 
-    if (!existing_user) {
-      const new_user = await this.prismaService.user.create({
-        data:{
-          id: "c1234",
-          email: "ishe.dzingirai@gmail.com",
-          password: "IamACSStudent@1",
-          name: "Isheanesu Joseph Dzingirai",
-          created: new Date(),
-          validated: true, 
-          suspended: false,
-  
-          UserRole: {
-            create: {
-              role: "REPRESENTATIVE"
-            }
-          },
-  
-          UserPermissions: {
-            create: {
-              permissionCategory: "PROFILE",
-              permissionTenant: "USER",
-              permissionType: "ALL"
-            }
-          },
-  
-          UserTag: {
-            create: [{
-                tag: "Data Engineer at Consnet"
-              },{
-                tag: "www.ishe.dzingi.com"
-              },{
-                tag: "A well-presented, highly-focused, and intelligent computer science student passionate about data engineering & machine learning."
-              }
-            ]
-          },
-  
-          UserSocialMedia: {
-            create: [{
-                type: "TWITTER",
-                link: "ishe@twitter.com"
-              }, {
-                type: "INSTAGRAM",
-                link: "ishe@instagram.com"
-              }, {
-                type: "LINKEDIN",
-                link: "linkedin.com/in/isheanesu-dzingirai-2952b9180"
-              }, {
-                type: "FACEBOOK",
-                link: "ishe@facebook.com"
-              },{
-                type: "SNAPCHAT",
-                link: "ishe@snapchat.com"
-              },{
-                type: "GITHUB",
-                link: "zenthon@github.com"
-              },
-            ]
-          },
-  
-          UserLocation: {
-            create: {
-              location: "Hatfield, Gauteng, 0028"
-            }
-          },
-  
-          UserContactNumber: {
-            create: {
-              number: "0724545654"
-            }
-          },
-  
-          UserExperience: {
-            create: {
-              experience: "Worked for Universtity of Pretoria as a Teaching Assistant."
-            }
-          }
-        },
-        include: {
-          userScouted: true,
-          UserRole: true,
-          UserTag: true,
-          UserContactNumber: true,
-          UserExperience: true,
-          UserSocialMedia: true,
-          UserLocation: true
-        }
-      })
-      return this.returnRepObject(new_user.id, new_user.name, new_user.email, new_user.UserTag[0].tag, new_user.UserTag[2].tag, new_user.UserTag[1].tag, new_user.UserSocialMedia, new_user.UserLocation[0].location, new_user.UserContactNumber[0].number, new_user.UserExperience[0].experience)
-    }
-    return this.returnRepObject(existing_user.id, existing_user.name, existing_user.email, existing_user.UserTag[0].tag, existing_user.UserTag[2].tag, existing_user.UserTag[1].tag, existing_user.UserSocialMedia, existing_user.UserLocation[0].location,existing_user.UserContactNumber[0].number, existing_user.UserExperience[0].experience)
+    const sihle_tags = ["Cloud Associate at AWS", "www.sihle.vezi.com", "A well-presented, highly-focused, and intelligent computer science student passionate about Cloud Security."];
+    const sihle_socials = ["sihle@twitter.com", "sihle@instagram.com", "linkedin.com/in/sihle", "sihle@facebook.com", "sihle@snapchat.com", "svezi@github.com"]
+    def_users.push(this.user("c1111", "sihle.v@gmail.com", "Password@1", "Siphesihle Vezi", sihle_tags, sihle_socials, "Hatfield, Gauteng, 0028", "0747779990", "Worked as a Data Scientist at Derivco"));
+    return def_users[0];  
   }
 
   // Login
@@ -303,4 +211,113 @@ export class CompanyRepresentativeRepository {
       }
     })
   }
+
+  async user(repId: string, repEmail: string, repPassword: string, repName: string, tags: string[], socials: string[], newLoc: string, newContact: string, newExp: string ) {
+    const existing_user = await this.prismaService.user.findUnique({
+      where: {
+        id: repId
+      },
+      include: {
+        userScouted: true,
+        UserRole: true,
+        UserTag: true,
+        UserContactNumber: true,
+        UserExperience: true,
+        UserSocialMedia: true,
+        UserLocation: true
+      }
+    })
+
+    if (!existing_user) {
+      const new_user = await this.prismaService.user.create({
+        data:{
+          id: repId,
+          email: repEmail,
+          password: repPassword,
+          name: repName,
+          created: new Date(),
+          validated: true, 
+          suspended: false,
+  
+          UserRole: {
+            create: {
+              role: "REPRESENTATIVE"
+            }
+          },
+  
+          UserPermissions: {
+            create: {
+              permissionCategory: "PROFILE",
+              permissionTenant: "USER",
+              permissionType: "ALL"
+            }
+          },
+  
+          UserTag: {
+            create: [{
+                tag: tags[0]
+              },{
+                tag: tags[1]
+              },{
+                tag: tags[2]
+              }
+            ]
+          },
+  
+          UserSocialMedia: {
+            create: [{
+                type: "TWITTER",
+                link: socials[0]
+              }, {
+                type: "INSTAGRAM",
+                link: socials[1]
+              }, {
+                type: "LINKEDIN",
+                link: socials[2]
+              }, {
+                type: "FACEBOOK",
+                link: socials[3]
+              },{
+                type: "SNAPCHAT",
+                link: socials[4]
+              },{
+                type: "GITHUB",
+                link: socials[5]
+              },
+            ]
+          },
+  
+          UserLocation: {
+            create: {
+              location: newLoc
+            }
+          },
+  
+          UserContactNumber: {
+            create: {
+              number: newContact
+            }
+          },
+  
+          UserExperience: {
+            create: {
+              experience: newExp
+            }
+          }
+        },
+        include: {
+          userScouted: true,
+          UserRole: true,
+          UserTag: true,
+          UserContactNumber: true,
+          UserExperience: true,
+          UserSocialMedia: true,
+          UserLocation: true
+        }
+      })
+      return this.returnRepObject(new_user.id, new_user.name, new_user.email, new_user.UserTag[0].tag, new_user.UserTag[2].tag, new_user.UserTag[1].tag, new_user.UserSocialMedia, new_user.UserLocation[0].location, new_user.UserContactNumber[0].number, new_user.UserExperience[0].experience)
+    }
+    return this.returnRepObject(existing_user.id, existing_user.name, existing_user.email, existing_user.UserTag[0].tag, existing_user.UserTag[2].tag, existing_user.UserTag[1].tag, existing_user.UserSocialMedia, existing_user.UserLocation[0].location,existing_user.UserContactNumber[0].number, existing_user.UserExperience[0].experience)
+  }
 }
+

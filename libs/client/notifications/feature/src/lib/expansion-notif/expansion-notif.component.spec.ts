@@ -22,4 +22,28 @@ describe('ExpansionNotifComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  //Truth testing
+  it('should be defined', ()=>{
+    expect(component.ngOnInit()).toBeUndefined;
+  })
+
+  it('should be defined', ()=>{
+    expect(component.markRead()).toBeUndefined;
+  })
+
+  //Function return type and call testing
+  it('should be called and return the right type', () => {
+    const findById = jest.spyOn(component,'ngOnInit');
+    const found = component.ngOnInit();
+    expect(findById).toBeCalled();
+    expect(found).toBeUndefined();
+  })
+
+  it('should be called and return the right type', () => {
+    const findById = jest.spyOn(component,'markRead');
+    const found = component.markRead();
+    expect(findById).toBeCalled();
+    expect(found).toBeUndefined;
+  })
 });
