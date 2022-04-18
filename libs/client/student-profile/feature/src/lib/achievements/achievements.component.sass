@@ -1,20 +1,37 @@
-$font-colour: #174372
+@import 'libs/client/shared/assets/ui/src/lib/global.scss'
 
 .mat-card
     justify-content: left
-     width: 100%
-    background-color: $font-colour
-    margin-right: 2%
-    margin-left: 10%
+    width: 95%
+    background-color: $card-blue
+    margin-right: 20%
+    margin-top: 10%
+    margin-bottom: 10%
 
 .mat-card-title 
-    font-size: 23px
-    color: white
+    font-size: large
+    color: $text-white
 
 p
-    font-size: 16px
-    background-color: white
+    font-size: medium
+    background-color: $background-white
 
 .section
-    background-color: white
+    background-color: $background-white
+
+@media (max-width: 428px) 
+    .mat-card
+        width: 110%
+        margin-left: 5%
+        margin-top: 10%
+        margin-bottom: 10%
+
+@media (max-width: $tablet-width) 
+    .mat-card
+        width: 110%
+        margin-left: 5%
+        margin-top: 10%
+        margin-bottom: 10%
+
+@media (max-width: $desktop-width) 
     
