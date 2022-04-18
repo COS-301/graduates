@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {Router } from '@angular/router';
 import { observable } from 'rxjs';
@@ -13,13 +13,11 @@ export class CompanyRepresentativeMockLoginPageComponent {
   formdata!: FormGroup;
   result = <unknown> observable;
 
-
-
   constructor(private _router: Router, private API : CompanyRepresentativeServiceService) {
     this.formdata = new FormGroup({
       email: new FormControl("", [Validators.required, Validators.email]),
       password: new FormControl("", [Validators.required, Validators.minLength(8), Validators.pattern("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\\s).{8,}$") ])
-   });
+    });
   }
 
   submit(formdata: { email: string; password: string; }){
@@ -27,7 +25,8 @@ export class CompanyRepresentativeMockLoginPageComponent {
       this.result = this.API.login(formdata.email, formdata.password).subscribe({
         next: (item) => {
           if (item.data != null){
-            this._router.navigate(['CompanyRepresentativeHome'], {state: {id: item.data.login.id}});
+            localStorage.setItem("id", item.data.login.id);
+            this._router.navigate(['CompanyRepresentativeHome'], {state: {id: item.data.login.id}, queryParamsHandling: "preserve"});
           }else{
             alert("Incorrect Details, Try Again!");
           }
@@ -35,9 +34,5 @@ export class CompanyRepresentativeMockLoginPageComponent {
       error: (err) => { console.log(err); }
       });
     }
-  }
-
-  formValid() {
-    return this.formdata.valid;
   }
 }
