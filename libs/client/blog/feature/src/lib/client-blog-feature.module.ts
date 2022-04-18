@@ -43,7 +43,7 @@ import { UiComponentNavbarModule } from './../../../../shared/components/navigat
     FlexLayoutModule,
     HeaderModule,
     FooterModule,
-    UiComponentNavbarModule
+    UiComponentNavbarModule,
   ],
   declarations: [
     BlogViewComponent,
