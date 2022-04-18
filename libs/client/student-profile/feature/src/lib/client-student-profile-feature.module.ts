@@ -20,6 +20,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HeaderModule } from '../../../../shared/components/header/src/lib/header.module';
 import { FooterModule } from '../../../../shared/components/footer/src/lib/footer.module';
 import { ClientSharedComponentsDropdownUiModule } from '@graduates/client/shared/components/dropdown/ui';
+import { UiComponentNavbarModule } from '../../../../shared/components/navigationbar/ui/navbar/src/lib/ui-component-navbar.module';
 
 
 // importing material 
@@ -49,6 +50,7 @@ import {MatIconModule} from '@angular/material/icon';
     FooterModule,
     ClientSharedComponentsDropdownUiModule,
     FlexLayoutModule,
+    UiComponentNavbarModule,
     RouterModule.forChild([
       /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
     ]),
