@@ -1,5 +1,5 @@
 import {PrismaService} from "@graduates/api/shared/services/prisma/data-access";
-import {Injectable, Logger } from "@nestjs/common";
+import {Injectable } from "@nestjs/common";
 import { CompanyRepresentative } from '@graduates/api/company-representative/api/shared/data-access'
 import { UserSocialMedia } from "@prisma/client";
 
@@ -11,6 +11,7 @@ export class CompanyRepresentativeRepository {
   async returnRepObject(id: string, name: string, email: string, jobTitle: string, aboutMe: string, website: string, SocialMedia: UserSocialMedia[], location: string, phone_no: string, experience: string) {
     const companyRep = new CompanyRepresentative();
     companyRep.id = id;
+    // this.storage.getFile(companyRep.id, "PROFILE_PHOTO").then (() => companyRep.profilePic);
     companyRep.repName = name;
     companyRep.email = email;
     companyRep.jobTitle = jobTitle;
@@ -45,7 +46,6 @@ export class CompanyRepresentativeRepository {
   }
 
   async createDefaultRep() : Promise<CompanyRepresentative>{
-    // Logger.log("in here");
     const existing_user = await this.prismaService.user.findUnique({
       where: {
         id: "c1234"
@@ -62,7 +62,6 @@ export class CompanyRepresentativeRepository {
     })
 
     if (!existing_user) {
-      Logger.log("in here");
       const new_user = await this.prismaService.user.create({
         data:{
           id: "c1234",

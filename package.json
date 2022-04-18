@@ -60,6 +60,7 @@
     "apollo-client": "^2.6.10",
     "apollo-link-http": "^1.5.17",
     "apollo-server-express": "^3.6.5",
+    "bcrypt": "^5.0.1",
     "docker": "^1.0.0",
     "dotenv": "^16.0.0",
     "firebase": "^9.6.11",

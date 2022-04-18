@@ -23,20 +23,12 @@ import { ModuleRef } from '@nestjs/core';
 
 @Injectable()
 export class ApiNotificationsService 
-// implements OnModuleInit 
 {
-//   private tempQueryBus : QueryBus;
-//   private tempCommaBus : CommandBus;
-//   private tempEventBus : EventBus;
 
-//   async onModuleInit() {
-//         this.tempQueryBus = await this.moduleRef.get(QueryBus);
-//         this.tempCommaBus = await this.moduleRef.get(CommandBus);
-//         this.tempEventBus = await this.moduleRef.get(EventBus);
-//     }
     constructor(
         private readonly queryBus:QueryBus,
         private readonly commandBus:CommandBus,
+        // private readonly eventBus:EventBus,
         private moduleRef: ModuleRef
     ){}
 

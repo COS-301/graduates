@@ -11,6 +11,8 @@ export class StudentExploreRepository {
 
     const students = await this.prisma.user.findMany();
 
+    //console.log(students);
+
     const studentArr = [];
 
     let tempStudentObj;
@@ -50,7 +52,7 @@ export class StudentExploreRepository {
       studentTags = [];
 
       //Student Bio
-      studentObjProfile = await this.prisma.userProfile.findUnique({
+      studentObjProfile = await this.prisma.userProfile.findFirst({
         where: { userId : students[i].id, },
       });
 
@@ -105,7 +107,7 @@ export class StudentExploreRepository {
 
       //StudentProfilePicture
 
-      tempStudentObj.StudentPic = this.storage.getFile(students[i].id, "Profile Picture");
+      tempStudentObj.StudentPic = this.storage.getFile(students[i].id, "Academic Record");
 
       studentArr.push(tempStudentObj);
     }
@@ -159,7 +161,7 @@ export class StudentExploreRepository {
         studentTags = [];
 
         //Student Bio
-        studentObjProfile = await this.prisma.userProfile.findUnique({
+        studentObjProfile = await this.prisma.userProfile.findFirst({
           where: { userId : students[i].id, },
         });
 
@@ -184,8 +186,6 @@ export class StudentExploreRepository {
         studentObjProfile = await this.prisma.userContactNumber.findUnique({
           where: { userId : students[i].id, },
         });
-
-        tempStudentObj.StudentNumber = studentObjProfile.number;
 
         tempStudentObj.StudentNumber = studentObjProfile.number;
 
@@ -216,7 +216,7 @@ export class StudentExploreRepository {
 
         //StudentProfilePicture
 
-        tempStudentObj.StudentPic = this.storage.getFile(students[i].id, "Profile Picture");
+        tempStudentObj.StudentPic = this.storage.getFile(students[i].id, "Academic Record");
 
         //tempStudentObj;
 

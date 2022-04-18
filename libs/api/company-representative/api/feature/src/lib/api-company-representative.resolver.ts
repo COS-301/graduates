@@ -1,4 +1,4 @@
-import { CompanyRepresentative, CompanyRepresentativeCreate, CompanyRepresentativeFailedResponse} from '@graduates/api/company-representative/api/shared/data-access';
+import { CompanyRepresentative, CompanyRepresentativeCreate } from '@graduates/api/company-representative/api/shared/data-access';
 import { ApiCompanyRepresentativeService } from '@graduates/api/company-representative/service/feature';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { PubSub } from 'graphql-subscriptions';
