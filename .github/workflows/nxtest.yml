@@ -54,19 +54,19 @@ jobs:
 
       - name: Lint test affected
         if: inputs.testtype == 'lint' && inputs.test == 'affected'
-        run: yarn nx affected:lint --base=env.NX_BASE --head=env.NX_HEAD 
+        run: yarn nx affected:lint --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }} 
 
       - name: Build test affected
         if: inputs.testtype == 'build' && inputs.test == 'affected'
-        run: yarn nx affected:build --base=env.NX_BASE --head=env.NX_HEAD 
+        run: yarn nx affected:build --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
 
       - name: Unit test affected
         if: inputs.testtype == 'unit' && inputs.test == 'affected'
-        run: yarn nx affected:test --base=env.NX_BASE --head=env.NX_HEAD 
+        run: yarn nx affected:test --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
 
       - name: E2E test affected
-        if: inputs.testtype == 'e2e' && inputs.test == 'affected' 
-        run: yarn nx affected:e2e --base=env.NX_BASE --head=env.NX_HEAD
+        if: inputs.testtype == 'e2e' && inputs.test == 'affected'
+        run: yarn nx affected:e2e --base=${{ env.NX_BASE }} --head=${{ env.NX_HEAD }}
 
         #run tests on the entire repository
       - name: Test all
