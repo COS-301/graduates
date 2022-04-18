@@ -10,6 +10,20 @@ type HealthCheckParameters = {
 };
 @Injectable()
 export class ApiHostingServiceFeatureModule{
+  private commonPath = 'http://localhost:3333/graphql';
+  private checks: HealthCheckParameters[] = [
+    {title: 'Storage API', path: this.commonPath,  query: '{pingStorage}'},
+    {title: 'Shorts API', path: this.commonPath,  query: '{pingShorts}'},
+    {title: 'Company Profile API', path: this.commonPath,  query: '{pingCompanyProfile}'},
+    {title: 'Access Status API', path: this.commonPath,  query: '{pingAccessStatus}'},
+    {title: 'Studen Profiles API', path: this.commonPath,  query: '{pingStudentProfile}'},
+    {title: 'Company Representative API', path: this.commonPath,  query: '{pingCompanyRepresentative}'},
+    {title: 'Request Access API', path: this.commonPath,  query: '{pingRequestAccess}'},
+    {title: 'Authentication API', path: this.commonPath,  query: '{pingAuthentication}'},
+    {title: 'Student Explore API', path: this.commonPath,  query: '{pingStudentExplore}'},
+    {title: 'Adminconsole API', path: this.commonPath,  query: '{pingAdminconsole}'},
+    {title: 'UP Integration API', path: this.commonPath,  query: '{pingUpintegration}'},
+  ]
   constructor(
     private httpService: HttpService,
     private health: HealthCheckService,
@@ -17,26 +31,12 @@ export class ApiHostingServiceFeatureModule{
   ){}
   // private hosting: ApiHosting[] = [];
   async get_all(): Promise<ApiHosting[]>{
-    const hosting: ApiHosting[] = [];
+    let hosting: ApiHosting[] = [];
     //clear the hosting object
     // this.hosting = [];
-    const commonPath = 'http://localhost:3333/graphql';
-    const checks: HealthCheckParameters[] = [
-      {title: 'Storage API', path: commonPath,  query: '{pingStorage}'},
-      {title: 'Shorts API', path: commonPath,  query: '{pingShorts}'},
-      {title: 'Company Profile API', path: commonPath,  query: '{pingCompanyProfile}'},
-      {title: 'Access Status API', path: commonPath,  query: '{pingAccessStatus}'},
-      {title: 'Studen Profiles API', path: commonPath,  query: '{pingStudentProfile}'},
-      {title: 'Company Representative API', path: commonPath,  query: '{pingCompanyRepresentative}'},
-      {title: 'Request Access API', path: commonPath,  query: '{pingRequestAccess}'},
-      {title: 'Authentication API', path: commonPath,  query: '{pingAuthentication}'},
-      {title: 'Student Explore API', path: commonPath,  query: '{pingStudentExplore}'},
-      {title: 'Adminconsole API', path: commonPath,  query: '{pingAdminconsole}'},
-      {title: 'UP Integration API', path: commonPath,  query: '{pingUpintegration}'},
-    ]
 
     // in future, explore use of Promise.all([...]) for efficiency and concurrent checks
-    checks.forEach( async (check) => {
+    for (const check of this.checks) {      
       const hostingObj = new ApiHosting();
       hostingObj.name = check.title
       try {
@@ -47,9 +47,8 @@ export class ApiHostingServiceFeatureModule{
       }
       // this.hosting.push(hostingObj);
       hosting.push(hostingObj);
-    });
-
-    hosting.push(this.AddAllUnimplemented());
+    }
+    hosting = hosting.concat(this.AddAllUnimplemented());
     return hosting;
   }
 
@@ -60,13 +59,17 @@ export class ApiHostingServiceFeatureModule{
     ])
   }
 
-  AddAllUnimplemented(){
+  AddAllUnimplemented(): ApiHosting[]{
     const unimplemented1 = new ApiHosting();
     unimplemented1.name = "Block Chain";
     unimplemented1.status = "Under Development";
-
-    // this.hosting.push(unimplemented1);
-    return unimplemented1;
+    const retArr: ApiHosting[] = []; 
+    retArr.push(unimplemented1)
+    return retArr;
   }
  
+  getChecksLength(): number {
+    return this.checks.length;
+  }
+
 }
