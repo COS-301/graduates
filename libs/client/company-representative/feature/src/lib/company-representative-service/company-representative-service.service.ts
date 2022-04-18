@@ -41,36 +41,38 @@ export class CompanyRepresentativeService {
   }
 
   upload(file: any, userID: string) {
-    let base64data;
-      const fileReaderInstance = new FileReader();
-      fileReaderInstance.readAsDataURL(file); 
-      fileReaderInstance.onload = () => {
-       base64data = fileReaderInstance.result;     
-        console.log(file.name);
-    
-      console.log(file);
-      this.apollo.mutate<any>({
-        mutation: gql`
-          mutation($Filename: String! , $UserId: String! , $FileCategory: String! , $FileExtension: String! , $Files: String!) {
-            upload(filename: $Filename , userId: $UserId , fileCategory:$FileCategory  , fileExtension: $FileExtension , file: $Files)
-          }
-        `,
-        variables: {
-          Filename: file.name,
-          UserId: userID,
-          FileCategory: "Image",
-          FileExtension: file.type,
-          Files: base64data
+    if (this.download(userID, "Image") == null) {
+      let base64data;
+        const fileReaderInstance = new FileReader();
+        fileReaderInstance.readAsDataURL(file); 
+        fileReaderInstance.onload = () => {
+        base64data = fileReaderInstance.result;     
+          console.log(file.name);
+      
+        console.log(file);
+        this.apollo.mutate<any>({
+          mutation: gql`
+            mutation($Filename: String! , $UserId: String! , $FileCategory: String! , $FileExtension: String! , $Files: String!) {
+              upload(filename: $Filename , userId: $UserId , fileCategory:$FileCategory  , fileExtension: $FileExtension , file: $Files)
+            }
+          `,
+          variables: {
+            Filename: file.name,
+            UserId: userID,
+            FileCategory: "Image",
+            FileExtension: file.type,
+            Files: base64data
 
-        }
-      })
-      .subscribe(({ data}) => {
-        if (data){ 
-          console.log("Done");
-        }
-      });
-      const res = {res:"Could not Upload"}
-    } 
+          }
+        })
+        .subscribe(({ data}) => {
+          if (data){ 
+            console.log("Done");
+          }
+        });
+        const res = {res:"Could not Upload"}
+      } 
+    }
   }
 
   download(userID: string, fileCategory: string) {

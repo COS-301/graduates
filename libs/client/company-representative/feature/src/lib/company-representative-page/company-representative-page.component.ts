@@ -31,6 +31,7 @@ export class CompanyRepresentativePageComponent {
   constructor(private _router: Router, private API : CompanyRepresentativeService) {
     if (localStorage.getItem("id") != null) {
       this.id = localStorage.getItem("id") as string;
+      // this.displayImage();
     }
     else if (this._router.getCurrentNavigation() != null) {
       this.id = this._router.getCurrentNavigation()?.extras?.state?.['id'];
@@ -38,7 +39,6 @@ export class CompanyRepresentativePageComponent {
     this.result = this.API.getCompanyRepresentative(this.id).subscribe({
       next: (item) => {
         if (item){
-          this.displayImage();
           this.name = item.data.getCompanyRepresentative.repName;
           this.jobTitle = item.data.getCompanyRepresentative.jobTitle;
           this.experience = item.data.getCompanyRepresentative.repExperience;
@@ -60,7 +60,6 @@ export class CompanyRepresentativePageComponent {
    }
 
   uploadImage(event: any) {
-    this.API.delete(this.id, "Image");
     this.API.upload(event.target.files[0], this.id);
     this.displayImage();
   }
@@ -69,6 +68,7 @@ export class CompanyRepresentativePageComponent {
     this.API.download(this.id, "Image").subscribe({
       next: (item) => {
         if (item) {
+          console.log("Yah neh");
           this.profilePicture = item.data.download;
         }
       }
@@ -101,7 +101,7 @@ export class CompanyRepresentativePageComponent {
   }
 
   navigateToExplore() {
-    this._router.navigate(['StudentExplore'])
+    this._router.navigate(['student-explore'])
   }
 
   navigateToHome() {

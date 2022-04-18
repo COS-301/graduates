@@ -11,6 +11,7 @@ export class CompanyRepresentativeRepository {
   async returnRepObject(id: string, name: string, email: string, jobTitle: string, aboutMe: string, website: string, SocialMedia: UserSocialMedia[], location: string, phone_no: string, experience: string) {
     const companyRep = new CompanyRepresentative();
     companyRep.id = id;
+    companyRep.role = "Representative";
     companyRep.repName = name;
     companyRep.email = email;
     companyRep.jobTitle = jobTitle;
@@ -104,7 +105,7 @@ export class CompanyRepresentativeRepository {
     
     if (!user)
       return null;
-      return this.returnRepObject(user.id, user.name, user.email, user.UserTag[0].tag, user.UserTag[2].tag, user.UserTag[1].tag, user.UserSocialMedia, user.UserLocation[0].location, user.UserContactNumber[0].number, user.UserExperience[0].experience)
+    return this.returnRepObject(user.id, user.name, user.email, user.UserTag[0].tag, user.UserTag[2].tag, user.UserTag[1].tag, user.UserSocialMedia, user.UserLocation[0].location, user.UserContactNumber[0].number, user.UserExperience[0].experience)
   }
 
   //  Get All Representatives
@@ -154,14 +155,22 @@ export class CompanyRepresentativeRepository {
 
   // Update name
   async updateRepName(repId: string, newName: string) {
-    return await this.prismaService.user.update({
+    const user = await this.prismaService.user.update({
       where: {
         id: repId,
       },
       data: {
         name: newName
+      }, 
+      include: {
+        UserTag: true,
+        UserSocialMedia: true,
+        UserLocation: true,
+        UserExperience: true,
+        UserContactNumber: true
       }
     })
+    return this.returnRepObject(user.id, user.name, user.email, user.UserTag[0].tag, user.UserTag[2].tag, user.UserTag[1].tag, user.UserSocialMedia, user.UserLocation[0].location, user.UserContactNumber[0].number, user.UserExperience[0].experience)
   }
 
   // Update Job Title
