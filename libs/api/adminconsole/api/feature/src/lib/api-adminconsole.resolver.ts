@@ -15,7 +15,7 @@ export class ApiAdminConsoleResolver{
     @Mutation(() => User)
     async createUser(
       @Args('user') user: Prisma.UserCreateInput,
-    ): Promise<void> {
+    ) {
       return this.adminConsoleService.createUser(user);
     }
    
@@ -112,7 +112,7 @@ export class ApiAdminConsoleResolver{
   async removeRole(
     @Args('userId') userId: string,
     @Args('role') role: Prisma.UserRoleWhereUniqueInput
-  ): Promise<void> {
+  ) {
     return this.adminConsoleService.removeRole(userId,role);
   } 
 
