@@ -82,4 +82,14 @@ export class CompanyRepresentativeService {
     }
     return this.httpClient.post<any>('http://localhost:3333/graphql',JSON.stringify({ query: query }), options);
   }
+
+  delete(userID: string, fileCategory: string) {
+    const query = 'mutation{download(userId:"' + userID + '", fileCategory:"' + fileCategory + '")}';
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+    return this.httpClient.post<any>('http://localhost:3333/graphql',JSON.stringify({ query: query }), options);
+  }
 }
