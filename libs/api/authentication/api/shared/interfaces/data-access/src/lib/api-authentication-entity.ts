@@ -3,11 +3,11 @@ import { Field, ID, Int, ObjectType } from "@nestjs/graphql";
 @ObjectType()
 export class AuthenticationUser{
 
-    // @Field(type => ID)
-    // id!: string
+    @Field(type => ID)
+    id!: string
 
-    @Field(() => Int)
-    id!: number
+    // @Field(() => Int)
+    // id!: number
     
     @Field()
     username!: string;
