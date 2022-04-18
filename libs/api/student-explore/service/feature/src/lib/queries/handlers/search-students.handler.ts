@@ -15,7 +15,7 @@ export class SearchStudentsHandler implements IQueryHandler<SearchStudentsQuery>
     const relStudentsTags = []
 
     let count = 0;
-    let FoundTag = [];
+    const FoundTag = [];
 
     //The more letters in a name that matches the query the higher the count
 
