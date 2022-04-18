@@ -15,6 +15,7 @@ import {
 } from '@graduates/api/shorts/service/feature';
 import { QueryBus, CommandBus } from '@nestjs/cqrs';
 import { NotFoundException } from '@nestjs/common';
+import { FirebaseService } from '@graduates/api/storage/repository/data-access';
 
 jest.mock('@graduates/api/shorts/api/shared/entities/data-access');
 const shortMock: jest.Mocked<Short> = new Short() as Short;
@@ -42,6 +43,7 @@ describe('ShortsResolver', () => {
   let resolver: ShortsResolver;
   let service: ShortsService;
   let tagsService: ShortsTagsService;
+  let fbService: FirebaseService;
   let reportsService: ShortsReportsService;
   let queryBus: QueryBus;
   let commandBus: CommandBus;
@@ -53,6 +55,7 @@ describe('ShortsResolver', () => {
         ShortsService,
         ShortsTagsService,
         ShortsReportsService,
+        FirebaseService,
         QueryBus,
         CommandBus,
       ],
@@ -66,6 +69,7 @@ describe('ShortsResolver', () => {
     reportsService = module.get<ShortsReportsService>(ShortsReportsService);
     queryBus = module.get<QueryBus>(QueryBus);
     commandBus = module.get<CommandBus>(CommandBus);
+    fbService = module.get<FirebaseService>(FirebaseService);
   });
   it('should be defined', () => {
     expect(resolver).toBeDefined();
@@ -73,6 +77,7 @@ describe('ShortsResolver', () => {
     expect(tagsService).toBeDefined();
     expect(reportsService).toBeDefined();
     expect(queryBus).toBeDefined();
+    expect(fbService).toBeDefined();
     expect(commandBus).toBeDefined();
   });
 
