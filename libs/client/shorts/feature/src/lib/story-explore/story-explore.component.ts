@@ -24,14 +24,14 @@ export class StoryExploreComponent implements OnInit {
   pageIndex = 1;
   endIndex = 1;
 
-  cardlist = [{"user": {"username": "Error"},"shortTag":[{"tag":"Error"}],"userId":"Error","id":"Error","thumbnail":""}];
+  cardlist = [{"user": {"name": "Error"},"shortTag":[{"tag":"Error"}],"userId":"Error","id":"Error","thumbnail":""}];
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       return this.cardlist;
     })
   );
 
-  getALLCardsQuery = "query{ getAllShorts{ user{  username  },shortTag{ tag },userId,id, thumbnail}}";
+  getALLCardsQuery = "query{ getAllShorts{ user{  name  },shortTag{ tag },userId,id, thumbnail}}";
 
   
   @Input() upload : boolean;
@@ -227,7 +227,7 @@ export class StoryExploreComponent implements OnInit {
                           user {
                               id,
                               email,
-                              username,
+                              name,
                           },
                           shortTag {
                               shortId,
@@ -319,7 +319,7 @@ export class StoryExploreComponent implements OnInit {
     const getSelectedQ =gql`query { // API query
       getShortById(id: "${s}"){
         user{ 
-          username 
+          name 
         },
         shortTag{
           tag
@@ -344,7 +344,7 @@ export class StoryExploreComponent implements OnInit {
       const selectedCard = result.data.getShortById;  
 
       // change username on selected card
-      this.viewingName = selectedCard.user.username;
+      this.viewingName = selectedCard.user.name;
 
       // add tags to selected card
       for(const a of selectedCard.shortTag){
@@ -587,7 +587,7 @@ export class StoryExploreComponent implements OnInit {
     .valueChanges.subscribe((result: any) => {
       const all = result.data.getAllShorts;
       for (let index = 0; index < all.length; index++) {
-        if(all[index].user.username === sText) this.cardlist.push(all[index]);
+        if(all[index].user.name === sText) this.cardlist.push(all[index]);
       } 
     });
   }
