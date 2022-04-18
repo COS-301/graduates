@@ -3,7 +3,7 @@
         <h2>Company Bio</h2>
         <mat-divider [inset]="true"></mat-divider>
         <br/>
-        <textarea matInput id="company_bio">{{bio}}</textarea>
+        <textarea matInput id="company_bio_edit"[(ngModel)] = "bio">{{bio}}</textarea>
         <button mat-button type="submit" style="float: right;" (click)="save()">Save</button>
     <!-- </mat-form-field> -->
 </div>

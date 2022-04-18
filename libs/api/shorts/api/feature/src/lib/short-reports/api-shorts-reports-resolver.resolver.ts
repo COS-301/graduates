@@ -15,7 +15,7 @@ import {
   ShortsReportsService,
   ShortsService,
 } from '@graduates/api/shorts/service/feature';
-import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
+import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 
 @Resolver(ShortReport)
 export class ShortsReportsResolver {
@@ -27,10 +27,10 @@ export class ShortsReportsResolver {
   /**
    * Field resolver for a user
    * @param {ShortReport} shortReport The short report to resolve
-   * @returns {User} The user that reported the short
+   * @returns {AuthenticationUser} The user that reported the short
    */
   @ResolveField()
-  user(@Root() shortReport: ShortReport): Promise<User> {
+  user(@Root() shortReport: ShortReport): Promise<AuthenticationUser> {
     return this.shortsService.findUserById(shortReport.userId);
   }
 

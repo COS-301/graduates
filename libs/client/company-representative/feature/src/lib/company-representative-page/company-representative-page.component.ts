@@ -1,8 +1,8 @@
-import { Component, HostListener } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { NavigationStart, Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { observable } from 'rxjs';
-import { CompanyRepresentativeServiceService } from '../company-representative-service/company-representative-service.service';
+import { CompanyRepresentativeService } from '../company-representative-service/company-representative-service.service';
+
 
 @Component({
   selector: 'graduates-company-representative-page',
@@ -28,7 +28,7 @@ export class CompanyRepresentativePageComponent {
   github = "";
   result = <unknown> observable;
 
-  constructor(private _router: Router, private API : CompanyRepresentativeServiceService) {
+  constructor(private _router: Router, private API : CompanyRepresentativeService) {
     if (localStorage.getItem("id") != null) {
       this.id = localStorage.getItem("id") as string;
     }
@@ -38,6 +38,7 @@ export class CompanyRepresentativePageComponent {
     this.result = this.API.getCompanyRepresentative(this.id).subscribe({
       next: (item) => {
         if (item){
+          this.displayImage();
           this.name = item.data.getCompanyRepresentative.repName;
           this.jobTitle = item.data.getCompanyRepresentative.jobTitle;
           this.experience = item.data.getCompanyRepresentative.repExperience;
@@ -58,11 +59,37 @@ export class CompanyRepresentativePageComponent {
     });
    }
 
-
   uploadImage(event: any) {
-    const fileType = event.target.files[0].type;
-    console.log(event.target.files[0]);
+    this.API.delete(this.id, "Image");
+    this.API.upload(event.target.files[0], this.id);
+    this.displayImage();
+  }
 
+  displayImage() {
+    this.API.download(this.id, "Image").subscribe({
+      next: (item) => {
+        if (item) {
+          this.profilePicture = item.data.download;
+        }
+      }
+    })
+  }
+
+  deleteRepresentativeProfile() {
+    this.API.deleteRepresentative(this.id).subscribe({
+      next: (item) => {
+        if (item) {
+          localStorage.clear();
+          this.navigateToLogin();
+        }
+      },
+      error: (err) => { console.log(err); }
+    });
+  }
+
+  logout() {
+    localStorage.clear();
+    this.navigateToLogin();
   }
 
   navigateToLogin() {
@@ -74,7 +101,7 @@ export class CompanyRepresentativePageComponent {
   }
 
   navigateToExplore() {
-    this._router.navigate(['CompanyRepresentativeExplore'])
+    this._router.navigate(['student-explore'])
   }
 
   navigateToHome() {

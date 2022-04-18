@@ -37,7 +37,7 @@ export class StoryExploreComponent implements OnInit {
   @Input() upload : boolean;
   @Input() report : boolean;
 
-  @ViewChild('one') d1! : ElementRef;
+  @ViewChild('vid') d1! : ElementRef;
 
   uploadfrm! : FormGroup;
   reportfrm! : FormGroup;
@@ -47,6 +47,8 @@ export class StoryExploreComponent implements OnInit {
   submit = false;
   return : boolean;
 
+  loadwheel : boolean;
+
   test! : any;
 
   viewing : boolean;
@@ -54,6 +56,7 @@ export class StoryExploreComponent implements OnInit {
   currentlyViewing! : string;
   currentlyReporting! : string;
   successfulReport : boolean;
+  successfulUpload : boolean;
   reported : boolean;
   apifailure = "";
 
@@ -93,6 +96,8 @@ export class StoryExploreComponent implements OnInit {
     this.ThumbnailFileBase64 = null;
     this.fileuploadflag= true;
     this.thumbnailuploadflag = true;
+    this.loadwheel = false;
+    this.successfulUpload = false;
   }
 
   ngOnInit(): void {
@@ -112,16 +117,23 @@ export class StoryExploreComponent implements OnInit {
   //  ==================================================================================== //
   //  Submit Pop-Up Functions ============================================================ //
   
+  closeSuccessUpload() {
+    //route user to the student profile page or to /shorts...
+    this.location.back();
+  }
+
   onFileUpload(event : any) {
     this.VideoFile = event.target.files[0];
     this.fileuploadflag = true; 
     const re = /^video*/;
     if (this.VideoFile.type.match(re)) {
-      this.Base64encode(this.VideoFile).then(resp => {
-        this.VideoFileBase64 = resp;
-        this.fileuploadflag = false;
-        console.log(resp); //this will log the base64 in the terminal on attatch
-      })
+      if (this.VideoFile.size < 40000000) {
+        this.Base64encode(this.VideoFile).then(resp => {
+          this.VideoFileBase64 = resp;
+          this.fileuploadflag = false;
+          console.log(resp); //this will log the base64 in the terminal on attatch
+        })
+      }
     }
   }
 
@@ -131,56 +143,112 @@ export class StoryExploreComponent implements OnInit {
     this.thumbnailuploadflag = true; 
     const re = /^image*/;
     if (this.ThumbnailFile.type.match(re)) {
-      this.Base64encode(this.ThumbnailFile).then(resp => {
-        this.ThumbnailFileBase64 = resp;
-        this.thumbnailuploadflag = false;
-        console.log(resp); //this will log the base64 in the terminal on attatch
-      })
+      if (this.ThumbnailFile.size < 6000000) {
+        this.Base64encode(this.ThumbnailFile).then(resp => {
+          this.ThumbnailFileBase64 = resp;
+          this.thumbnailuploadflag = false;
+          console.log(resp); //this will log the base64 in the terminal on attatch
+        })
+      }
     }
   }
 
   uploadStory() {
-    if (this.fileuploadflag) this.fileuploaderror = "A video file is required.";
-    if (this.thumbnailuploadflag) this.thumbnailuploaderror = "An image file is required.";
+    if (this.fileuploadflag) this.fileuploaderror = "A video file less than 40mb required.";
+    if (this.thumbnailuploadflag) this.thumbnailuploaderror = "An image file less than 6mb required.";
     this.submit = true;
 
     if (this.ValidUpload()) {
 
       //get Tag array:
       const tags = this.getTagArray();
-      console.log(tags);
+
+      this.loadwheel = true;
 
       //form is valid here, upload to the API:
-      this.uploadShortToAPI().then(resp => {
+      this.uploadShortToAPI(tags).then(resp => {
+
         console.log(resp);
+        
+        //here is for the response (resp) from the upload uploadShortToAPI() and hide load wheel
+        this.loadwheel = false;
 
-        //here is for the response from the upload uploadShortToAPI() and to show success and to remove the loading symbol...
+        //it is a promise so this code will run after the query is complete and will return the query response here.
+        //if (success with the API) {
+          this.successfulUpload = true;
+        //}
+        //else {
 
-        //this.VideoFile = the Video object uploaded
-        //this.ThumbnailFile = the Thumbnail object uploaded
-
-        //this.ThumbnailFileBase64 = Base64 of the Thumbnail
-        //this.VideoFileBase64 = Base64 of the Video
-
+        //}
       })
 
     } 
 
   }
 
+  uploadShortToAPI(tags : any) {
+    return new Promise((resolve, _) => {
+      //mutation to the API for creating a short:
+
+      if (!(this.apollo.client === undefined))
+      this.apollo
+        .mutate ({
+
+          //this.ThumbnailFileBase64 = Base64 of the Thumbnail.
+          //this.VideoFileBase64 = Base64 of the Video.
+          //tags has array for the tags to add to the query.
+
+          ////////
+          // I do not know what the description of the short is, is it the name of the current user logged in or
+          // should there be a text box on the upload form for the user to add a description. It was not defined 
+          // in the original design
+          ////////
+
+          mutation: gql`
+                mutation {
+                  createShort(
+                      short: { description: "My short", archived: false, shortTag: ${ tags }},
+                      userId: "", 
+                      vidString: "${ this.VideoFileBase64 }", 
+                      vidCat: Videos, 
+                      thumbString: "${ this.ThumbnailFileBase64 }", 
+                      thumbCat:: Files
+                      ) {
+                          id,
+                          userId,
+                          description,
+                          link,
+                          thumbnail,
+                          datePosted,
+                          archive,
+                          user {
+                              id,
+                              email,
+                              name,
+                          },
+                          shortTag {
+                              shortId,
+                              tag
+                          }
+                      }
+              }
+          `,
+
+        })
+        .subscribe ((result) => {
+          //log result from the app short query:
+          console.log(result);
+          //resolve the promise from the query:
+          resolve(result);
+        });
+    })
+  }
 
   getTagArray() : any {
     const s = this.uploadfrm.controls['tags'].value;
     const output = s.split('#');
     output.shift();
     return output;
-  }
-
-  uploadShortToAPI() {
-    return new Promise((resolve, _) => {
-      //mutation to the API for creating a short:
-      resolve('after API call sen response here');
-    })
   }
 
   ValidUpload() : boolean {
@@ -191,15 +259,14 @@ export class StoryExploreComponent implements OnInit {
     return true;
   }
 
-  //Drunken code to push a base64 to a video tag on the screen...
-  // console.log(resp);
-  //     this.d1.nativeElement.insertAdjacentHTML('beforeEnd', `
-  //       <video width="320" height="240" controls>
-  //         <source src="${ resp }" type="video/mp4">
-  //         Your browser does not support the video tag.
-  //       </video>
-  //     `);
-
+  embedVideoToCard(base64 : string) {
+    this.d1.nativeElement.insertAdjacentHTML('beforeEnd', `
+      <video controls>
+        <source src="${ base64 }" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    `);
+  }
 
 
   //base 64 encoder:
@@ -270,6 +337,9 @@ export class StoryExploreComponent implements OnInit {
       }
       this.viewingThumbnailSorce = selectedCard.thumbnail;
 
+      //Change this line to be result.<correct_name> to embed to the card:
+      //this.embedVideoToCard(result.video);
+
       this.currentlyViewing = s;
       this.viewing = true;
       this.reporting = false;
@@ -287,8 +357,6 @@ export class StoryExploreComponent implements OnInit {
           break;
         }
       }
-      
-
 
       this.viewing = true;
     });

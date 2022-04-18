@@ -56,9 +56,15 @@ export class MainStoragePageComponent implements OnInit {
       }
     })
     .subscribe(({ data}) => {
-      if (data){ 
+      if (data.download!="false"){ 
+          window.location.href = data.download;
+        console.log(data.download)}
+        else{
+          alert("No " + this.fileCategory + " uploaded.");
+          //window.location.href ="storage/"+this.userID;
+          // console.log("No " + this.fileCategory + " uploaded.")}
+        }
 
-        console.log(data)}
 
 
       });
@@ -86,9 +92,9 @@ export class MainStoragePageComponent implements OnInit {
 
       this.fileCategory = "CV";
     }
-    this.apollo.query<any>({
-      query: gql`
-        query( $UserId: String! , $FileCategory: String!) {
+    this.apollo.mutate<any>({
+      mutation: gql`
+        mutation( $UserId: String! , $FileCategory: String!) {
           delete( userId: $UserId , fileCategory:$FileCategory )
         }
       `,
@@ -104,6 +110,10 @@ export class MainStoragePageComponent implements OnInit {
 
 
       });
+
+      alert(this.fileCategory + " deleted successfully.")
+      // "No " + this.fileCategory + " uploaded."
+      window.location.href ="storage/"+this.userID;
     }
 
 

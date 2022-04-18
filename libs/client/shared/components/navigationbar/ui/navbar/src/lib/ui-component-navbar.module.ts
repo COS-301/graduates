@@ -6,11 +6,11 @@ import { TabsComponent } from './tabs/tabs.component';
 
 export const uiComponentNavbarRoutes: Route[] = [
   {
-    path: 'test',
+    path: 'NavigationBarComponent',
     component: NavigationBarComponent,
   },
   {
-    path: 'test2',
+    path: 'TabsComponent',
     component: TabsComponent,
   }
 ];
@@ -18,6 +18,6 @@ export const uiComponentNavbarRoutes: Route[] = [
 @NgModule({
   imports: [CommonModule, RouterModule],
   declarations: [NavigationBarComponent, TabsComponent],
-  exports: [TabsComponent],
+  exports: [NavigationBarComponent,TabsComponent],
 })
 export class UiComponentNavbarModule {}

@@ -112,14 +112,22 @@
 
 .left {
   float: left;
-  text-align: left;
-  width: 33%;
+  text-align: center;
+  width: 50%;
+  @media (max-width:670px) {
+    width: 33%;
+    text-align: left;
+  }
 }
 
 .right {
   float: left;
-  text-align:right;
-  width: 66%;
+  text-align:center;
+  width: 50%;
+  @media (max-width:670px) {
+    text-align: right;
+    width: 66%;
+  }
 }
 
 .explore {

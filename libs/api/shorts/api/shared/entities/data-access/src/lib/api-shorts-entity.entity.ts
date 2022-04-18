@@ -1,5 +1,5 @@
 import { Field, InputType, ObjectType } from '@nestjs/graphql';
-import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
+import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 import { ShortTag, ShortTagInput } from './api-shorts-tag-entity.entity';
 import { ShortReport } from './api-shorts-report-entity.entity';
 import { ID } from '@nestjs/graphql';
@@ -36,8 +36,8 @@ export class Short {
   /**
    * The url of the thumbnail of the short
    */
-   @Field({ nullable: true })
-   thumbnail!: string;
+  @Field({ nullable: true })
+  thumbnail!: string;
 
   /**
    * The date the short was created
@@ -54,8 +54,8 @@ export class Short {
   /**
    * The user who uploaded the short
    */
-  @Field(() => User)
-  user!: User;
+  @Field(() => AuthenticationUser)
+  user!: AuthenticationUser;
 
   /**
    * The tags of the short
@@ -91,7 +91,7 @@ export class ShortCreateInput {
    * The url of the thumbnail of the short
    */
   @Field({ nullable: true })
-  thumbnail!: string; 
+  thumbnail!: string;
 
   /**
    * Whether the short is archived or not

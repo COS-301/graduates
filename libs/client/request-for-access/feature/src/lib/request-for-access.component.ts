@@ -39,7 +39,7 @@ export class RequestForAccessComponent implements OnInit {
           this.store.select(state => state.accessState.accessGranted).subscribe((status) => {
             const arr = status.toString().split(',');
             for (const item of arr) {
-              if (item === 'Private') {
+              if (item === 'Private' || item === 'Rejected') {
                 this.buttons.push('Request');
               }
               else {
@@ -58,7 +58,7 @@ export class RequestForAccessComponent implements OnInit {
       next: (status) => {
         this.buttons[idx] = status;
         if (status != "Download" && status != "Pending") {
-          this.apiService.requestAccess(this.companyID, this.graduateID, item.toUpperCase().replace(" ", "_"));
+          this.apiService.requestAccess(this.companyID, this.graduateID, item.toUpperCase().replace(" ", "_")).subscribe((x)=> {x});
           this.store.dispatch(new SetAccessStatus(item, "Pending", idx));
         }
         else {
