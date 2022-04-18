@@ -84,7 +84,7 @@ export class CompanyRepresentativeService {
   }
 
   delete(userID: string, fileCategory: string) {
-    const query = 'mutation{download(userId:"' + userID + '", fileCategory:"' + fileCategory + '")}';
+    const query = 'mutation{delete(userId:"' + userID + '", fileCategory:"' + fileCategory + '")}';
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
