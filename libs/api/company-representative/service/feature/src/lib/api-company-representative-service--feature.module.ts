@@ -14,7 +14,7 @@ import { QueryHandlers } from './queries/handlers';
     ...CommandHandlers,
     ApiCompanyRepresentativeService,
     PrismaService,
-    CompanyRepresentativeRepository
+    CompanyRepresentativeRepository,
   ],
   exports: [ApiCompanyRepresentativeService],
 })
