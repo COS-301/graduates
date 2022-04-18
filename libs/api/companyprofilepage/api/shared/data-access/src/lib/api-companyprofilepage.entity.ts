@@ -40,6 +40,27 @@ export class UserLocation{
     location: string;
 }
 
+@ObjectType()
+export class UserProfile{
+    @Field(type => ID)
+    userId!: string;
+    
+    @Field()
+    bio: string
+}
+
+@ObjectType()
+export class CompanyReps{
+    @Field(type => ID)
+    id!: string;
+
+    @Field()
+    name: string;
+
+    @Field()
+    companyId: string
+}
+
 
 
 @ObjectType()
@@ -63,7 +84,7 @@ export class ApiCompanyProfilePage{
     company_email: UserEmail;
 
     @Field()
-    company_bio: string | null;
+    company_bio: UserProfile;
 
     @Field()
     company_social_media: UserSocialMedia;
