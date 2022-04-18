@@ -1,10 +1,10 @@
 import { async, TestBed } from '@angular/core/testing';
-import { ApiUpintegrationRepositoryDataAccessModule } from './api-upintegration-repository-data-access.module';
+import { UpIntegrationRepository } from './api-upintegration-repository-data-access';
 
 describe('ApiUpintegrationRepositoryDataAccessModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ApiUpintegrationRepositoryDataAccessModule],
+      imports: [UpIntegrationRepository],
     }).compileComponents();
   }));
 
@@ -13,6 +13,6 @@ describe('ApiUpintegrationRepositoryDataAccessModule', () => {
   // NB: This particular test does not do anything useful.
   //     It does NOT check for correct instantiation of the module.
   it('should have a module definition', () => {
-    expect(ApiUpintegrationRepositoryDataAccessModule).toBeDefined();
+    expect(UpIntegrationRepository).toBeDefined();
   });
 });
