@@ -10,8 +10,7 @@ export enum FirebaseFolders{
   Videos = 'Videos',
   ProfilePhotos = 'ProfilePhotos',
   BlogMedia = 'BlogMedia',
-  //@Shorts team why is this needed? thought you only require videos
-  Thumbnail = 'Thumbnail'
+  Thumbnail = 'Thumbnails'
 }
 
 @Injectable()
