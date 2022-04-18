@@ -29,7 +29,7 @@ import { ApiBlogApiFeatureModule } from '@graduates/api/blog/api/feature';
     ApiStorageFeatureModule,
     ApiHostingFeatureModule,
     ApiShortsFeatureModule,
-    //ApiNotificationsApiFeatureModule,
+    ApiNotificationsApiFeatureModule,
     ApiAccessStatusFeatureModule,
     //ApiCompanyExploreApiFeatureModule,
     ApiCompanyProfilePageFeatureModule,
