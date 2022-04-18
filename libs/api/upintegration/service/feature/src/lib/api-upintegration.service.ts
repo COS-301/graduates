@@ -13,7 +13,7 @@ import {
 export class ApiUpIntegrationService {
 
   constructor(
-    private queryBus: QueryBus,
+    private readonly queryBus: QueryBus,
   ) {}
 
   async get_name(userid : string): Promise<string | null> {

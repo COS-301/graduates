@@ -1,13 +1,13 @@
 import { Test } from '@nestjs/testing';
 import { ApiUpIntegrationService } from './api-upintegration.service';
-import { CommandBus } from '@nestjs/cqrs';
+import { QueryBus } from '@nestjs/cqrs';
 
 describe('ApiupintegrationService', () => {
   let service: ApiUpIntegrationService;
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
-      providers: [ApiUpIntegrationService,CommandBus],
+      providers: [ApiUpIntegrationService,QueryBus],
     }).compile();
 
     service = module.get(ApiUpIntegrationService);
