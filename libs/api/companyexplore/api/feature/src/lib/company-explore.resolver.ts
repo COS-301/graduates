@@ -70,7 +70,7 @@ export class ApiCompanyExploreResolver {
     return null;
   }
 
-  @Query((returns) => Array<ApiCompanyExploreEntity>())
+  @Query((returns) => [ApiCompanyExploreEntity], { nullable: true })
   async GetListOfCompanies() {
     /*const CompaniesArr = await this.companyService.getDefaultCompany();
     const arrOfCompanies = new Array<ApiCompanyExploreEntity>();
@@ -142,7 +142,7 @@ export class ApiCompanyExploreResolver {
     return null;
   }
 
-  @Query((returns) => Array<ApiCompanyExploreEntity>())
+  @Query((returns) => [ApiCompanyExploreEntity], { nullable: true })
   async GetCompanySearchResult(@Args('company_name', { type: () => String }) company_name: string) {
     /*const CompaniesArr = await this.companyService.getSearchResults(company_name);
     const arrOfCompanies = new Array<ApiCompanyExploreEntity>();
@@ -214,7 +214,7 @@ export class ApiCompanyExploreResolver {
     return null;
   }
 
-  @Query((returns) => Array<ApiCompanyExploreTaggedEntity>())
+  @Query((returns) =>  [ApiCompanyExploreEntity], { nullable: true })
   async GetCompanyTagged(@Args('inputTag', { type: () => String }) inputTag: string) {
     /*const CompaniesArr = await this.companyService.getTaggedCompany(inputTag);
     const arrOfCompanies = new Array<ApiCompanyExploreTaggedEntity>();
