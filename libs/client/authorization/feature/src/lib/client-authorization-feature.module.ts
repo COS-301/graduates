@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ViewPopUpComponent } from './view-pop-up/view-pop-up.component';
-import { DeletePopupComponent } from './delete-popup/delete-popup.component';
 import { AuthorizationServiceService } from './authorization-service.service';
+
+
 
 @NgModule({
   imports: [
@@ -14,8 +14,6 @@ import { AuthorizationServiceService } from './authorization-service.service';
     ]),
   ],
   declarations: [
-    ViewPopUpComponent,
-    DeletePopupComponent
   ],
 })
 export class ClientAuthorizationFeatureModule {

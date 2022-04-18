@@ -24,6 +24,23 @@ export enum FirebaseFolders{
 @Injectable()
 export class FirebaseService {
   
+   /*firebaseConfig = {
+     apiKey: 'AIzaSyD7fH_aHqly7Z7jiyPT-H_gc1J807BTkZQ',
+
+     authDomain: 'practice-23667.firebaseapp.com',
+
+     databaseURL: 'https://practice-23667-default-rtdb.firebaseio.com',
+
+     projectId: 'practice-23667',
+
+     storageBucket: 'practice-23667.appspot.com',
+
+     messagingSenderId: '180246940109',
+
+     appId: '1:180246940109:web:9ab1846b487e40e32f1c84',
+
+     measurementId: 'G-GC7N8G15QC',
+   };*/
   firebaseConfig = {
 
     apiKey: process.env.API_KEY,
