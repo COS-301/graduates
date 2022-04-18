@@ -27,12 +27,12 @@ export class SetStudentProfileProfilePictureHandler implements ICommandHandler<S
 
   async execute({id, pfp}: SetStudentProfileProfilePictureCommand) {
     const profile = this.publisher.mergeObjectContext(await this.repository.setPfp(id, pfp) as any);
-    profile.apply(new SetStudentProfileProfilePictureEvent(
-        id,
-        pfp
-    ));
+    // profile.apply(new SetStudentProfileProfilePictureEvent(
+    //     id,
+    //     pfp
+    // ));
 
-    profile.commit();
+    // profile.commit();
     return {id, pfp} as Partial<StudentProfile>;
   }
 }
@@ -43,12 +43,12 @@ export class SetStudentProfileBioHandler implements ICommandHandler<SetStudentPr
 
   async execute({id, bio}: SetStudentProfileBioCommand) {
     const profile = this.publisher.mergeObjectContext(await this.repository.setBio(id, bio) as any);
-    profile.apply(new SetStudentProfileBioEvent(
-        id,
-        bio
-    ));
+    // profile.apply(new SetStudentProfileBioEvent(
+    //     id,
+    //     bio
+    // ));
 
-    profile.commit();
+    // profile.commit();
     return {id, bio} as Partial<StudentProfile>;
   }
 }
@@ -59,12 +59,12 @@ export class SetStudentProfileTagsHandler implements ICommandHandler<SetStudentP
 
   async execute({id, tags}: SetStudentProfileTagsCommand) {
     const profile = this.publisher.mergeObjectContext(await this.repository.addTag(id, tags) as any);
-    profile.apply(new SetStudentProfileTagsEvent(
-        id,
-        tags
-    ));
+    // profile.apply(new SetStudentProfileTagsEvent(
+    //     id,
+    //     tags
+    // ));
 
-    profile.commit();
+    // profile.commit();
     return {id, tags} as Partial<StudentProfile>;
   }
 }
@@ -76,13 +76,13 @@ export class SetStudentProfileSocialMediaHandler implements ICommandHandler<SetS
 
   async execute({id, type, link}: SetStudentProfileSocialMediaCommand) {
     const profile = this.publisher.mergeObjectContext(await this.repository.addSocialMedia(id, type, link) as any);
-    profile.apply(new SetStudentProfileSocialMediaEvent(
-        id,
-        type,
-        link
-    ));
+    // profile.apply(new SetStudentProfileSocialMediaEvent(
+    //     id,
+    //     type,
+    //     link
+    // ));
 
-    profile.commit();
+    // profile.commit();
     return {id, type, link} as Partial<StudentProfile>;
   }
 }
@@ -93,12 +93,12 @@ export class SetStudentProfileLocationHandler implements ICommandHandler<SetStud
 
   async execute({id, location}: SetStudentProfileLocationCommand) {
     const profile = this.publisher.mergeObjectContext(await this.repository.setLocation(id, location) as any);
-    profile.apply(new SetStudentProfileLocationEvent(
-        id,
-        location
-    ));
+    // profile.apply(new SetStudentProfileLocationEvent(
+    //     id,
+    //     location
+    // ));
 
-    profile.commit();
+    // profile.commit();
     return {id, location} as Partial<StudentProfile>;
   }
 }
@@ -109,12 +109,12 @@ export class SetStudentProfileEmailHandler implements ICommandHandler<SetStudent
 
   async execute({id, email}: SetStudentProfileEmailCommand) {
     const profile = this.publisher.mergeObjectContext(await this.repository.getEmails( email) as any);
-    profile.apply(new SetStudentProfileEmailsEvent(
-        id,
-        email
-    ));
+    // profile.apply(new SetStudentProfileEmailsEvent(
+    //     id,
+    //     email
+    // ));
 
-    profile.commit();
+    // profile.commit();
     return {id, email} as Partial<StudentProfile>;
   }
 }
@@ -175,14 +175,14 @@ export class SetStudentProfileFilesHandler implements ICommandHandler<SetStudent
 
   async execute({id, fileCategory, filePath, fileExtension}: SetStudentProfileFilesCommand) {
     const profile = this.publisher.mergeObjectContext(await this.repository.addFiles(id, fileCategory, filePath, fileExtension) as any);
-    profile.apply(new SetStudentProfileFilesEvent(
-        id,
-        fileCategory,
-        filePath,
-        fileExtension
-    ));
+    // profile.apply(new SetStudentProfileFilesEvent(
+    //     id,
+    //     fileCategory,
+    //     filePath,
+    //     fileExtension
+    // ));
 
-    profile.commit();
+    // profile.commit();
     return {id, files: {fileCategory, filePath, fileExtension} };
   }
 }

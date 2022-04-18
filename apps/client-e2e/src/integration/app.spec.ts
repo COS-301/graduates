@@ -21,14 +21,16 @@ describe('client notifications testing', () => {
   beforeEach(() => cy.visit('/notifications'));
 
   //Test if it redirects to the right feature. (Checks if "notifications" is part of the URL)
-  it('should contain notification board', () => {
-    cy.url().should('include', 'notifications');
+
+  it('should direct to right url', () => {
+    cy.url().should('include','notifications');
+
   });
 
   //Test if the main notifications component has rendered properly
   it('should contain notification board', () => {
     cy.contains('Notification board');
-    cy.get('button').click();
+    //cy.get('button').click({multiple: true});
   });
 
   //Test if a notification query can be called from API successfully
@@ -213,19 +215,22 @@ describe('client-shorts-feature e2e test', () => {
       });
     });
 
-    // needs seeded data with user with name John 
-    /*
-        it('should test the search capability', () => {
-          cy.get('#search').type('John{enter}');
-          cy.on('window:alert', (alert)=>{
-            expect(alert).to.contain('Searching');});
-        });
-      });
-    */
+
+    // needs seeded data with user with name John
+/*
+    it('should test the search capability', () => {
+      cy.get('#search').type('John{enter}');
+      cy.on('window:alert', (alert)=>{
+        expect(alert).to.contain('Searching');});
+    });
+  });
+*/
+
     describe('upload component tests', () => {
       beforeEach(() => {
         cy.visit('/shorts/upload');
       });
+
 
       //! Test File Upload after feature is pushed
       it.skip('should upload a video and thumbnail', () => {
@@ -242,6 +247,19 @@ describe('client-shorts-feature e2e test', () => {
 });
 
 
+      // Fix upload feature before test
+        it.skip('should upload a video and thumbnail', () => {
+          cy.get('#uploadbanner').contains('Upload');
+          cy.get('input[type="file"]:first').selectFile('src/fixtures/client-shorts-test-video.mp4');
+          cy.get('input[type="file"]:last').selectFile('src/fixtures/client-shorts-test-thumbnail.jpg');
+          cy.get('#taginput').type('#cats#test');
+          cy.get('.formbuttonblue').contains('Submit').click();
+          expect(cy.intercept("/graphql"));
+          // TODO get confirmation of upload once fixed
+        });
+    });
+  });
+});
 //Student Explore E2E Tests
 describe('Student Explore', () => {
   beforeEach(() => cy.visit('http://localhost:4200/student-explore'));
