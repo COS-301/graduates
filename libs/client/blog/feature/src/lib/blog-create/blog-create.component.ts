@@ -69,10 +69,7 @@ export class BlogCreateComponent implements OnInit {
   // Create a new blog, add blog to database and return to blog-explore
   post() {
     if (this.edit) {
-      if (
-        this.title === '' ||
-        this.content === ''
-      ) {
+      if (this.title === '' || this.content === '') {
         alert('Invalid Inputs');
       } else {
         if (this.title !== undefined) {
@@ -92,11 +89,12 @@ export class BlogCreateComponent implements OnInit {
                 alert('UPDATED TITLE!!');
               });
           }
+        }
 
-          if (this.content !== undefined) {
-            this.apollo
-              .mutate({
-                mutation: gql`
+        if (this.content !== undefined) {
+          this.apollo
+            .mutate({
+              mutation: gql`
             mutation {
               updateBlogContent(blogId: "${this.blogId}", content: "${this.content}"){
                 title
@@ -104,15 +102,14 @@ export class BlogCreateComponent implements OnInit {
               }
             }
           `,
-              })
-              .subscribe((result) => {
-                alert('UPDATED CONTENT!!');
-              });
-          }
-          setTimeout(() => {
-            window.open('/blog', '_self');
-          }, 2000);
+            })
+            .subscribe((result) => {
+              alert('UPDATED CONTENT!!');
+            });
         }
+        setTimeout(() => {
+          window.open('/blog', '_self');
+        }, 2000);
       }
     } else {
       if (

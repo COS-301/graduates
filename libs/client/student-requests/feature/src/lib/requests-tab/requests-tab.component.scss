@@ -1,5 +1,6 @@
 /*Done by Aryan Ramnand (u20443626), modified by Hugo Esterhuyse/UI Engineer*/
-@import "../../../../../shared/assets/ui/src/lib/global.scss";
+@import 'libs/client/shared/assets/ui/src/lib/global';
+
 .mat-toolbar.mat-primary {
   background: #005baa;
   color: #fff;
@@ -11,15 +12,15 @@
   display: block;
   margin-left:auto;
   margin-right:auto;
-  color: white;
+  color: $text-white;
 }
 .mat-card-title {
   text-align: center;
 }
 .mat-card-header{
-  background: #174372 ;
+  background: $primary-1 ;
   padding: 7px;
-  color:white;
+  color: $text-white;
   justify-content: center;
 }
 .mat-card-content{
@@ -27,5 +28,5 @@
 }
 .mat-raised-button.mat-primary{
   background: #005baa;
-  color: #fff;
+  color: $text-white;
 }

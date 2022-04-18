@@ -1,6 +1,8 @@
 export interface Company{
-    id?:number;
+    companyID?:number;
     name:string;
-    img:string;
-    tags?:string[];
+    Userprofile:UserProfile;
+}
+interface UserProfile{
+    profilePicture:string;
 }

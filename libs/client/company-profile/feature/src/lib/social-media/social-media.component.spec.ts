@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
 import { SocialMediaComponent } from './social-media.component';
 
 describe('SocialMediaComponent', () => {
@@ -8,7 +8,8 @@ describe('SocialMediaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SocialMediaComponent ]
+      declarations: [ SocialMediaComponent ],
+      imports: [HttpClientModule]
     })
     .compileComponents();
   });
