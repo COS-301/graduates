@@ -1,5 +1,5 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'graduates-achievements',
@@ -8,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AchievementsComponent implements OnInit {
 
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-  constructor() { }
+  constructor() { 
+    // this.achievements = null;
+  }
 
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  // @Input() achievements: any;
+  
     // eslint-disable-next-line @typescript-eslint/no-empty-function
   ngOnInit(): void {
   }

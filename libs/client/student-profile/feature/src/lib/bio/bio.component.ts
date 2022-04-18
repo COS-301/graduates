@@ -1,5 +1,5 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'graduates-bio',
@@ -8,11 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BioComponent implements OnInit {
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  constructor() { }
+  // htmlstring: string;
+ 
+  constructor() { 
+    // this.bio = null;
+    // this.htmlstring = "";
+  }
 
-   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  ngOnInit(): void {
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  // @Input() bio: any;
+
+  //eslint-disable-next-line @typescript-eslint/no-empty-function
+  ngOnInit(): void { 
+   
   }
 
 }

@@ -1,0 +1,35 @@
+@import 'libs/client/shared/assets/ui/src/lib/global.scss'
+
+body
+    background-color: $background-white
+
+.container:after
+    content: ""
+    display: table
+    clear: both
+
+.section
+    float: left
+    width: 33.33%
+
+    @include desktop 
+        width: 33.33%
+      
+    @include tablet 
+        margin: auto
+        width: auto
+        
+    @include phone
+        margin: auto 
+        width: auto
+
+footer 
+    position: fixed
+    bottom: 0
+    width: 100%
+    overflow: hidden
+
+
+@mixin minHeight 
+  @media (max-height: 500px) 
+    @content

@@ -1,0 +1,215 @@
+@import 'libs/client/shared/assets/ui/src/lib/global.scss'
+    
+// normal css
+//////////////////////////////////////////////////////////////////////////////////////////
+.profile-section
+    background-color: $text-blue
+    justify-content: center
+    border-radius: 10px
+    display: flex
+    text-align: center
+    width: 75% !important
+
+.section
+    margin-top: 10%
+    margin-right: 5em
+    justify-content: center
+        
+img 
+    background: linear-gradient(#fff, #fff) padding-box, linear-gradient(to right, red, orange) border-box
+    border: 5px solid transparent
+    border-radius: 50%
+
+p
+    color: white
+    font-size: 25px
+    justify-content: center
+    text-align: center
+
+.mat-raised-button
+    background-color: $card-red
+    font-size: 15px
+    color: white
+    justify-content: center
+    text-align: center
+    padding: 3px
+    margin-left: 26% !important
+    width: 15em
+    margin-top: 20px
+    margin-right: 5%
+
+.upload
+    background-color: $card-gold
+    display: flex
+    position: relative
+    
+.mat-button
+    color: white
+    justify-content: center
+    align-items: center
+
+h2 
+    color: #174372
+    margin-bottom: 1px
+    margin-left: 40%
+    margin-top: 5%
+
+a 
+    font-size: small
+    white-space: pre-wrap
+    display: inline
+
+svg 
+    width: 10%
+    display: inline-flex
+    margin-left: 20%
+
+.icon 
+    float: right
+    color: #174372
+    font-size: xx-large
+
+// responsiveness
+//////////////////////////////////////////////////////////////////////////////////////////
+@media (max-width: 428px) 
+    .profile-section
+        width: 100%
+        max-height: 13em
+    
+    .mat-raised-button
+        max-width: 14em
+        margin-top: 5% !important
+
+    p
+        font-size: x-large
+        margin-left: 8% !important
+
+    img
+        width: 50% !important
+
+    .mat-button 
+        margin-left: 3% !important
+
+
+@media (max-width: $tablet-width) 
+    .profile-section
+        width: 100% !important
+        height: 17em
+        margin-left: 6%
+        margin-right: 6%
+        margin-top: 10%
+    
+    .section
+        margin-top: 0
+        width: 100% !important
+        
+    .profile-details
+        float: left
+        width: 50%
+
+    img 
+        width: 38%
+        height: 52%
+        margin-left: 20%
+        margin-right: auto
+        margin-top: 5%
+
+    p
+       transform: scale(0.85)
+       margin-top: 5%
+       margin-right: 25%
+
+    .mat-raised-button
+        transform: scale(0.7) 
+        margin-left: 15%
+        width: 18em
+        margin-top: 20px
+
+    .upload
+        transform: scale(0.85)
+        margin-left: 58%
+
+    .mat-button
+        margin-right: 25%
+
+    .links
+        transform: scale(0.8)
+
+    h2
+        margin-left: 44%
+
+@media (min-width: $desktop-width) 
+    .profile-section
+        width: 79%
+        height: 35em
+        margin-left: 15%
+        margin-top: 10%
+
+    img 
+        width: 50%
+        height: 31%
+        margin-left: 40% !important
+        margin-right: auto
+
+    .mat-raised-button
+        margin-left: 18% !important
+        width: 15em
+        margin-top: 20px
+        margin-right: 5%
+        padding: 2px
+
+    p
+       margin-top: 5%
+       margin-left: 27% !important
+
+    .upload
+        margin-left: 22%
+
+    .mat-button
+        margin-left: 25% !important
+
+@media (max-width: 1023px) 
+    .profile-section
+        width: 100%
+        height: 17em
+        margin-left: 6%
+        margin-right: 6%
+        margin-top: 10%
+    
+    .section
+        margin-top: 0
+        
+    .profile-details
+        float: left
+        width: 50%
+
+    img 
+        width: 38%
+        height: 52%
+        margin-left: 20%
+        margin-right: auto
+        margin-top: 5%
+
+    p
+       transform: scale(0.85)
+       margin-top: 5%
+       margin-right: 25%
+
+    .mat-raised-button
+        transform: scale(0.85)
+        margin-left: 15%
+        width: 18em
+        margin-top: 20px
+
+    .upload
+        transform: scale(0.85)
+        margin-left: 58%
+
+    .mat-button
+        margin-right: 25%
+
+    .links
+        transform: scale(0.8)
+
+    h2
+        margin-left: 44%
