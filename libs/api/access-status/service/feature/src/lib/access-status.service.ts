@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { ApiAccessStatusEntity } from "@graduates/api/access-status/api/feature";
+
 import { AccessStatusRepository } from "@graduates/api/access-status/repository/feature";
 import { Item } from '@prisma/client';
+import { ApiAccessStatusEntity } from '@graduates/api/access-status/api/shared';
 @Injectable()
 export class AccessStatusService {
     constructor(
