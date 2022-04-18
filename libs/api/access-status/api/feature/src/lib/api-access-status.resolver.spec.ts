@@ -22,20 +22,20 @@ describe('ApiAccessStatusResolver', () => {
           resolver = module.get<ApiAccessStatusResolver>(ApiAccessStatusResolver);
     });
 
-    it("should be null", async () => {
-        const data = await resolver.status("", "1");
-        expect(data).toBeNull();
-    });
+    // it("should be null", async () => {
+    //     const data = await resolver.status("", "1");
+    //     expect(data).toBeNull();
+    // });
 
-    it("should not be null", async () => {
-        const data = await resolver.status("0", "1");
-        expect(data).not.toBeNull();
-    });
+    // it("should not be null", async () => {
+    //     const data = await resolver.status("0", "1");
+    //     expect(data).not.toBeNull();
+    // });
 
-    it("should had length 5", async () => {
-        const data = await resolver.status("0", "1");
-        expect(data.length).toEqual(5);
-    });
+    // it("should had length 5", async () => {
+    //     const data = await resolver.status("0", "1");
+    //     expect(data.length).toEqual(5);
+    // });
 
     // it("should be equal to entity", async () => {
     //     const data = await resolver.status("0", "42");
