@@ -2,7 +2,7 @@ import { ApicompanyprofilepageServiceFeatureModule } from "@graduates/api/compan
 import { ApicompanyprofilepageResolver } from './api-companyprofilepage.resolver';
 import { Test, TestingModule } from '@nestjs/testing';
 import { QueryBus, CommandBus } from "@nestjs/cqrs";
-import { ApiCompanyProfilePage, UserEmail, UserLocation, UserNumber, UserSocialMedia, UserProfile, CompanyReps, UpdateBioInput} from '@graduates/api/companyprofilepage/api/shared/data-access';
+import { ApiCompanyProfilePage, UserEmail, UserLocation, UserNumber, UserSocialMedia, UserProfile, CompanyReps, UpdateBioInput } from '@graduates/api/companyprofilepage/api/shared/data-access';
 import { NotFoundException } from "@nestjs/common";
 
 
