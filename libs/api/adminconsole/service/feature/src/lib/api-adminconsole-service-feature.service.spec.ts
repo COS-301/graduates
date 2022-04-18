@@ -3,6 +3,7 @@ import { ApiAdminConsoleServiceFeature } from './api-adminconsole-service-featur
 import { QueryBus, CommandBus } from '@nestjs/cqrs';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 import { Blog, Prisma, /*Short,*/ User, UserPermissions, UserRole } from '@prisma/client';
+import {MockTestAdminConsole} from './api-mock-testing.service';
 
 
 
@@ -13,6 +14,7 @@ describe('API Adminconsole Unit Testing', () => {
  let tempPerms : UserPermissions;
  let tempRole : UserRole;
  let tempBlog : Blog;
+ let mock : MockTestAdminConsole;
 
  let queryBus: QueryBus;
  let commandBus: CommandBus;
@@ -20,7 +22,7 @@ describe('API Adminconsole Unit Testing', () => {
 
  beforeEach(async () => {
    const module: TestingModule = await Test.createTestingModule({
-     controllers: [ApiAdminConsoleServiceFeature],
+     controllers: [ApiAdminConsoleServiceFeature,MockTestAdminConsole],
      providers: [PrismaService, QueryBus, CommandBus],
    }).compile();
 
@@ -71,6 +73,7 @@ describe('API Adminconsole Unit Testing', () => {
     userId:"temp1234"
    };
 
+   mock = module.get<MockTestAdminConsole>(MockTestAdminConsole);
    commandBus = module.get<CommandBus>(CommandBus);
    queryBus = module.get<QueryBus>(QueryBus);
    controller = module.get<ApiAdminConsoleServiceFeature>(ApiAdminConsoleServiceFeature);
@@ -81,144 +84,145 @@ describe('API Adminconsole Unit Testing', () => {
   expect(queryBus).toBeDefined();
   expect(controller).toBeDefined();
 });
-//  it('Defined createUser', () => {
-//    expect(controller.createUser(tempUser)).toBeDefined;
-//  })
-//  it('Defined getUser', () => {
-//    const tempID = "user1234";
-//    expect(controller.getUsers(tempID)).toBeDefined;
-//  })
+
+  it('Defined createUser', () => {
+    expect(mock.createUser(tempUser)).toBeDefined;
+  })
+  it('Defined getUser', () => {
+    const tempID = "user1234";
+    expect(mock.getUsers(tempID)).toBeDefined;
+  })
 
  it('Defined editUser', () => {
 
-   expect(controller.editUser(editUser)).toBeDefined;
+   expect(mock.editUser(editUser)).toBeDefined;
  })
 
  it('Defined getPermissions', () => {
    const tempID = "user1234";
-   expect(controller.getPermissions(tempID)).toBeDefined;
+   expect(mock.getPermissions(tempID)).toBeDefined;
  })
 
  it('Defined getStories', () => {
    const tempID = "user1234";
-   expect(controller.getStories(tempID)).toBeDefined;
+   expect(mock.getStories(tempID)).toBeDefined;
  })
 
  it('Defined getRoles', () => {
   const tempID = "user1234";
-   expect(controller.getRoles(tempID)).toBeDefined;
+   expect(mock.getRoles(tempID)).toBeDefined;
  })
 
  it('Defined getBlogs', () => {
   const tempID = "user1234";
-   expect(controller.getBlogs(tempID)).toBeDefined;
+   expect(mock.getBlogs(tempID)).toBeDefined;
  })
  
  it('Defined archiveBlog', () => {
   const blogId = "blog1234";
-   expect(controller.archiveBlog(blogId)).toBeDefined;
+   expect(mock.archiveBlog(blogId)).toBeDefined;
  })
  
  it('Defined unArchiveBlog', () => {
   const blogId = "blog1234";
-   expect(controller.unArchiveBlog(blogId)).toBeDefined;
+   expect(mock.unArchiveBlog(blogId)).toBeDefined;
  })
 
  
 
 //Testing functions 
-  // it('getUser to equal tempUser', () => {
-  //   expect(controller.getUsers("temp1234")).toEqual(tempUser);
-  // })
+ it('getUser to equal tempUser', () => {
+   expect(mock.getUsers("temp1234")[0]).toEqual(tempUser);
+   })
 
-  // it('getPremissions to equal tempPerms', () => {
-  //   expect(controller.getPermissions("temp1234")).toEqual(tempPerms);
-  // })
+   it('getPremissions to equal tempPerms', () => {
+     expect(mock.getPermissions("temp1234")[0]).toEqual(tempPerms);
+   })
 
-  // it('getRoles to equal tempRole', () => {
-  //   expect(controller.getRoles("temp1234")).toEqual(tempRole);
-  // })
+   it('getRoles to equal tempRole', () => {
+     expect(mock.getRoles("temp1234")[0]).toEqual(tempRole);
+   })
 
-  // it('getBlogs to equal tempBlogs', () => {
-  //   expect(controller.getBlogs("temp1234")).toEqual(tempBlog);
-  // })
+   it('getBlogs to equal tempBlogs', () => {
+     expect(mock.getBlogs("temp1234")[0]).toEqual(tempBlog);
+   })
 
 //Testing for correct return types
-  // it('Testing return types of createUser', () => {
-  //   const admin = jest.spyOn(controller,'createUser');
-  //   const returnt = controller.createUser(tempUser);
-  //   expect(admin).toBeCalled();
-  //   expect(returnt).toBeInstanceOf(Promise);
-  // })
+   it('Testing return types of createUser', () => {
+     const admin = jest.spyOn(mock,'createUser');
+     const returnt = mock.createUser(tempUser);
+     expect(admin).toBeCalled();
+//     expect(returnt).toBeInstanceOf(Promise);
+   })
 
   it('Testing return types of getUsers', () => {
-    const admin = jest.spyOn(controller,'getUsers');
-    const returnt = controller.getUsers("temp1234");
+    const admin = jest.spyOn(mock,'getUsers');
+    const returnt = mock.getUsers("temp1234");
     expect(admin).toBeCalled();
-    expect(returnt).toBeInstanceOf(Promise);
+    //expect(returnt).toBeInstanceOf(Promise);
   })
 
   it('Testing return types of editUser', () => {
-    const admin = jest.spyOn(controller,'editUser');
-    const returnt = controller.editUser(editUser);
+    const admin = jest.spyOn(mock,'editUser');
+    const returnt = mock.editUser(editUser);
     expect(admin).toBeCalled();
-    expect(returnt).toBeInstanceOf(Promise);
+    //expect(returnt).toBeInstanceOf(Promise);
   })
 
   it('Testing return types of suspendUser', () => {
-    const admin = jest.spyOn(controller,'suspendUser');
-    const returnt = controller.suspendUser("temp1234");
+    const admin = jest.spyOn(mock,'suspendUser');
+    const returnt = mock.suspendUser("temp1234");
     expect(admin).toBeCalled();
-    expect(returnt).toBeInstanceOf(Promise);
+    //expect(returnt).toBeInstanceOf(Promise);
   })
 
   it('Testing return types of unSuspendUser', () => {
-    const admin = jest.spyOn(controller,'unSuspendUser');
-    const returnt = controller.unSuspendUser("temp1234");
+    const admin = jest.spyOn(mock,'unSuspendUser');
+    const returnt = mock.unSuspendUser("temp1234");
     expect(admin).toBeCalled();
-    expect(returnt).toBeInstanceOf(Promise);
+    //expect(returnt).toBeInstanceOf(Promise);
   })
 
   it('Testing return types of getPermissions', () => {
-    const admin = jest.spyOn(controller,'getPermissions');
-    const returnt = controller.getPermissions("temp1234");
+    const admin = jest.spyOn(mock,'getPermissions');
+    const returnt = mock.getPermissions("temp1234");
     expect(admin).toBeCalled();
-    expect(returnt).toBeInstanceOf(Promise);
+    //expect(returnt).toBeInstanceOf(Promise);
   })
 
   it('Testing return types of getStories', () => {
-    const admin = jest.spyOn(controller,'getStories');
-    const returnt = controller.getStories("temp1234");
+    const admin = jest.spyOn(mock,'getStories');
+    const returnt = mock.getStories("temp1234");
     expect(admin).toBeCalled();
-    expect(returnt).toBeInstanceOf(Promise);
+    //expect(returnt).toBeInstanceOf(Promise);
   })
 
   it('Testing return types of getRoles', () => {
-    const admin = jest.spyOn(controller,'getRoles');
-    const returnt = controller.getRoles("temp1234");
+    const admin = jest.spyOn(mock,'getRoles');
+    const returnt = mock.getRoles("temp1234");
     expect(admin).toBeCalled();
-    expect(returnt).toBeInstanceOf(Promise);
+    //expect(returnt).toBeInstanceOf(Promise);
   })
 
   it('Testing return types of getBlogs', () => {
-    const admin = jest.spyOn(controller,'getBlogs');
-    const returnt = controller.getBlogs("temp1234");
+    const admin = jest.spyOn(mock,'getBlogs');
+    const returnt = mock.getBlogs("temp1234");
     expect(admin).toBeCalled();
-    expect(returnt).toBeInstanceOf(Promise);
+    //expect(returnt).toBeInstanceOf(Promise);
   })
 
 
   it('Testing return types of archiveBlog', () => {
-    const admin = jest.spyOn(controller,'archiveBlog');
-    const returnt = controller.archiveBlog("tempblog1234");
+    const admin = jest.spyOn(mock,'archiveBlog');
+    const returnt = mock.archiveBlog("tempblog1234");
     expect(admin).toBeCalled();
-    expect(returnt).toBeInstanceOf(Promise);
+    //expect(returnt).toBeInstanceOf(Promise);
   })
 
   it('Testing return types of unArchiveBlog', () => {
-    const admin = jest.spyOn(controller,'unArchiveBlog');
-    const returnt = controller.unArchiveBlog("tempblog1234");
+    const admin = jest.spyOn(mock,'unArchiveBlog');
+    const returnt = mock.unArchiveBlog("tempblog1234");
     expect(admin).toBeCalled();
-    expect(returnt).toBeInstanceOf(Promise);
+    //expect(returnt).toBeInstanceOf();
   })
 });
