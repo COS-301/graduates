@@ -21,7 +21,7 @@ import {
 } from '@graduates/api/shorts/service/feature';
 import { NotFoundException } from '@nestjs/common';
 import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
-import uuid from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import {
   FirebaseService,
   FirebaseFolders,
@@ -113,40 +113,51 @@ export class ShortsResolver {
     @Args('short') short: ShortCreateInput,
     @Args('userId') userId: string,
     @Args('vidString') vidString: string,
-    @Args('thumbString') thumbString: string,
-    @Args('vidCat', { type: () => FirebaseFolders }) vidCat: FirebaseFolders,
-    @Args('thumbCat', { type: () => FirebaseFolders }) thumbCat: FirebaseFolders
+    @Args('thumbString') thumbString: string
   ): Promise<Short | null> {
-    const vidName = uuid.v4();
-    const thumbName = uuid.v4();
+    const vidName = uuidv4();
+    const thumbName = uuidv4();
+
+    let thumbRef, vidRef;
 
     await this.fbService
-      .uploadAsBase64String(vidString, vidName, vidCat)
-      .then((res) => {
+      .uploadAsBase64String(vidString, vidName, FirebaseFolders.Videos)
+      .then(async (res) => {
         if (res) {
-          this.fbService.getURLByName(vidName, vidCat).then((res) => {
-            const vidRef = res;
+          await this.fbService
+            .getURLByName(vidName, FirebaseFolders.Videos)
+            .then(async (res) => {
+              vidRef = res;
 
-            this.fbService
-              .uploadAsBase64String(thumbString, thumbName, thumbCat)
-              .then((res) => {
-                if (res) {
-                  this.fbService.getURLByName(vidName, vidCat).then((res) => {
-                    const thumbRef = res;
-                    return this.service.createShort(
-                      short,
-                      userId,
-                      vidRef,
-                      thumbRef
-                    );
-                  });
-                }
-              });
-          });
+              await this.fbService
+                .uploadAsBase64String(
+                  thumbString,
+                  thumbName,
+                  FirebaseFolders.Thumbnails
+                )
+                .then(async (res) => {
+                  if (res) {
+                    await this.fbService
+                      .getURLByName(vidName, FirebaseFolders.Videos)
+                      .then(async (res) => {
+                        thumbRef = res;
+
+                        // return await this.service.createShort(
+                        //   short,
+                        //   userId,
+                        //   vidRef,
+                        //   thumbRef
+                        // );
+                      });
+                  }
+                });
+            });
+        } else {
+          return null;
         }
       });
 
-    return null;
+    return await this.service.createShort(short, userId, vidRef, thumbRef);
   }
 
   /**
