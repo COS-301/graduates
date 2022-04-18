@@ -81,9 +81,9 @@ describe('API Adminconsole Unit Testing', () => {
   expect(queryBus).toBeDefined();
   expect(controller).toBeDefined();
 });
- it('Defined createUser', () => {
-   expect(controller.createUser(tempUser)).toBeDefined;
- })
+//  it('Defined createUser', () => {
+//    expect(controller.createUser(tempUser)).toBeDefined;
+//  })
  it('Defined getUser', () => {
    const tempID = "user1234";
    expect(controller.getUsers(tempID)).toBeDefined;
@@ -144,12 +144,12 @@ describe('API Adminconsole Unit Testing', () => {
   // })
 
 //Testing for correct return types
-  it('Testing return types of createUser', () => {
-    const admin = jest.spyOn(controller,'createUser');
-    const returnt = controller.createUser(tempUser);
-    expect(admin).toBeCalled();
-    expect(returnt).toBeInstanceOf(Promise);
-  })
+  // it('Testing return types of createUser', () => {
+  //   const admin = jest.spyOn(controller,'createUser');
+  //   const returnt = controller.createUser(tempUser);
+  //   expect(admin).toBeCalled();
+  //   expect(returnt).toBeInstanceOf(Promise);
+  // })
 
   it('Testing return types of getUsers', () => {
     const admin = jest.spyOn(controller,'getUsers');
