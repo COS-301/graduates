@@ -18,4 +18,28 @@ describe('ApiCompanyExploreResolver', () => {
   it('should be defined', () => {
     expect(resolver).toBeDefined();
   });
+
+  it(': Testing getDefaultCompany',async () => {
+    const result = await resolver.GetListOfComapnies();
+    console.log(result);
+    expect(result);
+  });
+
+  it(': Testing getCompanyByID', async () => {
+    const result = await resolver.getCompanyById("123456789");
+    //console.log(result);
+    expect(result);
+  });
+
+  it(': Testing getSearchResults', async () => {
+    const result = await resolver.GetCompanySearchResult("null3");
+    //console.log(result);
+    expect(result);
+  });
+
+  it(': Testing getTaggedCompany', async () => {
+    const result = await resolver.GetCompanyTagged("nice");
+    //console.log(result);
+    expect(result);
+  });
 });
