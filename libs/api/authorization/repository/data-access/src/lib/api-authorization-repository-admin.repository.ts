@@ -102,6 +102,7 @@ export class Adminauthorization {
 
     return null;
   }
+  
   async deleteUniquePermission(
     @Param() askingId: string,
     where: Prisma.UserPermissionsWhereUniqueInput
