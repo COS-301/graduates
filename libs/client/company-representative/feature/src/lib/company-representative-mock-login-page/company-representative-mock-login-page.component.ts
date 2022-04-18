@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {Router } from '@angular/router';
 import { observable } from 'rxjs';
-import { CompanyRepresentativeServiceService } from '../company-representative-service/company-representative-service.service';
+import { CompanyRepresentativeService } from '../company-representative-service/company-representative-service.service';
 
 @Component({
   selector: 'graduates-company-representative-mock-login-page',
@@ -13,7 +13,7 @@ export class CompanyRepresentativeMockLoginPageComponent {
   formdata!: FormGroup;
   result = <unknown> observable;
 
-  constructor(private _router: Router, private API : CompanyRepresentativeServiceService) {
+  constructor(private _router: Router, private API : CompanyRepresentativeService) {
     this.formdata = new FormGroup({
       email: new FormControl("", [Validators.required, Validators.email]),
       password: new FormControl("", [Validators.required, Validators.minLength(8), Validators.pattern("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\\s).{8,}$") ])
