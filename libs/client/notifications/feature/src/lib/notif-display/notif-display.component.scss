@@ -1,6 +1,8 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+
 .navbar {
   justify-content: space-between;
-  background-color: #f8f9fa;
+  background-color: $background-white;
 }
   
 .span {
@@ -46,7 +48,7 @@ button {
 }
 
 .matCardHeader {
-  background: #174372 ;
+  background: $primary-1 ;
   padding: 7px;
   color:white;
   justify-content: center;
@@ -115,5 +117,5 @@ button {
 }
 
 a {
-  color: #dc3545;
+  color: $text-red;
 }
