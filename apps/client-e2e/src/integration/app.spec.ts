@@ -30,7 +30,7 @@ describe('client notifications testing', () => {
 
 /* Request for access */
 describe('Visit student-profile', () => {
-  before(() => {
+  beforeEach(() => {
     cy.log("Load Student Page URL");
     cy.visit('http://localhost:4200/student-profile');
   })
