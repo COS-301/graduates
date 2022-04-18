@@ -23,9 +23,8 @@ import { MatOptionModule } from '@angular/material/core';
 
 //Component Modules
 
-/*import { LoginFeatureComponent } from './login-feature/login-feature.component';
-import { RegistrationFeatureComponent } from './registration-feature/registration-feature.component';
-import { LoginCardComponent } from './login-feature/login-card/login-card.component';
+import { LoginFormComponent } from './login-form/login-form.component';
+//import { RegistrationFeatureComponent } from './registration-feature/registration-feature.component';
 import { RegistrationCardComponent } from './registration-feature/registration-card/registration-card.component';*/
 import { LoginPageFeatureComponent } from './login-page-feature/login-page-feature.component';
 import { RegistrationPageFeatureComponent } from './registration-page-feature/registration-page-feature.component';
@@ -53,10 +52,9 @@ import { RegistrationPageFeatureComponent } from './registration-page-feature/re
   ],
   declarations: [
     
-                  /*LoginFeatureComponent,
-                  RegistrationFeatureComponent,
-                  LoginCardComponent,
-                  RegistrationCardComponent, */ 
+                  LoginFormComponent,
+                  //RegistrationFeatureComponent,
+                  RegistrationCardComponent, 
                   LoginPageFeatureComponent, 
                   RegistrationPageFeatureComponent, 
                   
