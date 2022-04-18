@@ -5,7 +5,8 @@ import { QueryBus } from '@nestjs/cqrs';
 import { GetDeletePermissionQuery } from '../../../../service/feature/src/lib/queries/impl/get-delete-permission.query';
 import { GetEditPermissionQuery } from '../../../../service/feature/src/lib/queries/impl/get-edit-permission.query';
 import { GetViewPermissionQuery } from '../../../../service/feature/src/lib/queries/impl/get-view-permission.query';
-
+import { GetRoleQuery } from '../lib/queries/impl/get-role-permissions.query';
+import { GetCompanyIdQuery } from '../lib/queries/impl/get-companyId-permission.query';
 @Injectable()
 export class ApiAuthorizationService {
   constructor(private service: ApiAuthorization, private queryBus: QueryBus) {}
@@ -31,5 +32,11 @@ export class ApiAuthorizationService {
 
   async GetViewPermidssions(userId: string): Promise<ApiAuthorization> {
     return this.queryBus.execute(new GetViewPermissionQuery(userId));
+  }
+  async GetRoleQueryPermissions(userId: string): Promise<string> {
+    return this.queryBus.execute(new GetRoleQuery(userId));
+  }
+  async GetCompanyId(userId: string): Promise<string> {
+    return this.queryBus.execute(new GetCompanyIdQuery(userId));
   }
 }

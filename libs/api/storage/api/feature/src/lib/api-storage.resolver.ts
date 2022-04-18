@@ -69,6 +69,10 @@ export class ApiStorageResolver {
         storage.fileCategory = FileCategory.ACADEMIC_RECORD
       }
 
+      else if (fileCategory === "Image") {
+        storage.fileCategory = FileCategory.PROFILE_PHOTO;
+      }
+
       storage.userId = userID;
       storage.fileExtension = fileExtension;
       

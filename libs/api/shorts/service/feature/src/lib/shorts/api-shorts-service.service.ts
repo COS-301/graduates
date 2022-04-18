@@ -17,7 +17,7 @@ import {
   DeleteShortCommand,
   UpdateShortCommand,
 } from './commands/api-shorts-command.command';
-import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
+import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 
 @Injectable()
 export class ShortsService {
@@ -49,7 +49,7 @@ export class ShortsService {
   }
 
   //* Remove later
-  async findUserById(id: string): Promise<User> {
+  async findUserById(id: string): Promise<AuthenticationUser> {
     return await this.queryBus.execute(new GetUserByIdQuery(id));
   }
 
@@ -77,8 +77,15 @@ export class ShortsService {
    * @param {string} userId The id of the user to create the short for
    * @return {Promise<Short | null>}
    */
-  async createShort(short: ShortCreateInput, userId: string): Promise<Short> {
-    return await this.commandBus.execute(new CreateShortCommand(short, userId));
+  async createShort(
+    short: ShortCreateInput,
+    userId: string,
+    vidRef: string,
+    thumbRef: string
+  ): Promise<Short> {
+    return await this.commandBus.execute(
+      new CreateShortCommand(short, userId, vidRef, thumbRef)
+    );
   }
 
   /**
