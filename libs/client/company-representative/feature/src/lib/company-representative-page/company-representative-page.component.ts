@@ -1,12 +1,18 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { Component } from '@angular/core';
 =======
 import { Component, HostListener } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { NavigationStart, Router } from '@angular/router';
+=======
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+>>>>>>> 6e6948a99aa5266ce8bf87d411ce50c25d42683e
 import { observable } from 'rxjs';
 import { CompanyRepresentativeService } from '../company-representative-service/company-representative-service.service';
 >>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
+
 
 @Component({
   selector: 'graduates-company-representative-page',
@@ -45,6 +51,7 @@ export class CompanyRepresentativePageComponent {
     this.result = this.API.getCompanyRepresentative(this.id).subscribe({
       next: (item) => {
         if (item){
+          this.displayImage();
           this.name = item.data.getCompanyRepresentative.repName;
           this.jobTitle = item.data.getCompanyRepresentative.jobTitle;
           this.experience = item.data.getCompanyRepresentative.repExperience;
@@ -66,9 +73,18 @@ export class CompanyRepresentativePageComponent {
    }
 
   uploadImage(event: any) {
-    const fileType = event.target.files[0].type;
-    console.log(event.target.files[0]);
+    this.API.upload(event.target.files[0], this.id);
+    this.displayImage();
+  }
 
+  displayImage() {
+    this.API.download(this.id, "Image").subscribe({
+      next: (item) => {
+        if (item) {
+          this.profilePicture = item.data.download;
+        }
+      }
+    })
   }
 
   deleteRepresentativeProfile() {
@@ -97,7 +113,7 @@ export class CompanyRepresentativePageComponent {
   }
 
   navigateToExplore() {
-    this._router.navigate(['CompanyRepresentativeExplore'])
+    this._router.navigate(['StudentExplore'])
   }
 
   navigateToHome() {

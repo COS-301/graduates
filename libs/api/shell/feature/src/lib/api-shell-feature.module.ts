@@ -14,7 +14,12 @@ import { ApiAuthenticationApiFeatureModule } from '@graduates/api/authentication
 import { ApiNotificationsApiFeatureModule } from '@graduates/api/notifications/api/feature';
 import { ApiAuthorizationApiFeatureModule as ApiAuthorizationFeatureModule } from '@graduates/api/authorization/api/feature';
 import { ApiStudentExploreApiFeatureModule as ApiStudentExploreApiFeatureModule } from '@graduates/api/student-explore/api/feature';
+<<<<<<< HEAD
 import { ApiAdminConsoleApiFeatureModule as ApiAdminconsoleApiFeatureModule } from '@graduates/api/adminconsole/api/feature';
+=======
+import { ApiCompanyExploreModule as ApiCompanyExploreApiFeatureModule } from '@graduates/api/companyexplore/api/feature';
+import { ApiAdminConsoleApiFeatureModule  as ApiAdminconsoleApiFeatureModule } from '@graduates/api/adminconsole/api/feature';
+>>>>>>> 6e6948a99aa5266ce8bf87d411ce50c25d42683e
 import { ApiUpintegrationApiFeatureModule as ApiUpintegrationFeatureModule } from '@graduates/api/upintegration/api/feature';
 
 @Module({
@@ -29,6 +34,7 @@ import { ApiUpintegrationApiFeatureModule as ApiUpintegrationFeatureModule } fro
     ApiShortsFeatureModule,
     ApiNotificationsApiFeatureModule,
     ApiAccessStatusFeatureModule,
+    ApiCompanyExploreApiFeatureModule,
     ApiCompanyProfilePageFeatureModule,
     ApiStudentProfilesModule,
     ApiCompanyRepresentativeApiFeatureModule,

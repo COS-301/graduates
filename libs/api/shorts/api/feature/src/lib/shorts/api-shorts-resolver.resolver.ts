@@ -20,6 +20,7 @@ import {
   ShortsReportsService,
 } from '@graduates/api/shorts/service/feature';
 import { NotFoundException } from '@nestjs/common';
+<<<<<<< HEAD
 import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 import uuid from 'uuid';
 import {
@@ -30,6 +31,9 @@ import {
 registerEnumType(FirebaseFolders, {
   name: 'FireBaseFolders',
 });
+=======
+import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
+>>>>>>> 6e6948a99aa5266ce8bf87d411ce50c25d42683e
 
 @Resolver(Short)
 export class ShortsResolver {
@@ -41,7 +45,7 @@ export class ShortsResolver {
   ) {}
 
   @ResolveField()
-  user(@Root() short: Short): Promise<User> {
+  user(@Root() short: Short): Promise<AuthenticationUser> {
     return this.service.findUserById(short.userId);
   }
 

@@ -34,6 +34,7 @@ export class ApiStorageServiceFeatureModule {
         });
       }
 <<<<<<< HEAD
+<<<<<<< HEAD
         //this is printing before the printing is done because of getUserFile
         console.log("promise"+promise);
         if(promise)
@@ -44,6 +45,14 @@ export class ApiStorageServiceFeatureModule {
 
         return promise;
 =======
+=======
+
+      else if(fileCategory==="Image"){
+        await this.repo.getUserFile(userID ,FileCategory.PROFILE_PHOTO).then(async (value)=> {
+          url = value;
+        });
+      }
+>>>>>>> 6e6948a99aa5266ce8bf87d411ce50c25d42683e
         return url;
 >>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
        
@@ -68,6 +77,12 @@ export class ApiStorageServiceFeatureModule {
         });
       }
       if(fileCategory=="Academic Record"){
+        await this.repo.deleteFile(userID ,FileCategory.ACADEMIC_RECORD ).then(async (value)=> {
+          num = value;
+        });
+      }
+
+      if(fileCategory=="Image"){
         await this.repo.deleteFile(userID ,FileCategory.ACADEMIC_RECORD ).then(async (value)=> {
           num = value;
         });

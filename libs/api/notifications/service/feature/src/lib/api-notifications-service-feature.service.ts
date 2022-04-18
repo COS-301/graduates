@@ -17,6 +17,11 @@ import {
 }
 from './commands/api-notifications-service-commands.command'
 import { QueryBus, CommandBus, EventBus } from '@nestjs/cqrs';
+<<<<<<< HEAD
+=======
+import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
+import { ModuleRef } from '@nestjs/core';
+>>>>>>> 6e6948a99aa5266ce8bf87d411ce50c25d42683e
 
 
 @Injectable()
@@ -38,20 +43,12 @@ export class ApiNotificationsService {
     async getNotificationsById(id: string) : Promise<Notification> { 
 =======
 export class ApiNotificationsService 
-// implements OnModuleInit 
 {
-//   private tempQueryBus : QueryBus;
-//   private tempCommaBus : CommandBus;
-//   private tempEventBus : EventBus;
 
-//   async onModuleInit() {
-//         this.tempQueryBus = await this.moduleRef.get(QueryBus);
-//         this.tempCommaBus = await this.moduleRef.get(CommandBus);
-//         this.tempEventBus = await this.moduleRef.get(EventBus);
-//     }
     constructor(
         private readonly queryBus:QueryBus,
         private readonly commandBus:CommandBus,
+        // private readonly eventBus:EventBus,
         private moduleRef: ModuleRef
     ){}
 
@@ -89,9 +86,14 @@ export class ApiNotificationsService
         return await this.commandBus.execute(new UpdateSeenCommand(id,seen));
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     
     async getUserObject(userId: string) : Promise<User> {
+=======
+
+    async getUserObject(userId: string) : Promise<AuthenticationUser> {
+>>>>>>> 6e6948a99aa5266ce8bf87d411ce50c25d42683e
         return await this.queryBus.execute(new GetUserObjectQuery(userId))
     }
     
@@ -117,35 +119,35 @@ export class ApiNotificationsService
         const  subject = "Graduates: Request for your Academic Record"
         this.sendToMail(userEmailFrom,userEmailTo, subject, message)
     }
-    
-    async currentUser(): Promise<User[]>{
-        const  currentUser = new User();
-        currentUser.id = '1';
-        currentUser.name = 'John';
+
+    async currentUser(): Promise<AuthenticationUser[]>{
+        const  currentUser = new AuthenticationUser();
+        currentUser.id = 1;
+        currentUser.username = 'John';
         currentUser.email = 'JohnDoe@gmail.com';
         return [currentUser];
     }
 
     async getNameFromID(id:string){
-        const currentUser = new User();
-        currentUser.id = id;
-        currentUser.name = 'T';
+        const currentUser = new AuthenticationUser();
+        currentUser.id = 2;
+        currentUser.username = 'T';
         currentUser.email = 'madunathabo2@gmail.com';
-        return currentUser.name
+        return currentUser.username
     }
 
     async getEmailFromID(id:string){
-        const currentUser = new User();
-        currentUser.id = id;
-        currentUser.name = 'T';
+        const currentUser = new AuthenticationUser();
+        currentUser.id = 3;
+        currentUser.username = 'T';
         currentUser.email = 'madunathabo2@gmail.com';
         return currentUser.email
     }
 
     async emailToUser(){
-        const  user = new User();
-        user.id = '2';
-        user.name = 'emailer';
+        const  user = new AuthenticationUser();
+        user.id = 4;
+        user.username = 'emailer';
         user.email = 'JohnDoe@gmail.com';
         return [ user ];
     }

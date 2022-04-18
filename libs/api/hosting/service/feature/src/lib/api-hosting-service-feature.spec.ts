@@ -5,6 +5,8 @@ import { HttpModule } from '@nestjs/axios';
 import { TerminusModule } from '@nestjs/terminus';
 >>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
 import { Test } from '@nestjs/testing';
+import { exec } from 'child_process';
+import exp = require('constants');
 import { ApiHostingServiceFeatureModule } from './api-hosting-service-feature';
 
 describe( 'ApiHostingServiceFeatureModule', () => {
@@ -24,6 +26,15 @@ describe( 'ApiHostingServiceFeatureModule', () => {
   });
 
   let array: ApiHosting[];
+
+  describe('getChecksLength', () => {
+    it ('Should return a number >= 0', () => {
+      const len = service.getChecksLength();
+      expect(len).toEqual(expect.any(Number));
+      expect(len).toBeGreaterThanOrEqual(0)
+    });
+  });
+
   describe('get_all', () => {
       it ('Should call checkApiHealth and AddAllUnimplemented', async () => {
         const checkApiHealthSpy = jest.spyOn(service, 'checkApiHealth');
@@ -40,6 +51,10 @@ describe( 'ApiHostingServiceFeatureModule', () => {
         });
       });
     
+      it ('Should return an array that should be the length of checks + AddAllUnimplemented', () => {
+        expect(array.length).toEqual(service.getChecksLength() + service.AddAllUnimplemented().length);
+      });
+
       it ('ApiHosting objects in array should have both name and status defined', async () => {
         // const array: ApiHosting[] = await service.get_all();
         array.forEach(element => {
@@ -59,10 +74,12 @@ describe( 'ApiHostingServiceFeatureModule', () => {
     });
     
     describe('AddAllUnimplemented', () => {
-      it('Should returns an object that specifies Under Development', () => {
-        expect(service.AddAllUnimplemented()).toEqual({
-          name: expect.any(String),
-          status: 'Under Development',
+      it('Should return an array of object that specifies Under Development', () => {
+        service.AddAllUnimplemented().forEach(obj => {
+          expect(obj).toEqual({
+            name: expect.any(String),
+            status: 'Under Development',
+          });
         });
       });
     });

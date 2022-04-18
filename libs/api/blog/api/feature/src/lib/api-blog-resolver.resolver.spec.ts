@@ -179,3 +179,209 @@ describe('BlogResolver', () => {
 >>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
 
 });
+<<<<<<< HEAD
+=======
+
+describe('BlogCommentResolver', () => {
+  let resolver: BlogCommentResolver;
+  let service: BlogService;
+  let queryBus: QueryBus;
+  let commandBus: CommandBus;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [BlogCommentResolver, BlogService, QueryBus, CommandBus],
+    }).compile();
+
+    await module.init();
+
+    resolver = module.get<BlogCommentResolver>(BlogCommentResolver);
+    service = module.get<BlogService>(BlogService);
+    queryBus = module.get<QueryBus>(QueryBus);
+    commandBus = module.get<CommandBus>(CommandBus);
+  });
+  it('should be defined', () => {
+    expect(resolver).toBeDefined();
+    expect(service).toBeDefined();
+    expect(queryBus).toBeDefined();
+    expect(commandBus).toBeDefined();
+  });
+
+   //test allComments function
+   describe('allComments', () => {    
+    const arrayOfComments = [BlogCommentMock];
+    it('should return an array of all the comments', async () => {
+      jest
+        .spyOn(resolver, 'allComments')
+        .mockImplementation((): Promise<BlogComment[]> => Promise.resolve(arrayOfComments));
+
+      expect(await resolver.allComments()).toEqual(
+        expect.arrayContaining(arrayOfComments)
+      )
+    });
+    it('should return null', async () => {
+      jest.spyOn(resolver, 'allComments').mockResolvedValue(null);
+  
+      expect(await resolver.allComments()).toEqual(null);
+    });
+  });
+
+  //test commentsByBlogId function
+  describe('commentsByBlogId', () => {    
+    const arrayOfComments = [BlogCommentMock];
+    it('should return an array of all the comments from a blog', async () => {
+      jest
+        .spyOn(resolver, 'commentsByBlogId')
+        .mockImplementation((): Promise<BlogComment[]> => Promise.resolve(arrayOfComments));
+
+      expect(await resolver.commentsByBlogId('H326E')).toEqual(
+        expect.arrayContaining(arrayOfComments)
+      )
+    });
+    it('should return null', async () => {
+      jest.spyOn(resolver, 'commentsByBlogId').mockResolvedValue(null);
+  
+      expect(await resolver.commentsByBlogId('NULL')).toEqual(null);
+    });
+  });
+
+  //test commentsByCommentId function
+  describe('commentsByCommentId', () => {    
+    it('should return a comment', async () => {
+      jest
+        .spyOn(resolver, 'commentsByCommentId')
+        .mockImplementation((): Promise<BlogComment> => Promise.resolve(BlogCommentMock));
+
+      expect(await resolver.commentsByCommentId('H36')).toMatchObject(
+        BlogCommentMock
+      )
+    });
+    it('should return null', async () => {
+      jest.spyOn(resolver, 'commentsByCommentId').mockResolvedValue(null);
+  
+      expect(await resolver.commentsByCommentId('NULL')).toEqual(null);
+    });
+  });
+
+  //test createComment function
+  describe('createComment', () => {    
+    it('should return a new comment', async () => {
+      jest
+        .spyOn(resolver, 'createComment')
+        .mockImplementation((): Promise<BlogComment> => Promise.resolve(BlogCommentMock));
+
+      expect(await resolver.createComment('347','Q23','This is a test Comment')).toMatchObject(
+        BlogCommentMock
+      )
+    });
+    it('should return null', async () => {
+      jest.spyOn(resolver, 'createComment').mockResolvedValue(null);
+  
+      expect(await resolver.createComment('NULL','NULL','This is a test Comment')).toEqual(null);
+    });
+  });
+
+  //test updateComment function
+  describe('updateComment', () => {      
+    it('should return a string', async () => {
+      jest
+        .spyOn(resolver, 'updateComment')
+        .mockImplementation((): Promise<string> => Promise.resolve(stringMock));
+
+      expect(await resolver.updateComment('43H','This is a new comment')).toMatchObject(
+        stringMock
+      )
+    });    
+  });
+  //test deleteComment function
+  describe('deleteComment', () => {      
+    it('should return a string', async () => {
+      jest
+        .spyOn(resolver, 'deleteComment')
+        .mockImplementation((): Promise<string> => Promise.resolve(stringMock));
+
+      expect(await resolver.deleteComment('43H')).toMatchObject(
+        stringMock
+      )
+    });    
+  });
+
+  //test deleteCommentsByBlogId function
+  describe('deleteCommentsByBlogId', () => {      
+    it('should return a string', async () => {
+      jest
+        .spyOn(resolver, 'deleteCommentsByBlogId')
+        .mockImplementation((): Promise<string> => Promise.resolve(stringMock));
+
+      expect(await resolver.deleteCommentsByBlogId('238346GDS3')).toMatchObject(
+        stringMock
+      )
+    });    
+  });
+});
+
+describe('BlogMediaResolver', () => {
+  let resolver: BlogMediaResolver;
+  let service: BlogService;
+  let queryBus: QueryBus;
+  let commandBus: CommandBus;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [BlogMediaResolver, BlogService, QueryBus, CommandBus],
+    }).compile();
+
+    await module.init();
+
+    resolver = module.get<BlogMediaResolver>(BlogMediaResolver);
+    service = module.get<BlogService>(BlogService);
+    queryBus = module.get<QueryBus>(QueryBus);
+    commandBus = module.get<CommandBus>(CommandBus);
+  });
+  it('should be defined', () => {
+    expect(resolver).toBeDefined();
+    expect(service).toBeDefined();
+    expect(queryBus).toBeDefined();
+    expect(commandBus).toBeDefined();
+  });
+
+  //test mediaByBlogId function
+  describe('mediaByBlogId', () => {    
+    const arrayOfMedia = [BlogMediaMock];
+    it('should return an array of all the media on a blog', async () => {
+      jest
+        .spyOn(resolver, 'mediaByBlogId')
+        .mockImplementation((): Promise<BlogMedia[]> => Promise.resolve(arrayOfMedia));
+
+      expect(await resolver.mediaByBlogId('H326E')).toEqual(
+        expect.arrayContaining(arrayOfMedia)
+      )
+    });
+    it('should return null', async () => {
+      jest.spyOn(resolver, 'mediaByBlogId').mockResolvedValue(null);
+  
+      expect(await resolver.mediaByBlogId('NULL')).toEqual(null);
+    });
+  });
+
+  //test createMedia function
+
+  describe('createMedia', () => {        
+    it('should return a new media', async () => {
+      jest
+        .spyOn(resolver, 'createMedia')
+        .mockImplementation((): Promise<BlogMedia> => Promise.resolve(BlogMediaMock));
+
+      expect(await resolver.createMedia('H326E','image.png')).toMatchObject(
+        BlogMediaMock
+      )
+    });
+    it('should return null', async () => {
+      jest.spyOn(resolver, 'createMedia').mockResolvedValue(null);
+  
+      expect(await resolver.createMedia('NULL','image.s')).toEqual(null);
+    });
+  });
+
+});
+>>>>>>> 6e6948a99aa5266ce8bf87d411ce50c25d42683e

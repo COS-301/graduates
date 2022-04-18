@@ -115,7 +115,8 @@ header-and-footer-footer {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    // width: 50vw;
+    width: 90vh;
+    max-width: 90vw;
     color: $text-white;
     z-index: 99 !important;
 }
@@ -155,9 +156,9 @@ header-and-footer-footer {
     color: #888888;
 }
 
-.size {
-    height: 200px;
-    width: auto;
+#wholepage > div.rounded.popupcard.p-2.bigblur > div.videosize > video {
+    height: auto;
+    width : 80vw;
     background-color: pink;
 }
 

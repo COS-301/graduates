@@ -13,6 +13,7 @@ import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderModule } from '../../../../shared/components/header/src/lib/header.module';
 import{FooterModule} from '../../../../shared/components/footer/src/lib/footer.module';
+import{UiComponentNavbarModule} from '../../../../shared/components/navigationbar/ui/navbar/src/lib/ui-component-navbar.module'
 
 >>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
 import { CompanyExploreBannerComponent } from './company-explore-feature/company-explore-banner/company-explore-banner.component';
@@ -33,7 +34,7 @@ import { CompanyExploreMobileCardComponent } from './company-explore-feature/com
   imports: [CommonModule,
     CompanyExploreRoutingModule,
     HeaderModule,FooterModule,
-    UiModule,
+    UiModule,UiComponentNavbarModule,
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule

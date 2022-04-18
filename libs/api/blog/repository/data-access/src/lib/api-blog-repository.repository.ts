@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
-import { Blog, BlogComment, BlogMedia } from '@prisma/client';
+import { Blog, BlogComment, BlogMedia, User } from '@prisma/client';
 
 @Injectable()
 export class BlogRepository {
@@ -61,15 +61,10 @@ export class BlogRepository {
   /**
    * Find the name of the user with the given id
    * @param {string} userId The id of the user
-   * @return {Promise<string | null>} 
+   * @return {Promise<User | null>} 
    */
-  async findNameByUserId(userId: string): Promise<string | null> {
-    const res = await this.prisma.user.findUnique({ where: { id: userId } });
-
-    if (res)
-      return res.name;
-
-    return null;
+  async findNameByUserId(userId: string): Promise<User | null> {
+    return this.prisma.user.findUnique({ where: { id: userId } });
   }
 
   /**
@@ -214,17 +209,15 @@ export class BlogRepository {
 
   /**
    * Create a comment
-   * @param {string} id The id of the comment
    * @param {string} blogId The id of the blog the comment is made on
    * @param {string} userId The id of the user who posted the comment
    * @param {string} content The  content of the comment
    * @return {Promise<BlogComment | null>} 
    */
-  async createComment(id: string, blogId: string, userId: string, content: string): Promise<BlogComment | null> {
+  async createComment(blogId: string, userId: string, content: string): Promise<BlogComment | null> {
     return this.prisma.blogComment.create({
       data: {
         userId: userId,
-        id: id,
         blogId: blogId,
         content: content,
         date: new Date()
