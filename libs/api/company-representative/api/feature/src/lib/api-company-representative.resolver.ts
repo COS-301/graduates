@@ -31,12 +31,13 @@ export class ApiCompanyRepresentativeResolver {
   }
 
   @Mutation(() => CompanyRepresentative)
-  async updateCompanyRepresentative(@Args('id') id: string, @Args('name') name: string, @Args('experience') experience: string, @Args('contactNumber') contactNumber: string, @Args('email') email: string, @Args('linkedIn') linkedIn: string, @Args('twitter') twitter: string, @Args('instagram') instagram: string, @Args('facebook') facebook: string, @Args('snapchat') snapchat: string, @Args('github') github: string){
+  async updateCompanyRepresentative(@Args('id') id: string, @Args('name') name: string, @Args('experience') experience: string, @Args('contactNumber') contactNumber: string, @Args('location') location: string, @Args('email') email: string, @Args('linkedIn') linkedIn: string, @Args('twitter') twitter: string, @Args('instagram') instagram: string, @Args('facebook') facebook: string, @Args('snapchat') snapchat: string, @Args('github') github: string){
     const rep = new CompanyRepresentative();
     rep.id = id;
     rep.repName = name;
     rep.repExperience = experience;
     rep.phoneNumber = contactNumber;
+    rep.location = location;
     rep.email = email;
     rep.linkedIn = linkedIn;
     rep.twitter = twitter;

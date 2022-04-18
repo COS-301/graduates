@@ -92,4 +92,15 @@ export class CompanyRepresentativeService {
     }
     return this.httpClient.post<any>('http://localhost:3333/graphql',JSON.stringify({ query: query }), options);
   }
+
+  updateRepresentative(id: string, name :string, experience :string, number :string, location :string, email :string, linkedin :string, twitter :string, instagram :string, facebook :string, snapchat :string, github :string){
+    const query = 'mutation{updateCompanyRepresentative(id:"'+id+'",name: "'+name+'", experience:"'+experience+'", contactNumber: "'+number+'", location: "'+location+'", email:"'+email+'", linkedIn: "'+linkedin+'", twitter: "'+twitter+'", instagram:"'+instagram+'", facebook:"'+facebook+'", snapchat:"'+snapchat+'", github:"'+github+'") {id}}';
+    console.log(query);
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+    return this.httpClient.post<any>('http://localhost:3333/graphql',JSON.stringify({ query: query }), options);
+  }
 }

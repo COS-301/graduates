@@ -61,116 +61,116 @@ describe('client notifications testing', () => {
 
 /* Request for access */
 
-describe('Visit student-profile', () => {
+// describe('Visit student-profile', () => {
 
-  beforeEach(() => {
+//   beforeEach(() => {
 
-    cy.log("Load Student Page URL");
+//     cy.log("Load Student Page URL");
 
-    cy.visit('localhost:4200/student-profile');
+//     cy.visit('localhost:4200/student-profile');
 
-  })
+//   })
 
 
 
-  it('Should load the page because the pipeline does not implement an API to actually run these tests', ()=> {
+//   it('Should load the page because the pipeline does not implement an API to actually run these tests', ()=> {
 
-    cy.contains('BIO')
+//     cy.contains('BIO')
 
-  })
+//   })
 
 
 
-  /*it('has the request for access buttons initialized', ()=> {
+//   /*it('has the request for access buttons initialized', ()=> {
 
-4
+// 4
 
-    cy.get("button[id='RA:2']").contains("Request");
+//     cy.get("button[id='RA:2']").contains("Request");
 
-    cy.get("button[id='RA:3']").contains("Request");
+//     cy.get("button[id='RA:3']").contains("Request");
 
-    cy.get("button[id='RA:4']").contains("Request");
+//     cy.get("button[id='RA:4']").contains("Request");
 
-    //test api
+//     //test api
 
 
 
-    //test db
+//     //test db
 
-  });
+//   });
 
 
 
-  /*it('changes to pending once clicked', () => {
+//   /*it('changes to pending once clicked', () => {
 
-    cy.get("button[id='RA:0']").click();
+//     cy.get("button[id='RA:0']").click();
 
-    cy.get("button[id='RA:0']").contains('Pending');
+//     cy.get("button[id='RA:0']").contains('Pending');
 
-  });
+//   });
 
 
 
-  it('requests access using the API', () => {
+//   it('requests access using the API', () => {
 
-    cy.get("button[id='RA:1']").click();
+//     cy.get("button[id='RA:1']").click();
 
 
 
-    cy.intercept({
+//     cy.intercept({
 
-      url: 'localhost:3333/graphql',
+//       url: 'localhost:3333/graphql',
 
-      method: 'POST'
+//       method: 'POST'
 
-    }).as('requestAccess');
+//     }).as('requestAccess');
 
-  });
+//   });
 
 
 
-  it('should return all pending entities', () => {
+//   it('should return all pending entities', () => {
 
 
 
-    const getRequestForAccess = `query ($compID: ID!, $gradID: ID!) {status(compId: $compID, gradId: $gradID) { accessStatus, item }}`;
+//     const getRequestForAccess = `query ($compID: ID!, $gradID: ID!) {status(compId: $compID, gradId: $gradID) { accessStatus, item }}`;
 
 
 
-    cy.request({
+//     cy.request({
 
-      url:"localhost:3333/graphql",
+//       url:"localhost:3333/graphql",
 
-      method: "POST",
+//       method: "POST",
 
-      body: {
+//       body: {
 
-        query: getRequestForAccess,
+//         query: getRequestForAccess,
 
-        variables : {
+//         variables : {
 
-          compID: '8',
+//           compID: '8',
 
-          gradID:'5'
+//           gradID:'5'
 
-        }
+//         }
 
-      },
+//       },
 
-      failOnStatusCode:false
+//       failOnStatusCode:false
 
-    }).as('response');
+//     }).as('response');
 
 
 
-     cy.get('@response').should((response) => {
+//      cy.get('@response').should((response) => {
 
-      expect(response).to.have.property('headers')
+//       expect(response).to.have.property('headers')
 
-    })
+//     })
 
-  });*/
-});
+//   });*/
+// });
 
 // Commented out Tests need API and DB to run in Environment to pass
 describe('client-shorts-feature e2e test', () => {
@@ -226,7 +226,7 @@ describe('client-shorts-feature e2e test', () => {
         cy.visit('/shorts/upload');
       });
 
-      //! Test File Upload after feature is pushed
+      // Fix upload feature before test
         it.skip('should upload a video and thumbnail', () => {
           cy.get('#uploadbanner').contains('Upload');
           cy.get('input[type="file"]:first').selectFile('src/fixtures/client-shorts-test-video.mp4');
@@ -234,7 +234,7 @@ describe('client-shorts-feature e2e test', () => {
           cy.get('#taginput').type('#cats#test');
           cy.get('.formbuttonblue').contains('Submit').click();
           expect(cy.intercept("/graphql"));
-          // TODO get confirmation of upload once implemented
+          // TODO get confirmation of upload once fixed
         });
     });
   });
