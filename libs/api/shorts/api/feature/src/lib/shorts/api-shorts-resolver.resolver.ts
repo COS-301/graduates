@@ -5,6 +5,7 @@ import {
   Mutation,
   ResolveField,
   Root,
+  registerEnumType,
 } from '@nestjs/graphql';
 import {
   Short,
@@ -20,13 +21,23 @@ import {
 } from '@graduates/api/shorts/service/feature';
 import { NotFoundException } from '@nestjs/common';
 import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
+import uuid from 'uuid';
+import {
+  FirebaseService,
+  FirebaseFolders,
+} from '@graduates/api/storage/repository/data-access';
+
+registerEnumType(FirebaseFolders, {
+  name: 'FireBaseFolders',
+});
 
 @Resolver(Short)
 export class ShortsResolver {
   constructor(
     private readonly service: ShortsService,
     private readonly tagsService: ShortsTagsService,
-    private readonly reportsService: ShortsReportsService
+    private readonly reportsService: ShortsReportsService,
+    private readonly fbService: FirebaseService
   ) {}
 
   @ResolveField()
@@ -100,10 +111,42 @@ export class ShortsResolver {
   @Mutation(() => Short)
   async createShort(
     @Args('short') short: ShortCreateInput,
-    @Args('userId') userId: string
+    @Args('userId') userId: string,
+    @Args('vidString') vidString: string,
+    @Args('thumbString') thumbString: string,
+    @Args('vidCat', { type: () => FirebaseFolders }) vidCat: FirebaseFolders,
+    @Args('thumbCat', { type: () => FirebaseFolders }) thumbCat: FirebaseFolders
   ): Promise<Short | null> {
-    const res = await this.service.createShort(short, userId);
-    return res;
+    const vidName = uuid.v4();
+    const thumbName = uuid.v4();
+
+    await this.fbService
+      .uploadAsBase64String(vidString, vidName, vidCat)
+      .then((res) => {
+        if (res) {
+          this.fbService.getURLByName(vidName, vidCat).then((res) => {
+            const vidRef = res;
+
+            this.fbService
+              .uploadAsBase64String(thumbString, thumbName, thumbCat)
+              .then((res) => {
+                if (res) {
+                  this.fbService.getURLByName(vidName, vidCat).then((res) => {
+                    const thumbRef = res;
+                    return this.service.createShort(
+                      short,
+                      userId,
+                      vidRef,
+                      thumbRef
+                    );
+                  });
+                }
+              });
+          });
+        }
+      });
+
+    return null;
   }
 
   /**

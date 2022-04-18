@@ -12,7 +12,9 @@ import {
 export class CreateShortCommand {
   constructor(
     public readonly short: ShortCreateInput,
-    public readonly userId: string
+    public readonly userId: string,
+    public readonly vidRef: string,
+    public readonly thumbRef: string
   ) {}
 }
 
