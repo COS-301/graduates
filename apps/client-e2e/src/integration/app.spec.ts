@@ -29,6 +29,7 @@ describe('client notifications testing', () => {
 
 /* Request for access */
 describe('Visit student-profile', () => {
+  
   cy.visit('http://localhost:4200/student-profile')
 
   it('has the request for access buttons initialized', ()=> {
