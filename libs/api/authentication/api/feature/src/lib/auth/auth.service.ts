@@ -1,5 +1,5 @@
 import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
-import { UsersService } from "@graduates/api/authentication/service/feature";
+import { UsersService } from '../api-authentication-api.service';
 import { Injectable } from '@nestjs/common';
 import {JwtService} from '@nestjs/jwt'
 
