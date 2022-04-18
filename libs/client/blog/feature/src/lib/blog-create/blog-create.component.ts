@@ -1,5 +1,5 @@
-//Status: Small Error
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Apollo, gql } from 'apollo-angular';
 
 @Component({
@@ -8,15 +8,33 @@ import { Apollo, gql } from 'apollo-angular';
   styleUrls: ['./blog-create.component.scss'],
   providers: [Apollo],
 })
-export class BlogCreateComponent {
+export class BlogCreateComponent implements OnInit {
   // Variable declarations
+  edit: boolean;
+  blogId: string | undefined;
   title!: string;
   content!: string;
   loggedInUser: string;
 
-  constructor(private apollo: Apollo) {
+  blog = {
+    title: '',
+    content: '',
+  };
+
+  constructor(private apollo: Apollo, private activeRoute: ActivatedRoute) {
     // Mimic user logged in
+    this.edit = false;
     this.loggedInUser = 'cl24npfsm0019wwuuey6gdhfp';
+  }
+
+  ngOnInit(): void {
+    this.activeRoute.params.subscribe((params: Params) => {
+      this.blogId = params['blogID'];
+    });
+    if (this.blogId !== undefined) {
+      this.edit = true;
+      this.displayBlog(this.blogId);
+    }
   }
 
   // Return to blog-explore without creating a blog
@@ -24,23 +42,91 @@ export class BlogCreateComponent {
     window.open('/blog', '_self');
   }
 
-  // Create a new blog, add blog to database and return to blog-explore
-  post() {
-    console.log(this.content);
-    //Fix NewLine Error ERROR GraphQLError: Syntax Error: Unterminated string.
-    console.log(this.content);
-    if (
-      this.title === undefined ||
-      this.content == undefined ||
-      this.title === '' ||
-      this.content === ''
-    ) {
-      alert('Invalid Inputs');
+  displayBlog(blogID: string | undefined) {
+    if (blogID === undefined) {
+      alert('No blog ID');
+      window.open('/blog', '_self');
     } else {
       if (!(this.apollo.client === undefined)) {
         this.apollo
-          .mutate({
-            mutation: gql`
+          .watchQuery({
+            query: gql`
+              query {
+                blogById(blogId: "${this.blogId}") {
+                  title
+                  content
+                }
+              }
+              `,
+          })
+          .valueChanges.subscribe((results: any) => {
+            this.blog = results.data.blogById;
+          });
+      }
+    }
+  }
+
+  // Create a new blog, add blog to database and return to blog-explore
+  post() {
+    if (this.edit) {
+      if (
+        this.title === '' ||
+        this.content === ''
+      ) {
+        alert('Invalid Inputs');
+      } else {
+        if (this.title !== undefined) {
+          if (!(this.apollo.client === undefined)) {
+            this.apollo
+              .mutate({
+                mutation: gql`
+            mutation {
+              updateBlogTitle(blogId: "${this.blogId}", title: "${this.title}"){
+                title
+                content
+              }
+            }
+          `,
+              })
+              .subscribe((result) => {
+                alert('UPDATED TITLE!!');
+              });
+          }
+
+          if (this.content !== undefined) {
+            this.apollo
+              .mutate({
+                mutation: gql`
+            mutation {
+              updateBlogContent(blogId: "${this.blogId}", content: "${this.content}"){
+                title
+                content
+              }
+            }
+          `,
+              })
+              .subscribe((result) => {
+                alert('UPDATED CONTENT!!');
+              });
+          }
+          setTimeout(() => {
+            window.open('/blog', '_self');
+          }, 2000);
+        }
+      }
+    } else {
+      if (
+        this.title === undefined ||
+        this.content == undefined ||
+        this.title === '' ||
+        this.content === ''
+      ) {
+        alert('Invalid Inputs');
+      } else {
+        if (!(this.apollo.client === undefined)) {
+          this.apollo
+            .mutate({
+              mutation: gql`
             mutation {
               createBlog(title: "${this.title}", content:"${this.content}", archived: false, userId: "${this.loggedInUser}"){
                 title
@@ -48,14 +134,15 @@ export class BlogCreateComponent {
               }
             }
           `,
-          })
-          .subscribe((result) => {
-            alert('SUCCESS!!');
-          });
+            })
+            .subscribe((result) => {
+              alert('SUCCESS!!');
+            });
+        }
+        setTimeout(() => {
+          window.open('/blog', '_self');
+        }, 2000);
       }
-      setTimeout(() => {
-        window.open('/blog', '_self');
-      }, 2000);
     }
   }
 }

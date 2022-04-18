@@ -1,4 +1,5 @@
 @import 'libs/client/shared/assets/ui/src/lib/global';
+// Styling for full page
 .page {
     padding-top: 2%;
     padding-bottom: 4%;
@@ -6,6 +7,7 @@
     padding-right: 5%;
 }
 
+//Styling for headings
 h1 {
     text-align: left;
     float: left;
@@ -14,6 +16,7 @@ h1 {
     font-weight: bold;
 }
 
+// Styling for buttons
 .returnbutton {
     background-color: $primary-1;
     &:hover {
@@ -38,6 +41,7 @@ h1 {
     float: right;
 }
 
+// Styling for blog output
 .output {
     width: 100%;
     border: 1px;
@@ -68,10 +72,7 @@ h1 {
     color: $primary-1;
 }
 
-.image {
-    max-height: 200px;
-}
-
+// Styling for comments
 .commentDIV {
     width: 100%;
     border: 1px;

@@ -42,29 +42,7 @@ export class BlogViewComponent implements OnInit {
     this.diplayComments();
   }
 
-  // getName(userId: string): string {
-  //   if (!(this.apollo.client === undefined)) {
-  //     this.apollo
-  //       .watchQuery({
-  //         query: gql`
-  //         query {
-  //           nameByUserId(userId: "${userId}") {
-  //             title
-  //             content
-  //             userId
-  //             date
-  //           }
-  //         }
-  //         `,
-  //       })
-  //       .valueChanges.subscribe((results: any) => {
-  //         console.log(results);
-  //       });
-  //   }
-
-  //   return "";
-  // }
-
+  // Display current blog
   displayBlog(blogID: string | undefined) {
     if (blogID === undefined) {
       alert('No blog ID');
@@ -92,6 +70,7 @@ export class BlogViewComponent implements OnInit {
     }
   }
 
+  // Display all comments
   diplayComments() {
     if (!(this.apollo.client === undefined)) {
       this.apollo
@@ -114,10 +93,12 @@ export class BlogViewComponent implements OnInit {
     }
   }
 
+  // Go back to clog-explore
   return(){
     window.open('/blog', '_self');
   }
 
+  // Create a comment
   post() {
     console.log(this.comment);
     if (this.comment === undefined || this.comment === '') {

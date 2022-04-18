@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-
 import { Location } from '@angular/common';
 import { Apollo, gql } from 'apollo-angular';
 
@@ -86,21 +85,34 @@ export class BlogExploreComponent implements OnInit {
     this.loadBlogs();
   }
 
+  // Blog interation buttons
   createBlog() {
     window.open("/blog/create", "_self");
   }
 
   readBlog(blogID: string) {
     window.open(("/blog/view/" + blogID), "_self");
-    // this.router.navigate(['blog/view']); //Change later when ID is added to the URL
   }
 
-  editBlog(blog: unknown) {
-    blog;
-    // this.router.navigate(['blog/create']); //Change later when ID is added to the URL
+  editBlog(blogID: unknown) {
+    window.open(("/blog/edit/" + blogID), "_self");
   }
 
   deleteBlog(blogID: string) {
+    if (!(this.apollo.client === undefined)) {
+      this.apollo
+        .mutate({
+          mutation: gql`
+          mutation {
+            deleteCommentsByBlogId(blogId: "${blogID}") 
+          }
+        `,
+        })
+        .subscribe((result) => {
+          console.log(result);
+        });
+    }
+
     if (!(this.apollo.client === undefined)) {
       this.apollo
         .mutate({
@@ -117,6 +129,7 @@ export class BlogExploreComponent implements OnInit {
     window.location.reload();
   }
 
+  //Sorting for blogs
   newestFirst() {
     if (!this.newestFirstSort) {
       this.arrayForSort = [...this.blogList];
@@ -145,6 +158,7 @@ export class BlogExploreComponent implements OnInit {
     }
   }
 
+  // Allow user to access admin settings
   changeAdmin() {
     if (this.admin) {
       this.admin = false;
@@ -155,7 +169,7 @@ export class BlogExploreComponent implements OnInit {
     this.loadGrid();
   }
 
-  //Add to blogs array (Hopefully from API)
+  //Add to blogs array
   loadBlogs() {
     if (this.admin) {
       if (!(this.apollo.client === undefined)) {
@@ -222,9 +236,3 @@ export class BlogExploreComponent implements OnInit {
     }
   }
 }
-
-//  TO-DO
-//  Fix multi Line Input for creating blogs
-//  Limit amount of text in blog summary
-//  COMMENTS!!!
-//  NAV Bar

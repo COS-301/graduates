@@ -4,6 +4,7 @@ import { BlogExploreComponent } from './blog-explore/blog-explore.component';
 import { BlogCreateComponent } from './blog-create/blog-create.component';
 import { BlogViewComponent } from './blog-view/blog-view.component';
 
+// Paths for children
 const routes: Routes = [
   {
     path: '',
@@ -15,8 +16,11 @@ const routes: Routes = [
   },
   {
     path: 'view/:blogID',
-    // path: 'view?blogID=',
     component: BlogViewComponent
+  },
+  {
+    path: 'edit/:blogID',
+    component: BlogCreateComponent
   }
 ];
 

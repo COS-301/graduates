@@ -9,6 +9,7 @@
 
 <br>
 
+<!-- Full Page styling -->
 <div class="page">
     <h1>UP Student Blog</h1>
     <button type="submit" class="returnbutton" mat-raised-button color="accent" (click)="return()">Return to Blog Posts</button>
@@ -17,6 +18,7 @@
     <br>
     <br>
 
+    <!-- Display Blog -->
     <div class="output">
         <div class="title">{{blog.title}}</div><br>
         <div class="author">Author: {{blog.userId}}</div>
@@ -29,10 +31,12 @@
     <br>
     <br>
 
+    <!-- Comments -->
     <div class="smallerDiv">
         <div class="commentDIV">
             <div class="commentTitle">Comments</div><br>
 
+            <!-- Display each comment -->
             <div *ngFor="let com of commentList">
                 <div class="userComment">
                     <div class="username">{{com.userId}} - </div>
@@ -41,6 +45,7 @@
                 </div>
             </div>
 
+            <!-- Post a comment -->
             <div class="username">{{loggedInUser}}</div>
             <form (submit)="post()">
                 <textarea [(ngModel)]="comment" type="text" name="comment" class="comment" placeholder="Add a comment" rows="3" ngModel></textarea><br><br>

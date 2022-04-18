@@ -38,7 +38,9 @@
         <button class="adminbutton" mat-raised-button color="accent" (click)="changeAdmin()">Admin</button>
     </div>
 
+    <!-- Blog display grid -->
     <mat-grid-list #grid [cols]="cols" rowHeight="350px">
+        <!-- Loops through all blogs -->
         <div *ngFor="let card of blogs | async">
             <mat-grid-tile>
                 <mat-card class="card" fxLayout="column">
@@ -53,7 +55,6 @@
                     <mat-card-header fxFlexAlign="center" class="cardTitle">
                         <mat-card-title>{{card.title}}</mat-card-title>
                         <mat-card-subtitle>Author ID: {{card.userId}}</mat-card-subtitle>
-                        <!--Change to Author-->
                     </mat-card-header>
 
                     <!-- Functionality buttons to interact with a blog -->
