@@ -5,6 +5,7 @@ import {
   Mutation,
   ResolveField,
   Root,
+  registerEnumType,
 } from '@nestjs/graphql';
 import {
   Short,
@@ -20,13 +21,19 @@ import {
 } from '@graduates/api/shorts/service/feature';
 import { NotFoundException } from '@nestjs/common';
 import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
+import { v4 as uuidv4 } from 'uuid';
+import {
+  FirebaseService,
+  FirebaseFolders,
+} from '@graduates/api/storage/repository/data-access';
 
 @Resolver(Short)
 export class ShortsResolver {
   constructor(
     private readonly service: ShortsService,
     private readonly tagsService: ShortsTagsService,
-    private readonly reportsService: ShortsReportsService
+    private readonly reportsService: ShortsReportsService,
+    private readonly fbService: FirebaseService
   ) {}
 
   @ResolveField()
@@ -90,10 +97,11 @@ export class ShortsResolver {
   async getShortsByTag(@Args('tagId') tagId: string): Promise<Short[]> {
     return await this.service.findShortsByTag(tagId);
   }
-  @Query(() =>String) 
-  pingShorts(){
-    return "on";
+  @Query(() => String)
+  pingShorts() {
+    return 'on';
   }
+
   /**
    * Mutation to create a short
    * @param {ShortCreateInput} short The short to create
@@ -103,10 +111,53 @@ export class ShortsResolver {
   @Mutation(() => Short)
   async createShort(
     @Args('short') short: ShortCreateInput,
-    @Args('userId') userId: string
+    @Args('userId') userId: string,
+    @Args('vidString') vidString: string,
+    @Args('thumbString') thumbString: string
   ): Promise<Short | null> {
-    const res = await this.service.createShort(short, userId);
-    return res;
+    const vidName = uuidv4();
+    const thumbName = uuidv4();
+
+    let thumbRef, vidRef;
+
+    await this.fbService
+      .uploadAsBase64String(vidString, vidName, FirebaseFolders.Videos)
+      .then(async (res) => {
+        if (res) {
+          await this.fbService
+            .getURLByName(vidName, FirebaseFolders.Videos)
+            .then(async (res) => {
+              vidRef = res;
+
+              await this.fbService
+                .uploadAsBase64String(
+                  thumbString,
+                  thumbName,
+                  FirebaseFolders.Thumbnails
+                )
+                .then(async (res) => {
+                  if (res) {
+                    await this.fbService
+                      .getURLByName(vidName, FirebaseFolders.Videos)
+                      .then(async (res) => {
+                        thumbRef = res;
+
+                        // return await this.service.createShort(
+                        //   short,
+                        //   userId,
+                        //   vidRef,
+                        //   thumbRef
+                        // );
+                      });
+                  }
+                });
+            });
+        } else {
+          return null;
+        }
+      });
+
+    return await this.service.createShort(short, userId, vidRef, thumbRef);
   }
 
   /**
