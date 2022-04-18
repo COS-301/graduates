@@ -22,8 +22,8 @@ export class ApiCompanyExploreResolver {
   @Query((returns) => ApiCompanyExploreEntity)
   async getCompanyById(@Args('companyID', { type: () => String }) id: string) {
     const companyArr = await this.companyService.getCompanyById(id);
-    const companyObj = new ApiCompanyExploreEntity;
-    const UserprofileObj = new ApiCompanyExploreUserprofileEntity;
+    const companyObj = new ApiCompanyExploreEntity();
+    const UserprofileObj = new ApiCompanyExploreUserprofileEntity();
     let profile = null;
 
     if (companyArr.length > 0) {
@@ -55,15 +55,15 @@ export class ApiCompanyExploreResolver {
   async GetListOfComapnies() {
     const CompaniesArr = await this.companyService.getDefaultCompany();
     const arrOfCompanies = new Array<ApiCompanyExploreEntity>();
-    let CompaniesObj = new ApiCompanyExploreEntity;
-    let UserprofileObj = new ApiCompanyExploreUserprofileEntity;
+    let CompaniesObj = new ApiCompanyExploreEntity();
+    let UserprofileObj = new ApiCompanyExploreUserprofileEntity();
     let company = null;
     let profile = null;
     
     while ((await CompaniesArr).length > 0) {
       company = (await CompaniesArr).pop;
-      CompaniesObj = new ApiCompanyExploreEntity;
-      UserprofileObj = new ApiCompanyExploreUserprofileEntity;
+      CompaniesObj = new ApiCompanyExploreEntity();
+      UserprofileObj = new ApiCompanyExploreUserprofileEntity();
       //id, email, password, passwordSalt, name, dateOfBirth, companyID, created, suspended, validated, Userprofile ()
       CompaniesObj.id = (await company).pop;
       CompaniesObj.email = (await company).pop;
@@ -93,15 +93,15 @@ export class ApiCompanyExploreResolver {
   async GetCompanySearchResult(@Args('company_name', { type: () => String }) company_name: string) {
     const CompaniesArr = await this.companyService.getSearchResults(company_name);
     const arrOfCompanies = new Array<ApiCompanyExploreEntity>();
-    let CompaniesObj = new ApiCompanyExploreEntity;
-    let UserprofileObj = new ApiCompanyExploreUserprofileEntity;
+    let CompaniesObj = new ApiCompanyExploreEntity();
+    let UserprofileObj = new ApiCompanyExploreUserprofileEntity();
     let company = null;
     let profile = null;
     
     while ((await CompaniesArr).length > 0) {
       company = (await CompaniesArr).pop;
-      CompaniesObj = new ApiCompanyExploreEntity;
-      UserprofileObj = new ApiCompanyExploreUserprofileEntity;
+      CompaniesObj = new ApiCompanyExploreEntity();
+      UserprofileObj = new ApiCompanyExploreUserprofileEntity();
       //id, email, password, passwordSalt, name, dateOfBirth, companyID, created, suspended, validated, Userprofile ()
       CompaniesObj.id = (await company).pop;
       CompaniesObj.email = (await company).pop;
@@ -131,15 +131,15 @@ export class ApiCompanyExploreResolver {
   async GetCompanyTagged(@Args('inputTag', { type: () => String }) inputTag: string) {
     const CompaniesArr = await this.companyService.getTaggedCompany(inputTag);
     const arrOfCompanies = new Array<ApiCompanyExploreTaggedEntity>();
-    let TaggedObj = new ApiCompanyExploreTaggedEntity;
-    let UserObj = new ApiCompanyExploreUserEntity;
+    let TaggedObj = new ApiCompanyExploreTaggedEntity();
+    let UserObj = new ApiCompanyExploreUserEntity();
     let tagged = null;
     let user = null;
 
     while ((await CompaniesArr).length > 0) {
       tagged = (await CompaniesArr).pop;
-      TaggedObj = new ApiCompanyExploreTaggedEntity;
-      UserObj = new ApiCompanyExploreUserEntity;
+      TaggedObj = new ApiCompanyExploreTaggedEntity();
+      UserObj = new ApiCompanyExploreUserEntity();
       //UserId, tag, user
       TaggedObj.UserId = (await tagged).pop;
       TaggedObj.tag = (await tagged).pop;
