@@ -37,6 +37,11 @@ export class CompanyRepresentativeMockStudentExplorePageComponent {
       ];
   }
 
+  logout() {
+    localStorage.clear();
+    this.navigateToLogin();
+  }
+
   navigateToHome() {
     this._router.navigate(['CompanyRepresentativeHome'])
   }
@@ -45,11 +50,7 @@ export class CompanyRepresentativeMockStudentExplorePageComponent {
     this._router.navigate(['CompanyRepresentativeLogin'])
   }
 
-  navigateToEdit() {
-    this._router.navigate(['CompanyRepresentativeEdit'])
-  }
-
   navigateToExplore() {
-    this._router.navigate(['CompanyRepresentativeExplore'])
+    this._router.navigate(['student-explore'])
   }
 }
