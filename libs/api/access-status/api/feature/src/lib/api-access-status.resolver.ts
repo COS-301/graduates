@@ -1,5 +1,5 @@
 import { Resolver, Query, ID, Args } from "@nestjs/graphql";
-import { ApiAccessStatusEntity } from "./api-access-status.entity";
+import { ApiAccessStatusEntity } from "../../../shared/src/lib/api-access-status.entity";
 import { ApiAccessStatusService } from "./api-access-status.service";
 
 @Resolver(of => ApiAccessStatusEntity)
