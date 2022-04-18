@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, HostListener } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { NavigationStart, Router } from '@angular/router';
 import { observable } from 'rxjs';
 import { CompanyRepresentativeServiceService } from '../company-representative-service/company-representative-service.service';
 
@@ -8,25 +9,33 @@ import { CompanyRepresentativeServiceService } from '../company-representative-s
   templateUrl: './company-representative-page.component.html',
   styleUrls: ['./company-representative-page.component.scss']
 })
-export class CompanyRepresentativePageComponent{
-  profilePicture = 'https://s-media-cache-ak0.pinimg.com/236x/c8/e8/cc/c8e8cc83e6eeb60061ba11c9d8ba9a11.jpg';
-  name = "NA";
-  jobTitle = "NA";
-  experience = "NA";
-  about = "NA";
-  number = "NA"
-  location = "NA";
-  email = "NA";
-  website = "NA";
-  linkedin = "NA";
-  twitter = "NA";
-  instagram = "NA";
-  facebook = "NA";
-  snapchat = "NA";
-  github = "NA";
-  result = <any>observable;
-  constructor(private _router: Router, private API : CompanyRepresentativeServiceService) { 
-    this.result = this.API.getCompanyRepresentative("c1234").subscribe({
+export class CompanyRepresentativePageComponent {
+  id = "";
+  profilePicture = 'assets/thumbnails/profile.png';
+  name = "";
+  jobTitle = "";
+  experience = "";
+  about = "";
+  number = ""
+  location = "";
+  email = "";
+  website = "";
+  linkedin = "";
+  twitter = "";
+  instagram = "";
+  facebook = "";
+  snapchat = "";
+  github = "";
+  result = <unknown> observable;
+
+  constructor(private _router: Router, private API : CompanyRepresentativeServiceService) {
+    if (localStorage.getItem("id") != null) {
+      this.id = localStorage.getItem("id") as string;
+    }
+    else if (this._router.getCurrentNavigation() != null) {
+      this.id = this._router.getCurrentNavigation()?.extras?.state?.['id'];
+    }
+    this.result = this.API.getCompanyRepresentative(this.id).subscribe({
       next: (item) => {
         if (item){
           this.name = item.data.getCompanyRepresentative.repName;
@@ -48,6 +57,13 @@ export class CompanyRepresentativePageComponent{
       error: (err) => { console.log(err); }
     });
    }
+
+
+  uploadImage(event: any) {
+    const fileType = event.target.files[0].type;
+    console.log(event.target.files[0]);
+
+  }
 
   navigateToLogin() {
     this._router.navigate(['CompanyRepresentativeLogin'])
