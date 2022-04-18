@@ -395,7 +395,7 @@ enum Item {
   ACADEMIC_RECORD
   CV
   TRANSCRIPT
-  CERTFICATE
+  CERTIFICATES
   CAPSTONE_PROJECT
 }
 
@@ -421,8 +421,7 @@ model UserContactNumber {
 model UserExperience {
   userId      String @id  @map("user_id")
   experience  String
-
+  
   user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_experience")
 }
-

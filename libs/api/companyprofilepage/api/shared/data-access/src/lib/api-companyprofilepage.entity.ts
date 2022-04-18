@@ -1,35 +1,103 @@
-import { Field, ID, ObjectType} from "@nestjs/graphql";
-import { SocialMedia, User, UserContactNumber, UserEmail, UserLocation, UserSocialMedia } from "@prisma/client";
+import { Field, ID, InputType, ObjectType} from "@nestjs/graphql";
+
+@ObjectType()
+export class UserSocialMedia {
+    @Field(type => ID)
+    userId!: string;
+
+    @Field()
+    type: string;
+
+    @Field()
+    link: string;
+
+}
+
+@ObjectType()
+export class UserEmail{
+    @Field(type => ID)
+    userId!: string;
+
+    @Field()
+    email: string;
+}
+
+@ObjectType()
+export class UserNumber{
+    @Field(type => ID)
+    userId!: string;
+
+    @Field()
+    number: string;
+}
+
+@ObjectType()
+export class UserLocation{
+    @Field(type => ID)
+    userId!: string;
+
+    @Field()
+    location: string;
+}
+
+@ObjectType()
+export class UserProfile{
+    @Field(type => ID)
+    userId!: string;
+    
+    @Field()
+    bio: string
+}
+
+@ObjectType()
+export class CompanyReps{
+    @Field(type => ID)
+    id!: string;
+
+    @Field()
+    name: string;
+
+    @Field()
+    companyId: string
+}
+
 
 
 @ObjectType()
 export class ApiCompanyProfilePage{
     @Field(type => ID)
-    company_id!: string;
+    id!: string;
 
     @Field()
-    company_name: string;
+    name?: string | null;
 
     @Field()
-    company_logo: string;
+    company_office_location: UserLocation;
 
     @Field()
-    company_office_location: UserLocation[];
+    company_filter: string | null;
 
     @Field()
-    company_filter: string;
+    company_contact_details: UserNumber;
 
     @Field()
-    company_contact_details: UserContactNumber;
+    company_email: UserEmail;
 
     @Field()
-    company_email: UserEmail[];
+    company_bio: UserProfile;
 
     @Field()
-    company_bio: string;
+    company_social_media: UserSocialMedia;
+
+
+}
+
+@InputType()
+export class UpdateBioInput{
+    @Field(type => ID)
+    id!: string
 
     @Field()
-    company_social_media: UserSocialMedia[] ;
-
+    bio: string
 
 }

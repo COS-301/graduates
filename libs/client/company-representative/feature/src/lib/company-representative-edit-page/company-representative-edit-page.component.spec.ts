@@ -4,6 +4,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CompanyRepresentativeEditPageComponent } from './company-representative-edit-page.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ApolloModule } from 'apollo-angular';
 
 describe('CompanyRepresentativeEditPageComponent', () => {
   let component: CompanyRepresentativeEditPageComponent;
@@ -11,7 +13,7 @@ describe('CompanyRepresentativeEditPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule,MatCardModule,MatButtonModule,MatMenuModule],
+      imports: [RouterTestingModule,MatCardModule,MatButtonModule,MatMenuModule,HttpClientModule, ApolloModule],
       declarations: [ CompanyRepresentativeEditPageComponent ]
     })
     .compileComponents();

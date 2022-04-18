@@ -5,67 +5,90 @@ import { ApiStorage , ApiStorageInput} from '@graduates/api/storage/api/shared/d
 import { FileCategory } from '@prisma/client';
 import { createWriteStream } from 'fs';
 import * as fs from 'fs/promises';
+
 @Resolver(() => ApiStorage)
 export class ApiStorageResolver {
+
   constructor(private storageService: ApiStorageServiceFeatureModule,
               ) {}
   @Query(() =>String)
+
   async download(
     @Args("userId")userID:string,
     @Args("fileCategory")fileCategory:string
-  ): Promise<string| boolean> {
-    const res = await this.storageService.getFile(userID , fileCategory);
-    if(res == null){
-      return false
-    }
-    else{
-      return res;
-    }
-   
+  ): Promise<string | boolean> {
+
+    let url :string|boolean = false;
+    await this.storageService.getFile(userID , fileCategory).then(async(value) => {
+      if(value)
+      url = value;
+    });
+    return url;
+
   }
-  @Query(() =>String)
+
+  @Mutation(() =>String)
   async delete(
     @Args("userId")userID:string,
     @Args("fileCategory")fileCategory:string
-  ): Promise<number| boolean> {
-    const res = await this.storageService.deleteFile(userID , fileCategory);
+  ): Promise<number> {
     
-    if(res == null){
-      return false
-    }
-    else{
-      return res;
-    }
+    let num = 0;
+    await this.storageService.deleteFile(userID , fileCategory).then(async(value) => {
+      num = value;
+    });
+
+    return num;
   }
-  @Mutation(returns => String)
+
+  //TODO fix return type
+  @Mutation(returns =>Boolean)
   async upload(
     @Args("filename")fileName:string,
     @Args("userId")userID:string,
-     @Args("fileCategory")fileCategory:string,
+    @Args("fileCategory")fileCategory:string,
     @Args("fileExtension")fileExtension:string,
     @Args('file') file:string
-  ): Promise<boolean|ApiStorageInput> {
+  ): Promise<boolean> {
+
       const storage = new ApiStorage();
-      console.log(fileCategory)
-      storage.fileAsString = file;
-      if(fileCategory=="CV"){
+      storage.fileAsString = file.substring(file.indexOf(',')+1,file.length);
+
+      let ret = false;
+
+      if(fileCategory==="CV"){
         storage.fileCategory = FileCategory.CV 
       }
-      if(fileCategory=="Transcript"){
+
+      else if(fileCategory==="Transcript"){
         storage.fileCategory = FileCategory.DEGREE
   
       }
-      if(fileCategory=="Academic Record"){
+
+      else if(fileCategory==="Academic Record"){
         storage.fileCategory = FileCategory.ACADEMIC_RECORD
       }
+
+      else if (fileCategory === "Image") {
+        storage.fileCategory = FileCategory.PROFILE_PHOTO;
+      }
+
       storage.userId = userID;
       storage.fileExtension = fileExtension;
-      return await this.storageService.create(storage);
-  }
-  @Query(() =>String)
+      
+      await this.storageService.create(storage).then( async (value) => {
+        if(value)
+        ret = true;
+      })
+
+      return ret;
+}
+@Query(() =>String)
   pingStorage(){
     return "on";
   }
+
+
 }
 
 

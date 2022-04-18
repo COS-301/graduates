@@ -1,41 +1,95 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { observable } from 'rxjs';
-import { CompanyRepresentativeServiceService } from '../company-representative-service/company-representative-service.service';
+import { CompanyRepresentativeService } from '../company-representative-service/company-representative-service.service';
+
 
 @Component({
   selector: 'graduates-company-representative-page',
   templateUrl: './company-representative-page.component.html',
   styleUrls: ['./company-representative-page.component.scss']
 })
-export class CompanyRepresentativePageComponent implements OnInit {
-  profilePicture = 'https://s-media-cache-ak0.pinimg.com/236x/c8/e8/cc/c8e8cc83e6eeb60061ba11c9d8ba9a11.jpg';
-  name = "John Doe";
-  jobTitle = "Job Title and area of expertise.";
-  experience = "Some quick example text to build on the card title and make up the bulk of the card's content";
-  about = "Some quick example text to build on the card title and make up the bulk of the card's content";
-  number = "0814941334"
-  location = "Pretoria, SA";
-  email = "johndoe@example.com";
-  website = "www.JohnDoe.com";
-  linkedin = "@Johndoe";
-  twitter = "@johnDoe";
-  instagram = "@JohnDoe";
-  facebook = "Facebook.com/JohnDoe";
-  snapchat = "JohnDoe";
-  github = "JohnDoe@github.com";
-  result = <any>observable;
-  students: string[];
-  constructor(private _router: Router, private API : CompanyRepresentativeServiceService) { 
-    this.students = [
-      "Student 1 uXXXXXXXX",
-      "Student 2 uXXXXXXXX",
-      "Student 3 uXXXXXXXX",
-      "Student 4 uXXXXXXXX",
-      "Student 5 uXXXXXXXX",
-      "Student 6 uXXXXXXXX"
-    ];
+export class CompanyRepresentativePageComponent {
+  id = "";
+  profilePicture = 'assets/thumbnails/profile.png';
+  name = "";
+  jobTitle = "";
+  experience = "";
+  about = "";
+  number = ""
+  location = "";
+  email = "";
+  website = "";
+  linkedin = "";
+  twitter = "";
+  instagram = "";
+  facebook = "";
+  snapchat = "";
+  github = "";
+  result = <unknown> observable;
+
+  constructor(private _router: Router, private API : CompanyRepresentativeService) {
+    if (localStorage.getItem("id") != null) {
+      this.id = localStorage.getItem("id") as string;
+    }
+    else if (this._router.getCurrentNavigation() != null) {
+      this.id = this._router.getCurrentNavigation()?.extras?.state?.['id'];
+    }
+    this.result = this.API.getCompanyRepresentative(this.id).subscribe({
+      next: (item) => {
+        if (item){
+          this.displayImage();
+          this.name = item.data.getCompanyRepresentative.repName;
+          this.jobTitle = item.data.getCompanyRepresentative.jobTitle;
+          this.experience = item.data.getCompanyRepresentative.repExperience;
+          this.about = item.data.getCompanyRepresentative.aboutMe;
+          this.number = item.data.getCompanyRepresentative.phoneNumber;
+          this.location = item.data.getCompanyRepresentative.location;
+          this.email = item.data.getCompanyRepresentative.email;
+          this.website = item.data.getCompanyRepresentative.website;
+          this.linkedin = item.data.getCompanyRepresentative.linkedIn;
+          this.twitter = item.data.getCompanyRepresentative.twitter;
+          this.instagram = item.data.getCompanyRepresentative.instagram;
+          this.facebook = item.data.getCompanyRepresentative.facebook;
+          this.snapchat = item.data.getCompanyRepresentative.snapChat;
+          this.github = item.data.getCompanyRepresentative.gitHub;
+        }
+      },
+      error: (err) => { console.log(err); }
+    });
    }
+
+  uploadImage(event: any) {
+    this.API.upload(event.target.files[0], this.id);
+    this.displayImage();
+  }
+
+  displayImage() {
+    this.API.download(this.id, "Image").subscribe({
+      next: (item) => {
+        if (item) {
+          this.profilePicture = item.data.download;
+        }
+      }
+    })
+  }
+
+  deleteRepresentativeProfile() {
+    this.API.deleteRepresentative(this.id).subscribe({
+      next: (item) => {
+        if (item) {
+          localStorage.clear();
+          this.navigateToLogin();
+        }
+      },
+      error: (err) => { console.log(err); }
+    });
+  }
+
+  logout() {
+    localStorage.clear();
+    this.navigateToLogin();
+  }
 
   navigateToLogin() {
     this._router.navigate(['CompanyRepresentativeLogin'])
@@ -46,32 +100,10 @@ export class CompanyRepresentativePageComponent implements OnInit {
   }
 
   navigateToExplore() {
-    this._router.navigate(['CompanyRepresentativeExplore'])
+    this._router.navigate(['StudentExplore'])
   }
 
   navigateToHome() {
     this._router.navigate(['CompanyRepresentativeHome'])
-  }
-
-  ngOnInit(): void {
-    this.result = this.API.getDefaultRepresentative("c1234").subscribe({
-      next: (item) => {
-        this.name = item.data.getDefaultRepresentative.repName;
-        this.jobTitle = item.data.getDefaultRepresentative.jobTitle;
-        this.experience = item.data.getDefaultRepresentative.repExperience;
-        this.about = item.data.getDefaultRepresentative.aboutMe;
-        this.number = item.data.getDefaultRepresentative.phoneNumber;
-        this.location = item.data.getDefaultRepresentative.location;
-        this.email = item.data.getDefaultRepresentative.email;
-        this.website = item.data.getDefaultRepresentative.website;
-        this.linkedin = item.data.getDefaultRepresentative.linkedIn;
-        this.twitter = item.data.getDefaultRepresentative.twitter;
-        this.instagram = item.data.getDefaultRepresentative.instagram;
-        this.facebook = item.data.getDefaultRepresentative.facebook;
-        this.snapchat = item.data.getDefaultRepresentative.snapChat;
-        this.github = item.data.getDefaultRepresentative.gitHub;
-      },
-      error: (err) => { console.log(err); }
-    });
   }
 }

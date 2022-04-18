@@ -1,179 +1,86 @@
-import {FileCategory, PrismaClient } from '@prisma/client';
-import { FirebaseService, StorageRepository } from '@graduates/api/storage/repository/data-access';
+import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
-import { ApiStorage } from '@graduates/api/storage/api/shared/data-access';
 
-
+@Injectable()
 export class UpIntegrationRepository 
 {
-    prisma = new PrismaClient();
+    constructor(
+        private prisma : PrismaService
+    ){}
 
-    storage = new StorageRepository(new PrismaService,new FirebaseService)
-
-    async getuserID_from_Studentno(studentnum : string)
-    {
-        const list = await this.prisma.userProfile.findMany({
-            select:
-            {
+    async get_UserID(studentnum : string): Promise<string>{
+        const item = await this.prisma.userProfile.findFirst({
+            where: {
+                studentNumber: studentnum 
+            },
+            select: {
                 userId: true,
-                studentNumber: true
             }
         });
-         list.forEach(i => {
-             if (i.studentNumber==studentnum)
-             {
-                 return i.userId;
-             }
-         });
-        return null;
+        if(item){
+            return item.userId
+        }
+        return "User was not found";
     }
 
-            
-        
-
-    async get_name(userid : string)
-    {
-        return await this.prisma.user.findFirst({
-            where: 
-            {
+    async get_name(userid : string): Promise<string | null>{
+        const item = await this.prisma.user.findFirst({
+            where: {
                 id: userid 
             },
-            select:
-            {
+            select:{
                 name: true
             }
         });
+        if(item){
+            return item.name
+        }
+        return null;
     }
 
-    async set_name(userid : string, newname : string)
-    {
-        return await this.prisma.user.update({
-            data:
-            {
-                name: newname
-            },
-            where:
-            {
-                id: userid 
-            }
-        });
-    }
-
-    async get_emails(userid : string)
-    {        
-        return await this.prisma.userEmail.findMany({
-            where:
-            {
+    async get_email(userid : string): Promise<string | null>{        
+        const item = await this.prisma.userEmail.findFirst({
+            where: {
                 userId: userid
             },
-            select:
-            {
+            select: {
                 email : true
             }
         });
+        if(item){
+            return item.email
+        }
+        return null;
     }
 
-    async add_email(userid : string, email: string)
-    {        
-        return await this.prisma.userEmail.create({
-            data:
-            {
-                userId : userid,
-                email: email
-            }
-        });
-    }
-
-    async get_files(userid : string)
-    {
-        const list = await this.prisma.userProfileFile.findMany({
-            where:
-            {
+    async get_contact(userid : string): Promise<string | null>{        
+        const item = await this.prisma.userContactNumber.findFirst({
+            where: {
                 userId: userid
             },
-            select:
-            {
-                fileId:true
+            select: {
+                number : true
             }
         });
-        let result;
-        list.forEach(i => {
-            result.push(this.storage.getUserFiles(i));
-        });
-        return result;
+        if(item){
+            return item.number
+        }
+        return null;
     }
-
-    async add_files(userid : string, fileCategory : FileCategory, filePath : string, fileExtension : string)
-    {        
-        const newfile = new ApiStorage();
-        newfile.userId = userid;
-        newfile.fileCategory = fileCategory;
-        newfile.filePath = filePath;
-        newfile.fileExtension = fileExtension;
-        this.storage.createFile(newfile);
-    }
-
-    async get_spesific_file(userid : string, type: FileCategory)
-    {
-        const list = await this.prisma.userProfileFile.findMany({
-            where:
-            {
-                userId: userid,
-                fileCategory: type
+ 
+    async get_course(userid : string): Promise<string | null>{     
+        const item = await this.prisma.userDegree.findFirst({
+            where: {
+                userID: userid
             },
-            select:
-            {
-                fileId:true
+            select: {
+                degreeName : true
             }
         });
-        let result;
-        list.forEach(i => {
-            result.push(this.storage.getUserFiles(i));
-        });
-        return result;
-    }
-
-    async remove_files(userid : string, fileCategory : FileCategory)
-    {        
-        return await this.prisma.userProfileFile.delete({
-            where:
-            {
-                fileId: userid
-            }
-        });
-    }
-
-//need to get degree title and to store the academic record and degree pdfs 
-async get_degrees(userid : string)
-{     
-    return await this.prisma.userDegree.findMany({
-      where:
-      {
-          userID: userid
-         },
-        select:
-         {
-            degreeType: true,
-            degreeName : true
+        if(item){
+            return item.degreeName
         }
-     });
-}
-
-async add_degree(userid : string, degreetitle : string, degreename : string)
-{      
-    return await this.prisma.userDegree.create({
-        data:
-        {
-             userID: userid,
-            degreeType: degreetitle,
-             degreeName: degreename
-        }
-    });
-}
-
-
-
-
-
+        return null;
+    }
 
 }

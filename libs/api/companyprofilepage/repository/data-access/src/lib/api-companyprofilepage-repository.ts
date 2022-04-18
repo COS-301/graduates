@@ -1,6 +1,8 @@
 import { Injectable, Param } from '@nestjs/common';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 import { SocialMedia, UserSocialMedia } from '@prisma/client';
+import { runInThisContext } from 'vm';
+import { UpdateBioInput } from '@graduates/api/companyprofilepage/api/shared/data-access';
 
 @Injectable()
 export class CompanyProfilePage {
@@ -18,12 +20,11 @@ export class CompanyProfilePage {
         })
     }
 
-    async editCompanyProfile(@Param() id:string, profilePic: string, bio: string) {
+    async editCompanyProfile(newBio: UpdateBioInput) {
         return await this.prisma.userProfile.update({
-            where: {userId: id},
+            where: {userId: newBio.id},
             data : {
-                profilePicture: profilePic,
-                bio: bio
+                bio: newBio.bio
             }
         })
     }
@@ -95,5 +96,10 @@ export class CompanyProfilePage {
         })
     }
 
+    async getCompanyRepById(@Param() id:string) {
+        return await this.prisma.user.findMany({
+            where: {companyId: id}
+        })
+    }
 }
 

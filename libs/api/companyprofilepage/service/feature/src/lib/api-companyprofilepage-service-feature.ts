@@ -1,52 +1,45 @@
-import { ApiCompanyProfilePage } from '@graduates/api/companyprofilepage/api/shared/data-access';
 import { Injectable } from '@nestjs/common';
-import { CompanyProfilePage } from '@graduates/api/companyprofilepage/repository/data-access';
-import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
+import { ApiCompanyProfilePage, CompanyReps, UpdateBioInput, UserEmail, UserLocation, UserNumber, UserProfile, UserSocialMedia } from '@graduates/api/companyprofilepage/api/shared/data-access';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
+import { GetCompanyBioQuery, GetCompanyByIDQuery, GetCompanyEmailQuery, GetCompanyLocationQuery, GetCompanyNumberQuery, GetCompanySocialMediaQuery, GetCompanyRepQuery} from './queries/api-companyprofilepage-service-query';
+import { UpdateCompanyBioCommand } from './commands/api-companyprofilepage-service-commands';
+
 
 @Injectable()
 export class ApicompanyprofilepageServiceFeatureModule {
+  
+constructor(private readonly queryBus: QueryBus,   private commandBus: CommandBus) {}
 
-
-  // async getAll(): Promise<ApiCompanyProfilePage[]> {
-  //   const companyprofilepage = new ApiCompanyProfilePage();
-  //   companyprofilepage.company_id = '1';
-  //   companyprofilepage.company_name = 'Google';
-  //   companyprofilepage.company_logo =
-  //     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7_XptDKwX5MbOjDs5YDFBIqOAq9Lt50PBW87ZwvsaJeBizLQ_2g6ilEjU4fpCV95ID30&usqp=CAU';
-  //   companyprofilepage.company_office_location =
-  //     '1600 Amphitheatre Parkway Mountain View, CA 94043, USA';
-  //   companyprofilepage.company_contact_details = '(650) 253-0000';
-  //   companyprofilepage.company_website = 'jobs@google.com';
-  //   companyprofilepage.company_filter = '';
-  //   companyprofilepage.company_bio =
-  //     'Google LLC is an American multinational technology company that specializes in Internet-related services and products, which include a search engine, online advertising technologies, cloud computing, software, and hardware. It is considered one of the Big Five American information technology companies, alongside Amazon, Apple, Meta and Microsoft.';
-  //   return [companyprofilepage];
-  // }
-
-  async getCompanyByID(company_id: string) : Promise<ApiCompanyProfilePage>{
-    const newCompany = new CompanyProfilePage(new PrismaService);
-    const companyprofilepage = new ApiCompanyProfilePage();
-    companyprofilepage.company_id = (await newCompany.getCompanyById(company_id)).id;
-    companyprofilepage.company_name = (await newCompany.getCompanyById(company_id)).name;
-    companyprofilepage.company_bio = (await newCompany.getCompanyProfile(company_id)).bio;
-    companyprofilepage.company_email = (await newCompany.getCompanyEmail(company_id));
-    companyprofilepage.company_contact_details = (await newCompany.getCompanyContactNumber(company_id));
-    companyprofilepage.company_office_location = (await newCompany.getCompanyLocations(company_id));
-    companyprofilepage.company_social_media = (await newCompany.getCompanySocialMedia(company_id));
-    return companyprofilepage;
+  async getCompanyWithID(id: string): Promise<ApiCompanyProfilePage> {
+    return await this.queryBus.execute(new GetCompanyByIDQuery(id));
   }
 
+  async getCompanyEmail(id: string): Promise<UserEmail[]>{
+    return await this.queryBus.execute(new GetCompanyEmailQuery(id));
+  }
 
-  // async updateCompany(company_ID: string, company_name: string, company_logo: string, company_office_location:string, company_contact_details: string, company_website: string, company_filter: string, company_bio: string): Promise<ApiCompanyProfilePage>{
-  //   const companyprofilepage = new ApiCompanyProfilePage();
-  //   companyprofilepage.company_id = company_ID;
-  //   companyprofilepage.company_name = company_name;
-  //   companyprofilepage.company_logo = company_logo;
-  //   companyprofilepage.company_office_location = company_office_location;
-  //   companyprofilepage.company_contact_details = company_contact_details;
-  //   companyprofilepage.company_website = company_website;
-  //   companyprofilepage.company_filter = company_filter;
-  //   companyprofilepage.company_bio = company_bio;
-  //   return companyprofilepage;
-  // }
+  async getCompanyLocation(id: string): Promise<UserLocation[]>{
+    return await this.queryBus.execute(new GetCompanyLocationQuery(id));
+  }
+
+  async getCompanySocialMedia(id: string): Promise<UserSocialMedia[]>{
+    return await this.queryBus.execute(new GetCompanySocialMediaQuery(id));
+  }
+
+  async getCompanyNumber(id: string): Promise<UserNumber>{
+    return await this.queryBus.execute(new GetCompanyNumberQuery(id));
+  }
+
+  async getCompanyBio(id: string): Promise<UserProfile>{
+    return await this.queryBus.execute(new GetCompanyBioQuery(id));
+  }
+
+  async getCompanyReps(id: string): Promise<CompanyReps[]>{
+    return await this.queryBus.execute(new GetCompanyRepQuery(id));
+  }
+
+  async updateCompanyBio(companyBio: UpdateBioInput): Promise<UserProfile | null> {
+    return await this.commandBus.execute(new UpdateCompanyBioCommand(companyBio));
+  }
+  
 }
