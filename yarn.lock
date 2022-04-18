@@ -6212,7 +6212,7 @@ dns-txt@^2.0.2:
 
 docker@^1.0.0:
   version "1.0.0"
-  resolved "https://registry.npmjs.org/docker/-/docker-1.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/docker/-/docker-1.0.0.tgz#a4dca1f27475fcc3b02d50245e1da7edd717e57b"
   integrity sha1-pNyh8nR1/MOwLVAkXh2n7dcX5Xs=
   dependencies:
     async "^1.4.0"
