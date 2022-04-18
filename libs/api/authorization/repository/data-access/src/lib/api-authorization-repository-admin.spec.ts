@@ -4,16 +4,20 @@ import { Test, TestingModule } from '@nestjs/testing';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import {user_permissions,User_role,role_permissions,} from '../../../shared/src/lib/authorization-data-access.entity';
 //import {} from '@graduates/api/authorization/repository/shared';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import {ApiAuthorization} from '../../../../api/shared/src/lib/api-authorization.entity';
 import {
   UserPermissions,
   UserRole,
   RolePermissions,
   Prisma,
 } from '@prisma/client';
+const MockApiImpl : jest.Mocked<ApiAuthorization> = new ApiAuthorization() as ApiAuthorization;
 const UserPermissionsMock: jest.Mocked<UserPermissions> =
   new user_permissions();
 const UserroleMock: jest.Mocked<UserRole> = new User_role();
 const RolepermissionMock: jest.Mocked<RolePermissions> = new role_permissions();
+const stringMock: jest.Mocked<string> = new String() as string;
 describe('ApiAuthorizationRepository', () => {
   let data: Adminauthorization;
   //const prisma = new PrismaService();
@@ -41,6 +45,18 @@ describe('ApiAuthorizationRepository', () => {
     ).toBe(null);
   });
   //console.log(call);
+  it('should find companyId return string', async () => {
+    jest
+      .spyOn(data, 'findCompanyid')
+      .mockImplementation(
+        (): Promise<string> =>
+          Promise.resolve(stringMock)
+      );
+
+    expect(
+      await data.findCompanyid('9')
+    ).toStrictEqual(stringMock);
+  });
   it('should add permission return UserPermissions', async () => {
     jest
       .spyOn(data, 'addUniquePermission')
@@ -448,21 +464,12 @@ describe('ApiAuthorizationRepository', () => {
     jest
       .spyOn(data, 'findAllPermissionsFilter')
       .mockImplementation(
-        (): Promise<{
-          userPermissions: UserPermissions[];
-          rolePermissions: RolePermissions[];
-        }> =>
-          Promise.resolve({
-            userPermissions: [UserPermissionsMock],
-            rolePermissions: [RolepermissionMock],
-          })
+        (): Promise<ApiAuthorization> =>
+          Promise.resolve(MockApiImpl)
       );
 
     expect(
-      await data.findAllPermissionsFilter('9', { equals: 'CREATE' })
-    ).toStrictEqual({
-      userPermissions: [UserPermissionsMock],
-      rolePermissions: [RolepermissionMock],
-    });
+      await data.findAllPermissionsFilter('9', { equals: 'VIEW' })
+    ).toStrictEqual(MockApiImpl);
   });
 });
