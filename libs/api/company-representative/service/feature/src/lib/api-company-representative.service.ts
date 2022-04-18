@@ -33,8 +33,8 @@ export class ApiCompanyRepresentativeService {
   /***
    * This function is used to get All representatives from the datbase
    */
-  async getAllRepresentatives(){
-    return this.queryBus.execute(new GetAllRepresentatives());
+  async getAllCompanyRepresentatives(){
+    return this.queryBus.execute(new GetAllRepresentatives(""));
   }
 
   /***

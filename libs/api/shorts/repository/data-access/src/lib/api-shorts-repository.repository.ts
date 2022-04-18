@@ -110,12 +110,17 @@ export class ShortsRepository {
    * @param {string} userId The id of the user to create the short for
    * @return {Promise<Short | null>}
    */
-  async createShort(short: ShortCreateInput, userId: string): Promise<Short> {
+  async createShort(
+    short: ShortCreateInput,
+    userId: string,
+    vidRef: string,
+    thumbRef: string
+  ): Promise<Short> {
     return this.prisma.short.create({
       data: {
         description: short.description,
-        link: short.link,
-        thumbnail: short.thumbnail,
+        link: vidRef,
+        thumbnail: thumbRef,
         archived: short.archived,
         user: {
           connect: { id: userId },
