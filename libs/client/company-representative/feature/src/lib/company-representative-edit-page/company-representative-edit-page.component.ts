@@ -70,20 +70,17 @@ export class CompanyRepresentativeEditPageComponent {
   submit(formdata: { name :string; experience :string; number :string; location :string; email :string; linkedin :string; twitter :string; instagram :string; facebook :string; snapchat :string; github :string; }){
     if(this.formdata.valid) {
       console.log(this.formdata.value);
-      // this.result = this.API.editCompanyRepresentative(formdata.name, formdata.jobTitle, formdata.experience, formdata.about, formdata.number, formdata.location, formdata.email, formdata.website, formdata.linkedin, formdata.twitter, formdata.name, formdata.instagram, formdata.facebook, formdata.snapchat, formdata.github).subscribe({
-      //   next: (item) => {
-      //     if (item.data != null){
-      //       localStorage.setItem("id", item.data.login.id);
-      //       this._router.navigate(['CompanyRepresentativeHome'], {state: {id: item.data.login.id}, queryParamsHandling: "preserve"});
-      //     }else{
-      //       alert("Incorrect Details, Try Again!");
-      //     }
-      //   },
-      // error: (err) => { console.log(err); }
-      // });
-    }
-    else
-    {
+      this.result = this.API.updateRepresentative(this.id, formdata.name, formdata.experience, formdata.number, formdata.location, formdata.email, formdata.linkedin, formdata.twitter, formdata.instagram, formdata.facebook, formdata.snapchat, formdata.github).subscribe({
+        next: (item) => {
+          if (item.data != null){
+            localStorage.setItem("id", item.data.updateCompanyRepresentative.id);
+            this._router.navigate(['CompanyRepresentativeHome'], {state: {id: item.data.updateCompanyRepresentative.id}, queryParamsHandling: "preserve"});
+          }else{
+            alert("Incorrect Details, Try Again!");
+          }
+        },
+      error: (err) => { console.log(err); }
+      });
       this.navigateToHome();
     }
   }
