@@ -19,6 +19,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
+//Shared Components
+import { HeaderModule } from '../../../../shared/components/header/src/lib/header.module'; 
+import { FooterModule } from '../../../../shared/components/footer/src/lib/footer.module'; 
+//import { UiComponentNavbarModule } from '../../../../shared/components/navigationbar/ui/navbar/src/lib/ui-component-navbar.module';
+
 //Component Modules
 import { StudentCardComponent } from './student-card/student-card.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
@@ -45,6 +50,9 @@ import { StudentExplorePageComponent } from './student-explore-page/student-expl
     MatCardModule,
     MatFormFieldModule,
     MatGridListModule,
+    HeaderModule,
+    FooterModule
+    //UiComponentNavbarModule
   ],
   declarations: [StudentCardComponent, SearchBarComponent, MobileStudentCardComponent, StudentExplorePageComponent],
   exports:[
