@@ -2,7 +2,6 @@ import { ApiHosting } from '@graduates/api/hosting/api/shared/data-access';
 import { HttpModule } from '@nestjs/axios';
 import { TerminusModule } from '@nestjs/terminus';
 import { Test } from '@nestjs/testing';
-import exp = require('constants');
 import { ApiHostingServiceFeatureModule } from './api-hosting-service-feature';
 
 describe( 'ApiHostingServiceFeatureModule', () => {
@@ -54,6 +53,31 @@ describe( 'ApiHostingServiceFeatureModule', () => {
           expect(["Under Development", "Operational", "Non Operational"]).toContain(element.status);
         });
       });
-  });
-  
+
+    });
+    
+    describe('AddAllUnimplemented', () => {
+      it('Should returns an object that specifies Under Development', () => {
+        expect(service.AddAllUnimplemented()).toEqual({
+          name: expect.any(String),
+          status: 'Under Development',
+        });
+      });
+    });
+
+    describe('checkApiHealth', () => {
+      it ('Should return a defined object', async () => {
+        let res: any;
+        try {
+          res = await service.checkApiHealth({
+            title: 'test',
+            path: 'https://google.com',
+            query: ''
+          });
+        } catch(err) {
+          res = err; 
+        }
+        expect(res).toBeDefined();
+      });
+    });
 });
