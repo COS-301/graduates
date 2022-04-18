@@ -52,7 +52,7 @@ export class ApiCompanyRepresentativeService {
    * name
    * number
    * expirience
-   * loaction
+   * location
    */
 
   async UpdateRepresentative(id:string,newData:string,type:string)
