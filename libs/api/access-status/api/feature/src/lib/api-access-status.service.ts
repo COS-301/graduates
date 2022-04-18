@@ -1,5 +1,5 @@
+import { ApiAccessStatusEntity } from "@graduates/api/access-status/api/shared";
 import { Injectable } from "@nestjs/common";
-import { ApiAccessStatusEntity } from "./api-access-status.entity";
 
 @Injectable()
 export class ApiAccessStatusService {

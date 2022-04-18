@@ -1,6 +1,6 @@
-import { AccessStatusService } from "@graduates/api/access-status/service/feature";
 import { Resolver, Query, ID, Args } from "@nestjs/graphql";
 import { ApiAccessStatusEntity } from "@graduates/api/access-status/api/shared";
+import { AccessStatusService } from "@graduates/api/access-status/service/feature";
 
 @Resolver(of => ApiAccessStatusEntity)
 export class ApiAccessStatusResolver {
