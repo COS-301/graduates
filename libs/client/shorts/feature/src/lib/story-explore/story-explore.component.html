@@ -27,7 +27,7 @@
                   <div class="grid grid-rows-2 py-2">
                     <div>
                       <mat-card-title id="cardHeader"> 
-                        {{card.user.name}}
+                        {{card.user.username}}
                         <button *ngIf="!upload" (click)="viewStory(card.id)" class="formbutton rounded py-2 px-5 cardbutton">View</button>
                         <button *ngIf="upload" disabled="true" class="formbutton rounded py-2 px-5 cardbutton-nohov">View</button>
                       </mat-card-title>  
