@@ -31,20 +31,29 @@ describe('client notifications testing', () => {
     cy.get('button').click();
   });
 
-  //Test if a notificationquery can be called from client and be returned from DB via API
+  //Test if a notification query can be called from API successfully
   it('should return a response', () => {
-      const queryString = `query {
-        notificationsAll {
-            id,
-            data{notificationType},
-            userIdTo,
-            userIdFrom
-        }
-    }`
 
-    cy.intercept({method: "POST", path:"notificationsAll"});
-    cy.reload();
-    cy.wait('@GetNotificationsAll');
+    const getnotificationsAll = `query {
+      notificationsAll {
+          id,
+          data{notificationType},
+          userIdTo,
+          userIdFrom
+      }
+    }`;
+    cy.request({
+      url:"/notifications",
+      method: "POST",
+      body: {
+        query: getnotificationsAll
+      },
+      failOnStatusCode:false
+    }).as('response');
+
+    cy.get('@response').should((response) => {
+      expect(response).to.have.property('headers')
+    })
   });
 
 });
