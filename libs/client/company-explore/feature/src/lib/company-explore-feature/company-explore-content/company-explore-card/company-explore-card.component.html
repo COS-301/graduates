@@ -1,13 +1,13 @@
 <mat-card class="card" fxLayout="column">
  
-    <img fxFlexAlign="start"  mat-card-image src="{{company?.img}}">
+    <img fxFlexAlign="start"  mat-card-image src="{{company?.Userprofile?.profilePicture}}">
  
      <mat-card-header fxFlexAlign="center" >
        <mat-card-title>{{company?.name}}</mat-card-title>
      </mat-card-header>
  
      <mat-card-content >
-       <a href ="https://www.youtube.com/watch?v=iik25wqIuFo">
+       <a href ="http://localhost:4200/company-profile?id={{company?.companyID}}">
        <button  fxFlexAlign="center" class="cardbutton" mat-raised-button color="accent">View Company Profile</button>
       </a>
      </mat-card-content>
