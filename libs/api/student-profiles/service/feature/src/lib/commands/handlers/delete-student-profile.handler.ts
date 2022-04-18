@@ -73,16 +73,15 @@ export class DeleteStudentProfileTagsHandler implements ICommandHandler<DeleteSt
 export class DeleteStudentProfileSocialMediaHandler implements ICommandHandler<DeleteStudentProfileSocialMediaCommand> {
   constructor(private repository: StudentProfilesRepository, private publisher: EventPublisher) {}
 
-  async execute({id, type, link}: DeleteStudentProfileSocialMediaCommand) {
+  async execute({id, type}: DeleteStudentProfileSocialMediaCommand) {
     const profile = this.publisher.mergeObjectContext(await this.repository.removeSocialMedia(id,type) as any);
     profile.apply(new DeleteStudentProfileSocialMediaEvent(
         id,
         type,
-        link
     ));
 
     profile.commit();
-    return {id, type, link} as Partial<StudentProfile>;
+    return {id, type} as Partial<StudentProfile>;
   }
 }
 

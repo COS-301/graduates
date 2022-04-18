@@ -1,5 +1,5 @@
 import { Query, Args, Resolver, Mutation } from '@nestjs/graphql';
-// import { UserInputError } from 'apollo-server-express';
+import { UserInputError } from 'apollo-server-express';
 import { ApiStudentProfilesEntity } from '@graduates/api/student-profiles/api/shared/data-access';
 import { ApiStudentProfileService } from '@graduates/api/student-profiles/service/feature';
 import { ApiStudentProfilesInputEntity as StudentInput } from '@graduates/api/student-profiles/api/shared/data-access';
@@ -90,23 +90,114 @@ export class ApiStudentProfileResolver {
 
   @Mutation((returns) => ApiStudentProfilesEntity)
   async editStudent(@Args('editStudentData') editStudentData: StudentInput) {
-    //const studentArr = this.studentService.update(editStudentData);
-    const studentObj = new ApiStudentProfilesEntity();
-    // studentObj.dateOfBirth = (await studentArr).pop();
-    //studentObj.phoneNum = (await studentArr).pop();
-    studentObj.firstName = (
-      await this.studentService.setName('1', editStudentData.firstName)
-    ).name;
-    //studentObj.firstName = (await studentArr).pop();
-    studentObj.studentNum = editStudentData.studentNum;
-    //studentObj.lastName = (await studentArr).pop();
+    const studentObj = await this.getStudent(editStudentData.studentNum);
+
+    if (editStudentData.firstName != null) {
+      const name = editStudentData.firstName + ' ' + studentObj.lastName;
+      studentObj.firstName = editStudentData.firstName;
+      this.studentService.setName(studentObj.dbId, name);
+    }
+
+    if (editStudentData.lastName != null) {
+      const name = studentObj.firstName + ' ' + editStudentData.lastName;
+      studentObj.lastName = editStudentData.lastName;
+      this.studentService.setName(studentObj.dbId, name);
+    }
+
+    if (editStudentData.email != null && editStudentData.email[0] != '') {
+      for (let i = 0; i < editStudentData.email.length; i++) {
+        studentObj.email.push(
+          await this.addEmail(studentObj.dbId, editStudentData.email[i])
+        );
+      }
+    }
+
+    if (editStudentData.phoneNum != null && editStudentData.phoneNum[0] != '') {
+      for (let i = 0; i < editStudentData.phoneNum.length; i++) {
+        studentObj.phoneNum.push(
+          await this.addPhoneNum(studentObj.dbId, editStudentData.phoneNum[i])
+        );
+      }
+    }
+
+    if (editStudentData.bio != null) {
+      studentObj.bio = (
+        await this.studentService.setBio(studentObj.dbId, editStudentData.bio)
+      ).bio;
+    }
+
+    if (editStudentData.profilePhoto != null) {
+      studentObj.profilePhoto = (
+        await this.studentService.setPfp(
+          studentObj.dbId,
+          editStudentData.profilePhoto
+        )
+      ).profilePicture;
+    }
+
+    if (editStudentData.preferredLocation != null) {
+      studentObj.preferredLocation = (
+        await this.studentService.setLocation(
+          studentObj.dbId,
+          editStudentData.preferredLocation
+        )
+      ).preferredLocation;
+    }
+
+    // @Field({ nullable: true })
+    // title?: string;
+    // if (editStudentData.title != null)
+    // {
+    //   studentObj.firstName = (
+    //     await this.studentService.setName(studentObj.dbId, editStudentData.firstName)
+    //   ).name;
+    // }
+
+    // @Field({ nullable: true })
+    // nameOfDegree?: string;
+    // if (editStudentData.firstName != null)
+    // {
+    //   studentObj.firstName = (
+    //     await this.studentService.setName(studentObj.dbId, editStudentData.firstName)
+    //   ).name;
+    // }
+
+    // @Field({ nullable: true })
+    // employmentStatus?: string;
+    // if (editStudentData.employmentStatus != null)
+    // {
+    //   studentObj.employmentStatus = (
+    //     await this.studentService.(studentObj.dbId, editStudentData.employmentStatus)
+    //   ).employmentStatus;
+    // }
+
+    // @Field(type => [String],{ nullable: 'itemsAndList' })
+    // notableAchievements?: string[];
+    // if (editStudentData.firstName != null)
+    // {
+    //   studentObj.firstName = (
+    //     await this.studentService.(studentObj.dbId, editStudentData.firstName)
+    //   ).name;
+    // }
+
+    if (editStudentData.links[0] != null && editStudentData.links[0][0] != '') {
+      for (let i = 0; i < editStudentData.links.length; i++) {
+        studentObj.links.push(
+          await this.addLink(
+            studentObj.dbId,
+            editStudentData.links[i][0],
+            editStudentData.links[i][1]
+          )
+        );
+      }
+    }
 
     return studentObj;
   }
 
   @Mutation((returns) => String)
   async deleteStudent(@Args('studentNum', { type: () => String }) id: string) {
-    return 'Not Implemented';
+    return new UserInputError('Not implemented', { debug: false });
   }
 
   @Mutation((returns) => ApiStudentProfilesEntity)
@@ -114,13 +205,79 @@ export class ApiStudentProfileResolver {
     @Args('tag', { type: () => [String] }) tags: string[],
     @Args('studentNum', { type: () => String }) id: string
   ) {
-    const studentObj = new ApiStudentProfilesEntity();
     let i = 0;
     while (i < tags.length - 1) {
       this.studentService.removeTag(id, tags[i]);
       i++;
     }
     return this.getStudent(id);
+  }
+
+  @Mutation((returns) => String)
+  async addTag(
+    @Args('tag') tag: string,
+    @Args('dbId') dbId: string
+  ) {
+    this.studentService.addTag(dbId, tag);
+    return tag;
+  }
+
+  @Mutation((returns) => ApiStudentProfilesEntity)
+  async removeTag(
+    @Args('tag') tag: string,
+    @Args('dbId') dbId: string
+  ) {
+    this.studentService.removeTag(dbId, tag);
+    return this.getStudent(dbId);
+  }
+
+  @Mutation((returns) => String)
+  async addEmail(@Args('email') email: string, @Args('dbId') dbId: string) {
+    this.studentService.setEmails(dbId, email);
+    return email;
+  }
+
+  @Mutation((returns) => ApiStudentProfilesEntity)
+  async removeEmail(@Args('email') email: string, @Args('dbId') dbId: string) {
+    // this.studentService.(dbId, email);
+    return this.getStudent(dbId);
+  }
+
+  @Mutation((returns) => String)
+  async addPhoneNum(
+    @Args('phoneNum') phoneNum: string,
+    @Args('dbId') dbId: string
+  ) {
+    // this.studentService.(dbId, phoneNum);
+    return phoneNum;
+  }
+
+  @Mutation((returns) => ApiStudentProfilesEntity)
+  async removePhoneNum(
+    @Args('phoneNum') phoneNum: string,
+    @Args('dbId') dbId: string
+  ) {
+    // this.studentService.(dbId, phoneNum);
+    return this.getStudent(dbId);
+  }
+
+  @Mutation((returns) => [String])
+  async addLink(
+    @Args('linkType') linkType: string,
+    @Args('link') link: string,
+    @Args('dbId') dbId: string
+  ) {
+    this.studentService.addSocialMedia(dbId, linkType, link);
+    return [linkType, link];
+  }
+
+  @Mutation((returns) => ApiStudentProfilesEntity)
+  async removeLink(
+    @Args('linkType') linkType: string,
+    @Args('dbId') dbId: string
+  ) {
+    this.studentService.removeSocialMedia(dbId, linkType);
+    return this.getStudent(dbId);
   }
 
   //Mock Object:
