@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cards.component.scss'],
 })
 export class CardsComponent implements OnInit {
-  
-  ngOnInit(): void {
+  ngOnInit(): void 
+  {
     document.getElementById("ig")?.addEventListener("click", display);
     function display()
     {
