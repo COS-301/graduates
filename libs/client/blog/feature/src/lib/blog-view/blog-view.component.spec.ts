@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BlogViewComponent } from './blog-view.component';
 
+// To run test "yarn test client-blog-feature"
 describe('BlogViewComponent', () => {
   let component: BlogViewComponent;
   let fixture: ComponentFixture<BlogViewComponent>;
@@ -19,7 +20,7 @@ describe('BlogViewComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should be able to view a blog', () => {
     expect(component).toBeTruthy();
   });
 });

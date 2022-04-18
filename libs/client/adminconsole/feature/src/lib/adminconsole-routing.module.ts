@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProfileBodyComponent } from './profile-body/profile-body.component';
+import { AdminconsoleComponent } from './adminconsole/adminconsole.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: ProfileBodyComponent
+    component: AdminconsoleComponent
   }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ProfileRoutingModule { }
+export class AdminconsoleRoutingModule { }

@@ -14,15 +14,20 @@ export class ApiHostingServiceFeatureModule{
   private checks: HealthCheckParameters[] = [
     {title: 'Storage API', path: this.commonPath,  query: '{pingStorage}'},
     {title: 'Shorts API', path: this.commonPath,  query: '{pingShorts}'},
+    {title: 'Notification API', path: this.commonPath,  query: '{pingNotification}'},
     {title: 'Company Profile API', path: this.commonPath,  query: '{pingCompanyProfile}'},
     {title: 'Access Status API', path: this.commonPath,  query: '{pingAccessStatus}'},
-    {title: 'Studen Profiles API', path: this.commonPath,  query: '{pingStudentProfile}'},
-    {title: 'Company Representative API', path: this.commonPath,  query: '{pingCompanyRepresentative}'},
+    {title: 'Student Profiles API', path: this.commonPath,  query: '{pingStudentProfiles}'},
+    {title: 'Company Representative API', path: this.commonPath,  query: '{ pingCompanyRepresentative}'},
     {title: 'Request Access API', path: this.commonPath,  query: '{pingRequestAccess}'},
     {title: 'Authentication API', path: this.commonPath,  query: '{pingAuthentication}'},
     {title: 'Student Explore API', path: this.commonPath,  query: '{pingStudentExplore}'},
     {title: 'Adminconsole API', path: this.commonPath,  query: '{pingAdminconsole}'},
     {title: 'UP Integration API', path: this.commonPath,  query: '{pingUpintegration}'},
+    {title: 'Blog API', path: this.commonPath,  query: '{pingBlog}'},
+    {title: 'Company Explore API', path: this.commonPath,  query: '{pingCompanyExplore}'},
+    {title: 'Authorization API', path: this.commonPath,  query: '{pingAuthorization}'} , 
+    
   ]
   constructor(
     private httpService: HttpService,
