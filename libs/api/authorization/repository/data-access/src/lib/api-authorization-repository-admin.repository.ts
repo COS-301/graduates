@@ -1,5 +1,7 @@
 
 import { Injectable, Param } from '@nestjs/common';
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import {ApiAuthorization} from '../../../../api/shared/src/lib/api-authorization.entity';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 import {
   Prisma,
@@ -53,19 +55,31 @@ export class Adminauthorization {
   async findAllPermissionsFilter(
     @Param('id') id: string,
     permissiontype: Prisma.EnumPermissionTypeFilter
-  ): Promise<{
-    userPermissions: UserPermissions[];
-    rolePermissions: RolePermissions[];
-  }> {
+  ):Promise<ApiAuthorization>{
     const role = await this.findRole(id);
     if (role != null) {
-      const userPermissions = await this.prisma.userPermissions.findMany({
+      const userPermissions = await this.prisma.userPermissions.findFirst({
         where: { userId: id, permissionType: permissiontype },
       });
-      const rolePermissions = await this.prisma.rolePermissions.findMany({
+      const rolePermissions = await this.prisma.rolePermissions.findFirst({
         where: { role: role.role, permissionType: permissiontype },
       });
-      return { userPermissions, rolePermissions };
+      let returnitem:ApiAuthorization;
+      returnitem.userRole = role.role;
+      returnitem.companyId = await this.findCompanyid(id);
+      if(permissiontype == 'VIEW' && (userPermissions != null || rolePermissions != null))
+      {
+        returnitem.accessPermission = true;
+      }
+      if(permissiontype == 'REMOVE' && (userPermissions != null || rolePermissions != null))
+      {
+        returnitem.deletePermission = true;
+      }
+      if(permissiontype == 'EDIT' && (userPermissions != null || rolePermissions != null))
+      {
+        returnitem.editPermission = true;
+      }
+      return returnitem;
     }
     return null;
   }

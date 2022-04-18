@@ -10,6 +10,8 @@ import { PrismaService } from '../../../../../shared/services/prisma/data-access
 import { QueryBus } from '@nestjs/cqrs';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { ApiAuthorization } from '../../../../api/shared/src/lib/api-authorization.entity';
+import {GetRoleQueryPermissionHandler} from '../lib/queries/handlers/get-role-permissions.handler';
+import {GetCompanyIdHandler} from '../lib/queries/handlers/get-companyId-permissions.handler';
 
 @Module({
   controllers: [],
@@ -23,6 +25,8 @@ import { ApiAuthorization } from '../../../../api/shared/src/lib/api-authorizati
     GetDeletePermissionHandler,
     GetEditPermissionHandler,
     GetViewPermissionHandler,
+    GetRoleQueryPermissionHandler,
+    GetCompanyIdHandler
   ],
   exports: [ApiAuthorizationService],
 })
