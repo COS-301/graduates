@@ -5,6 +5,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CompanyRepresentativePageComponent } from './company-representative-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ApolloModule } from 'apollo-angular';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('CompanyRepresentativePageComponent', () => {
   let component: CompanyRepresentativePageComponent;
@@ -12,7 +14,7 @@ describe('CompanyRepresentativePageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule,MatCardModule,MatButtonModule,MatMenuModule,HttpClientModule],
+      imports: [RouterTestingModule,MatCardModule,MatButtonModule,MatMenuModule,HttpClientModule,MatIconModule, ApolloModule],
       declarations: [ CompanyRepresentativePageComponent ]
     })
     .compileComponents();
