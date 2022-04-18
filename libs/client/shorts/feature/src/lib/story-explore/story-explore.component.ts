@@ -241,9 +241,6 @@ export class StoryExploreComponent implements OnInit {
           //resolve the promise from the query:
           resolve(result);
         });
-
-
-      resolve('after API call sen response here');
     })
   }
 
