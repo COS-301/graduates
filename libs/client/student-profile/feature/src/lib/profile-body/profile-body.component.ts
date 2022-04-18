@@ -6,7 +6,7 @@ import {ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'graduates-profile-body',
   templateUrl: './profile-body.component.html',
-  styleUrls: ['./profile-body.component.sass']
+  styleUrls: ['./profile-body.component.scss']
 })
 export class ProfileBodyComponent implements OnInit {
 
