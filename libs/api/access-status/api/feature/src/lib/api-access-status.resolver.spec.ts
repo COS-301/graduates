@@ -22,10 +22,10 @@ describe('ApiAccessStatusResolver', () => {
           resolver = module.get<ApiAccessStatusResolver>(ApiAccessStatusResolver);
     });
 
-    // it("should be null", async () => {
-    //     const data = await resolver.status("", "1");
-    //     expect(data).toBeNull();
-    // });
+    it("should be null", async () => {
+        const data = await resolver.status("", "1");
+        expect(data).toBeNull();
+    });
 
     // it("should not be null", async () => {
     //     const data = await resolver.status("0", "1");
