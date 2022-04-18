@@ -1,3 +1,18 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+
+.footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+
+.page {
+    padding-top: 8%;
+    padding-bottom: 8%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
 .message{
 
     position: absolute; 
@@ -23,16 +38,3 @@
    width:100%; 
 }
 
-.footer {
-    position:absolute;
-    left:28%;
-    right:0%;
-    top:85.32%;
-    bottom:0%; 
-    justify-content: space-between;
-}
-
-.foot-image {
-    height: 70px; 
-    width: 600px; 
- }
