@@ -13,8 +13,8 @@ import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   imports: [
-    MatIconModule,
     CommonModule,
+    MatIconModule,
     MatCardModule,
     MatButtonModule,
     MatMenuModule,

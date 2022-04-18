@@ -58,6 +58,13 @@ export class CompanyRepresentativePageComponent {
     });
    }
 
+
+  uploadImage(event: any) {
+    const fileType = event.target.files[0].type;
+    console.log(event.target.files[0]);
+
+  }
+
   navigateToLogin() {
     this._router.navigate(['CompanyRepresentativeLogin'])
   }
