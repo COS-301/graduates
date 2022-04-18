@@ -14,7 +14,7 @@ const UserPermissionsMock: jest.Mocked<UserPermissions> =
   new user_permissions();
 const UserroleMock: jest.Mocked<UserRole> = new User_role();
 const RolepermissionMock: jest.Mocked<RolePermissions> = new role_permissions();
-const stringMock: jest.Mocked<string> = new String();
+const stringMock: jest.Mocked<string> = new String() as string;
 describe('ApiAuthorizationRepository', () => {
   let data: Adminauthorization;
   //const prisma = new PrismaService();
