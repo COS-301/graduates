@@ -84,10 +84,10 @@ describe('API Adminconsole Unit Testing', () => {
 //  it('Defined createUser', () => {
 //    expect(controller.createUser(tempUser)).toBeDefined;
 //  })
- it('Defined getUser', () => {
-   const tempID = "user1234";
-   expect(controller.getUsers(tempID)).toBeDefined;
- })
+//  it('Defined getUser', () => {
+//    const tempID = "user1234";
+//    expect(controller.getUsers(tempID)).toBeDefined;
+//  })
 
  it('Defined editUser', () => {
 
