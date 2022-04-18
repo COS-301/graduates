@@ -19,7 +19,8 @@ import { CreateBlogHandler,
   GetAllCommentsHandler, 
   GetCommentsByBlogIdHandler, 
   GetCommentByCommentIdHandler, 
-  GetMediaByBlogIdHandler } from '@graduates/api/blog/service/feature';
+  GetMediaByBlogIdHandler,
+  GetNameByUserIdHandler } from '@graduates/api/blog/service/feature';
 import { BlogService } from '@graduates/api/blog/service/feature';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 
@@ -49,7 +50,8 @@ import { PrismaService } from '@graduates/api/shared/services/prisma/data-access
     GetAllCommentsHandler, 
     GetCommentsByBlogIdHandler, 
     GetCommentByCommentIdHandler, 
-    GetMediaByBlogIdHandler
+    GetMediaByBlogIdHandler,
+    GetNameByUserIdHandler
   ],
   exports: [],
 })
