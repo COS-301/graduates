@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 //component imports
 import { ProfileBodyComponent } from './profile-body/profile-body.component';
@@ -14,6 +17,12 @@ import { LocationComponent } from './location/location.component';
 import { BioComponent } from './bio/bio.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
+import { HeaderModule } from '../../../../shared/components/header/src/lib/header.module';
+import { FooterModule } from '../../../../shared/components/footer/src/lib/footer.module';
+import { ClientSharedComponentsDropdownUiModule } from '@graduates/client/shared/components/dropdown/ui';
+import { UiComponentNavbarModule } from '../../../../shared/components/navigationbar/ui/navbar/src/lib/ui-component-navbar.module';
+
+
 // importing material 
 import {MatButtonModule} from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
@@ -22,7 +31,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatChipsModule} from '@angular/material/chips';
 import { AchievementsComponent } from './achievements/achievements.component';
 import { ProfileCardComponent } from './profile-card/profile-card.component'; 
-
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -42,6 +51,15 @@ import { ProfileCardComponent } from './profile-card/profile-card.component';
     ClientSharedComponentsDropdownUiModule,
     FlexLayoutModule,
     UiComponentNavbarModule,
+    RouterModule.forChild([
+      /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
+    ]),
+  ],
+  declarations: [
+    ProfileBodyComponent,
+    UserInfoComponent,
+    TitleComponent,
+    DegreeComponent,
     EmploymentStatusComponent,
     LocationComponent,
     BioComponent,
