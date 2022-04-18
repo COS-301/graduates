@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+// import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'cards-adminconsole',
@@ -32,7 +32,7 @@ export class AdminconsoleComponent{
   currentStory : any
   currentBlog : any
 
-  constructor(private http : HttpClient, private changeDetection : ChangeDetectorRef ) {
+  constructor() {
     //Populate the sidenav with these options
     this.sidenavOptions = ["Create User", "Users", "Story", "Roles", "Blogs", "Shorts"]
 
@@ -201,7 +201,6 @@ export class AdminconsoleComponent{
       return
     this.currentUser.roles.push(role)
     this.stagedAddRoles.push(role)
-    this.changeDetection.detectChanges()
   }
 
   removeRole(role : string) {
@@ -209,8 +208,6 @@ export class AdminconsoleComponent{
     let ind = this.currentUser.roles.indexOf(role)
     this.currentUser.roles.splice(ind,1)
     ind = this.stagedRemoveRoles.push(role)
-    this.changeDetection.detectChanges()
-
   }
 
   addPermission(p : string) {
@@ -218,14 +215,12 @@ export class AdminconsoleComponent{
       return
     this.currentUser.permissions.push(p)
     // this.stagedAddRoles.push(role)
-    this.changeDetection.detectChanges()
   }
 
   removePermission(p : string) {
     const ind = this.currentUser.permissions.indexOf(p)
     this.currentUser.permissions.splice(ind,1)
     // ind = this.stagedRemoveRoles.push(role)
-    this.changeDetection.detectChanges()
 
   }
 
