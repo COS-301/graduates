@@ -94,7 +94,7 @@ export class ApiNotificationsService
 
     async currentUser(): Promise<AuthenticationUser[]>{
         const  currentUser = new AuthenticationUser();
-        currentUser.id = 1;
+        currentUser.id = '1';
         currentUser.username = 'John';
         currentUser.email = 'JohnDoe@gmail.com';
         return [currentUser];
@@ -102,7 +102,7 @@ export class ApiNotificationsService
 
     async getNameFromID(id:string){
         const currentUser = new AuthenticationUser();
-        currentUser.id = 2;
+        currentUser.id = '2';
         currentUser.username = 'T';
         currentUser.email = 'madunathabo2@gmail.com';
         return currentUser.username
@@ -110,7 +110,7 @@ export class ApiNotificationsService
 
     async getEmailFromID(id:string){
         const currentUser = new AuthenticationUser();
-        currentUser.id = 3;
+        currentUser.id = '3';
         currentUser.username = 'T';
         currentUser.email = 'madunathabo2@gmail.com';
         return currentUser.email
@@ -118,7 +118,7 @@ export class ApiNotificationsService
 
     async emailToUser(){
         const  user = new AuthenticationUser();
-        user.id = 4;
+        user.id = '4';
         user.username = 'emailer';
         user.email = 'JohnDoe@gmail.com';
         return [ user ];
