@@ -6,8 +6,9 @@
 
 <!--Insert Header component here-->
 <div><header-and-footer-header></header-and-footer-header></div>
+<navbar-tabs-navigation-bar></navbar-tabs-navigation-bar>
 
-<div class="container" *ngIf="studentObj">
+<div class="container" *ngIf="studentObj; else notFoundPage">
     <div class="section">
        
         <!-- user-info component -->
@@ -42,9 +43,12 @@
         
         <!-- Achievements Component -->
         <graduates-achievements [achievements]=studentObj></graduates-achievements>
-
     </div>
 </div>
+
+<ng-template #notFoundPage>
+    <graduates-not-found></graduates-not-found>
+</ng-template>
 
 <!--Insert Footer component here-->
 <div><header-and-footer-footer></header-and-footer-footer></div>

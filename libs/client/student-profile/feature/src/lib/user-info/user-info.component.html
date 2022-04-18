@@ -2,14 +2,21 @@
   <h2>Student Details</h2>
   <mat-divider class="heading"></mat-divider>
 
-  <mat-list>
-    <mat-list-item class="info"><mat-icon>school</mat-icon> {{studentInfo.studentNum}} </mat-list-item>
+  <mat-list *ngIf="studentInfo">
+    <mat-list-item class="info"><mat-icon>school</mat-icon>  {{studentInfo.studentNum}} </mat-list-item>
     <mat-divider></mat-divider>
-    <mat-list-item class="info"><mat-icon>cake</mat-icon> Date of Birth: {{studentInfo.dateOfBirth}} </mat-list-item>
+    <mat-list-item class="info"><mat-icon>cake</mat-icon> Date of Birth:  {{studentInfo.dateOfBirth}} </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item class="info"><mat-icon>email</mat-icon> {{studentInfo.email}} </mat-list-item>
     <mat-divider></mat-divider>
-    <mat-list-item class="info"><mat-icon>phone</mat-icon> {{studentInfo.phoneNum}} </mat-list-item>
+    <mat-list-item class="info"><mat-icon>phone</mat-icon>  {{studentInfo.phoneNum}} </mat-list-item>
   </mat-list> 
 </div>
 
+<!-- api things -->
+<!-- 
+  {{studentInfo.studentNum}}
+  {{studentInfo.dateOfBirth}}
+  {{studentInfo.email}}
+  {{studentInfo.phoneNum}}
+ -->

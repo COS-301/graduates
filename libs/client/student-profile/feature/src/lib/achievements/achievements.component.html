@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card *ngIf="achievements">
     <mat-card-title color="primary">  Notable Achievements </mat-card-title>
     <mat-card-content>
         <div class="section">
@@ -6,3 +6,7 @@
         </div>
     </mat-card-content>
 </mat-card>
+
+<!-- api stuff
+{{achievements.notableAchievements}}
+-->

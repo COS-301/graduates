@@ -1,5 +1,6 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import { Component, Input, OnInit } from '@angular/core';
+import {Router } from '@angular/router';
 
 @Component({
   selector: 'graduates-degree',
@@ -8,7 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class DegreeComponent implements OnInit {
 
-  constructor() { 
+  constructor(private router: Router) { 
     this.degree = null;
   }
 
@@ -17,25 +18,29 @@ export class DegreeComponent implements OnInit {
   
 // eslint-disable-next-line @typescript-eslint/no-empty-function
   ngOnInit(): void {
-
-    if(this.degree.nameOfDegree =="Computer Science"){
-      const element=document.getElementById('degree');
-      if(element != null) {
-        (element as HTMLInputElement).value='CS';
+    if(this.degree != null) {
+      if(this.degree.nameOfDegree =="Computer Science"){
+        const element=document.getElementById('degree');
+        if(element != null) {
+          (element as HTMLInputElement).value='CS';
+        }
       }
-    }
-    else if(this.degree.nameOfDegree =="Information And Knowledge Systems"){
-      const element=document.getElementById('degree');
-      
-      if(element != null) {
-        (element as HTMLInputElement).value='IKS';
+      else if(this.degree.nameOfDegree =="Information And Knowledge Systems"){
+        const element=document.getElementById('degree');
+        
+        if(element != null) {
+          (element as HTMLInputElement).value='IKS';
+        }
       }
-    }
-    else if(this.degree.nameOfDegree =="Big Data Science"){
-      const element=document.getElementById('degree');
-      if(element != null) { 
-        (element as HTMLInputElement).value='BDS';
+      else if(this.degree.nameOfDegree =="Big Data Science"){
+        const element=document.getElementById('degree');
+        if(element != null) { 
+          (element as HTMLInputElement).value='BDS';
+        }
       }
+   }
+   else {
+    this.router.navigateByUrl('/not-found');
     }
   }
 

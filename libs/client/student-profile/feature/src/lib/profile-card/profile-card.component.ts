@@ -4,7 +4,7 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'graduates-profile-card',
   templateUrl: './profile-card.component.html',
-  styleUrls: ['./profile-card.component.sass']
+  styleUrls: ['./profile-card.component.scss']
 })
 export class ProfileCardComponent implements OnInit {
     facebook = "facebook";

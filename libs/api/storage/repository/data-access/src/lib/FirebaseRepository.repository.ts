@@ -3,14 +3,6 @@ import { initializeApp } from 'firebase/app';
 import { deleteObject, getDownloadURL, getStorage, ref, uploadBytes, uploadString} from 'firebase/storage';
 import * as fs from 'fs';
 
-/*Since Firebase is only a temporary solution I tried making the storage as simple as 
-possible each feature's storage will be stored in the same bucket only under a 
-different folder. Please see below. The firebaseConfig is currently connected to one 
-personal firebase projects will be updated accordingly later on. If you require external
-storage please contact me (Larisa (Storage Data Engineer) - 082 796 0342) I will simply add a folder to the firebase
-bucket and add a upload function then you can use this repository within your feature's service.t
-to manage and organise your own files*/
-
 //The type of file getting uploaded
 export enum FirebaseFolders{
   Files = 'Files',
@@ -23,24 +15,6 @@ export enum FirebaseFolders{
 
 @Injectable()
 export class FirebaseService {
-  
-   /*firebaseConfig = {
-     apiKey: 'AIzaSyD7fH_aHqly7Z7jiyPT-H_gc1J807BTkZQ',
-
-     authDomain: 'practice-23667.firebaseapp.com',
-
-     databaseURL: 'https://practice-23667-default-rtdb.firebaseio.com',
-
-     projectId: 'practice-23667',
-
-     storageBucket: 'practice-23667.appspot.com',
-
-     messagingSenderId: '180246940109',
-
-     appId: '1:180246940109:web:9ab1846b487e40e32f1c84',
-
-     measurementId: 'G-GC7N8G15QC',
-   };*/
   firebaseConfig = {
 
     apiKey: process.env.API_KEY,
@@ -65,6 +39,8 @@ export class FirebaseService {
     const fileRef = ref(this.storage, folder + '/' + fileName);
 
     let tempBool = false;
+
+    //add new file to firebase storage
     await uploadBytes(fileRef, file).then( async (snapshot) => {
       console.log('Successful upload');
       console.log(snapshot);
@@ -81,6 +57,8 @@ export class FirebaseService {
     const fileRef = ref(this.storage, folderName + '/' + fileName);
 
     let tempBool = false;
+
+    //add new file to firebase storage
     await uploadString(fileRef, base64, 'base64').then( async (snapshot) => {
       console.log('Successful upload');
       console.log(snapshot);
@@ -100,6 +78,8 @@ export class FirebaseService {
     const tempString = Buffer.from(binaryFile, 'binary').toString('base64');
 
     let tempBool = false;
+
+    //add new file to firebase storage
     await uploadString(fileRef, tempString, 'base64').then( async (snapshot) => {
       console.log('Successful upload');
       console.log(snapshot);
@@ -111,8 +91,6 @@ export class FirebaseService {
     return tempBool;
   }
 
-  /*NOTE THAT IF THE FILE IS NOT UPLOADED AS BASE64 STRING IT DOESN't DOWNLOAD THE FILE DIRECTLY 
-  ONLY DISPLAYS IT WHEN THE URL IS FOLLOWED, I DO NOT KNOW HOW CRITICAL THIS IS*/
   async getURLByName(fileName:string, folder:FirebaseFolders): Promise<string| null>{
 
     //create a reference to a file or a directory
@@ -125,6 +103,7 @@ export class FirebaseService {
     console.log(fileRef.fullPath);
 
     let url = null;
+
     //get the url that will download the file
     await getDownloadURL(fileRef)
       .then(async(value) => {
@@ -149,6 +128,7 @@ export class FirebaseService {
     console.log(fileRef.fullPath);
 
     let url = null;
+
     //get the url that will download the file
     await getDownloadURL(fileRef)
       .then( async (value) => {
@@ -187,6 +167,7 @@ export class FirebaseService {
     const desertRef = ref(this.storage, file_path );
 
     let tempBool = false;
+
     // Delete the file
     await deleteObject(desertRef).then(async () => {
       console.log('Successfully deleted');
