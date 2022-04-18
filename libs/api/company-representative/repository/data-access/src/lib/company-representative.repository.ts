@@ -1,7 +1,7 @@
 import {PrismaService} from "@graduates/api/shared/services/prisma/data-access";
 import {Injectable, Logger } from "@nestjs/common";
 import { CompanyRepresentative } from '@graduates/api/company-representative/api/shared/data-access'
-import { SocialMedia, User, UserSocialMedia } from "@prisma/client";
+import { SocialMedia, UserSocialMedia } from "@prisma/client";
 
 @Injectable()
 export class CompanyRepresentativeRepository {
@@ -376,8 +376,9 @@ export class CompanyRepresentativeRepository {
 
   // Update name
   async updateRepName(repId: string, newName: string): Promise<CompanyRepresentative> {
-    const user = await this.prismaService.user.findUnique({
+    const user = await this.prismaService.user.update({
       where: {id: repId},
+      data: {name: newName},
       include: {
         userScouted: true,
         UserRole: true,
@@ -409,7 +410,7 @@ export class CompanyRepresentativeRepository {
       
     })
 
-    const change = await this.prismaService.userTag.findUnique({
+    const change = await this.prismaService.userTag.update({
       where:
       {
         userId_tag:
@@ -417,7 +418,8 @@ export class CompanyRepresentativeRepository {
           userId: repId,
           tag: user.UserTag.at(2).tag
         }
-      }
+      },
+      data: {tag: newBio}
     })
     change.tag = newBio;
     return this.returnRepObject(change.userId, user.name, user.email, user.UserTag.at(0).tag, change.tag, user.UserTag.at(1).tag, user.UserSocialMedia, user.UserLocation.at(0).location, user.UserContactNumber.at(0).number, user.UserExperience.at(0).experience)
@@ -438,8 +440,9 @@ export class CompanyRepresentativeRepository {
       }
     })
 
-    const change = await this.prismaService.userLocation.findUnique({
-      where: {userId: repId}
+    const change = await this.prismaService.userLocation.update({
+      where: {userId: repId},
+      data: {location: newLocation}
     })
     change.location = newLocation;
     return this.returnRepObject(change.userId, user.name, user.email, user.UserTag.at(0).tag, user.UserTag.at(2).tag, user.UserTag.at(1).tag, user.UserSocialMedia, change.location, user.UserContactNumber.at(0).number, user.UserExperience.at(0).experience)
@@ -460,8 +463,9 @@ export class CompanyRepresentativeRepository {
       }
     })
 
-    const change = await this.prismaService.userContactNumber.findUnique({
-      where: {userId: repId}
+    const change = await this.prismaService.userContactNumber.update({
+      where: {userId: repId},
+      data: {number: newNumber}
     })
     change.number = newNumber;
     return this.returnRepObject(change.userId, user.name, user.email, user.UserTag.at(0).tag, user.UserTag.at(2).tag, user.UserTag.at(1).tag, user.UserSocialMedia, user.UserLocation.at(0).location, change.number, user.UserExperience.at(0).experience)
@@ -482,8 +486,9 @@ export class CompanyRepresentativeRepository {
       }
     })
 
-    const change = await this.prismaService.userExperience.findUnique({
-      where: {userId: repId}
+    const change = await this.prismaService.userExperience.update({
+      where: {userId: repId},
+      data: {experience: newExperience}
     })
     change.experience = newExperience;
     return this.returnRepObject(change.userId, user.name, user.email, user.UserTag.at(0).tag, user.UserTag.at(2).tag, user.UserTag.at(1).tag, user.UserSocialMedia, user.UserLocation.at(0).location, user.UserContactNumber.at(0).number, change.experience)
@@ -491,8 +496,9 @@ export class CompanyRepresentativeRepository {
 
   // Update Email
   async updateRepEmail(repId: string, newEmail: string): Promise<CompanyRepresentative> {
-    const user = await this.prismaService.user.findUnique({
+    const user = await this.prismaService.user.update({
       where: {id: repId},
+      data: {email: newEmail},
       include: {
         userScouted: true,
         UserRole: true,
@@ -523,7 +529,7 @@ export class CompanyRepresentativeRepository {
         }
       })
   
-      const change = await this.prismaService.userTag.findUnique({
+      const change = await this.prismaService.userTag.update({
         where:
         {
           userId_tag:
@@ -531,14 +537,15 @@ export class CompanyRepresentativeRepository {
             userId: repId,
             tag: user.UserTag.at(0).tag
           }
-        }
+        },
+        data: {tag: newJob}
       })
       change.tag = newJob;
       return this.returnRepObject(change.userId, user.name, user.email, change.tag, user.UserTag.at(2).tag, user.UserTag.at(1).tag, user.UserSocialMedia, user.UserLocation.at(0).location, user.UserContactNumber.at(0).number, user.UserExperience.at(0).experience)
     }
 
     // Update Socials
-    async updateRepSocials(repId: string, newSocial: string, type: string): Promise<CompanyRepresentative> {
+    async updateRepSocials(repId: string, newSocial: string, type: SocialMedia): Promise<CompanyRepresentative> {
       const user = await this.prismaService.user.findUnique({
         where: {id: repId},
         include: {
@@ -569,6 +576,15 @@ export class CompanyRepresentativeRepository {
           socials[i].link = newSocial;
         }
       }
+
+      const change = await this.prismaService.userSocialMedia.update(
+        {
+          where: {userId: repId},
+          data: {
+            type: type, link: newSocial
+          }
+        }
+      )
       return this.returnRepObject(user.id, user.name, user.email, user.UserTag.at(0).tag, user.UserTag.at(2).tag, user.UserTag.at(1).tag, socials, user.UserLocation.at(0).location, user.UserContactNumber.at(0).number, user.UserExperience.at(0).experience)
     }
 
@@ -587,7 +603,7 @@ export class CompanyRepresentativeRepository {
         }
       })
   
-      const change = await this.prismaService.userTag.findUnique({
+      const change = await this.prismaService.userTag.update({
         where:
         {
           userId_tag:
@@ -595,7 +611,8 @@ export class CompanyRepresentativeRepository {
             userId: repId,
             tag: user.UserTag.at(1).tag
           }
-        }
+        },
+        data: {tag: newSite}
       })
       change.tag = newSite;
       return this.returnRepObject(user.id, user.name, user.email, user.UserTag.at(0).tag, user.UserTag.at(2).tag, change.tag, user.UserSocialMedia, user.UserLocation.at(0).location, user.UserContactNumber.at(0).number, user.UserExperience.at(0).experience)
