@@ -7,6 +7,19 @@ import { GetSearchHandler } from './queries/handlers/get-companies-search.handle
 import { GetCompByIdHandler } from './queries/handlers/get-company-by-id.handler';
 import { CompanyExploreRepository } from '@graduates/api/companyexplore/repository/data-access';
 import { CompanyExploreServiceModule } from  './company-explore-service.module'
+import { ApiCompanyExploreEntity } from '@graduates/api/companyexplore/api/shared/interfaces/data-access';
+import { ApiCompanyExploreUserEntity } from '@graduates/api/companyexplore/api/shared/interfaces/data-access';
+
+jest.mock('@graduates/api/companyexplore/api/shared/interfaces/data-access');
+const ApiCompanyExploreUserEntityMock: jest.Mocked<ApiCompanyExploreUserEntity> = new ApiCompanyExploreUserEntity() as ApiCompanyExploreUserEntity;
+ApiCompanyExploreUserEntityMock.id =  '234567891';
+ApiCompanyExploreUserEntityMock.email = 'test2@test.test';
+ApiCompanyExploreUserEntityMock.password = 'admin2';
+ApiCompanyExploreUserEntityMock.passwordSalt = 'admin2';
+ApiCompanyExploreUserEntityMock.name = 'null2';
+ApiCompanyExploreUserEntityMock.companyID = null;
+ApiCompanyExploreUserEntityMock.suspended = false;
+ApiCompanyExploreUserEntityMock.validated = false;
 
 describe('CompanyExploreService', () => {
   let service: CompanyExploreService;
@@ -27,27 +40,69 @@ describe('CompanyExploreService', () => {
     expect(queryBus).toBeDefined();
   });
 
-  it(': Testing getDefaultCompany',async () => {
-    const result = await service.getDefaultCompany();
-    console.log(result);
-    expect(result);
+  describe('getDefaultCompany', () => {
+    const arrayCompanyUser = [ApiCompanyExploreUserEntityMock];
+    it('should return a JSON lit of default companies', async () => {
+      jest
+        .spyOn(service, 'getDefaultCompany')
+        .mockImplementation(
+          (): Promise<ApiCompanyExploreUserEntity[]> => {
+            return Promise.resolve(arrayCompanyUser);
+          }
+        );
+        const result: Promise<ApiCompanyExploreUserEntity[]> = await service.getDefaultCompany();
+        console.log(result);
+        expect(result).toEqual(expect.arrayContaining(arrayCompanyUser));
+    })
   });
 
-  it(': Testing getCompanyByID', async () => {
-    const result = await service.getCompanyById("123456789");
-    //console.log(result);
-    expect(result);
+  describe('getCompanyById', () => {
+    const arrayCompanyUser = [ApiCompanyExploreUserEntityMock];
+    it('should return a JSON company with a given ID', async () => {
+      jest
+        .spyOn(service, 'getCompanyById')
+        .mockImplementation(
+          (): Promise<ApiCompanyExploreUserEntity[]> => {
+            return Promise.resolve(arrayCompanyUser);
+          }
+        );
+        const result: Promise<ApiCompanyExploreUserEntity[]> = await service.getCompanyById("234567891");
+        console.log(result);
+        expect(result).toEqual(expect.arrayContaining(arrayCompanyUser));
+    })
   });
 
-  it(': Testing getSearchResults', async () => {
-    const result = await service.getSearchResults("null3");
-    //console.log(result);
-    expect(result);
+  describe('getSearchResult', () => {
+    const arrayCompanyUser = [ApiCompanyExploreUserEntityMock];
+    it('should return a JSON lit of companies with this name', async () => {
+      jest
+        .spyOn(service, 'getSearchResults')
+        .mockImplementation(
+          (): Promise<ApiCompanyExploreUserEntity[]> => {
+            return Promise.resolve(arrayCompanyUser);
+          }
+        );
+        const result: Promise<ApiCompanyExploreUserEntity[]> = await service.getSearchResults("null2");
+        console.log(result);
+        expect(result).toEqual(expect.arrayContaining(arrayCompanyUser));
+    })
   });
 
-  it(': Testing getTaggedCompany', async () => {
-    const result = await service.getTaggedCompany("nice");
-    //console.log(result);
-    expect(result);
+  describe('getTaggedCompan', () => {
+    const arrayCompanyUser = [ApiCompanyExploreUserEntityMock];
+    it('should return a JSON lit of companies with this tag', async () => {
+      jest
+        .spyOn(service, 'getTaggedCompany')
+        .mockImplementation(
+          (): Promise<ApiCompanyExploreUserEntity[]> => {
+            return Promise.resolve(arrayCompanyUser);
+          }
+        );
+        const result: Promise<ApiCompanyExploreUserEntity[]> = await service.getTaggedCompany("trending");
+        console.log(result);
+        expect(result).toEqual(expect.arrayContaining(arrayCompanyUser));
+    })
   });
 });
+
+
