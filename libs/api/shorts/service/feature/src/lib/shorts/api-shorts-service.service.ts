@@ -77,8 +77,15 @@ export class ShortsService {
    * @param {string} userId The id of the user to create the short for
    * @return {Promise<Short | null>}
    */
-  async createShort(short: ShortCreateInput, userId: string): Promise<Short> {
-    return await this.commandBus.execute(new CreateShortCommand(short, userId));
+  async createShort(
+    short: ShortCreateInput,
+    userId: string,
+    vidRef: string,
+    thumbRef: string
+  ): Promise<Short> {
+    return await this.commandBus.execute(
+      new CreateShortCommand(short, userId, vidRef, thumbRef)
+    );
   }
 
   /**

@@ -35,6 +35,7 @@ import {
   ShortsTagsService,
 } from '@graduates/api/shorts/service/feature';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
+import { FirebaseService } from '@graduates/api/storage/repository/data-access';
 
 @Module({
   imports: [CqrsModule],
@@ -50,6 +51,7 @@ import { PrismaService } from '@graduates/api/shared/services/prisma/data-access
     ShortsService,
     ShortsReportsService,
     ShortsTagsService,
+    FirebaseService,
     //query handlers
     GetAllShortsHandler,
     GetShortByIdHandler,
