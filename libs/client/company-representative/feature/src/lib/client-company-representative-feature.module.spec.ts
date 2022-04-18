@@ -4,11 +4,12 @@ import { CompanyRepresentativePageComponent } from './company-representative-pag
 import { CompanyRepresentativeEditPageComponent } from './company-representative-edit-page/company-representative-edit-page.component';
 import { CompanyRepresentativeMockLoginPageComponent } from './company-representative-mock-login-page/company-representative-mock-login-page.component';
 import { CompanyRepresentativeMockStudentExplorePageComponent } from './company-representative-mock-student-explore-page/company-representative-mock-student-explore-page.component';
+import { ApolloModule } from 'apollo-angular';
 
 describe('ClientCompanyRepresentativeFeatureModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ClientCompanyRepresentativeFeatureModule],
+      imports: [ClientCompanyRepresentativeFeatureModule, ApolloModule],
       declarations:[CompanyRepresentativePageComponent,
                     CompanyRepresentativeEditPageComponent,
                     CompanyRepresentativeMockLoginPageComponent,
