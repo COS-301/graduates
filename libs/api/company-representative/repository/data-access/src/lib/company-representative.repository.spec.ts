@@ -37,28 +37,28 @@ describe('CompanyRepresentativeRepository', () => {
              {
                 userId: id,
                 type: 'TWITTER',
-                link: 'ishe@twitter.com',
+                link: 'tester@twitter.com',
              },
              {
                 userId: id,
                 type: "INSTAGRAM",
-                link: "ishe@instagram.com"
+                link: "tester@instagram.com"
               }, {
                 userId: id,
                 type: "LINKEDIN",
-                link: "linkedin.com/in/isheanesu-dzingirai-2952b9180"
+                link: "linkedin.com/in/tester-role-123456780"
               }, {
                 userId: id,
                 type: "FACEBOOK",
-                link: "ishe@facebook.com"
+                link: "tester@facebook.com"
               },{
                 userId: id,
                 type: "SNAPCHAT",
-                link: "ishe@snapchat.com"
+                link: "tester@snapchat.com"
               },{
                 userId: id,
                 type: "GITHUB",
-                link: "zenthon@github.com"
+                link: "tester@github.com"
               }
         
           ]
@@ -129,6 +129,86 @@ describe('CompanyRepresentativeRepository', () => {
                 fail(error);
             }
         });
+    });
+
+    describe('@updateRepName', () => {
+
+        const id = '1';
+        const name = 'newName';
+
+        it('should allow user to update name', async () => {
+            
+            try{
+                const newUser = repository.updateRepName(id, name); 
+                expect(newUser).toHaveBeenCalled;
+            } catch (error){
+                fail(error);
+            }
+        });
+    }); 
+
+    describe('@updateRepBio', () => {
+
+        const id = '1';
+        const bio = 'newBio';
+
+        it('should allow representative to update bio', async () => {
+            try {
+                const newBio = repository.updateRepBio(id, bio);
+                expect(newBio).toHaveBeenCalled;
+
+            } catch (error) {
+                fail(error);
+            }
+        });
+    });
+
+    describe('@UpdateRepLocation', () => {
+
+        const id = '1';
+        const location = 'newLocation';
+
+        it('should allow representative to update location', async () => {
+
+            try{
+                const newLocation = repository.updateRepLocation(id, location);
+                expect(newLocation).toHaveBeenCalled;
+            } catch(error){
+                fail(error);
+            }
+        })
+    })
+
+    describe('@updateRepContactNumber', () => {
+
+        const id = '1';
+        const number = '0712345676';
+
+        it('should allow representative to update number', async () => {
+            
+            try {
+                const newNumber = repository.updateRepContactNumber(id, number);
+                expect(newNumber).toHaveBeenCalled;    
+            } catch (error) {
+                fail(error);
+            }
+        });
+    });
+
+    describe('@updateRepExperience', () =>{
+
+        const id = '1';
+        const experience = 'Mid-level';
+
+        it('should allow representative to update experience level', () => {
+            try{
+                const newExperience = repository.updateRepExprience(id, experience);
+                expect(newExperience).toHaveBeenCalled;
+            } catch(error) {
+                fail(error);
+            }
+        });
+
     });
 
 });

@@ -1,0 +1,22 @@
+{
+  "root": "libs/api/access-status/api/shared",
+  "sourceRoot": "libs/api/access-status/api/shared/src",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api/access-status/api/shared/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/access-status/api/shared"],
+      "options": {
+        "jestConfig": "libs/api/access-status/api/shared/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,5 +1,5 @@
+import { ApiAccessStatusEntity } from "@graduates/api/access-status/api/shared";
 import { Injectable } from "@nestjs/common";
-import { ApiAccessStatusEntity } from "./api-access-status.entity";
 
 @Injectable()
 export class ApiAccessStatusService {
@@ -10,7 +10,7 @@ export class ApiAccessStatusService {
             accessStatus.item = "CV";
             accessStatus.accessStatus = "Pending";
         } else {
-            accessStatus.item = "Academic Record";
+            accessStatus.item = "ACADEMIC_RECORD";
             accessStatus.accessStatus = "Rejected";
         }
 

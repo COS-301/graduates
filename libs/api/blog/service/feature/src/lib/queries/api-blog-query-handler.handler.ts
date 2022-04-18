@@ -8,7 +8,8 @@ import {
   GetAllCommentsQuery, 
   GetCommentsByBlogIdQuery, 
   GetCommentByCommentIdQuery, 
-  GetMediaByBlogIdQuery } from './api-blog-query.query';
+  GetMediaByBlogIdQuery,
+  GetNameByUserIdQuery } from './api-blog-query.query';
 
 @QueryHandler(GetBlogByIdQuery)
 export class GetBlogByIdHandler implements IQueryHandler<GetBlogByIdQuery> {
@@ -35,6 +36,16 @@ export class GetAllArchivedBlogsHandler implements IQueryHandler<GetAllArchivedB
 
   async execute(query: GetAllArchivedBlogsQuery) {
     return this.repository.findAllArchivedBlogs();
+  }
+}
+
+@QueryHandler(GetNameByUserIdQuery)
+export class GetNameByUserIdHandler implements IQueryHandler<GetNameByUserIdQuery> {
+  constructor(private readonly repository: BlogRepository) {}
+
+  async execute(query: GetNameByUserIdQuery) {
+    const { userId } = query;
+    return this.repository.findByUserId(userId);
   }
 }
 

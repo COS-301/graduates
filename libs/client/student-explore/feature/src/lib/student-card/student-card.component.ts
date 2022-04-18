@@ -4,6 +4,12 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
+import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { Logger } from '@nestjs/common';
 import { match } from 'assert';
 import { ApiExampleRepositorySharedInterfacesDataAccessModule } from '@graduates/api/example/repository/shared/interfaces/data-access';
@@ -12,7 +18,8 @@ import { ApiExampleRepositorySharedInterfacesDataAccessModule } from '@graduates
   selector: 'graduates-student-card',
   templateUrl: './student-card.component.html',
   styleUrls: ['./student-card.component.scss'],
-  providers: [MatCardModule, MatButtonModule,MatCheckboxModule, MatMenuModule,MatIconModule]
+  providers: [MatCardModule, MatButtonModule,MatCheckboxModule, MatMenuModule,MatIconModule, MatFormFieldModule, 
+              MatInputModule, BrowserModule, BrowserAnimationsModule, FormsModule, CommonModule]
 })
 export class StudentCardComponent implements OnInit
 {
@@ -28,24 +35,11 @@ export class StudentCardComponent implements OnInit
   locationArray: filter[] = [];
   tagsArray: filter[] = [];
 
+  qry = "";
+  responseArray: Array<any> = [];
+
   //JSON's to be used for filtering
   filter_JSON = "";
-
-  //MOCK AVAILABLE DATA
-   available_tags = `{
-    "data": {
-      "AllAvailable":[
-        {
-          "Available": [
-            "Networking",
-            "Databases",
-            "AI",
-            "UI Engineer"
-          ]
-        }
-      ]
-    }
-   }`;
 
   constructor() {
     //Initialise services
@@ -278,7 +272,7 @@ export class StudentCardComponent implements OnInit
         }`;
 
       //Employment Staus query
-      if(filt.type === "employment")
+      if(active_filters[i].type === "employment")
       {
         if(active_filters[i].filter_name === "Employed, Open to Offers")
         {
@@ -463,6 +457,75 @@ export class StudentCardComponent implements OnInit
       }
     }
     return this.activeFilters;
+  }
+
+  //SEARCH BAR FUNCTIONALITY
+
+  async query()
+  {
+    console.log("The search query is: " + this.qry);
+
+    if(this.qry !== "")
+    {
+      this.responseArray = [];
+      const query = `query{
+        SearchStudents(searchQuery: "${this.qry}"){
+          StudentID
+          StudentName
+          StudentBio
+          StudentEmail
+          StudentNumber
+          StudentTags
+          StudentDegreeType
+          StudentDegreeName
+          StudentLocation
+          StudentPic
+        }
+      }`;
+
+      console.log("The query variable is: " + query);
+
+      await fetch('http://localhost:3333/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          query
+        })
+      }).then(r => r.json()).then(response => {
+        console.log("The api response is:" + JSON.stringify(response));
+      
+        if(response.data === undefined)
+        {
+          this.responseArray.push(new Student("", "Could Not Get Students From Source", "", "", "", "", "", "", "", ""));
+        }
+        else if(response.data.SearchStudents.length === 0)
+        {
+          this.responseArray.push(new Student("", "Search Request Not Found", "", "", "", "", "", "", "", ""));
+        }
+        else
+        {
+          for(const student of response.data.SearchStudents)
+          {
+            const studentObj = new Student(student.StudentID, student.StudentName, student.StudentBio, 
+                                            student.StudentEmail, student.StudentNumber, student.StudentTags, 
+                                            student.StudentDegreeType, student.StudentDegreeName, student.StudentLocation, student.StudentPic);
+            this.responseArray.push(studentObj);
+          }
+        }
+      });
+
+      this.studentArray = [];
+      this.loadStudentCardsByFilter(this.responseArray);
+      console.log("The response array is: " + JSON.stringify(this.responseArray));
+    }
+    else
+    {
+      await this.loadStudentCards();
+      await this.loadStudentCardsByFilter(this.studentArray);
+    }
   }
 }
 

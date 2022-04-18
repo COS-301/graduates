@@ -1,7 +1,8 @@
 import { ApicompanyprofilepageServiceFeatureModule } from '@graduates/api/companyprofilepage/service/feature';
-import { Args, Query, ResolveField, Resolver, Root } from '@nestjs/graphql';
-import { ApiCompanyProfilePage, UserEmail, UserLocation, UserNumber, UserSocialMedia } from '@graduates/api/companyprofilepage/api/shared/data-access';
+import { Args, Mutation, Query, ResolveField, Resolver, Root } from '@nestjs/graphql';
+import { ApiCompanyProfilePage, UserEmail, UserLocation, UserNumber, UserSocialMedia, UserProfile, CompanyReps, UpdateBioInput } from '@graduates/api/companyprofilepage/api/shared/data-access';
 import { NotFoundException } from '@nestjs/common';
+import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 
 
 @Resolver(ApiCompanyProfilePage)
@@ -10,31 +11,6 @@ export class ApicompanyprofilepageResolver {
     private readonly companyprofilepageService: ApicompanyprofilepageServiceFeatureModule
   ) {}
 
-  
-  // @ResolveField()
-  // async ApiCompanyProfilePage(@Root() apiCompanyProfilePage: ApiCompanyProfilePage): Promise<ApiCompanyProfilePage | null>{
-  //   return this.companyprofilepageService.getCompanyWithID(apiCompanyProfilePage.company_id)
-  // }
-
-  // @ResolveField(() => [UserEmail])
-  // async companyEmail(@Root() apiCompanyProfilePage: ApiCompanyProfilePage): Promise<UserEmail[]>{
-  //   return await this.companyprofilepageService.getCompanyEmail(apiCompanyProfilePage.company_id);
-  // }
-
-  // @ResolveField(() => [UserLocation])
-  // async companyLocation(@Root() apiCompanyProfilePage: ApiCompanyProfilePage): Promise<UserLocation[]>{
-  //   return await this.companyprofilepageService.getCompanyLocation(apiCompanyProfilePage.company_id);
-  // }
-
-  // @ResolveField(() => [UserNumber])
-  // async companyNumber(@Root() apiCompanyProfilePage: ApiCompanyProfilePage): Promise<UserNumber[]>{
-  //   return await this.companyprofilepageService.getCompanyNumber(apiCompanyProfilePage.company_id);
-  // }
-
-  // @ResolveField(() => [UserSocialMedia])
-  // async companySocialMedia(@Root() apiCompanyProfilePage: ApiCompanyProfilePage): Promise<UserSocialMedia[]>{
-  //   return await this.companyprofilepageService.getCompanySocialMedia(apiCompanyProfilePage.company_id);
-  //}
   
 
   //fetch a company based on ID
@@ -48,7 +24,7 @@ export class ApicompanyprofilepageResolver {
   }
 
 
-  //fetch company emails from company id
+  //fetch company emails with company id
   @Query((returns) => [UserEmail])
   async getCompanyEmail(@Args('company_id') company_id: string): Promise<UserEmail[] | null>{
     const resp = await this.companyprofilepageService.getCompanyEmail(company_id);
@@ -58,7 +34,7 @@ export class ApicompanyprofilepageResolver {
     return resp;
   }
 
-  //fetch company locations from company id
+  //fetch company locations with company id
   @Query((returns) => [UserLocation])
   async getCompanyLocation(@Args('company_id') company_id: string): Promise<UserLocation[] | null>{
     const resp = await this.companyprofilepageService.getCompanyLocation(company_id);
@@ -69,7 +45,7 @@ export class ApicompanyprofilepageResolver {
   }
 
 
-  //fetch company social media from company id
+  //fetch company social media with company id
   @Query((returns) => [UserSocialMedia])
   async getCompanySocialMedia(@Args('company_id') company_id: string): Promise<UserSocialMedia[] | null>{
     const resp = await this.companyprofilepageService.getCompanySocialMedia(company_id);
@@ -80,18 +56,35 @@ export class ApicompanyprofilepageResolver {
   }
 
 
-  //fetch company number from company id
+  //fetch company number with company id
   @Query((returns) => UserNumber)
   async getCompanyNumber(@Args('company_id') company_id: string): Promise<UserNumber | null>{
     return await this.companyprofilepageService.getCompanyNumber(company_id);
 
   }
 
+  //fetch company bio with company id
+  @Query((returns) => UserProfile)
+  async getCompanyBio(@Args('company_id') company_id: string): Promise<UserProfile | null>{
+    return await this.companyprofilepageService.getCompanyBio(company_id);
+  }
+
+
+  //fetch company rep with company id
+  @Query((returns) => [CompanyReps])
+  async getCompanyReps(@Args('company_id') company_id: string): Promise<CompanyReps[] | null>{
+    return await this.companyprofilepageService.getCompanyReps(company_id);
+  }
+
+  //update company bio
+  @Mutation(() => UserProfile)
+  async updateCompanyBio(@Args('bio') companyBio: UpdateBioInput): Promise<UserProfile | null> {
+    return await this.companyprofilepageService.updateCompanyBio(companyBio);
+  }
+
   @Query(() =>String) 
   pingCompanyProfile(){
     return "on";
   }
-  
 
-  
 }

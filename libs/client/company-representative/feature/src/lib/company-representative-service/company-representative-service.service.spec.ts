@@ -1,15 +1,15 @@
 import { TestBed } from '@angular/core/testing';
-import { CompanyRepresentativeServiceService } from './company-representative-service.service';
+import { CompanyRepresentativeService } from './company-representative-service.service';
 import { HttpClientModule } from '@angular/common/http';
 
 describe('CompanyRepresentativeServiceService', () => {
-  let service: CompanyRepresentativeServiceService;
+  let service: CompanyRepresentativeService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule]
     });
-    service = TestBed.inject(CompanyRepresentativeServiceService);
+    service = TestBed.inject(CompanyRepresentativeService);
   });
 
   it('should be created', () => {
