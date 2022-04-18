@@ -3,8 +3,8 @@
     <mat-divider [inset]="true"></mat-divider>
     <!-- <mat-divider [vertical]="true"></mat-divider> -->
     <br/>
-    <p id="company_details_website"><mat-icon>public</mat-icon> www.website.com</p>
-    <p id="company_details_location"><mat-icon> location_on</mat-icon> {{location}}</p>
-    <p id="company_details_phone"><mat-icon> phone</mat-icon> {{number}}</p>
-    <p id="company_details_email" *ngFor = "let email of emails"><mat-icon> email</mat-icon> {{email}}</p>
+    <mat-icon>public</mat-icon> <p id="company_details_website">www.website.com</p>
+    <br/><mat-icon> location_on</mat-icon> <p id="company_details_location">{{location}}</p>
+    <br/><mat-icon> phone</mat-icon> <p id="company_details_phone">{{number}}</p>
+    <br/><p id="company_details_email" *ngFor = "let email of emails"><mat-icon> email</mat-icon> {{email}}</p>
 </div>
