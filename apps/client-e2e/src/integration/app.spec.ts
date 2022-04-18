@@ -28,7 +28,7 @@ describe('client notifications testing', () => {
   //Test if the main notifications component has rendered properly
   it('should contain notification board', () => {
     cy.contains('Notification board');
-    cy.get('button').click({multiple: true});
+    //cy.get('button').click({multiple: true});
   });
 
   //Test if a notification query can be called from API successfully
