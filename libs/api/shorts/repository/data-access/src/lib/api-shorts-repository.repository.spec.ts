@@ -1,7 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ShortsRepository } from './api-shorts-repository.repository';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
-import { Short, ShortTag, ShortReport } from '@graduates/api/shorts/api/shared/entities/data-access';
+import { Short, ShortTag, ShortReport, ShortCreateInput, ShortUpdateInput, ShortTagInput, ShortReportInput} from '@graduates/api/shorts/api/shared/entities/data-access';
+import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
+import * as PrismaNS from '@prisma/client';
 
 jest.mock('@graduates/api/shorts/api/shared/entities/data-access');
 
@@ -422,4 +424,274 @@ describe('ShortsRepository', () => {
       );
     });
   });
+});
+
+//! TODO Uncomment once DB and API are ready in CI/CD or Deployment Environment
+describe("DB Integration Tests", () => {
+  /*
+  let repository: ShortsRepository;
+  let prisma: PrismaService;  
+
+
+  beforeAll(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [ShortsRepository, PrismaService],
+    }).compile();
+
+    prisma = module.get<PrismaService>(PrismaService);
+    repository = module.get<ShortsRepository>(ShortsRepository);
+
+  });
+
+  it('should ensure prisma and repository modules are defined', () => {
+    expect(prisma).toBeDefined();
+    expect(repository).toBeDefined();
+  });
+
+  describe("createShort", () => {
+    it("should return a short", async () => {
+
+      
+    const testUserInput: PrismaNS.User = {
+      id: "TestUser",
+      name: "John Testerson the Unique Test Guy",
+      email: "tester@example.test",
+      password: "",
+      passwordSalt: "",
+      created: new Date(),
+      dateOfBirth: new Date(),
+      companyId: null,
+      suspended: false,
+      validated: false,
+    }
+    const testUser = await prisma.user.create({ data: testUserInput});
+    
+    const shortTagIn: ShortTagInput = {
+      tag: "#TestTag",
+    };
+
+
+      const createInput: ShortCreateInput = {
+        description: "Test Create Description",
+        link: "TestUpdateLink.test/test.mp4",
+        thumbnail: "",
+        shortTag: [shortTagIn],
+        archived: false,
+      }
+      const result = await repository.createShort(createInput,testUser.id);
+      expect(result).toMatchObject(new Short());
+    });
+  });
+
+  describe('updateShort', () => {
+    it('should return a short', async () => {
+
+      const shorts = await repository.findByUser('TestUser');
+      const updateInput: ShortUpdateInput = {
+        id: shorts[0].id,
+        description: "Test Update Description",
+        link: "TestUpdateLink.test/test.mp4",
+        thumbnail: "",
+        archived: false
+      }
+
+      const result = await repository.updateShort(updateInput);
+      expect(result).toMatchObject(new Short());
+    });
+  });
+
+  describe("findAll", () => {
+    it("should return an array", async () => {
+      const result = await repository.findAll();
+      if (result.length > 0) {
+        expect.arrayContaining(result);
+      }
+      else {
+        expect(result).toMatchObject([]);
+      }
+    });
+  });
+
+  describe('findAllShortsPaged', () => {
+    it('should return an array', async () => {
+      const result = await repository.findAllShortsPaged(0, 10);
+      if (result.length > 0) {
+        expect.arrayContaining(result);
+      }
+      else {
+        expect(result).toMatchObject([]);
+      }
+    });
+  });
+
+  describe("findUserById", () => {
+    it("should return a user or null", async () => {
+      const result = await repository.findUserById("TestUser");
+      if (result !== null) {
+        expect(result).toMatchObject(new User());
+      }
+      else {
+        expect(result).toBeNull();
+      }
+    });
+  });
+
+  describe('findByUser', () => {
+
+    it('should return an array', async () => {
+      const result = await repository.findByUser('TestUser');
+      if (result.length > 0) {
+        expect.arrayContaining(result);
+      }
+      else {
+        expect(result).toMatchObject([]);
+      }
+    });
+  });
+
+  describe('findByTag', () => {
+      it('should return array', async () => {
+        const result = await repository.findByTag('TagIdTest');
+        if (result.length > 0) {
+          expect.arrayContaining(result);
+        }
+        else {
+          expect(result).toMatchObject([]);
+        }
+      });
+    });
+
+    describe('findByTagPaged', () => {
+      it('should return array', async () => {
+        const result = await repository.findByTagPaged("TagIdTest", 1, 10);
+        if (result.length > 0) {
+          expect.arrayContaining(result);
+        }
+        else {
+          expect(result).toMatchObject([]);
+        }
+      });
+    });
+    describe("findAllTags", () => {
+      it("should return an array", async () => {
+        const result = await repository.findAllTags();
+        if (result.length > 0) {
+          expect.arrayContaining(result);
+        }
+        else {
+          expect(result).toMatchObject([]);
+        }
+      });
+    });
+
+    describe("findTagByShortId", () => {
+      it("should return an array", async () => {
+        const short = await repository.findByUser('TestUser');
+        const result = await repository.findTagByShortId(short[0].id);
+        if (result.length > 0) {
+          expect.arrayContaining(result);
+        }
+        else {
+          expect(result).toMatchObject([]);
+        }
+      });
+    });
+
+    describe("findById", () => {
+      it("should return a short", async () => {
+        const short = await repository.findByUser('TestUser');
+        const result = await repository.findById(short[0].id);
+        if (result !== null) {
+          expect(result).toMatchObject(new Short());
+        }
+        else {
+          expect(result).toBeNull();
+        }
+      });
+    });
+
+    describe("reportShort", () => {
+      it("should return a short", async () => {
+        const shortTest = await repository.findByUser("TestUser");
+        const reportInput: ShortReportInput = {
+          shortId: shortTest[0].id,
+          reason: "Test Reason",
+        }
+        const result = await repository.reportShort(reportInput, "TestUser");
+        expect(result).toMatchObject(new ShortReport());
+      });
+    });
+        
+    describe("getReport", () => {
+      it("should return a report", async () => {
+        const shorts = await repository.findByUser("TestUser");
+        const result = await repository.getReport("TestUser", shorts[0].id);
+        if (result !== null) {
+          expect(result).toMatchObject(new ShortReport());
+        }
+        else {
+          expect(result).toBeNull();
+        }
+      });
+    });
+
+    describe("getAllReports", () => {
+      it("should return an array", async () => {
+        const result = await repository.getAllReports();
+        if (result.length > 0) {
+          expect.arrayContaining(result);
+        }
+        else {
+          expect(result).toMatchObject([]);
+        }
+      });
+    });
+
+    describe("getReportsByUser", () => {
+      it("should return an array", async () => {
+        const result = await repository.getReportsByUser("TestUser");
+        if (result.length > 0) {
+          expect.arrayContaining(result);
+        }
+        else {
+          expect(result).toMatchObject([]);
+        }
+      });
+    });
+
+    describe("getReportsForShort", () => {
+      it("should return an array", async () => {
+        const shorts = await repository.findByUser("TestUser");
+        const result = await repository.getReportsForShort(shorts[0].id);
+        if (result.length > 0) {
+          expect.arrayContaining(result);
+        }
+        else {
+          expect(result).toMatchObject([]);
+        }
+      });
+    });
+
+    // describe.only('Manual Test Call', () => {
+    //   it('should return an array', async () => {
+    //     const result = await repository.findAllShortsPaged(0, 10);
+    //     console.log(result);
+    //     if (result.length > 0) {
+    //       expect.arrayContaining(result);
+    //     }
+    //     else {
+    //       expect(result).toMatchObject([]);
+    //     }
+    //   });
+    // });
+
+    afterAll(async () => {
+      prisma.$transaction([
+        prisma.shortReport.deleteMany({where: {userId: "TestUser"} }),
+        prisma.shortTag.deleteMany({ where: { tag: "#TestTag" } }),
+        prisma.short.deleteMany({where:  {description: "Test Update Description"}}),
+        prisma.user.delete({where: {id: "TestUser"}}),
+      ]);
+    });
+    */
 });

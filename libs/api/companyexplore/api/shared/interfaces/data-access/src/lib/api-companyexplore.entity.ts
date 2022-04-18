@@ -34,6 +34,6 @@ export class ApiCompanyExploreEntity{
   @Field() //false
   validated: boolean;
 
-  @Field() //add entity
+  @Field(type=>ApiCompanyExploreUserprofileEntity) //add entity
   Userprofile: ApiCompanyExploreUserprofileEntity;
 }
