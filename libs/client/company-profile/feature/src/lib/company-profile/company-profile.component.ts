@@ -17,7 +17,7 @@ export class CompanyProfileComponent implements OnInit{
 
   ngOnInit(): void {
     //make API call to access status of resources for particular company
-    this.apiService.getCompany('1').subscribe({
+    this.apiService.getCompany().subscribe({
       next: (_res) => {
         this.companyName = _res.data.getCompanyByID.name;
       },
@@ -36,5 +36,9 @@ export class CompanyProfileComponent implements OnInit{
       out.style.display = "block";
       edit.style.display = "none";
     }
+  }
+
+  reloadCurrentPage() {
+    window. location. reload();
   }
 }
