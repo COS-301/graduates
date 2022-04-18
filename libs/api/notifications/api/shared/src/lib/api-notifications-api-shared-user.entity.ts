@@ -2,11 +2,11 @@ import { Field, ID, Int, ObjectType } from "@nestjs/graphql";
 
 @ObjectType()
 export class UserNotification {
-    @Field(() => Int)
-    id: number
+    @Field(type => ID)
+    id!: string
 
     @Field()
-    username: string;
+    name: string;
 
     @Field()
     email: string;

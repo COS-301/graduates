@@ -12,10 +12,11 @@ import {
 export class CreateShortCommand {
   constructor(
     public readonly short: ShortCreateInput,
-    public readonly userId: string
+    public readonly userId: string,
+    public readonly vidRef: string,
+    public readonly thumbRef: string
   ) {}
 }
-
 /**
  * Class representing a DeleteShortCommand command
  * @param {string} id The id of the short to delete

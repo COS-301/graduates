@@ -1,4 +1,5 @@
 <div><header-and-footer-header></header-and-footer-header></div>
+<navbar-tabs-navigation-bar></navbar-tabs-navigation-bar>
 <div style="display: block; margin: 0; padding: 0;">
     <mat-card-content style="padding: 0; margin: 0;">
         <mat-card>
@@ -23,7 +24,7 @@
             </mat-card>
         </div>    
         <div id="outer-edit">
-            <mat-card class="outer-edit" fxFlexAlign="center" fxLayout="row" fxLayout.lt-sm="column-reverse">
+            <mat-card class="outer-edit" fxFlexAlign="center" fxLayout="row" fxLayout.lt-md="column-reverse">
                 <mat-card class="child-1" fxFlex.gt-sm="25">
                     <graduates-company-details-edit></graduates-company-details-edit>
                     <br/>
@@ -32,7 +33,7 @@
                     <graduates-social-media-edit></graduates-social-media-edit>
                 </mat-card> 
                 <mat-card class="child-2" fxFlex.gt-sm="75">
-                    <button (click)="onClick('page')" class="icon"><mat-icon class="icon">save</mat-icon></button>
+                    <button (click)="reloadCurrentPage()" class="icon"><mat-icon class="icon">save</mat-icon></button>
                     <graduates-company-bio-edit></graduates-company-bio-edit>
                     <br/>
                     <graduates-industry-and-services-edit></graduates-industry-and-services-edit>

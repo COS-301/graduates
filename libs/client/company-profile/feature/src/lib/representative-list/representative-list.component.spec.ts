@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
 import { RepresentativeListComponent } from './representative-list.component';
 
 describe('RepresentativeListComponent', () => {
@@ -8,7 +8,8 @@ describe('RepresentativeListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RepresentativeListComponent ]
+      declarations: [ RepresentativeListComponent ],
+      imports: [HttpClientModule]
     })
     .compileComponents();
   });

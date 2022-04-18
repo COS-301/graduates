@@ -8,5 +8,8 @@ import{Observable} from 'rxjs';
 })
 export class CompanyExploreContentComponent{
   @Input() companies!:Observable<Company[]>;
+  consoleout(company:Company){
+      console.log(company)
+  }
   
 }
