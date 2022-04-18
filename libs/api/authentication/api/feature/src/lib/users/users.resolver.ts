@@ -15,7 +15,7 @@ export class UsersResolver {
   }
 
   @Query(() => AuthenticationUser, { name: 'user' })
-  findOne(@Args('username') username: string) {
-    return this.usersService.findOne(username);
+  findOne(@Args('username') name: string) {
+    return this.usersService.findOne(name);
   }
 }
