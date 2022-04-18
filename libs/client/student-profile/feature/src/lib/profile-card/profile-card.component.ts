@@ -19,11 +19,11 @@ export class ProfileCardComponent implements OnInit {
     
    // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor() { 
-    // this.name = null;
+    this.name = null;
   }
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
-  // @Input() name: any;
+  @Input() name: any;
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   ngOnInit(): void {
