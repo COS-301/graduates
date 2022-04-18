@@ -31,7 +31,8 @@ const shortUpdateMock: jest.Mocked<ShortUpdateInput> =
   new ShortUpdateInput() as ShortUpdateInput;
 
 jest.mock('@graduates/api/authentication/api/shared/interfaces/data-access');
-const userMock: jest.Mocked<AuthenticationUser> = new AuthenticationUser() as AuthenticationUser;
+const userMock: jest.Mocked<AuthenticationUser> =
+  new AuthenticationUser() as AuthenticationUser;
 
 jest.mock('@graduates/api/shorts/api/shared/entities/data-access');
 const tagMock: jest.Mocked<ShortTag> = new ShortTag() as ShortTag;
@@ -82,7 +83,9 @@ describe('ShortsResolver', () => {
     it('should return a user', async () => {
       jest
         .spyOn(resolver, 'user')
-        .mockImplementation((): Promise<AuthenticationUser> => Promise.resolve(userMock));
+        .mockImplementation(
+          (): Promise<AuthenticationUser> => Promise.resolve(userMock)
+        );
 
       expect(await resolver.user(shortMock)).toMatchObject(userMock);
     });
@@ -198,9 +201,9 @@ describe('ShortsResolver', () => {
         .spyOn(resolver, 'createShort')
         .mockImplementation((): Promise<Short> => Promise.resolve(shortMock));
 
-      expect(await resolver.createShort(shortInputMock, '1')).toMatchObject(
-        shortMock
-      );
+      expect(
+        await resolver.createShort(shortInputMock, '1', '', '')
+      ).toMatchObject(shortMock);
     });
   });
 
