@@ -48,13 +48,13 @@ export class DeleteAllComponent implements OnInit {
       })
       .subscribe(({ data}) => {
         if (data){ 
-  
+          
           console.log(data)}
-  
-  
+           
         });
       
     }
+    alert("All files in the database erazed successfully"); 
     window.location.href ="storage/"+this.userID;
   }
 
