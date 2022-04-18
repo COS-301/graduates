@@ -1,7 +1,7 @@
 import { Resolver, Query, Args, Mutation, ResolveField, Root } from '@nestjs/graphql';
 import { Blog, BlogComment, BlogMedia } from '@graduates/api/blog/api/shared/entities/data-access';
 import { BlogService } from '@graduates/api/blog/service/feature';
-import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
+import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 
 @Resolver(() => Blog)
 export class BlogResolver {
@@ -52,10 +52,10 @@ export class BlogResolver {
     /**
      * Find the name of the user with the given id
      * @param {string} userId The id of the user
-     * @return {Promise<string | null>} 
+     * @return {Promise<AuthenticationUser | null>} 
      */
-    @Query(returns => User)
-    async nameByUserId(@Args('userId', {type: () => String}) userId: string): Promise<User | null> {
+    @Query(returns => AuthenticationUser)
+    async nameByUserId(@Args('userId', {type: () => String}) userId: string): Promise<AuthenticationUser | null> {
         return this.blogService.getNameByUserId(userId);
     }
 

@@ -21,7 +21,7 @@ import {
   GetCommentByCommentIdQuery, 
   GetMediaByBlogIdQuery,
   GetNameByUserIdQuery } from './queries/api-blog-query.query';
-import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
+import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 
 @Injectable()
 export class BlogService {
@@ -204,9 +204,9 @@ export class BlogService {
   /**
    * Find the name of the user with the given id
    * @param {string} userId The id of the user
-   * @return {Promise<User | null>} 
+   * @return {Promise<AuthenticationUser | null>} 
    */
-   async getNameByUserId(userId: string): Promise<User | null> {
+   async getNameByUserId(userId: string): Promise<AuthenticationUser | null> {
     return await this.queryBus.execute(
       new GetNameByUserIdQuery(userId)
     );
