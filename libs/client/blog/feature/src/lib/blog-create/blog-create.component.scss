@@ -1,17 +1,13 @@
 @import 'libs/client/shared/assets/ui/src/lib/global';
-footer {
-    position: fixed;
-    bottom: 0px;
-    width: 100%;
-}
-
+// Full Page formatting to keep away from edges
 .page {
-    padding-top: 8%;
-    padding-bottom: 8%;
+    padding-top: 2%;
+    padding-bottom: 4%;
     padding-left: 5%;
     padding-right: 5%;
 }
 
+// Heading styles
 h1 {
     text-align: left;
     float: left;
@@ -35,6 +31,7 @@ h3 {
     font-weight: 500;
 }
 
+// Styling for buttons
 .formbutton {
     background-color: $primary-1;
     border-style: solid;
@@ -59,6 +56,7 @@ h3 {
     }
 }
 
+// Styling for the inputs
 .input {
     width: 100%;
     border: 10px;

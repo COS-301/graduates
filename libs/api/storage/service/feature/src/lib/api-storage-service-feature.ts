@@ -33,6 +33,12 @@ export class ApiStorageServiceFeatureModule {
           url = value;
         });
       }
+
+      else if(fileCategory==="Image"){
+        await this.repo.getUserFile(userID ,FileCategory.PROFILE_PHOTO).then(async (value)=> {
+          url = value;
+        });
+      }
         return url;
        
     }
@@ -56,6 +62,12 @@ export class ApiStorageServiceFeatureModule {
         });
       }
       if(fileCategory=="Academic Record"){
+        await this.repo.deleteFile(userID ,FileCategory.ACADEMIC_RECORD ).then(async (value)=> {
+          num = value;
+        });
+      }
+
+      if(fileCategory=="Image"){
         await this.repo.deleteFile(userID ,FileCategory.ACADEMIC_RECORD ).then(async (value)=> {
           num = value;
         });

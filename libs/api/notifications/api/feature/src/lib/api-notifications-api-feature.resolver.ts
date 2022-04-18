@@ -53,6 +53,11 @@ export class NotificationsResolver {
         return (res) ? res : error;
     }
 
+    @Query(()=> String)
+    pingNotification(){
+        return 'on';
+    }
+
     @Mutation(()=>Notification)
     async createRequestNotification(
         @Args('userIdTo', {type: () => String}) userIdTo : string,

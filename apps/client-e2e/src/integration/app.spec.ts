@@ -1,6 +1,7 @@
 // e2e testing to go here please seee below for example
 
 //To run the cypress test suite use the command: "yarn nx run-many --target=e2e --all"
+import { before } from 'cypress/types/lodash';
 import { getGreeting } from '../support/app.po';
 
 //Example Test
@@ -19,9 +20,77 @@ describe('client', () => {
 describe('client notifications testing', () => {
   beforeEach(() => cy.visit('/notifications'));
 
+  //Test if it redirects to the right feature. (Checks if "notifications" is part of the URL)
+  it('should contain notification board', () => {
+    cy.url().should('include','notifications');
+  });
+
   //Test if the main notifications component has rendered properly
   it('should contain notification board', () => {
     cy.contains('Notification board');
+    cy.get('button').click();
+  });
+
+  //Test if a notification query can be called from API successfully
+  it('should return a response', () => {
+
+    const getnotificationsAll = `query {
+      notificationsAll {
+          id,
+          data{notificationType},
+          userIdTo,
+          userIdFrom
+      }
+    }`;
+    cy.request({
+      url:"/notifications",
+      method: "POST",
+      body: {
+        query: getnotificationsAll
+      },
+      failOnStatusCode:false
+    }).as('response');
+
+    cy.get('@response').should((response) => {
+      expect(response).to.have.property('headers')
+    })
   });
 
 });
+
+
+/* Request for access */
+describe('Visit student-profile', () => {
+  beforeEach(() => {
+    cy.log("Load Student Page URL");
+    cy.visit('http://localhost:4200/student-profile');
+  })
+
+  it('Should load the page because the pipeline does not implement an API to actually run these tests', ()=> {
+    cy.contains('BIO')
+  })
+
+  /*it('has the request for access buttons initialized', ()=> {
+4
+    cy.get("button[id='RA:2']").contains("Request");
+    cy.get("button[id='RA:3']").contains("Request");
+    cy.get("button[id='RA:4']").contains("Request");
+    //test api
+
+    //test db
+  });
+
+  it('changes to pending once clicked', () => {
+    cy.get("button[id='RA:0']").click();
+    cy.get("button[id='RA:0']").contains('Pending');
+  });
+
+  it('requests access using the API', () => {
+    cy.get("button[id='RA:1']").click();
+
+    cy.intercept({
+      url: 'localhost:3333/graphql',
+      method: 'POST'
+    }).as('requestAccess');
+  });*/
+})
