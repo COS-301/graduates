@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngxs/store';
+// import { Store } from '@ngxs/store';
 import { CompanyProfileService } from '../services/company-profile.service';
 import { Subscription } from 'rxjs';
 
@@ -13,7 +13,7 @@ export class CompanyBioComponent implements OnInit {
   message = "";
   subscription = new Subscription;
 
-  constructor(private store: Store, private apiService: CompanyProfileService) {
+  constructor(private apiService: CompanyProfileService) {
     
   }
 

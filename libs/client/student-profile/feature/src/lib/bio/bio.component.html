@@ -1,18 +1,18 @@
 <mat-card>
     <mat-card-title color="primary">  BIO (Adding tags will make it easier for employers to find you) </mat-card-title>
     <mat-card-content>
-        <p> My Name is Peter Parker and I graduated from the University of Pretoria in 2023. I am proficient in many programming
-            languages and frameworks and look forward to the prospect of working with your company.
-        </p>
+        <p> Growing up, I've always had an interest in computer science and found myself excelling in various fields of IT...</p>
         <mat-card-actions>
             <mat-chip-list aria-label="Tags">
-                <mat-chip> \ AI</mat-chip>
-                <mat-chip>\ Security</mat-chip>
-                <mat-chip>\ Networking</mat-chip>
-                <mat-chip>\ Software Engineering</mat-chip>
-                <mat-chip> \ Data Analytics</mat-chip>
-                <mat-chip> \ Formal Methods</mat-chip>
+                <!-- <mat-chip *ngFor="let tag of bio.tags">{{tag}}</mat-chip> -->
+                <mat-chip>AI</mat-chip>
+                <mat-chip>Networking</mat-chip>
+                <mat-chip>Software Development</mat-chip>
               </mat-chip-list>
         </mat-card-actions>
     </mat-card-content>
 </mat-card>
+
+<!-- api stuff
+{{bio.bio}}
+-->
