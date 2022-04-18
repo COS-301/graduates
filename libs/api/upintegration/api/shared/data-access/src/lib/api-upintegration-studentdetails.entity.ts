@@ -1,4 +1,4 @@
-import { Field, ID, ObjectType } from "@nestjs/graphql";
+import { Field, ObjectType } from "@nestjs/graphql";
 
 /**
  * Definition Student Details Entity
@@ -8,31 +8,43 @@ export class StudentDetails{
     /**
      * Student number of student
      */
-    @Field(()=>ID)
+    @Field()
     userID!: string;
+
+    /**
+     * The student number
+     */
+     @Field()
+     studentNumber!: string;
 
     /**
      * Name of student
      */
-    @Field()
+    @Field({ nullable: true })
     name!: string;
 
     /**
      * Surname of student
      */
-    @Field()
+    @Field({ nullable: true })
     surname!: string;
 
     /**
      * Course of student
      */
-    @Field()
+    @Field({ nullable: true })
     course!: string;
 
     /**
      * Contact number of student
      */
-    @Field()
-    contactNumber!: string
+    @Field({ nullable: true })
+    contactNumber!: string;
+
+    /**
+     * Email of student
+     */
+    @Field({ nullable: true })
+    email!: string;
 
 }
