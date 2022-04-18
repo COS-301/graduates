@@ -6,6 +6,6 @@
     "types": [],
     "target": "es6"
   },
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "../../api/feature/src/lib/api-authentication-api.service.ts"],
   "exclude": ["**/*.spec.ts", "**/*.test.ts"]
 }
