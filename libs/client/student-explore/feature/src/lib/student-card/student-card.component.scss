@@ -3,7 +3,7 @@
 /*=============================================FONTS=============================================*/
 $Segoe: 'Segoe UI';
 
-.card-grid{
+.card-grid {
   display: grid;
   gap: 1.5rem;
   grid-template-columns: repeat(3, 1fr);
@@ -16,34 +16,34 @@ $Segoe: 'Segoe UI';
 }
 
 //Media queries to adjust grid
-@include desktop{
-  .card-grid{
+@include desktop {
+  .card-grid {
     display: grid;
     gap: 5rem;
     grid-template-columns: repeat(3, 1fr);
-  
+
     width: min(95%, 70rem);
     margin-inline: auto;
   }
 }
 
-@include tablet{
-  .card-grid{
+@include tablet {
+  .card-grid {
     display: grid;
     gap: 3rem;
     grid-template-columns: repeat(2, 1fr);
-  
+
     width: min(95%, 70rem);
     margin-inline: auto;
   }
 }
 
-@include phone{
-  .card-grid{
+@include phone {
+  .card-grid {
     display: grid;
     gap: 3rem;
     grid-template-columns: repeat(1, 1fr);
-  
+
     width: min(95%, 70rem);
     margin-inline: auto;
   }
@@ -55,7 +55,7 @@ mat-card {
   height: auto;
   width: 340px;
   border-radius: 10px;
-  overflow: scroll;
+  overflow: hidden;
 }
 
 div.banner {
@@ -107,8 +107,7 @@ div.banner img {
 
 /*============================================SEARCH BAR STYLING============================================*/
 
-div#searchBar
-{
+div#searchBar {
   /*background-color: red;*/
   margin-left: auto;
   margin-right: auto;
@@ -122,8 +121,7 @@ div#searchBar
   font-weight: 400;
 }
 
-div#searchBar mat-form-field
-{
+div#searchBar mat-form-field {
   /*background-color: blue;*/
   margin-left: auto;
   margin-right: auto;
@@ -131,8 +129,7 @@ div#searchBar mat-form-field
   width: 100%;
 }
 
-div#searchBar mat-form-field input
-{
+div#searchBar mat-form-field input {
   line-height: 24px;
 
   padding-left: 0.5rem;
@@ -143,22 +140,21 @@ div#searchBar mat-form-field input
 
 /*============================================FILTER ICON STYLING===========================================*/
 
-div#filter
-{
+div#filter {
   position: absolute;
   left: 2%;
   top: 22.5%;
 }
 
-.filter_headings{
+.filter_headings {
   position: relative;
   padding-top: 8px;
   left: 6%;
 }
 
 #filter_submit {
-  position:relative;
-  top:10%;
+  position: relative;
+  top: 10%;
   left: 7.5%;
   color: #fff;
   background-color: #174372;
