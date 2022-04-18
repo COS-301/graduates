@@ -1,7 +1,7 @@
 import {PrismaService} from "@graduates/api/shared/services/prisma/data-access";
 import {Injectable } from "@nestjs/common";
 import { CompanyRepresentative } from '@graduates/api/company-representative/api/shared/data-access'
-import { UserSocialMedia } from "@prisma/client";
+import { SocialMedia, UserSocialMedia } from "@prisma/client";
 
 @Injectable()
 export class CompanyRepresentativeRepository {
@@ -173,26 +173,14 @@ export class CompanyRepresentativeRepository {
     return this.returnRepObject(user.id, user.name, user.email, user.UserTag[0].tag, user.UserTag[2].tag, user.UserTag[1].tag, user.UserSocialMedia, user.UserLocation[0].location, user.UserContactNumber[0].number, user.UserExperience[0].experience)
   }
 
-  // Update Job Title
-  async updateRepBio(repId: string, newBio: string) {
-    return await this.prismaService.userProfile.update({
-      where: {
-        userId: repId,
-      },
-      data: {
-        bio: newBio
-      }
-    })
-  }
-
-  // Update Location
-  async updateRepLocation(repId: string, newLocation: string) {
-    return await this.prismaService.userLocation.update({
+  // Update Experience
+  async updateRepExprience(repId: string, newExperience: string) {
+    return await this.prismaService.userExperience.update({
       where: {
         userId: repId
       },
       data: {
-        location: newLocation
+        experience: newExperience
       }
     })
   }
@@ -209,17 +197,64 @@ export class CompanyRepresentativeRepository {
     })
   }
 
-  // Update Experience
-  async updateRepExprience(repId: string, newExperience: string) {
-    return await this.prismaService.userExperience.update({
+  // Update Location
+  async updateRepLocation(repId: string, newLocation: string) {
+    return await this.prismaService.userLocation.update({
       where: {
         userId: repId
       },
       data: {
-        experience: newExperience
+        location: newLocation
       }
     })
   }
+
+  async updateRepEmail(repId: string, newEmail: string) {
+    return await this.prismaService.user.update({
+      where: {
+        id: repId
+      },
+      data: {
+        email: newEmail
+      }
+    })
+  }
+
+  async updateSocial(repId: string, socialType: string, newAccount: string) {
+    let t: SocialMedia;
+    if (socialType == "TWITTER") {
+      t = SocialMedia.TWITTER;
+    }
+    else if (socialType == "INSTAGRAM") {
+      t = SocialMedia.INSTAGRAM;
+    }
+    else if (socialType == "LINKEDIN") {
+      t = SocialMedia.LINKEDIN;
+    }
+    else if (socialType == "FACEBOOK") {
+      t = SocialMedia.FACEBOOK;
+    }
+    else if (socialType == "SNAPCHAT") {
+      t = SocialMedia.TWITTER;
+    }
+    else {
+      t = SocialMedia.TWITTER;
+    }
+
+    return await this.prismaService.userSocialMedia.updateMany({
+      where: {
+        userId: repId,
+        type: t
+      },
+      data: {
+        link: newAccount
+      }
+    })
+  }
+
+  
+
+  
 
   async user(repId: string, repEmail: string, repPassword: string, repName: string, tags: string[], socials: string[], newLoc: string, newContact: string, newExp: string ) {
     const existing_user = await this.prismaService.user.findUnique({

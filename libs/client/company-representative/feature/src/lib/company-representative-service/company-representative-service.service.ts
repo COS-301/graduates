@@ -40,8 +40,7 @@ export class CompanyRepresentativeService {
     return this.httpClient.post<any>('http://localhost:3333/graphql',JSON.stringify({ query: query }), options);
   }
 
-  upload(file: any, userID: string) {
-    if (this.download(userID, "Image") == null) {
+  upload(file: any, userID: string) {   
       let base64data;
         const fileReaderInstance = new FileReader();
         fileReaderInstance.readAsDataURL(file); 
@@ -71,7 +70,6 @@ export class CompanyRepresentativeService {
           }
         });
         const res = {res:"Could not Upload"}
-      } 
     }
   }
 

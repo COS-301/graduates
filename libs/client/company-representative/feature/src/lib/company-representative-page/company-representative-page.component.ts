@@ -31,11 +31,13 @@ export class CompanyRepresentativePageComponent {
   constructor(private _router: Router, private API : CompanyRepresentativeService) {
     if (localStorage.getItem("id") != null) {
       this.id = localStorage.getItem("id") as string;
-      // this.displayImage();
     }
     else if (this._router.getCurrentNavigation() != null) {
       this.id = this._router.getCurrentNavigation()?.extras?.state?.['id'];
     }
+  
+      this.displayImage();
+
     this.result = this.API.getCompanyRepresentative(this.id).subscribe({
       next: (item) => {
         if (item){
@@ -60,6 +62,11 @@ export class CompanyRepresentativePageComponent {
    }
 
   uploadImage(event: any) {
+    console.log("In uploadImage");
+    if (this.API.download(this.id, "Image") === null ) {
+      console.log("Unfortunately, an image already works");
+      this.API.delete(this.id, "Image");
+    }
     this.API.upload(event.target.files[0], this.id);
     this.displayImage();
   }
@@ -68,7 +75,7 @@ export class CompanyRepresentativePageComponent {
     this.API.download(this.id, "Image").subscribe({
       next: (item) => {
         if (item) {
-          console.log("Yah neh");
+          console.log("In displayImage");
           this.profilePicture = item.data.download;
         }
       }
