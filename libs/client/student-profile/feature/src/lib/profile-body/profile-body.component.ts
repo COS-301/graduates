@@ -11,25 +11,22 @@ import {ActivatedRoute, Router } from '@angular/router';
 export class ProfileBodyComponent implements OnInit {
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
-  // studentObj: any;
+  studentObj: any;
 
   constructor(private apiCaller: ApiStudentProfileService, private route: ActivatedRoute, private router: Router) { 
-    // this.studentObj = null;
+    this.studentObj = null;
   }
 
   ngOnInit(): void {
-  //   this.apiCaller.getStudentDetails().subscribe((data) => {
-  //     if(data.data.student != null) {
-  //       this.studentObj = data.data.student;
-  //     }
-  //     else {
-  //       //redirect
-  //       this.router.navigateByUrl('/not-found');
-  //     }
-  //   });
+    this.apiCaller.getStudentDetails().subscribe((data) => {
+      if(data.data.student != null) {
+        this.studentObj = data.data.student;
+      }
+      else {
+        this.router.navigateByUrl('/not-found');
+      }
+    });
 
-  //   console.log(this.route.snapshot.paramMap.get("id"));
-  // }
-
-  } 
+    console.log(this.route.snapshot.paramMap.get("id"));
+  }
 }
