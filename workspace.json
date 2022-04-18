@@ -3,6 +3,7 @@
   "projects": {
     "api": "apps/api",
     "api-access-status-api--feature": "libs/api/access-status/api/feature",
+    "api-access-status-api-shared": "libs/api/access-status/api/shared",
     "api-access-status-repository-feature": "libs/api/access-status/repository/feature",
     "api-access-status-service-feature": "libs/api/access-status/service/feature",
     "api-adminconsole-api-feature": "libs/api/adminconsole/api/feature",
@@ -85,6 +86,7 @@
     "client-e2e": "apps/client-e2e",
     "client-example-feature": "libs/client/example/feature",
     "client-notifications-feature": "libs/client/notifications/feature",
+    "client-request-for-access-feature": "libs/client/request-for-access/feature",
     "client-shared-assets-ui": "libs/client/shared/assets/ui",
     "client-shared-components-buttons-ui": "libs/client/shared/components/buttons/ui",
     "client-shared-components-dropdown-ui": "libs/client/shared/components/dropdown/ui",
@@ -99,7 +101,6 @@
     "client-student-explore-feature": "libs/client/student-explore/feature",
     "client-student-profile-feature": "libs/client/student-profile/feature",
     "client-student-requests-feature": "libs/client/student-requests/feature",
-    "client-request-for-access-feature": "libs/client/request-for-access/feature",
     "client-student-responses-feature": "libs/client/student-responses/feature",
     "client-upintegration": "libs/client/upintegration"
   }
