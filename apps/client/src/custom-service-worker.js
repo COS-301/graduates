@@ -1,20 +1,44 @@
-/* eslint-disable no-undef */
+
 /**
  * Team: Javascript
- * @todo: open a database (indexedDB)
- *          *create and then open the database if it doesn't exist.
- *        create an objectstore (this will behave like a collection in the database)
- *        
- *        IndexedDB operations are asynchronous (account for that in the function calls)
- *        
- *        
- * Specs: Offline requirements
- *      -ngsw cannot handle 'POST' requests
- *      - A secondary service worker was created to handle POST requests specifically from '/graphql(/)?'
- *      - An indexedDB database is used to store the POST request responses
- *          * using the original process for indexedDB gave us a lot of problems so we used a library instead
+ * @version 1.0.0
+ * @details Graphql is used throughout the whole website -as specified by the Project Owners
+ *          in the Technology specifications- to retrieve and handle API calls required by 
+ *          the various web pages. Graphql makes use of the 'POST' method in its request line.
+ *          This property conflicts with the capabilities of the angular service worker as the ngsw 
+ *          was designed to only handle 'GET' requests. As the PWA Team one of our functional
+ *          requirements is to ensure the offline capabilities of website.
  * 
+ * //Solution//     
+ * @details A secondary service worker is required to handle the chaing of 'POST' requests.
+ *          IndexedDB is a proposed solution in this regard. IndexedDB allows for the caching
+ *          of whole responses as JSON objects regardless of the parameters. 
+ *            
+ *  
+ * @todo: open a database (indexedDB)
+ *        *create and then open the database if it doesn't exist.
+ *        *create an objectstore (this will behave like a collection in the database)
+ *        *in order to start operations on the database, transactions need to be created on the objectstore
+ *        *IndexedDB operations are asynchronous (account for that in the function calls)
+ * 
+ * @todo: listen for 'POST' requests from /graphql(/)? and then insert the response from the request into the 
+ *        indexedDB
+ *        
+ *        
+ * @details Specs: Offline requirements
+ *             -ngsw cannot handle 'POST' requests
+ *             - A secondary service worker was created to handle POST requests specifically from '/graphql(/)?'
+ *             - An indexedDB database is used to store the POST request responses
+ *                 * using the original process for indexedDB gave us a lot of problems so we used a library instead
+ * 
+ * @fn staleWhileRevalidate()
+ * @fn serResp()
+ * @fn insertIndexedDB()
+ * @fn getPostKey()
+ * @fn getCachedIndexedDB()
  */
+
+
 
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.6.1/workbox-sw.js');
 //import the sha256 library

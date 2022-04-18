@@ -64,25 +64,37 @@ export class StorageRepository {
    const file_category = data.fileCategory;
    const file_name = u_id+file_category;
    
-   //send file to firebase
-   await this.firebaseService.getURLByName(file_name, FirebaseFolders.Files)
-      .then( async (value) => {
-        if(value==null)
-        await this.firebaseService.uploadAsBase64String(data.fileAsString,file_name,FirebaseFolders.Files);
-        else
-        console.error('User already has this document');
-        return null;
-      });
-    
-   const file_ext = data.fileExtension;
-   
-   //add file to database along with link to firebase storage
-   const file = await this.prismaService.userProfileFile.create({
-    data: { userId: u_id,
-            fileCategory: file_category,
-            filePath: 'Files/'+file_name,
-            fileExtension: file_ext },
-    })
+   let file = null;
+   await this.determineFirebaseFolder(file_category).then(async (folder) => {
+      if(folder)
+      {
+        
+        await this.firebaseService.getURLByName(file_name, folder)
+            .then( async (value) => {
+
+              if(value==null)
+              {
+
+              //send file to firebase
+              await this.firebaseService.uploadAsBase64String(data.fileAsString,file_name,folder);
+
+              const file_ext = data.fileExtension;
+        
+              //add file to database along with link to firebase storage
+              file = await this.prismaService.userProfileFile.create({
+                data: { userId: u_id,
+                        fileCategory: file_category,
+                        filePath: folder+'/'+file_name,
+                        fileExtension: file_ext },
+                })
+              }
+              else
+              console.error('User already has this document');
+              
+            });
+      }
+    }
+   );
    return file;
   }
 
@@ -102,6 +114,7 @@ export class StorageRepository {
     );
 
     let size = 0;
+
     //delete in database
     await this.prismaService.userProfileFile.deleteMany({
       where: {
@@ -132,6 +145,7 @@ export class StorageRepository {
     );
 
     let size = 0;
+    
     //delete in database
     await this.prismaService.userProfileFile.deleteMany({
       where: {
@@ -145,8 +159,28 @@ export class StorageRepository {
   }
 
   async updateUserFile(u_id:string,file_category:FileCategory,fileAsBase64:string){
-    this.firebaseService.deleteByFilePath('Files/'+u_id+file_category);
-    this.firebaseService.uploadAsBase64String(fileAsBase64,u_id+file_category,FirebaseFolders.Files);
+
+    await this.determineFirebaseFolder(file_category).then(async (value) => {
+      if(value)
+      {
+        this.firebaseService.deleteByFilePath(value+'/'+u_id+file_category);
+        this.firebaseService.uploadAsBase64String(fileAsBase64,u_id+file_category,value);
+      }
+    })
+    
+  }
+
+   async determineFirebaseFolder(file_category:FileCategory): Promise<FirebaseFolders|null>{
+    if(file_category==='CV' || file_category ==='DEGREE' || file_category ==='ACADEMIC_RECORD')
+    return FirebaseFolders.Files;
+    if(file_category==='PROFILE_PHOTO')
+    return FirebaseFolders.ProfilePhotos;
+    else
+    {
+    console.error('File Category not accepted');
+    return null;
+    }
+
   }
 
   }
