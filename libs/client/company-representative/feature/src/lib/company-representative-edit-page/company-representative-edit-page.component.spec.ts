@@ -7,7 +7,7 @@ import { CompanyRepresentativeEditPageComponent } from './company-representative
 import { HttpClientModule } from '@angular/common/http';
 import { ApolloModule } from 'apollo-angular';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('CompanyRepresentativeEditPageComponent', () => {
   let component: CompanyRepresentativeEditPageComponent;
@@ -15,7 +15,7 @@ describe('CompanyRepresentativeEditPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule,MatIconModule,MatCardModule,MatButtonModule,MatMenuModule,FormsModule,HttpClientModule,ApolloModule],
+      imports: [ReactiveFormsModule,RouterTestingModule,MatIconModule,MatCardModule,MatButtonModule,MatMenuModule,FormsModule,HttpClientModule,ApolloModule],
       declarations: [ CompanyRepresentativeEditPageComponent ]
     })
     .compileComponents();
