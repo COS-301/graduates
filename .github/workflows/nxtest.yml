@@ -84,6 +84,7 @@ jobs:
       - uses: codecov/codecov-action@v2
         if: inputs.test == 'all' 
         with:
+        # To be relaced by orginization token in github secrets
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/lcov.info
           name: cypress-jest # optional
