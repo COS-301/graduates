@@ -25,28 +25,32 @@ export class CompanyRepresentativePageComponent{
   snapchat = "NA";
   github = "NA";
   result = <any>observable;
+  id = "";
   constructor(private _router: Router, private API : CompanyRepresentativeServiceService) { 
-    this.result = this.API.getCompanyRepresentative("c1234").subscribe({
-      next: (item) => {
-        if (item){
-          this.name = item.data.getCompanyRepresentative.repName;
-          this.jobTitle = item.data.getCompanyRepresentative.jobTitle;
-          this.experience = item.data.getCompanyRepresentative.repExperience;
-          this.about = item.data.getCompanyRepresentative.aboutMe;
-          this.number = item.data.getCompanyRepresentative.phoneNumber;
-          this.location = item.data.getCompanyRepresentative.location;
-          this.email = item.data.getCompanyRepresentative.email;
-          this.website = item.data.getCompanyRepresentative.website;
-          this.linkedin = item.data.getCompanyRepresentative.linkedIn;
-          this.twitter = item.data.getCompanyRepresentative.twitter;
-          this.instagram = item.data.getCompanyRepresentative.instagram;
-          this.facebook = item.data.getCompanyRepresentative.facebook;
-          this.snapchat = item.data.getCompanyRepresentative.snapChat;
-          this.github = item.data.getCompanyRepresentative.gitHub;
-        }
-      },
-      error: (err) => { console.log(err); }
-    });
+    if (this._router.getCurrentNavigation() != null) {
+      this.id = this._router.getCurrentNavigation()?.extras?.state?.['id'];
+      this.result = this.API.getCompanyRepresentative(this.id).subscribe({
+        next: (item) => {
+          if (item){
+            this.name = item.data.getCompanyRepresentative.repName;
+            this.jobTitle = item.data.getCompanyRepresentative.jobTitle;
+            this.experience = item.data.getCompanyRepresentative.repExperience;
+            this.about = item.data.getCompanyRepresentative.aboutMe;
+            this.number = item.data.getCompanyRepresentative.phoneNumber;
+            this.location = item.data.getCompanyRepresentative.location;
+            this.email = item.data.getCompanyRepresentative.email;
+            this.website = item.data.getCompanyRepresentative.website;
+            this.linkedin = item.data.getCompanyRepresentative.linkedIn;
+            this.twitter = item.data.getCompanyRepresentative.twitter;
+            this.instagram = item.data.getCompanyRepresentative.instagram;
+            this.facebook = item.data.getCompanyRepresentative.facebook;
+            this.snapchat = item.data.getCompanyRepresentative.snapChat;
+            this.github = item.data.getCompanyRepresentative.gitHub;
+          }
+        },
+        error: (err) => { console.log(err); }
+      });
+    } 
    }
 
   navigateToLogin() {
