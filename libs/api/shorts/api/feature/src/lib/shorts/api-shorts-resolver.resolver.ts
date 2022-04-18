@@ -101,7 +101,10 @@ export class ShortsResolver {
   async getShortsByTag(@Args('tagId') tagId: string): Promise<Short[]> {
     return await this.service.findShortsByTag(tagId);
   }
-
+  @Query(() =>String) 
+  pingShorts(){
+    return "on";
+  }
   /**
    * Mutation to create a short
    * @param {ShortCreateInput} short The short to create

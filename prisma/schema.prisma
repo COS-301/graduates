@@ -378,6 +378,27 @@ model UserToken {
 }
 
 
+<<<<<<< HEAD
+=======
+//Requesting for access to a specific permission
+model Requested {
+  RequestId String @id @default(cuid())
+  StudId String @default(cuid())
+  CompId String  @default(cuid())
+  ItemId Item
+  Accepted Boolean
+}
+
+//Item to request for access
+enum Item {
+  ACADEMIC_RECORD
+  CV
+  TRANSCRIPT
+  CERTIFICATE
+  CAPSTONE_PROJECT
+}
+
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
 ///////////////////////////////////////////////////////////////////////
 // Tests
 ///////////////////////////////////////////////////////////////////////
@@ -400,8 +421,7 @@ model UserContactNumber {
 model UserExperience {
   userId      String @id  @map("user_id")
   experience  String
-
+  
   user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_experience")
 }
-

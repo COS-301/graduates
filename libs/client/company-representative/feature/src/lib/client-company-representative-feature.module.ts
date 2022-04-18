@@ -11,17 +11,30 @@ import { CompanyRepresentativeRoutingModule } from "./company-representative-rou
 import { CompanyRepresentativeExploreComponent } from './company-representative-explore/company-representative-explore.component';
 import { CompanyRepresentativeMockStudentExplorePageComponent } from './company-representative-mock-student-explore-page/company-representative-mock-student-explore-page.component';
 import { MatButtonModule } from '@angular/material/button';
+<<<<<<< HEAD
 import { CompanyRepresentativeEditPageComponent } from './company-representative-edit-page/company-representative-edit-page.component';
 import { CompanyRepresentativeEditTitleComponent } from './company-representative-edit-page/company-representative-edit-title/company-representative-edit-title.component';
 import { CompanyRepresentativeEditExperienceComponent } from './company-representative-edit-page/company-representative-edit-experience/company-representative-edit-experience.component';
 import { CompanyRepresentativeEditAboutComponent } from './company-representative-edit-page/company-representative-edit-about/company-representative-edit-about.component';
 import { CompanyRepresentativeEditContactComponent } from './company-representative-edit-page/company-representative-edit-contact/company-representative-edit-contact.component';
+=======
+import { MatMenuModule } from '@angular/material/menu';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CompanyRepresentativeEditPageComponent } from './company-representative-edit-page/company-representative-edit-page.component';
+import { MatIconModule } from '@angular/material/icon';
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
 
 @NgModule({
   imports: [
     CommonModule,
+    MatIconModule,
     MatCardModule,
     MatButtonModule,
+<<<<<<< HEAD
+=======
+    MatMenuModule,
+    ReactiveFormsModule,
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
     CompanyRepresentativeRoutingModule
   ],
   declarations: [

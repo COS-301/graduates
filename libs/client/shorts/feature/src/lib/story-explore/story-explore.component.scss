@@ -19,6 +19,18 @@
     // display: block;
 }
 
+header-and-footer-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+#pageNavi {
+    position: absolute;
+    bottom: 15vh;
+    width: 100%;
+}
+
 #cardHeader{
     padding-top: 2px;
 }
@@ -46,6 +58,8 @@
     }   
     
 }
+
+
 
 .cardbutton-nohov {
     font-size: medium;
@@ -103,6 +117,7 @@
     transform: translate(-50%, -50%);
     // width: 50vw;
     color: $text-white;
+    z-index: 99 !important;
 }
 
 #uploadbanner {
@@ -138,6 +153,16 @@
 
 .hint {
     color: #888888;
+}
+
+.size {
+    height: 200px;
+    width: auto;
+    background-color: pink;
+}
+
+.uploadcontainer {
+    z-index: 99 !important;
 }
 
 #greyline {
@@ -185,15 +210,44 @@
     border-width: 1px;
     border-color: $card-red;
     &:hover{
-        color: $primary-1;
+        color: $card-red;
         background-color: $background-white;
 
     }   
 }
 
+.formbuttonDisabled {
+    border-style: solid;
+    border-width: 1px;
+    border-color: $card-red;
+
+    color: $card-red;
+    background-color: $background-white;
+
+ 
+}
+
+.formbuttonBlueDisabled {
+    border-style: solid;
+    border-width: 1px;
+    border-color: $primary-1;
+
+    color: $primary-1;
+    background-color: $background-white;
+
+ 
+}
+
 .auto-col-maker {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+}
+
+@media (max-width: 500px) {
+    .auto-col-maker {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
 }
 
 .test {
@@ -205,10 +259,18 @@
 .centindiv {
     display: flex;
     justify-content: center;
+
 }
 
 .grid-container {
+<<<<<<< HEAD
     width: 100vw;;
+=======
+    width: 100%;
+    min-height: 100vh;
+    padding-bottom: 20vh;
+
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
 }
 
 
@@ -220,6 +282,7 @@
     transform: translateX(-1.5vw);
 }
 
+<<<<<<< HEAD
 
 #wholepage {
     position: relative;
@@ -231,3 +294,5 @@
 #content-wrap {
     padding-bottom: 10vh;
 }
+=======
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef

@@ -6,9 +6,111 @@
     <graduates-company-representative-edit-about></graduates-company-representative-edit-about>
     <graduates-company-representative-edit-contact></graduates-company-representative-edit-contact>
     <mat-card>
+<<<<<<< HEAD
         <!-- Both buttons should redirect back to homepage with updated data! -->
         <button class="return">Return</button>
         <input type="submit">
     </mat-card>
+=======
+      <!-- Experience start -->
+      <div>
+        <mat-card class="experience">
+          <div>
+            <h1><b>Experience</b></h1>
+          </div>
+            <div>
+              <h2><b><textarea name="experience">{{experience}}</textarea></b></h2>
+            </div>
+          </mat-card>
+        </div>
+        <!-- Experience end -->
+        <!-- About start -->
+        <div>
+          <mat-card class="about">
+            <div>
+              <h1><b>About Me</b></h1>
+            </div>
+            <div>
+              <h2><b><textarea name="about">{{about}}</textarea></b></h2>
+            </div>
+          </mat-card>
+        </div>
+        <!-- About end -->
+        <!-- Contact start -->
+        <div>
+          <mat-card class="contact">
+            <div class="contacttitle">
+              <h1><b>Contact</b></h1>
+            </div>
+            <div class="left">
+              <h2><b>Number</b></h2>
+            </div>
+            <div class="right">
+              <h2><input type="text" id="number" name="number" value="{{number}}"></h2>
+            </div>
+            <div class="left">
+              <h2><b>Location</b></h2>
+            </div>
+            <div class="right">
+              <h2><input type="text" id="location" name="location" value="{{location}}"></h2>
+            </div>
+            <div class="left">
+              <h2><b>Email</b></h2>
+            </div>
+            <div class="right">
+              <h2><input type="text" id="email" name="email" value="{{email}}"></h2>
+            </div>
+            <div class="left">
+              <h2><b>Website</b></h2>
+            </div>
+            <div class="right">
+              <h2><input type="text" id="website" name="website" value="{{website}}"></h2>
+            </div>
+            <div class="left">
+              <h2><b>LinkedIn</b></h2>
+            </div>
+            <div class="right">
+              <h2><input type="text" id="linkedin" name="linkedin" value="{{linkedin}}"></h2>
+            </div>
+            <div class="left">
+              <h2><b>Twitter</b></h2>
+            </div>
+            <div class="right">
+              <h2><input type="text" id="twitter" name="twitter" value="{{twitter}}"></h2>
+            </div>
+            <div class="left">
+              <h2><b>Instagram</b></h2>
+            </div>
+            <div class="right">
+              <h2><input type="text" id="instagram" name="instagram" value="{{instagram}}"></h2>
+            </div>
+            <div class="left">
+              <h2><b>Facebook</b></h2>
+            </div>
+            <div class="right">
+              <h2><input type="text" id="facebook" name="facebook" value="{{facebook}}"></h2>
+            </div>
+            <div class="left">
+              <h2><b>Snapchat</b></h2>
+            </div>
+            <div class="right">
+              <h2><input type="text" id="snapchat" name="snapchat" value="{{snapchat}}"></h2>
+            </div>
+            <div class="left">
+              <h2><b>github</b></h2>
+            </div>
+            <div class="right">
+              <h2><input type="text" id="github" name="github" value="{{github}}"></h2>
+            </div>
+          </mat-card>
+        </div>
+        <!-- Contact end -->
+        <!-- Buttons start -->
+        <button class="return" (click)="navigateToHome()">Return</button>
+        <input id="submit" class="submit" type="submit">
+        <!-- Buttons end -->
+      </mat-card>
+      <!-- Inputs end -->
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef
     </form>
 </mat-card>

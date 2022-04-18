@@ -1,6 +1,20 @@
+ <header-and-footer-header></header-and-footer-header>
 
 <div class="banner" fxLayout="row" fxLayoutAlign="center">
     <graduates-company-explore-banner></graduates-company-explore-banner>
 </div>
+
 <graduates-company-explore-operations-bar></graduates-company-explore-operations-bar>
+<<<<<<< HEAD
 <graduates-company-explore-content></graduates-company-explore-content>
+=======
+        
+<div *ngIf="isMobile, else elseBlock">
+    <graduates-company-explore-mobile-content [companies]="companies"></graduates-company-explore-mobile-content>
+</div>
+ <ng-template #elseBlock>
+        <graduates-company-explore-content [companies]="companies"></graduates-company-explore-content>
+</ng-template>
+
+<header-and-footer-footer></header-and-footer-footer>
+>>>>>>> b245fc005d0796b73a2d7ec614ea53136f01ceef

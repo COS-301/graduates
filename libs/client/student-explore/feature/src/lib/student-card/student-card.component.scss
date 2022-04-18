@@ -1,8 +1,59 @@
+@import "../../../../../shared/assets/ui/src/lib/global.scss";
+
+/*=============================================FONTS=============================================*/
+$Segoe: 'Segoe UI';
+
+.card-grid{
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+
+  width: min(95%, 70rem);
+  margin-inline: auto;
+  padding-bottom: 5em;
+}
+
+//Media queries to adjust grid
+@include desktop{
+  .card-grid{
+    display: grid;
+    gap: 5rem;
+    grid-template-columns: repeat(3, 1fr);
+  
+    width: min(95%, 70rem);
+    margin-inline: auto;
+  }
+}
+
+@include tablet{
+  .card-grid{
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: repeat(2, 1fr);
+  
+    width: min(95%, 70rem);
+    margin-inline: auto;
+  }
+}
+
+@include phone{
+  .card-grid{
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: repeat(1, 1fr);
+  
+    width: min(95%, 70rem);
+    margin-inline: auto;
+  }
+}
+
 mat-card {
   padding: 0;
   margin: 0;
   height: 100%;
-  width: 100%;
+  width: 340px;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -42,7 +93,7 @@ div.content mat-card-actions button {
 
 div.content mat-card-actions button:hover {
   background-color: #fff;
-  color: #174372;
+  color: $primary-1;
 }
 
 div.banner img {
@@ -51,4 +102,50 @@ div.banner img {
   object-fit: cover;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+}
+
+
+/*============================================SEARCH BAR STYLING============================================*/
+
+div#searchBar
+{
+  /*background-color: red;*/
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 60%;
+
+  font-family: $Segoe;
+  font-size: 18px;
+  color: #7D7D7D;
+  font-style: normal;
+  font-weight: 400;
+}
+
+div#searchBar mat-form-field
+{
+  /*background-color: blue;*/
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 100%;
+}
+
+div#searchBar mat-form-field input
+{
+  line-height: 24px;
+
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+
+  background-color: $text-white;
+}
+
+/*============================================FILTER ICON STYLING===========================================*/
+
+div#filter
+{
+  position: absolute;
+  left: 2%;
+  top: 22.5%;
 }
