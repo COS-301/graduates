@@ -1,5 +1,4 @@
 <!-- header from shared -->
-<div><header-and-footer-header></header-and-footer-header></div>
 
 <div class="wholepagecontent" id="wholepage">
 
@@ -7,6 +6,7 @@
   <div class="grid-container">
     
     <div id="content-wrap">
+      <header-and-footer-header></header-and-footer-header>
 
       <!-- page title -->
       <h1 class = "banner-text text-center pt-3 w-100">Student Shorts</h1>
@@ -43,7 +43,7 @@
     </div> 
 
     <!-- pager buttons -->
-    <div class="centindiv pager">
+    <div class="centindiv pager mt-5">
         <!-- Page Navigation -->
         <div>
           <button id ="prevBtn" disabled (click)="btnNaviClick(-1)" class=" px-4 py-2 formbuttonblue rounded">
@@ -57,6 +57,8 @@
           </button>
         </div>
     </div>
+
+    <header-and-footer-footer></header-and-footer-footer>
 
   </div>
 
@@ -219,5 +221,4 @@
   
 </div>
 
-  <header-and-footer-footer></header-and-footer-footer>
   <!-- footer from shared -->

@@ -47,7 +47,6 @@ export class StoryExploreComponent implements OnInit {
   submit = false;
   return : boolean;
 
-
   test! : any;
 
   viewing : boolean;
@@ -72,13 +71,8 @@ export class StoryExploreComponent implements OnInit {
   viewingName = "Ernest Wright";
   viewingTags = "#Design #IMY #COS #software";
 
-
-
   fileError = "File is required.";
   uploadedFile! : any;
-
-
-
 
   constructor(private apollo: Apollo ,private breakpointObserver: BreakpointObserver, f : FormBuilder, private location: Location) {
     this.upload = false;
@@ -91,7 +85,6 @@ export class StoryExploreComponent implements OnInit {
     this.reported = false;
     this.VideoFileBase64 = null;
     this.ThumbnailFileBase64 = null;
-
     this.fileuploadflag= true;
     this.thumbnailuploadflag = true;
   }
@@ -144,20 +137,43 @@ export class StoryExploreComponent implements OnInit {
     if (this.fileuploadflag) this.fileuploaderror = "A video file is required.";
     if (this.thumbnailuploadflag) this.thumbnailuploaderror = "An image file is required.";
     this.submit = true;
+
     if (this.ValidUpload()) {
+
+      //get Tag array:
+      const tags = this.getTagArray();
+      console.log(tags);
+
       //form is valid here, upload to the API:
       this.uploadShortToAPI().then(resp => {
         console.log(resp);
+
+        //here is for the response from the upload uploadShortToAPI() and to show success and to remove the loading symbol...
+
+        //this.VideoFile = the Video object uploaded
+        //this.ThumbnailFile = the Thumbnail object uploaded
+
+        //this.ThumbnailFileBase64 = Base64 of the Thumbnail
+        //this.VideoFileBase64 = Base64 of the Video
+
       })
 
     } 
 
   }
 
+
+  getTagArray() : any {
+    const s = this.uploadfrm.controls['tags'].value;
+    const output = s.split('#');
+    output.shift();
+    return output;
+  }
+
   uploadShortToAPI() {
     return new Promise((resolve, _) => {
-      //mutation to the API:
-      resolve('hi');
+      //mutation to the API for creating a short:
+      resolve('after API call sen response here');
     })
   }
 
@@ -169,6 +185,7 @@ export class StoryExploreComponent implements OnInit {
     return true;
   }
 
+  //Drunken code to push a base64 to a video tag on the screen...
   // console.log(resp);
   //     this.d1.nativeElement.insertAdjacentHTML('beforeEnd', `
   //       <video width="320" height="240" controls>
@@ -190,7 +207,6 @@ export class StoryExploreComponent implements OnInit {
 
   TagValidator(tags : FormControl) : {[valtype : string] : string} | null {
     const text = tags.value;
-    console.log(text);
     if (text.length == 0) return {'errormsg' : 'A tag is required.'}
     const re = /^(#(([a-z]|[0-9]|[A-Z]|_)+))+$/g;
     if (text.search(re)) return {'errormsg' : 'Please use example tag format.'}
