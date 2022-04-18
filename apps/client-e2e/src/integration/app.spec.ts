@@ -25,3 +25,33 @@ describe('client notifications testing', () => {
   });
 
 });
+
+
+/* Request for access */
+describe('Visit student-profile', () => {
+  cy.visit('http://localhost:4200/student-profile')
+
+  it('has the request for access buttons initialized', ()=> {
+4
+    cy.get("button[id='RA:2']").contains("Request");
+    cy.get("button[id='RA:3']").contains("Request");
+    cy.get("button[id='RA:4']").contains("Request");
+    //test api
+
+    //test db
+  });
+
+  it('changes to pending once clicked', () => {
+    cy.get("button[id='RA:0']").click();
+    cy.get("button[id='RA:0']").contains('Pending');
+  });
+
+  it('requests access using the API', () => {
+    cy.get("button[id='RA:1']").click();
+
+    cy.intercept({
+      url: 'localhost:3333/graphql',
+      method: 'POST'
+    }).as('requestAccess');
+  });
+})
