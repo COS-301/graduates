@@ -20,6 +20,12 @@ export class GetBlogByUserIdQuery {
     ) {}
 }
 
+export class GetNameByUserIdQuery {
+    constructor (
+        public readonly userId
+    ) {}
+}
+
 // Comments
 
 export class GetAllCommentsQuery {

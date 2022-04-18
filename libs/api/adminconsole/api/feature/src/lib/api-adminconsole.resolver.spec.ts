@@ -1,4 +1,4 @@
-import { ApiAdminConsoleServiceFeatureModule } from '@graduates/api/adminconsole/service/feature';
+/*import { ApiAdminConsoleServiceFeature} from '@graduates/api/adminconsole/service/feature';*/
 import { Test, TestingModule } from '@nestjs/testing';
 import { ApiAdminConsoleResolver } from './api-adminconsole.resolver';
 
@@ -7,7 +7,7 @@ describe('ApiAdminConsoleResolver', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ApiAdminConsoleResolver, ApiAdminConsoleServiceFeatureModule],
+      providers: [ApiAdminConsoleResolver, /*ApiAdminConsoleServiceFeature*/],
     }).compile();
 
     resolver = module.get<ApiAdminConsoleResolver>(ApiAdminConsoleResolver);

@@ -10,14 +10,14 @@
 </header>
 <div class="login-div">
 <mat-card class="login-card">
+  <h1>GRADUATE PORTAL LOGIN</h1>
   <form [formGroup]="formdata" (ngSubmit)="submit(formdata.value)">
     <label for="email"> Email: </label>
     <input type="email" class="inputCss required" formControlName="email" placeholder="Enter email..."/> <br> <br>
     <label for="password">Password: </label>
     <input type="password" class="inputCss" required formControlName="password" placeholder="Enter password..."/> <br> <br>
-    <a>Forgot Password?</a>
     <br>
-    <button class="btn btn-primary" type="submit">Login</button>
+    <button [disabled]="!formdata.valid" class="btn btn-primary" type="submit">Login</button>
   </form>
 </mat-card>
 </div>
