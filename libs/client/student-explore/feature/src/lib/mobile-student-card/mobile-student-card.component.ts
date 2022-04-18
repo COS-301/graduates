@@ -8,7 +8,7 @@ import { Component, OnInit} from '@angular/core';
 export class MobileStudentCardComponent implements OnInit {
 
   overlay=false;
-  public studentArray = [] as Array<Student>;
+  studentArray: Student[] = [];
 
   constructor() {
     //Do something
