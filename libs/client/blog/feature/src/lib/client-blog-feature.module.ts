@@ -21,6 +21,7 @@ import { BlogCreateComponent } from './blog-create/blog-create.component';
 import { BlogRoutingModule } from './blog-routing.module';
 import { HeaderModule } from './../../../../shared/components/header/src/lib/header.module';
 import { FooterModule } from './../../../../shared/components/footer/src/lib/footer.module';
+import { UiComponentNavbarModule } from './../../../../shared/components/navigationbar/ui/navbar/src/lib/ui-component-navbar.module';
 
 @NgModule({
 
@@ -41,7 +42,8 @@ import { FooterModule } from './../../../../shared/components/footer/src/lib/foo
     BlogRoutingModule,
     FlexLayoutModule,
     HeaderModule,
-    FooterModule
+    FooterModule,
+    UiComponentNavbarModule
   ],
   declarations: [
     BlogViewComponent,

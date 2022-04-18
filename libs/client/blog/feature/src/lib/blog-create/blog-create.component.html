@@ -3,20 +3,22 @@
     <meta name="component" content="Blog-Create" />
 </head>
 
-<div>
-    <header-and-footer-header></header-and-footer-header>
-</div>
+<!-- Header Component -->
+<header-and-footer-header></header-and-footer-header>
 
 <br>
 
+<!-- Full Page Styling -->
 <div class="page">
+    <!-- Headings for page -->
     <h1>UP Student Blog</h1>
     <h2>Editor</h2><br><br><br>
     <h3>Add New Post</h3>
 
-
+    <!-- Submission form to send input data to .ts -->
     <div class="input">
         <form (submit)="post()">
+            <!-- Form inputs -->
             <input [(ngModel)]="title" type="text" name="title" class="title" placeholder="Post Title" ngModel><br><br>
             <pre></pre>
             <textarea [(ngModel)]="content" type="text" name="content" class="content" placeholder="Post Content" rows="13" ngModel></textarea><br><br>
@@ -27,6 +29,5 @@
     </div>
 </div>
 
-<footer>
-    <header-and-footer-footer></header-and-footer-footer>
-</footer>
+<!-- Footer Component -->
+<header-and-footer-footer></header-and-footer-footer>

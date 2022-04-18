@@ -12,7 +12,7 @@ import { Apollo, gql } from 'apollo-angular';
   providers: [Apollo],
 })
 export class BlogExploreComponent implements OnInit {
-  loggedInUser = 'cl22973yc0037zsuu4yz7ah5g';
+  loggedInUser = 'cl24npfsm0019wwuuey6gdhfp';
   @Input() admin: boolean;
 
   newestFirstSort: boolean;

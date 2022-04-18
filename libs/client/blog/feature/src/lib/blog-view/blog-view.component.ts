@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params} from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Apollo, gql } from 'apollo-angular';
 
 @Component({
@@ -10,8 +10,10 @@ import { Apollo, gql } from 'apollo-angular';
 })
 export class BlogViewComponent implements OnInit {
   blogId: string | undefined;
-  loggedInUser = 'cl22973yc0037zsuu4yz7ah5g';
+  loggedInUser = 'cl24npfsm0019wwuuey6gdhfp';
   date!: Date;
+  comment!: string;
+
   blog = {
     title: 'string',
     content: 'string',
@@ -19,8 +21,17 @@ export class BlogViewComponent implements OnInit {
     date: new Date(),
   };
 
+  commentList = [
+    {
+      id: 'nothing',
+      blogId: 'No blog',
+      userId: 'No User',
+      content: 'Empty',
+      date: new Date(),
+    },
+  ];
+
   constructor(private apollo: Apollo, private activeRoute: ActivatedRoute) {
-    //Code
   }
 
   ngOnInit(): void {
@@ -28,7 +39,31 @@ export class BlogViewComponent implements OnInit {
       this.blogId = params['blogID'];
     });
     this.displayBlog(this.blogId);
+    this.diplayComments();
   }
+
+  // getName(userId: string): string {
+  //   if (!(this.apollo.client === undefined)) {
+  //     this.apollo
+  //       .watchQuery({
+  //         query: gql`
+  //         query {
+  //           nameByUserId(userId: "${userId}") {
+  //             title
+  //             content
+  //             userId
+  //             date
+  //           }
+  //         }
+  //         `,
+  //       })
+  //       .valueChanges.subscribe((results: any) => {
+  //         console.log(results);
+  //       });
+  //   }
+
+  //   return "";
+  // }
 
   displayBlog(blogID: string | undefined) {
     if (blogID === undefined) {
@@ -50,17 +85,60 @@ export class BlogViewComponent implements OnInit {
             `,
           })
           .valueChanges.subscribe((results: any) => {
-            console.log(results.data.blogById);
-            console.log(this.blog);
             this.blog = results.data.blogById;
             this.date = new Date(this.blog.date);
-            console.log(this.date);
           });
       }
     }
   }
 
-  return() {
+  diplayComments() {
+    if (!(this.apollo.client === undefined)) {
+      this.apollo
+        .watchQuery({
+          query: gql`
+            query {
+              commentsByBlogId(blogId: "${this.blogId}") {
+                id
+                blogId
+                userId
+                content
+                date
+              }
+            }
+          `,
+        })
+        .valueChanges.subscribe((results: any) => {
+          this.commentList = results.data.commentsByBlogId;
+        });
+    }
+  }
+
+  return(){
     window.open('/blog', '_self');
+  }
+
+  post() {
+    console.log(this.comment);
+    if (this.comment === undefined || this.comment === '') {
+      alert("Invalid Inputs")
+    } else {
+      if (!(this.apollo.client === undefined)) {
+        this.apollo
+          .mutate({
+            mutation: gql`
+            mutation {
+              createComment(blogId: "${this.blogId}", userId:"${this.loggedInUser}", content: "${this.comment}"){
+                content
+              }
+            }
+          `,
+          })
+          .subscribe((result) => {
+            alert("SUCCESS!!");
+          });
+      }
+      window.location.reload();
+    }
   }
 }

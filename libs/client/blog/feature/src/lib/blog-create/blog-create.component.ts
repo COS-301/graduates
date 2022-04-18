@@ -1,3 +1,4 @@
+//Status: Small Error
 import { Component } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 
@@ -8,18 +9,22 @@ import { Apollo, gql } from 'apollo-angular';
   providers: [Apollo],
 })
 export class BlogCreateComponent {
-  loggedInUser = 'cl22973yc0037zsuu4yz7ah5g';
-  title: string | undefined;
+  // Variable declarations
+  title!: string;
   content!: string;
+  loggedInUser: string;
 
   constructor(private apollo: Apollo) {
-    //CODE
+    // Mimic user logged in
+    this.loggedInUser = 'cl24npfsm0019wwuuey6gdhfp';
   }
 
+  // Return to blog-explore without creating a blog
   cancel() {
     window.open('/blog', '_self');
   }
 
+  // Create a new blog, add blog to database and return to blog-explore
   post() {
     console.log(this.content);
     //Fix NewLine Error ERROR GraphQLError: Syntax Error: Unterminated string.
@@ -30,7 +35,7 @@ export class BlogCreateComponent {
       this.title === '' ||
       this.content === ''
     ) {
-      alert("Invalid Inputs")
+      alert('Invalid Inputs');
     } else {
       if (!(this.apollo.client === undefined)) {
         this.apollo
@@ -45,7 +50,7 @@ export class BlogCreateComponent {
           `,
           })
           .subscribe((result) => {
-            alert("SUCCESS!!");
+            alert('SUCCESS!!');
           });
       }
       setTimeout(() => {

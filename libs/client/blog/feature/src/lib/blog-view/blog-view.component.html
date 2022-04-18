@@ -20,7 +20,7 @@
     <div class="output">
         <div class="title">{{blog.title}}</div><br>
         <div class="author">Author: {{blog.userId}}</div>
-        <div class="date">{{blog.date | date:'EEEE, MMMM d yyyy, h:mm'}}</div><br>
+        <div class="date">{{blog.date | date:'EEEE, MMMM d yyyy, hh:mm'}}</div><br>
         <hr><br>
         <div class="content">{{blog.content}}</div><br>
     </div>
@@ -33,21 +33,17 @@
         <div class="commentDIV">
             <div class="commentTitle">Comments</div><br>
 
-            <div class="userComment">
-                <div class="username">Bob - </div>
-                <div class="viewComment">This is boring!!!</div>
-                <br>
+            <div *ngFor="let com of commentList">
+                <div class="userComment">
+                    <div class="username">{{com.userId}} - </div>
+                    <div class="viewComment">{{com.content}}</div>
+                    <br>
+                </div>
             </div>
 
-            <div class="userComment">
-                <div class="username">Liam - </div>
-                <div class="viewComment">Nice.</div>
-                <br>
-            </div>
-
-            <div class="username">Username</div>
-            <form>
-                <textarea type="text" name="comment" class="comment" placeholder="Add a comment" rows="3" ngModel></textarea><br><br>
+            <div class="username">{{loggedInUser}}</div>
+            <form (submit)="post()">
+                <textarea [(ngModel)]="comment" type="text" name="comment" class="comment" placeholder="Add a comment" rows="3" ngModel></textarea><br><br>
                 <pre></pre>
                 <div class="commentBut">
                     <button type="submit" class="formbutton" mat-raised-button color="accent">Post</button>
