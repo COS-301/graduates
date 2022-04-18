@@ -47,21 +47,21 @@ describe('ApiCompanyExploreResolver', () => {
    });
 
   /**
-   * Test the GetListOfComapnies method
+   * Test the GetListOfCompanies method
    */
-  describe('GetListOfComapnies', () => {
+  describe('GetListOfCompanies', () => {
     const result = [CompanyExploreMock];
     it('should return a list of Companies', async () => {
       jest
-        .spyOn(resolver, 'GetListOfComapnies')
+        .spyOn(resolver, 'GetListOfCompanies')
         .mockImplementation((): Promise<ApiCompanyExploreEntity[]> => Promise.resolve(result));
   
-        expect(await resolver.GetListOfComapnies).toMatchObject(CompanyExploreMock);
+        expect(await resolver.GetListOfCompanies).toMatchObject(CompanyExploreMock);
     });
     it('should return null', async () => {
-      jest.spyOn(resolver, 'GetListOfComapnies').mockResolvedValue(null);
+      jest.spyOn(resolver, 'GetListOfCompanies').mockResolvedValue(null);
   
-      expect(await resolver.GetListOfComapnies).toEqual(null);
+      expect(await resolver.GetListOfCompanies).toEqual(null);
     });
   });
 
