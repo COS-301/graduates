@@ -272,7 +272,7 @@ export class StudentCardComponent implements OnInit
         }`;
 
       //Employment Staus query
-      if(filt.type === "employment")
+      if(active_filters[i].type === "employment")
       {
         if(active_filters[i].filter_name === "Employed, Open to Offers")
         {
