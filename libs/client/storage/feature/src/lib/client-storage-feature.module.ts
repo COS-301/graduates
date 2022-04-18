@@ -17,6 +17,11 @@ import {InMemoryCache} from 'apollo-cache-inmemory';
 // import {  } from "module";
 import { HttpClientModule } from "@angular/common/http";
 
+//Shared Components
+import { HeaderModule } from '../../../../shared/components/header/src/lib/header.module'; 
+import { FooterModule } from '../../../../shared/components/footer/src/lib/footer.module'; 
+import { UiComponentNavbarModule } from '../../../../shared/components/navigationbar/ui/navbar/src/lib/ui-component-navbar.module';
+
 // adding material related modules 
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
@@ -39,6 +44,9 @@ export function createApollo(httpLink: HttpLink) {
     MatButtonModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
+    HeaderModule,
+    FooterModule,
+    UiComponentNavbarModule,
     RouterModule.forChild([
       /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
     ]),
