@@ -14,6 +14,7 @@ const UserPermissionsMock: jest.Mocked<UserPermissions> =
   new user_permissions();
 const UserroleMock: jest.Mocked<UserRole> = new User_role();
 const RolepermissionMock: jest.Mocked<RolePermissions> = new role_permissions();
+const stringMock: jest.Mocked<string> = new String();
 describe('ApiAuthorizationRepository', () => {
   let data: Adminauthorization;
   //const prisma = new PrismaService();
@@ -41,6 +42,18 @@ describe('ApiAuthorizationRepository', () => {
     ).toBe(null);
   });
   //console.log(call);
+  it('should find companyId return string', async () => {
+    jest
+      .spyOn(data, 'findCompanyid')
+      .mockImplementation(
+        (): Promise<string> =>
+          Promise.resolve(stringMock)
+      );
+
+    expect(
+      await data.findCompanyid('9')
+    ).toStrictEqual(stringMock);
+  });
   it('should add permission return UserPermissions', async () => {
     jest
       .spyOn(data, 'addUniquePermission')
