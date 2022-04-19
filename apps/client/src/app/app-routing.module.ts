@@ -4,10 +4,12 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: 'admin-console',
-    loadChildren: () => import('@graduates/client/adminconsole/feature').then(x => x.ClientAdminconsoleFeatureModule)
+    loadChildren: () =>
+      import('@graduates/client/adminconsole/feature').then(
+        (x) => x.ClientAdminconsoleFeatureModule
+      ),
   },
   {
-    
     path: 'example',
     loadChildren: () =>
       import('@graduates/client/example/feature').then((x) => x.FeatureModule),
@@ -75,13 +77,13 @@ const routes: Routes = [
         (x) => x.ClientStudentProfileFeatureModule
       ),
   },
-  /* {
+  /*{
     path: 'upintegration',
     loadChildren: () =>
       import('@graduates/client/upintegration/feature').then(
-        (x) => x.ClientUpintegrationModule
+        (x) => x.ClientUpintegrationFeatureModule
       ),
-  }, */
+  },*/
   {
     path: 'blog',
     loadChildren: () =>
@@ -91,8 +93,10 @@ const routes: Routes = [
   },
   {
     path: '',
-          loadChildren: () => import('@graduates/client/company-representative/feature').then(x => x.ClientCompanyRepresentativeFeatureModule),
-
+    loadChildren: () =>
+      import('@graduates/client/company-representative/feature').then(
+        (x) => x.ClientCompanyRepresentativeFeatureModule
+      ),
   },
   {
     path: 'storage',
