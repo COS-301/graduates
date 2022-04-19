@@ -138,7 +138,7 @@ export class ShortsResolver {
                 .then(async (res) => {
                   if (res) {
                     await this.fbService
-                      .getURLByName(vidName, FirebaseFolders.Videos)
+                      .getURLByName(thumbName, FirebaseFolders.Thumbnails)
                       .then(async (res) => {
                         thumbRef = res;
 
