@@ -14,14 +14,11 @@ export class ApiStudentProfilesInputEntity {
   @Field({ nullable: true })
   title?: string;
 
-  @Field({ nullable: true })
-  email?: string;
+  @Field(type => [String],{ nullable: true })
+  email?: string[];
 
-  @Field({ nullable: true })
-  phoneNum?: string;
-
-  @Field({ nullable: true })
-  dateOfBirth?: string;
+  @Field(type => [String],{ nullable: true })
+  phoneNum?: string[];
 
   @Field({ nullable: true })
   nameOfDegree?: string;

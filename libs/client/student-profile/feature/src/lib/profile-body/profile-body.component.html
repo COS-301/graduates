@@ -1,38 +1,64 @@
+<head>
+    <meta name="author" content="Cara Grobler" />
+    <meta name="component" content="Profile-Body" />
+    <title> Student Profile</title>
+</head>
 
 <!--Insert Header component here-->
+<div><header-and-footer-header></header-and-footer-header></div>
+<!-- <navbar-tabs-navigation-bar></navbar-tabs-navigation-bar> -->
 
-<!-- title component -->
-<graduates-title></graduates-title>
-
-<!-- degree component -->
-<graduates-degree></graduates-degree>
-
-<!-- employment-status component -->
-<graduates-employment-status></graduates-employment-status>
-  
-<!-- location component -->
-<graduates-location></graduates-location>
-
-<!-- user-info component -->
-<graduates-user-info></graduates-user-info>
-<div class="container">
+<!-- <div class="container" *ngIf="studentObj; else notFoundPage"> -->
+    <div class="container">
     <div class="section">
-       <!-- user-info component -->
+       
+        <!-- user-info component -->
+        <!-- <graduates-user-info [studentInfo]=studentObj></graduates-user-info> -->
         <graduates-user-info></graduates-user-info>
+
+        <!-- title component -->
+        <!-- <graduates-title [title]=studentObj></graduates-title> -->
+        <graduates-title></graduates-title>
+
+        <!-- degree component -->
+        <!-- <graduates-degree [degree]=studentObj></graduates-degree> -->
+        <graduates-degree></graduates-degree>
+
+        <!-- employment-status component -->
+        <!-- <graduates-employment-status [employStatus]=studentObj></graduates-employment-status> -->
+        <graduates-employment-status></graduates-employment-status>
+
+        <!-- location component -->
+        <!-- <graduates-location [location]=studentObj></graduates-location> -->
+       <graduates-location></graduates-location>
+       
         <!-- bio component -->
-        <graduates-bio></graduates-bio>
+        <!-- <graduates-bio [bio]=studentObj></graduates-bio> -->
+        <graduates-bio></graduates-bio> 
+
     </div>
     <div class="section">
-      <p> card here</p>
+        
+        <!-- profile-card componenet -->
+        <!-- <graduates-profile-card [name]=studentObj></graduates-profile-card> -->
+        <graduates-profile-card></graduates-profile-card>
+
     </div>
     <div class="section">
+        
         <!--Request for Access Component-->
         <graduates-request-for-access-feature></graduates-request-for-access-feature>
-        <!-- Achievements Component -->
-        <graduates-achievements></graduates-achievements>
         
+        <!-- Achievements Component -->
+        <!-- <graduates-achievements [achievements]=studentObj></graduates-achievements> -->
+        <graduates-achievements></graduates-achievements>
+
     </div>
 </div>
 
+<!-- <ng-template #notFoundPage>
+    <graduates-not-found></graduates-not-found>
+</ng-template> -->
 
 <!--Insert Footer component here-->
+<div><header-and-footer-footer></header-and-footer-footer></div>

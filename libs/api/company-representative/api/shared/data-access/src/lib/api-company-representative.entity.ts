@@ -46,4 +46,7 @@ export class CompanyRepresentative {
 
   @Field()
   website?: string;
+
+  @Field()
+  role!:  string;
 }
