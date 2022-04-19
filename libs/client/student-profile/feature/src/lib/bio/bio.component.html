@@ -1,13 +1,10 @@
-<mat-card>
+<mat-card *ngIf="bio">
     <mat-card-title color="primary">  BIO (Adding tags will make it easier for employers to find you) </mat-card-title>
     <mat-card-content>
-        <p> Growing up, I've always had an interest in computer science and found myself excelling in various fields of IT...</p>
+        <p> {{bio.bio}}</p>
         <mat-card-actions>
             <mat-chip-list aria-label="Tags">
-                <!-- <mat-chip *ngFor="let tag of bio.tags">{{tag}}</mat-chip> -->
-                <mat-chip>AI</mat-chip>
-                <mat-chip>Networking</mat-chip>
-                <mat-chip>Software Development</mat-chip>
+                <mat-chip *ngFor="let tag of bio.tags">{{tag}}</mat-chip>
               </mat-chip-list>
         </mat-card-actions>
     </mat-card-content>
