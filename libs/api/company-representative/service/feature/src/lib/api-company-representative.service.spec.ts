@@ -206,7 +206,7 @@ describe('ApiCompanyRepresentativeService', () => {
 
     UserExperience: {
       
-        experience: "Lol. None"
+        experience: "Lol. None."
       
     }
    }
