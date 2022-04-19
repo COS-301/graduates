@@ -212,7 +212,7 @@ export class StoryExploreComponent implements OnInit {
           mutation: gql`
                 mutation {
                   createShort(
-                      short: { description: "My short", archived: false, shortTag: [{tag: "${ tags }" }]},
+                      short: { description: "My short", archived: false, shortTag: ${ tags }},
                       userId: "123579", 
                       vidString: "${ vidFormat }", 
                       thumbString: "${ thumbFormat }", 
@@ -251,7 +251,20 @@ export class StoryExploreComponent implements OnInit {
     const s = this.uploadfrm.controls['tags'].value;
     const output = s.split('#');
     output.shift();
-    return output;
+
+    let out = "[";
+
+    for (let index = 0; index < output.length; index++) {
+      const element = output[index];
+      
+      out += '{tag: "' +element +'"},' ;
+      
+    }
+    for(const el of output){
+    }
+
+    out += "]";
+    return out;
   }
 
   ValidUpload() : boolean {
