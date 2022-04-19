@@ -6,7 +6,7 @@ export class CreateUserInput {
   id: number
      
   @Field()
-  username: string;
+  name: string;
 
   @Field()
   password: string;

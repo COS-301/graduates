@@ -1,0 +1,21 @@
+<form [formGroup]="loginForm">
+
+    <div class="header">Login to your account</div>
+  
+    <mat-form-field>
+      <input matInput type="email" id="email" placeholder="Email" autocomplete="off" formControlName="email" required>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <input matInput type="password" id="password" placeholder="Password" autocomplete="off" formControlName="password" required>
+    </mat-form-field>
+  
+    <div class="actions">
+      <button mat-flat-button color="primary" type="submit" (click)="login()" [disabled]="!loginForm.valid">Login</button>
+      <div class="separator">
+        <span>OR</span>
+      </div>
+      <button mat-stroked-button type="button" routerLink="/signup">Sign up</button>
+    </div>
+  
+  </form>

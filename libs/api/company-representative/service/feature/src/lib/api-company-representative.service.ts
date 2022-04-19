@@ -55,9 +55,9 @@ export class ApiCompanyRepresentativeService {
    * loaction
    */
 
-  async UpdateRepresentative(id:string,newData:string,type:string)
+  async UpdateRepresentative(representative: CompanyRepresentative)
   {
-    return this.commandBus.execute(new UpdateRepresentative(id,newData,type));
+    return this.commandBus.execute(new UpdateRepresentative(representative));
   }
 
   async createDefaultRepresentative(){
