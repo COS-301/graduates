@@ -1,10 +1,10 @@
-import { UsersService } from "./api-authentication-api.service";
+import { AuthService } from '@graduates/api/authentication/service/feature';
 import { Query, Resolver } from "@nestjs/graphql";
 import { AuthenticationUser } from "@graduates/api/authentication/api/shared/interfaces/data-access";
 
 @Resolver(of => AuthenticationUser)
 export class ApiAuthenticationResolver{
-    constructor(private apiauthenticationService: UsersService){}
+    constructor(private apiauthenticationService: AuthService){}
 
     // @Query(returns => [AuthenticationUser])
     // authentication(): Promise<AuthenticationUser[]>{

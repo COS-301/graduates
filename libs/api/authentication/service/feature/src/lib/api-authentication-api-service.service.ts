@@ -1,14 +1,15 @@
 import { forwardRef, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 import { create } from 'domain';
-import { CreateUserInput } from './auth/dto/create-user.input';
+import { CreateUserInput } from '../lib/commands/create-user.input';
 // import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
-import { RegisterCommand } from "@graduates/api/authentication/service/feature";
-import { LoginQuery } from "@graduates/api/authentication/service/feature";
+import { RegisterCommand } from "../lib/commands/RgisterCommand";
+import { LoginQuery } from "../lib/queries/LoginQuery";
+import { JwtService } from '@nestjs/jwt';
 // import { ApiAuthenticationApiSharedInterfacesDataAccessModule } from '../../../../service/feature/src/lib/api-authentication-api-service.module';
 
 @Injectable()
-export class UsersService {
+export class AuthService {
   
   // async getAll(): Promise<AuthenticationUser[]>{
   //   const authenticationuser = new AuthenticationUser();
@@ -19,6 +20,8 @@ export class UsersService {
   //   authenticationuser.dummy = "dummy";
 
   //   return [authenticationuser];
+
+  constructor(private jwtService: JwtService) {}
 
   private readonly users = [
   {
@@ -85,9 +88,27 @@ export class UsersService {
                 user: req.user
             } 
         }
-    }     
+    }   
 
+    async validateUser(name: string, password: string): Promise<any> {
+      // const user = await this.usersService.findOne(username);
+      const user = await this.findOne(name);
+
+
+      if (user && user.password === password){
+          const {password, ...result } =user;         //result contains the user object without the password
+          return result;
+      }
+      return null;
+  }
+
+  async login(user: AuthenticationUser){
     
+      return {
+          access_token: this.jwtService.sign({name:user.name, sub:user.id}),
+          user,
+      }
+  }
 }
 
   
