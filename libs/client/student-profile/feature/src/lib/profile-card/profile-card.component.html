@@ -4,7 +4,7 @@
          <a href="">
             <img id="profile-image" src="https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" alt="Profile Picture Not Found" />
          </a>
-         <p> Peter Parker </p>
+         <p *ngIf="name"> {{name.firstName}} {{name.lastName}} </p>
          <button mat-button id="btnEdit">
             <mat-icon> edit</mat-icon>
          </button>

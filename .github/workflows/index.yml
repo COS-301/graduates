@@ -3,7 +3,7 @@ name: CI Tests
 
 on: 
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main, develop, release/** ]
   #manual github action trigger with choices to run individual tests
   workflow_dispatch:
     inputs:
