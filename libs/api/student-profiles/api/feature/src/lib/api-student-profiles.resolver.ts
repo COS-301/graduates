@@ -12,7 +12,7 @@ export class ApiStudentProfileResolver {
   async getStudent(@Args('studentNum', { type: () => String }) id: string) {
     let dbId;
     // let dbId = this.studentService.GetUserIDFromStudentNumber(id);
-    if (id == 'u12345678') dbId = '1';
+    if (id == 'u12345678') dbId = 'cl27g0qq60000foflemqc8ax5';
     else dbId = null;
 
     if (dbId == null) return this.getMock();
@@ -34,7 +34,6 @@ export class ApiStudentProfileResolver {
     // Get email
     const e = await this.studentService.getEmails(dbId);
     studentObj.email = [];
-    console.log(e);
     for (let i=0; i<e.length; i++)
       studentObj.email.push(e[i].email);
     //Get title and degree
@@ -116,7 +115,7 @@ export class ApiStudentProfileResolver {
     }
 
     if (editStudentData.email != null && editStudentData.email[0] != '') {
-      for (let i = 0; i < editStudentData.email.length - 1; i++) {
+      for (let i = 0; i < editStudentData.email.length; i++) {
         if (studentObj.email == null) studentObj.email = [];
         studentObj.email.push(
           await this.addEmail(studentObj.dbId, editStudentData.email[i])
@@ -304,7 +303,7 @@ export class ApiStudentProfileResolver {
     const mockStudent = new ApiStudentProfilesEntity();
     mockStudent.dbId = '-1';
     mockStudent.firstName = 'John';
-    mockStudent.studentNum = 'u12345678';
+    mockStudent.studentNum = 'u19245784';
     mockStudent.lastName = 'Wick';
     mockStudent.dateOfBirth = '19/09/1999';
     mockStudent.phoneNum = ['0834521355'];
