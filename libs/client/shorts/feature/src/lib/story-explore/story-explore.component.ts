@@ -59,6 +59,7 @@ export class StoryExploreComponent implements OnInit {
   successfulUpload : boolean;
   reported : boolean;
   apifailure = "";
+  vidreset! : any;
 
   shortId = "cl22e308w0208hcvks42s959n";
   userId = "123579";
@@ -370,7 +371,8 @@ export class StoryExploreComponent implements OnInit {
       }
 
 
-      this.embedVideoToCard(selectedCard.link);;
+      this.vidreset = selectedCard.link;
+      this.embedVideoToCard(selectedCard.link);
 
       // add video to selected card
 
@@ -426,8 +428,7 @@ export class StoryExploreComponent implements OnInit {
   //==========================================================================================================================//
   cancelReport() {
     this.reporting = false;
-    this.viewing = true;
-    
+    this.viewing = false;
     this.reportfrm.reset();
   }
 
@@ -443,16 +444,55 @@ export class StoryExploreComponent implements OnInit {
   }
 
   //==========================================================================================================================//
-  // - Reason Validator 
+  // - Reason Validator & formatter
   //==========================================================================================================================//
+
+  reasonFormatter(text : string) : string {
+    let output = '';
+    for (let i = 0; i < text.length; i++) {
+      if (text.charAt(i) == '\n') {
+        output += ' ';
+        let currpos = i;
+        while (text.charAt(currpos) == '\n' && currpos < text.length) {
+          currpos++;
+        } //solve multiple endlines 
+        i = --currpos;
+      } else output += text.charAt(i);
+    }
+    console.log(output);
+    return output;
+  }
 
   reasonValidator(reason : FormControl) : {[valtype : string] : string} | null {
     const text = reason.value;
+    
     if (text == null) return null;
-    if (text.length > 256) return {'errormsg' : 'Characters limited to 256.'};
-    if (text.length == 0) return {'errormsg' : 'Report reason is required.'};
-    const spaceCounter = text.split(' ').length - 1;
-    if (spaceCounter < 4) return {'errormsg' : 'At least 5 words are required.'};
+
+    //linearize the reason:
+    let output = '';
+    for (let i = 0; i < text.length; i++) {
+      if (text.charAt(i) == '\n') {
+        output += ' ';
+        let currpos = i;
+        while (text.charAt(currpos) == '\n' && currpos < text.length) {
+          currpos++;
+        } //solve multiple endlines 
+        i = --currpos;
+      } else output += text.charAt(i);
+    }
+    // console.log(output);
+
+    if (output == null) return null;
+    if (output.length > 256) return {'errormsg' : 'Characters limited to 256.'};
+    if (output.length == 0) return {'errormsg' : 'Report reason is required.'};
+    const spaceCounter = output.split(' ').length - 1;
+    if (spaceCounter < 4) 
+      return {'errormsg' : 'At least 5 words are required.'};
+    else {
+      if (output.charAt(output.length - 1) == ' ') {
+        return {'errormsg' : 'At least 5 words are required.'};
+      }
+    }
     return null;
   }
 
@@ -479,7 +519,7 @@ export class StoryExploreComponent implements OnInit {
         .mutate ({
           mutation: gql`
           mutation {
-            reportShort(report: {shortId: "${ this.shortId }", reason: "${ reason }"}, userId: "${ this.userId }") {
+            reportShort(report: {shortId: "${ this.shortId }", reason: "${ this.reasonFormatter(reason) }"}, userId: "${ this.userId }") {
               shortId,
               userId,
               reason
@@ -490,14 +530,10 @@ export class StoryExploreComponent implements OnInit {
         .subscribe ((result) => {
           console.log(result.errors);
           console.log(result);
-          if (result.errors) {
-              this.apifailure = "Failed to report to the API.";
-          } else {
-            this.reportfrm.reset();
-            this.reported = false;
-            this.reporting = false;
-            this.successfulReport = true;
-          }
+          this.reportfrm.reset();
+          this.reported = false;
+          this.reporting = false;
+          this.successfulReport = true;
         });
 
 
