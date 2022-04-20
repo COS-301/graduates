@@ -9,7 +9,7 @@ export class ApiAuthorizationResolver {
   constructor(private authourizationService: ApiAuthorizationService) {}
 
   @Query((returns) => ApiAuthorization)
-  async authorization(@Args('id') id: string): Promise<ApiAuthorization> {
+  async authorization(@Args('id') id: string) {
   
     
     const authorizationObj = new ApiAuthorization();
@@ -33,7 +33,7 @@ export class ApiAuthorizationResolver {
 
     if((await this.authourizationService.GetViewPermidssions(id))!= null)
     {
-      authorizationObj.accessPermission = true;
+      authorizationObj.accessPermission = (await this.authourizationService.GetViewPermidssions(id)).accessPermission;
     }
     else
     {
@@ -42,7 +42,7 @@ export class ApiAuthorizationResolver {
 
     if((await this.authourizationService.GetEditPermidssions(id))!= null)
     {
-      authorizationObj.editPermission = true;
+      authorizationObj.editPermission = (await this.authourizationService.GetEditPermidssions(id)).editPermission;
     }
     else
     {
@@ -51,7 +51,7 @@ export class ApiAuthorizationResolver {
 
     if((await this.authourizationService.GetDeletePermidssions(id))!= null)
     {
-      authorizationObj.deletePermission = true;
+      authorizationObj.deletePermission = (await this.authourizationService.GetDeletePermidssions(id)).deletePermission;
     }
     else
     {

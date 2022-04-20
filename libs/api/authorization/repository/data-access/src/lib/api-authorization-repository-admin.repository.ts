@@ -64,22 +64,33 @@ export class Adminauthorization {
       const rolePermissions = await this.prisma.rolePermissions.findFirst({
         where: { role: role.role, permissionType: permissiontype },
       });
-      let returnitem:ApiAuthorization;
-      returnitem.userRole = role.role;
-      returnitem.companyId = await this.findCompanyid(id);
-      if(permissiontype == 'VIEW' && (userPermissions != null || rolePermissions != null))
+
+      
+      const companyId = await this.findCompanyid(id);
+      let accessPermission = false;
+      let editPermission = false;
+      let deletePermission = false;
+      if(permissiontype.equals == 'VIEW')
       {
-        returnitem.accessPermission = true;
+        if((userPermissions != null || rolePermissions != null))
+        {accessPermission = true;}
       }
-      if(permissiontype == 'REMOVE' && (userPermissions != null || rolePermissions != null))
+      if(permissiontype.equals == 'REMOVE' )
       {
-        returnitem.deletePermission = true;
+        if(userPermissions != null || rolePermissions != null)
+        {deletePermission = true;}
       }
-      if(permissiontype == 'EDIT' && (userPermissions != null || rolePermissions != null))
+      if(permissiontype.equals == 'EDIT')
       {
-        returnitem.editPermission = true;
+        if((userPermissions != null || rolePermissions != null))
+        {
+          
+        editPermission = true;
+        }
       }
+      const returnitem:ApiAuthorization = {userRole:role.role,companyId:companyId,accessPermission:accessPermission,deletePermission:deletePermission,editPermission:editPermission};
       return returnitem;
+      //const returnitem:ApiAuthorization = {userRole:role.role,companyId:companyId,accessPermission:false,deletePermission:false,editPermission:false};
     }
     return null;
   }
