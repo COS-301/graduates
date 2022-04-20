@@ -109,7 +109,7 @@ describe('ApiStudentProfileResolver', () => {
 
 
 const mockObject = new ApiStudentProfilesEntity()
-mockObject.dbId = '1';
+mockObject.dbId = 'cl27g0qq60000foflemqc8ax5';
 mockObject.studentNum = 'u12345678';
 mockObject.firstName = 'name';
 mockObject.lastName = 'surname';
@@ -130,7 +130,7 @@ mockObject.cv = false;
 mockObject.capstoneProject = true;
 
 const mockObjectEdit = new ApiStudentProfilesEntity()
-mockObjectEdit.dbId = '1';
+mockObjectEdit.dbId = 'cl27g0qq60000foflemqc8ax5';
 mockObjectEdit.studentNum = 'u12345678';
 mockObjectEdit.firstName = 'Xander';
 mockObjectEdit.lastName = 'Coetzer';
@@ -159,7 +159,6 @@ input.bio = 'my bio';
 input.tags = ['tagOne','tagTwo'];
 input.links = [['TWITTER','link1'],['Discord', 'link2']];
 input.preferredLocation = 'Gauteng';
-input.email = ['Test@gmail.com'];
 input.employmentStatus = 'Employed, Open to Offers';
 input.notableAchievements = ['Golden Key Honours Society', 'Did internship at google'];
 input.title = 'PhD';
