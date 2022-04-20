@@ -76,4 +76,20 @@ describe('ApiStudentProfileService', () => {
         expect(result).toEqual(userdata);
     })
   });
+
+describe('getBio', () => {
+  const userdata = mockStudent.bio;
+  it('should return the student\'s bio', async () => {
+    jest
+      .spyOn(service, 'getBio')
+      .mockImplementation(
+        (): Promise<string> => {
+          return Promise.resolve(userdata);
+        }
+      );
+      const userID = await repo.getUserIDFromStudentNumber('u12345678');
+      const result: Promise<string> = await service.getBio(userID);
+      expect(result).toEqual(userdata);
+  })
+});
 });
