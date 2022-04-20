@@ -58,30 +58,6 @@ describe('client notifications testing', () => {
 
 });
 
-/*
-describe('e2e for StudentProfiles', () =>{
-  beforeEach(() => {
-    cy.intercept("/graphql").as('getall');
-    cy.visit('localhost:4200/student-profile');
-    // cy.wait('@getall');
-  });
-  it('should load', () => {
-    cy.contains('');
-  })
-  /*describe('Does api connect to db',
-    it('api should start', ()=>{
-      cy.intercept({
-
-      url: 'localhost:3333/graphql',
-
-      method: 'POST'
-
-    }).as('Status');
-    }))
-
-});
-*/
-
 
 /* Request for access */
 
