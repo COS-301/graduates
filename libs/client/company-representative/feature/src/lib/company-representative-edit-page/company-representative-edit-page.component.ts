@@ -58,12 +58,12 @@ export class CompanyRepresentativeEditPageComponent {
       number: new FormControl(this.number,[Validators.required, Validators.pattern("[0][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]")]),//
       location: new FormControl(this.location,[Validators.required,Validators.maxLength(100)]),//,Validators.maxLength(60)
       email: new FormControl(this.email, [Validators.required, Validators.email]),//, Validators.email
-      linkedin: new FormControl(this.linkedin,[Validators.required, Validators.pattern("(https:\\/\\/)?linkedin.com\\/.*")]),//, Validators.pattern("(https:\\/\\/)?linkedin.com\\/.*")
-      twitter: new FormControl(this.twitter,[Validators.required, Validators.pattern(".*@twitter.com")]),//, Validators.pattern(".*@twitter.com")
-      instagram: new FormControl(this.instagram,[Validators.required, Validators.pattern(".*@instagram.com")]),//, Validators.pattern(".*@instagram.com")
-      facebook: new FormControl(this.facebook,[Validators.required, Validators.pattern(".*@facebook.com")]),//, Validators.pattern(".*@facebook.com")
-      snapchat: new FormControl(this.snapchat,[Validators.required, Validators.pattern(".*@snapchat.com")]),//, Validators.pattern(".*@snapchat.com")
-      github: new FormControl(this.github,[Validators.required, Validators.pattern(".*@github.com")]),//, Validators.pattern(".*@github.com")
+      linkedin: new FormControl(this.linkedin,[Validators.required]),//, Validators.pattern("(https:\\/\\/)?linkedin.com\\/.*")
+      twitter: new FormControl(this.twitter,[Validators.required]),//, Validators.pattern(".*@twitter.com")
+      instagram: new FormControl(this.instagram,[Validators.required]),//, Validators.pattern(".*@instagram.com")
+      facebook: new FormControl(this.facebook,[Validators.required]),//, Validators.pattern(".*@facebook.com")
+      snapchat: new FormControl(this.snapchat,[Validators.required]),//, Validators.pattern(".*@snapchat.com")
+      github: new FormControl(this.github,[Validators.required]),//, Validators.pattern(".*@github.com")
     });
   }
 
@@ -81,7 +81,7 @@ export class CompanyRepresentativeEditPageComponent {
         },
       error: (err) => { console.log(err); }
       });
-      this.navigateToHome();
+      setTimeout(() => { this.navigateToHome(); },100); // wait for API to finish
     }
   }
 

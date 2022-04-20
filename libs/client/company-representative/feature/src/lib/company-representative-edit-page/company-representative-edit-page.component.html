@@ -26,15 +26,6 @@
   <form [formGroup]="formdata" (ngSubmit)="submit(formdata.value)">
     <!-- Inputs start -->
     <!-- Title start -->
-    <div class="form-container mat-elevation-z5 text-center">
-      <div class="profile-image">
-        <img [src]="profilePicture" alt="Profile Picture" width="120" height="120">
-        <button mat-mini-fab (click)="inputField.click()">
-          <mat-icon>edit</mat-icon>
-        </button>
-      </div>
-      <input #inputField type="file" hidden (change)="uploadImage($event)"/>
-    </div>
     <mat-card class="title">
       <div class="block">
         <div class="content">
