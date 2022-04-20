@@ -226,12 +226,13 @@ export class ApiStudentProfileResolver {
 
   @Mutation((returns) => ApiStudentProfilesEntity)
   async removeTags(
-    @Args('tag', { type: () => [String] }) tags: string[],
-    @Args('studentNum', { type: () => String }) id: string
+    @Args('studentNum', { type: () => String }) id: string,
+    @Args('tag', { type: () => [String] }) tags: string[]
   ) {
     let i = 0;
+    const dbId = "1"; //convert studentnum to dbId.
     while (i < tags.length - 1) {
-      this.studentService.removeTag(id, tags[i]);
+      this.studentService.removeTag(dbId, tags[i]);
       i++;
     }
     return this.getStudent(id);
