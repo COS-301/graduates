@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { HeaderModule } from '../../../../shared/components/header/src/lib/header.module';
 import { FooterModule } from '../../../../shared/components/footer/src/lib/footer.module';
+import { UiComponentNavbarModule} from '../../../../shared/components/navigationbar/ui/navbar/src/lib/ui-component-navbar.module'
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { FooterModule } from '../../../../shared/components/footer/src/lib/foote
     MatListModule,
     FooterModule,
     HeaderModule,
-    HttpClientModule
+    HttpClientModule,
+    UiComponentNavbarModule
 
   ],
   declarations: [

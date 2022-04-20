@@ -1,6 +1,8 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+
 footer{
     text-align: center;
-    background-color: #f8f9fa;
+    background-color: $background-white;
     bottom: 0;
     width: 100% !important;
     overflow: hidden !important;

@@ -1,14 +1,26 @@
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable,BehaviorSubject } from "rxjs";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable({
   providedIn: "root",
 })
 export class CompanyProfileService {
-  constructor(private httpClient: HttpClient) {}
+  ID:any = "";
+  private messageSource = new BehaviorSubject("default message");
+  currentMessage = this.messageSource.asObservable();
 
-  runQuery(query:string, companyID:string): Observable<any> {
+  constructor(private httpClient: HttpClient) {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    this.ID = urlParams.get('ID')
+  }
+
+  changeMessage(message:string){
+    this.messageSource.next(message);
+  }
+
+  runQuery(query:string): Observable<any> {
     const options = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
@@ -19,37 +31,42 @@ export class CompanyProfileService {
       "http://localhost:3333/graphql",
       JSON.stringify({
         query: query,
-        variables: { compID: companyID},
+        variables: { compID: this.ID},
       }),
       options
     );
   }
 
-  getCompany(companyID: string): Observable<any> {
-    return this.runQuery('query{getCompanyByID(company_id: "'+companyID+'"){id,name}}',companyID);
+  getCompany(): Observable<any> {
+    return this.runQuery('query{getCompanyByID(company_id: "'+this.ID+'"){id,name}}');
   }
 
-  getNumbers(companyID: string): Observable<any> {
-    return this.runQuery('query{getCompanyNumber(company_id: "'+companyID+'"){userId,number}}',companyID);
+  getNumbers(): Observable<any> {
+    return this.runQuery('query{getCompanyNumber(company_id: "'+this.ID+'"){userId,number}}');
   }
 
-  getLocation(companyID: string): Observable<any> {
-    return this.runQuery('query{getCompanyLocation(company_id: "'+companyID+'"){userId, location}}',companyID);
+  getLocation(): Observable<any> {
+    return this.runQuery('query{getCompanyLocation(company_id: "'+this.ID+'"){userId, location}}');
   }
 
-  getEmail(companyID: string): Observable<any> {
-    return this.runQuery('query{getCompanyEmail(company_id: "'+companyID+'"){userId,email}}',companyID);
+  getEmail(): Observable<any> {
+    return this.runQuery('query{getCompanyEmail(company_id: "'+this.ID+'"){userId,email}}');
   }
 
-  getSocials(companyID: string): Observable<any> {
-    return this.runQuery('query{getCompanySocialMedia(company_id: "'+companyID+'"){userId, type, link}}',companyID);
+  getSocials(): Observable<any> {
+    return this.runQuery('query{getCompanySocialMedia(company_id: "'+this.ID+'"){userId, type, link}}');
   }
 
-  getBio(companyID: string): Observable<any> {
-    return this.runQuery('query{getCompanyBio(company_id: "'+companyID+'"){userId,bio}}',companyID);
+  getBio(): Observable<any> {
+    return this.runQuery('query{getCompanyBio(company_id: "'+this.ID+'"){userId,bio}}');
   }
 
-  getRepresentatives(companyID: string): Observable<any> {
-    return this.runQuery('query{getCompanyReps(company_id: "'+companyID+'"){id, name, companyId}}',companyID);
+  getRepresentatives(): Observable<any> {
+    return this.runQuery('query{getCompanyReps(company_id: "'+this.ID+'"){id, name, companyId}}');
+  }
+
+  setBio(param: string | undefined): Observable<any> {
+    console.log(param);
+    return this.runQuery('mutation{updateCompanyBio(bio:{id:"'+this.ID+'",bio:"'+param+'"}){userId,bio}}');
   }
 }

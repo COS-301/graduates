@@ -29,6 +29,24 @@ export class ApiCompanyRepresentativeResolver {
   pingCompanyRepresentative(){
     return "on";
   }
+
+  @Mutation(() => CompanyRepresentative)
+  async updateCompanyRepresentative(@Args('id') id: string, @Args('name') name: string, @Args('experience') experience: string, @Args('contactNumber') contactNumber: string, @Args('location') location: string, @Args('email') email: string, @Args('linkedIn') linkedIn: string, @Args('twitter') twitter: string, @Args('instagram') instagram: string, @Args('facebook') facebook: string, @Args('snapchat') snapchat: string, @Args('github') github: string){
+    const rep = new CompanyRepresentative();
+    rep.id = id;
+    rep.repName = name;
+    rep.repExperience = experience;
+    rep.phoneNumber = contactNumber;
+    rep.location = location;
+    rep.email = email;
+    rep.linkedIn = linkedIn;
+    rep.twitter = twitter;
+    rep.instagram = instagram;
+    rep.facebook = facebook;
+    rep.snapChat = snapchat;
+    rep.gitHub = github;
+    return await this.apiCompanyRepresentativeService.UpdateRepresentative(rep);
+  }
   
 
   @Mutation(() => CompanyRepresentative)
@@ -46,10 +64,5 @@ export class ApiCompanyRepresentativeResolver {
   @Mutation(() => CompanyRepresentative)
   async getDefaultRepresentative(@Args('id') id : string){
     return this.apiCompanyRepresentativeService.createDefaultRepresentative();
-  }
-
-  @Mutation(() => CompanyRepresentative)
-  async updateCompanyRepresentative(@Args("id") id: string, @Args("newData") data: string, @Args("type") type: string){
-    return this.apiCompanyRepresentativeService.UpdateRepresentative(id, data, type);
   }
 }
