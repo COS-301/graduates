@@ -81,7 +81,7 @@ describe('StudentCardComponent', () => {
     //Expected variables
     const expectedFilters : Array<Array<filter>> = [];
     const tagsFilter = new filter("AI", false, "tags");
-    expectedFilters.push([tagsFilter], [], []);
+    expectedFilters.push([], [], [tagsFilter]);
 
     //Mock the Object and Function
     jest.spyOn(component,"retrieve_available_filters").mockResolvedValue(expectedFilters);
@@ -90,14 +90,14 @@ describe('StudentCardComponent', () => {
     await component.populate_filters();
  
     //Assertion
-    expect(component.tagsArray).toEqual(expectedFilters[0]);
+    expect(component.tagsArray).toEqual(expectedFilters[2]);
   })
 
   it('should, given a valid employment filter, be added to the empArray variable.', async()=>{
     //Expected variables
     const expectedFilters : Array<Array<filter>> = [];
     const empFilter = new filter("Employed, Open to Offers", false, "employment");
-    expectedFilters.push([], [empFilter], []);
+    expectedFilters.push([empFilter], [], []);
 
     //Mock the Object and Function
     jest.spyOn(component,"retrieve_available_filters").mockResolvedValue(expectedFilters);
@@ -106,14 +106,14 @@ describe('StudentCardComponent', () => {
     await component.populate_filters();
  
     //Assertion
-    expect(component.empArray).toEqual(expectedFilters[1]);
+    expect(component.empArray).toEqual(expectedFilters[0]);
   })
 
   it('should, given a valid location filter, be added to the locationArray variable.', async()=>{
     //Expected variables
     const expectedFilters : Array<Array<filter>> = [];
     const locaFilter = new filter("Pretoria", false, "location");
-    expectedFilters.push([], [], [locaFilter]);
+    expectedFilters.push([], [locaFilter], []);
 
     //Mock the Object and Function
     jest.spyOn(component,"retrieve_available_filters").mockResolvedValue(expectedFilters);
@@ -122,6 +122,6 @@ describe('StudentCardComponent', () => {
     await component.populate_filters();
  
     //Assertion
-    expect(component.locationArray).toEqual(expectedFilters[2]);
+    expect(component.locationArray).toEqual(expectedFilters[1]);
   })
 });
