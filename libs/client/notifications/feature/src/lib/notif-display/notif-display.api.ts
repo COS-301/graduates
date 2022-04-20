@@ -23,7 +23,7 @@ export class NotificationsApi {
             })
         }
 
-        return this.httpClient.post<any>('http://localhost:3333/graphql', JSON.stringify({ query: query}), options);
+        return this.httpClient.post<any>('https://301graduates.live:3333/graphql', JSON.stringify({ query: query}), options);
     }
 
     getUserEmailAndName(userId : string): Observable<any | null> {
@@ -39,6 +39,6 @@ export class NotificationsApi {
             })
         }
 
-        return this.httpClient.post<any>('http://localhost:3333/graphql', JSON.stringify({ query: query}), options);
+        return this.httpClient.post<any>('https://301graduates.live:3333/graphql', JSON.stringify({ query: query}), options);
     }
 }

@@ -138,7 +138,7 @@ export class StudentCardComponent implements OnInit
 
     //Get initial students
     let initial_students = "";
-    await fetch('http://localhost:3333/graphql', {
+    await fetch('https://301graduates.live:3333/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -167,7 +167,7 @@ export class StudentCardComponent implements OnInit
         Available
       }
       }`;
-    await fetch('http://localhost:3333/graphql', {
+    await fetch('https://301graduates.live:3333/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -185,7 +185,7 @@ export class StudentCardComponent implements OnInit
         Available
       }
       }`;
-    await fetch('http://localhost:3333/graphql', {
+    await fetch('https://301graduates.live:3333/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -203,7 +203,7 @@ export class StudentCardComponent implements OnInit
         Available
       }
       }`;
-    await fetch('http://localhost:3333/graphql', {
+    await fetch('https://301graduates.live:3333/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -348,7 +348,7 @@ export class StudentCardComponent implements OnInit
 
       //Make the API call with the correct query
       let filtered = "";
-      await fetch('http://localhost:3333/graphql', {
+      await fetch('https://301graduates.live:3333/graphql', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -485,7 +485,7 @@ export class StudentCardComponent implements OnInit
 
       console.log("The query variable is: " + query);
 
-      await fetch('http://localhost:3333/graphql', {
+      await fetch('https://301graduates.live:3333/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
