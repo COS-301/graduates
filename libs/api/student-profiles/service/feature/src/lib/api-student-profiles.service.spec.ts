@@ -124,4 +124,20 @@ describe('ApiStudentProfileService', () => {
         expect(result).toEqual(userdata);
     })
   });
+
+  describe('getLocation', () => {
+    const userdata = mockStudent.preferredLocation;
+    it('should return the student\'s prefered location', async () => {
+      jest
+        .spyOn(service, 'getLocation')
+        .mockImplementation(
+          (): Promise<string> => {
+            return Promise.resolve(userdata);
+          }
+        );
+        const userID = await repo.getUserIDFromStudentNumber('u12345678');
+        const result: Promise<string> = await service.getLocation(userID);
+        expect(result).toEqual(userdata);
+    })
+  });
 });
