@@ -132,7 +132,7 @@ export class StoryExploreComponent implements OnInit {
         this.Base64encode(this.VideoFile).then(resp => {
           this.VideoFileBase64 = resp;
           this.fileuploadflag = false;
-          console.log(resp); //this will log the base64 in the terminal on attatch
+          // console.log(resp); //this will log the base64 in the terminal on attatch
         })
       }
     }
@@ -140,7 +140,7 @@ export class StoryExploreComponent implements OnInit {
 
   onThumbnailUpload(event : any) {
     this.ThumbnailFile = event.target.files[0];
-    console.log(event.target.files[0].type);
+    // console.log(event.target.files[0].type);
     this.thumbnailuploadflag = true; 
     const re = /^image*/;
     if (this.ThumbnailFile.type.match(re)) {
@@ -148,7 +148,7 @@ export class StoryExploreComponent implements OnInit {
         this.Base64encode(this.ThumbnailFile).then(resp => {
           this.ThumbnailFileBase64 = resp;
           this.thumbnailuploadflag = false;
-          console.log(resp); //this will log the base64 in the terminal on attatch
+          // console.log(resp); //this will log the base64 in the terminal on attatch
         })
       }
     }
@@ -172,7 +172,7 @@ export class StoryExploreComponent implements OnInit {
       //form is valid here, upload to the API:
       this.uploadShortToAPI(tags).then(resp => {
 
-        console.log(resp);
+        // console.log(resp);
         
         //here is for the response (resp) from the upload uploadShortToAPI() and hide load wheel
         this.loadwheel = false;
@@ -241,7 +241,7 @@ export class StoryExploreComponent implements OnInit {
         })
         .subscribe ((result) => {
           //log result from the app short query:
-          console.log(result);
+          // console.log(result);
           //resolve the promise from the query:
           resolve(result);
         });
@@ -458,7 +458,7 @@ export class StoryExploreComponent implements OnInit {
         i = --currpos;
       } else output += text.charAt(i);
     }
-    console.log(output);
+    // console.log(output);
     return output;
   }
 
