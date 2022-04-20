@@ -56,6 +56,12 @@ export class StudentCardComponent implements OnInit
 
   //MAIN FUNCTIONS
 
+  sendToStudentProfile(id: any): void
+  {
+    console.log(id);
+    window.open("student-profile");
+  }
+
   //Populate the student cards INITIAL
   async loadStudentCards()
   {
