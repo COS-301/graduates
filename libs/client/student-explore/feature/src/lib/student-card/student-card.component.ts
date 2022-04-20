@@ -56,10 +56,11 @@ export class StudentCardComponent implements OnInit
 
   //MAIN FUNCTIONS
 
-  sendToStudentProfile(id: any): void
+  sendToStudentProfile(id: any): string //This function should return void, but for the sake of unit testing it will return a string.
   {
     console.log(id);
     window.open("student-profile");
+    return id;
   }
 
   //Populate the student cards INITIAL

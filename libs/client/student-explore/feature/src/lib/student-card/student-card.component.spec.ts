@@ -56,3 +56,46 @@ describe('StudentCardComponent', () => {
   //   expect(component.studentArray).toEqual(expectedArray);
   // }) 
 });
+
+describe('StudentCardComponent - StudentProfile', () => {
+  let component: StudentCardComponent; 
+  let fixture: ComponentFixture<StudentCardComponent>;
+  const studentObjects =  {data:[
+                                  {id: "0129583027937", StudentName: "Timo", StudentBio: "This is the bio of Student Timo. They are a student at UP!",
+                                    StudentEmail: "exmaple@gmail.com", StudentNumber: "0688888888", StudentTags: "Networks, AI", 
+                                    StudentDegreeType: "Bsc", StudentDegreeName: "Computer Science", StudentLocation: "Pretoria"},
+
+                                  {id: "0129583027938", StudentName: "Daniel A", StudentBio: "This is the bio of Student Timo. They are a student at UP!",
+                                    StudentEmail: "exmaple@gmail.com", StudentNumber: "0688888888", StudentTags: "Computer security, AI",
+                                    StudentDegreeType: "Bsc", StudentDegreeName: "Computer Science", StudentLocation:  "Pretoria"}
+                                ]};
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [StudentCardComponent],
+      imports: [MatCardModule, MatButtonModule, MatMenuModule, MatIconModule],
+    }).compileComponents();
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(StudentCardComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('Should return the correct student id', () => {
+
+    /*window.open = jest.fn();
+    test("window opens", () => {
+      window.open.mockClear();
+    });*/
+
+    const expectedIDArray: Array<string> = ["0129583027937", "0129583027938"];
+
+    const testID1 = component.sendToStudentProfile(studentObjects.data[0].id);
+    const testID2 = component.sendToStudentProfile(studentObjects.data[1].id);
+    const testIDArray: Array<string> = [testID1, testID2];
+
+    expect(testIDArray).toEqual(expectedIDArray);
+  });
+});
