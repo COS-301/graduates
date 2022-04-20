@@ -8,15 +8,15 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class BioComponent implements OnInit {
 
-  // htmlstring: string;
+  htmlstring: string;
  
   constructor() { 
-    // this.bio = null;
-    // this.htmlstring = "";
+    this.bio = null;
+    this.htmlstring = "";
   }
 
   /* eslint-disable @typescript-eslint/no-explicit-any */
-  // @Input() bio: any;
+  @Input() bio: any;
 
   //eslint-disable-next-line @typescript-eslint/no-empty-function
   ngOnInit(): void { 
