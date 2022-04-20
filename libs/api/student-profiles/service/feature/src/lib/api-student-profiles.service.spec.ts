@@ -5,19 +5,24 @@ import { SocialMedia } from '@prisma/client';
 import { ApiStudentProfilesInputEntity } from '@graduates/api/student-profiles/api/shared/data-access';
 import { StudentProfilesRepository } from '@graduates/api/student-profiles/repository/data-access'
 
-jest.mock('@graduates/api/student-profiles/api/shared/data-access');
-const mockStudent: jest.Mocked<ApiStudentProfilesInputEntity> = new ApiStudentProfilesInputEntity() as ApiStudentProfilesInputEntity;
-mockStudent.studentNum =  'u12345678';
-mockStudent.firstName = 'Anne';
-mockStudent.lastName = 'Frankly';
-mockStudent.title = 'Mrs';
-mockStudent.email = ['u12345678@tuks.ac.za'];
-mockStudent.nameOfDegree = 'Computer Science';
-mockStudent.bio = 'Self-Published Author, Never trust anyone #soldout, <3 Gaslight, Gatekeep, Girlboss <3',
-mockStudent.tags = ['Espionage','AI'],
-mockStudent.preferredLocation = 'Prefer not to say',
-mockStudent.employmentStatus = 'Unemployed. Not Open to Offers',
-mockStudent.links = [[SocialMedia.LINKEDIN,'linked.com/Anne'],[SocialMedia.INSTAGRAM,'insta.com/AnnieeeeFinsta']];
+const userID = '007';
+const mockUser = {id:'007',email:"james@gmail.com",password:"herMajesty",passwordSalt:"the queen",name:"James Bond",created:"2018-12-10 13:45:00.000",suspended:true,validated:false};
+const mockUserDataBase = {handler: {findFirst: jest.fn((id)=>mockUser)}};
+
+const mockEmail = {userId:'007',email:"james@gmail.com"};
+const mockEmailDataBase = {handler: {findMany: jest.fn((userId)=>mockEmail)}};
+
+const mockUserProfile = {UserId:'007',studentNumber: "u12345678", bio:"Yes that James Bond",employmentStatus:true,openToOffers:true};
+const mockUserProfileDataBase = {handler: {findFirst: jest.fn((id)=>mockUserProfile)}};
+
+const mockTags = [{userId:'007',tag:"AI"},{userId:'007',tag:"LTK"}];
+const mockTagsDataBase = {handler: {findMany: jest.fn((userId)=>mockTags)}};
+
+const mockLocation = {userId:'007',tag:"Prefer not to say"};
+const mockLocationDataBase = {handler: {findFirst: jest.fn((userId)=>mockLocation)}};
+
+const mockSocialMedia = [{userId:'007',type:"LINKEDIN",link:"www.linkin.com"},{userId:'007',type:"INSTAGRAM",link:"www.insta.com"}];
+const mockSocialMediaDataBase = {handler: {findMany: jest.fn((userId)=>mockSocialMedia)}};
 
 describe('ApiStudentProfileService', () => {
   let service: ApiStudentProfileService;
@@ -46,130 +51,51 @@ describe('ApiStudentProfileService', () => {
   });
 
   describe('getName', () => {
-    const userName = mockStudent.firstName + " " + mockStudent.lastName;
     it('should return a name of a student name', async () => {
-      jest
-        .spyOn(service, 'getName')
-        .mockImplementation(
-          (): Promise<string> => {
-            return Promise.resolve(userName);
-          }
-        );
-        const userID = await repo.getUserIDFromStudentNumber('u12345678');
-        const result: Promise<string> = await service.getName(userID);
-        expect(result).toEqual(userName);
+        const result = await mockUserDataBase.handler.findFirst(userID);
+        expect(result).toEqual(mockUser);
     })
   });
 
   describe('getEmails', () => {
-    const userdata = mockStudent.email;
     it('should return 1 or more of the student\'s emails', async () => {
-      jest
-        .spyOn(service, 'getEmails')
-        .mockImplementation(
-          (): Promise<string[]> => {
-            return Promise.resolve(userdata);
-          }
-        );
-        const userID = await repo.getUserIDFromStudentNumber('u12345678');
-        const result: Promise<string> = await service.getEmails(userID);
-        expect(result).toEqual(userdata);
+      const result = await mockEmailDataBase.handler.findMany(userID);
+      expect(result).toEqual(mockEmail);
     })
   });
 
   describe('getBio', () => {
-    const userdata = mockStudent.bio;
     it('should return the student\'s bio', async () => {
-      jest
-        .spyOn(service, 'getBio')
-        .mockImplementation(
-          (): Promise<string> => {
-            return Promise.resolve(userdata);
-          }
-        );
-        const userID = await repo.getUserIDFromStudentNumber('u12345678');
-        const result: Promise<string> = await service.getBio(userID);
-        expect(result).toEqual(userdata);
-    })
-  });
-
-  describe('getBio', () => {
-    const userdata = mockStudent.bio;
-    it('should return the student\'s bio', async () => {
-      jest
-        .spyOn(service, 'getBio')
-        .mockImplementation(
-          (): Promise<string> => {
-            return Promise.resolve(userdata);
-          }
-        );
-        const userID = await repo.getUserIDFromStudentNumber('u12345678');
-        const result: Promise<string> = await service.getBio(userID);
-        expect(result).toEqual(userdata);
+      const result = await mockUserProfileDataBase.handler.findFirst(userID);
+      expect(result).toEqual(mockUserProfile);
     })
   });
 
   describe('getTags', () => {
-    const userdata = mockStudent.tags;
     it('should return the student\'s bio', async () => {
-      jest
-        .spyOn(service, 'getTags')
-        .mockImplementation(
-          (): Promise<string[]> => {
-            return Promise.resolve(userdata);
-          }
-        );
-        const userID = await repo.getUserIDFromStudentNumber('u12345678');
-        const result: Promise<string> = await service.getTags(userID);
-        expect(result).toEqual(userdata);
+      const result = await mockTagsDataBase.handler.findMany(userID);
+      expect(result).toEqual(mockTags);
     })
   });
 
   describe('getLocation', () => {
-    const userdata = mockStudent.preferredLocation;
     it('should return the student\'s prefered location', async () => {
-      jest
-        .spyOn(service, 'getLocation')
-        .mockImplementation(
-          (): Promise<string> => {
-            return Promise.resolve(userdata);
-          }
-        );
-        const userID = await repo.getUserIDFromStudentNumber('u12345678');
-        const result: Promise<string> = await service.getLocation(userID);
-        expect(result).toEqual(userdata);
+      const result = await mockLocationDataBase.handler.findFirst(userID);
+      expect(result).toEqual(mockLocation);
     })
   });
 
   describe('getEmploymentStatus', () => {
-    const userdata = [false,false];
     it('should return the student\'s Employment Status', async () => {
-      jest
-        .spyOn(service, 'getEmploymentStatus')
-        .mockImplementation(
-          (): Promise<boolean[]> => {
-            return Promise.resolve(userdata);
-          }
-        );
-        const userID = await repo.getUserIDFromStudentNumber('u12345678');
-        const result: Promise<string> = await service.getEmploymentStatus(userID);
-        expect(result).toEqual(userdata);
+      const result = await mockUserProfileDataBase.handler.findFirst(userID);
+      expect(result).toEqual(mockUserProfile);
     })
   });
 
   describe('getSocialMedia', () => {
-    const userdata = mockStudent.links;
     it('should return the student\'s Social Media', async () => {
-      jest
-        .spyOn(service, 'getSocialMedia')
-        .mockImplementation(
-          (): Promise<string[][]> => {
-            return Promise.resolve(userdata);
-          }
-        );
-        const userID = await repo.getUserIDFromStudentNumber('u12345678');
-        const result: Promise<string> = await service.getSocialMedia(userID);
-        expect(result).toEqual(userdata);
+      const result = await mockSocialMediaDataBase.handler.findMany(userID);
+      expect(result).toEqual(mockSocialMedia);
     })
   });
 });

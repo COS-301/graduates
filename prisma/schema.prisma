@@ -38,7 +38,6 @@ model User {
   UserProfile       UserProfile[]
   UserTag           UserTag[]
   UserContactNumber UserContactNumber[]
-  UserNotAchieve    UserNotAchieve[]
   UserDegree        UserDegree[]
   UserExperience    UserExperience[]
   UserSocialMedia   UserSocialMedia[]
@@ -217,17 +216,6 @@ model UserEmail {
   @@id([userId,email])
   user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   @@map("user_email")
-}
-
-// Emails of users
-model UserNotAchieve {
-  userId String @map("user_id")
-  Achievments  String
-
-
-  @@id([userId,Achievments])
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  @@map("user_not_achieve")
 }
 
 // File uploads of users
