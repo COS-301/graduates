@@ -32,7 +32,7 @@ export class CompanyRepresentativeService {
   }
 
   deleteRepresentative(repID: string): Observable<any> {
-    const query = 'mutation{deleteCompanyRepresentative(id:"c1234"){repName}}';
+    const query = 'mutation{deleteCompanyRepresentative(id:"'+repID+'"){repName}}';
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
