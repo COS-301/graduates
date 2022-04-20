@@ -7,7 +7,7 @@ import { StudentProfilesRepository } from '@graduates/api/student-profiles/repos
 
 jest.mock('@graduates/api/student-profiles/api/shared/data-access');
 const mockStudent: jest.Mocked<ApiStudentProfilesInputEntity> = new ApiStudentProfilesInputEntity() as ApiStudentProfilesInputEntity;
-mockStudent.studentNum =  'u12345679';
+mockStudent.studentNum =  'u12345678';
 mockStudent.firstName = 'Anne';
 mockStudent.lastName = 'Frankly';
 mockStudent.title = 'Mrs';
@@ -58,6 +58,22 @@ describe('ApiStudentProfileService', () => {
         const userID = await repo.getUserIDFromStudentNumber('u12345678');
         const result: Promise<string> = await service.getName(userID);
         expect(result).toEqual(userName);
+    })
+  });
+
+  describe('getEmails', () => {
+    const userdata = mockStudent.email;
+    it('should return 1 or more of the student\'s emails', async () => {
+      jest
+        .spyOn(service, 'getEmails')
+        .mockImplementation(
+          (): Promise<string[]> => {
+            return Promise.resolve(userdata);
+          }
+        );
+        const userID = await repo.getUserIDFromStudentNumber('u12345678');
+        const result: Promise<string> = await service.getEmails(userID);
+        expect(result).toEqual(userdata);
     })
   });
 });
