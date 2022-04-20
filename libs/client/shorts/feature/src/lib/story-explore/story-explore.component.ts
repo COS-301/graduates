@@ -252,7 +252,7 @@ export class StoryExploreComponent implements OnInit {
     const output = s.split('#');
     output.shift();
 
-    if(output.length() <=0) return "";
+    if(output.length() <=0) return "shortTag: []";
     let out = "shortTag: [";
 
     for (let index = 0; index < output.length; index++) {
@@ -261,7 +261,7 @@ export class StoryExploreComponent implements OnInit {
       out += '{tag: "' +element +'"},' ;
       
     }
-    
+
     out += "]";
     return out;
   }
