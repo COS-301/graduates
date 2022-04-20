@@ -171,6 +171,49 @@ describe('client notifications testing', () => {
 
 //   });*/
 // });
+describe('Company Representative Feature', () => {
+
+  beforeEach(() => {
+      cy.visit('http://localhost:4200/CompanyRepresentativeLogin');
+  })
+
+  it('should allow representative to login', () => {
+
+      cy.get('.email').type('ishe.dzingirai@gmail.com');
+      cy.get('.password').type('${IamACSStudent@1}{enter}');
+      cy.get('.btn btn-primary').click().visit('http://localhost:4200/CompanyRepresentativeHome');
+  
+  });
+
+});
+
+describe('Company Representative Update Details', () => {
+
+  beforeEach(() => {
+      cy.visit('http://localhost:4200/CompanyRepresentativeEdit');
+  })
+
+      it('should allow representative to update details', () => {
+          cy.get('#name').type('Tester Role');
+          cy.get('#title').type('Software Tester');
+          cy.get('textarea[name=experience]').type('Beginner');
+          cy.get('textarea[name=about]').type('Looking for Graduate Machine Learning Engineers');
+          cy.get('#number').type('0812347623');
+          cy.get('#locaton').type('Hatfield, Pretoria');
+          cy.get('#email').type('tester@gmail.com');
+          cy.get('#website').type('tester.up.ac.za');
+          cy.get('#linkedin').type('tester@linkedin.com');
+          cy.get('#twitter').type('tester@twitter.com');
+          cy.get('#instagram').type('tester@instagram.com');
+          cy.get('#facebook').type('tester@facebook.com'); 
+          cy.get('#snapchat').type('tester@snapchat.com');
+          cy.get('#github').type('tester@github.com');
+
+          cy.get('#submit').click();
+      
+          });
+  });
+
 
 // Commented out Tests need API and DB to run in Environment to pass
 describe('client-shorts-feature e2e test', () => {
