@@ -140,4 +140,36 @@ describe('ApiStudentProfileService', () => {
         expect(result).toEqual(userdata);
     })
   });
+
+  describe('getEmploymentStatus', () => {
+    const userdata = [false,false];
+    it('should return the student\'s Employment Status', async () => {
+      jest
+        .spyOn(service, 'getEmploymentStatus')
+        .mockImplementation(
+          (): Promise<boolean[]> => {
+            return Promise.resolve(userdata);
+          }
+        );
+        const userID = await repo.getUserIDFromStudentNumber('u12345678');
+        const result: Promise<string> = await service.getEmploymentStatus(userID);
+        expect(result).toEqual(userdata);
+    })
+  });
+
+  describe('getSocialMedia', () => {
+    const userdata = mockStudent.links;
+    it('should return the student\'s Social Media', async () => {
+      jest
+        .spyOn(service, 'getSocialMedia')
+        .mockImplementation(
+          (): Promise<string[][]> => {
+            return Promise.resolve(userdata);
+          }
+        );
+        const userID = await repo.getUserIDFromStudentNumber('u12345678');
+        const result: Promise<string> = await service.getSocialMedia(userID);
+        expect(result).toEqual(userdata);
+    })
+  });
 });
