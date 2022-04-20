@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Logger } from '@nestjs/common';
 import { match } from 'assert';
 import { ApiExampleRepositorySharedInterfacesDataAccessModule } from '@graduates/api/example/repository/shared/interfaces/data-access';
+import { domainToASCII } from 'url';
 
 @Component({
   selector: 'graduates-student-card',
@@ -244,9 +245,13 @@ export class StudentCardComponent implements OnInit
   //FILTERING
   
   //Main filtering function
-  async filter_students(filt:filter)
+  async process_filter(filt: filter)
   {
     filt.checked = !filt.checked;
+  }
+
+  async filter_students()
+  {
     const active_filters = await this.find_active_filters();
     console.log(active_filters);
     
@@ -518,13 +523,14 @@ export class StudentCardComponent implements OnInit
       });
 
       this.studentArray = [];
-      this.loadStudentCardsByFilter(this.responseArray);
+      await this.loadStudentCardsByFilter(this.responseArray);
       console.log("The response array is: " + JSON.stringify(this.responseArray));
     }
     else
     {
+      //Reload the page with the initial students
+      this.studentArray = [];
       await this.loadStudentCards();
-      await this.loadStudentCardsByFilter(this.studentArray);
     }
   }
 }

@@ -19,7 +19,7 @@ export class RequestForAccessService {
     };
 
     return this.httpClient.post<any>(
-      "https://301graduates.live:3333/graphql",
+      "http://localhost:3333/graphql",
       JSON.stringify({
         query: query,
         variables: { compID: companyID, gradID: graduateID },
@@ -28,7 +28,7 @@ export class RequestForAccessService {
     );
   }
 
-  requestAccess(companyID: string, graduateID: string, item: string): void {
+  requestAccess(companyID: string, graduateID: string, item: string): Observable<any> {
     const query = `mutation ($compId: ID!, $gradId: ID!, $item: String!){requestAccess(compId: $compId, gradId: $gradId, item: $item){ userID }}`;
 
     const options = {
@@ -37,20 +37,13 @@ export class RequestForAccessService {
       }),
     };
 
-<<<<<<< Updated upstream
-    this.httpClient.post(
-      "http://localhost:3333/graphql",
-=======
     return this.httpClient.post<any>(
-      "https://301graduates.live:3333/graphql",
->>>>>>> Stashed changes
+      "http://localhost:3333/graphql",
       JSON.stringify({
         query: query,
         variables: { compId: companyID, gradId: graduateID, item: item },
       }),
       options
-    ).subscribe((x) => {
-      console.log(x);
-    });
+    );
   }
 }

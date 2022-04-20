@@ -1,0 +1,50 @@
+@import 'libs/client/shared/assets/ui/src/lib/global.scss';
+
+p {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 80px;
+    margin-top: 15%;
+    margin-left: 40%;
+    color: $text-blue;
+}
+
+h1 {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+h2 {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+h3 {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.mat-raised-button {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 32%;
+    margin-bottom: 20%;
+}
+
+.container {
+    content: "";
+    display: table;
+    clear: both;
+
+}
+
+.section {
+    float: left;
+    width: 33.33%;
+    margin-top: 15%;
+}

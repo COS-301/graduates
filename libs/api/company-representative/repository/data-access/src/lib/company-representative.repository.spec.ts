@@ -131,84 +131,84 @@ describe('CompanyRepresentativeRepository', () => {
         });
     });
 
-    describe('@updateRepName', () => {
+    // describe('@updateRepName', () => {
 
-        const id = '1';
-        const name = 'newName';
+    //     const id = '1';
+    //     const name = 'newName';
 
-        it('should allow user to update name', async () => {
+    //     it('should allow user to update name', async () => {
             
-            try{
-                const newUser = repository.updateRepName(id, name); 
-                expect(newUser).toHaveBeenCalled;
-            } catch (error){
-                fail(error);
-            }
-        });
-    }); 
+    //         try{
+    //             const newUser = repository.updateRepName(id, name); 
+    //             expect(newUser).toHaveBeenCalled;
+    //         } catch (error){
+    //             fail(error);
+    //         }
+    //     });
+    // }); 
 
-    describe('@updateRepBio', () => {
+    // describe('@updateRepBio', () => {
 
-        const id = '1';
-        const bio = 'newBio';
+    //     const id = '1';
+    //     const bio = 'newBio';
 
-        it('should allow representative to update bio', async () => {
-            try {
-                const newBio = repository.updateRepBio(id, bio);
-                expect(newBio).toHaveBeenCalled;
+    //     it('should allow representative to update bio', async () => {
+    //         try {
+    //             const newBio = repository.updateRepBio(id, bio);
+    //             expect(newBio).toHaveBeenCalled;
 
-            } catch (error) {
-                fail(error);
-            }
-        });
-    });
+    //         } catch (error) {
+    //             fail(error);
+    //         }
+    //     });
+    // });
 
-    describe('@UpdateRepLocation', () => {
+    // describe('@UpdateRepLocation', () => {
 
-        const id = '1';
-        const location = 'newLocation';
+    //     const id = '1';
+    //     const location = 'newLocation';
 
-        it('should allow representative to update location', async () => {
+    //     it('should allow representative to update location', async () => {
 
-            try{
-                const newLocation = repository.updateRepLocation(id, location);
-                expect(newLocation).toHaveBeenCalled;
-            } catch(error){
-                fail(error);
-            }
-        })
-    })
+    //         try{
+    //             const newLocation = repository.updateRepLocation(id, location);
+    //             expect(newLocation).toHaveBeenCalled;
+    //         } catch(error){
+    //             fail(error);
+    //         }
+    //     })
+    // })
 
-    describe('@updateRepContactNumber', () => {
+    // describe('@updateRepContactNumber', () => {
 
-        const id = '1';
-        const number = '0712345676';
+    //     const id = '1';
+    //     const number = '0712345676';
 
-        it('should allow representative to update number', async () => {
+    //     it('should allow representative to update number', async () => {
             
-            try {
-                const newNumber = repository.updateRepContactNumber(id, number);
-                expect(newNumber).toHaveBeenCalled;    
-            } catch (error) {
-                fail(error);
-            }
-        });
-    });
+    //         try {
+    //             const newNumber = repository.updateRepContactNumber(id, number);
+    //             expect(newNumber).toHaveBeenCalled;    
+    //         } catch (error) {
+    //             fail(error);
+    //         }
+    //     });
+    // });
 
-    describe('@updateRepExperience', () =>{
+    // describe('@updateRepExperience', () =>{
 
-        const id = '1';
-        const experience = 'Mid-level';
+    //     const id = '1';
+    //     const experience = 'Mid-level';
 
-        it('should allow representative to update experience level', () => {
-            try{
-                const newExperience = repository.updateRepExprience(id, experience);
-                expect(newExperience).toHaveBeenCalled;
-            } catch(error) {
-                fail(error);
-            }
-        });
+    //     it('should allow representative to update experience level', () => {
+    //         try{
+    //             const newExperience = repository.updateRepExprience(id, experience);
+    //             expect(newExperience).toHaveBeenCalled;
+    //         } catch(error) {
+    //             fail(error);
+    //         }
+    //     });
 
-    });
+    // });
 
 });

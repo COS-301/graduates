@@ -33,8 +33,8 @@ export class ApiCompanyRepresentativeService {
   /***
    * This function is used to get All representatives from the datbase
    */
-  async getAllRepresentatives(){
-    return this.queryBus.execute(new GetAllRepresentatives());
+  async getAllCompanyRepresentatives(){
+    return this.queryBus.execute(new GetAllRepresentatives(""));
   }
 
   /***
@@ -55,9 +55,9 @@ export class ApiCompanyRepresentativeService {
    * loaction
    */
 
-  async UpdateRepresentative(id:string,newData:string,type:string)
+  async UpdateRepresentative(representative: CompanyRepresentative)
   {
-    return this.commandBus.execute(new UpdateRepresentative(id,newData,type));
+    return this.commandBus.execute(new UpdateRepresentative(representative));
   }
 
   async createDefaultRepresentative(){

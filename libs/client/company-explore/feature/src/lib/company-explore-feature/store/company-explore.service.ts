@@ -1,20 +1,17 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Company } from './company-model';
+import { Observable } from 'rxjs';
+
 
 @Injectable({
     providedIn: 'root',
 })
-export class CompanyExploreService {
+export class CompanyExploreService 
+{
 
-<<<<<<< Updated upstream
-    constructor(private http: HttpClient) {
-       
-    }
+    constructor(private http: HttpClient) { }
 
-    fetchCompanies() {
-        return this.http.get<Company[]>('http://localhost:3000/companies');
-=======
     fetchCompanies(){
       const query =
       "query{GetListOfCompanies{companyID,name,Userprofile{profilePicture}}}";
@@ -26,7 +23,7 @@ export class CompanyExploreService {
       };
     
       return this.http.post<any>(
-        "https://301graduates.live:3333/graphql",
+        "http://localhost:3333/graphql",
         JSON.stringify({
           query: query,
         }),
@@ -43,7 +40,7 @@ export class CompanyExploreService {
       };
     
       return this.http.post<any>(
-        "https://301graduates.live:3333/graphql",
+        "http://localhost:3333/graphql",
         JSON.stringify({
           query: query
         }),
@@ -60,12 +57,11 @@ export class CompanyExploreService {
       };
     
       return this.http.post<any>(
-        "https://301graduates.live:3333/graphql",
+        "http://localhost:3333/graphql",
         JSON.stringify({
           query: query
         }),
         options
       );
->>>>>>> Stashed changes
     }
-}
+}    

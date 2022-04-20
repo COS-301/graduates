@@ -23,13 +23,19 @@ export class ApiStorageServiceFeatureModule {
             url = value;
         });
       }
-      else if(fileCategory==="Degree"){
+      else if(fileCategory==="Transcript"){
         await this.repo.getUserFile(userID ,FileCategory.DEGREE).then(async (value)=> {
           url = value;
         });
       }
       else if(fileCategory==="Academic Record"){
         await this.repo.getUserFile(userID ,FileCategory.ACADEMIC_RECORD ).then(async (value)=> {
+          url = value;
+        });
+      }
+
+      else if(fileCategory==="Image"){
+        await this.repo.getUserFile(userID ,FileCategory.PROFILE_PHOTO).then(async (value)=> {
           url = value;
         });
       }
@@ -56,6 +62,12 @@ export class ApiStorageServiceFeatureModule {
         });
       }
       if(fileCategory=="Academic Record"){
+        await this.repo.deleteFile(userID ,FileCategory.ACADEMIC_RECORD ).then(async (value)=> {
+          num = value;
+        });
+      }
+
+      if(fileCategory=="Image"){
         await this.repo.deleteFile(userID ,FileCategory.ACADEMIC_RECORD ).then(async (value)=> {
           num = value;
         });

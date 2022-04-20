@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { BlogRepository } from './api-blog-repository.repository';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
-import { Blog, BlogComment, BlogMedia  } from '@graduates/api/blog/api/shared/entities/data-access';
+import { Blog, BlogComment, BlogMedia } from '@graduates/api/blog/api/shared/entities/data-access';
 
 jest.mock('@graduates/api/blog/api/shared/entities/data-access');
 
@@ -230,14 +230,14 @@ describe('BlogRepository', () => {
         .spyOn(repository, 'createComment')
         .mockImplementation((): Promise<BlogComment> => Promise.resolve(blogCommentMock));
 
-        expect(await repository.createComment('32A',"45H",'35','New Comment to be added')).toMatchObject(
+        expect(await repository.createComment("45H",'35','New Comment to be added')).toMatchObject(
           blogCommentMock
         )
     });
     it('should return null', async () => {
       jest.spyOn(repository, 'createComment').mockResolvedValue(null);
   
-      expect(await repository.createComment('NULL',"NULL",'NULL','New Comment to be added')).toEqual(null);
+      expect(await repository.createComment("NULL",'NULL','New Comment to be added')).toEqual(null);
     });
   });
   //Test updateComment function

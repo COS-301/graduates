@@ -25,12 +25,12 @@
 }
 
 button {
-  color: #FFFFFF;
+  color: $text-white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: lighter;
-  background-color: #174372;
+  background-color: $primary-1;
   border-width: medium;
-  border-color: #174372;
+  border-color: $primary-1;
   outline: none;
   box-shadow: none;
 
@@ -43,9 +43,9 @@ button {
   }
 }
 button:hover {
-  color: #174372;
-  border-color: #174372;
-  background-color: #FFFFFF;
+  color: $primary-1;
+  border-color: $primary-1;
+  background-color: $background-white;
   outline: none;
   box-shadow: none;
 }
@@ -55,10 +55,10 @@ button:disabled {
   color: #CFD7DE;
 }
 button:focus {
-  background-color: #174372;
+  background-color: $primary-1;
   outline: none;
   box-shadow: none;
-  color: #fff;
+  color: $text-white;
 }
 
 h3 {

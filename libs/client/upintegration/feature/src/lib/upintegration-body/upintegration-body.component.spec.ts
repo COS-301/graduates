@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormsModule } from '@angular/forms';
 import { UpintegrationBodyComponent } from './upintegration-body.component';
 
 describe('UpintegrationBodyComponent', () => {
@@ -8,9 +8,9 @@ describe('UpintegrationBodyComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UpintegrationBodyComponent ]
-    })
-    .compileComponents();
+      declarations: [UpintegrationBodyComponent],
+      imports: [FormsModule],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +19,7 @@ describe('UpintegrationBodyComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should compile', () => {
     expect(component).toBeTruthy();
   });
 });

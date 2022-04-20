@@ -14,20 +14,38 @@ export class ApiCompanyRepresentativeResolver {
     return resp; 
   }
 
-  @Query(() => CompanyRepresentative)
+  @Query(() => [CompanyRepresentative])
   async getAllCompanyRepresentatives() {
-    const resp = await this.apiCompanyRepresentativeService.getAllRepresentatives();
+    const resp = await this.apiCompanyRepresentativeService.getAllCompanyRepresentatives();
     return resp;
   }
 
   @Query(() => CompanyRepresentative)
   async login(@Args("email") email:string, @Args("password") password:string){
-    const resp = await this.apiCompanyRepresentativeService.login(email, password)
+    const resp = await this.apiCompanyRepresentativeService.login(email, password);
     return resp;
   }
   @Query(() =>String) 
   pingCompanyRepresentative(){
     return "on";
+  }
+
+  @Mutation(() => CompanyRepresentative)
+  async updateCompanyRepresentative(@Args('id') id: string, @Args('name') name: string, @Args('experience') experience: string, @Args('contactNumber') contactNumber: string, @Args('location') location: string, @Args('email') email: string, @Args('linkedIn') linkedIn: string, @Args('twitter') twitter: string, @Args('instagram') instagram: string, @Args('facebook') facebook: string, @Args('snapchat') snapchat: string, @Args('github') github: string){
+    const rep = new CompanyRepresentative();
+    rep.id = id;
+    rep.repName = name;
+    rep.repExperience = experience;
+    rep.phoneNumber = contactNumber;
+    rep.location = location;
+    rep.email = email;
+    rep.linkedIn = linkedIn;
+    rep.twitter = twitter;
+    rep.instagram = instagram;
+    rep.facebook = facebook;
+    rep.snapChat = snapchat;
+    rep.gitHub = github;
+    return await this.apiCompanyRepresentativeService.UpdateRepresentative(rep);
   }
   
 

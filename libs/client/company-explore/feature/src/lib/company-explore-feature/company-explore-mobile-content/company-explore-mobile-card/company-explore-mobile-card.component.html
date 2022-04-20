@@ -1,15 +1,15 @@
 <mat-card class="card" >
-<img card-image src="{{company?.img}}" >
+<img card-image src="{{company?.Userprofile?.profilePicture}}" >
     <button mat-icon-button class="icon-button" [matMenuTriggerFor]="menu">
     <mat-icon class="icon">more_horizt</mat-icon>
     </button>
-  <mat-menu fxLayout="column" class="pop-up" #menu="matMenu"  xPosition="before" yPosition="above" >
+  <mat-menu fxLayout="column" class="pop-up" #menu="matMenu" yPosition="above" >
     <mat-card-header class="cardheader" fxFlexAlign="center" >
     <mat-card-title>{{company?.name}}</mat-card-title>
       </mat-card-header>
   
     <mat-card-content>
-        <a href ="https://www.youtube.com/watch?v=iik25wqIuFo">
+        <a href ="http://localhost:4200/company-profile?id={{company?.companyID}}">
             <button  fxFlexAlign="center" class="cardbutton" mat-raised-button>View Company Profile</button>
         </a>
       </mat-card-content>
