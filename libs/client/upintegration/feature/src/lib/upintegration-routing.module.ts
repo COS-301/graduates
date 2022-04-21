@@ -7,10 +7,6 @@ const routes: Routes = [
     path: '',
     component: UpintegrationBodyComponent,
   },
-  {
-    path: ':id',
-    component: UpintegrationBodyComponent,
-  },
 ];
 
 @NgModule({
