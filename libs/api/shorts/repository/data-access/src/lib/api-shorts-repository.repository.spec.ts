@@ -446,7 +446,7 @@ describe('ShortsRepository', () => {
 
 //! TODO Uncomment once DB and API are ready in CI/CD or Deployment Environment
 describe('DB Integration Tests', () => {
-  
+  /*
   let repository: ShortsRepository;
   let prisma: PrismaService;  
 
@@ -712,5 +712,5 @@ describe('DB Integration Tests', () => {
         prisma.user.delete({where: {id: "TestUser"}}),
       ]);
     });
-    
+    */
 });
