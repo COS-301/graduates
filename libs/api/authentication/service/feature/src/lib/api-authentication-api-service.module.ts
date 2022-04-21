@@ -1,11 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { forwardRef, NgModule } from '@angular/core';
-//import { ApiAuthenticationApiFeatureModule } from '@graduates/api/authentication/api/feature';
 import { Module } from '@nestjs/common';
+import { AuthService } from './api-authentication-api-service.service';
+import { UsersService } from './api-authentication-api-users-service';
 
-@NgModule({
-  providers: [],
-  exports: [],
-  imports: [CommonModule],
+@Module({
+  providers: [AuthService, UsersService],
+  exports: [UsersService, AuthService],
+  imports: [CommonModule, 
+],
 })
 export class ApiAuthenticationApiSharedInterfacesDataAccessModule {}
+
+
+

@@ -1,4 +1,4 @@
-@Injectable({
+/*@Injectable({
     providedIn: 'graduates-login-form'
   })
   export class AuthService {
@@ -45,4 +45,29 @@
       this.auth.doLogoutUser();
     }
   
+  }*/
+
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthService {
+  constructor(private httpClient: HttpClient) { }
+
+
+
+  login(email: string, password: string): Observable<any> {
+    const query = 'query{login(email: "' + email + '", password: "' + password + '"){id}}';
+    const options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+    return this.httpClient.post<any>('https://301graduates.live:3333/graphql',JSON.stringify({ query: query }), options);
   }
+
+}
