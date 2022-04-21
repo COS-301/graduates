@@ -49,7 +49,9 @@ export class FirebaseService {
       console.error(err);
     });
 
-    return tempBool;
+    return new Promise<boolean>((resolve) => {
+      resolve(tempBool);
+  });
   }
 
   async uploadAsBase64String(base64: string, fileName: string, folderName: FirebaseFolders) : Promise<boolean>{
@@ -67,7 +69,9 @@ export class FirebaseService {
       console.error(err);
     });
 
-    return tempBool;
+    return new Promise<boolean>((resolve) => {
+      resolve(tempBool);
+  });
   }
 
   async uploadAsBinaryString(binaryFile: string, fileName: string, folderName: FirebaseFolders) : Promise<boolean>{
@@ -88,7 +92,9 @@ export class FirebaseService {
       console.error(err);
     });
 
-    return tempBool;
+    return new Promise<boolean>((resolve) => {
+      resolve(tempBool);
+  });;;
   }
 
   async getURLByName(fileName:string, folder:FirebaseFolders): Promise<string| null>{
@@ -102,7 +108,7 @@ export class FirebaseService {
     // This is analogous to a file path on disk
     console.log(fileRef.fullPath);
 
-    let url = null;
+    let url: string | null = null;
 
     //get the url that will download the file
     await getDownloadURL(fileRef)
@@ -113,7 +119,9 @@ export class FirebaseService {
         console.error(error);
       });
 
-    return url;
+    return new Promise<string | null>((resolve) => {
+      resolve(url);
+  });
   }
 
   async getURLByFilePath(file_path:string) : Promise<string|null>{
@@ -127,7 +135,7 @@ export class FirebaseService {
     // This is analogous to a file path on disk
     console.log(fileRef.fullPath);
 
-    let url = null;
+    let url: string | null = null;
 
     //get the url that will download the file
     await getDownloadURL(fileRef)
@@ -136,10 +144,11 @@ export class FirebaseService {
       })
       .catch((error) => {
         console.error(error);
-        return null;
       });
 
-    return url;
+    return new Promise<string | null>((resolve) => {
+      resolve(url);
+  });
   }
 
   async deleteByFilename(filename:string, folder:FirebaseFolders):Promise<boolean>{
@@ -157,7 +166,9 @@ export class FirebaseService {
       tempBool = false;
     });
 
-    return tempBool;
+    return new Promise<boolean>((resolve) => {
+      resolve(tempBool);
+  });
   }
 
   //file_path = FirebaseFolder/filename
@@ -177,7 +188,9 @@ export class FirebaseService {
       tempBool = false;
     });
 
-    return tempBool;
+    return new Promise<boolean>((resolve) => {
+      resolve(tempBool);
+  });
   }
   
   //ex. FirebaseRepository.uploadAllUnderDirectory('@graduates/api/storage/uploads',FirebaseRepository.FirebaseFolders.Files)
@@ -216,6 +229,8 @@ export class FirebaseService {
       });
     });
 
-    return tempBool;
+    return new Promise<boolean>((resolve) => {
+      resolve(tempBool);
+  });
   }
 }
