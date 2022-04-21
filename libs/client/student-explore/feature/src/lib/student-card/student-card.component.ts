@@ -37,7 +37,7 @@ export class StudentCardComponent implements OnInit
   tagsArray: filter[] = [];
 
   qry = "";
-  responseArray: Array<any> = [];
+  responseArray: Array<Student> = [];
 
   //JSON's to be used for filtering
   filter_JSON = "";
@@ -473,6 +473,41 @@ export class StudentCardComponent implements OnInit
 
   //SEARCH BAR FUNCTIONALITY
 
+  async queryHelper(): Promise<string>
+  {
+    const query = `query{
+      SearchStudents(searchQuery: "${this.qry}"){
+        StudentID
+        StudentName
+        StudentBio
+        StudentEmail
+        StudentNumber
+        StudentTags
+        StudentDegreeType
+        StudentDegreeName
+        StudentLocation
+        StudentPic
+      }
+    }`;
+
+    let fetchCall = "";
+    
+    await fetch('http://localhost:3333/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          query
+        })
+      }).then(r => r.json()).then(data => 
+        fetchCall = data
+    );
+
+    return JSON.stringify(fetchCall);
+  }
+
   async query()
   {
     console.log("The search query is: " + this.qry);
@@ -480,7 +515,7 @@ export class StudentCardComponent implements OnInit
     if(this.qry !== "")
     {
       this.responseArray = [];
-      const query = `query{
+      /*const query = `query{
         SearchStudents(searchQuery: "${this.qry}"){
           StudentID
           StudentName
@@ -527,7 +562,28 @@ export class StudentCardComponent implements OnInit
             this.responseArray.push(studentObj);
           }
         }
-      });
+      });*/
+
+      const response = JSON.parse(await this.queryHelper());
+
+      if(response.data === undefined)
+      {
+        this.responseArray.push(new Student("", "Could Not Get Students From Source", "", "", "", "", "", "", "", ""));
+      }
+      else if(response.data.SearchStudents.length === 0)
+      {
+        this.responseArray.push(new Student("", "Search Request Not Found", "", "", "", "", "", "", "", ""));
+      }
+      else
+      {
+        for(const student of response.data.SearchStudents)
+        {
+          const studentObj = new Student(student.StudentID, student.StudentName, student.StudentBio, 
+                                          student.StudentEmail, student.StudentNumber, student.StudentTags, 
+                                          student.StudentDegreeType, student.StudentDegreeName, student.StudentLocation, student.StudentPic);
+          this.responseArray.push(studentObj);
+        }
+      }
 
       this.studentArray = [];
       await this.loadStudentCardsByFilter(this.responseArray);
@@ -536,6 +592,7 @@ export class StudentCardComponent implements OnInit
     else
     {
       //Reload the page with the initial students
+      //this.responseArray.push(new Student("Query Empty", "", "", "", "", "", "", "", "", ""));
       this.studentArray = [];
       await this.loadStudentCards();
     }
