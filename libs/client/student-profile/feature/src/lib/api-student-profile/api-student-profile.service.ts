@@ -16,7 +16,7 @@ export class ApiStudentProfileService {
           'Content-Type': 'application/json'
         })
       }
-      if(input=="u12345678") return this.client.post<any>('http://localhost:3333/graphql', JSON.stringify({ query: query, variables: { studentNum: "u12345678" } }), options);
-      return this.client.post<any>('http://localhost:3333/graphql', JSON.stringify({ query: query, variables: { studentNum: "u19054512" } }), options);
+      if(input=="u12345678") return this.client.post<any>('https://301graduates.live:3333/graphql', JSON.stringify({ query: query, variables: { studentNum: "u12345678" } }), options);
+      return this.client.post<any>('https://301graduates.live:3333/graphql', JSON.stringify({ query: query, variables: { studentNum: "u19054512" } }), options);
      }
 }
