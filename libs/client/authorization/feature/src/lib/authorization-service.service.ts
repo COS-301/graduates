@@ -22,7 +22,7 @@ export class AuthorizationServiceService {
 
     this.httpClient.post("https://301graduates.live:3333/graphql",{query:'query { authorization(id:'+JSON.stringify(this.id)+') { companyId, userRole } }'})
     .subscribe(data=>{
-      //alert(JSON.stringify(data));
+      alert(JSON.stringify(data));
       this.perm=data;
     });
 
