@@ -1,6 +1,8 @@
 // e2e testing to go here please seee below for example
 
 //To run the cypress test suite use the command: "yarn nx run-many --target=e2e --all"
+import { should } from 'chai';
+import * as exp from 'constants';
 import { before } from 'cypress/types/lodash';
 import { getGreeting } from '../support/app.po';
 
@@ -400,4 +402,44 @@ describe('Student Explore', () => {
 //     cy.get('.card-grid').should('exist');
 //     cy.get('.card-grid').children().nextAll().should('contain', 'Security');
 //   });
+});
+
+describe('API status page', () => {
+  beforeEach(() => cy.visit('http://localhost:4200/status-api'));
+
+  it('Should contain Status Page', () => {
+    cy.contains('Status Page');
+  });
+
+  it ('Should contain header and footer', () => {
+    cy.get('header-and-footer-header').should('have.length', 1);
+  });
+
+  it ('Should contain all three legends', () => {
+    cy.get('div#legend-item').should('have.length', 3);
+  });
+
+  it ('Should have visible legend', () => {
+    cy.get('div#legend').should('be.visible');
+  });
+
+  it ('Should contain legends in correct positions', () => {
+    cy.get('div#legend-item').eq(0).should('contain', 'Fully Operational');
+    cy.get('div#legend-item').eq(1).should('contain', 'Non Operational');
+    cy.get('div#legend-item').eq(2).should('contain', 'Under Development');
+  });
+
+  it ('Any and all status cards present should contain a status image', () => {
+    cy.get('graduates-status-card').each($card => {
+      cy.wrap($card).children('div').eq(0).children('div').eq(0).children('img').should('have.length', 1);
+    });
+  }); 
+
+  it ('Any and all status cards present should contain the title of the API', () => {
+    cy.get('graduates-status-card').each($card => {
+      // any text here be accepted
+      const text = $card.first().first().children().eq(1).val();
+      expect(text).to.match(/.+/);
+    });
+  }); 
 });
