@@ -56,6 +56,13 @@ export class StudentCardComponent implements OnInit
 
   //MAIN FUNCTIONS
 
+  sendToStudentProfile(id: any): string //This function should return void, but for the sake of unit testing it will return a string.
+  {
+    console.log(id);
+    window.open("student-profile");
+    return id;
+  }
+
   //Populate the student cards INITIAL
   async loadStudentCards()
   {
@@ -143,7 +150,7 @@ export class StudentCardComponent implements OnInit
 
     //Get initial students
     let initial_students = "";
-    await fetch('http://localhost:3333/graphql', {
+    await fetch('https://301graduates.live:3333/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -172,7 +179,7 @@ export class StudentCardComponent implements OnInit
         Available
       }
       }`;
-    await fetch('http://localhost:3333/graphql', {
+    await fetch('https://301graduates.live:3333/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -190,7 +197,7 @@ export class StudentCardComponent implements OnInit
         Available
       }
       }`;
-    await fetch('http://localhost:3333/graphql', {
+    await fetch('https://301graduates.live:3333/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -208,7 +215,7 @@ export class StudentCardComponent implements OnInit
         Available
       }
       }`;
-    await fetch('http://localhost:3333/graphql', {
+    await fetch('https://301graduates.live:3333/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -360,7 +367,7 @@ export class StudentCardComponent implements OnInit
 
       //Make the API call with the correct query
       let filtered = "";
-      await fetch('http://localhost:3333/graphql', {
+      await fetch('https://301graduates.live:3333/graphql', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -471,6 +478,41 @@ export class StudentCardComponent implements OnInit
 
   //SEARCH BAR FUNCTIONALITY
 
+  async queryHelper(): Promise<string>
+  {
+    const query = `query{
+      SearchStudents(searchQuery: "${this.qry}"){
+        StudentID
+        StudentName
+        StudentBio
+        StudentEmail
+        StudentNumber
+        StudentTags
+        StudentDegreeType
+        StudentDegreeName
+        StudentLocation
+        StudentPic
+      }
+    }`;
+
+    let fetchCall = "";
+    
+    await fetch('https://301graduates.live:3333/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          query
+        })
+      }).then(r => r.json()).then(data => 
+        fetchCall = data
+    );
+
+    return JSON.stringify(fetchCall);
+  }
+
   async query()
   {
     console.log("The search query is: " + this.qry);
@@ -478,7 +520,7 @@ export class StudentCardComponent implements OnInit
     if(this.qry !== "")
     {
       this.responseArray = [];
-      const query = `query{
+      /*const query = `query{
         SearchStudents(searchQuery: "${this.qry}"){
           StudentID
           StudentName
@@ -495,7 +537,7 @@ export class StudentCardComponent implements OnInit
 
       console.log("The query variable is: " + query);
 
-      await fetch('http://localhost:3333/graphql', {
+      await fetch('https://301graduates.live:3333/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -525,7 +567,28 @@ export class StudentCardComponent implements OnInit
             this.responseArray.push(studentObj);
           }
         }
-      });
+      });*/
+
+      const response = JSON.parse(await this.queryHelper());
+
+      if(response.data === undefined)
+      {
+        this.responseArray.push(new Student("", "Could Not Get Students From Source", "", "", "", "", "", "", "", ""));
+      }
+      else if(response.data.SearchStudents.length === 0)
+      {
+        this.responseArray.push(new Student("", "Search Request Not Found", "", "", "", "", "", "", "", ""));
+      }
+      else
+      {
+        for(const student of response.data.SearchStudents)
+        {
+          const studentObj = new Student(student.StudentID, student.StudentName, student.StudentBio, 
+                                          student.StudentEmail, student.StudentNumber, student.StudentTags, 
+                                          student.StudentDegreeType, student.StudentDegreeName, student.StudentLocation, student.StudentPic);
+          this.responseArray.push(studentObj);
+        }
+      }
 
       this.studentArray = [];
       await this.loadStudentCardsByFilter(this.responseArray);
@@ -534,6 +597,7 @@ export class StudentCardComponent implements OnInit
     else
     {
       //Reload the page with the initial students
+      //this.responseArray.push(new Student("Query Empty", "", "", "", "", "", "", "", "", ""));
       this.studentArray = [];
       await this.loadStudentCards();
     }
