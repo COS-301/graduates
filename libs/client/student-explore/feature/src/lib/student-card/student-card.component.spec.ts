@@ -206,4 +206,24 @@ describe('StudentCard Component: Search Bar Functionality', () => {
     
     expect(component.responseArray).toEqual(expectedResult);
   });
+
+  it('Should, given that the API fails, return a could not get students from source error', async () => {
+    const hostElement = fixture.nativeElement;
+    const input: HTMLInputElement = hostElement.querySelector('#search');
+
+    const invalidStudentObject = {data: undefined};
+
+    const expectedResult: Array<Student> = [];
+    expectedResult.push(new Student("", "Could Not Get Students From Source", "", "", "", "", "", "", "", ""));
+
+    input.value = 'Matthew';
+    input.dispatchEvent(new Event('input'));
+
+    jest.spyOn(component, "retrieveStudentObjects").mockResolvedValue(JSON.stringify(retrieveStudentObjects));
+    jest.spyOn(component, "queryHelper").mockResolvedValue(JSON.stringify(invalidStudentObject));
+
+    await component.query();
+    
+    expect(component.responseArray).toEqual(expectedResult);
+  });
 });
