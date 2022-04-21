@@ -146,9 +146,13 @@ div#searchBar mat-form-field input
 
 div#filter
 {
-  position: absolute;
+  /*position: absolute;
   left: 2%;
-  top: 22.5%;
+  top: 22.5%;*/
+
+  float: left;
+  left: 2.5%;
+  top: 1%;
 }
 
 .filter_headings{
