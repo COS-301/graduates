@@ -120,6 +120,8 @@ export class MainStoragePageComponent implements OnInit {
     // Based on the fileCategory you can you know what file of userID to delete
     // Your code comes here....
 
-
+  goBack(){
+      window.location.href = "student-profile";
+    }
 
   }
