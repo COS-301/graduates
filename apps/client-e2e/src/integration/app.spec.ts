@@ -241,6 +241,7 @@ describe('client-shorts-feature e2e test', () => {
       });
 */
 
+/*
       it('tests navigating between tabs', () => {
       cy.get('#curBtn').should('contain.text', '1');
       cy.get('.formbuttonblue').contains('Next').then((nextBtn)=>{
@@ -251,15 +252,17 @@ describe('client-shorts-feature e2e test', () => {
         cy.get('#curBtn').should('contain.text', '1');
         }});
       });
+*/
 
 
-    // needs seeded data with uploads from a user named John
+    // needs seeded data with uploads with the tag #cats
 /*
     it('should test the search capability', () => {
-      cy.get('#search').type('John{enter}');
-      cy.get('#cardHeader').should('contain','John');
+      cy.get('#search').type('#cats{enter}');
+      cy.get('#tags').should('contain','#cats');
     });
 */
+
     describe('upload component tests', () => {
       beforeEach(() => {
         cy.visit('/shorts/upload');
