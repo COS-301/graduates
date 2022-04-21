@@ -1,43 +1,45 @@
-<!-- Filters -->
-<div id="filter">
-  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Filter Menu">
-    <mat-icon>filter_list</mat-icon>
-  </button>
-  <mat-menu class="filter_menu"#menu="matMenu" yPosition="below" xPosition="after">
-    <mat-card-actions>
-      <button mat-button (click)="filter_students()" id="filter_submit">Filter students</button>
-    </mat-card-actions>
-    <h2 class="filter_headings">Employment status</h2>
-    <button *ngFor="let emp of empArray" mat-menu-item role="menuitemcheckbox">
-      <mat-checkbox id="{{emp.filter_name}}" (click)="$event.stopPropagation(); process_filter(emp)" >{{emp.filter_name}}</mat-checkbox>
+<div id="contentEditors">
+  <!-- Filters -->
+  <div id="filter">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Filter Menu">
+      <mat-icon>filter_list</mat-icon>
     </button>
-  
-    <h2 class="filter_headings">Location</h2>
-    <button *ngFor="let loca of locationArray" mat-menu-item role="menuitemcheckbox">
-      <mat-checkbox id="{{loca.filter_name}}" (click)="$event.stopPropagation(); process_filter(loca)">{{loca.filter_name}}</mat-checkbox>
-    </button>
-  
-    <h2 class="filter_headings">Tags</h2>
-    <button *ngFor="let tags of tagsArray" mat-menu-item role="menuitemcheckbox">
-      <mat-checkbox id="{{tags.filter_name}}" (click)="$event.stopPropagation(); process_filter(tags)" >{{tags.filter_name}}</mat-checkbox>
-    </button>
-  </mat-menu>
-</div>
-<!-- Filters -->
-
-<!--Search Bar-->
-<div id="searchBar">
-  <mat-form-field>
-      <mat-label>Search for a student</mat-label>
-
-      <input matInput type="search" id="search" name="searchbar" placeholder="Search for a student" (keyup.enter)="query()" [(ngModel)]="qry" />
-
-      <button mat-icon-button matSuffix (click)="query()" aria-label="SearchButton">
-          <mat-icon>search</mat-icon>
+    <mat-menu class="filter_menu"#menu="matMenu" yPosition="below" xPosition="after">
+      <mat-card-actions>
+        <button mat-button (click)="filter_students()" id="filter_submit">Filter students</button>
+      </mat-card-actions>
+      <h2 class="filter_headings">Employment status</h2>
+      <button *ngFor="let emp of empArray" mat-menu-item role="menuitemcheckbox">
+        <mat-checkbox id="{{emp.filter_name}}" (click)="$event.stopPropagation(); process_filter(emp)" >{{emp.filter_name}}</mat-checkbox>
       </button>
-  </mat-form-field>
+  
+      <h2 class="filter_headings">Location</h2>
+      <button *ngFor="let loca of locationArray" mat-menu-item role="menuitemcheckbox">
+        <mat-checkbox id="{{loca.filter_name}}" (click)="$event.stopPropagation(); process_filter(loca)">{{loca.filter_name}}</mat-checkbox>
+      </button>
+  
+      <h2 class="filter_headings">Tags</h2>
+      <button *ngFor="let tags of tagsArray" mat-menu-item role="menuitemcheckbox">
+        <mat-checkbox id="{{tags.filter_name}}" (click)="$event.stopPropagation(); process_filter(tags)" >{{tags.filter_name}}</mat-checkbox>
+      </button>
+    </mat-menu>
+  </div>
+  <!-- Filters -->
+
+  <!--Search Bar-->
+  <div id="searchBar">
+    <mat-form-field>
+        <mat-label>Search for a student</mat-label>
+
+        <input matInput type="search" id="search" name="searchbar" placeholder="Search for a student" [(ngModel)]="qry" (keyup.enter)="query()" />
+
+        <button mat-icon-button matSuffix (click)="query()" aria-label="SearchButton">
+            <mat-icon>search</mat-icon>
+        </button>
+    </mat-form-field>
+  </div>
+  <!--Search Bar-->
 </div>
-<!--Search Bar-->
 
 <!-- Making a grid for the student cards -->
 <main class="card-grid">
@@ -58,13 +60,13 @@
           <b>Bio:</b>{{student.bio}}
         </p>
         <p class="contacts">
-          <b>Contact Details: </b>{{student.contactNo}} / {{student.email}}
+          <b>Contact Details: </b>{{student.contactNo}} / {{student.all_emails}}
         </p>
         <p class="tags"><b>Tags: </b>{{student.tags}}</p>
       </mat-card-content>
   
       <mat-card-actions>
-        <button mat-button>View Student</button>
+        <button mat-button (click)="sendToStudentProfile(student.id)">View Student</button>
       </mat-card-actions>
     </div>
   </mat-card>
