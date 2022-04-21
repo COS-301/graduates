@@ -77,13 +77,13 @@ const routes: Routes = [
         (x) => x.ClientStudentProfileFeatureModule
       ),
   },
-  /*{
+  {
     path: 'upintegration',
     loadChildren: () =>
       import('@graduates/client/upintegration/feature').then(
         (x) => x.ClientUpintegrationFeatureModule
       ),
-  },*/
+  },
   {
     path: 'blog',
     loadChildren: () =>
