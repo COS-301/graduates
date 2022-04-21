@@ -5,7 +5,7 @@ import {ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'graduates-employment-status',
   templateUrl: './employment-status.component.html',
-  styleUrls: ['./employment-status.component.sass']
+  styleUrls: ['./employment-status.component.scss']
 })
 export class EmploymentStatusComponent implements OnInit {
 

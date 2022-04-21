@@ -5,7 +5,7 @@ import {Router } from '@angular/router';
 @Component({
   selector: 'graduates-degree',
   templateUrl: './degree.component.html',
-  styleUrls: ['./degree.component.sass']
+  styleUrls: ['./degree.component.scss']
 })
 export class DegreeComponent implements OnInit {
 
