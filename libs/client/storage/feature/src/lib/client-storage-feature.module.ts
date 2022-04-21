@@ -26,7 +26,7 @@ import { UiComponentNavbarModule } from '../../../../shared/components/navigatio
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatButtonModule } from "@angular/material/button";
-const uri = 'http://localhost:3333/graphql'; // <-- add the URL of the GraphQL server here
+const uri = 'https://301graduates.live:3333/graphql'; // <-- add the URL of the GraphQL server here
 export function createApollo(httpLink: HttpLink) {
   return {
     link: httpLink.create({uri}),

@@ -1,6 +1,6 @@
 export class GoogleStrategyCredentials
 {
-    clientId: string ;
+    clientID: string ;
     clientSecret: string;
     callbackURL: string;
     scope: string[];

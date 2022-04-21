@@ -17,7 +17,9 @@ export class GetRoleQueryPermissionHandler
     // Destruct data from command object
     const { userId } = query;
 
-    const role= (await this.repository.findRole(userId)).role;
-    return {role};
+    const role = await this.repository.findRole(userId);
+    if (role == null) return null;
+
+    return role.role;
   }
 }
