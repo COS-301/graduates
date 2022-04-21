@@ -18,7 +18,7 @@ export class ProfileBodyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.apiCaller.getStudentDetails().subscribe((data) => {
+    this.apiCaller.getStudentDetails(this.route.snapshot.paramMap.get("id")).subscribe((data) => {
       if(data.data.student != null) {
         this.studentObj = data.data.student;
       }
@@ -27,6 +27,6 @@ export class ProfileBodyComponent implements OnInit {
       }
     });
 
-    console.log(this.route.snapshot.paramMap.get("id"));
+    //console.log(this.route.snapshot.paramMap.get("id"));
   }
 }
