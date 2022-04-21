@@ -117,6 +117,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('@graduates/client/upintegration/feature').then(
         (x) => x.ClientUpintegrationFeatureModule
+        ),
+  },
+  {
+    path: 'Authorization',
+    loadChildren:()=>
+      import('@graduates/client/authorization/feature').then(
+        (x)=>x.ClientAuthorizationFeatureModule
       ),
   },
 ];
