@@ -1,20 +1,21 @@
-// import { ApiAuthenticationServiceFeatureModule } from '@graduates/api/authentication/service/feature';
 import { ApiAuthenticationResolver } from './api-authentication-api.resolver';
-import { forwardRef, Module } from '@nestjs/common';
-import { UsersModule } from './users/users.module';
-import { AuthModule } from './auth/auth.module';
-import { UsersService } from './api-authentication-api.service';
-// import { UsersService } from '@graduates/api/authentication/service/feature';
-//import { UsersService } from '@graduates/api/authentication/service/feature';
-//import { ApiAuthenticationApiSharedInterfacesDataAccessModule } from '@graduates/api/authentication/service/feature';
+import {Module } from '@nestjs/common';
+import { AuthService, JwtStrategy, LocalStrategy, UsersService } from '@graduates/api/authentication/service/feature';
+import { PassportModule } from '@nestjs/passport';
+import { JwtModule } from '@nestjs/jwt';
+import { GoogleStrategy } from '@graduates/api/authentication/service/feature';
+
 
 
 @Module({
-  imports: [UsersModule, AuthModule, UsersService
-    //ApiAuthenticationApiSharedInterfacesDataAccessModule
+  providers: [AuthService, UsersService, ApiAuthenticationResolver, LocalStrategy, JwtStrategy, GoogleStrategy, PassportModule
   ],
-  controllers: [],
-  providers: [ ApiAuthenticationResolver, UsersService 
-  ],
+  imports: [PassportModule, JwtModule.register({
+        signOptions: {expiresIn: '60s'},
+        secret: 'secret-key', 
+    }),
+    ],
 })
 export class ApiAuthenticationApiFeatureModule {}
+
+

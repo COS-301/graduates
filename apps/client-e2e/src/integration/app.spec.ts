@@ -59,6 +59,40 @@ describe('client notifications testing', () => {
 });
 
 
+describe('Company Representative Feature', () => {
+
+  beforeEach(() => {
+      cy.visit('/CompanyRepresentativeLogin');
+  })
+
+  it('should allow representative to login', () => {
+
+      cy.get('input[type="email"]').type('ishe.dzingirai@gmail.com');
+      cy.get('input[type="password"]').type('IamACSStudent@1');
+      cy.get('button[type="submit"]').click().visit('/CompanyRepresentativeHome');
+  
+  });
+
+});
+
+// describe('Company Representative Update Details', () => {
+
+//   beforeEach(() => {
+//       cy.visit('/CompanyRepresentativeEdit');
+//   })
+
+//       it('should navigate to homepage', () => {
+//           //Navigate to homepage after updating details
+
+//           //Run test if api is active, because that is when element is active
+//           // cy.get('.submit').click();
+
+      
+//       });
+
+//   });
+
+
 /* Request for access */
 
 // describe('Visit student-profile', () => {
@@ -171,6 +205,8 @@ describe('client notifications testing', () => {
 
 //   });*/
 // });
+
+
 
 // Commented out Tests need API and DB to run in Environment to pass
 describe('client-shorts-feature e2e test', () => {
