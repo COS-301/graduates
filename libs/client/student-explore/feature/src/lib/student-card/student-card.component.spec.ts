@@ -22,11 +22,6 @@ describe('StudentCardComponent', () => {
   }`;
   const InvalidStudentObjects =  `{}`;
 
-  //Filtered Students array by 'Security'
-  const FilteredStudentObjects : Array<Student> = 
-  [new Student("0", "Timo0", "This is the bio of Student Timo0. They are a student at UP!",["Timo0@email.com"], "0829266678", "Software Engineering, Security", ["BIS"], ["Multimedia"],  "Tatooine", ""),
-   new Student("1", "Daniel A1", "This is the bio of Student Daniel A1. They are a student at UP!",["Daniel A1@email.com"], "0825897578", "Formal Methods, Security", ["Bsc"], ["Information and Knowledge Systems"], "Pretoria", "")];
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [StudentCardComponent],
@@ -133,12 +128,12 @@ describe('StudentCardComponent to StudentProfile', () => {
   let fixture: ComponentFixture<StudentCardComponent>;
   const studentObjects =  {data:[
                                   {id: "0129583027937", StudentName: "Timo", StudentBio: "This is the bio of Student Timo. They are a student at UP!",
-                                    StudentEmail: "exmaple@gmail.com", StudentNumber: "0688888888", StudentTags: "Networks, AI", 
-                                    StudentDegreeType: "Bsc", StudentDegreeName: "Computer Science", StudentLocation: "Pretoria"},
+                                    StudentEmail: ["exmaple@gmail.com"], StudentNumber: "0688888888", StudentTags: "Networks, AI", 
+                                    StudentDegreeType: ["Bsc"], StudentDegreeName:[ "Computer Science"], StudentLocation: "Pretoria"},
 
                                   {id: "0129583027938", StudentName: "Daniel A", StudentBio: "This is the bio of Student Timo. They are a student at UP!",
-                                    StudentEmail: "exmaple@gmail.com", StudentNumber: "0688888888", StudentTags: "Computer security, AI",
-                                    StudentDegreeType: "Bsc", StudentDegreeName: "Computer Science", StudentLocation:  "Pretoria"}
+                                    StudentEmail: ["exmaple@gmail.com"], StudentNumber: "0688888888", StudentTags: "Computer security, AI",
+                                    StudentDegreeType: ["Bsc"], StudentDegreeName:[ "Computer Science"], StudentLocation:  "Pretoria"}
                                 ]};
 
   beforeEach(async () => {
