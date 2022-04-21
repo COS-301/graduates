@@ -11,8 +11,10 @@ export class UpintegrationBodyComponent {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   log(x: any) {
     let studentNumber = '';
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     studentNumber = x.value;
   }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   submit(inputForm: { value: any }) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const permissions = inputForm.value;
