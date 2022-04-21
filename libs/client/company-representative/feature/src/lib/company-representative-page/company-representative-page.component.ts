@@ -31,12 +31,11 @@ export class CompanyRepresentativePageComponent {
   constructor(private _router: Router, private API : CompanyRepresentativeService) {
     if (localStorage.getItem("id") != null) {
       this.id = localStorage.getItem("id") as string;
+      this.displayImage();
     }
     else if (this._router.getCurrentNavigation() != null) {
       this.id = this._router.getCurrentNavigation()?.extras?.state?.['id'];
     }
-  
-      this.displayImage();
 
     this.result = this.API.getCompanyRepresentative(this.id).subscribe({
       next: (item) => {
@@ -61,21 +60,37 @@ export class CompanyRepresentativePageComponent {
     });
    }
 
-  uploadImage(event: any) {
-    console.log("In uploadImage");
-    if (this.API.download(this.id, "Image") === null ) {
-      console.log("Unfortunately, an image already works");
-      this.API.delete(this.id, "Image");
+  async uploadImage(event: any) {
+    if (event.target.files[0].type.match(/image\/*/) === null) {
+      alert("Only images are supported");
+      return;
     }
-    this.API.upload(event.target.files[0], this.id);
-    this.displayImage();
+    this.API.download(this.id, "Image").subscribe({
+      next: (item) => {
+        if (item.data.download !== "false") {
+          this.API.delete(this.id, "Image").subscribe({
+            next: (item) => {
+              this.API.upload(event.target.files[0], this.id);
+            }
+          });
+        } else {
+          this.API.upload(event.target.files[0], this.id);
+        }
+        const reader = new FileReader();
+          reader.readAsDataURL(event.target.files[0]);
+
+          reader.onload = (_event) => {
+            this.profilePicture = reader.result as string;
+          }
+      }
+    });
+
   }
 
   displayImage() {
     this.API.download(this.id, "Image").subscribe({
       next: (item) => {
-        if (item) {
-          console.log("In displayImage");
+        if (item.data.download !== "false") {
           this.profilePicture = item.data.download;
         }
       }
