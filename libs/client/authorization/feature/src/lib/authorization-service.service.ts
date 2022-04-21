@@ -19,7 +19,7 @@ export class AuthorizationServiceService {
     this.cookie.set("UserCookie",JSON.stringify(this.array));  //Initializing a cookie
     this.id=this.getUserID();   //Extracts the cookie from Cookie storage
 
-    this.httpClient.post("http://localhost:3333/graphql",{query:'query { authorization(id:'+JSON.stringify(this.id)+') { companyId, userRole } }'})
+    this.httpClient.post("https://301graduates.live:3333/graphql",{query:'query { authorization(id:'+JSON.stringify(this.id)+') { companyId, userRole } }'})
     .subscribe(data=>{
       //alert(JSON.stringify(data));
       this.perm=data;

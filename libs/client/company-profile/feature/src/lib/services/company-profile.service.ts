@@ -28,7 +28,7 @@ export class CompanyProfileService {
     };
 
     return this.httpClient.post<any>(
-      "http://localhost:3333/graphql",
+      "https://301graduates.live:3333/graphql",
       JSON.stringify({
         query: query,
         variables: { compID: this.ID},
