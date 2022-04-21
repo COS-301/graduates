@@ -573,11 +573,11 @@ export class StudentCardComponent implements OnInit
 
       if(response.data === undefined)
       {
-        this.responseArray.push(new Student("", "Could Not Get Students From Source", "", "", "", "", "", "", "", ""));
+        this.responseArray.push(new Student("", "Could Not Get Students From Source", "", [], "", "", [], [], "", ""));
       }
       else if(response.data.SearchStudents.length === 0)
       {
-        this.responseArray.push(new Student("", "Search Request Not Found", "", "", "", "", "", "", "", ""));
+        this.responseArray.push(new Student("", "Search Request Not Found", "", [], "", "", [], [], "", ""));
       }
       else
       {

@@ -176,30 +176,30 @@ describe('StudentCard Component: Search Bar Functionality', () => {
   let fixture: ComponentFixture<StudentCardComponent>;
   const studentObjects =  {data: {SearchStudents: [
                                   {StudentID: "0129583027939", StudentName: "Matthew Reed", StudentBio: "This is the bio of Student Timo. They are a student at UP!",
-                                    StudentEmail: "exmaple@gmail.com", StudentNumber: "0688888888", StudentTags: "Networks, AI", 
-                                    StudentDegreeType: "Bsc", StudentDegreeName: "Computer Science", StudentLocation:  "Pretoria", StudentPic: "404"},
+                                    StudentEmail: ["exmaple@gmail.com"], StudentNumber: "0688888888", StudentTags: "Networks, AI", 
+                                    StudentDegreeType: ["Bsc"], StudentDegreeName: ["Computer Science"], StudentLocation:  "Pretoria", StudentPic: "404"},
 
                                   {StudentID: "0129583027938", StudentName: "Daniel A", StudentBio: "This is the bio of Student Timo. They are a student at UP!",
-                                    StudentEmail: "exmaple@gmail.com", StudentNumber: "0688888888", StudentTags: "Computer security, AI",
-                                    StudentDegreeType: "Bsc", StudentDegreeName: "Computer Science", StudentLocation:  "Pretoria", StudentPic: "404"},
+                                    StudentEmail: ["exmaple@gmail.com"], StudentNumber: "0688888888", StudentTags: "Computer security, AI",
+                                    StudentDegreeType: ["Bsc"], StudentDegreeName: ["Computer Science"], StudentLocation:  "Pretoria", StudentPic: "404"},
 
                                   {StudentID: "0129583027937", StudentName: "Timo", StudentBio: "This is the bio of Student Timo. They are a student at UP!",
-                                    StudentEmail: "exmaple@gmail.com", StudentNumber: "0688888888", StudentTags: "Computer security, AI",
-                                    StudentDegreeType: "Bsc", StudentDegreeName: "Computer Science", StudentLocation:  "Pretoria", StudentPic: "404"}
+                                    StudentEmail: ["exmaple@gmail.com"], StudentNumber: "0688888888", StudentTags: "Computer security, AI",
+                                    StudentDegreeType: ["Bsc"], StudentDegreeName: ["Computer Science"], StudentLocation:  "Pretoria", StudentPic: "404"}
                                 ]}};
 
   const retrieveStudentObjects =  {data: {InitStudent: [
                                   {StudentID: "0129583027937", StudentName: "Timo", StudentBio: "This is the bio of Student Timo. They are a student at UP!",
-                                    StudentEmail: "exmaple@gmail.com", StudentNumber: "0688888888", StudentTags: "Networks, AI", 
-                                    StudentDegreeType: "Bsc", StudentDegreeName: "Computer Science", StudentPic: "404"},
+                                    StudentEmail: ["exmaple@gmail.com"], StudentNumber: "0688888888", StudentTags: "Networks, AI", 
+                                    StudentDegreeType: ["Bsc"], StudentDegreeName: ["Computer Science"], StudentPic: "404"},
 
                                   {StudentID: "0129583027938", StudentName: "Daniel A", StudentBio: "This is the bio of Student Timo. They are a student at UP!",
-                                    StudentEmail: "exmaple@gmail.com", StudentNumber: "0688888888", StudentTags: "Computer security, AI",
-                                    StudentDegreeType: "Bsc", StudentDegreeName: "Computer Science", StudentPic: "404"},
+                                    StudentEmail: ["exmaple@gmail.com"], StudentNumber: "0688888888", StudentTags: "Computer security, AI",
+                                    StudentDegreeType: ["Bsc"], StudentDegreeName: ["Computer Science"], StudentPic: "404"},
 
                                   {StudentID: "0129583027939", StudentName: "Matthew Reed", StudentBio: "This is the bio of Student Timo. They are a student at UP!",
-                                    StudentEmail: "exmaple@gmail.com", StudentNumber: "0688888888", StudentTags: "Computer security, AI",
-                                    StudentDegreeType: "Bsc", StudentDegreeName: "Computer Science", StudentPic: "404"}
+                                    StudentEmail: ["exmaple@gmail.com"], StudentNumber: "0688888888", StudentTags: "Computer security, AI",
+                                    StudentDegreeType: ["Bsc"], StudentDegreeName: ["Computer Science"], StudentPic: "404"}
                                 ]}};
 
   beforeEach(async () => {
