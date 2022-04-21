@@ -42,6 +42,10 @@ jobs:
       - name: Push Client Docker 
         run: docker push ${{secrets.DOCKER_USER}}/graduates:releaseClient
 
+  webhook:
+    runs-on: ubuntu-latest
+    
+    steps:
       - name: deploy hook
         uses: distributhor/workflow-webhook@v2
         env:
