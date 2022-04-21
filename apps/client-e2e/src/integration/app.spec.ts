@@ -17,6 +17,68 @@ describe('client', () => {
   });
 });
 
+//e2e testing for adminconsole
+describe('client admin-console testing', () => {
+    beforeEach(() => cy.visit('/admin-console'));
+
+    //test if admin-console is in the url 
+    it('should contain admin-console in the url', () => {
+      cy.url().should('include','admin-console');
+    });
+
+    //test if page layout is correct
+    it('admin-console navbar',()=>{
+      cy.get("div[class=sidenav]").contains("Create User");
+      cy.get("div[class=sidenav]").contains("Users");
+      cy.get("div[class=sidenav]").contains("Story");
+      cy.get("div[class=sidenav]").contains("Roles");
+      cy.get("div[class=sidenav]").contains("Blogs");
+      cy.get("div[class=sidenav]").contains("Shorts");
+    })
+
+    it('admin-console Create User page inputs',()=>{
+      cy.get("input[id=Name]");
+      cy.get("input[id=Surname]");
+      cy.get("input[id=Email]");
+      cy.get("input[id=Number]");
+      cy.get("input[id=ID]");
+      cy.get("input[id=CV]");
+    })
+
+    it('admin-console Create User page buttons',()=>{
+      cy.get("button[id=usersSaveButton]");
+    })
+
+    //test if navigation to Users page works
+    it('admin-console Users page',()=>{
+      //move to Users page
+      cy.get("li[class=ng-star-inserted]").contains("Users").click();
+      //testing layout for users page
+      cy.get("input[class=searchbar]");
+      cy.get("p[class=userName]");
+      cy.get("button[id=permissionsButton]");
+      cy.get("div[class=suspensionBar]");
+      cy.get("div[id=roleHeader]");
+      //testing add permissions functionality
+      cy.get("button[id=permissionsButton]").click();
+      cy.get("button[class='mat-focus-indicator mat-menu-item ng-tns-c44-1 ng-star-inserted']").contains("Permission 3").click();
+      cy.contains("Permission 3");
+    })
+
+    //testing navigation to Story page
+    it('admin-console Story page',()=>{
+      cy.get("li[class=ng-star-inserted]").contains("Story").click();
+      //testing layout of story page
+      cy.get("div[class=archive]");
+      cy.get("input[class=searchbar]");
+      cy.get("div[class='archiveDiv ng-star-inserted']");
+      cy.get("img[class=sampleImage]");
+      cy.get("p[class=userName]");
+    })
+
+    //testing navigation
+  });
+
 describe('client notifications testing', () => {
   beforeEach(() => cy.visit('/notifications'));
 
