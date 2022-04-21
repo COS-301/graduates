@@ -22,7 +22,7 @@ describe('client notifications testing', () => {
 
   //Test if it redirects to the right feature. (Checks if "notifications" is part of the URL)
   it('should direct to right url', () => {
-    cy.url().should('include','notifications');
+    cy.url().should('include', 'notifications');
   });
 
   //Test if the main notifications component has rendered properly
@@ -43,12 +43,12 @@ describe('client notifications testing', () => {
       }
     }`;
     cy.request({
-      url:"/notifications",
+      url: "/notifications",
       method: "POST",
       body: {
         query: getnotificationsAll
       },
-      failOnStatusCode:false
+      failOnStatusCode: false
     }).as('response');
 
     cy.get('@response').should((response) => {
@@ -172,6 +172,8 @@ describe('client notifications testing', () => {
 //   });*/
 // });
 
+
+
 // Commented out Tests need API and DB to run in Environment to pass
 describe('client-shorts-feature e2e test', () => {
 
@@ -182,60 +184,112 @@ describe('client-shorts-feature e2e test', () => {
       cy.wait('@getall');
     });
 
-  // * Needs API and DB running to populate view
-/*
-      it('should click a short view and close the view ', () => {
-        cy.get('.formbutton').contains('View').click();
-        cy.get('.formbuttonblue').contains('Close').click();
-      });
-*/
+    // * Needs API and DB running to populate view
+    /*
+          it('should click a short view and close the view ', () => {
+            cy.get('.formbutton').contains('View').click();
+            cy.get('.formbuttonblue').contains('Close').click();
+          });
+    */
 
 
     // * Can Only work if a short is not reported. I.E Cannot determine if short already reported.
     //  * Without seed data, this is not deterministic. Manually tested instead.
-/*
-      it.skip('should make and submit a report', () => {
-        cy.get('.formbutton:first').contains('View').click();
-        cy.get('.formbuttonred').contains('Report').click();
-        cy.get('#reason').type('This is a test report for testing');
-        cy.get('.formbuttonred').contains('Submit').click();
-      });
-*/
-      it('tests navigating between tabs', () => {
+    /*
+          it.skip('should make and submit a report', () => {
+            cy.get('.formbutton:first').contains('View').click();
+            cy.get('.formbuttonred').contains('Report').click();
+            cy.get('#reason').type('This is a test report for testing');
+            cy.get('.formbuttonred').contains('Submit').click();
+          });
+    */
+    it('tests navigating between tabs', () => {
       cy.get('#curBtn').should('contain.text', '1');
-      cy.get('.formbuttonblue').contains('Next').then((nextBtn)=>{
-        if(nextBtn.is('enabled')){
+      cy.get('.formbuttonblue').contains('Next').then((nextBtn) => {
+        if (nextBtn.is('enabled')) {
           nextBtn.click();
           cy.get('#curBtn').should('contain.text', '2');
-        cy.get('.formbuttonblue').contains('Prev').click();
-        cy.get('#curBtn').should('contain.text', '1');
-        }});
+          cy.get('.formbuttonblue').contains('Prev').click();
+          cy.get('#curBtn').should('contain.text', '1');
+        }
       });
+    });
 
     // needs seeded data with user with name John
-/*
-    it('should test the search capability', () => {
-      cy.get('#search').type('John{enter}');
-      cy.on('window:alert', (alert)=>{
-        expect(alert).to.contain('Searching');});
-    });
-  });
-*/
+    /*
+        it('should test the search capability', () => {
+          cy.get('#search').type('John{enter}');
+          cy.on('window:alert', (alert)=>{
+            expect(alert).to.contain('Searching');});
+        });
+      });
+    */
     describe('upload component tests', () => {
       beforeEach(() => {
         cy.visit('/shorts/upload');
       });
 
       // Fix upload feature before test
-        it.skip('should upload a video and thumbnail', () => {
-          cy.get('#uploadbanner').contains('Upload');
-          cy.get('input[type="file"]:first').selectFile('src/fixtures/client-shorts-test-video.mp4');
-          cy.get('input[type="file"]:last').selectFile('src/fixtures/client-shorts-test-thumbnail.jpg');
-          cy.get('#taginput').type('#cats#test');
-          cy.get('.formbuttonblue').contains('Submit').click();
-          expect(cy.intercept("/graphql"));
-          // TODO get confirmation of upload once fixed
-        });
+      it.skip('should upload a video and thumbnail', () => {
+        cy.get('#uploadbanner').contains('Upload');
+        cy.get('input[type="file"]:first').selectFile('src/fixtures/client-shorts-test-video.mp4');
+        cy.get('input[type="file"]:last').selectFile('src/fixtures/client-shorts-test-thumbnail.jpg');
+        cy.get('#taginput').type('#cats#test');
+        cy.get('.formbuttonblue').contains('Submit').click();
+        expect(cy.intercept("/graphql"));
+        // TODO get confirmation of upload once fixed
+      });
     });
+  });
+});
+
+
+//Student Explore E2E Tests
+describe('Student Explore', () => {
+  beforeEach(() => cy.visit('http://localhost:4200/student-explore'));
+
+  it('should contain Student Explore', () => {
+    cy.contains('Student Explore');
+  });
+
+  it('should open the filter tab', () => {
+    cy.get('#filter').first().click();
+    cy.contains('Filter students');
+  });
+
+  it('should check the Security tag box and apply filter', () => {
+    cy.get('#filter').first().click();
+    cy.contains('Security').click();
+    cy.contains('Filter students').click();
+  });
+
+  it('checks that the Security filter is applied correctly', () => {
+    cy.get('#filter').first().click();
+    cy.contains('Security').click();
+    cy.contains('Filter students').click();
+    cy.get('.card-grid').should('exist');
+    cy.get('.card-grid').children().nextAll().should('contain', 'Security');
+  });
+
+  it('checks that the Software Engineering filter is applied correctly', () => {
+    cy.get('#filter').first().click();
+    cy.contains('Software Engineering').click();
+    cy.contains('Filter students').click();
+    cy.get('.card-grid').should('exist');
+    cy.get('.card-grid').children().nextAll().should('contain', 'Software Engineering');
+  });
+
+  it('checks that the Networking filter is applied correctly', () => {
+    cy.get('#filter').first().click();
+    cy.contains('Networking').click();
+    cy.contains('Filter students').click();
+    cy.get('.card-grid').should('exist');
+    cy.get('.card-grid').children().nextAll().should('contain', 'Networking');
+  });
+
+  it('checks that search works correctly', () => {
+    cy.get('#search').type('Security{enter}');
+    cy.get('.card-grid').should('exist');
+    cy.get('.card-grid').children().nextAll().should('contain', 'Security');
   });
 });
