@@ -21,7 +21,7 @@ export class ApiStudentProfileService {
         })
       }
   
-      return this.client.post<any>('http://localhost:3333/graphql', JSON.stringify({ query: query, variables: { studentNum: "u19001836" } }), options);
+      return this.client.post<any>('https://301graduates.live:3333/graphql', JSON.stringify({ query: query, variables: { studentNum: "u19001836" } }), options);
 
      }
 }
