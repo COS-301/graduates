@@ -77,13 +77,6 @@ const routes: Routes = [
         (x) => x.ClientStudentProfileFeatureModule
       ),
   },
-  /*{
-    path: 'upintegration',
-    loadChildren: () =>
-      import('@graduates/client/upintegration/feature').then(
-        (x) => x.ClientUpintegrationFeatureModule
-      ),
-  },*/
   {
     path: 'blog',
     loadChildren: () =>
@@ -117,6 +110,20 @@ const routes: Routes = [
     loadChildren: () =>
       import('@graduates/client/company-profile/feature').then(
         (x) => x.ClientCompanyProfileFeatureModule
+      ),
+  },
+  {
+    path: 'upintegration',
+    loadChildren: () =>
+      import('@graduates/client/upintegration/feature').then(
+        (x) => x.ClientUpintegrationFeatureModule
+        ),
+  },
+  {
+    path: 'Authorization',
+    loadChildren:()=>
+      import('@graduates/client/authorization/feature').then(
+        (x)=>x.ClientAuthorizationFeatureModule
       ),
   },
 ];

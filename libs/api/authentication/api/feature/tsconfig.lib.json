@@ -6,6 +6,6 @@
     "types": [],
     "target": "es6"
   },
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "../../service/feature/src/lib/strategy/jwt-strategy.ts", "../../service/feature/src/lib/strategy/local.strategy.ts", "../../service/feature/src/lib/commands/create-user.input.ts", "../../service/feature/src/lib/response/login-response.ts", "../../service/feature/src/lib/queries/login-user-input.ts"],
   "exclude": ["**/*.spec.ts", "**/*.test.ts"]
 }

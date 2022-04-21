@@ -27,7 +27,7 @@ export class RequestTabApi {
             })
         }
 
-        return this.httpClient.post<any>('http://localhost:3333/graphql', JSON.stringify({ query: query}), options);
+        return this.httpClient.post<any>('https://301graduates.live:3333/graphql', JSON.stringify({ query: query}), options);
     }
 
     requestCD():Observable<any | null> {
@@ -49,7 +49,7 @@ export class RequestTabApi {
             })
         }
         
-        return this.httpClient.post<any>('http://localhost:3333/graphql', JSON.stringify({ query: query}), options);
+        return this.httpClient.post<any>('https://301graduates.live:3333/graphql', JSON.stringify({ query: query}), options);
     }
 
     requestAR():Observable<any | null> {
@@ -71,7 +71,7 @@ export class RequestTabApi {
             })
         }
 
-        return this.httpClient.post<any>('http://localhost:3333/graphql', JSON.stringify({ query: query}), options);
+        return this.httpClient.post<any>('https://301graduates.live:3333/graphql', JSON.stringify({ query: query}), options);
     }
 
     sendMailNotification(emailFrom : string, emailTo : string, emailSubject : string, emailText : string): Observable<any | null> {
@@ -89,7 +89,7 @@ export class RequestTabApi {
         })
         }
 
-        return this.httpClient.post<any>('http://localhost:3333/graphql', JSON.stringify({ query: query}), options);
+        return this.httpClient.post<any>('https://301graduates.live:3333/graphql', JSON.stringify({ query: query}), options);
     }
 
     getUserEmailAndName(userId : string): Observable<any | null> {
@@ -105,6 +105,6 @@ export class RequestTabApi {
             })
         }
 
-        return this.httpClient.post<any>('http://localhost:3333/graphql', JSON.stringify({ query: query}), options);
+        return this.httpClient.post<any>('https://301graduates.live:3333/graphql', JSON.stringify({ query: query}), options);
     }
 }

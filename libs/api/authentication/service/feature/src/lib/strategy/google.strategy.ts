@@ -12,7 +12,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google'){
 
         const cred = new GoogleStrategyCredentials();
         cred.callbackURL = Environment.callbackURL;
-        cred.clientId = Environment.clientId;
+        cred.clientID = Environment.clientId;
         cred.clientSecret = Environment.clientSecret;
         cred.scope = Environment.scope;
         super(cred);
