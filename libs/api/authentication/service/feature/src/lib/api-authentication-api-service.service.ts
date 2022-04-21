@@ -1,43 +1,18 @@
-import { forwardRef, Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { AuthenticationUser } from '@graduates/api/authentication/api/shared/interfaces/data-access';
-import { create } from 'domain';
 import { CreateUserInput } from '../lib/commands/create-user.input';
-// import { User } from '@graduates/api/authentication/api/shared/interfaces/data-access';
 import { RegisterCommand } from "../lib/commands/RgisterCommand";
 import { LoginQuery } from "../lib/queries/LoginQuery";
 import { JwtService } from '@nestjs/jwt';
-// import { ApiAuthenticationApiSharedInterfacesDataAccessModule } from '../../../../service/feature/src/lib/api-authentication-api-service.module';
+import { UsersService } from './api-authentication-api-users-service';
+import { LoginUserInput } from './queries/login-user-input';
 
 @Injectable()
 export class AuthService {
-  
-  // async getAll(): Promise<AuthenticationUser[]>{
-  //   const authenticationuser = new AuthenticationUser();
 
-  //   authenticationuser.id = "1";
-  //   authenticationuser.username = "John";
-  //   authenticationuser.password = "admin1"
-  //   authenticationuser.dummy = "dummy";
+  constructor(private usersService: UsersService,
+    private jwtService: JwtService) {}
 
-  //   return [authenticationuser];
-
-  constructor(private jwtService: JwtService) {}
-
-  private readonly users = [
-  {
-    id: 1,
-    name:'John',
-    email:'JohnDoe@gmail.com',
-    password: 'admin1'
-  },
-  {
-    id: 2,
-    name:'Jake',
-    email: 'JakeDoe@gmail.com',
-    password: 'admin2'
-  },
-
-  ];
 
   create(createUserInput: CreateUserInput){
     return 'New user is added'; //Add logic
@@ -47,14 +22,6 @@ export class AuthService {
     // };
     
     // this.users.push(user);
-  }
-
-  findAll(){
-    return this.users;
-  }
-
-  findOne(name: string){
-    return this.users.find((user) => user.name ===name);
   }
 
 
@@ -91,8 +58,7 @@ export class AuthService {
     }   
 
     async validateUser(name: string, password: string): Promise<any> {
-      // const user = await this.usersService.findOne(username);
-      const user = await this.findOne(name);
+      const user = await this.usersService.findOne(name);
 
 
       if (user && user.password === password){
@@ -103,12 +69,13 @@ export class AuthService {
   }
 
   async login(user: AuthenticationUser){
-    
       return {
           access_token: this.jwtService.sign({name:user.name, sub:user.id}),
           user,
       }
   }
+
+
 }
 
   
