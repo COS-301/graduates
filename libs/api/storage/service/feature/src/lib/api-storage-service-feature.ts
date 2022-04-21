@@ -68,7 +68,7 @@ export class ApiStorageServiceFeatureModule {
       }
 
       if(fileCategory=="Image"){
-        await this.repo.deleteFile(userID ,FileCategory.PROFILE_PHOTO).then(async (value)=> {
+        await this.repo.deleteFile(userID ,FileCategory.PROFILE_PHOTO ).then(async (value)=> {
           num = value;
         });
       }
