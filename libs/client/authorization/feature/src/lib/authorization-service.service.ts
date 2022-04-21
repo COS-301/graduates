@@ -15,9 +15,10 @@ export class AuthorizationServiceService {
 
   constructor(private httpClient:HttpClient,private cookie:CookieService) {
 
-    this.array=JSON.parse('{"UserId":"4577","UserToken":"67734hya73ha772as"}');  //Mock Cookie value
+    this.array=JSON.parse('{"UserId":"c1111","UserToken":"67734hya73ha772as"}');  //Mock Cookie value
     this.cookie.set("UserCookie",JSON.stringify(this.array));  //Initializing a cookie
     this.id=this.getUserID();   //Extracts the cookie from Cookie storage
+    this.id=<string>window.prompt("Please enter UserId");   //For testing User Id
 
     this.httpClient.post("https://301graduates.live:3333/graphql",{query:'query { authorization(id:'+JSON.stringify(this.id)+') { companyId, userRole } }'})
     .subscribe(data=>{
