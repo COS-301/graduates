@@ -34,7 +34,7 @@ jobs:
         with:
           mode: minimum
           count: 1
-          labels: 'status:needs-info, status:needs-tests, status:not-ready, status:on-hold, status:ready'
+          labels: 'status:needs-info, status:needs-tests, status:not-ready, status:on-hold, status:ready, status:next-release'
 
       - name: Has atleast one role label
         uses: mheap/github-action-required-labels@v1
