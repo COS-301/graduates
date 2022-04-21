@@ -18,6 +18,11 @@ jobs:
           DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
         run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
+      - name: Build the DB Docker image
+        run: |
+          docker compose up -d
+          docker tag postgres:13 ${{secrets.DOCKER_USER}}/graduates:releaseDB
+
       - name: Build the API Docker image
         run: |
           docker build . --file apps/api/Dockerfile --tag graduates:releaseApi
@@ -28,8 +33,17 @@ jobs:
           docker build . --file apps/client/Dockerfile --tag graduates:releaseClient
           docker tag graduates:releaseClient ${{secrets.DOCKER_USER}}/graduates:releaseClient
 
+      - name: Push DB Docker 
+        run: docker push ${{secrets.DOCKER_USER}}/graduates:releaseDB
+
       - name: Push API Docker
         run: docker push ${{secrets.DOCKER_USER}}/graduates:releaseApi
 
       - name: Push Client Docker 
         run: docker push ${{secrets.DOCKER_USER}}/graduates:releaseClient
+
+      - name: deploy hook
+        uses: distributhor/workflow-webhook@v2
+        env:
+          webhook_url: "https://301graduates.live:20202"
+          webhook_secret: "68fa3eps71m"
