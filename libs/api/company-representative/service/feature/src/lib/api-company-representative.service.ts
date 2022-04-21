@@ -23,7 +23,8 @@ export class ApiCompanyRepresentativeService {
 
   /***
    * 
-   * This function deletes a user by accepting a representative Id
+   * This function deletes a user by accepting a representative Id.
+   * Please don't break
    */
 
   async deleteRepresentative(repId: string) {
