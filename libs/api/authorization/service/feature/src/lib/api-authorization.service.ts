@@ -34,7 +34,8 @@ export class ApiAuthorizationService {
     return this.queryBus.execute(new GetViewPermissionQuery(userId));
   }
   async GetRoleQueryPermissions(userId: string): Promise<string> {
-    return this.queryBus.execute(new GetRoleQuery(userId));
+    const resp = this.queryBus.execute(new GetRoleQuery(userId));
+    return resp;
   }
   async GetCompanyId(userId: string): Promise<string> {
     return this.queryBus.execute(new GetCompanyIdQuery(userId));

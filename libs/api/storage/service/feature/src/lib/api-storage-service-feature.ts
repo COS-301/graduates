@@ -39,7 +39,11 @@ export class ApiStorageServiceFeatureModule {
           url = value;
         });
       }
-        return url;
+        return new Promise<string|null>((resolve) => {
+          resolve(url);
+      });;
+
+        
        
     }
 
@@ -68,11 +72,13 @@ export class ApiStorageServiceFeatureModule {
       }
 
       if(fileCategory=="Image"){
-        await this.repo.deleteFile(userID ,FileCategory.ACADEMIC_RECORD ).then(async (value)=> {
+        await this.repo.deleteFile(userID ,FileCategory.PROFILE_PHOTO ).then(async (value)=> {
           num = value;
         });
       }
-        return num;
+        return new Promise<number>((resolve) => {
+          resolve(num);
+      });
     }
 
     async create(apiStorage: ApiStorage): Promise<ApiStorageInput|string>{
@@ -86,7 +92,9 @@ export class ApiStorageServiceFeatureModule {
         storage.filePath = value.filePath;
       });
 
-      return storage;
+      return new Promise<ApiStorageInput|string>((resolve) => {
+        resolve(storage);
+    });;
     }
    
   }

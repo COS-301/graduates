@@ -37,7 +37,7 @@ export class StudentCardComponent implements OnInit
   tagsArray: filter[] = [];
 
   qry = "";
-  responseArray: Array<any> = [];
+  responseArray: Array<Student> = [];
 
   //JSON's to be used for filtering
   filter_JSON = "";
@@ -56,12 +56,19 @@ export class StudentCardComponent implements OnInit
 
   //MAIN FUNCTIONS
 
+  sendToStudentProfile(id: any): string //This function should return void, but for the sake of unit testing it will return a string.
+  {
+    console.log(id);
+    window.open("student-profile");
+    return id;
+  }
+
   //Populate the student cards INITIAL
   async loadStudentCards()
   {
     const response = JSON.parse(await this.retrieveStudentObjects());
-
-    if(response.data===undefined){
+    
+    if(JSON.stringify(response) === "{}"){
       return;
     }
 
@@ -115,7 +122,10 @@ export class StudentCardComponent implements OnInit
   //Populates the all the available filters
   async populate_filters()
   {
-    this.retrieve_available_filters();
+    const response = await this.retrieve_available_filters();
+    this.empArray = response[0];
+    this.locationArray = response[1];
+    this.tagsArray = response[2];
   }
 
   // HELPER FUNCTIONS
@@ -133,13 +143,14 @@ export class StudentCardComponent implements OnInit
         StudentTags
         StudentDegreeType
         StudentDegreeName
+        StudentLocation
         StudentPic
       }
     }`;
 
     //Get initial students
     let initial_students = "";
-    await fetch('http://localhost:3333/graphql', {
+    await fetch('https://301graduates.live:3333/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -159,7 +170,7 @@ export class StudentCardComponent implements OnInit
     return JSON.stringify(initial_students);
   }
 
-  async retrieve_available_filters()
+  async retrieve_available_filters() : Promise<Array<Array<filter>>>
   {
     //Employment Status
     let empQuery = "";
@@ -168,7 +179,7 @@ export class StudentCardComponent implements OnInit
         Available
       }
       }`;
-    await fetch('http://localhost:3333/graphql', {
+    await fetch('https://301graduates.live:3333/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -186,7 +197,7 @@ export class StudentCardComponent implements OnInit
         Available
       }
       }`;
-    await fetch('http://localhost:3333/graphql', {
+    await fetch('https://301graduates.live:3333/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -204,7 +215,7 @@ export class StudentCardComponent implements OnInit
         Available
       }
       }`;
-    await fetch('http://localhost:3333/graphql', {
+    await fetch('https://301graduates.live:3333/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -240,6 +251,9 @@ export class StudentCardComponent implements OnInit
       this.tagsArray.push(tag);
       this.allFilters.push(tag);
     }
+
+    const all_available_filter = [this.empArray, this.locationArray, this.tagsArray];
+    return all_available_filter;
   }
 
   //FILTERING
@@ -353,7 +367,7 @@ export class StudentCardComponent implements OnInit
 
       //Make the API call with the correct query
       let filtered = "";
-      await fetch('http://localhost:3333/graphql', {
+      await fetch('https://301graduates.live:3333/graphql', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -432,8 +446,6 @@ export class StudentCardComponent implements OnInit
         this.tempStudentArray = this.matchingStudentArray;
       }
     }
-    // console.log("two filter fields: ",JSON.stringify(this.tempStudentArray))
-    //NOT SURE IF THIS WILL STAY, Clearing studentArray
     this.studentArray = [];
 
     //Reload with new students
@@ -466,6 +478,41 @@ export class StudentCardComponent implements OnInit
 
   //SEARCH BAR FUNCTIONALITY
 
+  async queryHelper(): Promise<string>
+  {
+    const query = `query{
+      SearchStudents(searchQuery: "${this.qry}"){
+        StudentID
+        StudentName
+        StudentBio
+        StudentEmail
+        StudentNumber
+        StudentTags
+        StudentDegreeType
+        StudentDegreeName
+        StudentLocation
+        StudentPic
+      }
+    }`;
+
+    let fetchCall = "";
+    
+    await fetch('https://301graduates.live:3333/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          query
+        })
+      }).then(r => r.json()).then(data => 
+        fetchCall = data
+    );
+
+    return JSON.stringify(fetchCall);
+  }
+
   async query()
   {
     console.log("The search query is: " + this.qry);
@@ -473,7 +520,7 @@ export class StudentCardComponent implements OnInit
     if(this.qry !== "")
     {
       this.responseArray = [];
-      const query = `query{
+      /*const query = `query{
         SearchStudents(searchQuery: "${this.qry}"){
           StudentID
           StudentName
@@ -490,7 +537,7 @@ export class StudentCardComponent implements OnInit
 
       console.log("The query variable is: " + query);
 
-      await fetch('http://localhost:3333/graphql', {
+      await fetch('https://301graduates.live:3333/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -504,11 +551,11 @@ export class StudentCardComponent implements OnInit
       
         if(response.data === undefined)
         {
-          this.responseArray.push(new Student("", "Could Not Get Students From Source", "", "", "", "", "", "", "", ""));
+          this.responseArray.push(new Student("", "Could Not Get Students From Source", "", [], "", "", [], [], "", ""));
         }
         else if(response.data.SearchStudents.length === 0)
         {
-          this.responseArray.push(new Student("", "Search Request Not Found", "", "", "", "", "", "", "", ""));
+          this.responseArray.push(new Student("", "Search Request Not Found", "", [], "", "", [], [], "", ""));
         }
         else
         {
@@ -520,7 +567,28 @@ export class StudentCardComponent implements OnInit
             this.responseArray.push(studentObj);
           }
         }
-      });
+      });*/
+
+      const response = JSON.parse(await this.queryHelper());
+
+      if(response.data === undefined)
+      {
+        this.responseArray.push(new Student("", "Could Not Get Students From Source", "", [], "", "", [], [], "", ""));
+      }
+      else if(response.data.SearchStudents.length === 0)
+      {
+        this.responseArray.push(new Student("", "Search Request Not Found", "", [], "", "", [], [], "", ""));
+      }
+      else
+      {
+        for(const student of response.data.SearchStudents)
+        {
+          const studentObj = new Student(student.StudentID, student.StudentName, student.StudentBio, 
+                                          student.StudentEmail, student.StudentNumber, student.StudentTags, 
+                                          student.StudentDegreeType, student.StudentDegreeName, student.StudentLocation, student.StudentPic);
+          this.responseArray.push(studentObj);
+        }
+      }
 
       this.studentArray = [];
       await this.loadStudentCardsByFilter(this.responseArray);
@@ -529,6 +597,7 @@ export class StudentCardComponent implements OnInit
     else
     {
       //Reload the page with the initial students
+      //this.responseArray.push(new Student("Query Empty", "", "", "", "", "", "", "", "", ""));
       this.studentArray = [];
       await this.loadStudentCards();
     }
@@ -540,11 +609,11 @@ export class Student{
   private _id = "";
   private _name = "";
   private _bio = "";
-  private _email = "";
+  private _email: string[] = [];
   private _contactNo = "";
   private _tags = "";
-  private _degreeType = "";
-  private _degreeName = "";
+  private _degreeType : string[] = [];
+  private _degreeName: string[] = [];
   private _location = "";
   private _StudentPic = "";
 
@@ -567,10 +636,10 @@ export class Student{
   public set bio(value) {
     this._bio = value;
   }
-  public get email() {
+  public get email(): string[]  {
     return this._email;
   }
-  public set email(value) {
+  public set email(value: string[] ) {
     this._email = value;
   }
     public get contactNo() {
@@ -585,16 +654,16 @@ export class Student{
   public set tags(value) {
     this._tags = value;
   }
-  public get degreeType() {
+  public get degreeType() : string[] {
     return this._degreeType;
   }
-  public set degreeType(value) {
+  public set degreeType(value: string[])  {
     this._degreeType = value;
   }
-  public get degreeName() {
+  public get degreeName(): string[] {
     return this._degreeName;
   }
-  public set degreeName(value) {
+  public set degreeName(value: string[]) {
     this._degreeName = value;
   }
   public get location() {
@@ -610,8 +679,39 @@ export class Student{
     this._StudentPic = value;
   }
 
+  public get all_emails() : string{
+    let mails = "";
+    let i;
+    for (i = 0; i < this.email.length-1; i++) {
+        mails += this.email[i];
+    }
+    mails += this.email[i];
+    return mails;
+  }
+
+  public get all_degree_types() : string{
+    let dt = "";
+    let i;
+    for (i = 0; i < this.degreeType.length-1; i++) {
+        dt += this.degreeType[i];
+    }
+    dt += this.degreeType[i];
+    return dt;
+  }
+
+  public get all_degree_names() : string{
+    let dn = "";
+    let i;
+    for (i = 0; i < this.degreeName.length-1; i++) {
+        dn += this.degreeName[i];
+    }
+    dn += this.degreeName[i];
+    return dn;
+  }
+
   //constructor
-  constructor(id: string, name: string, bio: string, email: string, number: string, tags: string, degreeType : string, degreeName: string, location: string, StudentPic: string){
+  constructor(id: string, name: string, bio: string, email: string[], number: string, tags: string, degreeType : string[], degreeName: string[], location: string, StudentPic: string){
+
     this._id = id;
     this._name = name;
     this._bio = bio;

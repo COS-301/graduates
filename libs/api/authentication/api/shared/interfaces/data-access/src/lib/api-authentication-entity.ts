@@ -5,9 +5,6 @@ export class AuthenticationUser{
 
     @Field(type => ID)
     id!: string
-
-    // @Field(() => Int)
-    // id!: number
     
     @Field()
     name!: string;

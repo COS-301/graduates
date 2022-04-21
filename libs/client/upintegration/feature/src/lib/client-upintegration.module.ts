@@ -7,6 +7,8 @@ import { FooterModule } from '../../../../shared/components/footer/src/lib/foote
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { UpintegrationRoutingModule } from './upintegration-routing.module';
 
 @NgModule({
   imports: [
@@ -16,8 +18,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatCheckboxModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    FormsModule,
+    UpintegrationRoutingModule,
   ],
   declarations: [UpintegrationBodyComponent],
   exports: [UpintegrationBodyComponent],
 })
-export class ClientUpintegrationModule {}
+export class ClientUpintegrationFeatureModule {}

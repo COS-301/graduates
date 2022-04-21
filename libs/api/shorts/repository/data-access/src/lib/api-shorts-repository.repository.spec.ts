@@ -466,6 +466,7 @@ describe('DB Integration Tests', () => {
     expect(repository).toBeDefined();
   });
 
+  // createShorts Integration test will affect the DB and online repository
   describe("createShort", () => {
     it("should return a short", async () => {
 
@@ -496,7 +497,7 @@ describe('DB Integration Tests', () => {
         shortTag: [shortTagIn],
         archived: false,
       }
-      const result = await repository.createShort(createInput,testUser.id);
+      const result = await repository.createShort(createInput,testUser.id, "testsite.test/vid.mp4", "testsite.test/thumb.jpg");
       expect(result).toMatchObject(new Short());
     });
   });
@@ -546,7 +547,7 @@ describe('DB Integration Tests', () => {
     it("should return a user or null", async () => {
       const result = await repository.findUserById("TestUser");
       if (result !== null) {
-        expect(result).toMatchObject(new User());
+        expect(result).toMatchObject(new AuthenticationUser());
       }
       else {
         expect(result).toBeNull();
