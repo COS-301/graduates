@@ -83,7 +83,7 @@ describe('Company Representative Update Details', () => {
 
       it('should navigate to homepage', () => {
           //Navigate to homepage after updating details
-          cy.get('#submit').click().visit('/CompanyRepresentativeHome');
+          cy.get('.submit').click().visit('/CompanyRepresentativeHome');
 
       
       });
