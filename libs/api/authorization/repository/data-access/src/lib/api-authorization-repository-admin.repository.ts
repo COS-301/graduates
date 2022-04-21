@@ -65,25 +65,20 @@ export class Adminauthorization {
       const rolePermissions = await this.prisma.rolePermissions.findFirst({
         where: { role: role.role, permissionType: permissiontype },
       });
-      //let returnitem: ApiAuthorization;
+
       const returnitem: ApiAuthorization = new ApiAuthorization();
-      // returnitem.companyId = '65765567';
-      // returnitem.userRole = role.role;
-      // returnitem.companyId = await this.findCompanyid(id);
 
       if (
         permissiontype.equals === PermissionType.VIEW &&
         (userPermissions != null || rolePermissions != null)
       ) {
         returnitem.accessPermission = true;
-      }
-      if (
+      } else if (
         permissiontype.equals === PermissionType.REMOVE &&
         (userPermissions != null || rolePermissions != null)
       ) {
         returnitem.deletePermission = true;
-      }
-      if (
+      } else if (
         permissiontype.equals === PermissionType.EDIT &&
         (userPermissions !== null || rolePermissions !== null)
       ) {
