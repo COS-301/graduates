@@ -19,7 +19,7 @@ export class RequestForAccessService {
     };
 
     return this.httpClient.post<any>(
-      "http://localhost:3333/graphql",
+      "https://301graduates.live:3333/graphql",
       JSON.stringify({
         query: query,
         variables: { compID: companyID, gradID: graduateID },
@@ -38,7 +38,7 @@ export class RequestForAccessService {
     };
 
     return this.httpClient.post<any>(
-      "http://localhost:3333/graphql",
+      "https://301graduates.live:3333/graphql",
       JSON.stringify({
         query: query,
         variables: { compId: companyID, gradId: graduateID, item: item },

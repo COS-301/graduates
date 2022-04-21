@@ -4,18 +4,12 @@ const prisma = new PrismaClient();
 async function main() {
   //mock users 1 student 2 companies
 
-  let dob = new Date('1929-06-12 00:00');
+  let dob = new Date('2000-01-01 00:00');
   let created = new Date('2022-04-16 10:28');
   const student = await prisma.user.create({
     data: {
-      email: 'u12345678@tuks.ac.za',
-      password: 'SecurePassword123!',
-      passwordSalt: 'Pepper',
-      name: 'Anne Frankly',
-      dateOfBirth: dob,
-      created: created,
-      suspended: false,
-      validated: false,
+      id:"1",email:"james@gmail.com",password:"herMajesty",passwordSalt:"the queen",name:"James Bond",created:created,suspended:true,validated:false,
+      dateOfBirth: dob
     },
   });
 
@@ -55,9 +49,7 @@ async function main() {
 
   await prisma.userProfile.create({
     data: {
-      userId: student.id,
-      studentNumber: 'u12345678',
-      bio: 'Self-Published Author, Never trust anyone #soldout, <3 Gaslight, Gatekeep, Girlboss <3',
+      userId: student.id,studentNumber: "u12345678", bio:"Yes that James Bond",employmentStatus:true,openToOffers:true
     },
   });
 

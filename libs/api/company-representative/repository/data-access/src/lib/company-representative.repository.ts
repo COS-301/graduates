@@ -235,10 +235,10 @@ export class CompanyRepresentativeRepository {
       t = SocialMedia.FACEBOOK;
     }
     else if (socialType == "SNAPCHAT") {
-      t = SocialMedia.TWITTER;
+      t = SocialMedia.SNAPCHAT;
     }
     else {
-      t = SocialMedia.TWITTER;
+      t = SocialMedia.GITHUB;
     }
 
     return await this.prismaService.userSocialMedia.updateMany({
