@@ -61,7 +61,7 @@ export class AdminconsoleComponent{
   ngOnInit(): void {
     return
     //getUsers
-    //   fetch('http://localhost:3333/graphql', {
+    //   fetch('https://301graduates.live:3333/graphql', {
     //   method: 'POST',
     //   headers: {'Content-Type' : 'application/json'},
     //   body: JSON.stringify({ query: `
@@ -81,7 +81,7 @@ export class AdminconsoleComponent{
 
     // //getBlogs
     // this.users.forEach((u)  =>  {
-    //   fetch('http://localhost:3333/graphql', {
+    //   fetch('https://301graduates.live:3333/graphql', {
     //   method: 'POST',
     //   headers: {'Content-Type' : 'application/json'},
     //   body: JSON.stringify({ query: `
@@ -100,7 +100,7 @@ export class AdminconsoleComponent{
     
     // //getStories
     // this.users.forEach((u)  =>  {
-    //   fetch('http://localhost:3333/graphql', {
+    //   fetch('https://301graduates.live:3333/graphql', {
     //     method: 'POST',
     //     headers: {'Content-Type' : 'application/json'},
     //     body: JSON.stringify({ query: `
@@ -119,7 +119,7 @@ export class AdminconsoleComponent{
 
     // //getShorts
     // this.users.forEach((u)  =>  {
-    //   fetch('http://localhost:3333/graphql', {
+    //   fetch('https://301graduates.live:3333/graphql', {
     //     method: 'POST',
     //     headers: {'Content-Type' : 'application/json'},
     //     body: JSON.stringify({ query: `
@@ -181,7 +181,7 @@ export class AdminconsoleComponent{
             "contactDetails" : this.userNumber,
             "email" : this.userEmail}
             // "CVDOC? IDDOC?" }
-    fetch('http://localhost:3333/graphql', {
+    fetch('https://301graduates.live:3333/graphql', {
       method: 'POST',
       headers: {'Content-Type' : 'application/json'},
       body: JSON.stringify({ query: `
@@ -237,7 +237,7 @@ export class AdminconsoleComponent{
       })
     })
     this.stagedAddRoles.forEach((r) =>  {
-      fetch('http://localhost:3333/graphql', {
+      fetch('https://301graduates.live:3333/graphql', {
         method: 'POST',
         headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify({ query: `
@@ -250,7 +250,7 @@ export class AdminconsoleComponent{
     })
 
     this.stagedRemoveRoles.forEach((r) =>  {
-      fetch('http://localhost:3333/graphql', {
+      fetch('https://301graduates.live:3333/graphql', {
         method: 'POST',
         headers: {'Content-Type' : 'application/json'},
         body: JSON.stringify({ query: `

@@ -17,7 +17,7 @@ export class CompanyRepresentativeService {
         'Content-Type': 'application/json'
       })
     }
-    return this.httpClient.post<any>('http://localhost:3333/graphql',JSON.stringify({ query: query }), options);
+    return this.httpClient.post<any>('https://301graduates.live:3333/graphql',JSON.stringify({ query: query }), options);
   }
 
   login(email: string, password: string): Observable<any> {
@@ -27,7 +27,7 @@ export class CompanyRepresentativeService {
         'Content-Type': 'application/json'
       })
     }
-    return this.httpClient.post<any>('http://localhost:3333/graphql',JSON.stringify({ query: query }), options);
+    return this.httpClient.post<any>('https://301graduates.live:3333/graphql',JSON.stringify({ query: query }), options);
   }
 
   deleteRepresentative(repID: string): Observable<any> {
@@ -37,7 +37,7 @@ export class CompanyRepresentativeService {
         'Content-Type': 'application/json'
       })
     }
-    return this.httpClient.post<any>('http://localhost:3333/graphql',JSON.stringify({ query: query }), options);
+    return this.httpClient.post<any>('https://301graduates.live:3333/graphql',JSON.stringify({ query: query }), options);
   }
 
   upload(file: any, userID: string) {   
@@ -80,7 +80,7 @@ export class CompanyRepresentativeService {
         'Content-Type': 'application/json'
       })
     }
-    return this.httpClient.post<any>('http://localhost:3333/graphql',JSON.stringify({ query: query }), options);
+    return this.httpClient.post<any>('https://301graduates.live:3333/graphql',JSON.stringify({ query: query }), options);
   }
 
   delete(userID: string, fileCategory: string) {
@@ -90,7 +90,7 @@ export class CompanyRepresentativeService {
         'Content-Type': 'application/json'
       })
     }
-    return this.httpClient.post<any>('http://localhost:3333/graphql',JSON.stringify({ query: query }), options);
+    return this.httpClient.post<any>('https://301graduates.live:3333/graphql',JSON.stringify({ query: query }), options);
   }
 
   updateRepresentative(id: string, name :string, experience :string, number :string, location :string, email :string, linkedin :string, twitter :string, instagram :string, facebook :string, snapchat :string, github :string){
@@ -101,6 +101,6 @@ export class CompanyRepresentativeService {
         'Content-Type': 'application/json'
       })
     }
-    return this.httpClient.post<any>('http://localhost:3333/graphql',JSON.stringify({ query: query }), options);
+    return this.httpClient.post<any>('https://301graduates.live:3333/graphql',JSON.stringify({ query: query }), options);
   }
 }
