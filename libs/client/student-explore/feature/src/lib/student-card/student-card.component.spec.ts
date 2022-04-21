@@ -189,4 +189,21 @@ describe('StudentCard Component: Search Bar Functionality', () => {
     
     expect(component.responseArray).toEqual(expectedResult);
   });
+
+  it('Should, given an empty query, not return anything', async () => {
+    const hostElement = fixture.nativeElement;
+    const input: HTMLInputElement = hostElement.querySelector('#search');
+
+    const expectedResult: Array<Student> = [];
+
+    input.value = '';
+    input.dispatchEvent(new Event('input'));
+
+    jest.spyOn(component, "retrieveStudentObjects").mockResolvedValue(JSON.stringify(retrieveStudentObjects));
+    jest.spyOn(component, "queryHelper").mockResolvedValue(JSON.stringify(studentObjects));
+
+    await component.query();
+    
+    expect(component.responseArray).toEqual(expectedResult);
+  });
 });
