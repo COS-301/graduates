@@ -6,7 +6,10 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-
+/*import { LoginComponent } from './GoogleSocialLogin/login.component';
+import { SocialLoginModule,SocialAuthServiceConfig } from "angularx-social-login";
+import { GoogleLoginProvider } from "angularx-social-login";
+import { environment } from 'src/environments/environment';*/ 
 
 //Material Modules
 
@@ -25,12 +28,12 @@ import { MatOptionModule } from '@angular/material/core';
 
 //Component Modules
 
-import { RegistrationFeatureComponent } from './registration-feature/registration-feature.component';
-import { RegistrationCardComponent } from './registration-feature/registration-card/registration-card.component';
+//import { RegistrationFeatureComponent } from './registration-feature/registration-feature.component';
 import { LoginPageFeatureComponent } from './login-page-feature/login-page-feature.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { RegistrationPageFeatureComponent } from './registration-page-feature/registration-page-feature.component';
-import { User } from './login-form/user';
+import { RegistrationFormComponent } from './registration-feature/registration-form/registration-form.component';
+//import {User} from './login-feature/login-form/user'; 
 
 
 
@@ -60,9 +63,7 @@ import { User } from './login-form/user';
   ],
   declarations: [
     
-              
-                  RegistrationFeatureComponent,
-                  RegistrationCardComponent, 
+                  //RegistrationFeatureComponent,  
                   LoginPageFeatureComponent, 
                   LoginFormComponent, 
                   RegistrationPageFeatureComponent, 
@@ -73,17 +74,17 @@ import { User } from './login-form/user';
   exports: [
 
     LoginFormComponent,
-    RegistrationFeatureComponent,
+    RegistrationFormComponent,
   ],
 
-  providers: [
+  /*providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
     },
     
-  ],
+  ],*/
   
 })
 export class AuthenticationFeatureModule {}
