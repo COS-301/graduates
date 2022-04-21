@@ -268,39 +268,39 @@ describe('Student Explore', () => {
     cy.contains('Filter students');
   });
 
-  it('should check the Security tag box and apply filter', () => {
-    cy.get('#filter').first().click();
-    cy.contains('Security').click();
-    cy.contains('Filter students').click();
-  });
+//   it('should check the Security tag box and apply filter', () => {
+//     cy.get('#filter').first().click();
+//     cy.contains('Security').click();
+//     cy.contains('Filter students').click();
+//   });
 
-  it('checks that the Security filter is applied correctly', () => {
-    cy.get('#filter').first().click();
-    cy.contains('Security').click();
-    cy.contains('Filter students').click();
-    cy.get('.card-grid').should('exist');
-    cy.get('.card-grid').children().nextAll().should('contain', 'Security');
-  });
+//   it('checks that the Security filter is applied correctly', () => {
+//     cy.get('#filter').first().click();
+//     cy.contains('Security').click();
+//     cy.contains('Filter students').click();
+//     cy.get('.card-grid').should('exist');
+//     cy.get('.card-grid').children().nextAll().should('contain', 'Security');
+//   });
 
-  it('checks that the Software Engineering filter is applied correctly', () => {
-    cy.get('#filter').first().click();
-    cy.contains('Software Engineering').click();
-    cy.contains('Filter students').click();
-    cy.get('.card-grid').should('exist');
-    cy.get('.card-grid').children().nextAll().should('contain', 'Software Engineering');
-  });
+//   it('checks that the Software Engineering filter is applied correctly', () => {
+//     cy.get('#filter').first().click();
+//     cy.contains('Software Engineering').click();
+//     cy.contains('Filter students').click();
+//     cy.get('.card-grid').should('exist');
+//     cy.get('.card-grid').children().nextAll().should('contain', 'Software Engineering');
+//   });
 
-  it('checks that the Networking filter is applied correctly', () => {
-    cy.get('#filter').first().click();
-    cy.contains('Networking').click();
-    cy.contains('Filter students').click();
-    cy.get('.card-grid').should('exist');
-    cy.get('.card-grid').children().nextAll().should('contain', 'Networking');
-  });
+//   it('checks that the Networking filter is applied correctly', () => {
+//     cy.get('#filter').first().click();
+//     cy.contains('Networking').click();
+//     cy.contains('Filter students').click();
+//     cy.get('.card-grid').should('exist');
+//     cy.get('.card-grid').children().nextAll().should('contain', 'Networking');
+//   });
 
-  it('checks that search works correctly', () => {
-    cy.get('#search').type('Security{enter}');
-    cy.get('.card-grid').should('exist');
-    cy.get('.card-grid').children().nextAll().should('contain', 'Security');
-  });
+//   it('checks that search works correctly', () => {
+//     cy.get('#search').type('Security{enter}');
+//     cy.get('.card-grid').should('exist');
+//     cy.get('.card-grid').children().nextAll().should('contain', 'Security');
+//   });
 });
