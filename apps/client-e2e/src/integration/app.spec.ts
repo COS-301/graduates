@@ -182,6 +182,10 @@ describe('client-shorts-feature e2e test', () => {
       cy.wait('@getall');
     });
 
+    it('should navigate to /shorts', () => {
+      cy.get('h1').should('contain', 'Student Shorts');
+    });
+
   // * Needs API and DB running to populate view
 /*
       it('should click a short view and close the view ', () => {
@@ -190,17 +194,17 @@ describe('client-shorts-feature e2e test', () => {
       });
 */
 
-
     // * Can Only work if a short is not reported. I.E Cannot determine if short already reported.
     //  * Without seed data, this is not deterministic. Manually tested instead.
 /*
-      it.skip('should make and submit a report', () => {
+      it('should make and submit a report', () => {
         cy.get('.formbutton:first').contains('View').click();
         cy.get('.formbuttonred').contains('Report').click();
         cy.get('#reason').type('This is a test report for testing');
         cy.get('.formbuttonred').contains('Submit').click();
       });
 */
+
       it('tests navigating between tabs', () => {
       cy.get('#curBtn').should('contain.text', '1');
       cy.get('.formbuttonblue').contains('Next').then((nextBtn)=>{
@@ -212,29 +216,36 @@ describe('client-shorts-feature e2e test', () => {
         }});
       });
 
-    // needs seeded data with user with name John
+
+    // needs seeded data with uploads from a user named John
 /*
     it('should test the search capability', () => {
       cy.get('#search').type('John{enter}');
-      cy.on('window:alert', (alert)=>{
-        expect(alert).to.contain('Searching');});
+      cy.get('#cardHeader').should('contain','John');
     });
-  });
 */
     describe('upload component tests', () => {
       beforeEach(() => {
         cy.visit('/shorts/upload');
       });
 
-      // Fix upload feature before test
+      it('should open upload page', () => {
+        cy.get('#uploadbanner').contains('Upload');
+      });
+      //  * skipping automatic test as to not clutter firebase repo with test data
+      //  * add video and thumbnail to test upload with into ../fixtures/ folder
+      //  with filenames of client-shorts-test-video.mp4 and client-shorts-test-thumbnail.jpg
         it.skip('should upload a video and thumbnail', () => {
           cy.get('#uploadbanner').contains('Upload');
           cy.get('input[type="file"]:first').selectFile('src/fixtures/client-shorts-test-video.mp4');
           cy.get('input[type="file"]:last').selectFile('src/fixtures/client-shorts-test-thumbnail.jpg');
-          cy.get('#taginput').type('#cats#test');
-          cy.get('.formbuttonblue').contains('Submit').click();
-          expect(cy.intercept("/graphql"));
-          // TODO get confirmation of upload once fixed
+          cy.get('#taginput').type('#jellyfish#test');
+          cy.intercept('/graphql').as('getupload');
+          cy.get('.formbuttonblue').contains('Submit').click().as('submit');
+          cy.wait('@getupload', {timeout:30000}).then(() => {
+            cy.get('.popupcard > #uploadbanner').contains('Successful');
+            cy.get('.formbuttonblue').contains('Continue').click();
+          });
         });
     });
   });
