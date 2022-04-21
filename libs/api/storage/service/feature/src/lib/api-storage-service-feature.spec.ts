@@ -1,6 +1,71 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ApiStorageServiceFeatureModule } from './api-storage-service-feature';
 import { ApiStorage , ApiStorageInput } from '@graduates/api/storage/api/shared/data-access';
+import { QueryBus } from '@nestjs/cqrs';
+
+let resolver: ApiStorageServiceFeatureModule;
+  //let queryBus: QueryBus;
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [
+        ApiStorageServiceFeatureModule,
+        ApiStorageServiceFeatureModule,
+        ApiStorage,
+        QueryBus,
+      ],
+    }).compile();
+    //queryBus = module.get<QueryBus>(QueryBus);
+    resolver = module.get<ApiStorageServiceFeatureModule>(ApiStorageServiceFeatureModule);
+  });
+
+  
+it('Should be thruthy', async () => {
+  jest
+    .spyOn(resolver, 'getFile')
+    .mockImplementation(
+      (): Promise<string | null> =>
+        Promise.resolve("url")
+    );
+    expect(resolver.getFile).not.toHaveBeenCalled();
+  
+  expect(await resolver.getFile("1","CV",)).toBeTruthy();
+  expect(resolver.getFile).toHaveBeenCalled();
+});
+
+it('To be truthy delete', async () => {
+  jest
+    .spyOn(resolver, 'deleteFile')
+    .mockImplementation(
+      (): Promise<number> =>
+        Promise.resolve(0)
+    );
+
+    expect(resolver.deleteFile).not.toHaveBeenCalled();
+  expect(await resolver.deleteFile("1","CV")).toBeTruthy();
+  expect(resolver.deleteFile).toHaveBeenCalled();
+});
+
+it('create To be truthy', async () => {
+  const DTO=new ApiStorage();
+  DTO.fileAsString="OmolemosCV"
+  DTO.fileCategory="ACADEMIC_RECORD"
+  DTO.fileExtension="PDF"
+  DTO.filePath="Desktop/files"
+  
+
+  jest
+    .spyOn(resolver, 'create')
+    .mockImplementation(
+      (): Promise<ApiStorage> =>
+        Promise.resolve(DTO)
+    );
+ 
+    
+
+    expect(resolver.create).not.toHaveBeenCalled();
+  expect(await resolver.create(DTO)).toBeTruthy();
+  expect(resolver.create).toHaveBeenCalled();
+});
 
 
 describe( 'ApiStorageServiceFeatureModule', () => {
