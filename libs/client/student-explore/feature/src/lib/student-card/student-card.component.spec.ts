@@ -169,4 +169,24 @@ describe('StudentCard Component: Search Bar Functionality', () => {
     expect(component.responseArray).toEqual(expectedResult);
     //expect(component.qry).toBe('Matthew');
   });
+
+  it('Should, given an invalid name, return a student not found result', async () => {
+    const hostElement = fixture.nativeElement;
+    const input: HTMLInputElement = hostElement.querySelector('#search');
+
+    const invalidStudentObject = {data: {SearchStudents: []}};
+
+    const expectedResult: Array<Student> = [];
+    expectedResult.push(new Student("", "Search Request Not Found", "", "", "", "", "", "", "", ""));
+
+    input.value = 'sdhgfjhsdgfjhsgdfjhgsdhf';
+    input.dispatchEvent(new Event('input'));
+
+    jest.spyOn(component, "retrieveStudentObjects").mockResolvedValue(JSON.stringify(retrieveStudentObjects));
+    jest.spyOn(component, "queryHelper").mockResolvedValue(JSON.stringify(invalidStudentObject));
+
+    await component.query();
+    
+    expect(component.responseArray).toEqual(expectedResult);
+  });
 });
