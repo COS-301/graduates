@@ -14,33 +14,33 @@ jobs:
 
       - name: Docker Hub login
         env:
-          DOCKER_USER: ${{secrets.DOCKER_USER}}
-          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+          DOCKER_USER: "mini301graduates"
+          DOCKER_PASSWORD: "n6la4bd01fhso5"
         run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
 
       - name: Build the DB Docker image
         run: |
           docker compose up -d
-          docker tag postgres:13 ${{secrets.DOCKER_USER}}/graduates:releaseDB
+          docker tag postgres:13 mini301graduates/graduates:releaseDB
 
       - name: Build the API Docker image
         run: |
           docker build . --file apps/api/Dockerfile --tag graduates:releaseApi
-          docker tag graduates:releaseApi ${{secrets.DOCKER_USER}}/graduates:releaseApi
+          docker tag graduates:releaseApi mini301graduates/graduates:releaseApi
 
       - name: Build the Client Docker image
         run: |
           docker build . --file apps/client/Dockerfile --tag graduates:releaseClient
-          docker tag graduates:releaseClient ${{secrets.DOCKER_USER}}/graduates:releaseClient
+          docker tag graduates:releaseClient mini301graduates/graduates:releaseClient
 
       - name: Push DB Docker 
-        run: docker push ${{secrets.DOCKER_USER}}/graduates:releaseDB
+        run: docker push mini301graduates/graduates:releaseDB
 
       - name: Push API Docker
-        run: docker push ${{secrets.DOCKER_USER}}/graduates:releaseApi
+        run: docker push mini301graduates/graduates:releaseApi
 
       - name: Push Client Docker 
-        run: docker push ${{secrets.DOCKER_USER}}/graduates:releaseClient
+        run: docker push mini301graduates/graduates:releaseClient
 
       - name: deploy hook
         uses: distributhor/workflow-webhook@v2
