@@ -12,30 +12,38 @@
       <h1 class = "banner-text text-center pt-3 w-100">Student Shorts</h1>
       <!-- search bar -->
       <div class="">
-        <input *ngIf="!upload" (keydown.enter)="search()" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
+        <input *ngIf="!upload" (input)="search()" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
         <!-- <input *ngIf="upload" disabled="true" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." type="text" fxFlex="70%" fxFlexOffset="-10%"> -->
       </div>
 
+      <h1 class = "nothingfound text-center pt-3 w-100">{{ nocardsfound }}</h1>
+
+      <!-- page loader -->
+      <div class="pageloaderdiv"><div *ngIf="!readytoview" class="pageloader" ></div></div>
+
       <!-- column manager for all cards -->
-      <div class="auto-col-maker my-3 w-100">
+      <div class="auto-col-maker my-3 w-100" *ngIf="readytoview">
         <!-- container for cards -->
         <div *ngFor="let card of cards | async" class="centindiv">
         <!-- Generates a Card -->
-          <div class="m-3 p-3 rounded" id="card">
+          <div class="m-3 p-3 rounded centindiv" id="card">
             <div class="dashboard-card-content m-1">
               <img src={{card.thumbnail}} id="thumbnail">
-                  <div class="grid grid-rows-2 py-2">
+                  <div class="grid grid-cols-2 auto-cols-max pt-2">
+                    <div class="grid grid-rows-2">
+                      <div>
+                        <mat-card-title id="cardHeader"> 
+                          {{card.user.name}}
+                        </mat-card-title>  
+                      </div>
+                      <div id ="tags"><i *ngFor="let tag of card.shortTag" id="tagval">#{{tag.tag}} </i></div>
+                    </div>
                     <div>
-                      <mat-card-title id="cardHeader"> 
-                        {{card.user.name}}
-                        <button *ngIf="!upload" (click)="viewStory(card.id)" class="formbutton rounded py-2 px-5 cardbutton">View</button>
-                        <button *ngIf="upload" disabled="true" class="formbutton rounded py-2 px-5 cardbutton-nohov">View</button>
-                      </mat-card-title>  
+                      <button *ngIf="!upload" (click)="viewStory(card.id)" class="formbutton rounded py-2 px-5 cardbutton">View</button>
+                      <button *ngIf="upload" disabled="true" class="formbutton rounded py-2 px-5 cardbutton-nohov">View</button>
                     </div>
-                    <div id ="tags"><i *ngFor="let tag of card.shortTag" >#{{tag.tag}} </i>
-                    </div>
-                  </div>    
-                </div>
+                  </div>
+            </div>
           </div>
         </div>
       </div>
@@ -46,7 +54,7 @@
     </div> 
 
     <!-- pager buttons -->
-    <div class="centindiv pager mt-5" id="pageNavi">
+    <div class="centindiv pager" id="pageNavi">
         <!-- Page Navigation -->
         <div>
           <button id ="prevBtn" disabled (click)="btnNaviClick(-1)" class=" px-4 py-2 formbuttonblue rounded">
