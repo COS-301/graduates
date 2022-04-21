@@ -29,16 +29,18 @@ export class StorageRepository {
           });
         }     
       }
-    })
+    });
 
-    return ret;
+    return new Promise<string[]>((resolve) => {
+      resolve(ret);
+    });
 
   }
 
   //get a link to a specific user file
   async getUserFile(u_id: string, file_type:FileCategory): Promise<string|null> {
 
-    let ret = null;
+    let ret:string|null = null;
     await this.prismaService.userProfileFile.findFirst({
       where: {
           userId: u_id,
@@ -54,7 +56,10 @@ export class StorageRepository {
         }
       }
     );
-    return ret;
+
+    return new Promise<string|null>((resolve) => {
+      resolve(ret);
+    });
   }
 
   //create a file record if the user does not already added this file type
@@ -64,7 +69,7 @@ export class StorageRepository {
    const file_category = data.fileCategory;
    const file_name = u_id+file_category;
    
-   let file = null;
+   let file: UserProfileFile|null = null;
    await this.determineFirebaseFolder(file_category).then(async (folder) => {
       if(folder)
       {
@@ -95,7 +100,10 @@ export class StorageRepository {
       }
     }
    );
-   return file;
+
+   return new Promise<UserProfileFile|null>((resolve) => {
+    resolve(file);
+   });
   }
 
   async deleteFile(u_id: string, file_category:FileCategory){
@@ -123,8 +131,11 @@ export class StorageRepository {
     }).then(async (value) => {
       if(value)
       size = value.count;
-    })
-    return size;
+    });
+
+    return new Promise<number>((resolve) => {
+      resolve(size);
+    });
   }
 
   async deleteUserFiles(u_id: string){
@@ -153,8 +164,11 @@ export class StorageRepository {
     }).then(async (value) => {
       if(value)
       size = value.count;
-    })
-    return size;
+    });
+
+    return new Promise<number>((resolve) => {
+      resolve(size);
+    });
   }
 
   async updateUserFile(u_id:string,file_category:FileCategory,fileAsBase64:string){
@@ -171,13 +185,19 @@ export class StorageRepository {
 
    async determineFirebaseFolder(file_category:FileCategory): Promise<FirebaseFolders|null>{
     if(file_category==='CV' || file_category ==='DEGREE' || file_category ==='ACADEMIC_RECORD')
-    return FirebaseFolders.Files;
+    return new Promise<FirebaseFolders|null>((resolve) => {
+      resolve(FirebaseFolders.Files);
+    });
     if(file_category==='PROFILE_PHOTO')
-    return FirebaseFolders.ProfilePhotos;
+    return new Promise<FirebaseFolders|null>((resolve) => {
+      resolve(FirebaseFolders.ProfilePhotos);
+    });
     else
     {
     console.error('File Category not accepted');
-    return null;
+    return new Promise<FirebaseFolders|null>((resolve) => {
+      resolve(null);
+    });
     }
 
   }
