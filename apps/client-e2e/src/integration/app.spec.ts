@@ -17,6 +17,68 @@ describe('client', () => {
   });
 });
 
+//e2e testing for adminconsole
+describe('client admin-console testing', () => {
+    beforeEach(() => cy.visit('/admin-console'));
+
+    //test if admin-console is in the url 
+    it('should contain admin-console in the url', () => {
+      cy.url().should('include','admin-console');
+    });
+
+    //test if page layout is correct
+    it('admin-console navbar',()=>{
+      cy.get("div[class=sidenav]").contains("Create User");
+      cy.get("div[class=sidenav]").contains("Users");
+      cy.get("div[class=sidenav]").contains("Story");
+      cy.get("div[class=sidenav]").contains("Roles");
+      cy.get("div[class=sidenav]").contains("Blogs");
+      cy.get("div[class=sidenav]").contains("Shorts");
+    })
+
+    it('admin-console Create User page inputs',()=>{
+      cy.get("input[id=Name]");
+      cy.get("input[id=Surname]");
+      cy.get("input[id=Email]");
+      cy.get("input[id=Number]");
+      cy.get("input[id=ID]");
+      cy.get("input[id=CV]");
+    })
+
+    it('admin-console Create User page buttons',()=>{
+      cy.get("button[id=usersSaveButton]");
+    })
+
+    //test if navigation to Users page works
+    it('admin-console Users page',()=>{
+      //move to Users page
+      cy.get("li[class=ng-star-inserted]").contains("Users").click();
+      //testing layout for users page
+      cy.get("input[class=searchbar]");
+      cy.get("p[class=userName]");
+      cy.get("button[id=permissionsButton]");
+      cy.get("div[class=suspensionBar]");
+      cy.get("div[id=roleHeader]");
+      //testing add permissions functionality
+      cy.get("button[id=permissionsButton]").click();
+      cy.get("button[class='mat-focus-indicator mat-menu-item ng-tns-c44-1 ng-star-inserted']").contains("Permission 3").click();
+      cy.contains("Permission 3");
+    })
+
+    //testing navigation to Story page
+    it('admin-console Story page',()=>{
+      cy.get("li[class=ng-star-inserted]").contains("Story").click();
+      //testing layout of story page
+      cy.get("div[class=archive]");
+      cy.get("input[class=searchbar]");
+      cy.get("div[class='archiveDiv ng-star-inserted']");
+      cy.get("img[class=sampleImage]");
+      cy.get("p[class=userName]");
+    })
+
+    //testing navigation
+  });
+
 describe('client notifications testing', () => {
   beforeEach(() => cy.visit('/notifications'));
 
@@ -57,6 +119,40 @@ describe('client notifications testing', () => {
   });
 
 });
+
+
+describe('Company Representative Feature', () => {
+
+  beforeEach(() => {
+      cy.visit('/CompanyRepresentativeLogin');
+  })
+
+  it('should allow representative to login', () => {
+
+      cy.get('input[type="email"]').type('ishe.dzingirai@gmail.com');
+      cy.get('input[type="password"]').type('IamACSStudent@1');
+      cy.get('button[type="submit"]').click().visit('/CompanyRepresentativeHome');
+  
+  });
+
+});
+
+// describe('Company Representative Update Details', () => {
+
+//   beforeEach(() => {
+//       cy.visit('/CompanyRepresentativeEdit');
+//   })
+
+//       it('should navigate to homepage', () => {
+//           //Navigate to homepage after updating details
+
+//           //Run test if api is active, because that is when element is active
+//           // cy.get('.submit').click();
+
+      
+//       });
+
+//   });
 
 
 /* Request for access */
@@ -172,6 +268,8 @@ describe('client notifications testing', () => {
 //   });*/
 // });
 
+
+
 // Commented out Tests need API and DB to run in Environment to pass
 describe('client-shorts-feature e2e test', () => {
 
@@ -182,6 +280,10 @@ describe('client-shorts-feature e2e test', () => {
       cy.wait('@getall');
     });
 
+    it('should navigate to /shorts', () => {
+      cy.get('h1').should('contain', 'Student Shorts');
+    });
+
   // * Needs API and DB running to populate view
 /*
       it('should click a short view and close the view ', () => {
@@ -190,17 +292,18 @@ describe('client-shorts-feature e2e test', () => {
       });
 */
 
-
     // * Can Only work if a short is not reported. I.E Cannot determine if short already reported.
     //  * Without seed data, this is not deterministic. Manually tested instead.
 /*
-      it.skip('should make and submit a report', () => {
+      it('should make and submit a report', () => {
         cy.get('.formbutton:first').contains('View').click();
         cy.get('.formbuttonred').contains('Report').click();
         cy.get('#reason').type('This is a test report for testing');
         cy.get('.formbuttonred').contains('Submit').click();
       });
 */
+
+/*
       it('tests navigating between tabs', () => {
       cy.get('#curBtn').should('contain.text', '1');
       cy.get('.formbuttonblue').contains('Next').then((nextBtn)=>{
@@ -211,31 +314,90 @@ describe('client-shorts-feature e2e test', () => {
         cy.get('#curBtn').should('contain.text', '1');
         }});
       });
+*/
 
-    // needs seeded data with user with name John
+
+    // needs seeded data with uploads with the tag #cats
 /*
     it('should test the search capability', () => {
-      cy.get('#search').type('John{enter}');
-      cy.on('window:alert', (alert)=>{
-        expect(alert).to.contain('Searching');});
+      cy.get('#search').type('#cats{enter}');
+      cy.get('#tags').should('contain','#cats');
     });
-  });
 */
+
     describe('upload component tests', () => {
       beforeEach(() => {
         cy.visit('/shorts/upload');
       });
 
-      // Fix upload feature before test
+      it('should open upload page', () => {
+        cy.get('#uploadbanner').contains('Upload');
+      });
+      //  * skipping automatic test as to not clutter firebase repo with test data
+      //  * add video and thumbnail to test upload with into ../fixtures/ folder
+      //  with filenames of client-shorts-test-video.mp4 and client-shorts-test-thumbnail.jpg
         it.skip('should upload a video and thumbnail', () => {
           cy.get('#uploadbanner').contains('Upload');
           cy.get('input[type="file"]:first').selectFile('src/fixtures/client-shorts-test-video.mp4');
           cy.get('input[type="file"]:last').selectFile('src/fixtures/client-shorts-test-thumbnail.jpg');
-          cy.get('#taginput').type('#cats#test');
-          cy.get('.formbuttonblue').contains('Submit').click();
-          expect(cy.intercept("/graphql"));
-          // TODO get confirmation of upload once fixed
+          cy.get('#taginput').type('#jellyfish#test');
+          cy.intercept('/graphql').as('getupload');
+          cy.get('.formbuttonblue').contains('Submit').click().as('submit');
+          cy.wait('@getupload', {timeout:30000}).then(() => {
+            cy.get('.popupcard > #uploadbanner').contains('Successful');
+            cy.get('.formbuttonblue').contains('Continue').click();
+          });
         });
     });
   });
+});
+
+//Student Explore E2E Tests
+describe('Student Explore', () => {
+  beforeEach(() => cy.visit('http://localhost:4200/student-explore'));
+
+  it('should contain Student Explore', () => {
+    cy.contains('Student Explore');
+  });
+
+  it('should open the filter tab', () => {
+    cy.get('#filter').first().click();
+    cy.contains('Filter students');
+  });
+
+//   it('should check the Security tag box and apply filter', () => {
+//     cy.get('#filter').first().click();
+//     cy.contains('Security').click();
+//     cy.contains('Filter students').click();
+//   });
+
+//   it('checks that the Security filter is applied correctly', () => {
+//     cy.get('#filter').first().click();
+//     cy.contains('Security').click();
+//     cy.contains('Filter students').click();
+//     cy.get('.card-grid').should('exist');
+//     cy.get('.card-grid').children().nextAll().should('contain', 'Security');
+//   });
+
+//   it('checks that the Software Engineering filter is applied correctly', () => {
+//     cy.get('#filter').first().click();
+//     cy.contains('Software Engineering').click();
+//     cy.contains('Filter students').click();
+//     cy.get('.card-grid').should('exist');
+//     cy.get('.card-grid').children().nextAll().should('contain', 'Software Engineering');
+//   });
+
+//   it('checks that the Networking filter is applied correctly', () => {
+//     cy.get('#filter').first().click();
+//     cy.contains('Networking').click();
+//     cy.contains('Filter students').click();
+//     cy.get('.card-grid').should('exist');
+//     cy.get('.card-grid').children().nextAll().should('contain', 'Networking');
+//   });
+
+//   it('checks that search works correctly', () => {
+//     cy.get('#search').type('Security{enter}');
+//     cy.get('.card-grid').should('exist');
+//     cy.get('.card-grid').children().nextAll().should('contain', 'Security');
+//   });
 });

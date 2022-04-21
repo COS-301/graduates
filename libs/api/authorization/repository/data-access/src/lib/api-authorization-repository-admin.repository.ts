@@ -1,13 +1,14 @@
-
 import { Injectable, Param } from '@nestjs/common';
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
-import {ApiAuthorization} from '../../../../api/shared/src/lib/api-authorization.entity';
+import { ApiAuthorization } from '../../../../api/shared/src/lib/api-authorization.entity';
 import { PrismaService } from '@graduates/api/shared/services/prisma/data-access';
 import {
+  PermissionType,
   Prisma,
   RolePermissions,
   UserPermissions,
   UserRole,
+  User,
 } from '@prisma/client';
 @Injectable()
 export class Adminauthorization {
@@ -22,17 +23,16 @@ export class Adminauthorization {
         where: { role: role.role },
       });
     }
-  
 
     return null;
   }
-  async findCompanyid(
-    @Param('id') id: string
-  ):Promise<string> {
+  async findCompanyid(@Param('id') id: string): Promise<null | string> {
     const role = await this.findRole(id);
     if (role != null) {
-      return (await this.prisma.user.findUnique({where: { id:id}})).companyId;
+      return (await this.prisma.user.findUnique({ where: { id: id } }))
+        .companyId;
     }
+
     return null;
   }
 
@@ -55,8 +55,9 @@ export class Adminauthorization {
   async findAllPermissionsFilter(
     @Param('id') id: string,
     permissiontype: Prisma.EnumPermissionTypeFilter
-  ):Promise<ApiAuthorization>{
+  ): Promise<ApiAuthorization> {
     const role = await this.findRole(id);
+
     if (role != null) {
       const userPermissions = await this.prisma.userPermissions.findFirst({
         where: { userId: id, permissionType: permissiontype },
@@ -64,32 +65,41 @@ export class Adminauthorization {
       const rolePermissions = await this.prisma.rolePermissions.findFirst({
         where: { role: role.role, permissionType: permissiontype },
       });
-      let returnitem:ApiAuthorization;
-      returnitem.userRole = role.role;
-      returnitem.companyId = await this.findCompanyid(id);
-      if(permissiontype == 'VIEW' && (userPermissions != null || rolePermissions != null))
-      {
+
+      const returnitem: ApiAuthorization = new ApiAuthorization();
+
+      if (
+        permissiontype.equals === PermissionType.VIEW &&
+        (userPermissions != null || rolePermissions != null)
+      ) {
         returnitem.accessPermission = true;
-      }
-      if(permissiontype == 'REMOVE' && (userPermissions != null || rolePermissions != null))
-      {
+      } else if (
+        permissiontype.equals === PermissionType.REMOVE &&
+        (userPermissions != null || rolePermissions != null)
+      ) {
         returnitem.deletePermission = true;
-      }
-      if(permissiontype == 'EDIT' && (userPermissions != null || rolePermissions != null))
-      {
+      } else if (
+        permissiontype.equals === PermissionType.EDIT &&
+        (userPermissions !== null || rolePermissions !== null)
+      ) {
         returnitem.editPermission = true;
-      }
+      } else return null;
+
       return returnitem;
     }
     return null;
   }
   async findRolePrisma(input: Prisma.UserRoleWhereInput): Promise<UserRole> {
-    return await this.prisma.userRole.findFirst({ where: { userId: input.userId } });
+    return await this.prisma.userRole.findFirst({
+      where: { userId: input.userId },
+    });
   }
   async findUniquePermission(
     @Param('id') id: string
   ): Promise<UserPermissions[]> {
-    return await this.prisma.userPermissions.findMany({ where: { userId: id } });
+    return await this.prisma.userPermissions.findMany({
+      where: { userId: id },
+    });
   }
   async findAllPermissions(@Param('id') id: string): Promise<{
     generalPermissions: RolePermissions[];
@@ -126,7 +136,7 @@ export class Adminauthorization {
 
     return null;
   }
-  
+
   async deleteUniquePermission(
     @Param() askingId: string,
     where: Prisma.UserPermissionsWhereUniqueInput

@@ -19,11 +19,14 @@ export class ApiStorageResolver {
   ): Promise<string | boolean> {
 
     let url :string|boolean = false;
-    await this.storageService.getFile(userID , fileCategory).then(async(value) => {
+    url = await this.storageService.getFile(userID , fileCategory);
+    /*await this.storageService.getFile(userID , fileCategory).then(async(value) => {
       if(value)
       url = value;
-    });
-    return url;
+    });*/
+    return new Promise<string | boolean>((resolve) => {
+      resolve(url);
+  });
 
   }
 
@@ -34,11 +37,15 @@ export class ApiStorageResolver {
   ): Promise<number> {
     
     let num = 0;
-    await this.storageService.deleteFile(userID , fileCategory).then(async(value) => {
-      num = value;
-    });
+    num = await this.storageService.deleteFile(userID , fileCategory);
 
-    return num;
+    /*await this.storageService.deleteFile(userID , fileCategory).then(async(value) => {
+      num = value;
+    });*/
+
+    return new Promise<number>((resolve) => {
+      resolve(num);
+  });
   }
 
   //TODO fix return type
@@ -76,12 +83,16 @@ export class ApiStorageResolver {
       storage.userId = userID;
       storage.fileExtension = fileExtension;
       
-      await this.storageService.create(storage).then( async (value) => {
+      if(await this.storageService.create(storage))
+      ret = true;
+      /*await this.storageService.create(storage).then( async (value) => {
         if(value)
         ret = true;
-      })
+      })*/
 
-      return ret;
+      return new Promise<boolean>((resolve) => {
+        resolve(ret);
+    });
 }
 @Query(() =>String)
   pingStorage(){

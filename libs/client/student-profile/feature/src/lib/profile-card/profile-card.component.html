@@ -4,20 +4,20 @@
          <a href="">
             <img id="profile-image" src="https://www.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png" alt="Profile Picture Not Found" />
          </a>
-         <p> Peter Parker </p>
+         <p *ngIf="name"> {{name.firstName}} {{name.lastName}} </p>
          <button mat-button id="btnEdit">
             <mat-icon> edit</mat-icon>
          </button>
          </div>
          <div class="profile-details">
-            <button mat-raised-button id="btnShorts">My Shorts</button> <br/> 
-            <button mat-raised-button id="btnUploadShort">Upload Short</button>
-            <button mat-raised-button id="btnUpIntegration">User Permissions</button> <!--UP Integration link-->
+            <button mat-raised-button id="btnShorts" routerLink="/shorts">My Shorts</button> <br/> 
+            <button mat-raised-button id="btnUploadShort" routerLink="/shorts/upload">Upload Short</button>
+            <button mat-raised-button id="btnUpIntegration" routerLink="/upintegration">User Permissions</button> <!--UP Integration link-->
          </div>
    </div>   
 </div>
 
-<button mat-raised-button class="upload"> Upload your documents</button>
+<button mat-raised-button class="upload" routerLink="/storage/1"> Upload your documents</button>
 
 <!-- taken from company profile -->
 <div class="social_links">
@@ -36,6 +36,7 @@
    </div>
 </div>
 
+<router-outlet></router-outlet>
 <!-- api stuff
 {{name.firstName}} {{name.lastName}}
 -->

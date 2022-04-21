@@ -5,7 +5,10 @@ import { RegistrationFeatureComponent} from './registration-feature/registration
 import { AuthenticationMaterialModule } from './materials/authentication-material.module';
 import {LoginPageFeatureComponent} from './login-page-feature/login-page-feature.component'; 
 import {LoginFormComponent} from './login-form/login-form.component'; 
-import {RegistrationPageFeatureComponent} from './registration-page-feature/registration-page-feature.component'
+import {RegistrationPageFeatureComponent} from './registration-page-feature/registration-page-feature.component'; 
+import { FormGroup } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AuthenticationFeatureModule', () => {
   beforeEach(async(() => {
@@ -18,6 +21,9 @@ describe('AuthenticationFeatureModule', () => {
                       LoginPageFeatureComponent, 
                       LoginFormComponent,
                       RegistrationPageFeatureComponent, 
+                      FormGroup,
+                      MatCardModule,
+                      RouterTestingModule,
                     
                     
                     ]

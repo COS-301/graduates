@@ -1,136 +1,200 @@
-@import "libs/client/shared/assets/global";
-
-.relative{
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  border-radius: 6px;
-  //General size of card, change to suite your feature.
-  width: 18em;
-  margin-top: 5em;
-  margin-left: 5em;
-  animation-name: offhover;
-  animation-duration: 0.2s;
-  animation-timing-function: ease-in;
-  animation-fill-mode: forwards;   
-}
-.relative:hover{
-  animation-name: onhover;
-  animation-duration: 0.2s;
-  animation-timing-function: ease-in;
-  animation-fill-mode: forwards;
-}
-
-h5{
-  padding-left: 1em;
-  padding-top: 1em;
-}
-
-p{
-  padding-left: 1em;
-  padding-bottom: 1em;
-}
-@keyframes offhover {
-  from { 
-      transform: scale(1.05);
-      box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
-  }
-  to { 
-      transform: scale(1);
+@import 'libs/client/shared/assets/ui/src/lib/global';
+.login-card{
+  width: 60%;
+  justify-content: space-between;
+  justify-content: center;
+  @media (max-width:670px) {
+    width: 95%;
+    justify-content: space-between;
+    justify-content: center;
   }
 }
-@keyframes onhover {
-  from { 
-      transform: scale(1);
-  }
-  to { 
-      transform: scale(1.05);
-      box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
-  }
-}
-.flex-auto{
-  //General colour of card body, change to suite your feature.
-  background-color: #FFFFFF;
-}
 
-.w-full{
+.inputCss{
   width: 100%;
-  height: 200px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
-//General button, change to suite your feature.
-button {
-  color: #FFFFFF;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-weight: bold;
-  background-color: #174372;
-  border-width: medium;
-  border-color: #174372;
-  outline: none !important;
-  box-shadow: none !important;
-  margin: 1em;
+
+.btn {
+  width: 100%;
+  background-color: $primary-1;
+  color: $background-white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
-button:hover {
-  color: #174372;
-  font-weight: bold;
-  border-width: medium;
-  border-color: #174372;
-  background-color: #FFFFFF;
-  outline: none !important;
-  box-shadow: none !important;
+
+.btn:hover {
+  background-color: #195ba1;
 }
-button::disabled {
-  background-color: #577697;
-  color: #CFD7DE;
+
+.mat-card {
+  margin-top: 0.25%;
+  margin-bottom: 0.25%;
+  border-width: 0.5px;
+  border-color: silver;
 }
-button:active {
-  background-color: #174372 !important;
-  outline: none !important;
-  box-shadow: none !important;
+
+.login-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 70vh;
+  border-radius: 5px;
+  padding: 20px;
 }
-button:focus {
-  background-color: #174372 !important;
-  outline: none !important;
-  box-shadow: none !important;
+
+.banner {
+  background-color: $primary-1;
 }
-@media only screen and (max-width: 428px) {
-  .relative{
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      border-radius: 6px;
-      //General size of card, change to suite your feature.
-      width: 9em;
+
+.banner-header {
+  color: $text-red;
+  font-size: 18px;
+}
+
+.logout{
+  color: $background-white ;
+  font-size: 18px;
+  padding-bottom: 5px;
+}
+//Header and footer SCSS
+.uplogo{
+  display: block ;
+  float: left;
+  width: inherit !important;
+  overflow: hidden !important;
+  padding-left: 45px;
+  padding-top: 5px;
+  width: 25% !important;
+}
+.logoandhat{
+  display: none;
+}
+.hat{
+  display: block;
+  float: right;
+  padding-right: 45px;
+  padding-top: 3px;
+  width: 22%;
+}
+.head{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: $background-white;
+  font-family: 'Segoe UI',sans-serif;
+  font-weight: 505;
+  font-style: normal;
+  background-color: $primary-1;
+  width: 100% ;
+  height: 100%;
+  overflow: hidden !important;
+}
+h1{
+  padding-left: 2px;
+}
+header{
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  position: static;
+}
+@media (max-width:428px) {
+  .uplogo{
+      display: none !important;
   }
-  .flex-auto{
-      display: none;    
+  .logoandhat{
+      display: block !important;
+      width: inherit !important;
   }
-  h5{
-      font-size: 0.75em;
+  .hat{
+      display: none !important;
+  }
+  .head{
+      margin-right: 0 !important;
+      margin: 0px !important;
+      padding-top: 3px !important;
+      background-color: $primary-1 !important;
+      right: 0 !important;
+      left: 0 !important;
+      top: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      overflow: hidden !important;
+      padding-bottom: 0% !important;
+  }
+  .heading{
+      padding: 0% !important;
+      padding-left: 0% !important;
+      padding-bottom: 0% !important;
+      display: none !important;
+  }
+      header{
+          width: 100% !important;
+          position: static !important;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+      }
+}
+
+footer{
+  text-align: center;
+  background-color: $background-white;
+  bottom: 0;
+  width: 100% !important;
+  overflow: hidden !important;
+  width: 100% !important;
+  left: 0 !important;
+  position: fixed;
+}
+.icon{
+  float: inline-start;
+  position: relative;
+  transform: scale(0.6);
+}
+@media (max-width: 820px) {
+  .icon{
+      transform: scale(0.7) !important;
+  }
+  .hat{
+      width: 24px !important;
+      height: auto;
   }
   p{
-      
-      padding-left: 1em;
-      padding-bottom: 1em; 
-      font-size: 0.5em;
+      font-size: 10px !important;
   }
-  button{
-      display: none;
+  footer{
+      margin-left: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: 100% ;
+      position: fixed;
   }
-  .w-full{
-      height: 100px;
+  .mat-card{
+    width: 100%;
   }
-  .relative:focus > .flex-auto{
-      display: initial;
-      opacity: 0;
-      animation-name: display;
-      animation-duration: 0.5s;
-      animation-timing-function: ease-in;
-      animation-fill-mode: forwards;   
-  }
-  @keyframes display {
-      from { 
-          display: inline;
-          opacity: 0;
-      }
-      to { 
-          display: inline;
-          opacity: 1;
-      }
-    }
+}
+
+button:disabled,
+button[disabled]{
+  background-color: #cccccc;
+  color: #666666;
+}
+
+button:disabled:hover,
+button[disabled]:hover {
+  background-color: #cccccc;
+  color: #666666;
+  cursor:default;
 }
