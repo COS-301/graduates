@@ -2,6 +2,8 @@ import { CompanyRepresentativeRepository } from "@graduates/api/company-represen
 import { IQueryHandler, QueryHandler } from "@nestjs/cqrs";
 import { GetAllRepresentatives } from "../impl/getAllRepresentatives.query";
 
+//final stretch
+
 @QueryHandler(GetAllRepresentatives)
 export class GetAllRepresentativesHandler implements IQueryHandler<GetAllRepresentatives>
 {
