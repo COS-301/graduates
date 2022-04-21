@@ -6,42 +6,34 @@
 
 <!--Insert Header component here-->
 <div><header-and-footer-header></header-and-footer-header></div>
-<!-- <navbar-tabs-navigation-bar></navbar-tabs-navigation-bar> -->
+<navbar-tabs-navigation-bar></navbar-tabs-navigation-bar>
 
-<!-- <div class="container" *ngIf="studentObj; else notFoundPage"> -->
-    <div class="container">
+<div class="container" *ngIf="studentObj; else notFoundPage">
     <div class="section">
        
         <!-- user-info component -->
-        <!-- <graduates-user-info [studentInfo]=studentObj></graduates-user-info> -->
-        <graduates-user-info></graduates-user-info>
+        <graduates-user-info [studentInfo]=studentObj></graduates-user-info>
 
         <!-- title component -->
-        <!-- <graduates-title [title]=studentObj></graduates-title> -->
-        <graduates-title></graduates-title>
+        <graduates-title [title]=studentObj></graduates-title>
 
         <!-- degree component -->
-        <!-- <graduates-degree [degree]=studentObj></graduates-degree> -->
-        <graduates-degree></graduates-degree>
+        <graduates-degree [degree]=studentObj></graduates-degree>
 
         <!-- employment-status component -->
-        <!-- <graduates-employment-status [employStatus]=studentObj></graduates-employment-status> -->
-        <graduates-employment-status></graduates-employment-status>
+        <graduates-employment-status [employStatus]=studentObj></graduates-employment-status>
 
         <!-- location component -->
-        <!-- <graduates-location [location]=studentObj></graduates-location> -->
-       <graduates-location></graduates-location>
+        <graduates-location [location]=studentObj></graduates-location>
        
         <!-- bio component -->
-        <!-- <graduates-bio [bio]=studentObj></graduates-bio> -->
-        <graduates-bio></graduates-bio> 
+        <graduates-bio [bio]=studentObj></graduates-bio>
 
     </div>
     <div class="section">
         
         <!-- profile-card componenet -->
-        <!-- <graduates-profile-card [name]=studentObj></graduates-profile-card> -->
-        <graduates-profile-card></graduates-profile-card>
+        <graduates-profile-card [name]=studentObj></graduates-profile-card>
 
     </div>
     <div class="section">
@@ -50,15 +42,13 @@
         <graduates-request-for-access-feature></graduates-request-for-access-feature>
         
         <!-- Achievements Component -->
-        <!-- <graduates-achievements [achievements]=studentObj></graduates-achievements> -->
-        <graduates-achievements></graduates-achievements>
-
+        <graduates-achievements [achievements]=studentObj></graduates-achievements>
     </div>
 </div>
 
-<!-- <ng-template #notFoundPage>
+<ng-template #notFoundPage>
     <graduates-not-found></graduates-not-found>
-</ng-template> -->
+</ng-template>
 
 <!--Insert Footer component here-->
 <div><header-and-footer-footer></header-and-footer-footer></div>
