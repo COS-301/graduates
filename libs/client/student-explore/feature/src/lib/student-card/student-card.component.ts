@@ -492,7 +492,7 @@ export class StudentCardComponent implements OnInit
 
     let fetchCall = "";
     
-    await fetch('http://localhost:3333/graphql', {
+    await fetch('https://301graduates.live:3333/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
