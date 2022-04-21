@@ -180,8 +180,8 @@ describe('Company Representative Feature', () => {
 
   it('should allow representative to login', () => {
 
-      cy.get('input[type=email]').type('ishe.dzingirai@gmail.com');
-      cy.get('.password').type('${IamACSStudent@1}{enter}');
+      cy.get('input[type="email"]').type('ishe.dzingirai@gmail.com');
+      cy.get('input[type="password"]').type('${IamACSStudent@1}{enter}');
       cy.get('.btn btn-primary').click().visit('/CompanyRepresentativeHome');
   
   });
@@ -197,8 +197,8 @@ describe('Company Representative Update Details', () => {
       it('should allow representative to update details', () => {
           cy.get('#fname').type('Tester Role');
           cy.get('.title').type('Software Tester');
-          cy.get('textarea[name=experience]').type('Beginner');
-          cy.get('textarea[name=about]').type('Looking for Graduate Machine Learning Engineers');
+          cy.get('textarea[name="experience"]').type('Beginner');
+          cy.get('.about').type('Looking for Graduate Machine Learning Engineers');
           cy.get('#number').type('0812347623');
           cy.get('#locaton').type('Hatfield, Pretoria');
           cy.get('#email').type('tester@gmail.com');
