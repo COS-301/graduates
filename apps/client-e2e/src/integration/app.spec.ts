@@ -303,6 +303,7 @@ describe('client-shorts-feature e2e test', () => {
       });
 */
 
+/*
       it('tests navigating between tabs', () => {
       cy.get('#curBtn').should('contain.text', '1');
       cy.get('.formbuttonblue').contains('Next').then((nextBtn)=>{
@@ -313,15 +314,17 @@ describe('client-shorts-feature e2e test', () => {
         cy.get('#curBtn').should('contain.text', '1');
         }});
       });
+*/
 
 
-    // needs seeded data with uploads from a user named John
+    // needs seeded data with uploads with the tag #cats
 /*
     it('should test the search capability', () => {
-      cy.get('#search').type('John{enter}');
-      cy.get('#cardHeader').should('contain','John');
+      cy.get('#search').type('#cats{enter}');
+      cy.get('#tags').should('contain','#cats');
     });
 */
+
     describe('upload component tests', () => {
       beforeEach(() => {
         cy.visit('/shorts/upload');
@@ -347,4 +350,54 @@ describe('client-shorts-feature e2e test', () => {
         });
     });
   });
+});
+
+//Student Explore E2E Tests
+describe('Student Explore', () => {
+  beforeEach(() => cy.visit('http://localhost:4200/student-explore'));
+
+  it('should contain Student Explore', () => {
+    cy.contains('Student Explore');
+  });
+
+  it('should open the filter tab', () => {
+    cy.get('#filter').first().click();
+    cy.contains('Filter students');
+  });
+
+//   it('should check the Security tag box and apply filter', () => {
+//     cy.get('#filter').first().click();
+//     cy.contains('Security').click();
+//     cy.contains('Filter students').click();
+//   });
+
+//   it('checks that the Security filter is applied correctly', () => {
+//     cy.get('#filter').first().click();
+//     cy.contains('Security').click();
+//     cy.contains('Filter students').click();
+//     cy.get('.card-grid').should('exist');
+//     cy.get('.card-grid').children().nextAll().should('contain', 'Security');
+//   });
+
+//   it('checks that the Software Engineering filter is applied correctly', () => {
+//     cy.get('#filter').first().click();
+//     cy.contains('Software Engineering').click();
+//     cy.contains('Filter students').click();
+//     cy.get('.card-grid').should('exist');
+//     cy.get('.card-grid').children().nextAll().should('contain', 'Software Engineering');
+//   });
+
+//   it('checks that the Networking filter is applied correctly', () => {
+//     cy.get('#filter').first().click();
+//     cy.contains('Networking').click();
+//     cy.contains('Filter students').click();
+//     cy.get('.card-grid').should('exist');
+//     cy.get('.card-grid').children().nextAll().should('contain', 'Networking');
+//   });
+
+//   it('checks that search works correctly', () => {
+//     cy.get('#search').type('Security{enter}');
+//     cy.get('.card-grid').should('exist');
+//     cy.get('.card-grid').children().nextAll().should('contain', 'Security');
+//   });
 });
