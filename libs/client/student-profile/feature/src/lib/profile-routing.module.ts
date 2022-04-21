@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProfileBodyComponent } from './profile-body/profile-body.component';
 import { ClientUpintegrationFeatureModule } from '@graduates/client/upintegration/feature';
 import { ClientStorageFeatureModule } from '@graduates/client/storage/feature';
+import { ClientShortsFeatureModule } from '@graduates/client-shorts-feature';
 
 const routes: Routes = [
   {
@@ -15,15 +16,20 @@ const routes: Routes = [
   },
   {
     path: 'upintegration',
-    loadChildren: () =>
-      import('@graduates/client/upintegration/feature').then(
-        (x) => x.ClientUpintegrationFeatureModule
-        ),
+    component: ClientUpintegrationFeatureModule
   },
   {
     path: 'storage/1',
     component: ClientStorageFeatureModule
-  }
+  },
+  {
+    path: 'shorts',
+    component: ClientShortsFeatureModule
+  },
+  {
+    path: 'shorts/upload',
+    component: ClientShortsFeatureModule
+  },
 ];
 
 @NgModule({
