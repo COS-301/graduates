@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Apollo } from "apollo-angular";
 import gql from "graphql-tag";
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,7 @@ export class CompanyRepresentativeService {
   }
 
   deleteRepresentative(repID: string): Observable<any> {
-    const query = 'mutation{deleteCompanyRepresentative(id:"c1234"){repName}}';
+    const query = 'mutation{deleteCompanyRepresentative(id:"'+repID+'"){repName}}';
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
@@ -40,15 +41,13 @@ export class CompanyRepresentativeService {
     return this.httpClient.post<any>('https://301graduates.live:3333/graphql',JSON.stringify({ query: query }), options);
   }
 
-  upload(file: any, userID: string) {   
+  upload(file: any, userID: string) {
       let base64data;
-        const fileReaderInstance = new FileReader();
-        fileReaderInstance.readAsDataURL(file); 
-        fileReaderInstance.onload = () => {
-        base64data = fileReaderInstance.result;     
-          console.log(file.name);
-      
-        console.log(file);
+      const fileReaderInstance = new FileReader();
+      fileReaderInstance.readAsDataURL(file);
+      fileReaderInstance.onload = () => {
+        base64data = fileReaderInstance.result;
+
         this.apollo.mutate<any>({
           mutation: gql`
             mutation($Filename: String! , $UserId: String! , $FileCategory: String! , $FileExtension: String! , $Files: String!) {
@@ -65,12 +64,11 @@ export class CompanyRepresentativeService {
           }
         })
         .subscribe(({ data}) => {
-          if (data){ 
-            console.log("Done");
+          if (data){
+            console.log("Upload Done");
           }
         });
-        const res = {res:"Could not Upload"}
-    }
+      }
   }
 
   download(userID: string, fileCategory: string) {
