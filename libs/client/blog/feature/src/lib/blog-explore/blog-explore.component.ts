@@ -87,15 +87,15 @@ export class BlogExploreComponent implements OnInit {
 
   // Blog interation buttons
   createBlog() {
-    window.open("/blog/create", "_self");
+    window.open('/blog/create', '_self');
   }
 
   readBlog(blogID: string) {
-    window.open(("/blog/view/" + blogID), "_self");
+    window.open('/blog/view/' + blogID, '_self');
   }
 
-  editBlog(blogID: unknown) {
-    window.open(("/blog/edit/" + blogID), "_self");
+  editBlog(blogID: string) {
+    window.open('/blog/edit/' + blogID, '_self');
   }
 
   deleteBlog(blogID: string) {

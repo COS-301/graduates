@@ -23,7 +23,7 @@ export class ApiStorageServiceFeatureModule {
             url = value;
         });
       }
-      else if(fileCategory==="Degree"){
+      else if(fileCategory==="Transcript"){
         await this.repo.getUserFile(userID ,FileCategory.DEGREE).then(async (value)=> {
           url = value;
         });
@@ -68,7 +68,7 @@ export class ApiStorageServiceFeatureModule {
       }
 
       if(fileCategory=="Image"){
-        await this.repo.deleteFile(userID ,FileCategory.ACADEMIC_RECORD ).then(async (value)=> {
+        await this.repo.deleteFile(userID ,FileCategory.PROFILE_PHOTO).then(async (value)=> {
           num = value;
         });
       }

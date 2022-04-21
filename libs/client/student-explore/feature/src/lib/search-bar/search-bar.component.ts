@@ -39,7 +39,7 @@ export class SearchBarComponent {
         }
       }`;
 
-      fetch('http://localhost:3333/graphql', {
+      fetch('https://301graduates.live:3333/graphql', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -121,7 +121,7 @@ export class SearchBarComponent {
       }
     }`;
 
-    const fetchCall = await fetch('http://localhost:3333/graphql', {
+    const fetchCall = await fetch('https://301graduates.live:3333/graphql', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

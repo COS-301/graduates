@@ -1,5 +1,5 @@
 //TODO: create Student model on service layer
-import { Get, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { FileCategory, SocialMedia } from '@prisma/client';
 import { DeleteStudentProfileFilesCommand, DeleteStudentProfileSocialMediaCommand, DeleteStudentProfileTagsCommand } from './commands/impl/delete-student-profile.command';
@@ -23,7 +23,7 @@ export class ApiStudentProfileService {
   async getPfp(userid : string) {
     return await this.queryBus.execute( new GetStudentProfilePFPQuery(userid))
   }
-  async setPfp(userid : string, pfp) {
+  async setPfp(userid : string, pfp: string) {
     return await this.commandBus.execute( new SetStudentProfileProfilePictureCommand(userid, pfp))
   }
   async getBio(userid : string) {
@@ -44,11 +44,13 @@ export class ApiStudentProfileService {
   async getSocialMedia(userid : string) {
     return await this.queryBus.execute( new GetStudentProfileSocialMediaQuery(userid))
   }
-  async addSocialMedia(userid : string, type: SocialMedia, link:string) {
-    return await this.commandBus.execute( new SetStudentProfileSocialMediaCommand(userid, type, link))
+  async addSocialMedia(userid : string, type: string, link:string) {
+    const newType = await this.convertSocialMedia(type);
+    return await this.commandBus.execute( new SetStudentProfileSocialMediaCommand(userid, newType, link))
   }
-  async removeSocialMedia(userid : string) {
-    return await this.commandBus.execute( new DeleteStudentProfileSocialMediaCommand(userid))
+  async removeSocialMedia(userid : string, type : string) {
+    const newType = await this.convertSocialMedia(type);
+    return await this.commandBus.execute( new DeleteStudentProfileSocialMediaCommand(userid, newType))
   }
   async getLocation(userid : string) {
     return await this.queryBus.execute( new GetStudentProfileLocationQuery(userid))
@@ -73,6 +75,34 @@ export class ApiStudentProfileService {
   }
   async getEmploymentStatus(userId: string) {
     return await this.queryBus.execute( new GetStudentProfileEmploymentStatusQuery(userId))
+  }
+
+  private async convertSocialMedia(type: string) {
+    let newType;
+    switch (type[0].toLowerCase()) {
+      case 't':
+        newType = SocialMedia[0]
+        break;
+        case 'i':
+        newType = SocialMedia[1]
+        break;
+        case 'l':
+        newType = SocialMedia[2]
+        break;
+        case 'f':
+        newType = SocialMedia[3]
+        break;
+        case 's':
+        newType = SocialMedia[4]
+        break;
+        case 'g':
+        newType = SocialMedia[5]
+        break;
+      default:
+        return null;
+        break;
+    }
+    return newType;
   }
 
 }

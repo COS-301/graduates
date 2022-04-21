@@ -1,15 +1,20 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'graduates-upintegration-body',
   templateUrl: './upintegration-body.component.html',
-  styleUrls: ['./upintegration-body.component.sass'],
+  styleUrls: ['./upintegration-body.component.scss'],
 })
-export class UpintegrationBodyComponent implements OnInit {
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  constructor() {}
-
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  ngOnInit(): void {}
+export class UpintegrationBodyComponent {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  log(x: any) {
+    let studentNumber = '';
+    studentNumber = x.value;
+  }
+  submit(inputForm: { value: any }) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const permissions = inputForm.value;
+  }
 }

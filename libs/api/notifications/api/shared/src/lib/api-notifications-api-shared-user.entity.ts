@@ -6,7 +6,7 @@ export class UserNotification {
     id!: string
 
     @Field()
-    username: string;
+    name: string;
 
     @Field()
     email: string;
