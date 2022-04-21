@@ -39,15 +39,15 @@ export class StorageRepository {
   async getUserFile(u_id: string, file_type:FileCategory): Promise<string|null> {
 
     let ret = null;
-    await this.prismaService.userProfileFile.findMany({
+    await this.prismaService.userProfileFile.findFirst({
       where: {
           userId: u_id,
           fileCategory: file_type
       }
     }).then(async (value) => {
-        if(value.length>0)
+        if(value)
         {
-        await this.firebaseService.getURLByFilePath(value[0].filePath).then(async (value)=> {
+        await this.firebaseService.getURLByFilePath(value.filePath).then(async (value)=> {
           ret = value;
         });
         
@@ -98,18 +98,17 @@ export class StorageRepository {
    return file;
   }
 
-  //the file deleted will be unique since a user can only upload one file per type
   async deleteFile(u_id: string, file_category:FileCategory){
 
     //delete in firebase
-    await this.prismaService.userProfileFile.findMany({
+    await this.prismaService.userProfileFile.findFirst({
       where: {
           userId: u_id,
           fileCategory: file_category
       }
     }).then(async (value) => {
-      if(value[0])
-      await this.firebaseService.deleteByFilePath(value[0].filePath);
+      if(value)
+      await this.firebaseService.deleteByFilePath(value.filePath);
     }
     );
 
