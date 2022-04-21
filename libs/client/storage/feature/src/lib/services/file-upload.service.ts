@@ -37,7 +37,7 @@ export class FileUploadService {
       })
     }
 
-    return this.http.post<any>('http://localhost:3333/graphql', JSON.stringify({ query: query, variables: { filename: FileName, userId: UserId,  fileCategory: FileCategory, fileExtension: FileExtension, file:Files} }), options);
+    return this.http.post<any>('https://301graduates.live:3333/graphql', JSON.stringify({ query: query, variables: { filename: FileName, userId: UserId,  fileCategory: FileCategory, fileExtension: FileExtension, file:Files} }), options);
   }
 
 }

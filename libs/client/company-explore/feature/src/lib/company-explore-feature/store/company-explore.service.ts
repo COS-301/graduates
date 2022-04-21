@@ -23,7 +23,7 @@ export class CompanyExploreService
       };
     
       return this.http.post<any>(
-        "http://localhost:3333/graphql",
+        "https://301graduates.live:3333/graphql",
         JSON.stringify({
           query: query,
         }),
@@ -40,7 +40,7 @@ export class CompanyExploreService
       };
     
       return this.http.post<any>(
-        "http://localhost:3333/graphql",
+        "https://301graduates.live:3333/graphql",
         JSON.stringify({
           query: query
         }),
@@ -57,7 +57,7 @@ export class CompanyExploreService
       };
     
       return this.http.post<any>(
-        "http://localhost:3333/graphql",
+        "https://301graduates.live:3333/graphql",
         JSON.stringify({
           query: query
         }),
