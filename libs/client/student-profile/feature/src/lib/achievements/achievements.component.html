@@ -1,9 +1,8 @@
-<mat-card>
+<mat-card *ngIf="achievements">
     <mat-card-title color="primary">  Notable Achievements </mat-card-title>
     <mat-card-content>
         <div class="section">
-            <p> Golden Key</p>
-            <p> Graduated with BSc Computer Science in 2017</p>
+            <p> {{achievements.notableAchievements}}</p>
         </div>
     </mat-card-content>
 </mat-card>
