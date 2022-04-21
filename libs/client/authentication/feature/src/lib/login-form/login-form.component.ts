@@ -29,14 +29,7 @@ export class LoginFormComponent{
   }
 
   submit(formdata: { email: string; password: string; }){
-    if(this.formdata.valid) {
-      this.result = this.AuthService.login(formdata.email, formdata.password).subscribe({
-        next: (item) => {
-          if (item.data != null){
-            localStorage.setItem("id", item.data.login.id);
-            this.router.navigate(['LoginPageFeature'], {state: {id: item.data.login.id}, queryParamsHandling: "preserve"});
-          }else{
-            alert("Incorrect Username/Password");
+            this.router.navigate(['LoginPageFeature']);
           }
         },
       error: (err) => { console.log(err); }
