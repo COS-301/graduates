@@ -429,7 +429,33 @@ position: absolute;
               'background-color': currentBlog === u ? '#e0e0e0' : '#FFFFFF'
             }"
           >
-            {{ u.name }}
+            {{ u.title }}
+          </p>
+          <img
+            class="sampleImage"
+            src="https://db3pap005files.storage.live.com/y4mjuivMprD4Z6vEHTYT50n4X8QtR-yJ2suWmSobZfLi55r3jiQC-d-PVCXcGBSXRlNc7uIUsexGWDIQfrROQboHaRIlUuu9eTgMZZyTpypIYo0TqGmPcx0Ej9pLHafETqVEu6MODeA2kp04e0lE-b5_UvCks2LFUuYqYQaqI30gz7er-1iqYCQ2z65ypyt1XDy?width=310&height=182&cropmode=none"
+            alt=""
+          />
+          <div class="archiveDiv" *ngIf="u.archived; else elseBlock">
+            <p>Archived</p>
+          </div>
+          <ng-template #elseBlock>
+            <p class="archiveDiv">Unarchived</p>
+          </ng-template>
+        </div>
+        <div class="user" *ngFor="let u of archivedBlogs">
+          <img
+            src="https://db3pap005files.storage.live.com/y4mBx6TQL2VYWXjt255fRDkY3K0FUfYRp_SaArmmt3-RxO0R669X4hq0XXu8TnDGLbaPCHi8u1Zl00uDLR__2DHBxgRTXhke9Avben8K8xypPNwRMBCr9Vnn0BhYbCjqzBOizbY0v1fENqNP7ZFHJxu0_zBViW_R7UIp2t9A3hpS4_h5tL8-DyVCEtMnFu5lhbU?width=36&height=38&cropmode=none"
+            alt=""
+          />
+          <p
+            class="userName"
+            (click)="selectBlog(u)"
+            [ngStyle]="{
+              'background-color': currentBlog === u ? '#e0e0e0' : '#FFFFFF'
+            }"
+          >
+            {{ u.title }}
           </p>
           <img
             class="sampleImage"
@@ -450,16 +476,15 @@ position: absolute;
           Unarchive
         </button>
       </div>
-      <button id="usersSaveButton">Save</button>
     </div>
 
     <div class="mid" *ngSwitchCase="'Shorts'">
       <input class="searchbar" onfocus="this.value=''" value="SEARCH" />
       <div class="users">
-        <div class="user" *ngFor="let u of users">
+        <div class="user" *ngFor="let u of shorts">
           <img
-            src="https://db3pap005files.storage.live.com/y4mBx6TQL2VYWXjt255fRDkY3K0FUfYRp_SaArmmt3-RxO0R669X4hq0XXu8TnDGLbaPCHi8u1Zl00uDLR__2DHBxgRTXhke9Avben8K8xypPNwRMBCr9Vnn0BhYbCjqzBOizbY0v1fENqNP7ZFHJxu0_zBViW_R7UIp2t9A3hpS4_h5tL8-DyVCEtMnFu5lhbU?width=36&height=38&cropmode=none"
-            alt=""
+            src="{{u.thumbnail}}"
+            alt="userThumbnail"
           />
           <p
             class="userName"
@@ -468,7 +493,7 @@ position: absolute;
               'background-color': currentUser === u ? '#e0e0e0' : '#FFFFFF'
             }"
           >
-            {{ u.name }}
+            {{ u.user.name }}
           </p>
           <img
             class="sampleImage"
@@ -488,7 +513,6 @@ position: absolute;
         <button (click)="archive()" class="archiveButton">Archive</button>
         <button (click)="unarchive()" class="archiveButton">Un-Archive</button>
       </div>
-      <button id="usersSaveButton">Save</button>
     </div>
   </div>
   <!-- <header-and-footer-footer></header-and-footer-footer> -->
