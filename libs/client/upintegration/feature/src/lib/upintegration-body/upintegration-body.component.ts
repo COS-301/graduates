@@ -20,7 +20,7 @@ export class UpintegrationBodyComponent {
     const studentNumber = studentNumberTextbox.value;
 
     const query =
-      'query ($studentNum: String!) {student(studentNum: $studentNum) { studentNum, firstName, lastName, title, email, phoneNum, dateOfBirth, nameOfDegree, bio, tags, preferredLocation, employmentStatus, notableAchievements, links }}';
+      'query ($studentNum:String!){getStudentDetailsUP(studentNum:$studentNum) {}}';
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
