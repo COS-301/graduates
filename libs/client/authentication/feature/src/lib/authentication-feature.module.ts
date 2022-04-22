@@ -1,6 +1,7 @@
 //Basic Modules
-import { NgModule } from '@angular/core';
+import { NgModule } from '@angular/core'; 
 import { CommonModule } from '@angular/common';
+import {Routing} from
 import { FormsModule } from '@angular/forms';
 import {FlexLayoutModule} from '@angular/flex-layout'; 
 import { BrowserModule } from '@angular/platform-browser';
@@ -32,7 +33,8 @@ import { MatOptionModule } from '@angular/material/core';
 import { LoginPageFeatureComponent } from './login-page-feature/login-page-feature.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { RegistrationPageFeatureComponent } from './registration-page-feature/registration-page-feature.component';
-import { RegistrationFormComponent } from './registration-feature/registration-form/registration-form.component';
+import { AuthRoutingModule } from './auth-routing-module';
+import { RegistrationFeatureComponent } from './registration-feature/registration-feature.component';
 //import {User} from './login-feature/login-form/user'; 
 
 
@@ -43,7 +45,7 @@ import { RegistrationFormComponent } from './registration-feature/registration-f
     CommonModule,
     LayoutModule,
     BrowserModule,
-    //AppRoutingModule,
+    AuthRoutingModule, 
     BrowserAnimationsModule,
     FlexLayoutModule,
     FormsModule,
@@ -63,10 +65,10 @@ import { RegistrationFormComponent } from './registration-feature/registration-f
   ],
   declarations: [
     
-                  //RegistrationFeatureComponent,  
+                  RegistrationFeatureComponent,  
                   LoginPageFeatureComponent, 
                   LoginFormComponent, 
-                  RegistrationPageFeatureComponent, 
+                  RegistrationPageFeatureComponent
                   
                   
                 ], 
@@ -74,17 +76,11 @@ import { RegistrationFormComponent } from './registration-feature/registration-f
   exports: [
 
     LoginFormComponent,
-    RegistrationFormComponent,
-  ],
+    RegistrationPageFeatureComponent,
+    LoginPageFeatureComponent, 
+    RegistrationFeatureComponent
+  ]
 
-  /*providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    },
-    
-  ],*/
   
 })
 export class AuthenticationFeatureModule {}
