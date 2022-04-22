@@ -71,6 +71,23 @@ export class AdminconsoleComponent{
     // return
     // getUsers
     // 
+    // if (!(this.apollo.client === undefined)) {
+    //   this.apollo
+    //     .watchQuery({
+    //       query: gql`
+    //         query {
+    //           getUsers {
+    //             name
+    //           }
+    //         }
+    //       `,
+    //     })
+    //     .valueChanges.subscribe((results: any) => {
+    //       console.log(results)
+
+    //     });
+    //   }
+    
     if (!(this.apollo.client === undefined)) {
       this.apollo
         .watchQuery({
@@ -81,16 +98,17 @@ export class AdminconsoleComponent{
                 title
                 content
                 userId
-                archived
               }
             }
           `,
         })
         .valueChanges.subscribe((results: any) => {
-          this.blogs = results.data.allBlogs
-          console.log(this.blogs)
-        });
+          // console.log(results.data.allBlogs)
 
+          this.blogs = results.data.allBlogs
+          // console.log(this.blogs)
+        });
+      }
         if (!(this.apollo.client === undefined)) {
           this.apollo
             .watchQuery({
@@ -107,7 +125,9 @@ export class AdminconsoleComponent{
               `,
             })
             .valueChanges.subscribe((results: any) => {
-              this.archivedBlogs = this.archivedBlogs.concat(results.data.allBlogs)
+              // console.log(results.data)
+              this.blogs = this.blogs.concat(results.data.allArchivedBlogs)
+              // console.log(this.blogs)
         });
       }
 
@@ -124,30 +144,30 @@ export class AdminconsoleComponent{
           });
       }
 
-      if (!(this.apollo.client === undefined)) {
-        this.apollo
-          .watchQuery({
-            query: gql`
-            query{ 
-              findAll{
-                id
-                name
-                email
-                password
-              }
-            }
-            `,
-          })
-          .valueChanges.subscribe((results: any) => {
-            console.log(results.data)
-          });
-      }
+      // if (!(this.apollo.client === undefined)) {
+      //   this.apollo
+      //     .watchQuery({
+      //       query: gql`
+      //       query{ 
+      //         findAll{
+      //           id
+      //           name
+      //           email
+      //           password
+      //         }
+      //       }
+      //       `,
+      //     })
+      //     .valueChanges.subscribe((results: any) => {
+      //       console.log(results.data)
+      //     });
+      // }
 
 
     this.currentBlog = this.blogs[0]
     this.currentShort = this.shorts[0]
     this.currentUser = this.users[0]
-  }}
+  }
  
   fetchData() : void {
     this.users = [{"name" : "John", "suspended" : true, "roles" : ["Role 1", "Role 2"], "permissions" : ["Permission 1", "Permission 2"]}, 
@@ -314,6 +334,8 @@ export class AdminconsoleComponent{
     .subscribe((result) => {
       console.log(result);
     });
+
+    
     // window.location.reload();
   }
 }
@@ -325,6 +347,9 @@ export class AdminconsoleComponent{
           mutation: gql`
           mutation {
             updateBlogArchived(blogId: "${this.currentBlog.id}", archived : false)
+            {
+              id
+            }
           }
         `,
       })
@@ -353,4 +378,50 @@ export class AdminconsoleComponent{
   trackItem(index:number) {
     return index
   }
+
+  getBlogs() {
+    if (!(this.apollo.client === undefined)) {
+      this.apollo
+        .watchQuery({
+          query: gql`
+            query {
+              allBlogs {
+                id
+                title
+                content
+                userId
+              }
+            }
+          `,
+        })
+        .valueChanges.subscribe((results: any) => {
+          // console.log(results.data.allBlogs)
+
+          this.blogs = results.data.allBlogs
+          // console.log(this.blogs)
+        });
+
+        if (!(this.apollo.client === undefined)) {
+          this.apollo
+            .watchQuery({
+              query: gql`
+                query {
+                  allArchivedBlogs {
+                    id
+                    title
+                    content
+                    userId
+                    archived
+                  }
+                }
+              `,
+            })
+            .valueChanges.subscribe((results: any) => {
+              // console.log(results.data)
+              this.blogs = this.blogs.concat(results.data.allArchivedBlogs)
+              // console.log(this.blogs)
+        });
+      }
+  }
+}
 }
