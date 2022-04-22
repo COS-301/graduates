@@ -6,6 +6,7 @@ import { LoginQuery } from "../lib/queries/LoginQuery";
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from './api-authentication-api-users-service';
 import { LoginUserInput } from './queries/login-user-input';
+import { LoginResponse } from './response/login-response';
 
 @Injectable()
 export class AuthService {
@@ -69,10 +70,15 @@ export class AuthService {
   }
 
   async login(user: AuthenticationUser){
-      return {
+
+    const resp = new LoginResponse();
+    resp.access_token = this.jwtService.sign({name:user.name, sub:user.id});
+    resp.user = user;
+    return resp;
+      /*return {
           access_token: this.jwtService.sign({name:user.name, sub:user.id}),
           user,
-      }
+      }*/
   }
 
 
