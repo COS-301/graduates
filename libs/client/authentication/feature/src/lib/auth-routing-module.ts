@@ -6,29 +6,30 @@ import { RegistrationFeatureComponent } from './registration-feature/registratio
 import { RegistrationPageFeatureComponent } from './registration-page-feature/registration-page-feature.component';
 
 // Paths for children
-const routes: Routes = [
+@NgModule({
+ imports: [
+   RouterModule.forChild([
   {
     path: '',
-    component: LoginFormComponent
+    component: LoginFormComponent,
   },
   {
     path: 'Login',
-    component: LoginPageFeatureComponent
+    component: LoginPageFeatureComponent,
   },
   {
     path: 'Register',
-    component: RegistrationFeatureComponent
+    component: RegistrationFeatureComponent,
   },
 
   {
     path: 'Registered',
-    component: RegistrationPageFeatureComponent
+    component: RegistrationPageFeatureComponent,
   },
 
-];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+]),
+ ],
 })
+
+
 export class AuthRoutingModule { }
