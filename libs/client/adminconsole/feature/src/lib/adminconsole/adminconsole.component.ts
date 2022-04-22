@@ -7,7 +7,8 @@ import { coerceStringArray } from '@angular/cdk/coercion';
 @Component({
   selector: 'cards-adminconsole',
   templateUrl: './adminconsole.component.html',
-  styleUrls: ['./adminconsole.component.scss']
+  styleUrls: ['./adminconsole.component.scss'],
+  providers: [Apollo]
 })
 export class AdminconsoleComponent{
 
@@ -304,7 +305,9 @@ export class AdminconsoleComponent{
       .mutate({
         mutation: gql`
         mutation {
-          updateBlogArchived(blogId: "${this.currentBlog.id}", archived : true)
+          updateBlogArchived(blogId: "${this.currentBlog.id}", archived : true){
+
+          }
         }
       `,
     })

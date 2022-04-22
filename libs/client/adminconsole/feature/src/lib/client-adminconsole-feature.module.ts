@@ -8,11 +8,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { AdminconsoleRoutingModule } from './adminconsole-routing.module';
-import { Apollo, gql } from 'apollo-angular';
 
 @NgModule({
   imports: [CommonModule, MatMenuModule, MatIconModule, FooterModule, FormsModule,
-    HeaderModule, AdminconsoleRoutingModule, Apollo],
+    HeaderModule, AdminconsoleRoutingModule],
   declarations: [
     AdminconsoleComponent,
     // DropdownComponent,
