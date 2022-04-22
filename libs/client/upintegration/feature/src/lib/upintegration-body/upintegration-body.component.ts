@@ -1,6 +1,8 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+//import { ApiUpintegrationApiFeatureModule } from '@./../../../api/upintegration/api/feature/src/lib/api-upintegration.module';
+//import { QueryBus } from '@nestjs/cqrs';
 
 @Component({
   selector: 'graduates-upintegration-body',
@@ -9,14 +11,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class UpintegrationBodyComponent {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  log(x: any) {
-    let studentNumber = '';
+  submit(studentNumberTextbox: { value: any }) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    studentNumber = x.value;
-  }
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  submit(inputForm: { value: any }) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const permissions = inputForm.value;
+    const studentNumber = studentNumberTextbox.value;
   }
 }
