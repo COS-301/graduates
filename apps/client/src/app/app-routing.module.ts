@@ -126,6 +126,13 @@ const routes: Routes = [
         (x)=>x.ClientAuthorizationFeatureModule
       ),
   },
+  {
+    path: 'authentication',
+    loadChildren:()=>
+      import('@graduates/client/authentication/feature').then(
+        (x)=>x.AuthenticationFeatureModule
+      ),
+  }
 ];
 
 @NgModule({

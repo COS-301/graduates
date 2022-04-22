@@ -29,12 +29,14 @@ export class LoginFormComponent{
   }
 
   submit(formdata: { email: string; password: string; }){
+    alert("Submit");
     if(this.formdata.valid) {
-      this.result = this.API.login(formdata.email, formdata.password).subscribe({
+      this.API.login(formdata.email, formdata.password).subscribe({
         next: (item) => {
+          console.log("Response", item);
           if (item.data != null){
             localStorage.setItem("id", item.data.login.id);
-            this._router.navigate(['LoginPageFeature'], {state: {id: item.data.login.id}, queryParamsHandling: "preserve"});
+            //this._router.navigate(['LoginPageFeature'], {state: {id: item.data.login.id}, queryParamsHandling: "preserve"});
           }else{
             alert("Incorrect Username/Password");
           }
@@ -42,6 +44,10 @@ export class LoginFormComponent{
       error: (err) => { console.log(err); }
       });
     }
+  }
+
+  ngOnInit(): void {
+    alert("login");
   }
 }
 

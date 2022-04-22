@@ -61,7 +61,8 @@ export class AuthService {
 
 
   login(email: string, password: string): Observable<any> {
-    const query = 'query{login(email: "' + email + '", password: "' + password + '"){id}}';
+    console.log("calling login");
+    const query = 'mutation{login(username: "'+email+'", password: "'+password+'"){access_token user{id name email password}}}';
     const options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'

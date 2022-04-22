@@ -13,7 +13,7 @@ import { RegistrationPageFeatureComponent } from './registration-page-feature/re
         component: LoginFormComponent,
       },
       {
-        path: 'LoginForm',
+        path: 'login',
         component: LoginFormComponent,
       },
       {

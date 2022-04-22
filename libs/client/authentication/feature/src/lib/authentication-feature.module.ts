@@ -32,7 +32,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { LoginPageFeatureComponent } from './login-page-feature/login-page-feature.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { RegistrationPageFeatureComponent } from './registration-page-feature/registration-page-feature.component';
-import { RegistrationFormComponent } from './registration-feature/registration-form/registration-form.component';
+//import { RegistrationFormComponent } from './registration-feature/registration-form/registration-form.component';
 //import {User} from './login-feature/login-form/user'; 
 
 
@@ -63,19 +63,18 @@ import { RegistrationFormComponent } from './registration-feature/registration-f
   ],
   declarations: [
     
-                  //RegistrationFeatureComponent,  
-                  LoginPageFeatureComponent, 
-                  LoginFormComponent, 
-                  RegistrationPageFeatureComponent, 
+      //RegistrationFeatureComponent,  
+      LoginPageFeatureComponent, 
+      LoginFormComponent, 
+      RegistrationPageFeatureComponent
                   
                   
                 ], 
 
   exports: [
-
-    LoginFormComponent,
-    RegistrationFormComponent,
-  ],
+    LoginPageFeatureComponent, 
+    LoginFormComponent
+  ]
 
   /*providers: [
     {

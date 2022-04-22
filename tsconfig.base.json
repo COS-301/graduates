@@ -321,6 +321,9 @@
       ],
       "@graduates/client/upintegration/feature": [
         "libs/client/upintegration/feature/src/index.ts"
+      ],
+      "@graduates/client/authentication/feature": [
+        "libs/client/authentication/feature/src/index.ts"
       ]
     }
   },
