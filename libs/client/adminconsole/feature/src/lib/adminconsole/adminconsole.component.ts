@@ -107,7 +107,7 @@ export class AdminconsoleComponent{
               `,
             })
             .valueChanges.subscribe((results: any) => {
-              this.archivedBlogs = results.data.allBlogs
+              this.archivedBlogs = this.archivedBlogs.concat(results.data.allBlogs)
         });
       }
 
@@ -306,7 +306,7 @@ export class AdminconsoleComponent{
         mutation: gql`
         mutation {
           updateBlogArchived(blogId: "${this.currentBlog.id}", archived : true){
-
+            id
           }
         }
       `,

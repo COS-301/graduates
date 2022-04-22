@@ -32,7 +32,6 @@ describe('client admin-console testing', () => {
     it('admin-console navbar',()=>{
       cy.get("div[class=sidenav]").contains("Create User");
       cy.get("div[class=sidenav]").contains("Users");
-      cy.get("div[class=sidenav]").contains("Story");
       cy.get("div[class=sidenav]").contains("Roles");
       cy.get("div[class=sidenav]").contains("Blogs");
       cy.get("div[class=sidenav]").contains("Shorts");
@@ -67,16 +66,16 @@ describe('client admin-console testing', () => {
       cy.contains("Permission 3");
     })
 
-    //testing navigation to Story page
-    it('admin-console Story page',()=>{
-      cy.get("li[class=ng-star-inserted]").contains("Story").click();
-      //testing layout of story page
-      cy.get("div[class=archive]");
-      cy.get("input[class=searchbar]");
-      cy.get("div[class='archiveDiv ng-star-inserted']");
-      cy.get("img[class=sampleImage]");
-      cy.get("p[class=userName]");
-    })
+    // //testing navigation to Story page
+    // it('admin-console Story page',()=>{
+    //   cy.get("li[class=ng-star-inserted]").contains("Story").click();
+    //   //testing layout of story page
+    //   cy.get("div[class=archive]");
+    //   cy.get("input[class=searchbar]");
+    //   cy.get("div[class='archiveDiv ng-star-inserted']");
+    //   cy.get("img[class=sampleImage]");
+    //   cy.get("p[class=userName]");
+    // })
 
     //testing navigation
   });
