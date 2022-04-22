@@ -102,47 +102,48 @@ class ApiStorageServiceMock {
     }
   }
 }
-describe('ApiStorageResolver', () => {
-  let app: TestingModule;
-  let studentResolver: ApiStorageResolver;
+// }
+// describe('ApiStorageResolver', () => {
+//   let app: TestingModule;
+//   let studentResolver: ApiStorageResolver;
 
-  beforeAll(async () => {
-    const ApiServiceProvider = {
-      provide: ApiStorageServiceFeatureModule,
-      useClass: ApiStorageServiceMock,
-    };
-    app = await Test.createTestingModule({
-      providers:  [ApiServiceProvider,ApiStorageResolver],
-    }).compile();
-    studentResolver = app.get< ApiStorageResolver>( ApiStorageResolver);
-  });
-  describe('Get Url Test', () => {
-    it('should get url', async () => {
-      const expectedUrl = "http:/u20469366/CV";
-      const url = await studentResolver.download("u20469366","CV");
-      expect(url).toEqual(expectedUrl);
-    });
-  });
-  describe('Get Url Test', () => {
-    it('should not get url', async () => {
-      const expectedUrl = "File Category not found";
-      const url = await studentResolver.download("u20469366","CK");
-      expect(url).toEqual(expectedUrl);
-    });
-  });
-  describe('Delete Record', () => {
-    it('should get 1 because record is there', async () => {
-      const numexp = 1;
-      const num = await studentResolver.delete("u20469366","CV");
-      expect(numexp).toEqual(num);
-    });
-  });
-  describe('Delete Record', () => {
-    it('should get 0 because record is not there', async () => {
-      const numexp = 0;
-      const num = await studentResolver.delete("u204677984","CV");
-      expect(numexp).toEqual(num);
-    });
-  });
+//   beforeAll(async () => {
+//     const ApiServiceProvider = {
+//       provide: ApiStorageServiceFeatureModule,
+//       useClass: ApiStorageServiceMock,
+//     };
+//     app = await Test.createTestingModule({
+//       providers:  [ApiServiceProvider,ApiStorageResolver],
+//     }).compile();
+//     studentResolver = app.get< ApiStorageResolver>( ApiStorageResolver);
+//   });
+  // describe('Get Url Test', () => {
+  //   it('should get url', async () => {
+  //     const expectedUrl = "http:/u20469366/CV";
+  //     const url = studentResolver.download("u20469366","CV");
+  //     expect(url).toEqual(expectedUrl);
+  //   });
+  // });
+  // describe('Get Url Test', () => {
+  //   it('should not get url', async () => {
+  //     const expectedUrl = "File Category not found";
+  //     const url = await studentResolver.download("u20469366","CK");
+  //     expect(url).toEqual(expectedUrl);
+  //   });
+  // });
+  // describe('Delete Record', () => {
+  //   it('should get 1 because record is there', async () => {
+  //     const numexp = 1;
+  //     const num = await studentResolver.delete("u20469366","CV");
+  //     expect(numexp).toEqual(num);
+  //   });
+  // });
+  // describe('Delete Record', () => {
+  //   it('should get 0 because record is not there', async () => {
+  //     const numexp = 0;
+  //     const num = await studentResolver.delete("u204677984","CV");
+  //     expect(numexp).toEqual(num);
+  //   });
+  // });
 
- });
+//  });
