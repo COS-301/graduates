@@ -71,6 +71,23 @@ export class AdminconsoleComponent{
     // return
     // getUsers
     // 
+    // if (!(this.apollo.client === undefined)) {
+    //   this.apollo
+    //     .watchQuery({
+    //       query: gql`
+    //         query {
+    //           getUsers {
+    //             name
+    //           }
+    //         }
+    //       `,
+    //     })
+    //     .valueChanges.subscribe((results: any) => {
+    //       console.log(results)
+
+    //     });
+    //   }
+    
     if (!(this.apollo.client === undefined)) {
       this.apollo
         .watchQuery({
@@ -91,7 +108,7 @@ export class AdminconsoleComponent{
           this.blogs = results.data.allBlogs
           // console.log(this.blogs)
         });
-
+      }
         if (!(this.apollo.client === undefined)) {
           this.apollo
             .watchQuery({
@@ -150,7 +167,7 @@ export class AdminconsoleComponent{
     this.currentBlog = this.blogs[0]
     this.currentShort = this.shorts[0]
     this.currentUser = this.users[0]
-  }}
+  }
  
   fetchData() : void {
     this.users = [{"name" : "John", "suspended" : true, "roles" : ["Role 1", "Role 2"], "permissions" : ["Permission 1", "Permission 2"]}, 
