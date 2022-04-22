@@ -19,6 +19,6 @@ import { AuthorizationServiceService } from './authorization-service.service';
 export class ClientAuthorizationFeatureModule {
   constructor(public serve:AuthorizationServiceService)
   {
-    console.log(serve.getRole());
+    //console.log(serve.getRole());
   }
 }
