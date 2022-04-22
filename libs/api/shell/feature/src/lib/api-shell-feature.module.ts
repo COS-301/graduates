@@ -28,7 +28,7 @@ import { ApiBlogApiFeatureModule } from '@graduates/api/blog/api/feature';
     }),
     ApiStorageFeatureModule,
     ApiHostingFeatureModule,
-    //ApiShortsFeatureModule,
+    ApiShortsFeatureModule,
     ApiNotificationsApiFeatureModule,
     ApiAccessStatusFeatureModule,
     ApiCompanyExploreApiFeatureModule,
