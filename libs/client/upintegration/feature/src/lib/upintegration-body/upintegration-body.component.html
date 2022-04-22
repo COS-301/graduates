@@ -12,7 +12,6 @@
       ngModel
       name="student-number-textbox"
       #studentNumberTextbox="ngModel"
-      (change)="log(studentNumberTextbox)"
       type="text"
       id="student-number-textbox"
     /><br />
@@ -47,5 +46,11 @@
     <input type="checkbox" id="check-contact" name="check-contact" />
     <label for="check-contact">Permission to get Contact Details</label><br />
   </div>
-  <input type="input" id="submit" value="Submit" />
+  <button
+    type="submit"
+    id="submit-button"
+    (onClick)="submit(studentNumberTextbox)"
+  >
+    Submit
+  </button>
 </form>

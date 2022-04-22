@@ -6,7 +6,6 @@ import { HeaderModule } from '../../../../shared/components/header/src/lib/heade
 import { FooterModule } from '../../../../shared/components/footer/src/lib/footer.module';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { UpintegrationRoutingModule } from './upintegration-routing.module';
 
@@ -16,7 +15,6 @@ import { UpintegrationRoutingModule } from './upintegration-routing.module';
     HeaderModule,
     FooterModule,
     MatCheckboxModule,
-    BrowserAnimationsModule,
     MatButtonModule,
     FormsModule,
     UpintegrationRoutingModule,
