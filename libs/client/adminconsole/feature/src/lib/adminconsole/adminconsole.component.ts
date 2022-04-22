@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 // import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Apollo, gql } from 'apollo-angular';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { coerceStringArray } from '@angular/cdk/coercion';
 
 @Component({
   selector: 'cards-adminconsole',
@@ -31,12 +34,17 @@ export class AdminconsoleComponent{
   stagedRemoveRoles : string[]
   currentStory : any
   currentBlog : any
-
-  constructor() {
+  archivedBlogs : any[]
+  currentShort : any
+  constructor(
+    private apollo: Apollo,
+    private breakpointObserver: BreakpointObserver,
+  ) {
     //Populate the sidenav with these options
-    this.sidenavOptions = ["Create User", "Users", "Story", "Roles", "Blogs", "Shorts"]
+    this.sidenavOptions = ["Create User", "Users", "Roles", "Blogs", "Shorts"]
 
     //Set default option
+    this.archivedBlogs = []
     this.shorts = []
     this.blogs = []
     this.stories = []
@@ -59,83 +67,86 @@ export class AdminconsoleComponent{
   }
 
   ngOnInit(): void {
-    return
-    //getUsers
-    //   fetch('https://301graduates.live:3333/graphql', {
-    //   method: 'POST',
-    //   headers: {'Content-Type' : 'application/json'},
-    //   body: JSON.stringify({ query: `
-    //     query {
-    //       adminconsole {
-    //         id
-    //         email
-    //         suspended
-    //         name
-    //       }
-    //     }`
-    //   }),
-    // })
-    // .then(res => 
-    //   res.json().then( ress => this.users = ress.data.adminconsole)
-    // );
+    // return
+    // getUsers
+    // 
+    if (!(this.apollo.client === undefined)) {
+      this.apollo
+        .watchQuery({
+          query: gql`
+            query {
+              allBlogs {
+                id
+                title
+                content
+                userId
+                archived
+              }
+            }
+          `,
+        })
+        .valueChanges.subscribe((results: any) => {
+          this.blogs = results.data.allBlogs
+          console.log(this.blogs)
+        });
 
-    // //getBlogs
-    // this.users.forEach((u)  =>  {
-    //   fetch('https://301graduates.live:3333/graphql', {
-    //   method: 'POST',
-    //   headers: {'Content-Type' : 'application/json'},
-    //   body: JSON.stringify({ query: `
-    //     query {
-    //       getBlogs {
-    //         //blogName
-    //         //userName
-    //       }
-    //     }`
-    //   }),
-    // })
-    // .then(res => 
-    //   res.json().then( ress => this.blogs.push(ress.data.adminconsole))
-    // );
-    // })
-    
-    // //getStories
-    // this.users.forEach((u)  =>  {
-    //   fetch('https://301graduates.live:3333/graphql', {
-    //     method: 'POST',
-    //     headers: {'Content-Type' : 'application/json'},
-    //     body: JSON.stringify({ query: `
-    //       query {
-    //         getStories {
-    //           //blogName
-    //           //userName
-    //         }
-    //       }`
-    //     }),
-    //   })
-    //   .then(res => 
-    //     res.json().then( ress => this.stories.push(ress.data.adminconsole))
-    //   );
-    // })
+        if (!(this.apollo.client === undefined)) {
+          this.apollo
+            .watchQuery({
+              query: gql`
+                query {
+                  allArchivedBlogs {
+                    id
+                    title
+                    content
+                    userId
+                    archived
+                  }
+                }
+              `,
+            })
+            .valueChanges.subscribe((results: any) => {
+              this.archivedBlogs = results.data.allBlogs
+        });
+      }
 
-    // //getShorts
-    // this.users.forEach((u)  =>  {
-    //   fetch('https://301graduates.live:3333/graphql', {
-    //     method: 'POST',
-    //     headers: {'Content-Type' : 'application/json'},
-    //     body: JSON.stringify({ query: `
-    //       query {
-    //         getShorts {
-    //           //blogName
-    //           //userName
-    //         }
-    //       }`
-    //     }),
-    //   })
-    //   .then(res => 
-    //     res.json().then( ress => this.shorts.push(ress.data.adminconsole))
-    //   );
-    // })
-}
+      if (!(this.apollo.client === undefined)) {
+        this.apollo
+          .watchQuery({
+            query: gql`
+            query{ getAllShorts{ archived, user{  name  },shortTag{ tag },userId,id, thumbnail}}
+            `,
+          })
+          .valueChanges.subscribe((results: any) => {
+            console.log(results.data.getAllShorts)
+            this.shorts = results.data.getAllShorts
+          });
+      }
+
+      if (!(this.apollo.client === undefined)) {
+        this.apollo
+          .watchQuery({
+            query: gql`
+            query{ 
+              findAll{
+                id
+                name
+                email
+                password
+              }
+            }
+            `,
+          })
+          .valueChanges.subscribe((results: any) => {
+            console.log(results.data)
+          });
+      }
+
+
+    this.currentBlog = this.blogs[0]
+    this.currentShort = this.shorts[0]
+    this.currentUser = this.users[0]
+  }}
  
   fetchData() : void {
     this.users = [{"name" : "John", "suspended" : true, "roles" : ["Role 1", "Role 2"], "permissions" : ["Permission 1", "Permission 2"]}, 
@@ -149,17 +160,17 @@ export class AdminconsoleComponent{
     {"name" : "John", "suspended" : true, "roles" : ["Role 1", "Role 2"], "permissions" : ["Permission 1", "Permission 2"]}]
     this.currentUser = this.users[0]
 
-    this.stories = [{"name" : "Story 1", "archived" : true},
-    {"name" : "Story 1", "archived" : true},
-    {"name" : "Story 1", "archived" : true},
-    {"name" : "Story 1", "archived" : true},
-    {"name" : "Story 1", "archived" : true}]
+    // this.stories = [{"name" : "Story 1", "archived" : true},
+    // {"name" : "Story 1", "archived" : true},
+    // {"name" : "Story 1", "archived" : true},
+    // {"name" : "Story 1", "archived" : true},
+    // {"name" : "Story 1", "archived" : true}]
 
-    this.blogs = [{"name" : "Blog 1", "archived" : true},
-    {"name" : "Blog 1", "archived" : true},
-    {"name" : "Blog 1", "archived" : true},
-    {"name" : "Blog 1", "archived" : true},
-    {"name" : "Blog 1", "archived" : true}]
+    // this.blogs = [{"name" : "Blog 1", "archived" : true},
+    // {"name" : "Blog 1", "archived" : true},
+    // {"name" : "Blog 1", "archived" : true},
+    // {"name" : "Blog 1", "archived" : true},
+    // {"name" : "Blog 1", "archived" : true}]
     
     this.currentBlog = this.blogs[0]
     this.currentStory = this.stories[0]
@@ -288,12 +299,38 @@ export class AdminconsoleComponent{
   }
 
   archiveBlog() {
-    this.currentBlog.archived = true
+    if (!(this.apollo.client === undefined)) {
+    this.apollo
+      .mutate({
+        mutation: gql`
+        mutation {
+          updateBlogArchived(blogId: "${this.currentBlog.id}", archived : true)
+        }
+      `,
+    })
+    .subscribe((result) => {
+      console.log(result);
+    });
+    // window.location.reload();
   }
+}
 
   unarchiveBlog() {
-    this.currentBlog.archived = false
-  }
+    if (!(this.apollo.client === undefined)) {
+      this.apollo
+        .mutate({
+          mutation: gql`
+          mutation {
+            updateBlogArchived(blogId: "${this.currentBlog.id}", archived : false)
+          }
+        `,
+      })
+      .subscribe((result) => {
+        console.log(result);
+      });
+    }
+    // window.location.reload();
+}
 
   archive() {
     this.currentUser.archived = true
