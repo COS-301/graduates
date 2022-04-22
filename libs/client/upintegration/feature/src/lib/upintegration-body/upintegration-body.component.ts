@@ -1,8 +1,8 @@
 /* eslint-disable @angular-eslint/no-empty-lifecycle-method */
 import { Component, Injectable } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ApiUpintegrationApiFeatureModule } from '@./../../../api/upintegration/api/feature/src/lib/api-upintegration.module';
-import { QueryBus } from '@nestjs/cqrs';
+//import { ApiUpintegrationApiFeatureModule } from '@./../../../api/upintegration/api/feature/src/lib/api-upintegration.module';
+//import { QueryBus } from '@nestjs/cqrs';
 
 @Component({
   selector: 'graduates-upintegration-body',
