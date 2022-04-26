@@ -1,0 +1,204 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+.login-card{
+  width: 60%;
+  justify-content: space-between;
+  justify-content: center;
+  @media (max-width:670px) {
+    width: 95%;
+    justify-content: space-between;
+    justify-content: center;
+  }
+}
+
+.inputCss{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.btn {
+  width: 100%;
+  background-color: $primary-1;
+  color: $background-white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #195ba1;
+}
+
+.mat-card {
+  margin-top: 0.25%;
+  margin-bottom: 0.25%;
+  border-width: 0.5px;
+  border-color: silver;
+}
+
+.login-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 70vh;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.banner {
+  background-color: $primary-1;
+}
+
+.banner-header {
+  color: $text-red;
+  font-size: 18px;
+}
+
+.logout{
+  color: $background-white ;
+  font-size: 18px;
+  padding-bottom: 5px;
+}
+//Header and footer SCSS
+.uplogo{
+  display: block ;
+  float: left;
+  width: inherit !important;
+  overflow: hidden !important;
+  padding-left: 45px;
+  padding-top: 5px;
+  width: 25% !important;
+}
+.logoandhat{
+  display: none;
+}
+.hat{
+  display: block;
+  float: right;
+  padding-right: 45px;
+  padding-top: 3px;
+  width: 22%;
+}
+.head{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: $background-white;
+  font-family: 'Segoe UI',sans-serif;
+  font-weight: 505;
+  font-style: normal;
+  background-color: $primary-1;
+  width: 100% ;
+  height: 100%;
+  overflow: hidden !important;
+}
+h1{
+  padding-left: 2px;
+}
+header{
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  position: static;
+}
+@media (max-width:428px) {
+  .uplogo{
+      display: none !important;
+  }
+  .logoandhat{
+      display: block !important;
+      width: inherit !important;
+  }
+  .hat{
+      display: none !important;
+  }
+  .head{
+      margin-right: 0 !important;
+      margin: 0px !important;
+      padding-top: 3px !important;
+      background-color: $primary-1 !important;
+      right: 0 !important;
+      left: 0 !important;
+      top: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      overflow: hidden !important;
+      padding-bottom: 0% !important;
+  }
+  .heading{
+      padding: 0% !important;
+      padding-left: 0% !important;
+      padding-bottom: 0% !important;
+      display: none !important;
+  }
+      header{
+          width: 100% !important;
+          position: static !important;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+      }
+}
+// header scss end
+// footer scss start
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
+footer{
+  text-align: center;
+  background-color: $background-white;
+  bottom: 0;
+  width: 100% !important;
+  overflow: hidden !important;
+  width: 100% !important;
+  left: 0 !important;
+  position: fixed;
+}
+.icon{
+  float: inline-start;
+  position: relative;
+  transform: scale(0.6);
+}
+@media (max-width: 820px) {
+  .icon{
+      transform: scale(0.7) !important;
+  }
+  .hat{
+      width: 24px !important;
+      height: auto;
+  }
+  p{
+      font-size: 10px !important;
+  }
+  footer{
+      margin-left: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      width: 100% ;
+      position: fixed;
+  }
+  .mat-card{
+    width: 100%;
+  }
+}
+
+button:disabled,
+button[disabled]{
+  background-color: #cccccc;
+  color: #666666;
+}
+
+button:disabled:hover,
+button[disabled]:hover {
+  background-color: #cccccc;
+  color: #666666;
+  cursor:default;
+}

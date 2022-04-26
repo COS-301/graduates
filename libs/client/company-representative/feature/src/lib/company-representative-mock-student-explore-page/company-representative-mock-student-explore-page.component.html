@@ -1,0 +1,50 @@
+<!-- Header start -->
+<header>
+  <div class="head">
+    <meta name="header for graduates portal" author="Unaizah Mahomed u20426799">
+      <div class="logo">
+        <img src="assets/desktop-up-logo.png" class="uplogo" alt="up logo">
+        <img src="assets/desktop-gradsportal-logo.png" class="hat" alt="hat">
+        <img src="assets/mobileheader.png" class="logoandhat" alt="landg">
+      </div>
+  </div>
+  <!-- Navbar start -->
+  <div class="nav">
+    <button mat-button [matMenuTriggerFor]="menu"><mat-icon>menu</mat-icon>Menu</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="navigateToHome()"><mat-icon style="background-color: white;">home</mat-icon><span>My Profile</span></button>
+      <button mat-menu-item (click)="logout()"><mat-icon  style="background-color: white;">exit_to_app</mat-icon><span>Logout</span></button>
+    </mat-menu> 
+  </div>
+  <!-- Navbar end -->
+</header>
+<!-- Header end -->
+<div>
+  <mat-card>
+    <div>
+      <h1><b>Students</b></h1>
+    </div>
+    <mat-card class="contain" *ngFor="let item of [].constructor(10); let i = index">
+      <div class="picture" id="left" >
+        <img class="image" src="{{profilePicture}}" alt="Cat">
+      </div>
+      <div class="name" id="left">
+        <h2><b>{{mocknames[i]}}</b></h2>
+      </div>
+      <div class="tags" id="left">
+        <h2><b>{{mocktags[i]}}</b></h2>
+        <div class="button-container">
+          <button class="button">Scout</button>
+        </div>
+      </div>
+    </mat-card>
+  </mat-card>
+</div>
+<!-- Footer start -->
+<footer>
+  <meta name="footer for graduates portal" author="Unaizah Mahomed u20426799">
+  <div class = "footer"  style="display: flex; align-items: center; justify-content: center;">
+      <img src="assets/footer.png" alt="uplogo" class="icon"/> 
+  </div>
+</footer>
+<!-- Footer end -->

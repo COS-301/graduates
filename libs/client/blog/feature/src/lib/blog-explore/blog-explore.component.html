@@ -1,0 +1,76 @@
+<head>
+    <meta name="author" content="DylanSpies" />
+    <meta name="component" content="Blog-Explore" />
+</head>
+
+<!-- Header Component + Navbar Tabs -->
+<header-and-footer-header></header-and-footer-header>
+<navbar-tabs-navigation-bar></navbar-tabs-navigation-bar>
+
+<div class="page">
+    <h1>UP Student Blog</h1><br><br><br>
+    <h3>Blog Posts</h3><br>
+
+    <!-- Helper buttons -->
+    <div class="utilities">
+        <!-- Filter Component -->
+        <div fxLayout="row" class="sort">
+            <button fxFlexAlign="center" mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon >menu</mat-icon>  
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="newestFirst()">
+                <span>Newest First</span>
+            </button>
+                <button mat-menu-item (click)="oldestFirst()">
+                <span>Oldest First</span>
+            </button>
+            </mat-menu>
+            <div fxLayout="column">
+                <p fxFlexOffset="15px" fxFlexAlign="center" fxShow="true" fxHide.lt-sm="true" fxHide.sm="true">SORT</p>
+            </div>
+        </div>
+
+        <!-- Button to create new blog -->
+        <button class="createbutton" mat-raised-button color="accent" (click)="createBlog()">Create Blog</button>
+
+        <!-- Button to switch to admin mode -->
+        <button class="adminbutton" mat-raised-button color="accent" (click)="changeAdmin()">Admin</button>
+    </div>
+
+    <!-- Blog display grid -->
+    <mat-grid-list #grid [cols]="cols" rowHeight="350px">
+        <!-- Loops through all blogs -->
+        <div *ngFor="let card of blogs | async">
+            <mat-grid-tile>
+                <mat-card class="card" fxLayout="column">
+
+                    <!-- <div>{{card.content}}</div> -->
+                    <div class="imageDIV">
+                        <img class="image" mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+                    </div>
+
+                    <br>
+                    <!-- Blog details -->
+                    <mat-card-header fxFlexAlign="center" class="cardTitle">
+                        <mat-card-title>{{card.title}}</mat-card-title>
+                        <mat-card-subtitle>Author ID: {{card.userId}}</mat-card-subtitle>
+                    </mat-card-header>
+
+                    <!-- Functionality buttons to interact with a blog -->
+                    <mat-card-content>
+                        <div class="buttons">
+                            <button *ngIf="admin" class="editbutton" mat-raised-button color="accent" (click)="editBlog(card.id)">Edit Post</button>
+                            <button *ngIf="admin" class="deletebutton" mat-raised-button color="accent" (click)="deleteBlog(card.id)">Delete Post</button>
+                            <button class="viewbutton" mat-raised-button color="accent" (click)="readBlog(card.id)">Read More</button>
+                        </div>
+                    </mat-card-content>
+
+                </mat-card>
+            </mat-grid-tile>
+        </div>
+
+    </mat-grid-list>
+</div>
+
+<header-and-footer-footer></header-and-footer-footer>

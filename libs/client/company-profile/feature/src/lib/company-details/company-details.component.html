@@ -1,0 +1,10 @@
+<div class="company_details">
+    <h2>Company Details</h2>
+    <mat-divider [inset]="true"></mat-divider>
+    <!-- <mat-divider [vertical]="true"></mat-divider> -->
+    <br/>
+    <mat-icon>public</mat-icon> <p id="company_details_website">www.website.com</p>
+    <br/><mat-icon> location_on</mat-icon> <p id="company_details_location">{{location}}</p>
+    <br/><mat-icon> phone</mat-icon> <p id="company_details_phone">{{number}}</p>
+    <br/><p id="company_details_email" *ngFor = "let email of emails"><mat-icon> email</mat-icon> {{email}}</p>
+</div>

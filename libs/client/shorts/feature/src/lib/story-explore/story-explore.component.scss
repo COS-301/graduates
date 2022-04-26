@@ -1,0 +1,323 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+
+#thumbnail{
+    height: 30vh !important;
+    width: 100%;
+    object-fit: cover;
+}
+#navBar{
+    position: absolute;
+    bottom: 100% important;
+}
+.banner-text {
+    color: $primary-1;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: xx-large;
+    font-weight: bold;
+    // text-align: center;
+    // margin-left: auto;
+    // margin-right: auto;
+    // display: block;
+}
+.nothingfound {
+    color: $card-red;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: large;
+    font-style: italic;
+}
+
+header-and-footer-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+#cardHeader{
+    padding-top: 2px;
+}
+
+#card{
+    height: 95%;
+    max-width: 60vh;
+    width: 100%;
+    margin-left: 10%;
+    margin-right: 10%;
+    box-shadow: 10px 10px 50px rgba(0,0,0, 0.15);
+}
+
+.cardbutton {
+    font-size: medium;
+    color: $text-white;
+    float: right;
+    padding-right: 20px;
+    margin-top: -5px;
+    background-color: $card-blue;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: $card-blue;
+    &:hover{
+        color: $primary-1;
+        background-color: $background-white;
+    }   
+    
+}
+
+
+
+.cardbutton-nohov {
+    font-size: medium;
+    color: $text-white;
+    float: right;
+    padding-right: 20px;
+    margin-top: -5px;
+    background-color: $card-blue;
+    color: $text-white;
+
+    border-style: solid;
+    border-width: 1px;  
+}
+
+#tags{
+    font-size: small;
+    flex-wrap: wrap;
+    display: inline-block;
+    max-width: fit-content;
+    height: fit-content;
+}
+
+#tagval {
+    height: fit-content;
+}
+
+
+#search{
+    border: none;
+    padding: 10px;
+    box-shadow: 10px 10px 50px rgba(0,0,0, 0.15);
+    width: 65vw;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+@media (max-width: 428px) {
+
+    #search {
+        border: none;
+        width: 80vw;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        outline: 1px solid $background-white;
+    }
+    
+}
+
+.error {
+    color: $text-red;
+}
+
+.popupcard {
+    background-color: $background-white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vh;
+    max-width: 90vw;
+    color: $text-white;
+    z-index: 99 !important;
+}
+
+#uploadbanner {
+    background-color: $card-blue;
+}
+
+#infomessage {
+    color: $primary-3;
+}
+
+#viewname {
+    color: $primary-3;
+    text-align: left !important;
+}
+
+#viewtags {
+    color: $primary-3;
+}
+
+.thumbnailselected {
+    height: auto;
+    width: 80vw;
+    max-width: 80vh;
+}
+
+.bigblur {
+    box-shadow: 20px 20px 50px rgba(0,0,0, 0.25);
+}
+
+.infocolour {
+    color: $primary-3;
+}
+
+.hint {
+    color: #888888;
+}
+
+#wholepage > div.rounded.popupcard.p-2.bigblur > div.videosize > video {
+    height: auto;
+    width : 80vw;
+    background-color: pink;
+}
+
+.uploadcontainer {
+    z-index: 99 !important;
+}
+
+#greyline {
+    border-bottom: 1.8px solid #888888;
+    margin-left: 2vh;
+    margin-right: 2vh;
+}
+
+#fileupload {
+    outline: 0.2vh dashed #a3bdc0;
+    outline-offset: -6px;
+    background-color: #c9dade;
+}
+
+#reason {
+    outline: none;
+    color: $primary-3;
+    padding: 8px 8px;
+    max-height: 40vh;
+    min-height: 10vh;
+}
+
+#taginput {
+    outline: none;
+    color: $primary-3;
+    padding: 8px 8px;
+}
+
+.formbuttonblue {
+    background-color: $card-blue;
+    color: $text-white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $card-blue;
+    &:hover{
+        color: $primary-1;
+        background-color: $background-white;
+    }   
+}
+
+.formbuttonred {
+    background-color: $card-red;
+    color: $text-white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $card-red;
+    &:hover{
+        color: $card-red;
+        background-color: $background-white;
+
+    }   
+}
+
+.formbuttonDisabled {
+    border-style: solid;
+    border-width: 1px;
+    border-color: $card-red;
+
+    color: $card-red;
+    background-color: $background-white;
+
+ 
+}
+
+.formbuttonBlueDisabled {
+    border-style: solid;
+    border-width: 1px;
+    border-color: $primary-1;
+
+    color: $primary-1;
+    background-color: $background-white;
+
+ 
+}
+
+.auto-col-maker {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+}
+
+@media (max-width: 500px) {
+    .auto-col-maker {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+.centindiv {
+    display: flex;
+    justify-content: center;
+
+}
+
+.grid-container {
+    width: 100%;
+    min-height: 100vh;
+    padding-bottom: 12vw;
+
+}
+
+.wholepagecontent {
+    position: absolute !important;
+    left: 0%;
+    overflow: hidden !important;
+    width: 100vw;
+}
+
+.loader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid $primary-1; /* Blue */
+    border-radius: 50%;
+    width: 4vh;
+    height: 4vh;
+    animation: spin 2s infinite;
+    margin-right: 5%;
+}
+
+.pageloader {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid $primary-1; /* Blue */
+    border-radius: 50%;
+    position: absolute;
+    top: 45%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+    width: 6vh;
+    height: 6vh;
+    animation: spin 2s infinite;
+}
+
+@media (max-width: 300px) {
+    .loader {
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid $primary-1; /* Blue */
+        border-radius: 50%;
+        width: 3vh;
+        height: 3vh;
+        animation: spin 2s infinite;
+        margin-right: 5%;
+    }
+}
+
+
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

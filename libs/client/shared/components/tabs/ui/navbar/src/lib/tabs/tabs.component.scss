@@ -1,0 +1,12 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+
+#tab{
+    background-color: $primary-1;
+}
+.text{
+    color:$text-white;
+}
+
+.selected{
+    color:lightseagreen !important;
+}

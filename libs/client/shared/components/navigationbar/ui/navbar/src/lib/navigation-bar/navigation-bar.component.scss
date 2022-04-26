@@ -1,0 +1,56 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+
+#nav{
+    background-color: $primary-1;
+    opacity: 90%;
+}
+.text{
+    color: #ffffff !important; 
+}
+#bell{
+    width: 25px;
+    height:auto;
+    margin-left: 20px;
+    cursor: pointer;
+}
+#profile{
+    width: 25px;
+    height:auto;
+    margin-left: 20px; 
+    cursor: pointer;
+}
+#logo{
+    width: 5%;  
+}
+#name{
+    width: 200px;  
+    margin-left: 10%;
+    margin-right: 2%;
+}
+#gradtext {
+    font-size: 25px;
+}
+@media screen and (max-width: 992px) {
+    #gradtext {
+       /* width: 200px; float: left;*/
+        display: none;
+    }
+    #main {margin-left: 216px;}
+  }
+  @media screen and (min-width: 992px) {
+    #name {
+        display: none;
+    }
+    #navContent{
+        margin-left: 55%;
+    }
+  }
+  #count{
+    position: absolute;
+    margin-left: 3em;
+    margin-top: 0em;
+    font-size: 0.8em;
+}
+.bell{
+    color: #ffffff !important;
+}

@@ -1,0 +1,44 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+
+.message{
+
+    position: absolute; 
+    top:50%;
+    left:38%; 
+    color: $primary-1; 
+    font-size: xx-large;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+}
+
+.header {
+    position:absolute;
+    left:0%;
+    right:0%;
+    top:0%;
+    bottom:85.32%; 
+    justify-content: space-between;
+}
+
+.image {
+   height: 100%; 
+   width:100%; 
+}
+
+.footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+
+.page {
+    padding-top: 8%;
+    padding-bottom: 8%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.foot-image {
+    height: 70px; 
+    width: 600px; 
+ }

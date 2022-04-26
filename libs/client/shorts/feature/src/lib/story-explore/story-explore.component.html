@@ -1,0 +1,246 @@
+<!-- header from shared -->
+
+<div class="wholepagecontent" id="wholepage">
+
+  <!-- Story Explore -->
+  <div class="grid-container">
+    
+    <div id="content-wrap">
+      <header-and-footer-header></header-and-footer-header>
+
+      <!-- page title -->
+      <h1 class = "banner-text text-center pt-3 w-100">Student Shorts</h1>
+      <!-- search bar -->
+      <div class="">
+        <input *ngIf="!upload" (input)="search()" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." id="search" type="text" fxFlex="70%" fxFlexOffset="-10%">
+        <!-- <input *ngIf="upload" disabled="true" (click)="searchClick()" class="drop-shadow-xl rounded p-2.5" placeholder="Seach for a story..." type="text" fxFlex="70%" fxFlexOffset="-10%"> -->
+      </div>
+
+      <h1 class = "nothingfound text-center pt-3 w-100">{{ nocardsfound }}</h1>
+
+      <!-- page loader -->
+      <div class="pageloaderdiv"><div *ngIf="!readytoview" class="pageloader" ></div></div>
+
+      <!-- column manager for all cards -->
+      <div class="auto-col-maker my-3 w-100" *ngIf="readytoview">
+        <!-- container for cards -->
+        <div *ngFor="let card of cards | async" class="centindiv">
+        <!-- Generates a Card -->
+          <div class="m-3 p-3 rounded centindiv" id="card">
+            <div class="dashboard-card-content m-1">
+              <img src={{card.thumbnail}} id="thumbnail">
+                  <div class="grid grid-cols-2 auto-cols-max pt-2">
+                    <div class="grid grid-rows-2">
+                      <div>
+                        <mat-card-title id="cardHeader"> 
+                          {{card.user.name}}
+                        </mat-card-title>  
+                      </div>
+                      <div id ="tags"><i *ngFor="let tag of card.shortTag" id="tagval">#{{tag.tag}} </i></div>
+                    </div>
+                    <div>
+                      <button *ngIf="!upload" (click)="viewStory(card.id)" class="formbutton rounded py-2 px-5 cardbutton">View</button>
+                      <button *ngIf="upload" disabled="true" class="formbutton rounded py-2 px-5 cardbutton-nohov">View</button>
+                    </div>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      <header-and-footer-footer></header-and-footer-footer>
+
+    </div> 
+
+    <!-- pager buttons -->
+    <div class="centindiv pager" id="pageNavi">
+        <!-- Page Navigation -->
+        <div>
+          <button id ="prevBtn" disabled (click)="btnNaviClick(-1)" class=" px-4 py-2 formbuttonblue rounded">
+              Prev
+          </button>
+          <button id ="curBtn" disabled class="px-4 py-2 rounded bg-gray-300  mx-2">
+              1
+          </button>
+          <button id ="nextBtn" (click)="btnNaviClick(1)" class="px-4 py-2 formbuttonblue rounded">
+              Next
+          </button>
+        </div>
+    </div>
+
+
+  </div>
+
+  <!-- pop up -> for story UPLOAD -->
+  <div class="grid grid-cols-1 max-w-prose w-2/3 drop-shadow-2xl popupcard bigblur" id="uploadcontainer" *ngIf="upload">
+
+    <!-- banner for upload box -->
+    <div class="text-center p-6" id="uploadbanner">Upload Your Content</div>
+
+    <!-- form creation -->
+    <form [formGroup]="uploadfrm" (ngSubmit)="uploadStory()">
+
+      <!-- file input -->
+      <div class="fileupload mr-3 ml-3 mb-3">
+
+        <div class="text-center my-1 infocolour">Select or Drag and Drop your files</div>
+
+        <div class="w-full">
+
+          <div class="my-1 infocolour">Story Video:</div>
+
+            <div id="fileupload" class="mt-2 px-8">
+              <div class="mt-1">
+                <!-- drag and drop file input -> video -->
+
+                <input id="file" type="file" class="block w-full text-sm text-slate-600
+                  file:py-1 file:px-1
+                  file:rounded file:border-0
+                  file:text-sm
+                  py-8
+                  h-500
+                "
+                  formControlName="file"
+                  [ngClass]="{'is-invalid': submit && uploadfrm.controls['file'].errors}"
+                  (change)="onFileUpload($event)"
+                />
+              </div>
+            </div>
+            <!-- no file selected error -->
+            <div *ngIf="submit && fileuploadflag" class="text-right error">
+              {{ fileuploaderror }}
+            </div>
+
+          <div class="mt-2 infocolour">Thumbnail for Video:</div>
+
+            <div id="fileupload" class="mt-2 px-8">
+              <div class="mt-1">
+                <!-- drag and drop file input -> thumbnail -->
+                <input id="file" type="file" class="block w-full text-sm text-slate-600
+                  file:py-1 file:px-1
+                  file:rounded file:border-0
+                  file:text-sm
+                  py-8
+                  h-500
+                "
+                  formControlName="thumbnail"
+                  [ngClass]="{'is-invalid': submit && uploadfrm.controls['thumbnail'].errors}"
+                  (change)="onThumbnailUpload($event)"
+                />
+              </div>
+            </div>
+            <!-- no file selected error -->
+            <div *ngIf="submit && thumbnailuploadflag" class="text-right error">
+              {{ thumbnailuploaderror }}
+            </div>
+
+        </div>
+      </div>
+
+      <!-- add TAGS box -->
+      <div class="mb-3 ml-3 mr-3">
+          <div class="infocolour mb-1">Add Tags:</div>
+
+          <input id="taginput" placeholder="#Cos301#CS#MiniProject" type="text" formControlName="tags" class="drop-shadow-md w-full rounded" [ngClass]="{'is-invalid': submit && uploadfrm.controls['tags'].errors}"/>
+          <div *ngIf="submit && uploadfrm.controls['tags'].errors" class="text-right error mt-1">
+            {{ uploadfrm.controls['tags'].errors!['errormsg']}}
+          </div>
+      </div>
+
+      <!-- buttons, CANCEL and UPLOAD -->
+      <div>
+        <div class="grid grid-cols-2 place-content-center pb-3">
+          <div class="flex justify-center"><button class="py-2.5 px-3 formbuttonblue rounded" (click)="cancelUpload()">Cancel</button></div>
+          <div class="flex justify-center"><div *ngIf="loadwheel" class="loader"></div><button class="py-2.5 px-3 formbuttonblue rounded" type="submit">Submit</button></div>
+        </div>
+      </div>
+
+    </form>
+
+
+  </div>
+
+
+
+  <!-- pop up -> for VIEWING a story -->
+  <div *ngIf="viewing" class="rounded popupcard p-2 bigblur">
+
+    <!-- this tag will be used to embed the video -->
+    <div class="videosize" #vid></div>
+
+    <!-- <img class="w-100 thumbnailselected rounded" src="{{ viewingThumbnailSorce}}"> -->
+
+    <div class="grid grid-rows-2 md:grid-rows-1 grid-flow-col auto-cols-auto m-3">
+      <!-- story information -->
+      <div>
+        <!-- story info -->
+        <div><h1 id="viewname" class="m-0">{{ viewingName }}</h1></div>
+        <div><h4 id="viewtags" class="m-0">{{ viewingTags }}</h4></div>
+      </div>
+      <!-- buttons -->
+      <div class="text-right my-auto">
+        <button *ngIf="!alreadyReported" class="py-2.5 px-3 mr-2 formbuttonred rounded" (click)="makeReportpopup()">Report</button>
+        <button *ngIf="alreadyReported" disabled class="py-2.5 px-3 mr-2 formbuttonDisabled rounded">Reported!</button>
+        <button class="py-2.5 px-3 mr-2 formbuttonblue rounded" (click)="closeViewing()">Close</button>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <!-- pop up -> for REPORTING a story -->
+  <div *ngIf="reporting" class="bigblur grid grid-cols-1 max-w-prose w-2/3 drop-shadow-2xl popupcard">
+
+    <!-- banner heading for report -->
+    <div class="text-center p-6" id="uploadbanner">Report Story</div>
+    <!-- info message -->
+    <div class="text-center pt-3" id="infomessage">Why are you reporting this?</div>
+    <!-- form for api -->
+    <form [formGroup]="reportfrm" (ngSubmit)="submitReport()">
+      <div class="m-3">
+        <textarea id="reason" placeholder="Type your reason here..." rows="6" type="text" formControlName="reason" class="w-full drop-shadow-md rounded" [ngClass]="{'is-invalid': submit && uploadfrm.controls['reason'].errors}">this is a test</textarea>
+        <div *ngIf="reported && reportfrm.controls['reason'].errors" class="text-right error mt-1">
+          {{ reportfrm.controls['reason'].errors!['errormsg']}}
+        </div>
+        <div class="text-right error mt-1">
+          {{ apifailure }}
+        </div>
+      </div>
+      <!-- buttons for CANCEL and REPORT -->
+      <div class="grid grid-cols-2 place-content-center pb-3">
+        <div class="flex justify-center"><button class="py-2.5 px-3 formbuttonblue rounded" (click)="cancelReport()">Cancel</button></div>
+        <div class="flex justify-center"><button class="py-2.5 px-3 formbuttonred rounded" type="submit">Submit</button></div>
+      </div>
+    </form>
+
+  </div>
+
+
+  <!-- pop up -> for REPORT SUCCESSFUL -->
+  <div *ngIf="successfulReport" class="popupcard bigblur">
+
+    <!-- banner heading for report -->
+    <div class="text-center p-6" id="uploadbanner">Report Successful</div>
+    <!-- info message -->
+    <div class="text-center pt-3 mx-4 mt-1 mb-3" id="infomessage">Thank you for reporting this.</div>
+    <div class="flex justify-center"><button class="py-2.5 px-3 mb-3 formbuttonblue rounded" (click)="closeSuccessReport()">Continue</button></div>
+
+  </div>
+
+  <!-- pop up -> for REPORT SUCCESSFUL -->
+  <div *ngIf="successfulUpload" class="popupcard bigblur">
+
+    <!-- banner heading for report -->
+    <div class="text-center p-6" id="uploadbanner">Successful</div>
+    <!-- info message -->
+    <div class="text-center pt-3 mx-4 mt-1 mb-3" id="infomessage">Your short has been uploaded.</div>
+    <div class="flex justify-center"><button class="py-2.5 px-3 mb-3 formbuttonblue rounded" (click)="closeSuccessUpload()">Continue</button></div>
+
+  </div>
+
+</div>
+
+
+  <!-- footer from shared -->

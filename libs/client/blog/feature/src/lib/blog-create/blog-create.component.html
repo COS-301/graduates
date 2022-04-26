@@ -1,0 +1,34 @@
+<head>
+    <meta name="author" content="DylanSpies" />
+    <meta name="component" content="Blog-Create" />
+</head>
+
+<!-- Header Component + Navbar Tabs -->
+<header-and-footer-header></header-and-footer-header>
+<navbar-tabs-navigation-bar></navbar-tabs-navigation-bar>
+
+<br>
+
+<!-- Full Page Styling -->
+<div class="page">
+    <!-- Headings for page -->
+    <h1>UP Student Blog</h1>
+    <h2>Editor</h2><br><br><br>
+    <h3>Add New Post</h3>
+
+    <!-- Submission form to send input data to .ts -->
+    <div class="input">
+        <form (submit)="post()">
+            <!-- Form inputs -->
+            <input [(ngModel)]="title" type="text" name="title" class="title" placeholder="Post Title" value="{{blog.title}}" ngModel><br><br>
+            <pre></pre>
+            <textarea [(ngModel)]="content" type="text" name="content" class="content" placeholder="Post Content" rows="13" value="{{blog.content}}" ngModel></textarea><br><br>
+            <pre></pre>
+            <button type="submit" class="formbutton" mat-raised-button color="accent">Post</button>
+        </form>
+        <button type="submit" class="cancelbutton" mat-raised-button color="accent" (click)="cancel()">Cancel</button>
+    </div>
+</div>
+
+<!-- Footer Component -->
+<header-and-footer-footer></header-and-footer-footer>

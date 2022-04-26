@@ -1,0 +1,16 @@
+ <header-and-footer-header></header-and-footer-header>
+ <navbar-tabs-navigation-bar></navbar-tabs-navigation-bar>
+<div class="banner" fxLayout="row" fxLayoutAlign="center">
+    <graduates-company-explore-banner></graduates-company-explore-banner>
+</div>
+
+<graduates-company-explore-operations-bar></graduates-company-explore-operations-bar>
+        
+<div *ngIf="isMobile, else elseBlock">
+    <graduates-company-explore-mobile-content [companies]="companies"></graduates-company-explore-mobile-content>
+</div>
+ <ng-template #elseBlock>
+        <graduates-company-explore-content [companies]="companies"></graduates-company-explore-content>
+</ng-template>
+
+<header-and-footer-footer></header-and-footer-footer>

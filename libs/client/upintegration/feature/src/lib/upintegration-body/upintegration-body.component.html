@@ -1,0 +1,56 @@
+<h1 id="title">UP Integration Page</h1>
+
+<form
+  ngForm
+  #inputForm="ngForm"
+  (ngSubmit)="submit(inputForm)"
+  class="permissions-form"
+>
+  <div class="text-response">
+    <label for="'student-number-textbox">Student Number:</label><br />
+    <input
+      ngModel
+      name="student-number-textbox"
+      #studentNumberTextbox="ngModel"
+      type="text"
+      id="student-number-textbox"
+    /><br />
+  </div>
+  <div class="checkbox">
+    <input
+      type="checkbox"
+      id="check-student-number"
+      name="check-student-number"
+    />
+    <label for="check-student-number">Permission to verify student number</label
+    ><br />
+  </div>
+  <div class="checkbox">
+    <input type="checkbox" id="check-name" name="check-name" />
+    <label for="check-name">Permission to get Full Name</label><br />
+  </div>
+  <div class="checkbox">
+    <input type="checkbox" id="check-degree" name="check-degree" />
+    <label for="check-degree">Permission to get Degree of study</label><br />
+  </div>
+  <div class="checkbox">
+    <input
+      type="checkbox"
+      id="check-academic-record"
+      name="check-academic-record"
+    />
+    <label for="check-academic-record">Permission to get Academic Record</label
+    ><br />
+  </div>
+  <div class="checkbox">
+    <input type="checkbox" id="check-contact" name="check-contact" />
+    <label for="check-contact">Permission to get Contact Details</label><br />
+  </div>
+  <button
+    type="submit"
+    id="submit-button"
+    (onClick)="submit(studentNumberTextbox)"
+  >
+    Submit
+  </button>
+</form>

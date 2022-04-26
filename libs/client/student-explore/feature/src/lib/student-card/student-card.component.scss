@@ -1,0 +1,171 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+
+
+/*=============================================FONTS=============================================*/
+$Segoe: 'Segoe UI';
+
+.card-grid{
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-items: center;
+
+  width: min(95%, 70rem);
+  margin-inline: auto;
+  padding-bottom: 5em;
+}
+
+//Media queries to adjust grid
+@include desktop{
+  .card-grid{
+    display: grid;
+    gap: 5rem;
+    grid-template-columns: repeat(3, 1fr);
+  
+    width: min(95%, 70rem);
+    margin-inline: auto;
+  }
+}
+
+@include tablet{
+  .card-grid{
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: repeat(2, 1fr);
+  
+    width: min(95%, 70rem);
+    margin-inline: auto;
+  }
+}
+
+@include phone{
+  .card-grid{
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: repeat(1, 1fr);
+  
+    width: min(95%, 70rem);
+    margin-inline: auto;
+  }
+}
+
+mat-card {
+  padding: 0;
+  margin: 0;
+  height: auto;
+  width: 340px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+div.banner {
+  height: 45%;
+  width: 100%;
+}
+
+div.content {
+  width: 90%;
+  height: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+}
+
+div.content mat-card-title {
+  text-align: center;
+}
+
+div.content mat-card-content {
+  width: 100%;
+  margin-top: 4%;
+  margin-bottom: 2%;
+}
+
+div.content mat-card-actions {
+  margin: 0;
+}
+
+div.content mat-card-actions button {
+  color: $text-white;
+  background-color: $primary-1;
+  transition: color 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}
+
+div.content mat-card-actions button:hover {
+  background-color: $text-white;
+  color: $primary-1;
+}
+
+div.banner img {
+  height: 250px;
+  width: 100%;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+
+/*============================================SEARCH BAR STYLING============================================*/
+
+div#searchBar
+{
+  /*background-color: red;*/
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 60%;
+
+  font-family: $Segoe;
+  font-size: 18px;
+  color: #7D7D7D;
+  font-style: normal;
+  font-weight: 400;
+}
+
+div#searchBar mat-form-field
+{
+  /*background-color: blue;*/
+  margin-left: auto;
+  margin-right: auto;
+
+  width: 100%;
+}
+
+div#searchBar mat-form-field input
+{
+  line-height: 24px;
+
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+
+  background-color: $text-white;
+}
+
+/*============================================FILTER ICON STYLING===========================================*/
+
+div#filter
+{
+  /*position: absolute;
+  left: 2%;
+  top: 22.5%;*/
+
+  float: left;
+  left: 2.5%;
+  top: 1%;
+}
+
+.filter_headings{
+  position: relative;
+  padding-top: 8px;
+  left: 6%;
+}
+
+#filter_submit {
+  position:relative;
+  top:10%;
+  left: 7.5%;
+  color: #fff;
+  background-color: #174372;
+  transition: color 0.5s ease-in-out, background-color 0.5s ease-in-out;
+}

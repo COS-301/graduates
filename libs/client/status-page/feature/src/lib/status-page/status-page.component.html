@@ -1,0 +1,20 @@
+<header-and-footer-header></header-and-footer-header>
+<h1 id="title">Status Page</h1>
+<div id="container">
+    <graduates-status-card *ngFor="let status of statusData" [status]="status"></graduates-status-card>
+</div>
+<div id="legend">
+    <div id="legend-item">
+        <img class="w-9 py-4" src={{operationalImage}} alt="API status image" />
+        <p>Fully Operational</p>
+    </div>
+    <div id="legend-item">
+        <img class="w-7 py-4" src={{nonOperationalImage}} alt="API status image" />
+        <p>Non Operational</p>
+    </div>
+    <div id="legend-item">
+        <img class="w-9 py-4" src={{underDevelopmentImage}} alt="API status image" />
+        <p>Under Development</p>
+    </div>
+</div>
+<header-and-footer-footer></header-and-footer-footer>

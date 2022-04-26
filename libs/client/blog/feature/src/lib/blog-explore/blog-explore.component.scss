@@ -1,0 +1,129 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+// Styling for whole page
+.page {
+    padding-top: 2%;
+    padding-bottom: 4%;
+}
+
+// Utility buttons styling
+.utilities {
+    padding-right: 10%;
+    padding-left: 10%;
+}
+
+.createbutton {
+    background-color: $primary-1;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $primary-1;
+    &:hover {
+        color: $primary-1;
+        background-color: $background-white;
+    }
+}
+
+.adminbutton {
+    color: $primary-1;
+    background-color: $background-white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $primary-1;
+    &:hover {
+        background-color: $primary-1;
+        color: $background-white;
+    }
+    left: 40%;
+}
+
+.sort {
+    float: right;
+}
+
+//Styling for headings
+h1 {
+    text-align: left;
+    float: left;
+    color: black;
+    font-size: 400%;
+    font-weight: bold;
+    padding-left: 10%;
+}
+
+h3 {
+    color: $primary-1;
+    font-size: 200%;
+    padding-left: 12%;
+    font-weight: 500;
+}
+
+//Styling for cards
+.card {
+    margin: 1px;
+}
+
+mat-card {
+    width: 350px;
+    height: 300px;
+}
+
+.cardTitle {
+    position: absolute;
+    bottom: 50px;
+}
+
+.imageDIV {
+    padding-left: 72.5px;
+    padding-top: 15px;
+}
+
+.image {
+    height: 160px;
+    width: 205px;
+}
+
+.viewbutton {
+    background-color: $primary-1;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $primary-1;
+    &:hover {
+        color: $primary-1;
+        background-color: $background-white;
+    }
+    left: 20px;
+}
+
+.editbutton {
+    color: $primary-1;
+    background-color: $background-white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $primary-1;
+    &:hover {
+        background-color: $primary-1;
+        color: $background-white;
+    }
+}
+
+.deletebutton {
+    color: $primary-1;
+    background-color: $background-white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: $primary-1;
+    &:hover {
+        background-color: $primary-1;
+        color: $background-white;
+    }
+    left: 10px;
+}
+
+.buttons {
+    position: absolute;
+    bottom: 20px;
+}
+
+.auto-col-maker {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}

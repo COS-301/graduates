@@ -1,0 +1,124 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+
+.navbar {
+    justify-content: space-between;
+    background-color: $background-white;
+  }
+    
+  .span {
+    padding-right: 1rem;
+  }
+    
+  .mat-toolbar.mat-primary {
+    background: #005baa;
+    color: $background-white;
+  }
+  
+  .mat-card-content{
+    padding: 10px;
+  }
+  
+  .mat-expansion-indicator {
+    border-color: black;
+  }
+  
+  .mat-card{
+    padding:0;
+  }
+  
+  button {
+    background: #005baa;
+    border-radius: 5px;
+    padding: 0.4%;
+    color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
+  }
+  
+  .matActionRow {
+    float: left;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  .matCardTitle {
+    text-align: center;
+    padding-top: 3.5%;
+    font-size: large;
+    color: white;
+  }
+  
+  .matCardHeader {
+    background: $primary-1 ;
+    padding: 7px;
+    color: $background-white;
+    justify-content: center;
+  }
+  
+  .notification-card {
+    justify-content: center;
+    width: 70%;
+    margin-top: 2%;
+    background: $background-white;
+    height: flex;
+    display: block;
+    margin-left:auto;
+    margin-right:auto;  
+    vertical-align:middle;
+    color: $background-white;
+  }
+  
+  @media (max-width: 428px) {
+    .notification-card {
+      justify-content: center;
+      width: 95%;
+      margin-top: 2%;
+    }
+  
+    .mat-icon {
+      transform: scale(0.8);
+    }
+  
+    .matCardTitle {
+      text-align: center;
+      padding-top: 3.5%;
+      font-size: small;
+    }
+  
+    .matCardHeader {
+      justify-content: center;
+    }
+  
+    .mat-expansion-panel-header-description {
+      font-size: 11px;
+    }
+  
+    .mat-expansion-panel-header-title {
+      font-size: 11px;
+    }
+  
+    .matActionRow {
+      font-size: 10px;
+    }
+  
+    .mat-list-item {
+      font-size: smaller;
+    }
+  
+    button {
+      transform: scale(0.8);
+    }
+  }
+  
+  .example-headers-align .mat-expansion-panel-header-title,
+  .example-headers-align .mat-expansion-panel-header-description {
+    flex-basis: 0;
+  }
+  
+  .example-headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  a {
+    color: $text-red;
+  }

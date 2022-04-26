@@ -1,0 +1,23 @@
+{
+  "root": "libs/api/companyexplore/api/feature",
+  "sourceRoot": "libs/api/companyexplore/api/feature/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/api/companyexplore/api/feature/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/api/companyexplore/api/feature"],
+      "options": {
+        "jestConfig": "libs/api/companyexplore/api/feature/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

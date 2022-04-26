@@ -1,0 +1,61 @@
+<head>
+    <meta name="author" content="DylanSpies" />
+    <meta name="component" content="Blog-Create" />
+</head>
+
+<!-- Header Component + Navbar Tabs -->
+<header-and-footer-header></header-and-footer-header>
+<navbar-tabs-navigation-bar></navbar-tabs-navigation-bar>
+
+<br>
+
+<!-- Full Page styling -->
+<div class="page">
+    <h1>UP Student Blog</h1>
+    <button type="submit" class="returnbutton" mat-raised-button color="accent" (click)="return()">Return to Blog Posts</button>
+
+    <br>
+    <br>
+    <br>
+
+    <!-- Display Blog -->
+    <div class="output">
+        <div class="title">{{blog.title}}</div><br>
+        <div class="author">Author: {{blog.userId}}</div>
+        <div class="date">{{blog.date | date:'EEEE, MMMM d yyyy, hh:mm'}}</div><br>
+        <hr><br>
+        <div class="content">{{blog.content}}</div><br>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <!-- Comments -->
+    <div class="smallerDiv">
+        <div class="commentDIV">
+            <div class="commentTitle">Comments</div><br>
+
+            <!-- Display each comment -->
+            <div *ngFor="let com of commentList">
+                <div class="userComment">
+                    <div class="username">{{com.userId}} - </div>
+                    <div class="viewComment">{{com.content}}</div>
+                    <br>
+                </div>
+            </div>
+
+            <!-- Post a comment -->
+            <div class="username">{{loggedInUser}}</div>
+            <form (submit)="post()">
+                <textarea [(ngModel)]="comment" type="text" name="comment" class="comment" placeholder="Add a comment" rows="3" ngModel></textarea><br><br>
+                <pre></pre>
+                <div class="commentBut">
+                    <button type="submit" class="formbutton" mat-raised-button color="accent">Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<header-and-footer-footer></header-and-footer-footer>

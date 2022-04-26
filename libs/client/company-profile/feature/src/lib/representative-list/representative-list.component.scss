@@ -1,0 +1,38 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+h2 {
+    color: $primary-1;
+    margin-bottom: 1px;
+    white-space: nowrap;
+}
+
+mat-divider {
+    border-top-color: $primary-1;
+    // border-top-color: $primary-1;
+    // margin: 0 5%;
+}
+
+.icon {
+    float: right;
+    color: $primary-1;
+    font-size: xx-large;
+}
+
+mat-icon {
+    color: $primary-1;
+    font-size: large;
+    margin-top: 2%;
+}
+
+.representatives_list {
+    max-height: 100px;
+    overflow: auto;
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    color: $primary-1;
+    text-decoration: none;
+}

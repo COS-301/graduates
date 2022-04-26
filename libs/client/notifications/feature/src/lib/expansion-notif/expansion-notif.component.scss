@@ -1,0 +1,19 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+
+.matActionRow {
+    float: left;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+a {
+    color: $text-red;
+}
+
+button {
+    background: #005baa;
+    border-radius: 5px;
+    padding: 0.4%;
+    color: $background-white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
+}

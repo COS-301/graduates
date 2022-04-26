@@ -1,0 +1,32 @@
+/*Done by Aryan Ramnand (u20443626), modified by Hugo Esterhuyse/UI Engineer*/
+@import 'libs/client/shared/assets/ui/src/lib/global';
+
+.mat-toolbar.mat-primary {
+  background: #005baa;
+  color: #fff;
+}
+.studentrequests-card {
+  background: #ECECEC;
+  width: 900px;
+  height: flex;
+  display: block;
+  margin-left:auto;
+  margin-right:auto;
+  color: $text-white;
+}
+.mat-card-title {
+  text-align: center;
+}
+.mat-card-header{
+  background: $primary-1 ;
+  padding: 7px;
+  color: $text-white;
+  justify-content: center;
+}
+.mat-card-content{
+  padding: 10px;
+}
+.mat-raised-button.mat-primary{
+  background: #005baa;
+  color: $text-white;
+}

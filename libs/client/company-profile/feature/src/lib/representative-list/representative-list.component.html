@@ -1,0 +1,8 @@
+<div class="representative_list">                
+    <h2>Representatives List</h2>
+    <mat-divider [inset]="true"></mat-divider>
+    <br>
+    <div class="representatives_list" *ngFor = "let rep of representatives">
+        <a href="{{rep.link}}">{{rep.name}}</a><br/>
+    </div>
+</div>

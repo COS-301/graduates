@@ -1,0 +1,25 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>account_circle</mat-icon>{{userFrom}}
+      </mat-panel-title>
+      <mat-panel-description id="matDescrip"> {{description}} </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <mat-list-item>
+        <mat-icon matListIcon>account_circle</mat-icon>
+        <h3 matLine>{{userFrom}}</h3>
+        <h3 matLine>{{userEmailFrom}}</h3>
+        <p>{{description}}</p>
+      </mat-list-item>
+      <mat-action-row class="matActionRow">
+        <h4>
+          Good afternoon {{userTo}}.<br />A request for your {{requestedItem}} has been made. Click
+          <a href="#">here</a> to grant them access.
+        </h4>
+      </mat-action-row>
+      <mat-action-row>
+        <button mat-raised-button color="primary" (click)="markRead()">Mark as seen</button>
+      </mat-action-row>
+    </mat-list>
+  </mat-expansion-panel>

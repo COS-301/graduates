@@ -1,0 +1,68 @@
+@import 'libs/client/shared/assets/ui/src/lib/global';
+
+div#content
+{
+    margin-top: 3%;
+    padding-top: 2.5%;
+    width: 100%;
+}
+
+@include phone
+{
+    div#content
+    {
+        margin-top: 2.5%;
+        padding-top: 2.5%;
+        width: 100%;
+    }
+
+    h1#pageTitle
+    {
+        font-size: 2.75rem;
+    }
+}
+
+@include tablet
+{
+    div#content
+    {
+        margin-top: 1.5%;
+        padding-top: 2.5%;
+        width: 100%;
+    }
+
+    h1#pageTitle
+    {
+        font-size: 3.5rem;
+    }
+}
+
+@include desktop
+{
+    div#content
+    {
+        margin-top: 0.5%;
+        padding-top: 2.5%;
+        width: 100%;
+    }
+
+    h1#pageTitle
+    {
+        font-size: 4.5rem;
+    }
+}
+
+h1#pageTitle
+{
+    color: $text-blue;
+    font-weight: bold;
+    text-align: center;
+    /*background-color: rgb(0, 255, 0);*/
+}
+
+section{
+    width: 80%;
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+}
